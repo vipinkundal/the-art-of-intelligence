@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Programming And Systems Foundations | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 2</p>
+        <h1>2. Programming And Systems Foundations</h1>
+        <p class="lesson-summary">
+          Before advanced AI, become comfortable with the programming, systems, and implementation details that make model code reliable, efficient, and debuggable.
+        </p>
+
+        <section>
+          <h2>Core skills</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Python</li>
+            <li>NumPy-style vectorization</li>
+            <li>PyTorch or JAX</li>
+            <li>Data structures and algorithms</li>
+            <li>Computational complexity</li>
+            <li>Git</li>
+            <li>Linux and shell scripting</li>
+            <li>SQL and data modelling</li>
+            <li>APIs and distributed systems</li>
+            <li>Docker and containers</li>
+            <li>CPU versus GPU architecture</li>
+            <li>Memory hierarchy</li>
+            <li>Parallel computing</li>
+            <li>Numerical precision</li>
+            <li>Profiling</li>
+            <li>Testing and reproducibility</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Important implementation topics</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Broadcasting</li>
+            <li>Tensor shapes and strides</li>
+            <li>Contiguous versus non-contiguous memory</li>
+            <li>Vectorization</li>
+            <li>Batching</li>
+            <li>Sparse computation</li>
+            <li>Floating-point overflow and underflow</li>
+            <li>Stable softmax and log-sum-exp</li>
+            <li>Mixed precision: FP32, FP16 and BF16</li>
+            <li>Quantized formats such as INT8 and INT4</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Stable log-sum-exp</h2>
+          <p>
+            The stable form subtracts the maximum value before exponentiation so large inputs do not overflow.
+          </p>
+          <div class="formula-display" aria-label="Stable log-sum-exp formula">
+            <code>log(sum_i exp(x_i)) = m + log(sum_i exp(x_i - m)), where m = max_i x_i</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to read model code, reason about tensor shape and memory behavior, profile slow paths, and explain how precision choices affect correctness, speed, and cost.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../mathematical-foundations/index.html">Previous: Mathematical Foundations</a>
+          <a href="../index.html">All lessons</a>
+          <a href="../machine-learning/index.html">Next: Machine Learning</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

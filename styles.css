@@ -518,6 +518,31 @@ h2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.dense-list {
+  gap: 0.55rem 1.4rem;
+}
+
+.phase-article {
+  padding-top: 3.25rem;
+}
+
+.formula-display {
+  max-width: 100%;
+  margin-top: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 1rem;
+}
+
+.formula-display code {
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
+  white-space: nowrap;
+}
+
 .formula-stack {
   display: grid;
   gap: 0.8rem;

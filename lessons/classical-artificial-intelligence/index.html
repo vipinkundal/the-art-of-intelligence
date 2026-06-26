@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Classical Artificial Intelligence | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 3</p>
+        <h1>3. Classical Artificial Intelligence</h1>
+        <p class="lesson-summary">
+          Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.
+        </p>
+
+        <section>
+          <h2>3.1 Search algorithms</h2>
+          <p>Learn and implement:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Breadth-first search</li>
+            <li>Depth-first search</li>
+            <li>Depth-limited search</li>
+            <li>Iterative deepening</li>
+            <li>Uniform-cost search</li>
+            <li>Dijkstra's algorithm</li>
+            <li>Bidirectional search</li>
+            <li>Greedy best-first search</li>
+            <li>A*</li>
+            <li>Weighted A*</li>
+            <li>Iterative Deepening A*</li>
+            <li>Beam search</li>
+            <li>Branch and bound</li>
+            <li>Hill climbing</li>
+            <li>Random-restart hill climbing</li>
+            <li>Simulated annealing</li>
+            <li>Tabu search</li>
+            <li>Local beam search</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>A* evaluation</h2>
+          <div class="formula-display" aria-label="A star evaluation formula">
+            <code>f(n) = g(n) + h(n)</code>
+          </div>
+          <p>
+            where <code>g(n)</code> is the path cost so far and <code>h(n)</code> estimates the remaining cost.
+          </p>
+        </section>
+
+        <section>
+          <h2>Understand</h2>
+          <ul class="lesson-list dense-list">
+            <li>Admissible heuristics</li>
+            <li>Consistent heuristics</li>
+            <li>Completeness</li>
+            <li>Optimality</li>
+            <li>Time and memory complexity</li>
+            <li>State-space representation</li>
+            <li>Duplicate-state detection</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3.2 Adversarial search and games</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Minimax</li>
+            <li>Alpha-beta pruning</li>
+            <li>Negamax</li>
+            <li>Expectimax</li>
+            <li>Iterative deepening</li>
+            <li>Transposition tables</li>
+            <li>Monte Carlo Tree Search</li>
+            <li>UCT</li>
+            <li>Counterfactual regret minimization</li>
+            <li>Self-play</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Minimax</h2>
+          <div class="formula-display" aria-label="Minimax value recurrence">
+            <code>V(s) = max_a V(T(s, a)) for max player; min_a V(T(s, a)) for min player</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>UCT selection</h2>
+          <div class="formula-display" aria-label="UCT selection formula">
+            <code>UCT = Q(s, a) + c * sqrt(ln N(s) / N(s, a))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>3.3 Constraint satisfaction and satisfiability</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Constraint-satisfaction problems</li>
+            <li>Backtracking</li>
+            <li>Forward checking</li>
+            <li>Constraint propagation</li>
+            <li>Arc consistency</li>
+            <li>AC-3</li>
+            <li>Minimum remaining values</li>
+            <li>Degree heuristic</li>
+            <li>Least-constraining value</li>
+            <li>Min-conflicts</li>
+            <li>Boolean satisfiability</li>
+            <li>DPLL</li>
+            <li>Conflict-driven clause learning</li>
+            <li>WalkSAT</li>
+            <li>Integer programming</li>
+            <li>Mixed-integer programming</li>
+          </ul>
+          <p>
+            These patterns are useful in scheduling, verification, program synthesis, planning, and structured generation.
+          </p>
+        </section>
+
+        <section>
+          <h2>3.4 Logic and symbolic reasoning</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Propositional logic</li>
+            <li>First-order predicate logic</li>
+            <li>Quantifiers</li>
+            <li>Unification</li>
+            <li>Resolution</li>
+            <li>Forward chaining</li>
+            <li>Backward chaining</li>
+            <li>Horn clauses</li>
+            <li>Logic programming</li>
+            <li>Description logic</li>
+            <li>Knowledge bases</li>
+            <li>Ontologies</li>
+            <li>Non-monotonic reasoning</li>
+            <li>Default logic</li>
+            <li>Temporal logic</li>
+            <li>Modal logic</li>
+            <li>Fuzzy logic</li>
+            <li>Automated theorem proving</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Core inference pattern</h2>
+          <div class="formula-display" aria-label="Modus ponens inference pattern">
+            <code>P, P =&gt; Q :: Q</code>
+          </div>
+          <p>Also distinguish:</p>
+          <ul class="lesson-list dense-list">
+            <li><strong>Deduction:</strong> rule plus fact produces a necessary conclusion.</li>
+            <li><strong>Induction:</strong> observations support a general rule.</li>
+            <li><strong>Abduction:</strong> infer the best explanation.</li>
+            <li><strong>Analogy:</strong> transfer structure from a similar case.</li>
+            <li><strong>Counterfactual reasoning:</strong> determine what would happen under a different intervention.</li>
+          </ul>
+          <p>
+            Wikipedia's AI outline, glossary, and algorithm index are useful breadth-first references for these older and newer branches of AI.
+          </p>
+        </section>
+
+        <section>
+          <h2>3.5 Planning</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>State-space planning</li>
+            <li>STRIPS</li>
+            <li>PDDL</li>
+            <li>Forward and backward planning</li>
+            <li>Partial-order planning</li>
+            <li>Graphplan</li>
+            <li>Hierarchical task networks</li>
+            <li>Contingent planning</li>
+            <li>Planning under uncertainty</li>
+            <li>Temporal planning</li>
+            <li>Multi-agent planning</li>
+            <li>Receding-horizon planning</li>
+          </ul>
+          <p>
+            Modern agent systems often rediscover these ideas under names such as planner-executor, workflow orchestration, and task decomposition.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to model a problem as states and transitions, choose an appropriate search strategy, explain its complexity, reason about whether it is complete or optimal, implement basic game-playing search with evaluation functions, recognize when a task should be framed as a constraint or satisfiability problem, distinguish the main symbolic reasoning patterns, and connect classical planning ideas to modern agent workflows.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../programming-and-systems-foundations/index.html">Previous: Programming And Systems Foundations</a>
+          <a href="../index.html">All lessons</a>
+          <a href="../machine-learning/index.html">Next: Machine Learning</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

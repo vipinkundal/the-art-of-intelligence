@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment
+.env
+.env.*
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Build and cache output
+dist/
+build/
+.cache/
+
+# JavaScript package manager output
+node_modules/
+.pnpm-store/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

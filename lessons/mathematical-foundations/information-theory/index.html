@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Information Theory | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">1. Mathematical Foundations</p>
+        <h1>1.6 Information Theory</h1>
+        <p class="lesson-summary">
+          Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Entropy</li>
+            <li>Cross-entropy</li>
+            <li>KL divergence</li>
+            <li>Mutual information</li>
+            <li>Conditional entropy</li>
+            <li>Jensen-Shannon divergence</li>
+            <li>Coding theory</li>
+            <li>Minimum description length</li>
+            <li>Rate-distortion theory</li>
+            <li>Perplexity</li>
+            <li>Information bottleneck</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Essential formulas</h2>
+          <div class="formula-stack" aria-label="Essential information theory formulas">
+            <div class="formula-row">
+              <span>Entropy</span>
+              <code>H(p) = - sum_x p(x) log p(x)</code>
+            </div>
+            <div class="formula-row">
+              <span>Cross-entropy</span>
+              <code>H(p, q) = - sum_x p(x) log q(x)</code>
+            </div>
+            <div class="formula-row">
+              <span>KL divergence</span>
+              <code>D_KL(p || q) = sum_x p(x) log(p(x) / q(x))</code>
+            </div>
+            <div class="formula-row">
+              <span>Mutual information</span>
+              <code>I(X; Y) = D_KL(p(x, y) || p(x)p(y))</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Classification and language models often train with cross-entropy. Generative models compare distributions, compress information, and learn representations that preserve useful signals while discarding noise.
+          </p>
+          <p>
+            Perplexity summarizes how uncertain a language model is, KL divergence compares probability distributions, and mutual information helps reason about dependence between variables.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            After this lesson, you should be able to explain entropy, cross-entropy, KL divergence, mutual information, perplexity, and why information bottlenecks matter for representation learning.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../optimization/index.html">Previous: Optimization</a>
+          <a href="../discrete-mathematics-theoretical-computer-science/index.html">Next: Discrete Mathematics And Theoretical Computer Science</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

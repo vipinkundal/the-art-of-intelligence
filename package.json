@@ -1,0 +1,15 @@
+{
+  "name": "the-art-of-intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A simple AI learning roadmap and lesson website.",
+  "type": "module",
+  "scripts": {
+    "audit:lessons": "node scripts/audit-lessons.mjs",
+    "check": "npm run check:scripts && npm run audit:lessons",
+    "check:scripts": "node --check scripts/audit-lessons.mjs && node --check scripts/create-lesson.mjs && node --check scripts/list-lessons.mjs && node --check scripts/serve.mjs",
+    "create:lesson": "node scripts/create-lesson.mjs",
+    "list:lessons": "node scripts/list-lessons.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

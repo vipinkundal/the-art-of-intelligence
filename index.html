@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Art of Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="#terms">Terms</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="intro-section" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">AI learning glossary</p>
+          <h1 id="page-title">Understand AI terms without getting lost.</h1>
+          <p class="intro-text">
+            Search plain-language definitions, compare related ideas, and follow a practical path from basics to AI systems.
+          </p>
+          <div class="search-wrap">
+            <label for="term-search">Search terms</label>
+            <input id="term-search" type="search" placeholder="Try transformer, token, model, agent..." autocomplete="off">
+          </div>
+        </div>
+
+        <div class="concept-map" aria-label="AI learning concept map">
+          <div class="map-node map-core">Artificial Intelligence</div>
+          <div class="map-node map-data">Data</div>
+          <div class="map-node map-models">Models</div>
+          <div class="map-node map-learning">Learning</div>
+          <div class="map-node map-systems">Systems</div>
+          <div class="map-line line-data"></div>
+          <div class="map-line line-models"></div>
+          <div class="map-line line-learning"></div>
+          <div class="map-line line-systems"></div>
+        </div>
+      </section>
+
+      <section id="terms" class="term-section" aria-labelledby="terms-title">
+        <div class="section-heading">
+          <p class="eyebrow">Quick explanations</p>
+          <h2 id="terms-title">Common AI Terms</h2>
+        </div>
+
+        <div class="filter-bar" aria-label="Term categories">
+          <button class="filter-button active" type="button" data-category="all">All</button>
+          <button class="filter-button" type="button" data-category="mathematical-foundations">Mathematical Foundations</button>
+          <button class="filter-button" type="button" data-category="foundations">Foundations</button>
+          <button class="filter-button" type="button" data-category="machine-learning">Machine Learning</button>
+          <button class="filter-button" type="button" data-category="generative-ai">Generative AI</button>
+          <button class="filter-button" type="button" data-category="systems">AI Systems</button>
+        </div>
+
+        <div id="term-count" class="term-count" aria-live="polite"></div>
+        <div id="terms-grid" class="terms-grid"></div>
+      </section>
+
+      <section id="lessons" class="lessons-section" aria-labelledby="lessons-title">
+        <div class="section-heading">
+          <p class="eyebrow">Topic pages</p>
+          <h2 id="lessons-title">Lesson Folders</h2>
+        </div>
+
+        <div class="lesson-grid">
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/linear-algebra/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Linear Algebra</h3>
+            <p>Learn vectors, matrices, norms, eigendecomposition, SVD, and the math behind AI models.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/calculus-and-matrix-calculus/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Calculus And Matrix Calculus</h3>
+            <p>Study derivatives, gradients, Jacobians, Hessians, Taylor approximations, and autodiff.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/probability/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Probability</h3>
+            <p>Learn conditional probability, Bayes' theorem, expectation, variance, distributions, and sampling.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/statistics/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Statistics</h3>
+            <p>Study estimation, hypothesis testing, confidence intervals, calibration, and distribution shift.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/optimization/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Optimization</h3>
+            <p>Study objectives, losses, gradient descent, stochastic optimization, regularization, and constraints.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/information-theory/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Information Theory</h3>
+            <p>Study entropy, cross-entropy, KL divergence, mutual information, perplexity, and bottlenecks.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/mathematical-foundations/discrete-mathematics-theoretical-computer-science/index.html">
+            <span class="term-tag">Mathematical Foundations</span>
+            <h3>Discrete Mathematics And Theoretical Computer Science</h3>
+            <p>Study sets, graphs, proofs, automata, computability, complexity, and algorithms for AI systems.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/foundations/what-is-ai/index.html">
+            <span class="term-tag">Foundations</span>
+            <h3>What Is AI?</h3>
+            <p>Start with the simplest definition of artificial intelligence.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/machine-learning/training-a-model/index.html">
+            <span class="term-tag">Machine Learning</span>
+            <h3>Training A Model</h3>
+            <p>Understand examples, labels, loss, and learning from feedback.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/deep-learning/neural-networks/index.html">
+            <span class="term-tag">Deep Learning</span>
+            <h3>Neural Networks</h3>
+            <p>See how layered models turn inputs into predictions.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/generative-ai/transformers/index.html">
+            <span class="term-tag">Generative AI</span>
+            <h3>Transformers</h3>
+            <p>Learn the basic idea behind attention and language models.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/ai-systems/agents-and-tools/index.html">
+            <span class="term-tag">AI Systems</span>
+            <h3>Agents And Tools</h3>
+            <p>Connect models to tools, actions, and real workflows.</p>
+          </a>
+          <a class="lesson-link-card" href="lessons/portfolio/ai-projects/index.html">
+            <span class="term-tag">Portfolio</span>
+            <h3>AI Projects</h3>
+            <p>Turn lessons into small projects that prove understanding.</p>
+          </a>
+        </div>
+
+        <a class="all-lessons-link" href="lessons/index.html">View all lesson pages</a>
+      </section>
+
+      <section id="roadmap" class="roadmap-section" aria-labelledby="roadmap-title">
+        <div class="section-heading">
+          <p class="eyebrow">Learning path</p>
+          <h2 id="roadmap-title">From Vocabulary To Skill</h2>
+        </div>
+
+        <ol class="roadmap-list">
+          <li>
+            <span>1</span>
+            <div>
+              <h3>Learn the language</h3>
+              <p>Start with core terms so articles, courses, and documentation become easier to read.</p>
+            </div>
+          </li>
+          <li>
+            <span>2</span>
+            <div>
+              <h3>Connect ideas</h3>
+              <p>Group concepts by data, models, learning, evaluation, and systems.</p>
+            </div>
+          </li>
+          <li>
+            <span>3</span>
+            <div>
+              <h3>Build examples</h3>
+              <p>Turn each concept into a small notebook, script, prompt, or product feature.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

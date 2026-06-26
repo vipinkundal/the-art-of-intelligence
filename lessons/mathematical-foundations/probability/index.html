@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probability | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">1. Mathematical Foundations</p>
+        <h1>1.3 Probability</h1>
+        <p class="lesson-summary">
+          Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            Probability assigns numbers to uncertain events. In AI, those numbers help models express how likely an output is, how much evidence supports a prediction, and how uncertain a decision remains.
+          </p>
+        </section>
+
+        <section>
+          <h2>Understand</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Sample spaces and events</li>
+            <li>Conditional probability</li>
+            <li>Independence and conditional independence</li>
+            <li>Random variables</li>
+            <li>Probability mass and density functions</li>
+            <li>Cumulative distributions</li>
+            <li>Joint, marginal, and conditional distributions</li>
+            <li>Expectation</li>
+            <li>Variance and covariance</li>
+            <li>Correlation</li>
+            <li>Law of total probability</li>
+            <li>Bayes' theorem</li>
+            <li>Law of large numbers</li>
+            <li>Central limit theorem</li>
+            <li>Markov chains</li>
+            <li>Markov processes</li>
+            <li>Monte Carlo estimation</li>
+            <li>Importance sampling</li>
+            <li>Rejection sampling</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Essential formulas</h2>
+          <div class="formula-stack" aria-label="Essential probability formulas">
+            <div class="formula-row">
+              <span>Bayes' theorem</span>
+              <code>P(A | B) = P(B | A)P(A) / P(B)</code>
+            </div>
+            <div class="formula-row">
+              <span>Expectation, discrete</span>
+              <code>E[X] = sum_x x P(X = x)</code>
+            </div>
+            <div class="formula-row">
+              <span>Expectation, continuous</span>
+              <code>E[X] = integral x p(x) dx</code>
+            </div>
+            <div class="formula-row">
+              <span>Variance</span>
+              <code>Var(X) = E[(X - E[X])^2]</code>
+            </div>
+            <div class="formula-row">
+              <span>Covariance</span>
+              <code>Cov(X, Y) = E[(X - E[X])(Y - E[Y])]</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Important distributions</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Bernoulli</li>
+            <li>Binomial</li>
+            <li>Categorical</li>
+            <li>Multinomial</li>
+            <li>Uniform</li>
+            <li>Gaussian</li>
+            <li>Multivariate Gaussian</li>
+            <li>Poisson</li>
+            <li>Exponential</li>
+            <li>Beta</li>
+            <li>Gamma</li>
+            <li>Dirichlet</li>
+            <li>Student's t</li>
+            <li>Log-normal</li>
+            <li>Gumbel</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Many AI methods are probabilistic: classifiers estimate class probabilities, language models predict token distributions, Bayesian methods update beliefs, and sampling methods approximate quantities that are hard to compute exactly.
+          </p>
+          <p>
+            Probability also supports evaluation and reliability by helping you reason about uncertainty, variance, confidence, rare events, and expected outcomes.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            After this lesson, you should be able to explain conditional probability, Bayes' theorem, expectation, variance, covariance, common distributions, and why sampling is useful in machine learning.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../calculus-and-matrix-calculus/index.html">Previous: Calculus And Matrix Calculus</a>
+          <a href="../statistics/index.html">Next: Statistics</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

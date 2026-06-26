@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Optimization | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">1. Mathematical Foundations</p>
+        <h1>1.5 Optimization</h1>
+        <p class="lesson-summary">
+          Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Objectives, losses, and cost functions</li>
+            <li>Parameters and decision variables</li>
+            <li>Unconstrained and constrained optimization</li>
+            <li>Convex and non-convex optimization</li>
+            <li>Local minima, global minima, and saddle points</li>
+            <li>Gradient descent</li>
+            <li>Stochastic gradient descent</li>
+            <li>Mini-batch optimization</li>
+            <li>Learning rates and schedules</li>
+            <li>Momentum and adaptive methods</li>
+            <li>Adam and RMSProp</li>
+            <li>Line search</li>
+            <li>Newton and quasi-Newton methods</li>
+            <li>Lagrange multipliers</li>
+            <li>KKT conditions</li>
+            <li>Regularization and penalties</li>
+            <li>Early stopping</li>
+            <li>Numerical stability</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Essential formulas</h2>
+          <div class="formula-stack" aria-label="Essential optimization formulas">
+            <div class="formula-row">
+              <span>Optimization objective</span>
+              <code>theta* = arg min_theta L(theta)</code>
+            </div>
+            <div class="formula-row">
+              <span>Gradient descent</span>
+              <code>theta_{t+1} = theta_t - eta grad L(theta_t)</code>
+            </div>
+            <div class="formula-row">
+              <span>Regularized objective</span>
+              <code>min_theta L(theta) + lambda R(theta)</code>
+            </div>
+            <div class="formula-row">
+              <span>Lagrangian</span>
+              <code>L(theta, lambda) = f(theta) + lambda g(theta)</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Training a model is usually an optimization problem: choose parameters that reduce prediction error, improve likelihood, satisfy constraints, or maximize expected reward.
+          </p>
+          <p>
+            Optimization choices affect speed, stability, generalization, and cost. Learning rates, batch size, regularization, and optimizer choice can decide whether a model trains well or fails.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            After this lesson, you should be able to describe an objective function, explain gradient descent and stochastic optimization, identify common optimizer choices, and explain why regularization and learning rates matter.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../statistics/index.html">Previous: Statistics</a>
+          <a href="../information-theory/index.html">Next: Information Theory</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

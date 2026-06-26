@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Training A Model | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">Machine Learning</p>
+        <h1>Training A Model</h1>
+        <p class="lesson-summary">
+          Training is the process of showing a model examples so it can adjust itself and get better at a task.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            A model starts with weak guesses. During training, it compares its guesses with the correct answers, measures the error, and updates itself to reduce that error.
+          </p>
+        </section>
+
+        <section>
+          <h2>Important terms</h2>
+          <ul class="lesson-list">
+            <li><strong>Example:</strong> one row, image, sentence, or record used for learning.</li>
+            <li><strong>Label:</strong> the correct answer attached to an example.</li>
+            <li><strong>Loss:</strong> a score that tells the model how wrong it was.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Example</h2>
+          <p>
+            To train a model that predicts house prices, you show it many houses with size, location, room count, and final sale price.
+          </p>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Training is the step where data changes model behavior. Understanding it helps you reason about errors, overfitting, evaluation, and why better examples can improve predictions.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to describe the training loop in plain language: make a guess, measure loss, update the model, and check whether performance improves.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../../foundations/what-is-ai/index.html">Previous: What Is AI?</a>
+          <a href="../../deep-learning/neural-networks/index.html">Next: Neural Networks</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statistics | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">1. Mathematical Foundations</p>
+        <h1>1.4 Statistics</h1>
+        <p class="lesson-summary">
+          Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Populations and samples</li>
+            <li>Bias and variance</li>
+            <li>Point estimation</li>
+            <li>Maximum likelihood estimation</li>
+            <li>Maximum a posteriori estimation</li>
+            <li>Confidence intervals</li>
+            <li>Hypothesis testing</li>
+            <li>p-values and statistical power</li>
+            <li>Bootstrap</li>
+            <li>Bayesian inference</li>
+            <li>Conjugate priors</li>
+            <li>Posterior predictive distributions</li>
+            <li>Missing-data mechanisms</li>
+            <li>Experimental design</li>
+            <li>Multiple-testing correction</li>
+            <li>Effect size</li>
+            <li>Calibration</li>
+            <li>Distribution shift</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Essential formulas</h2>
+          <div class="formula-stack" aria-label="Essential statistics formulas">
+            <div class="formula-row">
+              <span>Maximum likelihood</span>
+              <code>theta_hat_MLE = arg max_theta sum_i log p_theta(x_i)</code>
+            </div>
+            <div class="formula-row">
+              <span>MAP estimation</span>
+              <code>theta_hat_MAP = arg max_theta [sum_i log p_theta(x_i) + log p(theta)]</code>
+            </div>
+            <div class="formula-row">
+              <span>Bias-variance decomposition</span>
+              <code>E[(y - f_hat(x))^2] = Bias^2 + Variance + Irreducible noise</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Statistics helps you decide whether a model improvement is real, whether a dataset represents the target population, and whether predictions remain calibrated after deployment.
+          </p>
+          <p>
+            Estimation methods such as MLE and MAP connect data, likelihoods, priors, and model parameters. Bias-variance reasoning explains why models can underfit, overfit, or fail under distribution shift.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            After this lesson, you should be able to explain samples versus populations, MLE, MAP, confidence intervals, p-values, bias and variance, calibration, and distribution shift in model evaluation.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../probability/index.html">Previous: Probability</a>
+          <a href="../optimization/index.html">Next: Optimization</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

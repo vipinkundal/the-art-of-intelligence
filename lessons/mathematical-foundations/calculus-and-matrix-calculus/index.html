@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculus And Matrix Calculus | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../../index.html#terms">Terms</a>
+        <a href="../../index.html">Lessons</a>
+        <a href="../../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article">
+        <p class="eyebrow">1. Mathematical Foundations</p>
+        <h1>1.2 Calculus And Matrix Calculus</h1>
+        <p class="lesson-summary">
+          Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.
+        </p>
+
+        <section>
+          <h2>The simple idea</h2>
+          <p>
+            Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list">
+            <li>Limits and continuity</li>
+            <li>Derivatives and partial derivatives</li>
+            <li>Product, quotient, and chain rules</li>
+            <li>Gradients</li>
+            <li>Directional derivatives</li>
+            <li>Jacobians</li>
+            <li>Hessians</li>
+            <li>Taylor approximation</li>
+            <li>Multivariable integration</li>
+            <li>Change of variables</li>
+            <li>Ordinary differential equations</li>
+            <li>Stochastic differential equations</li>
+            <li>Automatic differentiation</li>
+            <li>Forward-mode and reverse-mode autodiff</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Essential formulas</h2>
+          <div class="formula-stack" aria-label="Essential calculus and matrix calculus formulas">
+            <div class="formula-row">
+              <span>Chain rule</span>
+              <code>dL/dx = (dL/dy)(dy/dx)</code>
+            </div>
+            <div class="formula-row">
+              <span>First-order Taylor approximation</span>
+              <code>f(x + Delta x) ~= f(x) + grad f(x)^T Delta x</code>
+            </div>
+            <div class="formula-row">
+              <span>Second-order approximation</span>
+              <code>f(x + Delta x) ~= f(x) + grad f(x)^T Delta x + 1/2 Delta x^T H_f(x) Delta x</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Training models means changing parameters to reduce a loss. Gradients tell us the direction of change, Jacobians describe vector-valued sensitivity, and Hessians describe curvature.
+          </p>
+          <p>
+            Backpropagation is mostly the repeated application of the chain rule over a computational graph.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            After this lesson, you should be able to explain gradients, partial derivatives, Jacobians, Hessians, Taylor approximations, and why reverse-mode automatic differentiation is useful for neural network training.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../linear-algebra/index.html">Previous: Linear Algebra</a>
+          <a href="../probability/index.html">Next: Probability</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

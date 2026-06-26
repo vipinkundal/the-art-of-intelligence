@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>State-Space Models And Alternative Sequence Architectures | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 13</p>
+        <h1>13. State-Space Models And Alternative Sequence Architectures</h1>
+        <p class="lesson-summary">
+          State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.
+        </p>
+
+        <section>
+          <h2>Study</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Linear dynamical systems</li>
+            <li>State-space models</li>
+            <li>Structured state spaces</li>
+            <li>S4</li>
+            <li>Mamba</li>
+            <li>Selective state-space models</li>
+            <li>Gated convolutions</li>
+            <li>Hyena-style long convolutions</li>
+            <li>Retention mechanisms</li>
+            <li>Transformer-SSM hybrids</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Basic state-space form</h2>
+          <div class="formula-stack">
+            <div class="formula-display">
+              <code>h_t = A h_{t-1} + B x_t</code>
+            </div>
+            <div class="formula-display">
+              <code>y_t = C h_t + D x_t</code>
+            </div>
+          </div>
+          <p>
+            These models are relevant to long-sequence processing and efficient alternatives to quadratic attention. They should be learned after transformers, not instead of transformers.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain the recurrent state update, the output projection, why structured state spaces can scale to long sequences, and where SSMs, gated convolutions, retention, and transformer hybrids fit relative to attention.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../generative-modelling/index.html">Previous: Generative Modelling</a>
+          <a href="../mixture-of-experts-models/index.html">Next: Mixture-Of-Experts Models</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

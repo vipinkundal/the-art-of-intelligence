@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mixture-Of-Experts Models | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 14</p>
+        <h1>14. Mixture-Of-Experts Models</h1>
+        <p class="lesson-summary">
+          Mixture-of-experts models scale parameter count by routing each token through a small subset of specialized expert networks.
+        </p>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Sparse mixture-of-experts</li>
+            <li>Expert routing</li>
+            <li>Top-k gating</li>
+            <li>Load balancing</li>
+            <li>Expert capacity</li>
+            <li>Expert parallelism</li>
+            <li>Router instability</li>
+            <li>Auxiliary routing loss</li>
+            <li>Shared experts</li>
+            <li>Fine-grained experts</li>
+            <li>Expert specialization</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Generic MoE layer</h2>
+          <div class="formula-display">
+            <code>y = sum_{i in TopK(g(x))} g_i(x) E_i(x)</code>
+          </div>
+          <p>
+            MoE models allow parameter count to grow without activating every parameter for every token, although they introduce routing, communication, and load-balancing challenges.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain how token routing, expert capacity, auxiliary load-balancing losses, and expert parallelism affect MoE model quality and serving efficiency.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../state-space-models-and-alternative-sequence-architectures/index.html">Previous: State-Space Models And Alternative Sequence Architectures</a>
+          <a href="../computer-vision/index.html">Next: Computer Vision</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

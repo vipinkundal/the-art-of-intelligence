@@ -91,7 +91,59 @@ This roadmap tracks the learning process for artificial intelligence from fundam
 - Self-supervised architectures: BYOL, DINO, masked autoencoders, masked language modelling, predictive coding, and joint-embedding predictive architectures.
 - Core objectives: InfoNCE for contrastive classification and triplet loss for margin-based metric learning.
 
-## Phase 12: Portfolio
+## Phase 12: Generative Modelling
+
+- Autoregressive models: autoregressive language models, PixelRNN, PixelCNN, WaveNet, teacher forcing, exposure bias, causal masking, and sequence likelihood.
+- Autoencoders and VAEs: autoencoders, denoising autoencoders, sparse autoencoders, contractive autoencoders, variational autoencoders, beta-VAE, vector-quantized VAE, latent-variable models, the ELBO, and reparameterization.
+- GANs: GAN, conditional GAN, DCGAN, Wasserstein GAN, gradient penalty, StyleGAN, CycleGAN, mode collapse, and training instability.
+- Normalizing flows: change-of-variables formula, coupling layers, NICE, RealNVP, Glow, autoregressive flows, and continuous normalizing flows.
+- Diffusion and score models: denoising diffusion probabilistic models, noise schedules, variance-preserving and variance-exploding diffusion, score matching, denoising score matching, score-based SDEs, classifier guidance, classifier-free guidance, latent diffusion, diffusion transformers, consistency models, distillation, fast sampling, and diffusion language models.
+- Flow matching: probability paths, conditional flow matching, rectified flow, neural ordinary differential equations, optimal-transport paths, ODE solvers, and distillation to fewer steps.
+
+## Phase 13: State-Space Models And Alternative Sequence Architectures
+
+- State-space foundations: linear dynamical systems, state-space models, structured state spaces, and the basic hidden-state update and output projection.
+- Modern SSMs: S4, Mamba, selective state-space models, and transformer-SSM hybrids.
+- Alternative sequence architectures: gated convolutions, Hyena-style long convolutions, and retention mechanisms.
+- Context: learn these after transformers as efficient long-sequence architectures and attention alternatives, not as replacements for the transformer fundamentals.
+
+## Phase 14: Mixture-Of-Experts Models
+
+- Sparse MoE foundations: sparse mixture-of-experts, expert routing, top-k gating, and the generic MoE layer.
+- Scaling mechanics: load balancing, expert capacity, expert parallelism, shared experts, fine-grained experts, and expert specialization.
+- Training and serving risks: router instability, auxiliary routing loss, communication overhead, and load-balancing challenges.
+- Core intuition: MoE models grow total parameter count without activating every parameter for every token.
+
+## Phase 15: Computer Vision
+
+- Classical vision: image formation, colour spaces, histograms, convolution and filtering, Gaussian blur, median filtering, edge detection, Canny detector, Hough transform, morphological operations, Fourier transforms, wavelets, image pyramids, Harris corners, SIFT, SURF, ORB, HOG, RANSAC, optical flow, epipolar geometry, camera calibration, homographies, stereo vision, and structure from motion.
+- Deep vision tasks: image classification, object detection, semantic segmentation, instance segmentation, panoptic segmentation, keypoint detection, pose estimation, tracking, depth estimation, optical flow, image restoration, super-resolution, and image generation.
+- Important deep vision families: R-CNN, Fast R-CNN, Faster R-CNN, YOLO, SSD, RetinaNet, DETR, FCN, U-Net, Mask R-CNN, Vision Transformer, Swin Transformer, segment-anything-style models, and masked autoencoders.
+- Three-dimensional vision and generation: point clouds, voxel methods, meshes, signed distance functions, neural radiance fields, 3D Gaussian splatting, novel-view synthesis, multiview geometry, neural rendering, 3D reconstruction, text-to-3D, video generation, and world simulation.
+
+## Phase 16: Speech, Audio And Time-Series AI
+
+- Signal processing foundations: sampling theory, Fourier transform, fast Fourier transform, short-time Fourier transform, spectrograms, Mel scale, MFCCs, digital filtering, and autocorrelation.
+- Time-series modelling: time-series decomposition, AR, MA, ARIMA, exponential smoothing, state-space forecasting, temporal CNNs, recurrent forecasting, and transformer forecasting.
+- Speech architectures: HMM-GMM speech recognition, connectionist temporal classification, RNN Transducer, attention-based encoder-decoder, Conformer, and self-supervised speech representation.
+- Audio systems: neural vocoders, WaveNet, diffusion and flow-based audio generation, speaker recognition, voice activity detection, and source separation.
+
+## Phase 17: Multimodal AI
+
+- Multimodal foundations: contrastive vision-language learning, image-text alignment, vision encoders, projection layers, cross-attention fusion, and early, intermediate, and late fusion.
+- Multimodal interfaces: multimodal tokenization, image and video instruction tuning, visual question answering, image captioning, document understanding, speech-language models, and audio-language models.
+- Generation and retrieval: text-to-image generation, text-to-video generation, multimodal retrieval, vision-language-action models, and multimodal agents.
+- Design questions: how modalities are tokenized, where they are fused, whether encoders are frozen or trained jointly, how temporal information is represented, how grounding and hallucination are evaluated, and whether words connect to identifiable regions, sounds, or actions.
+
+## Phase 18: Reinforcement Learning
+
+- Foundations: multi-armed bandits, Markov decision processes, partially observable MDPs, states, actions, rewards, transitions, policies, returns, discounting, value functions, advantage functions, Bellman equations, and exploration versus exploitation.
+- Bandits: epsilon-greedy, upper-confidence bound, Thompson sampling, contextual bandits, Bayesian bandits, and regret analysis.
+- Tabular RL: dynamic programming, policy evaluation, policy iteration, value iteration, Monte Carlo prediction and control, temporal-difference learning, TD(0), TD(lambda), SARSA, Q-learning, and eligibility traces.
+- Deep RL: DQN, Double DQN, Dueling DQN, prioritized replay, distributional RL, Rainbow, REINFORCE, natural policy gradient, TRPO, PPO, A2C, A3C, DDPG, TD3, and SAC.
+- Advanced RL: model-based RL, Dyna, learned world models, model-predictive control, offline RL, Conservative Q-learning, Implicit Q-learning, advantage-weighted actor-critic, imitation learning, behaviour cloning, DAgger, inverse RL, GAIL, hierarchical RL, options, meta-RL, multi-agent RL, QMIX, MADDPG, self-play, curriculum learning, safe RL, and constrained MDPs.
+
+## Phase 19: Portfolio
 
 - Build small focused projects for each phase.
 - Write short project notes explaining the problem, approach, tradeoffs, and results.

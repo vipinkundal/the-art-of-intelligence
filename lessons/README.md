@@ -32,6 +32,13 @@ lessons/generative-ai/transformers/index.html
 - `reasoning-models-and-inference-time-computation/`
 - `ai-systems/`
 - `representation-learning-and-self-supervision/`
+- `generative-modelling/`
+- `state-space-models-and-alternative-sequence-architectures/`
+- `mixture-of-experts-models/`
+- `computer-vision/`
+- `speech-audio-and-time-series-ai/`
+- `multimodal-ai/`
+- `reinforcement-learning/`
 - `portfolio/`
 
 ## Topic Page Checklist

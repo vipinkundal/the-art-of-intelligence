@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reinforcement Learning | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 18</p>
+        <h1>18. Reinforcement Learning</h1>
+        <p class="lesson-summary">
+          Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.
+        </p>
+
+        <section>
+          <h2>18.1 Foundations</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Multi-armed bandits</li>
+            <li>Markov decision processes</li>
+            <li>Partially observable MDPs</li>
+            <li>States, actions, rewards and transitions</li>
+            <li>Policies</li>
+            <li>Returns</li>
+            <li>Discounting</li>
+            <li>Value functions</li>
+            <li>Advantage functions</li>
+            <li>Bellman equations</li>
+            <li>Exploration versus exploitation</li>
+          </ul>
+          <p>Return:</p>
+          <div class="formula-display">
+            <code>G_t = sum_{k=0..infinity} gamma^k r_{t+k+1}</code>
+          </div>
+          <p>Bellman expectation equation:</p>
+          <div class="formula-display">
+            <code>V^pi(s) = E_pi[r + gamma V^pi(s') | s]</code>
+          </div>
+          <p>Bellman optimality equation:</p>
+          <div class="formula-display">
+            <code>Q*(s, a) = E[r + gamma max_a' Q*(s', a')]</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>18.2 Bandits</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>epsilon-greedy</li>
+            <li>Upper-confidence bound</li>
+            <li>Thompson sampling</li>
+            <li>Contextual bandits</li>
+            <li>Bayesian bandits</li>
+            <li>Regret analysis</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>18.3 Tabular reinforcement learning</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Dynamic programming</li>
+            <li>Policy evaluation</li>
+            <li>Policy iteration</li>
+            <li>Value iteration</li>
+            <li>Monte Carlo prediction and control</li>
+            <li>Temporal-difference learning</li>
+            <li>TD(0)</li>
+            <li>TD(lambda)</li>
+            <li>SARSA</li>
+            <li>Q-learning</li>
+            <li>Eligibility traces</li>
+          </ul>
+          <p>Q-learning:</p>
+          <div class="formula-display">
+            <code>Q(s, a) &lt;- Q(s, a) + alpha [r + gamma max_a' Q(s', a') - Q(s, a)]</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>18.4 Deep reinforcement learning</h2>
+          <p>Value-based:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>DQN</li>
+            <li>Double DQN</li>
+            <li>Dueling DQN</li>
+            <li>Prioritized replay</li>
+            <li>Distributional RL</li>
+            <li>Rainbow</li>
+          </ul>
+          <p>Policy-based:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>REINFORCE</li>
+            <li>Natural policy gradient</li>
+            <li>TRPO</li>
+            <li>PPO</li>
+          </ul>
+          <p>Actor-critic:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>A2C</li>
+            <li>A3C</li>
+            <li>DDPG</li>
+            <li>TD3</li>
+            <li>SAC</li>
+          </ul>
+          <p>Policy-gradient theorem:</p>
+          <div class="formula-display">
+            <code>grad_theta J(theta) = E_pi_theta[grad_theta log pi_theta(a | s) Q^pi_theta(s, a)]</code>
+          </div>
+          <p>PPO clipped objective:</p>
+          <div class="formula-display">
+            <code>L_CLIP = E_t[min(r_t(theta) A_hat_t, clip(r_t(theta), 1 - epsilon, 1 + epsilon) A_hat_t)]</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>18.5 Advanced reinforcement learning</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Model-based RL</li>
+            <li>Dyna</li>
+            <li>Learned world models</li>
+            <li>Model-predictive control</li>
+            <li>Offline RL</li>
+            <li>Conservative Q-learning</li>
+            <li>Implicit Q-learning</li>
+            <li>Advantage-weighted actor-critic</li>
+            <li>Imitation learning</li>
+            <li>Behaviour cloning</li>
+            <li>DAgger</li>
+            <li>Inverse RL</li>
+            <li>GAIL</li>
+            <li>Hierarchical RL</li>
+            <li>Options</li>
+            <li>Meta-RL</li>
+            <li>Multi-agent RL</li>
+            <li>QMIX</li>
+            <li>MADDPG</li>
+            <li>Self-play</li>
+            <li>Curriculum learning</li>
+            <li>Safe RL</li>
+            <li>Constrained MDPs</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to formulate an RL problem, derive the core Bellman and policy-gradient updates, choose between value-based, policy-based, actor-critic, model-based, offline, imitation, and multi-agent methods, and explain their exploration and stability tradeoffs.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../multimodal-ai/index.html">Previous: Multimodal AI</a>
+          <a href="../portfolio/index.html">Next: Portfolio</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

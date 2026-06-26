@@ -51,12 +51,15 @@ This roadmap tracks the learning process for artificial intelligence from fundam
 - Convolutional neural networks: discrete convolution, cross-correlation, padding, stride, dilation, pooling, receptive fields, translation equivariance, depthwise and separable convolutions, residual networks, encoder-decoder networks, U-Net architectures, LeNet, AlexNet, VGG, Inception, ResNet, DenseNet, EfficientNet, and MobileNet.
 - Recurrent and sequence models: RNNs, backpropagation through time, vanishing and exploding gradients, LSTM, GRU, bidirectional RNNs, sequence-to-sequence models, encoder-decoder models, attention, and connectionist temporal classification.
 
-## Phase 7: Generative AI
+## Phase 7: Transformers And Foundation Models
 
-- Transformers, tokenization, embeddings, and language model behavior.
-- Prompt design, structured outputs, tool use, and retrieval-augmented generation.
-- Evaluation for generated outputs: correctness, groundedness, consistency, and usefulness.
-- Practical applications: assistants, summarizers, classifiers, search, and workflow automation.
+- Transformer fundamentals: token embeddings, positional encoding, sinusoidal positions, RoPE, ALiBi, queries, keys, values, self-attention, cross-attention, multi-head attention, masked causal attention, feed-forward networks, residual streams, pre-norm, post-norm, and encoder-only, decoder-only, and encoder-decoder models.
+- Language-model math: scaled dot-product attention, multi-head attention, autoregressive factorization, and perplexity.
+- Tokenization: character, word, byte-pair encoding, WordPiece, unigram language-model tokenization, byte-level tokenization, vocabulary construction, Unicode normalization, special tokens, token fertility, multilingual tokenization, and tokenizer security.
+- Efficient and alternative attention: multi-query attention, grouped-query attention, sparse attention, sliding-window attention, block-sparse attention, linear attention, local-global attention, FlashAttention, paged attention, KV-cache management, attention sinks, long-context methods, and context parallelism.
+- Pretraining: causal language modelling, masked language modelling, prefix language modelling, span corruption, denoising objectives, next-sentence and sentence-order objectives, data mixtures, filtering, deduplication, contamination, curriculum ordering, synthetic data, scaling laws, compute-optimal training, and checkpoint recovery.
+- Post-training: continued pretraining, domain adaptation, supervised fine-tuning, instruction tuning, rejection-sampling fine-tuning, reward modelling, preference modelling, RLHF, RLAIF, PPO-based post-training, DPO, IPO, KTO, ORPO, GRPO, reinforcement learning with verifiable rewards, process reward models, outcome reward models, constitutional approaches, distillation, and online versus offline preference learning.
+- Parameter-efficient adaptation and inference: adapters, LoRA, QLoRA, prefix tuning, prompt tuning, P-tuning, low-rank and sparse updates, partial fine-tuning, quantization-aware adaptation, greedy decoding, beam search, temperature sampling, top-k, top-p, typical sampling, contrastive decoding, constrained decoding, speculative decoding, best-of-N, reranking, self-consistency, and verifier-guided search.
 
 ## Phase 8: AI Systems
 

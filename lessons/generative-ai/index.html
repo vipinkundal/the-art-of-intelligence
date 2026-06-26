@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Generative AI | The Art of Intelligence</title>
+    <title>Transformers And Foundation Models | The Art of Intelligence</title>
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
@@ -19,26 +19,256 @@
       </nav>
     </header>
 
-    <main>
-      <section class="lesson-hero" aria-labelledby="phase-title">
-        <p class="eyebrow">Generative AI</p>
-        <h1 id="phase-title">Generative AI</h1>
-        <p class="intro-text">
-          Transformers, prompts, embeddings, retrieval, and the systems that generate useful outputs.
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 7</p>
+        <h1>7. Transformers And Foundation Models</h1>
+        <p class="lesson-summary">
+          The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.
         </p>
-      </section>
 
-      <section class="lesson-library" aria-label="Generative AI lessons">
-        <a class="lesson-link-card" href="transformers/index.html">
-          <span class="term-tag">Generative AI</span>
-          <h2>Transformers</h2>
-          <p>Learn why attention makes modern language models powerful.</p>
-        </a>
-      </section>
+        <section>
+          <h2>7.1 Transformer fundamentals</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Token embeddings</li>
+            <li>Positional encoding</li>
+            <li>Sinusoidal positions</li>
+            <li>Rotary positional embeddings</li>
+            <li>ALiBi</li>
+            <li>Queries, keys and values</li>
+            <li>Self-attention</li>
+            <li>Cross-attention</li>
+            <li>Multi-head attention</li>
+            <li>Masked causal attention</li>
+            <li>Feed-forward networks</li>
+            <li>Residual streams</li>
+            <li>Pre-norm and post-norm</li>
+            <li>Encoder-only models</li>
+            <li>Decoder-only models</li>
+            <li>Encoder-decoder models</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Scaled dot-product attention</h2>
+          <div class="formula-display" aria-label="Scaled dot product attention formula">
+            <code>Attention(Q, K, V) = softmax((QK^T) / sqrt(d_k)) V</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Multi-head attention</h2>
+          <div class="formula-display" aria-label="Multi-head attention formula">
+            <code>MHA(Q, K, V) = Concat(head_1, ..., head_h) W^O</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Autoregressive factorization</h2>
+          <div class="formula-display" aria-label="Autoregressive language model factorization">
+            <code>p(x_1:T) = product_{t=1..T} p(x_t | x_{&lt;t})</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Perplexity</h2>
+          <div class="formula-display" aria-label="Perplexity formula">
+            <code>PPL = exp(-(1 / T) * sum_{t=1..T} log p(x_t | x_{&lt;t}))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>7.2 Tokenization</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Character tokenization</li>
+            <li>Word tokenization</li>
+            <li>Byte-pair encoding</li>
+            <li>WordPiece</li>
+            <li>Unigram language-model tokenization</li>
+            <li>Byte-level tokenization</li>
+            <li>Vocabulary construction</li>
+            <li>Unicode normalization</li>
+            <li>Special tokens</li>
+            <li>Token fertility</li>
+            <li>Multilingual tokenization</li>
+            <li>Tokenizer security and prompt-boundary problems</li>
+          </ul>
+          <p>
+            Implementing BPE from scratch is an excellent foundational project.
+          </p>
+        </section>
+
+        <section>
+          <h2>7.3 Efficient and alternative attention</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Multi-query attention</li>
+            <li>Grouped-query attention</li>
+            <li>Sparse attention</li>
+            <li>Sliding-window attention</li>
+            <li>Block-sparse attention</li>
+            <li>Linear attention</li>
+            <li>Local-global attention</li>
+            <li>FlashAttention</li>
+            <li>Paged attention</li>
+            <li>KV-cache management</li>
+            <li>Attention sinks</li>
+            <li>Long-context methods</li>
+            <li>Context parallelism</li>
+          </ul>
+          <p>
+            FlashAttention is an exact, IO-aware attention algorithm designed to reduce expensive memory movement rather than merely reducing arithmetic operations.
+          </p>
+        </section>
+
+        <section>
+          <h2>7.4 Pretraining</h2>
+          <p>Understand:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Causal language modelling</li>
+            <li>Masked language modelling</li>
+            <li>Prefix language modelling</li>
+            <li>Span corruption</li>
+            <li>Denoising objectives</li>
+            <li>Next-sentence and sentence-order objectives</li>
+            <li>Data mixtures</li>
+            <li>Data filtering</li>
+            <li>Deduplication</li>
+            <li>Contamination</li>
+            <li>Curriculum ordering</li>
+            <li>Synthetic data</li>
+            <li>Scaling laws</li>
+            <li>Compute-optimal training</li>
+            <li>Checkpointing and recovery</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Empirical scaling law</h2>
+          <div class="formula-display" aria-label="Empirical scaling law formula">
+            <code>L(N, D) ~= L_infinity + aN^{-alpha} + bD^{-beta}</code>
+          </div>
+          <p>
+            N represents model size and D represents training data. These are empirical relationships, not universal physical laws.
+          </p>
+        </section>
+
+        <section>
+          <h2>7.5 Post-training</h2>
+          <p>This is one of the largest areas missing from older roadmaps.</p>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Continued pretraining</li>
+            <li>Domain adaptation</li>
+            <li>Supervised fine-tuning</li>
+            <li>Instruction tuning</li>
+            <li>Rejection-sampling fine-tuning</li>
+            <li>Reward modelling</li>
+            <li>Preference modelling</li>
+            <li>RLHF</li>
+            <li>RLAIF</li>
+            <li>PPO-based post-training</li>
+            <li>Direct Preference Optimization</li>
+            <li>Identity Preference Optimization</li>
+            <li>Kahneman-Tversky Optimization</li>
+            <li>Odds-ratio preference optimization</li>
+            <li>Group-relative policy optimization</li>
+            <li>Reinforcement learning with verifiable rewards</li>
+            <li>Process reward models</li>
+            <li>Outcome reward models</li>
+            <li>Constitutional approaches</li>
+            <li>Distillation from stronger models</li>
+            <li>Online versus offline preference learning</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Reward-model loss</h2>
+          <div class="formula-display" aria-label="Reward model preference loss">
+            <code>L_RM = -log sigma(r_theta(x, y^+) - r_theta(x, y^-))</code>
+          </div>
+          <p>
+            DPO optimizes preference data without fitting a separate reward model and then running a conventional RL loop.
+          </p>
+          <p>
+            RLHF has its own Wikipedia overview, but use the original papers and current post-training literature for implementation details.
+          </p>
+        </section>
+
+        <section>
+          <h2>7.6 Parameter-efficient adaptation</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Adapters</li>
+            <li>LoRA</li>
+            <li>QLoRA</li>
+            <li>Prefix tuning</li>
+            <li>Prompt tuning</li>
+            <li>P-tuning</li>
+            <li>Low-rank and sparse updates</li>
+            <li>Partial fine-tuning</li>
+            <li>Quantization-aware adaptation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>LoRA</h2>
+          <div class="formula-display" aria-label="LoRA low rank adaptation formula">
+            <code>W' = W + (alpha / r) BA</code>
+          </div>
+          <p>
+            BA is a trainable low-rank update and the original W can remain frozen.
+          </p>
+        </section>
+
+        <section>
+          <h2>7.7 Decoding and inference algorithms</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Greedy decoding</li>
+            <li>Beam search</li>
+            <li>Temperature sampling</li>
+            <li>Top-k sampling</li>
+            <li>Top-p, or nucleus, sampling</li>
+            <li>Typical sampling</li>
+            <li>Contrastive decoding</li>
+            <li>Diverse beam search</li>
+            <li>Constrained decoding</li>
+            <li>Grammar-constrained decoding</li>
+            <li>Speculative decoding</li>
+            <li>Parallel decoding</li>
+            <li>Best-of-N</li>
+            <li>Reranking</li>
+            <li>Self-consistency</li>
+            <li>Verifier-guided search</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Temperature</h2>
+          <div class="formula-display" aria-label="Temperature sampling formula">
+            <code>p_i = exp(z_i / T) / sum_j exp(z_j / T)</code>
+          </div>
+          <p>
+            Lower T sharpens the distribution; higher T increases diversity.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain transformer blocks, tokenization choices, attention variants, pretraining objectives, post-training methods, parameter-efficient adaptation, and decoding strategies used by modern foundation models.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../deep-learning/index.html">Previous: Deep Learning Foundations</a>
+          <a href="transformers/index.html">Topic: Transformers</a>
+          <a href="../ai-systems/index.html">Next: AI Systems</a>
+        </nav>
+      </article>
     </main>
-
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
   </body>
 </html>

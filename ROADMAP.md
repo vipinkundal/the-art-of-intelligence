@@ -61,14 +61,22 @@ This roadmap tracks the learning process for artificial intelligence from fundam
 - Post-training: continued pretraining, domain adaptation, supervised fine-tuning, instruction tuning, rejection-sampling fine-tuning, reward modelling, preference modelling, RLHF, RLAIF, PPO-based post-training, DPO, IPO, KTO, ORPO, GRPO, reinforcement learning with verifiable rewards, process reward models, outcome reward models, constitutional approaches, distillation, and online versus offline preference learning.
 - Parameter-efficient adaptation and inference: adapters, LoRA, QLoRA, prefix tuning, prompt tuning, P-tuning, low-rank and sparse updates, partial fine-tuning, quantization-aware adaptation, greedy decoding, beam search, temperature sampling, top-k, top-p, typical sampling, contrastive decoding, constrained decoding, speculative decoding, best-of-N, reranking, self-consistency, and verifier-guided search.
 
-## Phase 8: AI Systems
+## Phase 8: Retrieval, Search And RAG
+
+- Classical information retrieval: inverted indexes, term frequency, inverse document frequency, TF-IDF, BM25, Boolean retrieval, tokenization, stemming, fielded search, query expansion, and learning to rank.
+- Neural retrieval: embedding models, bi-encoders, cross-encoders, late-interaction models, dense passage retrieval, contrastive retriever training, hard-negative mining, reranking, hybrid sparse-dense retrieval, reciprocal-rank fusion, metadata filtering, and multivector retrieval.
+- Approximate nearest-neighbour search: locality-sensitive hashing, product quantization, inverted file indexes, hierarchical navigable small worlds, and ScaNN-style partitioning and scoring.
+- RAG architecture: ingestion, parsing, chunking, metadata extraction, embedding, indexing, query rewriting, retrieval, reranking, context packing, generation, citation or provenance generation, faithfulness evaluation, and cache or index refresh.
+- RAG patterns: naive RAG, hybrid RAG, multi-query retrieval, query decomposition, parent-child retrieval, Graph RAG, agentic retrieval, iterative retrieval, corrective RAG, retrieval routing, context compression, and lost-in-the-middle effects.
+
+## Phase 9: AI Systems
 
 - Data pipelines, model serving, monitoring, and feedback loops.
 - Agent design: planning, tool calling, memory, guardrails, and task decomposition.
 - Safety and reliability: hallucination control, privacy, abuse prevention, and human review.
 - Product thinking: user goals, interaction design, latency, cost, and measurable outcomes.
 
-## Phase 9: Portfolio
+## Phase 10: Portfolio
 
 - Build small focused projects for each phase.
 - Write short project notes explaining the problem, approach, tradeoffs, and results.

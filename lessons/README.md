@@ -28,6 +28,7 @@ lessons/generative-ai/transformers/index.html
 - `machine-learning/`
 - `deep-learning/`
 - `generative-ai/`
+- `retrieval-search-and-rag/`
 - `ai-systems/`
 - `portfolio/`
 

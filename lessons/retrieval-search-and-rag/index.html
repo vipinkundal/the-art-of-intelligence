@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Retrieval, Search And RAG | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 8</p>
+        <h1>8. Retrieval, Search And RAG</h1>
+        <p class="lesson-summary">
+          Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.
+        </p>
+
+        <section>
+          <h2>8.1 Classical information retrieval</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Inverted indexes</li>
+            <li>Term frequency</li>
+            <li>Inverse document frequency</li>
+            <li>TF-IDF</li>
+            <li>BM25</li>
+            <li>Boolean retrieval</li>
+            <li>Tokenization and stemming</li>
+            <li>Fielded search</li>
+            <li>Query expansion</li>
+            <li>Learning to rank</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>TF-IDF</h2>
+          <div class="formula-display" aria-label="TF-IDF formula">
+            <code>tfidf(t, d) = tf(t, d) log(N / df(t))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>BM25</h2>
+          <div class="formula-display" aria-label="BM25 scoring formula">
+            <code>score(D, Q) = sum_{q in Q} IDF(q) * f(q, D)(k_1 + 1) / (f(q, D) + k_1(1 - b + b|D| / avgdl))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>8.2 Neural retrieval</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Embedding models</li>
+            <li>Bi-encoders</li>
+            <li>Cross-encoders</li>
+            <li>Late-interaction models</li>
+            <li>Dense passage retrieval</li>
+            <li>Contrastive retriever training</li>
+            <li>Hard-negative mining</li>
+            <li>Reranking</li>
+            <li>Hybrid sparse-dense retrieval</li>
+            <li>Reciprocal-rank fusion</li>
+            <li>Metadata filtering</li>
+            <li>Multivector retrieval</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Approximate nearest-neighbour algorithms</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Locality-sensitive hashing</li>
+            <li>Product quantization</li>
+            <li>Inverted file indexes</li>
+            <li>Hierarchical navigable small worlds</li>
+            <li>ScaNN-style partitioning and scoring</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>8.3 RAG architecture</h2>
+          <p>Understand the complete pipeline:</p>
+          <ol class="lesson-list dense-list">
+            <li>Ingestion</li>
+            <li>Parsing</li>
+            <li>Chunking</li>
+            <li>Metadata extraction</li>
+            <li>Embedding</li>
+            <li>Indexing</li>
+            <li>Query rewriting</li>
+            <li>Retrieval</li>
+            <li>Reranking</li>
+            <li>Context packing</li>
+            <li>Generation</li>
+            <li>Citation or provenance generation</li>
+            <li>Faithfulness evaluation</li>
+            <li>Cache and index refresh</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Study</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Naive RAG</li>
+            <li>Hybrid RAG</li>
+            <li>Multi-query retrieval</li>
+            <li>Query decomposition</li>
+            <li>Parent-child retrieval</li>
+            <li>Graph RAG</li>
+            <li>Agentic retrieval</li>
+            <li>Iterative retrieval</li>
+            <li>Corrective RAG</li>
+            <li>Retrieval routing</li>
+            <li>Context compression</li>
+            <li>Lost-in-the-middle effects</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to compare lexical, dense, hybrid, and reranking retrieval systems, explain approximate nearest-neighbour tradeoffs, and design a RAG pipeline that preserves provenance and evaluates faithfulness.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../generative-ai/index.html">Previous: Transformers And Foundation Models</a>
+          <a href="../ai-systems/index.html">Next: AI Systems</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

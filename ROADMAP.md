@@ -44,12 +44,12 @@ This roadmap tracks the learning process for artificial intelligence from fundam
 - Model evaluation: train, validation and test splits, cross-validation, stratified sampling, data leakage, overfitting, underfitting, regularization, learning curves, hyperparameter optimization, precision, recall, F1, accuracy, balanced accuracy, specificity, ROC-AUC, PR-AUC, log loss, Brier score, expected calibration error, Matthews correlation coefficient, confusion matrices, cost-sensitive evaluation, regression metrics, and ranking or retrieval metrics.
 - Feature engineering and data leakage prevention.
 
-## Phase 6: Deep Learning
+## Phase 6: Deep Learning Foundations
 
-- Neural network fundamentals: layers, activations, loss functions, backpropagation, and optimization.
-- Training workflows: batching, regularization, learning rates, checkpoints, and experiment tracking.
-- Computer vision basics with convolutional networks.
-- Sequence modeling and attention.
+- Neural networks: perceptrons, multilayer perceptrons, computational graphs, backpropagation, activation functions, weight initialization, normalization, residual connections, regularization, universal approximation, and representation learning.
+- Activations and stabilization: ReLU, GELU, SiLU, layer normalization, batch normalization, RMSNorm, dropout, weight decay, early stopping, data augmentation, gradient clipping, label smoothing, and knowledge distillation.
+- Convolutional neural networks: discrete convolution, cross-correlation, padding, stride, dilation, pooling, receptive fields, translation equivariance, depthwise and separable convolutions, residual networks, encoder-decoder networks, U-Net architectures, LeNet, AlexNet, VGG, Inception, ResNet, DenseNet, EfficientNet, and MobileNet.
+- Recurrent and sequence models: RNNs, backpropagation through time, vanishing and exploding gradients, LSTM, GRU, bidirectional RNNs, sequence-to-sequence models, encoder-decoder models, attention, and connectionist temporal classification.
 
 ## Phase 7: Generative AI
 

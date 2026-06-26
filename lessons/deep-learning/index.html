@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Deep Learning | The Art of Intelligence</title>
+    <title>Deep Learning Foundations | The Art of Intelligence</title>
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
@@ -19,26 +19,154 @@
       </nav>
     </header>
 
-    <main>
-      <section class="lesson-hero" aria-labelledby="phase-title">
-        <p class="eyebrow">Deep Learning</p>
-        <h1 id="phase-title">Deep Learning</h1>
-        <p class="intro-text">
-          Neural networks, layers, representations, and the training ideas behind modern AI models.
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 6</p>
+        <h1>6. Deep Learning Foundations</h1>
+        <p class="lesson-summary">
+          Deep learning foundations cover neural network computation, convolutional architectures, and sequence models that underpin modern vision, speech, language, and multimodal systems.
         </p>
-      </section>
 
-      <section class="lesson-library" aria-label="Deep learning lessons">
-        <a class="lesson-link-card" href="neural-networks/index.html">
-          <span class="term-tag">Deep Learning</span>
-          <h2>Neural Networks</h2>
-          <p>See how layers transform information into predictions.</p>
-        </a>
-      </section>
+        <section>
+          <h2>6.1 Neural networks</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Perceptrons</li>
+            <li>Multilayer perceptrons</li>
+            <li>Computational graphs</li>
+            <li>Backpropagation</li>
+            <li>Activation functions</li>
+            <li>Weight initialization</li>
+            <li>Normalization</li>
+            <li>Residual connections</li>
+            <li>Regularization</li>
+            <li>Universal approximation</li>
+            <li>Representation learning</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Important activations</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>ReLU</span>
+              <code>ReLU(x) = max(0, x)</code>
+            </div>
+            <div class="formula-row">
+              <span>GELU</span>
+              <code>GELU(x) = x Phi(x)</code>
+            </div>
+            <div class="formula-row">
+              <span>SiLU</span>
+              <code>SiLU(x) = x sigma(x)</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Layer normalization</h2>
+          <div class="formula-display" aria-label="Layer normalization formula">
+            <code>LN(x) = gamma * ((x - mu) / sqrt(sigma^2 + epsilon)) + beta</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Batch normalization</li>
+            <li>Layer normalization</li>
+            <li>RMSNorm</li>
+            <li>Dropout</li>
+            <li>Weight decay</li>
+            <li>Early stopping</li>
+            <li>Data augmentation</li>
+            <li>Gradient clipping</li>
+            <li>Label smoothing</li>
+            <li>Knowledge distillation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6.2 Convolutional neural networks</h2>
+          <p>Understand:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Discrete convolution</li>
+            <li>Cross-correlation</li>
+            <li>Padding</li>
+            <li>Stride</li>
+            <li>Dilation</li>
+            <li>Pooling</li>
+            <li>Receptive fields</li>
+            <li>Translation equivariance</li>
+            <li>Depthwise and separable convolutions</li>
+            <li>Residual networks</li>
+            <li>Encoder-decoder networks</li>
+            <li>U-Net architectures</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Two-dimensional convolution</h2>
+          <div class="formula-display" aria-label="Two dimensional convolution formula">
+            <code>Y[i, j] = sum_m sum_n X[i + m, j + n] K[m, n]</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Important architectures and ideas</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>LeNet</li>
+            <li>AlexNet</li>
+            <li>VGG</li>
+            <li>Inception</li>
+            <li>ResNet</li>
+            <li>DenseNet</li>
+            <li>EfficientNet</li>
+            <li>MobileNet</li>
+            <li>U-Net</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>6.3 Recurrent and sequence models</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Recurrent neural networks</li>
+            <li>Backpropagation through time</li>
+            <li>Vanishing and exploding gradients</li>
+            <li>LSTM</li>
+            <li>GRU</li>
+            <li>Bidirectional RNNs</li>
+            <li>Sequence-to-sequence models</li>
+            <li>Encoder-decoder models</li>
+            <li>Attention</li>
+            <li>Connectionist temporal classification</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Basic recurrence</h2>
+          <div class="formula-display" aria-label="Basic recurrent neural network recurrence">
+            <code>h_t = phi(W_h h_{t-1} + W_x x_t + b)</code>
+          </div>
+          <p>
+            RNNs remain important conceptually even though transformers and state-space models dominate many modern sequence applications.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain feed-forward networks, activation and normalization choices, convolutional architectures, and recurrent sequence models, then connect those ideas to modern deep learning systems.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../machine-learning/index.html">Previous: Classical Machine Learning</a>
+          <a href="neural-networks/index.html">Topic: Neural Networks</a>
+          <a href="../generative-ai/transformers/index.html">Next: Transformers</a>
+        </nav>
+      </article>
     </main>
-
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
   </body>
 </html>

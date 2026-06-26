@@ -29,7 +29,9 @@ lessons/generative-ai/transformers/index.html
 - `deep-learning/`
 - `generative-ai/`
 - `retrieval-search-and-rag/`
+- `reasoning-models-and-inference-time-computation/`
 - `ai-systems/`
+- `representation-learning-and-self-supervision/`
 - `portfolio/`
 
 ## Topic Page Checklist

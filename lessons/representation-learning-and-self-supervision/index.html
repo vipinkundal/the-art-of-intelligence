@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Representation Learning And Self-Supervision | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 11</p>
+        <h1>11. Representation Learning And Self-Supervision</h1>
+        <p class="lesson-summary">
+          Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.
+        </p>
+
+        <section>
+          <h2>Study</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Distributed word representations</li>
+            <li>Word2vec</li>
+            <li>Skip-gram</li>
+            <li>Continuous bag of words</li>
+            <li>Negative sampling</li>
+            <li>GloVe</li>
+            <li>FastText</li>
+            <li>Metric learning</li>
+            <li>Siamese networks</li>
+            <li>Triplet loss</li>
+            <li>Contrastive learning</li>
+            <li>InfoNCE</li>
+            <li>SimCLR</li>
+            <li>MoCo</li>
+            <li>CLIP</li>
+            <li>BYOL</li>
+            <li>DINO</li>
+            <li>Masked autoencoders</li>
+            <li>Masked language modelling</li>
+            <li>Predictive coding</li>
+            <li>Joint-embedding predictive architectures</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>InfoNCE</h2>
+          <div class="formula-display">
+            <code>L = -log(exp(sim(q, k+) / tau) / sum_j exp(sim(q, k_j) / tau))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Triplet loss</h2>
+          <div class="formula-display">
+            <code>L = max(0, d(a, p) - d(a, n) + m)</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain why good embeddings preserve task-relevant similarity, how contrastive objectives separate positives from negatives, and how masked or predictive tasks create labels without manual annotation.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../ai-systems/index.html">Previous: Agents And Tool-Using Systems</a>
+          <a href="../portfolio/index.html">Next: Portfolio</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

@@ -69,14 +69,29 @@ This roadmap tracks the learning process for artificial intelligence from fundam
 - RAG architecture: ingestion, parsing, chunking, metadata extraction, embedding, indexing, query rewriting, retrieval, reranking, context packing, generation, citation or provenance generation, faithfulness evaluation, and cache or index refresh.
 - RAG patterns: naive RAG, hybrid RAG, multi-query retrieval, query decomposition, parent-child retrieval, Graph RAG, agentic retrieval, iterative retrieval, corrective RAG, retrieval routing, context compression, and lost-in-the-middle effects.
 
-## Phase 9: AI Systems
+## Phase 9: Reasoning Models And Inference-Time Computation
 
-- Data pipelines, model serving, monitoring, and feedback loops.
-- Agent design: planning, tool calling, memory, guardrails, and task decomposition.
-- Safety and reliability: hallucination control, privacy, abuse prevention, and human review.
-- Product thinking: user goals, interaction design, latency, cost, and measurable outcomes.
+- Reasoning methods: chain-of-thought prompting, scratchpad computation, self-consistency, least-to-most prompting, decomposition, Tree of Thoughts, Graph of Thoughts, beam search over reasoning traces, best-of-N sampling, and majority voting.
+- Supervision and verification: process supervision, outcome supervision, step-level verification, program-aided reasoning, tool-assisted reasoning, code execution, search over latent or textual reasoning, test-time adaptation, adaptive computation, and inference-time scaling.
+- Reference systems: DeepSeek-R1 as an example for reinforcement-learning-driven reasoning behaviour and the role of verification, reflection, and post-training.
+- Critical distinctions: fluency is not reasoning, long output is not necessarily better reasoning, self-explanation is not proof of internal correctness, benchmark accuracy does not guarantee robustness, and verifiers can be as important as generators.
 
-## Phase 10: Portfolio
+## Phase 10: Agents And Tool-Using Systems
+
+- Agent patterns: ReAct, planner-executor, router-specialist, generate-critique-revise, generate-rank-verify, reflection loops, state-machine agents, workflow graphs, hierarchical agents, multi-agent debate, blackboard architectures, event-driven agents, human-in-the-loop systems, long-term and episodic memory, tool routing, structured output, and recovery or retry policies.
+- Tool-use foundations: reasoning traces with actions and observations, self-supervised tool use, tool schemas, tool-result validation, and structured integration with external systems.
+- Production concerns: idempotent tools, permission boundaries, sandboxing, timeouts, retries and backoff, state persistence, durable execution, context management, trace logging, budget limits, human approval points, transaction management, rollback, and compensation.
+- Agent security: prompt injection, indirect prompt injection, exfiltration attacks, confused-deputy problems, permission design, and validation before acting on tool outputs.
+- Integration layer: Model Context Protocol as an engineering standard for connecting AI applications to tools, data sources, and external systems.
+
+## Phase 11: Representation Learning And Self-Supervision
+
+- Word representations: distributed word representations, Word2vec, skip-gram, continuous bag of words, negative sampling, GloVe, and FastText.
+- Metric and contrastive learning: metric learning, Siamese networks, triplet loss, contrastive learning, InfoNCE, SimCLR, MoCo, and CLIP.
+- Self-supervised architectures: BYOL, DINO, masked autoencoders, masked language modelling, predictive coding, and joint-embedding predictive architectures.
+- Core objectives: InfoNCE for contrastive classification and triplet loss for margin-based metric learning.
+
+## Phase 12: Portfolio
 
 - Build small focused projects for each phase.
 - Write short project notes explaining the problem, approach, tradeoffs, and results.

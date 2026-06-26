@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Systems | The Art of Intelligence</title>
+    <title>Agents And Tool-Using Systems | The Art of Intelligence</title>
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
@@ -19,26 +19,86 @@
       </nav>
     </header>
 
-    <main>
-      <section class="lesson-hero" aria-labelledby="phase-title">
-        <p class="eyebrow">AI Systems</p>
-        <h1 id="phase-title">AI Systems</h1>
-        <p class="intro-text">
-          Agents, tools, evaluation, deployment, and product workflows that turn models into usable systems.
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 10</p>
+        <h1>10. Agents And Tool-Using Systems</h1>
+        <p class="lesson-summary">
+          Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.
         </p>
-      </section>
 
-      <section class="lesson-library" aria-label="AI systems lessons">
-        <a class="lesson-link-card" href="agents-and-tools/index.html">
-          <span class="term-tag">AI Systems</span>
-          <h2>Agents And Tools</h2>
-          <p>Connect model output to actions, APIs, files, and workflows.</p>
-        </a>
-      </section>
+        <section>
+          <h2>10.1 Agent patterns</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>ReAct</li>
+            <li>Planner-executor</li>
+            <li>Router-specialist</li>
+            <li>Generate-critique-revise</li>
+            <li>Generate-rank-verify</li>
+            <li>Reflection loops</li>
+            <li>State-machine agents</li>
+            <li>Workflow graphs</li>
+            <li>Hierarchical agents</li>
+            <li>Multi-agent debate</li>
+            <li>Blackboard architectures</li>
+            <li>Event-driven agents</li>
+            <li>Human-in-the-loop systems</li>
+            <li>Long-term and episodic memory</li>
+            <li>Tool routing</li>
+            <li>Structured output</li>
+            <li>Recovery and retry policies</li>
+          </ul>
+          <p>
+            ReAct combines interleaved reasoning traces with actions and observations from an external environment.
+          </p>
+          <p>
+            Toolformer demonstrated self-supervised learning of when and how a language model can call external tools.
+          </p>
+        </section>
+
+        <section>
+          <h2>10.2 Production concerns for agents</h2>
+          <p>Understand:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Idempotent tools</li>
+            <li>Permission boundaries</li>
+            <li>Sandboxing</li>
+            <li>Tool schemas</li>
+            <li>Timeouts</li>
+            <li>Retries and backoff</li>
+            <li>State persistence</li>
+            <li>Durable execution</li>
+            <li>Context management</li>
+            <li>Trace logging</li>
+            <li>Budget limits</li>
+            <li>Human approval points</li>
+            <li>Prompt injection</li>
+            <li>Indirect prompt injection</li>
+            <li>Exfiltration attacks</li>
+            <li>Confused-deputy problems</li>
+            <li>Tool-result validation</li>
+            <li>Transaction management</li>
+            <li>Rollback and compensation</li>
+          </ul>
+          <p>
+            For application integration, Model Context Protocol is a current open standard for connecting AI applications to tools, data sources, and external systems. It belongs in the engineering layer of the roadmap, not in the mathematical core of AI.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to design agent workflows with explicit state, tool contracts, validation, human approval points, retry behavior, and security boundaries.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../reasoning-models-and-inference-time-computation/index.html">Previous: Reasoning Models And Inference-Time Computation</a>
+          <a href="agents-and-tools/index.html">Topic: Agents And Tools</a>
+          <a href="../representation-learning-and-self-supervision/index.html">Next: Representation Learning And Self-Supervision</a>
+        </nav>
+      </article>
     </main>
-
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
   </body>
 </html>

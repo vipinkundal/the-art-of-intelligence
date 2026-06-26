@@ -24,6 +24,7 @@ lessons/generative-ai/transformers/index.html
 - `mathematical-foundations/`
 - `programming-and-systems-foundations/`
 - `classical-artificial-intelligence/`
+- `probabilistic-ai/`
 - `machine-learning/`
 - `deep-learning/`
 - `generative-ai/`

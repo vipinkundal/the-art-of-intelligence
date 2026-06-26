@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Machine Learning | The Art of Intelligence</title>
+    <title>Classical Machine Learning | The Art of Intelligence</title>
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
@@ -19,26 +19,272 @@
       </nav>
     </header>
 
-    <main>
-      <section class="lesson-hero" aria-labelledby="phase-title">
-        <p class="eyebrow">Machine Learning</p>
-        <h1 id="phase-title">Machine Learning</h1>
-        <p class="intro-text">
-          How models learn from data, evaluate guesses, and improve performance on practical tasks.
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 5</p>
+        <h1>5. Classical Machine Learning</h1>
+        <p class="lesson-summary">
+          Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.
         </p>
-      </section>
 
-      <section class="lesson-library" aria-label="Machine learning lessons">
-        <a class="lesson-link-card" href="training-a-model/index.html">
-          <span class="term-tag">Machine Learning</span>
-          <h2>Training A Model</h2>
-          <p>Learn how examples, labels, loss, and feedback help a model improve.</p>
-        </a>
-      </section>
+        <section>
+          <h2>5.1 Supervised learning</h2>
+          <h3>Regression</h3>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Ordinary least squares</li>
+            <li>Polynomial regression</li>
+            <li>Ridge regression</li>
+            <li>Lasso</li>
+            <li>Elastic net</li>
+            <li>Generalized linear models</li>
+            <li>Poisson regression</li>
+            <li>Quantile regression</li>
+            <li>Robust regression</li>
+            <li>Gaussian-process regression</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Linear regression</h2>
+          <div class="formula-display" aria-label="Linear regression prediction formula">
+            <code>y_hat = Xw + b</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Mean squared error</h2>
+          <div class="formula-display" aria-label="Mean squared error formula">
+            <code>L = (1 / n) * sum_i (y_i - y_hat_i)^2</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Ridge objective</h2>
+          <div class="formula-display" aria-label="Ridge regression objective">
+            <code>min_w ||Xw - y||_2^2 + lambda ||w||_2^2</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Classification</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Logistic regression</li>
+            <li>Multinomial logistic regression</li>
+            <li>Perceptron</li>
+            <li>k-nearest neighbours</li>
+            <li>Naive Bayes</li>
+            <li>Linear discriminant analysis</li>
+            <li>Quadratic discriminant analysis</li>
+            <li>Support-vector machines</li>
+            <li>Kernel methods</li>
+            <li>Decision trees</li>
+            <li>Random forests</li>
+            <li>Extremely randomized trees</li>
+            <li>AdaBoost</li>
+            <li>Gradient boosting</li>
+            <li>XGBoost</li>
+            <li>LightGBM</li>
+            <li>CatBoost</li>
+            <li>Probability calibration</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sigmoid</h2>
+          <div class="formula-display" aria-label="Sigmoid formula">
+            <code>sigma(z) = 1 / (1 + exp(-z))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Softmax</h2>
+          <div class="formula-display" aria-label="Softmax formula">
+            <code>p_i = exp(z_i) / sum_j exp(z_j)</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Binary cross-entropy</h2>
+          <div class="formula-display" aria-label="Binary cross entropy loss">
+            <code>L = -(1 / n) * sum_i [y_i log p_i + (1 - y_i) log(1 - p_i)]</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Multiclass cross-entropy</h2>
+          <div class="formula-display" aria-label="Multiclass cross entropy loss">
+            <code>L = -sum_{c=1..C} y_c log p_c</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>SVM objective</h2>
+          <div class="formula-display" aria-label="Support vector machine objective">
+            <code>min_{w,b} (1 / 2) ||w||^2 + C * sum_i max(0, 1 - y_i(w^T x_i + b))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>5.2 Unsupervised learning</h2>
+          <h3>Clustering</h3>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>k-means and k-means++</li>
+            <li>k-medoids</li>
+            <li>Gaussian mixture models</li>
+            <li>Expectation-maximization</li>
+            <li>Agglomerative clustering</li>
+            <li>Divisive clustering</li>
+            <li>DBSCAN</li>
+            <li>HDBSCAN</li>
+            <li>OPTICS</li>
+            <li>Mean shift</li>
+            <li>Spectral clustering</li>
+            <li>Affinity propagation</li>
+            <li>BIRCH</li>
+            <li>Fuzzy c-means</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>k-means objective</h2>
+          <div class="formula-display" aria-label="k-means objective">
+            <code>min_{mu_k} sum_i ||x_i - mu_{c_i}||_2^2</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Dimensionality reduction</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>PCA</li>
+            <li>Kernel PCA</li>
+            <li>Independent component analysis</li>
+            <li>Non-negative matrix factorization</li>
+            <li>Factor analysis</li>
+            <li>Random projections</li>
+            <li>Multidimensional scaling</li>
+            <li>Isomap</li>
+            <li>Locally linear embedding</li>
+            <li>t-SNE</li>
+            <li>UMAP</li>
+            <li>Autoencoders</li>
+          </ul>
+          <p>
+            Use t-SNE and UMAP mainly for exploratory visualization; do not treat distances in their 2D plots as definitive evidence.
+          </p>
+        </section>
+
+        <section>
+          <h2>Other unsupervised methods</h2>
+          <p>Include:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Topic modelling with latent Dirichlet allocation</li>
+            <li>Matrix factorization</li>
+            <li>Collaborative filtering</li>
+            <li>Apriori</li>
+            <li>FP-growth</li>
+            <li>ECLAT</li>
+            <li>Isolation forest</li>
+            <li>Local outlier factor</li>
+            <li>One-class SVM</li>
+            <li>Robust covariance estimation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>5.3 Evaluation and generalization</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Train, validation and test splits</li>
+            <li>Cross-validation</li>
+            <li>Stratified sampling</li>
+            <li>Data leakage</li>
+            <li>Overfitting and underfitting</li>
+            <li>Regularization</li>
+            <li>Learning curves</li>
+            <li>Hyperparameter optimization</li>
+            <li>Grid search</li>
+            <li>Random search</li>
+            <li>Bayesian optimization</li>
+            <li>Successive halving</li>
+            <li>Population-based training</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Classification metrics</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>Precision</span>
+              <code>Precision = TP / (TP + FP)</code>
+            </div>
+            <div class="formula-row">
+              <span>Recall</span>
+              <code>Recall = TP / (TP + FN)</code>
+            </div>
+            <div class="formula-row">
+              <span>F1</span>
+              <code>F1 = 2 * Precision * Recall / (Precision + Recall)</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Also understand</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Accuracy</li>
+            <li>Balanced accuracy</li>
+            <li>Specificity</li>
+            <li>ROC-AUC</li>
+            <li>PR-AUC</li>
+            <li>Log loss</li>
+            <li>Brier score</li>
+            <li>Expected calibration error</li>
+            <li>Matthews correlation coefficient</li>
+            <li>Confusion matrices</li>
+            <li>Cost-sensitive evaluation</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Regression metrics</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>MAE</li>
+            <li>MSE</li>
+            <li>RMSE</li>
+            <li>R^2</li>
+            <li>MAPE and its limitations</li>
+            <li>Quantile loss</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Ranking and retrieval metrics</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Precision@k</li>
+            <li>Recall@k</li>
+            <li>Mean reciprocal rank</li>
+            <li>Mean average precision</li>
+            <li>NDCG</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to choose a regression or classification model, explain its objective, recognize the loss it optimizes, compare linear, kernel, tree, ensemble, and calibrated probabilistic classifiers, select unsupervised methods for clustering, dimensionality reduction, association mining, recommendation, and anomaly detection, and evaluate models without leaking data or over-trusting a single metric.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../probabilistic-ai/index.html">Previous: Probabilistic AI</a>
+          <a href="training-a-model/index.html">Topic: Training A Model</a>
+          <a href="../deep-learning/index.html">Next: Deep Learning</a>
+        </nav>
+      </article>
     </main>
-
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
   </body>
 </html>

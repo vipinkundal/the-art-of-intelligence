@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probabilistic AI | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 4</p>
+        <h1>4. Probabilistic AI</h1>
+        <p class="lesson-summary">
+          Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.
+        </p>
+
+        <section>
+          <h2>4.1 Probabilistic graphical models</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Bayesian networks</li>
+            <li>Markov random fields</li>
+            <li>Factor graphs</li>
+            <li>Conditional random fields</li>
+            <li>Conditional independence</li>
+            <li>D-separation</li>
+            <li>Exact inference</li>
+            <li>Approximate inference</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Important algorithms</h2>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Variable elimination</li>
+            <li>Sum-product algorithm</li>
+            <li>Max-product algorithm</li>
+            <li>Belief propagation</li>
+            <li>Loopy belief propagation</li>
+            <li>Junction-tree algorithm</li>
+            <li>Expectation-maximization</li>
+            <li>Variational inference</li>
+            <li>Gibbs sampling</li>
+            <li>Metropolis-Hastings</li>
+            <li>Hamiltonian Monte Carlo</li>
+            <li>Sequential Monte Carlo</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4.2 Sequential models and state estimation</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list">
+            <li>Markov chains</li>
+            <li>Hidden Markov models</li>
+            <li>Forward-backward algorithm</li>
+            <li>Viterbi decoding</li>
+            <li>Kalman filter</li>
+            <li>Extended Kalman filter</li>
+            <li>Unscented Kalman filter</li>
+            <li>Particle filter</li>
+            <li>Dynamic Bayesian networks</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>HMM joint distribution</h2>
+          <div class="formula-display" aria-label="Hidden Markov model joint distribution">
+            <code>p(z_1:T, x_1:T) = p(z_1) * product_{t=2..T} p(z_t | z_{t-1}) * product_{t=1..T} p(x_t | z_t)</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>Kalman prediction</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>State mean</span>
+              <code>x_hat_{t|t-1} = A x_hat_{t-1|t-1} + B u_t</code>
+            </div>
+            <div class="formula-row">
+              <span>State covariance</span>
+              <code>P_{t|t-1} = A P_{t-1|t-1} A^T + Q</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to represent uncertainty with graphical models, choose an inference algorithm, explain how sequence models track hidden state over time, and recognize when filtering or smoothing is the right tool.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../classical-artificial-intelligence/index.html">Previous: Classical Artificial Intelligence</a>
+          <a href="../index.html">All lessons</a>
+          <a href="../machine-learning/index.html">Next: Machine Learning</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

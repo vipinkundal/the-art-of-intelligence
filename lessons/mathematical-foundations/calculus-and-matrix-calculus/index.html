@@ -32,25 +32,41 @@
           <p>
             Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models.
           </p>
+          <div class="lesson-graphic" aria-label="Calculus learning flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Change</strong>
+                <span>Derivatives measure how one quantity responds when another quantity moves.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Sensitivity</strong>
+                <span>Gradients, Jacobians, and Hessians scale the idea to many inputs and outputs.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Training</strong>
+                <span>Backpropagation uses these sensitivities to update model weights.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Limits and continuity</li>
-            <li>Derivatives and partial derivatives</li>
-            <li>Product, quotient, and chain rules</li>
-            <li>Gradients</li>
-            <li>Directional derivatives</li>
-            <li>Jacobians</li>
-            <li>Hessians</li>
-            <li>Taylor approximation</li>
-            <li>Multivariable integration</li>
-            <li>Change of variables</li>
-            <li>Ordinary differential equations</li>
-            <li>Stochastic differential equations</li>
-            <li>Automatic differentiation</li>
-            <li>Forward-mode and reverse-mode autodiff</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Limits and continuity:</strong> Limits describe behavior near a point, and continuity means small input changes do not cause jumps.</li>
+            <li><strong>Derivatives and partial derivatives:</strong> Derivatives measure change; partial derivatives isolate one variable while holding others fixed.</li>
+            <li><strong>Product, quotient, and chain rules:</strong> These rules break complex derivatives into manageable pieces, especially through nested functions.</li>
+            <li><strong>Gradients:</strong> A gradient collects partial derivatives and points in the direction of steepest local increase.</li>
+            <li><strong>Directional derivatives:</strong> These measure how a function changes along one chosen direction instead of all directions.</li>
+            <li><strong>Jacobians:</strong> A Jacobian stores first-order derivatives for vector-valued functions, tracking how each output changes with each input.</li>
+            <li><strong>Hessians:</strong> A Hessian stores second-order derivatives and describes curvature, sharpness, and local optimization geometry.</li>
+            <li><strong>Taylor approximation:</strong> Taylor formulas approximate a function near a point using value, slope, and sometimes curvature.</li>
+            <li><strong>Multivariable integration:</strong> Integrates quantities over areas, volumes, or higher-dimensional spaces.</li>
+            <li><strong>Change of variables:</strong> Re-expresses integrals or densities in new coordinates while correcting for volume distortion.</li>
+            <li><strong>Ordinary differential equations:</strong> Describe systems whose state changes over continuous time according to deterministic rules.</li>
+            <li><strong>Stochastic differential equations:</strong> Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.</li>
+            <li><strong>Automatic differentiation:</strong> Computes exact derivatives of programs by applying calculus rules to the computation graph.</li>
+            <li><strong>Forward-mode and reverse-mode autodiff:</strong> Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.</li>
           </ul>
         </section>
 
@@ -86,6 +102,13 @@
           <h2>Learning target</h2>
           <p>
             After this lesson, you should be able to explain gradients, partial derivatives, Jacobians, Hessians, Taylor approximations, and why reverse-mode automatic differentiation is useful for neural network training.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Read <a href="https://explained.ai/matrix-calculus/" target="_blank" rel="noopener noreferrer">The Matrix Calculus You Need For Deep Learning</a> for a focused bridge from derivatives to neural-network training.
           </p>
         </section>
 

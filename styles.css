@@ -506,12 +506,87 @@ h2 {
   font-size: 1.2rem;
 }
 
+.lesson-resource {
+  border-top: 1px solid var(--line);
+  padding-top: 1.35rem;
+}
+
+.lesson-resource p {
+  max-width: 760px;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.lesson-resource a {
+  border-bottom: 1px solid currentColor;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.lesson-resource a:hover {
+  color: var(--ink);
+}
+
 .lesson-list {
   display: grid;
   gap: 0.75rem;
   margin: 1rem 0 0;
   padding-left: 1.2rem;
   color: var(--muted);
+}
+
+.lesson-list strong {
+  color: var(--ink);
+}
+
+.topic-detail-list li {
+  padding-right: 0.25rem;
+}
+
+.lesson-graphic {
+  margin-top: 1rem;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(31, 122, 92, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 122, 92, 0.08) 1px, transparent 1px),
+    var(--surface-strong);
+  background-size: 28px 28px;
+  padding: 1rem;
+}
+
+.graphic-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.graphic-node {
+  min-height: 118px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+  padding: 0.85rem;
+}
+
+.graphic-node strong,
+.graphic-node span {
+  display: block;
+}
+
+.graphic-node span {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.graphic-node:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.graphic-node:nth-child(3) {
+  border-top-color: var(--gold);
 }
 
 .two-column-list {
@@ -718,7 +793,8 @@ h2 {
   }
 
   .two-column-list,
-  .formula-row {
+  .formula-row,
+  .graphic-flow {
     grid-template-columns: 1fr;
   }
 

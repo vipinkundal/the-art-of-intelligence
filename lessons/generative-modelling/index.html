@@ -28,35 +28,55 @@
         </p>
 
         <section>
+          <h2>Generator families</h2>
+          <div class="lesson-graphic" aria-label="Generative model family map">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Likelihood</strong>
+                <span>Autoregressive models, VAEs, and flows define probability models directly or approximately.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Adversarial</strong>
+                <span>GANs train a generator against a discriminator that judges realism.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Denoising and transport</strong>
+                <span>Diffusion and flow matching learn paths from noise to data.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>12.1 Autoregressive models</h2>
           <p>Understand:</p>
           <div class="formula-display">
             <code>p(x) = prod_t p(x_t | x_&lt;t)</code>
           </div>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Autoregressive language models</li>
-            <li>PixelRNN and PixelCNN</li>
-            <li>WaveNet</li>
-            <li>Teacher forcing</li>
-            <li>Exposure bias</li>
-            <li>Causal masking</li>
-            <li>Sequence likelihood</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Autoregressive language models:</strong> Generate one token at a time, conditioning each token on previous context.</li>
+            <li><strong>PixelRNN and PixelCNN:</strong> Generate images pixel by pixel using sequential or masked-convolution dependencies.</li>
+            <li><strong>WaveNet:</strong> Generates audio samples autoregressively with dilated causal convolutions.</li>
+            <li><strong>Teacher forcing:</strong> Trains next-step prediction using the true previous tokens rather than the model's sampled tokens.</li>
+            <li><strong>Exposure bias:</strong> Occurs when training sees clean histories but generation must handle its own mistakes.</li>
+            <li><strong>Causal masking:</strong> Prevents a model from attending to future tokens during autoregressive training.</li>
+            <li><strong>Sequence likelihood:</strong> Scores a whole sequence as the product of conditional next-token probabilities.</li>
           </ul>
         </section>
 
         <section>
           <h2>12.2 Autoencoders and variational autoencoders</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Autoencoders</li>
-            <li>Denoising autoencoders</li>
-            <li>Sparse autoencoders</li>
-            <li>Contractive autoencoders</li>
-            <li>Variational autoencoders</li>
-            <li>beta-VAE</li>
-            <li>Vector-quantized VAE</li>
-            <li>Latent-variable models</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Autoencoders:</strong> Compress inputs into latent codes and reconstruct them, learning useful internal representations.</li>
+            <li><strong>Denoising autoencoders:</strong> Reconstruct clean inputs from corrupted versions, encouraging robust features.</li>
+            <li><strong>Sparse autoencoders:</strong> Encourage only a small number of latent units to activate for each input.</li>
+            <li><strong>Contractive autoencoders:</strong> Penalize sensitivity so nearby inputs map to stable representations.</li>
+            <li><strong>Variational autoencoders:</strong> Learn probabilistic latent variables and generate by sampling from the latent space.</li>
+            <li><strong>beta-VAE:</strong> Increases the KL penalty to encourage more disentangled latent factors.</li>
+            <li><strong>Vector-quantized VAE:</strong> Uses discrete latent codes selected from a learned codebook.</li>
+            <li><strong>Latent-variable models:</strong> Explain observed data through hidden variables that capture underlying causes or structure.</li>
           </ul>
           <p>VAE evidence lower bound:</p>
           <div class="formula-display">
@@ -71,16 +91,16 @@
         <section>
           <h2>12.3 Generative adversarial networks</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>GAN</li>
-            <li>Conditional GAN</li>
-            <li>DCGAN</li>
-            <li>Wasserstein GAN</li>
-            <li>Gradient penalty</li>
-            <li>StyleGAN</li>
-            <li>CycleGAN</li>
-            <li>Mode collapse</li>
-            <li>Training instability</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>GAN:</strong> Trains a generator to fool a discriminator that distinguishes real from fake samples.</li>
+            <li><strong>Conditional GAN:</strong> Conditions generation on labels, text, images, or other controls.</li>
+            <li><strong>DCGAN:</strong> Uses convolutional architectures to make GAN image generation more stable.</li>
+            <li><strong>Wasserstein GAN:</strong> Uses an earth-mover distance objective to improve training behavior.</li>
+            <li><strong>Gradient penalty:</strong> Regularizes discriminator gradients to support stable Wasserstein training.</li>
+            <li><strong>StyleGAN:</strong> Controls image generation through style-based latent modulation across layers.</li>
+            <li><strong>CycleGAN:</strong> Learns image-to-image translation without paired examples using cycle consistency.</li>
+            <li><strong>Mode collapse:</strong> Happens when the generator produces limited variety despite diverse training data.</li>
+            <li><strong>Training instability:</strong> GANs can oscillate or fail because generator and discriminator co-adapt.</li>
           </ul>
           <p>Original GAN objective:</p>
           <div class="formula-display">
@@ -91,14 +111,14 @@
         <section>
           <h2>12.4 Normalizing flows</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Change-of-variables formula</li>
-            <li>Coupling layers</li>
-            <li>NICE</li>
-            <li>RealNVP</li>
-            <li>Glow</li>
-            <li>Autoregressive flows</li>
-            <li>Continuous normalizing flows</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Change-of-variables formula:</strong> Tracks how probability density changes under an invertible transformation.</li>
+            <li><strong>Coupling layers:</strong> Split variables so part of the input transforms another part while remaining invertible.</li>
+            <li><strong>NICE:</strong> An early flow model using additive coupling transformations.</li>
+            <li><strong>RealNVP:</strong> Extends coupling layers with scaling and translation for more expressive flows.</li>
+            <li><strong>Glow:</strong> Adds invertible 1x1 convolutions and multi-scale structure for image flows.</li>
+            <li><strong>Autoregressive flows:</strong> Use autoregressive dependencies while preserving tractable density evaluation.</li>
+            <li><strong>Continuous normalizing flows:</strong> Define transformations through differential equations instead of discrete layers.</li>
           </ul>
           <div class="formula-display">
             <code>log p_X(x) = log p_Z(f(x)) + log |det df(x) / dx|</code>
@@ -109,20 +129,20 @@
           <h2>12.5 Diffusion and score-based models</h2>
           <p>These are essential in a 2026 roadmap.</p>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Denoising diffusion probabilistic models</li>
-            <li>Noise schedules</li>
-            <li>Variance-preserving and variance-exploding diffusion</li>
-            <li>Score matching</li>
-            <li>Denoising score matching</li>
-            <li>Score-based SDEs</li>
-            <li>Classifier guidance</li>
-            <li>Classifier-free guidance</li>
-            <li>Latent diffusion</li>
-            <li>Diffusion transformers</li>
-            <li>Consistency models</li>
-            <li>Distillation and fast sampling</li>
-            <li>Diffusion language models</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Denoising diffusion probabilistic models:</strong> Learn to reverse a gradual noising process step by step.</li>
+            <li><strong>Noise schedules:</strong> Choose how much noise is added at each diffusion timestep.</li>
+            <li><strong>Variance-preserving and variance-exploding diffusion:</strong> Two ways to define how signal and noise scale over time.</li>
+            <li><strong>Score matching:</strong> Learns gradients of the data density rather than the density itself.</li>
+            <li><strong>Denoising score matching:</strong> Trains a model to predict how to move noisy samples toward clean data.</li>
+            <li><strong>Score-based SDEs:</strong> Formulate generation as reversing a stochastic differential equation.</li>
+            <li><strong>Classifier guidance:</strong> Uses an external classifier to steer diffusion samples toward a class.</li>
+            <li><strong>Classifier-free guidance:</strong> Steers generation by mixing conditional and unconditional model predictions.</li>
+            <li><strong>Latent diffusion:</strong> Runs diffusion in a compressed latent space instead of raw pixels.</li>
+            <li><strong>Diffusion transformers:</strong> Use transformer blocks as the denoising network.</li>
+            <li><strong>Consistency models:</strong> Learn direct mappings that can generate high-quality samples in fewer steps.</li>
+            <li><strong>Distillation and fast sampling:</strong> Compress slow samplers into fewer denoising steps.</li>
+            <li><strong>Diffusion language models:</strong> Adapt denoising generation ideas to discrete or continuous text representations.</li>
           </ul>
           <p>Forward noising:</p>
           <div class="formula-display">
@@ -140,14 +160,14 @@
             Flow matching and rectified-flow methods are now important alternatives or complements to diffusion modelling.
           </p>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Probability paths</li>
-            <li>Conditional flow matching</li>
-            <li>Rectified flow</li>
-            <li>Neural ordinary differential equations</li>
-            <li>Optimal-transport paths</li>
-            <li>ODE solvers</li>
-            <li>Distillation to fewer steps</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Probability paths:</strong> Define a continuous route between simple noise and the data distribution.</li>
+            <li><strong>Conditional flow matching:</strong> Trains a velocity field that moves samples along conditional probability paths.</li>
+            <li><strong>Rectified flow:</strong> Learns straighter paths from noise to data to reduce sampling steps.</li>
+            <li><strong>Neural ordinary differential equations:</strong> Represent transformations as continuous dynamics parameterized by neural networks.</li>
+            <li><strong>Optimal-transport paths:</strong> Move probability mass between distributions with transport-inspired geometry.</li>
+            <li><strong>ODE solvers:</strong> Numerically integrate the learned velocity field during sampling.</li>
+            <li><strong>Distillation to fewer steps:</strong> Trains a faster generator to match a slower multi-step process.</li>
           </ul>
           <p>Flow ODE:</p>
           <div class="formula-display">

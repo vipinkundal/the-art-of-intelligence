@@ -28,40 +28,60 @@
         </p>
 
         <section>
+          <h2>Systems view</h2>
+          <div class="lesson-graphic" aria-label="Programming and systems learning flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Write</strong>
+                <span>Use Python, tensor libraries, tests, and version control to build clear model code.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Run</strong>
+                <span>Understand memory, devices, batching, precision, and distributed execution.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Debug</strong>
+                <span>Profile bottlenecks, reproduce failures, and make numerical behavior stable.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Core skills</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Python</li>
-            <li>NumPy-style vectorization</li>
-            <li>PyTorch or JAX</li>
-            <li>Data structures and algorithms</li>
-            <li>Computational complexity</li>
-            <li>Git</li>
-            <li>Linux and shell scripting</li>
-            <li>SQL and data modelling</li>
-            <li>APIs and distributed systems</li>
-            <li>Docker and containers</li>
-            <li>CPU versus GPU architecture</li>
-            <li>Memory hierarchy</li>
-            <li>Parallel computing</li>
-            <li>Numerical precision</li>
-            <li>Profiling</li>
-            <li>Testing and reproducibility</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Python:</strong> The default language for AI experimentation, data processing, training scripts, and glue code.</li>
+            <li><strong>NumPy-style vectorization:</strong> Replaces slow loops with array operations that libraries can execute efficiently.</li>
+            <li><strong>PyTorch or JAX:</strong> Tensor frameworks that provide automatic differentiation, GPU execution, and neural network building blocks.</li>
+            <li><strong>Data structures and algorithms:</strong> Help you choose representations and procedures that stay fast as data grows.</li>
+            <li><strong>Computational complexity:</strong> Estimates how runtime and memory scale with input size, model size, or sequence length.</li>
+            <li><strong>Git:</strong> Tracks code history, supports collaboration, and makes experiments recoverable.</li>
+            <li><strong>Linux and shell scripting:</strong> Gives you practical control over servers, files, jobs, logs, and automation.</li>
+            <li><strong>SQL and data modelling:</strong> Let you query, validate, join, and structure datasets before they reach a model.</li>
+            <li><strong>APIs and distributed systems:</strong> Explain how model services communicate, fail, retry, scale, and keep state consistent.</li>
+            <li><strong>Docker and containers:</strong> Package code, dependencies, and runtime assumptions so environments are repeatable.</li>
+            <li><strong>CPU versus GPU architecture:</strong> CPUs are flexible for control flow; GPUs excel at large parallel tensor operations.</li>
+            <li><strong>Memory hierarchy:</strong> Data movement across cache, RAM, VRAM, disk, and network can dominate model performance.</li>
+            <li><strong>Parallel computing:</strong> Splits work across cores, devices, or machines to train and serve larger systems.</li>
+            <li><strong>Numerical precision:</strong> Controls the trade-off between speed, memory, range, and rounding error.</li>
+            <li><strong>Profiling:</strong> Measures where time and memory go so optimization targets the real bottleneck.</li>
+            <li><strong>Testing and reproducibility:</strong> Catch regressions and make results trustworthy across machines, seeds, and code changes.</li>
           </ul>
         </section>
 
         <section>
           <h2>Important implementation topics</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Broadcasting</li>
-            <li>Tensor shapes and strides</li>
-            <li>Contiguous versus non-contiguous memory</li>
-            <li>Vectorization</li>
-            <li>Batching</li>
-            <li>Sparse computation</li>
-            <li>Floating-point overflow and underflow</li>
-            <li>Stable softmax and log-sum-exp</li>
-            <li>Mixed precision: FP32, FP16 and BF16</li>
-            <li>Quantized formats such as INT8 and INT4</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Broadcasting:</strong> Automatically expands compatible tensor dimensions so operations can combine arrays of different shapes.</li>
+            <li><strong>Tensor shapes and strides:</strong> Shapes describe dimensions; strides describe how memory is stepped through to read elements.</li>
+            <li><strong>Contiguous versus non-contiguous memory:</strong> Contiguous tensors are laid out compactly, while views can require slower access or copies.</li>
+            <li><strong>Vectorization:</strong> Expresses work as bulk tensor operations rather than per-example loops.</li>
+            <li><strong>Batching:</strong> Groups examples so hardware stays busy and gradients are more stable.</li>
+            <li><strong>Sparse computation:</strong> Skips zeros or unused structure to save memory and compute.</li>
+            <li><strong>Floating-point overflow and underflow:</strong> Large values can become infinity and tiny values can collapse to zero.</li>
+            <li><strong>Stable softmax and log-sum-exp:</strong> Numerically safe forms prevent exponentials from exploding or disappearing.</li>
+            <li><strong>Mixed precision:</strong> Combines FP32, FP16, and BF16 to improve speed and memory while protecting sensitive calculations.</li>
+            <li><strong>Quantized formats:</strong> INT8 and INT4 reduce memory and serving cost by storing approximate low-precision values.</li>
           </ul>
         </section>
 

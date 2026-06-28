@@ -32,14 +32,30 @@
           <p>
             A model alone produces text or predictions. An agent wraps that model with tools, state, instructions, and checks so it can take useful actions.
           </p>
+          <div class="lesson-graphic" aria-label="Agent loop">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Plan</strong>
+                <span>The agent breaks the goal into steps and decides what information or action is needed next.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Use tools</strong>
+                <span>It calls search, files, APIs, code execution, or other capabilities outside the base model.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Check result</strong>
+                <span>It inspects tool output, updates state, retries when needed, and stops when the goal is satisfied.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Common tools</h2>
-          <ul class="lesson-list">
-            <li>Search tools for finding information.</li>
-            <li>File tools for reading and editing project files.</li>
-            <li>API tools for calling services or databases.</li>
+          <ul class="lesson-list topic-detail-list">
+            <li><strong>Search tools:</strong> Let the agent retrieve current or external information instead of relying only on the model's stored knowledge.</li>
+            <li><strong>File tools:</strong> Let the agent inspect, create, and edit local artifacts while preserving a trace of what changed.</li>
+            <li><strong>API tools:</strong> Let the agent read or update structured systems such as databases, calendars, issue trackers, or internal services.</li>
           </ul>
         </section>
 
@@ -61,6 +77,13 @@
           <h2>Learning target</h2>
           <p>
             You should be able to describe the difference between a model and an agent, name common tool types, and explain why feedback checks matter.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Read Anthropic's <a href="https://www.anthropic.com/engineering/building-effective-agents" target="_blank" rel="noopener noreferrer">Building effective agents</a> for practical diagrams and patterns for workflows, tools, and autonomous agents.
           </p>
         </section>
 

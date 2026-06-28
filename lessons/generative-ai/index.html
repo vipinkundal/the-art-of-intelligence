@@ -28,25 +28,45 @@
         </p>
 
         <section>
+          <h2>Foundation model pipeline</h2>
+          <div class="lesson-graphic" aria-label="Foundation model pipeline">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Represent</strong>
+                <span>Tokenize inputs, embed them, and add position or structure information.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Train and align</strong>
+                <span>Pretrain on prediction tasks, then adapt with instructions, preferences, or rewards.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Serve</strong>
+                <span>Use efficient attention, KV caches, decoding controls, and verifiers at inference.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>7.1 Transformer fundamentals</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Token embeddings</li>
-            <li>Positional encoding</li>
-            <li>Sinusoidal positions</li>
-            <li>Rotary positional embeddings</li>
-            <li>ALiBi</li>
-            <li>Queries, keys and values</li>
-            <li>Self-attention</li>
-            <li>Cross-attention</li>
-            <li>Multi-head attention</li>
-            <li>Masked causal attention</li>
-            <li>Feed-forward networks</li>
-            <li>Residual streams</li>
-            <li>Pre-norm and post-norm</li>
-            <li>Encoder-only models</li>
-            <li>Decoder-only models</li>
-            <li>Encoder-decoder models</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Token embeddings:</strong> Learned vectors that turn discrete tokens into continuous model inputs.</li>
+            <li><strong>Positional encoding:</strong> Adds order information so the model can distinguish token positions.</li>
+            <li><strong>Sinusoidal positions:</strong> Fixed wave-based position features used in the original transformer.</li>
+            <li><strong>Rotary positional embeddings:</strong> Rotate query and key features so attention depends on relative positions.</li>
+            <li><strong>ALiBi:</strong> Adds linear attention biases that favor nearby tokens and can support length extrapolation.</li>
+            <li><strong>Queries, keys and values:</strong> Attention compares queries to keys, then mixes the matching values.</li>
+            <li><strong>Self-attention:</strong> Lets tokens in one sequence exchange information with each other.</li>
+            <li><strong>Cross-attention:</strong> Lets one sequence attend to another, such as decoder tokens attending to encoder outputs.</li>
+            <li><strong>Multi-head attention:</strong> Runs several attention heads in parallel so different relationships can be captured.</li>
+            <li><strong>Masked causal attention:</strong> Prevents tokens from seeing future tokens during autoregressive generation.</li>
+            <li><strong>Feed-forward networks:</strong> Per-token MLP blocks that transform features after attention mixes context.</li>
+            <li><strong>Residual streams:</strong> Carry information across layers through skip connections.</li>
+            <li><strong>Pre-norm and post-norm:</strong> Place normalization before or after sublayers, affecting training stability.</li>
+            <li><strong>Encoder-only models:</strong> Build bidirectional representations, common for classification and retrieval encoders.</li>
+            <li><strong>Decoder-only models:</strong> Generate autoregressively, common for modern language models.</li>
+            <li><strong>Encoder-decoder models:</strong> Encode an input sequence and decode an output sequence, common for translation and summarization.</li>
           </ul>
         </section>
 
@@ -81,19 +101,19 @@
         <section>
           <h2>7.2 Tokenization</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Character tokenization</li>
-            <li>Word tokenization</li>
-            <li>Byte-pair encoding</li>
-            <li>WordPiece</li>
-            <li>Unigram language-model tokenization</li>
-            <li>Byte-level tokenization</li>
-            <li>Vocabulary construction</li>
-            <li>Unicode normalization</li>
-            <li>Special tokens</li>
-            <li>Token fertility</li>
-            <li>Multilingual tokenization</li>
-            <li>Tokenizer security and prompt-boundary problems</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Character tokenization:</strong> Splits text into characters, simple but often inefficient for long contexts.</li>
+            <li><strong>Word tokenization:</strong> Splits by words, intuitive but brittle for rare words and multilingual text.</li>
+            <li><strong>Byte-pair encoding:</strong> Learns frequent subword merges to balance vocabulary size and sequence length.</li>
+            <li><strong>WordPiece:</strong> Builds subword units that improve likelihood under a language-model objective.</li>
+            <li><strong>Unigram language-model tokenization:</strong> Chooses a probabilistic vocabulary of subwords and tokenizes by likelihood.</li>
+            <li><strong>Byte-level tokenization:</strong> Represents text through bytes so every string can be encoded.</li>
+            <li><strong>Vocabulary construction:</strong> Chooses which tokens exist and therefore what the model can represent efficiently.</li>
+            <li><strong>Unicode normalization:</strong> Standardizes visually similar text forms before tokenization.</li>
+            <li><strong>Special tokens:</strong> Mark boundaries, roles, padding, tools, images, or control instructions.</li>
+            <li><strong>Token fertility:</strong> Measures how many tokens are needed for a word or phrase, affecting cost and fairness across languages.</li>
+            <li><strong>Multilingual tokenization:</strong> Balances vocabulary coverage across scripts and languages.</li>
+            <li><strong>Tokenizer security and prompt-boundary problems:</strong> Tokenization can blur user, system, and data boundaries if controls are not explicit.</li>
           </ul>
           <p>
             Implementing BPE from scratch is an excellent foundational project.
@@ -103,20 +123,20 @@
         <section>
           <h2>7.3 Efficient and alternative attention</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Multi-query attention</li>
-            <li>Grouped-query attention</li>
-            <li>Sparse attention</li>
-            <li>Sliding-window attention</li>
-            <li>Block-sparse attention</li>
-            <li>Linear attention</li>
-            <li>Local-global attention</li>
-            <li>FlashAttention</li>
-            <li>Paged attention</li>
-            <li>KV-cache management</li>
-            <li>Attention sinks</li>
-            <li>Long-context methods</li>
-            <li>Context parallelism</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Multi-query attention:</strong> Shares keys and values across heads to reduce cache memory.</li>
+            <li><strong>Grouped-query attention:</strong> Shares keys and values across groups of query heads for a quality-efficiency trade-off.</li>
+            <li><strong>Sparse attention:</strong> Attends to a subset of token pairs instead of all pairs.</li>
+            <li><strong>Sliding-window attention:</strong> Restricts attention to nearby tokens for efficient long sequences.</li>
+            <li><strong>Block-sparse attention:</strong> Uses structured blocks of allowed attention for faster computation.</li>
+            <li><strong>Linear attention:</strong> Rewrites attention to scale approximately linearly with sequence length.</li>
+            <li><strong>Local-global attention:</strong> Combines local neighborhoods with selected global tokens.</li>
+            <li><strong>FlashAttention:</strong> Computes exact attention with less high-bandwidth memory movement.</li>
+            <li><strong>Paged attention:</strong> Manages KV cache memory in pages for efficient serving.</li>
+            <li><strong>KV-cache management:</strong> Stores previous keys and values so generation does not recompute old context.</li>
+            <li><strong>Attention sinks:</strong> Tokens that attract attention and can stabilize long-context behavior.</li>
+            <li><strong>Long-context methods:</strong> Techniques that extend usable context length through architecture, training, or retrieval.</li>
+            <li><strong>Context parallelism:</strong> Splits long context processing across devices.</li>
           </ul>
           <p>
             FlashAttention is an exact, IO-aware attention algorithm designed to reduce expensive memory movement rather than merely reducing arithmetic operations.
@@ -126,22 +146,22 @@
         <section>
           <h2>7.4 Pretraining</h2>
           <p>Understand:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Causal language modelling</li>
-            <li>Masked language modelling</li>
-            <li>Prefix language modelling</li>
-            <li>Span corruption</li>
-            <li>Denoising objectives</li>
-            <li>Next-sentence and sentence-order objectives</li>
-            <li>Data mixtures</li>
-            <li>Data filtering</li>
-            <li>Deduplication</li>
-            <li>Contamination</li>
-            <li>Curriculum ordering</li>
-            <li>Synthetic data</li>
-            <li>Scaling laws</li>
-            <li>Compute-optimal training</li>
-            <li>Checkpointing and recovery</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Causal language modelling:</strong> Predicts the next token from previous tokens.</li>
+            <li><strong>Masked language modelling:</strong> Predicts hidden tokens from surrounding context.</li>
+            <li><strong>Prefix language modelling:</strong> Conditions on a visible prefix and predicts the continuation.</li>
+            <li><strong>Span corruption:</strong> Masks spans of text and trains the model to reconstruct them.</li>
+            <li><strong>Denoising objectives:</strong> Corrupt inputs and train the model to recover clean data.</li>
+            <li><strong>Next-sentence and sentence-order objectives:</strong> Train models to reason about relationships between text segments.</li>
+            <li><strong>Data mixtures:</strong> Balance sources such as web, code, math, books, dialogue, and domain data.</li>
+            <li><strong>Data filtering:</strong> Removes low-quality, unsafe, duplicate, or irrelevant examples.</li>
+            <li><strong>Deduplication:</strong> Reduces repeated examples that can waste compute or increase memorization.</li>
+            <li><strong>Contamination:</strong> Occurs when benchmark or evaluation data leaks into training.</li>
+            <li><strong>Curriculum ordering:</strong> Controls data order or difficulty over training.</li>
+            <li><strong>Synthetic data:</strong> Uses generated examples to add coverage, supervision, or practice tasks.</li>
+            <li><strong>Scaling laws:</strong> Empirical relationships between model size, data, compute, and loss.</li>
+            <li><strong>Compute-optimal training:</strong> Balances model size and data size for a fixed compute budget.</li>
+            <li><strong>Checkpointing and recovery:</strong> Saves model and optimizer state so long training runs can resume.</li>
           </ul>
         </section>
 
@@ -159,28 +179,28 @@
           <h2>7.5 Post-training</h2>
           <p>This is one of the largest areas missing from older roadmaps.</p>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Continued pretraining</li>
-            <li>Domain adaptation</li>
-            <li>Supervised fine-tuning</li>
-            <li>Instruction tuning</li>
-            <li>Rejection-sampling fine-tuning</li>
-            <li>Reward modelling</li>
-            <li>Preference modelling</li>
-            <li>RLHF</li>
-            <li>RLAIF</li>
-            <li>PPO-based post-training</li>
-            <li>Direct Preference Optimization</li>
-            <li>Identity Preference Optimization</li>
-            <li>Kahneman-Tversky Optimization</li>
-            <li>Odds-ratio preference optimization</li>
-            <li>Group-relative policy optimization</li>
-            <li>Reinforcement learning with verifiable rewards</li>
-            <li>Process reward models</li>
-            <li>Outcome reward models</li>
-            <li>Constitutional approaches</li>
-            <li>Distillation from stronger models</li>
-            <li>Online versus offline preference learning</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Continued pretraining:</strong> Keeps training the base objective on new or domain-specific data.</li>
+            <li><strong>Domain adaptation:</strong> Specializes a model for a field such as law, medicine, code, or finance.</li>
+            <li><strong>Supervised fine-tuning:</strong> Trains on input-output examples that demonstrate desired behavior.</li>
+            <li><strong>Instruction tuning:</strong> Fine-tunes on tasks phrased as instructions so the model follows user requests better.</li>
+            <li><strong>Rejection-sampling fine-tuning:</strong> Samples outputs, filters or ranks them, then fine-tunes on the better examples.</li>
+            <li><strong>Reward modelling:</strong> Trains a model to score outputs according to human or AI preferences.</li>
+            <li><strong>Preference modelling:</strong> Learns from comparisons such as chosen versus rejected responses.</li>
+            <li><strong>RLHF:</strong> Uses human feedback and reinforcement learning to align outputs with preferences.</li>
+            <li><strong>RLAIF:</strong> Uses AI feedback instead of, or alongside, human feedback for preference signals.</li>
+            <li><strong>PPO-based post-training:</strong> Uses policy-gradient reinforcement learning to optimize a reward model.</li>
+            <li><strong>Direct Preference Optimization:</strong> Optimizes preference pairs directly without a separate RL loop.</li>
+            <li><strong>Identity Preference Optimization:</strong> A preference-optimization variant focused on preserving desired model identity or style behavior.</li>
+            <li><strong>Kahneman-Tversky Optimization:</strong> A preference objective inspired by asymmetric treatment of desirable and undesirable examples.</li>
+            <li><strong>Odds-ratio preference optimization:</strong> Optimizes preference odds between chosen and rejected responses.</li>
+            <li><strong>Group-relative policy optimization:</strong> Compares sampled outputs within a group to create relative training signals.</li>
+            <li><strong>Reinforcement learning with verifiable rewards:</strong> Uses tasks where correctness can be checked automatically.</li>
+            <li><strong>Process reward models:</strong> Score intermediate reasoning steps, not only final answers.</li>
+            <li><strong>Outcome reward models:</strong> Score the final result regardless of the path used to produce it.</li>
+            <li><strong>Constitutional approaches:</strong> Use written principles to critique, revise, or judge model outputs.</li>
+            <li><strong>Distillation from stronger models:</strong> Trains smaller or cheaper models to imitate stronger systems.</li>
+            <li><strong>Online versus offline preference learning:</strong> Online methods collect feedback during deployment; offline methods train from fixed preference datasets.</li>
           </ul>
         </section>
 
@@ -200,16 +220,16 @@
         <section>
           <h2>7.6 Parameter-efficient adaptation</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Adapters</li>
-            <li>LoRA</li>
-            <li>QLoRA</li>
-            <li>Prefix tuning</li>
-            <li>Prompt tuning</li>
-            <li>P-tuning</li>
-            <li>Low-rank and sparse updates</li>
-            <li>Partial fine-tuning</li>
-            <li>Quantization-aware adaptation</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Adapters:</strong> Add small trainable modules while keeping most base weights frozen.</li>
+            <li><strong>LoRA:</strong> Learns low-rank weight updates instead of fine-tuning full matrices.</li>
+            <li><strong>QLoRA:</strong> Combines low-rank adaptation with quantized base weights to save memory.</li>
+            <li><strong>Prefix tuning:</strong> Learns prefix vectors that steer model behavior without changing core weights.</li>
+            <li><strong>Prompt tuning:</strong> Learns soft prompt embeddings for a task.</li>
+            <li><strong>P-tuning:</strong> Uses trainable prompt representations, often with deeper prompt encoders.</li>
+            <li><strong>Low-rank and sparse updates:</strong> Restrict trainable changes to compact or selective parameter subsets.</li>
+            <li><strong>Partial fine-tuning:</strong> Updates only selected layers, heads, or modules.</li>
+            <li><strong>Quantization-aware adaptation:</strong> Adapts models while accounting for low-precision weights or activations.</li>
           </ul>
         </section>
 
@@ -226,23 +246,23 @@
         <section>
           <h2>7.7 Decoding and inference algorithms</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Greedy decoding</li>
-            <li>Beam search</li>
-            <li>Temperature sampling</li>
-            <li>Top-k sampling</li>
-            <li>Top-p, or nucleus, sampling</li>
-            <li>Typical sampling</li>
-            <li>Contrastive decoding</li>
-            <li>Diverse beam search</li>
-            <li>Constrained decoding</li>
-            <li>Grammar-constrained decoding</li>
-            <li>Speculative decoding</li>
-            <li>Parallel decoding</li>
-            <li>Best-of-N</li>
-            <li>Reranking</li>
-            <li>Self-consistency</li>
-            <li>Verifier-guided search</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Greedy decoding:</strong> Always selects the highest-probability next token.</li>
+            <li><strong>Beam search:</strong> Keeps several high-scoring partial sequences while decoding.</li>
+            <li><strong>Temperature sampling:</strong> Adjusts randomness by sharpening or flattening token probabilities.</li>
+            <li><strong>Top-k sampling:</strong> Samples only from the k most likely next tokens.</li>
+            <li><strong>Top-p, or nucleus, sampling:</strong> Samples from the smallest token set whose probability mass reaches p.</li>
+            <li><strong>Typical sampling:</strong> Prefers tokens whose surprise is close to expected surprise.</li>
+            <li><strong>Contrastive decoding:</strong> Chooses tokens that are likely under a strong model and less favored by a weaker reference.</li>
+            <li><strong>Diverse beam search:</strong> Encourages beams to explore different output options.</li>
+            <li><strong>Constrained decoding:</strong> Forces outputs to satisfy required words, structure, or rules.</li>
+            <li><strong>Grammar-constrained decoding:</strong> Restricts generation to a formal grammar such as JSON or SQL syntax.</li>
+            <li><strong>Speculative decoding:</strong> Uses a small draft model and a larger verifier model to speed generation.</li>
+            <li><strong>Parallel decoding:</strong> Predicts or validates multiple tokens or branches at once.</li>
+            <li><strong>Best-of-N:</strong> Generates multiple candidates and selects the best by a scorer or verifier.</li>
+            <li><strong>Reranking:</strong> Reorders generated candidates after decoding.</li>
+            <li><strong>Self-consistency:</strong> Samples several reasoning paths and picks the most consistent answer.</li>
+            <li><strong>Verifier-guided search:</strong> Uses a verifier model or rule checker to guide decoding decisions.</li>
           </ul>
         </section>
 

@@ -32,14 +32,30 @@
           <p>
             Transformers use attention to decide which parts of the input are most relevant to each other. This helps the model connect context across long text.
           </p>
+          <div class="lesson-graphic" aria-label="Transformer attention flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Tokens</strong>
+                <span>Text, code, image patches, or other inputs are split into units the model can process.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Attention</strong>
+                <span>Each token scores which other tokens matter for interpreting or generating the next representation.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Contextual output</strong>
+                <span>The model emits representations or next-token probabilities shaped by the surrounding context.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>You should understand</h2>
-          <ul class="lesson-list">
-            <li>Tokens and sequences.</li>
-            <li>Attention as a way to connect related parts of context.</li>
-            <li>Why transformer models can support language, code, retrieval, and multimodal systems.</li>
+          <ul class="lesson-list topic-detail-list">
+            <li><strong>Tokens and sequences:</strong> Models process ordered token streams, so tokenization and context length shape what the model can represent.</li>
+            <li><strong>Attention:</strong> Attention lets each token weigh other tokens, which helps the model resolve references, dependencies, and long-range context.</li>
+            <li><strong>Foundation-model reach:</strong> The same architecture can process language, code, retrieval context, images, and audio when those inputs are represented as tokens or embeddings.</li>
           </ul>
         </section>
 
@@ -61,6 +77,13 @@
           <h2>Learning target</h2>
           <p>
             You should be able to explain attention as a mechanism for relating tokens and describe why transformers are central to generative AI.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Study <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer">The Illustrated Transformer</a> for a diagram-heavy walkthrough of attention, encoders, decoders, and token flow.
           </p>
         </section>
 

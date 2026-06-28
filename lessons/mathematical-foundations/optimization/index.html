@@ -32,29 +32,45 @@
           <p>
             A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints.
           </p>
+          <div class="lesson-graphic" aria-label="Optimization loop">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Objective</strong>
+                <span>Define what should become smaller, larger, or better constrained.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Step</strong>
+                <span>Use gradients, search, or rules to move parameters in a better direction.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Stop or repeat</strong>
+                <span>Check progress, stability, cost, and generalization before continuing.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Objectives, losses, and cost functions</li>
-            <li>Parameters and decision variables</li>
-            <li>Unconstrained and constrained optimization</li>
-            <li>Convex and non-convex optimization</li>
-            <li>Local minima, global minima, and saddle points</li>
-            <li>Gradient descent</li>
-            <li>Stochastic gradient descent</li>
-            <li>Mini-batch optimization</li>
-            <li>Learning rates and schedules</li>
-            <li>Momentum and adaptive methods</li>
-            <li>Adam and RMSProp</li>
-            <li>Line search</li>
-            <li>Newton and quasi-Newton methods</li>
-            <li>Lagrange multipliers</li>
-            <li>KKT conditions</li>
-            <li>Regularization and penalties</li>
-            <li>Early stopping</li>
-            <li>Numerical stability</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Objectives, losses, and cost functions:</strong> These define what the system is trying to minimize, maximize, or balance.</li>
+            <li><strong>Parameters and decision variables:</strong> Parameters are the adjustable values the optimizer changes.</li>
+            <li><strong>Unconstrained and constrained optimization:</strong> Unconstrained problems move freely; constrained problems must satisfy rules or limits.</li>
+            <li><strong>Convex and non-convex optimization:</strong> Convex problems have simpler global structure; non-convex problems can contain many local traps.</li>
+            <li><strong>Local minima, global minima, and saddle points:</strong> These describe places where progress can stop or become ambiguous.</li>
+            <li><strong>Gradient descent:</strong> Moves parameters opposite the gradient to reduce the objective locally.</li>
+            <li><strong>Stochastic gradient descent:</strong> Estimates the gradient from small random batches, trading exactness for speed.</li>
+            <li><strong>Mini-batch optimization:</strong> Uses batches large enough for stable estimates but small enough for efficient training.</li>
+            <li><strong>Learning rates and schedules:</strong> Control step size over time, strongly affecting speed and stability.</li>
+            <li><strong>Momentum and adaptive methods:</strong> Smooth or rescale updates so optimization handles noisy or uneven gradients better.</li>
+            <li><strong>Adam and RMSProp:</strong> Popular adaptive optimizers that track gradient statistics to scale updates.</li>
+            <li><strong>Line search:</strong> Chooses a step size by testing how the objective changes along a direction.</li>
+            <li><strong>Newton and quasi-Newton methods:</strong> Use curvature information to choose more informed update steps.</li>
+            <li><strong>Lagrange multipliers:</strong> Convert constrained problems into equations that balance objective and constraint forces.</li>
+            <li><strong>KKT conditions:</strong> Generalize optimality conditions for constrained optimization problems.</li>
+            <li><strong>Regularization and penalties:</strong> Add terms that discourage overly complex, unstable, or undesirable solutions.</li>
+            <li><strong>Early stopping:</strong> Stops training when validation behavior stops improving, reducing overfitting.</li>
+            <li><strong>Numerical stability:</strong> Keeps calculations reliable despite finite precision, overflow, underflow, or bad scaling.</li>
           </ul>
         </section>
 
@@ -94,6 +110,13 @@
           <h2>Learning target</h2>
           <p>
             After this lesson, you should be able to describe an objective function, explain gradient descent and stochastic optimization, identify common optimizer choices, and explain why regularization and learning rates matter.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Read Boyd and Vandenberghe's <a href="https://web.stanford.edu/~boyd/cvxbook/" target="_blank" rel="noopener noreferrer">Convex Optimization</a> materials for a rigorous foundation in objectives, constraints, and optimization geometry.
           </p>
         </section>
 

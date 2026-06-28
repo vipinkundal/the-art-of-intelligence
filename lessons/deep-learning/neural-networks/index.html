@@ -32,14 +32,30 @@
           <p>
             Each layer changes the data a little. Early layers may detect simple patterns, while later layers combine those patterns into more useful meaning.
           </p>
+          <div class="lesson-graphic" aria-label="Neural network flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Input layer</strong>
+                <span>Receives numeric features, pixels, tokens, audio frames, or embeddings.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Hidden layers</strong>
+                <span>Apply weights and activations to build progressively richer representations.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Output layer</strong>
+                <span>Produces class scores, a value estimate, generated tokens, or another task-specific result.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>You should understand</h2>
-          <ul class="lesson-list">
-            <li>Inputs, outputs, layers, weights, and activations.</li>
-            <li>How a network transforms data step by step.</li>
-            <li>Why deeper networks can learn more complex patterns.</li>
+          <ul class="lesson-list topic-detail-list">
+            <li><strong>Inputs and outputs:</strong> Inputs are encoded as numbers; outputs are the task result, such as probabilities, values, embeddings, or generated tokens.</li>
+            <li><strong>Layers, weights, and activations:</strong> Weights control each transformation, while activation functions add non-linearity so the network can model complex patterns.</li>
+            <li><strong>Depth:</strong> More layers let the network combine simple signals into higher-level features, but also make training stability and data quality more important.</li>
           </ul>
         </section>
 
@@ -61,6 +77,13 @@
           <h2>Learning target</h2>
           <p>
             You should be able to explain a neural network as layered transformations from input to output and identify what weights and activations do.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Watch <a href="https://www.3blue1brown.com/lessons/neural-networks" target="_blank" rel="noopener noreferrer">3Blue1Brown's neural networks lesson</a> to see layers, activations, and handwritten digit recognition animated.
           </p>
         </section>
 

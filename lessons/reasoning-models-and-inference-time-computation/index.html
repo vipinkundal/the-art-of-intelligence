@@ -28,28 +28,48 @@
         </p>
 
         <section>
+          <h2>Reasoning-time loop</h2>
+          <div class="lesson-graphic" aria-label="Reasoning model inference loop">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Generate paths</strong>
+                <span>Use prompting, decomposition, or search to produce candidate reasoning traces.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Check steps</strong>
+                <span>Apply verifiers, tools, tests, or voting to find stronger answers.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Spend compute</strong>
+                <span>Trade more inference work for better reliability when the task deserves it.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Chain-of-thought prompting</li>
-            <li>Scratchpad computation</li>
-            <li>Self-consistency</li>
-            <li>Least-to-most prompting</li>
-            <li>Decomposition</li>
-            <li>Tree of Thoughts</li>
-            <li>Graph of Thoughts</li>
-            <li>Beam search over reasoning traces</li>
-            <li>Best-of-N sampling</li>
-            <li>Majority voting</li>
-            <li>Process supervision</li>
-            <li>Outcome supervision</li>
-            <li>Step-level verification</li>
-            <li>Program-aided reasoning</li>
-            <li>Tool-assisted reasoning</li>
-            <li>Code execution</li>
-            <li>Search over latent or textual reasoning</li>
-            <li>Test-time adaptation</li>
-            <li>Adaptive computation</li>
-            <li>Inference-time scaling</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Chain-of-thought prompting:</strong> Encourages intermediate reasoning text before the final answer.</li>
+            <li><strong>Scratchpad computation:</strong> Gives the model working space for calculations, notes, or intermediate state.</li>
+            <li><strong>Self-consistency:</strong> Samples multiple reasoning paths and chooses the answer that appears most consistently.</li>
+            <li><strong>Least-to-most prompting:</strong> Solves simpler subproblems first, then combines them into the full solution.</li>
+            <li><strong>Decomposition:</strong> Breaks a hard task into smaller questions that can be solved and checked independently.</li>
+            <li><strong>Tree of Thoughts:</strong> Searches a branching tree of candidate reasoning steps.</li>
+            <li><strong>Graph of Thoughts:</strong> Allows reasoning states to merge, revise, and connect more flexibly than a tree.</li>
+            <li><strong>Beam search over reasoning traces:</strong> Keeps the best few partial reasoning paths at each step.</li>
+            <li><strong>Best-of-N sampling:</strong> Generates many candidate answers and picks the strongest by scoring or verification.</li>
+            <li><strong>Majority voting:</strong> Chooses the most common answer across independent attempts.</li>
+            <li><strong>Process supervision:</strong> Trains or scores the intermediate reasoning steps, not just the final answer.</li>
+            <li><strong>Outcome supervision:</strong> Rewards only the final result, even if the internal path is unknown or messy.</li>
+            <li><strong>Step-level verification:</strong> Checks each intermediate claim or operation for correctness.</li>
+            <li><strong>Program-aided reasoning:</strong> Uses generated code or symbolic programs to perform exact calculations.</li>
+            <li><strong>Tool-assisted reasoning:</strong> Calls search, calculators, code, retrieval, or APIs to ground the answer.</li>
+            <li><strong>Code execution:</strong> Runs code to test hypotheses, compute results, or verify examples.</li>
+            <li><strong>Search over latent or textual reasoning:</strong> Explores multiple internal or visible paths before committing.</li>
+            <li><strong>Test-time adaptation:</strong> Adjusts behavior during inference based on the current task or feedback.</li>
+            <li><strong>Adaptive computation:</strong> Spends more reasoning steps on harder examples and fewer on easy ones.</li>
+            <li><strong>Inference-time scaling:</strong> Improves answers by increasing compute used during generation, search, or verification.</li>
           </ul>
         </section>
 

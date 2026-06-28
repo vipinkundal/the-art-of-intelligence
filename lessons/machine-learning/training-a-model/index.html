@@ -32,14 +32,30 @@
           <p>
             A model starts with weak guesses. During training, it compares its guesses with the correct answers, measures the error, and updates itself to reduce that error.
           </p>
+          <div class="lesson-graphic" aria-label="Training loop">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Guess</strong>
+                <span>The model predicts an answer from the current parameters and the example input.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Measure loss</strong>
+                <span>The training code compares the prediction with the target and scores the error.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Update</strong>
+                <span>The optimizer changes parameters so future predictions should make less error.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Important terms</h2>
-          <ul class="lesson-list">
-            <li><strong>Example:</strong> one row, image, sentence, or record used for learning.</li>
-            <li><strong>Label:</strong> the correct answer attached to an example.</li>
-            <li><strong>Loss:</strong> a score that tells the model how wrong it was.</li>
+          <ul class="lesson-list topic-detail-list">
+            <li><strong>Example:</strong> One training case, such as a row, image, sentence, clip, or record that gives the model something to learn from.</li>
+            <li><strong>Label:</strong> The target answer attached to an example, such as the class name, price, next token, rating, or human preference.</li>
+            <li><strong>Loss:</strong> A numeric error score. Lower loss means the model's output better matches the training target under the chosen objective.</li>
           </ul>
         </section>
 
@@ -61,6 +77,13 @@
           <h2>Learning target</h2>
           <p>
             You should be able to describe the training loop in plain language: make a guess, measure loss, update the model, and check whether performance improves.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Use <a href="https://cs229.stanford.edu/" target="_blank" rel="noopener noreferrer">Stanford CS229</a> as a deeper reference for supervised learning, loss functions, optimization, and model evaluation.
           </p>
         </section>
 

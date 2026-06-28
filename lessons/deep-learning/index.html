@@ -28,20 +28,40 @@
         </p>
 
         <section>
+          <h2>Deep learning stack</h2>
+          <div class="lesson-graphic" aria-label="Deep learning foundations stack">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Compute graph</strong>
+                <span>Layers transform data and automatic differentiation sends gradients backward.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Architecture</strong>
+                <span>Convolutions, recurrence, attention, normalization, and residual paths shape learning.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Generalize</strong>
+                <span>Regularization, augmentation, clipping, and distillation improve robustness and transfer.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>6.1 Neural networks</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Perceptrons</li>
-            <li>Multilayer perceptrons</li>
-            <li>Computational graphs</li>
-            <li>Backpropagation</li>
-            <li>Activation functions</li>
-            <li>Weight initialization</li>
-            <li>Normalization</li>
-            <li>Residual connections</li>
-            <li>Regularization</li>
-            <li>Universal approximation</li>
-            <li>Representation learning</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Perceptrons:</strong> Simple linear classifiers that combine weighted inputs and a threshold.</li>
+            <li><strong>Multilayer perceptrons:</strong> Stacked fully connected layers that learn nonlinear functions.</li>
+            <li><strong>Computational graphs:</strong> Represent operations and dependencies so gradients can be computed automatically.</li>
+            <li><strong>Backpropagation:</strong> Applies the chain rule backward through the graph to compute parameter gradients.</li>
+            <li><strong>Activation functions:</strong> Add nonlinearity so networks can model more than linear transformations.</li>
+            <li><strong>Weight initialization:</strong> Chooses starting weights that keep signals and gradients at useful scales.</li>
+            <li><strong>Normalization:</strong> Stabilizes activations or weights to make training faster and more reliable.</li>
+            <li><strong>Residual connections:</strong> Add skip paths so layers can learn refinements and gradients can flow more easily.</li>
+            <li><strong>Regularization:</strong> Discourages overfitting by constraining parameters, activations, or training behavior.</li>
+            <li><strong>Universal approximation:</strong> Shows neural networks can approximate broad classes of functions with enough capacity.</li>
+            <li><strong>Representation learning:</strong> Learns internal features that make downstream prediction or generation easier.</li>
           </ul>
         </section>
 
@@ -72,36 +92,36 @@
 
         <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Batch normalization</li>
-            <li>Layer normalization</li>
-            <li>RMSNorm</li>
-            <li>Dropout</li>
-            <li>Weight decay</li>
-            <li>Early stopping</li>
-            <li>Data augmentation</li>
-            <li>Gradient clipping</li>
-            <li>Label smoothing</li>
-            <li>Knowledge distillation</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Batch normalization:</strong> Normalizes activations using batch statistics to stabilize training.</li>
+            <li><strong>Layer normalization:</strong> Normalizes features within each example, common in transformers.</li>
+            <li><strong>RMSNorm:</strong> Normalizes by root mean square without centering, often cheaper than layer normalization.</li>
+            <li><strong>Dropout:</strong> Randomly disables activations during training so the model does not rely too heavily on one path.</li>
+            <li><strong>Weight decay:</strong> Penalizes large weights to encourage simpler solutions.</li>
+            <li><strong>Early stopping:</strong> Stops training when validation performance stops improving.</li>
+            <li><strong>Data augmentation:</strong> Creates transformed training examples to improve robustness.</li>
+            <li><strong>Gradient clipping:</strong> Caps gradient size to prevent unstable updates.</li>
+            <li><strong>Label smoothing:</strong> Softens target labels so the model is less overconfident.</li>
+            <li><strong>Knowledge distillation:</strong> Trains a smaller model to imitate a stronger teacher model.</li>
           </ul>
         </section>
 
         <section>
           <h2>6.2 Convolutional neural networks</h2>
           <p>Understand:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Discrete convolution</li>
-            <li>Cross-correlation</li>
-            <li>Padding</li>
-            <li>Stride</li>
-            <li>Dilation</li>
-            <li>Pooling</li>
-            <li>Receptive fields</li>
-            <li>Translation equivariance</li>
-            <li>Depthwise and separable convolutions</li>
-            <li>Residual networks</li>
-            <li>Encoder-decoder networks</li>
-            <li>U-Net architectures</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Discrete convolution:</strong> Slides a small kernel over data to detect local patterns.</li>
+            <li><strong>Cross-correlation:</strong> The operation most deep learning libraries call convolution, without flipping the kernel.</li>
+            <li><strong>Padding:</strong> Adds border values so output size and edge behavior can be controlled.</li>
+            <li><strong>Stride:</strong> Moves the kernel by larger steps to reduce spatial resolution.</li>
+            <li><strong>Dilation:</strong> Spreads kernel points apart to expand context without adding many parameters.</li>
+            <li><strong>Pooling:</strong> Downsamples features by summarizing local regions.</li>
+            <li><strong>Receptive fields:</strong> Describe how much input context can influence a feature.</li>
+            <li><strong>Translation equivariance:</strong> A shifted input produces shifted features, useful for images and signals.</li>
+            <li><strong>Depthwise and separable convolutions:</strong> Reduce compute by splitting spatial and channel mixing.</li>
+            <li><strong>Residual networks:</strong> Use skip connections to train very deep convolutional models.</li>
+            <li><strong>Encoder-decoder networks:</strong> Compress inputs and then reconstruct structured outputs.</li>
+            <li><strong>U-Net architectures:</strong> Combine encoder-decoder structure with skip connections for dense prediction.</li>
           </ul>
         </section>
 
@@ -114,33 +134,33 @@
 
         <section>
           <h2>Important architectures and ideas</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>LeNet</li>
-            <li>AlexNet</li>
-            <li>VGG</li>
-            <li>Inception</li>
-            <li>ResNet</li>
-            <li>DenseNet</li>
-            <li>EfficientNet</li>
-            <li>MobileNet</li>
-            <li>U-Net</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>LeNet:</strong> Early convolutional network for handwritten digit recognition.</li>
+            <li><strong>AlexNet:</strong> Popularized deep CNNs on GPUs for large-scale image classification.</li>
+            <li><strong>VGG:</strong> Demonstrated strong results with simple stacks of small convolutions.</li>
+            <li><strong>Inception:</strong> Uses parallel convolution paths to capture patterns at multiple scales.</li>
+            <li><strong>ResNet:</strong> Introduced residual blocks that made very deep networks practical.</li>
+            <li><strong>DenseNet:</strong> Connects each layer to many later layers to encourage feature reuse.</li>
+            <li><strong>EfficientNet:</strong> Scales network depth, width, and resolution together.</li>
+            <li><strong>MobileNet:</strong> Uses efficient convolutions for mobile and edge deployment.</li>
+            <li><strong>U-Net:</strong> A segmentation architecture that combines local detail with high-level context.</li>
           </ul>
         </section>
 
         <section>
           <h2>6.3 Recurrent and sequence models</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Recurrent neural networks</li>
-            <li>Backpropagation through time</li>
-            <li>Vanishing and exploding gradients</li>
-            <li>LSTM</li>
-            <li>GRU</li>
-            <li>Bidirectional RNNs</li>
-            <li>Sequence-to-sequence models</li>
-            <li>Encoder-decoder models</li>
-            <li>Attention</li>
-            <li>Connectionist temporal classification</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Recurrent neural networks:</strong> Process sequences by updating a hidden state over time.</li>
+            <li><strong>Backpropagation through time:</strong> Unrolls recurrent computation across steps to compute gradients.</li>
+            <li><strong>Vanishing and exploding gradients:</strong> Long sequences can shrink or amplify gradients, making training unstable.</li>
+            <li><strong>LSTM:</strong> Uses gates and memory cells to preserve information over longer spans.</li>
+            <li><strong>GRU:</strong> A simpler gated recurrent unit that controls update and reset behavior.</li>
+            <li><strong>Bidirectional RNNs:</strong> Read sequences forward and backward when full context is available.</li>
+            <li><strong>Sequence-to-sequence models:</strong> Map one sequence to another, such as translation or summarization.</li>
+            <li><strong>Encoder-decoder models:</strong> Encode an input sequence into representations and decode an output sequence.</li>
+            <li><strong>Attention:</strong> Lets the decoder focus on relevant input positions instead of relying on one fixed vector.</li>
+            <li><strong>Connectionist temporal classification:</strong> Trains sequence labels when exact input-output alignment is unknown.</li>
           </ul>
         </section>
 

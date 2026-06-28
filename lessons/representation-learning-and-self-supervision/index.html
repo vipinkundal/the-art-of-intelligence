@@ -28,29 +28,49 @@
         </p>
 
         <section>
+          <h2>Representation loop</h2>
+          <div class="lesson-graphic" aria-label="Representation learning flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Encode</strong>
+                <span>Turn raw text, images, audio, or events into embeddings.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Compare</strong>
+                <span>Use similarity, contrast, prediction, or masking to shape the embedding space.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Transfer</strong>
+                <span>Reuse the learned representation for search, classification, generation, or control.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Study</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Distributed word representations</li>
-            <li>Word2vec</li>
-            <li>Skip-gram</li>
-            <li>Continuous bag of words</li>
-            <li>Negative sampling</li>
-            <li>GloVe</li>
-            <li>FastText</li>
-            <li>Metric learning</li>
-            <li>Siamese networks</li>
-            <li>Triplet loss</li>
-            <li>Contrastive learning</li>
-            <li>InfoNCE</li>
-            <li>SimCLR</li>
-            <li>MoCo</li>
-            <li>CLIP</li>
-            <li>BYOL</li>
-            <li>DINO</li>
-            <li>Masked autoencoders</li>
-            <li>Masked language modelling</li>
-            <li>Predictive coding</li>
-            <li>Joint-embedding predictive architectures</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Distributed word representations:</strong> Represent words as dense vectors whose geometry captures usage and meaning.</li>
+            <li><strong>Word2vec:</strong> Learns word embeddings from local context prediction tasks.</li>
+            <li><strong>Skip-gram:</strong> Predicts surrounding words from a center word.</li>
+            <li><strong>Continuous bag of words:</strong> Predicts a center word from surrounding context words.</li>
+            <li><strong>Negative sampling:</strong> Makes contrastive word training efficient by comparing positives against sampled negatives.</li>
+            <li><strong>GloVe:</strong> Learns embeddings from global word co-occurrence statistics.</li>
+            <li><strong>FastText:</strong> Builds word vectors from subword units, helping with rare or unseen words.</li>
+            <li><strong>Metric learning:</strong> Trains embeddings so distances match semantic similarity or task relevance.</li>
+            <li><strong>Siamese networks:</strong> Use shared encoders to compare two inputs in the same embedding space.</li>
+            <li><strong>Triplet loss:</strong> Pulls an anchor closer to a positive example than to a negative example by a margin.</li>
+            <li><strong>Contrastive learning:</strong> Learns by bringing related views together and pushing unrelated examples apart.</li>
+            <li><strong>InfoNCE:</strong> A contrastive loss that scores one positive against many negatives.</li>
+            <li><strong>SimCLR:</strong> Learns visual representations by contrasting augmented views of the same image.</li>
+            <li><strong>MoCo:</strong> Maintains a moving queue of negative examples for contrastive learning.</li>
+            <li><strong>CLIP:</strong> Aligns image and text embeddings using contrastive training on paired captions and images.</li>
+            <li><strong>BYOL:</strong> Learns representations by predicting another network's view without explicit negatives.</li>
+            <li><strong>DINO:</strong> Uses self-distillation to learn strong visual features without labels.</li>
+            <li><strong>Masked autoencoders:</strong> Reconstruct missing parts of inputs from visible context.</li>
+            <li><strong>Masked language modelling:</strong> Predicts hidden tokens from surrounding text.</li>
+            <li><strong>Predictive coding:</strong> Learns by predicting future, missing, or compressed signals.</li>
+            <li><strong>Joint-embedding predictive architectures:</strong> Predict representations of target observations rather than reconstructing raw pixels or tokens.</li>
           </ul>
         </section>
 

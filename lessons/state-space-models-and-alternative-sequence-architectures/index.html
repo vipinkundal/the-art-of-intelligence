@@ -28,18 +28,38 @@
         </p>
 
         <section>
+          <h2>Sequence architecture map</h2>
+          <div class="lesson-graphic" aria-label="State-space sequence modelling flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>State</strong>
+                <span>Compress past inputs into a hidden state that can be updated step by step.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Long context</strong>
+                <span>Use structure, convolutions, or selective updates to scale beyond quadratic attention.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Hybrid design</strong>
+                <span>Combine attention, recurrence, convolution, and gating where each is strongest.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Study</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Linear dynamical systems</li>
-            <li>State-space models</li>
-            <li>Structured state spaces</li>
-            <li>S4</li>
-            <li>Mamba</li>
-            <li>Selective state-space models</li>
-            <li>Gated convolutions</li>
-            <li>Hyena-style long convolutions</li>
-            <li>Retention mechanisms</li>
-            <li>Transformer-SSM hybrids</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Linear dynamical systems:</strong> Model a hidden state that evolves through linear updates and emits observations over time.</li>
+            <li><strong>State-space models:</strong> Track sequence history with a compact recurrent state instead of comparing every token to every other token.</li>
+            <li><strong>Structured state spaces:</strong> Constrain the state update matrices so long sequences can be processed efficiently and stably.</li>
+            <li><strong>S4:</strong> A structured state-space architecture designed to model very long dependencies with efficient convolutional computation.</li>
+            <li><strong>Mamba:</strong> Uses selective state-space updates so the model can choose which information to keep or forget based on the input.</li>
+            <li><strong>Selective state-space models:</strong> Make state updates input-dependent, improving expressiveness compared with fixed linear dynamics.</li>
+            <li><strong>Gated convolutions:</strong> Use gates to control which convolutional features pass through a sequence model.</li>
+            <li><strong>Hyena-style long convolutions:</strong> Replace attention with implicit long filters that can mix information over large contexts.</li>
+            <li><strong>Retention mechanisms:</strong> Blend recurrent memory and attention-like weighting to keep useful historical information.</li>
+            <li><strong>Transformer-SSM hybrids:</strong> Combine attention blocks with state-space or convolutional blocks for better efficiency-quality trade-offs.</li>
           </ul>
         </section>
 

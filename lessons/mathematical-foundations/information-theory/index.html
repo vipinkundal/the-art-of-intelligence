@@ -32,22 +32,38 @@
           <p>
             Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations.
           </p>
+          <div class="lesson-graphic" aria-label="Information theory flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Uncertainty</strong>
+                <span>Entropy measures how many outcomes remain plausible before seeing data.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Mismatch</strong>
+                <span>Cross-entropy and KL divergence compare target and model distributions.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Compression</strong>
+                <span>Good representations keep useful signal while discarding avoidable noise.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Entropy</li>
-            <li>Cross-entropy</li>
-            <li>KL divergence</li>
-            <li>Mutual information</li>
-            <li>Conditional entropy</li>
-            <li>Jensen-Shannon divergence</li>
-            <li>Coding theory</li>
-            <li>Minimum description length</li>
-            <li>Rate-distortion theory</li>
-            <li>Perplexity</li>
-            <li>Information bottleneck</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Entropy:</strong> Measures the uncertainty or average surprise in a probability distribution.</li>
+            <li><strong>Cross-entropy:</strong> Measures how costly it is to encode true outcomes using a model's predicted distribution.</li>
+            <li><strong>KL divergence:</strong> Measures how much one distribution differs from another, with direction-dependent penalties.</li>
+            <li><strong>Mutual information:</strong> Measures how much knowing one variable reduces uncertainty about another.</li>
+            <li><strong>Conditional entropy:</strong> Measures remaining uncertainty in one variable after another variable is known.</li>
+            <li><strong>Jensen-Shannon divergence:</strong> A symmetric, smoothed way to compare probability distributions.</li>
+            <li><strong>Coding theory:</strong> Connects probability to efficient representation, compression, and error correction.</li>
+            <li><strong>Minimum description length:</strong> Prefers models that explain data well without requiring overly complex descriptions.</li>
+            <li><strong>Rate-distortion theory:</strong> Studies the trade-off between compression rate and acceptable reconstruction error.</li>
+            <li><strong>Perplexity:</strong> Interprets language-model uncertainty as the effective number of plausible next choices.</li>
+            <li><strong>Information bottleneck:</strong> Learns compressed representations that preserve information relevant to a target.</li>
           </ul>
         </section>
 
@@ -87,6 +103,13 @@
           <h2>Learning target</h2>
           <p>
             After this lesson, you should be able to explain entropy, cross-entropy, KL divergence, mutual information, perplexity, and why information bottlenecks matter for representation learning.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Read David MacKay's <a href="https://www.inference.org.uk/itila/book.html" target="_blank" rel="noopener noreferrer">Information Theory, Inference, and Learning Algorithms</a> for a deeper connection between coding, inference, and machine learning.
           </p>
         </section>
 

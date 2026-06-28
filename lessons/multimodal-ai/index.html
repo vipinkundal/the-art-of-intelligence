@@ -28,38 +28,58 @@
         </p>
 
         <section>
+          <h2>Multimodal pipeline</h2>
+          <div class="lesson-graphic" aria-label="Multimodal AI pipeline">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Encode</strong>
+                <span>Turn text, images, audio, video, or actions into model-readable representations.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Align and fuse</strong>
+                <span>Connect representations so words, regions, sounds, and events can refer to each other.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Ground output</strong>
+                <span>Answer, retrieve, generate, or act while staying tied to visible or audible evidence.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Contrastive vision-language learning</li>
-            <li>Image-text alignment</li>
-            <li>Vision encoders</li>
-            <li>Projection layers</li>
-            <li>Cross-attention fusion</li>
-            <li>Early, intermediate and late fusion</li>
-            <li>Multimodal tokenization</li>
-            <li>Image and video instruction tuning</li>
-            <li>Visual question answering</li>
-            <li>Image captioning</li>
-            <li>Document understanding</li>
-            <li>Speech-language models</li>
-            <li>Audio-language models</li>
-            <li>Text-to-image generation</li>
-            <li>Text-to-video generation</li>
-            <li>Multimodal retrieval</li>
-            <li>Vision-language-action models</li>
-            <li>Multimodal agents</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Contrastive vision-language learning:</strong> Trains image and text representations so matching pairs become close and mismatched pairs separate.</li>
+            <li><strong>Image-text alignment:</strong> Connects visual content with words, captions, labels, or instructions.</li>
+            <li><strong>Vision encoders:</strong> Convert images or frames into feature vectors or tokens for downstream reasoning.</li>
+            <li><strong>Projection layers:</strong> Map outputs from one modality encoder into the shared space expected by another model.</li>
+            <li><strong>Cross-attention fusion:</strong> Lets tokens from one modality attend to tokens from another modality.</li>
+            <li><strong>Early, intermediate and late fusion:</strong> Fuse modalities near the input, inside the model, or near the final decision.</li>
+            <li><strong>Multimodal tokenization:</strong> Represents non-text inputs as discrete tokens, patches, frames, or embeddings.</li>
+            <li><strong>Image and video instruction tuning:</strong> Teaches models to follow natural-language instructions grounded in visual inputs.</li>
+            <li><strong>Visual question answering:</strong> Answers questions that require reading or reasoning over an image.</li>
+            <li><strong>Image captioning:</strong> Generates text that describes the visible content of an image.</li>
+            <li><strong>Document understanding:</strong> Combines OCR, layout, tables, figures, and text to interpret documents.</li>
+            <li><strong>Speech-language models:</strong> Connect spoken audio with transcription, dialogue, translation, or reasoning tasks.</li>
+            <li><strong>Audio-language models:</strong> Interpret sounds, music, events, or speech in relation to text.</li>
+            <li><strong>Text-to-image generation:</strong> Produces images conditioned on natural-language prompts or structured controls.</li>
+            <li><strong>Text-to-video generation:</strong> Generates sequences of frames while maintaining temporal consistency.</li>
+            <li><strong>Multimodal retrieval:</strong> Searches across modalities, such as finding images from text or text from images.</li>
+            <li><strong>Vision-language-action models:</strong> Connect perception and instructions to actions in robotics or UI control.</li>
+            <li><strong>Multimodal agents:</strong> Use models, tools, memory, and perception to act across visual, textual, audio, or physical environments.</li>
           </ul>
         </section>
 
         <section>
           <h2>Important design questions</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>How are modalities tokenized?</li>
-            <li>Where are they fused?</li>
-            <li>Are encoders frozen or trained jointly?</li>
-            <li>How is temporal information represented?</li>
-            <li>How are grounding and hallucination evaluated?</li>
-            <li>Does the model connect words to identifiable regions, sounds, or actions?</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>How are modalities tokenized?</strong> Tokenization determines what the model can see, compress, align, and generate.</li>
+            <li><strong>Where are they fused?</strong> Fusion location affects compute cost, reasoning depth, and how strongly modalities influence each other.</li>
+            <li><strong>Are encoders frozen or trained jointly?</strong> Frozen encoders are cheaper and stable; joint training can improve alignment but costs more.</li>
+            <li><strong>How is temporal information represented?</strong> Video and audio need ordering, duration, motion, and timing cues.</li>
+            <li><strong>How are grounding and hallucination evaluated?</strong> Evaluation must check whether outputs are supported by the actual image, video, audio, or document.</li>
+            <li><strong>Does the model connect words to identifiable regions, sounds, or actions?</strong> Strong multimodal systems should tie language to evidence, not just plausible text.</li>
           </ul>
         </section>
 

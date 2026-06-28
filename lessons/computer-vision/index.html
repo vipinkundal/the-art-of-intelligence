@@ -28,91 +28,111 @@
         </p>
 
         <section>
+          <h2>Vision pipeline</h2>
+          <div class="lesson-graphic" aria-label="Computer vision pipeline">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Pixels to features</strong>
+                <span>Filter, transform, and describe image structure such as edges, corners, and texture.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Features to meaning</strong>
+                <span>Classify, detect, segment, track, and estimate pose or depth.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Meaning to scenes</strong>
+                <span>Reconstruct 3D geometry, render new views, or generate visual worlds.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>15.1 Classical vision</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Image formation</li>
-            <li>Colour spaces</li>
-            <li>Histograms</li>
-            <li>Convolution and filtering</li>
-            <li>Gaussian blur</li>
-            <li>Median filtering</li>
-            <li>Edge detection</li>
-            <li>Canny detector</li>
-            <li>Hough transform</li>
-            <li>Morphological operations</li>
-            <li>Fourier transforms</li>
-            <li>Wavelets</li>
-            <li>Image pyramids</li>
-            <li>Harris corners</li>
-            <li>SIFT</li>
-            <li>SURF</li>
-            <li>ORB</li>
-            <li>HOG</li>
-            <li>RANSAC</li>
-            <li>Optical flow</li>
-            <li>Epipolar geometry</li>
-            <li>Camera calibration</li>
-            <li>Homographies</li>
-            <li>Stereo vision</li>
-            <li>Structure from motion</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Image formation:</strong> Describes how light, lenses, sensors, and projection create images.</li>
+            <li><strong>Colour spaces:</strong> Represent color in systems such as RGB, HSV, LAB, or YCbCr for different tasks.</li>
+            <li><strong>Histograms:</strong> Summarize pixel intensity or color distributions.</li>
+            <li><strong>Convolution and filtering:</strong> Apply kernels to enhance, smooth, detect, or transform image patterns.</li>
+            <li><strong>Gaussian blur:</strong> Smooths images by averaging nearby pixels with Gaussian weights.</li>
+            <li><strong>Median filtering:</strong> Removes impulse noise by replacing pixels with neighborhood medians.</li>
+            <li><strong>Edge detection:</strong> Finds sharp intensity changes that often mark object boundaries.</li>
+            <li><strong>Canny detector:</strong> A multi-step edge detector using smoothing, gradients, suppression, and thresholds.</li>
+            <li><strong>Hough transform:</strong> Detects geometric shapes such as lines and circles through parameter voting.</li>
+            <li><strong>Morphological operations:</strong> Use shape-based operations like erosion and dilation on binary or grayscale images.</li>
+            <li><strong>Fourier transforms:</strong> Analyze images by frequency content instead of spatial pixels.</li>
+            <li><strong>Wavelets:</strong> Represent image details at multiple locations and scales.</li>
+            <li><strong>Image pyramids:</strong> Store images at multiple resolutions for scale-aware processing.</li>
+            <li><strong>Harris corners:</strong> Detect points where image gradients change strongly in two directions.</li>
+            <li><strong>SIFT:</strong> Detects and describes scale-invariant local features for matching.</li>
+            <li><strong>SURF:</strong> A faster feature detector and descriptor inspired by SIFT.</li>
+            <li><strong>ORB:</strong> Efficient binary features useful for real-time matching.</li>
+            <li><strong>HOG:</strong> Describes local gradient orientations, historically useful for object detection.</li>
+            <li><strong>RANSAC:</strong> Fits models robustly by repeatedly sampling and rejecting outliers.</li>
+            <li><strong>Optical flow:</strong> Estimates pixel or feature motion between video frames.</li>
+            <li><strong>Epipolar geometry:</strong> Describes geometric constraints between two camera views.</li>
+            <li><strong>Camera calibration:</strong> Estimates camera intrinsics and distortion so geometry is measurable.</li>
+            <li><strong>Homographies:</strong> Map points between planar views or camera perspectives.</li>
+            <li><strong>Stereo vision:</strong> Uses two views to estimate depth from disparity.</li>
+            <li><strong>Structure from motion:</strong> Reconstructs camera motion and 3D structure from multiple images.</li>
           </ul>
         </section>
 
         <section>
           <h2>15.2 Deep vision</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Image classification</li>
-            <li>Object detection</li>
-            <li>Semantic segmentation</li>
-            <li>Instance segmentation</li>
-            <li>Panoptic segmentation</li>
-            <li>Keypoint detection</li>
-            <li>Pose estimation</li>
-            <li>Tracking</li>
-            <li>Depth estimation</li>
-            <li>Optical flow</li>
-            <li>Image restoration</li>
-            <li>Super-resolution</li>
-            <li>Image generation</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Image classification:</strong> Assigns one or more labels to an entire image.</li>
+            <li><strong>Object detection:</strong> Finds object classes and bounding boxes.</li>
+            <li><strong>Semantic segmentation:</strong> Assigns a class label to every pixel.</li>
+            <li><strong>Instance segmentation:</strong> Separates individual object instances at pixel level.</li>
+            <li><strong>Panoptic segmentation:</strong> Combines semantic and instance segmentation into one scene map.</li>
+            <li><strong>Keypoint detection:</strong> Locates important points such as joints, corners, or landmarks.</li>
+            <li><strong>Pose estimation:</strong> Infers body, object, or camera pose from visual evidence.</li>
+            <li><strong>Tracking:</strong> Maintains object identities across video frames.</li>
+            <li><strong>Depth estimation:</strong> Predicts distance from the camera for pixels or regions.</li>
+            <li><strong>Optical flow:</strong> Estimates dense motion between frames using learned or classical methods.</li>
+            <li><strong>Image restoration:</strong> Removes degradation such as blur, noise, compression, or damage.</li>
+            <li><strong>Super-resolution:</strong> Generates a higher-resolution image from a lower-resolution input.</li>
+            <li><strong>Image generation:</strong> Produces new images from noise, text, images, or structured controls.</li>
           </ul>
           <p>Important families:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>R-CNN</li>
-            <li>Fast R-CNN</li>
-            <li>Faster R-CNN</li>
-            <li>YOLO</li>
-            <li>SSD</li>
-            <li>RetinaNet</li>
-            <li>DETR</li>
-            <li>FCN</li>
-            <li>U-Net</li>
-            <li>Mask R-CNN</li>
-            <li>Vision Transformer</li>
-            <li>Swin Transformer</li>
-            <li>Segment-anything-style models</li>
-            <li>Masked autoencoders</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>R-CNN:</strong> Classifies proposed regions to detect objects.</li>
+            <li><strong>Fast R-CNN:</strong> Shares convolutional features across region proposals for faster detection.</li>
+            <li><strong>Faster R-CNN:</strong> Adds a neural region proposal network.</li>
+            <li><strong>YOLO:</strong> Performs single-stage real-time object detection.</li>
+            <li><strong>SSD:</strong> Detects objects from multiple feature-map scales in one pass.</li>
+            <li><strong>RetinaNet:</strong> Uses focal loss to handle class imbalance in dense detection.</li>
+            <li><strong>DETR:</strong> Frames object detection as set prediction with transformers.</li>
+            <li><strong>FCN:</strong> Fully convolutional network for dense pixel prediction.</li>
+            <li><strong>U-Net:</strong> Encoder-decoder segmentation network with skip connections.</li>
+            <li><strong>Mask R-CNN:</strong> Extends Faster R-CNN with instance mask prediction.</li>
+            <li><strong>Vision Transformer:</strong> Processes image patches as transformer tokens.</li>
+            <li><strong>Swin Transformer:</strong> Uses shifted local windows for efficient hierarchical vision transformers.</li>
+            <li><strong>Segment-anything-style models:</strong> Use promptable segmentation to create masks from points, boxes, or text-like cues.</li>
+            <li><strong>Masked autoencoders:</strong> Learn visual representations by reconstructing hidden image patches.</li>
           </ul>
         </section>
 
         <section>
           <h2>15.3 Three-dimensional vision and generation</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Point clouds</li>
-            <li>Voxel methods</li>
-            <li>Meshes</li>
-            <li>Signed distance functions</li>
-            <li>Neural radiance fields</li>
-            <li>3D Gaussian splatting</li>
-            <li>Novel-view synthesis</li>
-            <li>Multiview geometry</li>
-            <li>Neural rendering</li>
-            <li>3D reconstruction</li>
-            <li>Text-to-3D</li>
-            <li>Video generation</li>
-            <li>World simulation</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Point clouds:</strong> Represent 3D scenes as unordered sets of points in space.</li>
+            <li><strong>Voxel methods:</strong> Represent 3D space as a grid of volume cells.</li>
+            <li><strong>Meshes:</strong> Represent surfaces with vertices, edges, and faces.</li>
+            <li><strong>Signed distance functions:</strong> Store distance to the nearest surface, with sign indicating inside or outside.</li>
+            <li><strong>Neural radiance fields:</strong> Learn a continuous scene function that renders novel camera views.</li>
+            <li><strong>3D Gaussian splatting:</strong> Represents scenes with many learned Gaussian blobs that can be rendered efficiently.</li>
+            <li><strong>Novel-view synthesis:</strong> Generates images of a scene from viewpoints not directly captured.</li>
+            <li><strong>Multiview geometry:</strong> Uses relationships between camera views to infer depth and structure.</li>
+            <li><strong>Neural rendering:</strong> Uses neural networks to synthesize images from scene representations.</li>
+            <li><strong>3D reconstruction:</strong> Builds 3D structure from images, video, scans, or learned priors.</li>
+            <li><strong>Text-to-3D:</strong> Generates 3D assets or scenes from language prompts.</li>
+            <li><strong>Video generation:</strong> Produces temporally coherent frame sequences.</li>
+            <li><strong>World simulation:</strong> Models dynamic scenes so agents can predict and interact with environments.</li>
           </ul>
         </section>
 

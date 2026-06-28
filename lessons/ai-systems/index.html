@@ -28,26 +28,46 @@
         </p>
 
         <section>
+          <h2>Agent system loop</h2>
+          <div class="lesson-graphic" aria-label="Agent system loop">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Decide</strong>
+                <span>The model plans, routes, or decomposes the next step from the current state.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Act safely</strong>
+                <span>Tools run behind schemas, permissions, sandboxes, retries, and budgets.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Verify</strong>
+                <span>Observations, logs, validators, and human approvals decide whether to continue.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>10.1 Agent patterns</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>ReAct</li>
-            <li>Planner-executor</li>
-            <li>Router-specialist</li>
-            <li>Generate-critique-revise</li>
-            <li>Generate-rank-verify</li>
-            <li>Reflection loops</li>
-            <li>State-machine agents</li>
-            <li>Workflow graphs</li>
-            <li>Hierarchical agents</li>
-            <li>Multi-agent debate</li>
-            <li>Blackboard architectures</li>
-            <li>Event-driven agents</li>
-            <li>Human-in-the-loop systems</li>
-            <li>Long-term and episodic memory</li>
-            <li>Tool routing</li>
-            <li>Structured output</li>
-            <li>Recovery and retry policies</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>ReAct:</strong> Interleaves reasoning, tool actions, and observations so the agent can adapt after each result.</li>
+            <li><strong>Planner-executor:</strong> Separates high-level planning from step execution, making long tasks easier to inspect and retry.</li>
+            <li><strong>Router-specialist:</strong> Sends tasks to specialized prompts, models, tools, or workflows based on task type.</li>
+            <li><strong>Generate-critique-revise:</strong> Produces an answer, critiques it, and revises it before returning the final output.</li>
+            <li><strong>Generate-rank-verify:</strong> Creates multiple candidates, ranks them, and verifies the strongest option.</li>
+            <li><strong>Reflection loops:</strong> Let an agent inspect past failures or results and update its next attempt.</li>
+            <li><strong>State-machine agents:</strong> Move through explicit states, making control flow predictable and debuggable.</li>
+            <li><strong>Workflow graphs:</strong> Represent agent steps as connected nodes with branching, retries, and dependencies.</li>
+            <li><strong>Hierarchical agents:</strong> Use manager and worker roles so complex goals can be delegated to subtasks.</li>
+            <li><strong>Multi-agent debate:</strong> Uses multiple agents to propose, challenge, and compare answers before selection.</li>
+            <li><strong>Blackboard architectures:</strong> Let independent components read and write to a shared working memory.</li>
+            <li><strong>Event-driven agents:</strong> React to messages, file changes, webhooks, or system events instead of only direct prompts.</li>
+            <li><strong>Human-in-the-loop systems:</strong> Insert human review where stakes, ambiguity, or permissions require judgment.</li>
+            <li><strong>Long-term and episodic memory:</strong> Store durable facts and past interactions so future decisions can use prior context.</li>
+            <li><strong>Tool routing:</strong> Chooses the right tool or API for a step based on intent, input type, and available permissions.</li>
+            <li><strong>Structured output:</strong> Forces model responses into schemas that code can validate and consume reliably.</li>
+            <li><strong>Recovery and retry policies:</strong> Define what to do when tools fail, outputs are invalid, or progress stalls.</li>
           </ul>
           <p>
             ReAct combines interleaved reasoning traces with actions and observations from an external environment.
@@ -60,26 +80,26 @@
         <section>
           <h2>10.2 Production concerns for agents</h2>
           <p>Understand:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Idempotent tools</li>
-            <li>Permission boundaries</li>
-            <li>Sandboxing</li>
-            <li>Tool schemas</li>
-            <li>Timeouts</li>
-            <li>Retries and backoff</li>
-            <li>State persistence</li>
-            <li>Durable execution</li>
-            <li>Context management</li>
-            <li>Trace logging</li>
-            <li>Budget limits</li>
-            <li>Human approval points</li>
-            <li>Prompt injection</li>
-            <li>Indirect prompt injection</li>
-            <li>Exfiltration attacks</li>
-            <li>Confused-deputy problems</li>
-            <li>Tool-result validation</li>
-            <li>Transaction management</li>
-            <li>Rollback and compensation</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Idempotent tools:</strong> Tools should be safe to retry without duplicating side effects.</li>
+            <li><strong>Permission boundaries:</strong> Limit what the agent can read, write, call, or change.</li>
+            <li><strong>Sandboxing:</strong> Runs risky code or actions in restricted environments.</li>
+            <li><strong>Tool schemas:</strong> Define exact inputs and outputs so model calls can be validated.</li>
+            <li><strong>Timeouts:</strong> Stop slow or stuck tool calls before they block the workflow.</li>
+            <li><strong>Retries and backoff:</strong> Repeat transient failures with spacing so systems can recover.</li>
+            <li><strong>State persistence:</strong> Saves progress so long-running tasks can resume after interruption.</li>
+            <li><strong>Durable execution:</strong> Ensures workflows survive process restarts, crashes, or delayed callbacks.</li>
+            <li><strong>Context management:</strong> Controls what evidence, memory, and instructions fit into the model window.</li>
+            <li><strong>Trace logging:</strong> Records decisions, tool calls, observations, and errors for debugging and audit.</li>
+            <li><strong>Budget limits:</strong> Cap tokens, time, money, tool calls, or external side effects.</li>
+            <li><strong>Human approval points:</strong> Require explicit review before sensitive actions are taken.</li>
+            <li><strong>Prompt injection:</strong> Malicious instructions try to override the system through user-visible text.</li>
+            <li><strong>Indirect prompt injection:</strong> Malicious instructions arrive through retrieved pages, files, emails, or tool outputs.</li>
+            <li><strong>Exfiltration attacks:</strong> Attempts to make the agent reveal secrets or private data.</li>
+            <li><strong>Confused-deputy problems:</strong> The agent misuses its authority on behalf of untrusted content.</li>
+            <li><strong>Tool-result validation:</strong> Checks whether tool output is complete, expected, safe, and consistent.</li>
+            <li><strong>Transaction management:</strong> Groups actions so partial completion does not leave systems inconsistent.</li>
+            <li><strong>Rollback and compensation:</strong> Undo or counteract side effects when later steps fail.</li>
           </ul>
           <p>
             For application integration, Model Context Protocol is a current open standard for connecting AI applications to tools, data sources, and external systems. It belongs in the engineering layer of the roadmap, not in the mathematical core of AI.

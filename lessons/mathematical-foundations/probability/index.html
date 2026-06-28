@@ -32,30 +32,46 @@
           <p>
             Probability assigns numbers to uncertain events. In AI, those numbers help models express how likely an output is, how much evidence supports a prediction, and how uncertain a decision remains.
           </p>
+          <div class="lesson-graphic" aria-label="Probability reasoning flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Events</strong>
+                <span>Define what can happen and assign probabilities to each possible outcome.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Evidence</strong>
+                <span>Condition on observations to update beliefs and compare explanations.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Decisions</strong>
+                <span>Use expectations, uncertainty, and sampling to choose or evaluate actions.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Understand</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Sample spaces and events</li>
-            <li>Conditional probability</li>
-            <li>Independence and conditional independence</li>
-            <li>Random variables</li>
-            <li>Probability mass and density functions</li>
-            <li>Cumulative distributions</li>
-            <li>Joint, marginal, and conditional distributions</li>
-            <li>Expectation</li>
-            <li>Variance and covariance</li>
-            <li>Correlation</li>
-            <li>Law of total probability</li>
-            <li>Bayes' theorem</li>
-            <li>Law of large numbers</li>
-            <li>Central limit theorem</li>
-            <li>Markov chains</li>
-            <li>Markov processes</li>
-            <li>Monte Carlo estimation</li>
-            <li>Importance sampling</li>
-            <li>Rejection sampling</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Sample spaces and events:</strong> The sample space lists possible outcomes; an event is a subset of outcomes you care about.</li>
+            <li><strong>Conditional probability:</strong> Updates the chance of an event after you know another event has occurred.</li>
+            <li><strong>Independence and conditional independence:</strong> Independence means one event gives no information about another; conditional independence means that after controlling for a third variable.</li>
+            <li><strong>Random variables:</strong> Functions that assign numeric or categorical values to uncertain outcomes.</li>
+            <li><strong>Probability mass and density functions:</strong> PMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve.</li>
+            <li><strong>Cumulative distributions:</strong> Give the probability that a random variable is less than or equal to a value.</li>
+            <li><strong>Joint, marginal, and conditional distributions:</strong> Joint distributions model variables together, marginals focus on one variable, and conditionals update one variable given another.</li>
+            <li><strong>Expectation:</strong> The long-run average value of a random variable under its distribution.</li>
+            <li><strong>Variance and covariance:</strong> Variance measures spread; covariance measures how two variables move together.</li>
+            <li><strong>Correlation:</strong> A normalized covariance that ranges from negative to positive association.</li>
+            <li><strong>Law of total probability:</strong> Breaks a probability into cases and adds their weighted contributions.</li>
+            <li><strong>Bayes' theorem:</strong> Reverses conditioning so evidence can update beliefs about hidden causes.</li>
+            <li><strong>Law of large numbers:</strong> Sample averages converge toward expected values as sample size grows.</li>
+            <li><strong>Central limit theorem:</strong> Many averaged random effects become approximately Gaussian under broad conditions.</li>
+            <li><strong>Markov chains:</strong> Model sequences where the next state depends on the current state, not the full history.</li>
+            <li><strong>Markov processes:</strong> Generalize memoryless state transitions over time.</li>
+            <li><strong>Monte Carlo estimation:</strong> Uses random samples to approximate expectations or probabilities that are hard to compute exactly.</li>
+            <li><strong>Importance sampling:</strong> Samples from a more convenient distribution and reweights samples to estimate the target distribution.</li>
+            <li><strong>Rejection sampling:</strong> Samples from a proposal distribution and accepts only samples that fit the target shape.</li>
           </ul>
         </section>
 
@@ -87,22 +103,22 @@
 
         <section>
           <h2>Important distributions</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Bernoulli</li>
-            <li>Binomial</li>
-            <li>Categorical</li>
-            <li>Multinomial</li>
-            <li>Uniform</li>
-            <li>Gaussian</li>
-            <li>Multivariate Gaussian</li>
-            <li>Poisson</li>
-            <li>Exponential</li>
-            <li>Beta</li>
-            <li>Gamma</li>
-            <li>Dirichlet</li>
-            <li>Student's t</li>
-            <li>Log-normal</li>
-            <li>Gumbel</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Bernoulli:</strong> Models one yes-or-no trial, such as click or no click.</li>
+            <li><strong>Binomial:</strong> Counts successes across a fixed number of Bernoulli trials.</li>
+            <li><strong>Categorical:</strong> Models one choice among several classes.</li>
+            <li><strong>Multinomial:</strong> Counts how many times each class appears across repeated categorical trials.</li>
+            <li><strong>Uniform:</strong> Gives equal probability to each value in a range or set.</li>
+            <li><strong>Gaussian:</strong> Models bell-shaped continuous variation around a mean.</li>
+            <li><strong>Multivariate Gaussian:</strong> Extends Gaussian structure to vectors with covariance between dimensions.</li>
+            <li><strong>Poisson:</strong> Counts events occurring in a fixed interval when events are rare and independent.</li>
+            <li><strong>Exponential:</strong> Models waiting time between events in a Poisson process.</li>
+            <li><strong>Beta:</strong> Models uncertainty over a probability between zero and one.</li>
+            <li><strong>Gamma:</strong> Models positive continuous quantities such as waiting times or rates.</li>
+            <li><strong>Dirichlet:</strong> Models uncertainty over a vector of probabilities that sum to one.</li>
+            <li><strong>Student's t:</strong> Handles heavier-tailed uncertainty, often when sample sizes are small.</li>
+            <li><strong>Log-normal:</strong> Models positive values whose logarithm is Gaussian.</li>
+            <li><strong>Gumbel:</strong> Models extremes and appears in differentiable sampling tricks.</li>
           </ul>
         </section>
 
@@ -120,6 +136,13 @@
           <h2>Learning target</h2>
           <p>
             After this lesson, you should be able to explain conditional probability, Bayes' theorem, expectation, variance, covariance, common distributions, and why sampling is useful in machine learning.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Explore Brown's <a href="https://seeing-theory.brown.edu/" target="_blank" rel="noopener noreferrer">Seeing Theory</a> for interactive visualizations of probability, distributions, inference, and regression.
           </p>
         </section>
 

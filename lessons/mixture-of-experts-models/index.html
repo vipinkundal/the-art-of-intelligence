@@ -28,19 +28,39 @@
         </p>
 
         <section>
+          <h2>Routing idea</h2>
+          <div class="lesson-graphic" aria-label="Mixture of experts routing flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Token</strong>
+                <span>Each token arrives with its current hidden representation.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Router</strong>
+                <span>A gating network chooses a small number of experts for that token.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Experts</strong>
+                <span>Selected expert outputs are combined, while inactive experts cost little compute.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Sparse mixture-of-experts</li>
-            <li>Expert routing</li>
-            <li>Top-k gating</li>
-            <li>Load balancing</li>
-            <li>Expert capacity</li>
-            <li>Expert parallelism</li>
-            <li>Router instability</li>
-            <li>Auxiliary routing loss</li>
-            <li>Shared experts</li>
-            <li>Fine-grained experts</li>
-            <li>Expert specialization</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Sparse mixture-of-experts:</strong> Activates only a small subset of expert networks per token, increasing parameters without equal compute growth.</li>
+            <li><strong>Expert routing:</strong> Chooses which expert networks should process each token or example.</li>
+            <li><strong>Top-k gating:</strong> Sends a token to the highest-scoring few experts rather than all experts.</li>
+            <li><strong>Load balancing:</strong> Prevents the router from overusing a few experts while leaving others idle.</li>
+            <li><strong>Expert capacity:</strong> Limits how many tokens an expert can handle in one batch, affecting dropped tokens and efficiency.</li>
+            <li><strong>Expert parallelism:</strong> Places different experts on different devices so large expert sets can run in parallel.</li>
+            <li><strong>Router instability:</strong> Routing choices can fluctuate or collapse, making training harder than dense models.</li>
+            <li><strong>Auxiliary routing loss:</strong> Adds training pressure that encourages balanced and useful expert assignment.</li>
+            <li><strong>Shared experts:</strong> Always-active experts provide common capability while routed experts add specialization.</li>
+            <li><strong>Fine-grained experts:</strong> Use smaller or more numerous experts to give the router more precise choices.</li>
+            <li><strong>Expert specialization:</strong> Experts can learn different patterns, domains, token types, or functions through routing pressure.</li>
           </ul>
         </section>
 

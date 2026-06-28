@@ -32,29 +32,45 @@
           <p>
             Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model.
           </p>
+          <div class="lesson-graphic" aria-label="Statistics evidence flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Sample</strong>
+                <span>Observe limited data that may be noisy, biased, or incomplete.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Estimate</strong>
+                <span>Infer parameters, uncertainty, effects, and likely future behavior.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Decide</strong>
+                <span>Use evidence to compare models, monitor drift, and avoid overclaiming.</span>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section>
           <h2>Learn</h2>
-          <ul class="lesson-list two-column-list">
-            <li>Populations and samples</li>
-            <li>Bias and variance</li>
-            <li>Point estimation</li>
-            <li>Maximum likelihood estimation</li>
-            <li>Maximum a posteriori estimation</li>
-            <li>Confidence intervals</li>
-            <li>Hypothesis testing</li>
-            <li>p-values and statistical power</li>
-            <li>Bootstrap</li>
-            <li>Bayesian inference</li>
-            <li>Conjugate priors</li>
-            <li>Posterior predictive distributions</li>
-            <li>Missing-data mechanisms</li>
-            <li>Experimental design</li>
-            <li>Multiple-testing correction</li>
-            <li>Effect size</li>
-            <li>Calibration</li>
-            <li>Distribution shift</li>
+          <ul class="lesson-list two-column-list topic-detail-list">
+            <li><strong>Populations and samples:</strong> The population is what you want to understand; the sample is the data you actually observe.</li>
+            <li><strong>Bias and variance:</strong> Bias is systematic error; variance is sensitivity to the particular sample or training data.</li>
+            <li><strong>Point estimation:</strong> Produces a single best estimate of an unknown quantity from data.</li>
+            <li><strong>Maximum likelihood estimation:</strong> Chooses parameters that make the observed data most probable under the model.</li>
+            <li><strong>Maximum a posteriori estimation:</strong> Combines likelihood with a prior preference over parameters.</li>
+            <li><strong>Confidence intervals:</strong> Provide a range that would capture the true value at a stated rate under repeated sampling.</li>
+            <li><strong>Hypothesis testing:</strong> Uses data to evaluate whether an observed effect is surprising under a baseline assumption.</li>
+            <li><strong>p-values and statistical power:</strong> p-values quantify surprise under a null hypothesis; power measures the chance of detecting a real effect.</li>
+            <li><strong>Bootstrap:</strong> Resamples observed data to estimate uncertainty without deriving a formula.</li>
+            <li><strong>Bayesian inference:</strong> Updates prior beliefs into posterior beliefs using observed evidence.</li>
+            <li><strong>Conjugate priors:</strong> Priors that keep posterior calculations in the same distribution family.</li>
+            <li><strong>Posterior predictive distributions:</strong> Predict future observations while accounting for parameter uncertainty.</li>
+            <li><strong>Missing-data mechanisms:</strong> Describe why values are absent, which determines whether simple fixes are safe.</li>
+            <li><strong>Experimental design:</strong> Plans data collection so comparisons are fair, powered, and interpretable.</li>
+            <li><strong>Multiple-testing correction:</strong> Controls false discoveries when many hypotheses are tested at once.</li>
+            <li><strong>Effect size:</strong> Measures how large a difference is, not just whether it is statistically detectable.</li>
+            <li><strong>Calibration:</strong> Checks whether predicted probabilities match real-world frequencies.</li>
+            <li><strong>Distribution shift:</strong> Occurs when deployment data differs from training or validation data.</li>
           </ul>
         </section>
 
@@ -90,6 +106,13 @@
           <h2>Learning target</h2>
           <p>
             After this lesson, you should be able to explain samples versus populations, MLE, MAP, confidence intervals, p-values, bias and variance, calibration, and distribution shift in model evaluation.
+          </p>
+        </section>
+
+        <section class="lesson-resource" aria-label="For more information">
+          <h2>For more information</h2>
+          <p>
+            Use <a href="https://www.openintro.org/book/os/" target="_blank" rel="noopener noreferrer">OpenIntro Statistics</a> for a free textbook, examples, exercises, and teaching resources on statistical reasoning.
           </p>
         </section>
 

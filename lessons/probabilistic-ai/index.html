@@ -28,51 +28,71 @@
         </p>
 
         <section>
+          <h2>Uncertainty pipeline</h2>
+          <div class="lesson-graphic" aria-label="Probabilistic AI inference flow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Structure</strong>
+                <span>Graphs describe which variables influence, explain, or depend on each other.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Inference</strong>
+                <span>Algorithms update hidden beliefs from noisy or incomplete evidence.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>State over time</strong>
+                <span>Sequential models track changing hidden states behind observed signals.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>4.1 Probabilistic graphical models</h2>
           <p>Study:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Bayesian networks</li>
-            <li>Markov random fields</li>
-            <li>Factor graphs</li>
-            <li>Conditional random fields</li>
-            <li>Conditional independence</li>
-            <li>D-separation</li>
-            <li>Exact inference</li>
-            <li>Approximate inference</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Bayesian networks:</strong> Directed graphs that represent probabilistic cause-effect or dependency structure between variables.</li>
+            <li><strong>Markov random fields:</strong> Undirected graphs that model variables through local compatibility rather than directed causes.</li>
+            <li><strong>Factor graphs:</strong> Bipartite graphs that separate variables from factor functions, making inference algorithms easier to express.</li>
+            <li><strong>Conditional random fields:</strong> Discriminative graphical models that predict structured outputs conditioned on observed inputs.</li>
+            <li><strong>Conditional independence:</strong> States when two variables become unrelated after another variable is known.</li>
+            <li><strong>D-separation:</strong> A graph rule for reading conditional independence relationships from a Bayesian network.</li>
+            <li><strong>Exact inference:</strong> Computes posterior probabilities exactly, usually only feasible for smaller or structured graphs.</li>
+            <li><strong>Approximate inference:</strong> Trades exactness for tractability using sampling, optimization, or message approximations.</li>
           </ul>
         </section>
 
         <section>
           <h2>Important algorithms</h2>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Variable elimination</li>
-            <li>Sum-product algorithm</li>
-            <li>Max-product algorithm</li>
-            <li>Belief propagation</li>
-            <li>Loopy belief propagation</li>
-            <li>Junction-tree algorithm</li>
-            <li>Expectation-maximization</li>
-            <li>Variational inference</li>
-            <li>Gibbs sampling</li>
-            <li>Metropolis-Hastings</li>
-            <li>Hamiltonian Monte Carlo</li>
-            <li>Sequential Monte Carlo</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Variable elimination:</strong> Sums out hidden variables one at a time to answer probability queries.</li>
+            <li><strong>Sum-product algorithm:</strong> Passes messages to compute marginal probabilities efficiently on tree-structured graphs.</li>
+            <li><strong>Max-product algorithm:</strong> Finds the most likely assignment instead of marginal probabilities.</li>
+            <li><strong>Belief propagation:</strong> Updates local beliefs by passing messages between connected variables and factors.</li>
+            <li><strong>Loopy belief propagation:</strong> Applies message passing to graphs with cycles, often useful but not always exact.</li>
+            <li><strong>Junction-tree algorithm:</strong> Converts a graph into a tree of variable clusters to enable exact inference.</li>
+            <li><strong>Expectation-maximization:</strong> Alternates between estimating hidden variables and updating model parameters.</li>
+            <li><strong>Variational inference:</strong> Approximates a hard posterior with a simpler distribution found through optimization.</li>
+            <li><strong>Gibbs sampling:</strong> Samples one variable at a time from its conditional distribution.</li>
+            <li><strong>Metropolis-Hastings:</strong> Proposes random moves and accepts them with a probability that preserves the target distribution.</li>
+            <li><strong>Hamiltonian Monte Carlo:</strong> Uses gradient-informed proposals to explore continuous posteriors more efficiently.</li>
+            <li><strong>Sequential Monte Carlo:</strong> Tracks a distribution over time using weighted particles and resampling.</li>
           </ul>
         </section>
 
         <section>
           <h2>4.2 Sequential models and state estimation</h2>
           <p>Learn:</p>
-          <ul class="lesson-list two-column-list dense-list">
-            <li>Markov chains</li>
-            <li>Hidden Markov models</li>
-            <li>Forward-backward algorithm</li>
-            <li>Viterbi decoding</li>
-            <li>Kalman filter</li>
-            <li>Extended Kalman filter</li>
-            <li>Unscented Kalman filter</li>
-            <li>Particle filter</li>
-            <li>Dynamic Bayesian networks</li>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Markov chains:</strong> Model state sequences where the next state depends only on the current state.</li>
+            <li><strong>Hidden Markov models:</strong> Add hidden states that generate observations, useful when the true state is not directly visible.</li>
+            <li><strong>Forward-backward algorithm:</strong> Computes smoothed probabilities over hidden states using past and future evidence.</li>
+            <li><strong>Viterbi decoding:</strong> Finds the single most likely hidden-state path through a sequence.</li>
+            <li><strong>Kalman filter:</strong> Tracks a linear-Gaussian hidden state as new noisy observations arrive.</li>
+            <li><strong>Extended Kalman filter:</strong> Linearizes nonlinear dynamics around the current estimate.</li>
+            <li><strong>Unscented Kalman filter:</strong> Uses carefully chosen sample points to handle nonlinear transformations more accurately.</li>
+            <li><strong>Particle filter:</strong> Represents hidden-state uncertainty with weighted samples instead of a single Gaussian.</li>
+            <li><strong>Dynamic Bayesian networks:</strong> Extend graphical models across time steps to represent temporal dependencies.</li>
           </ul>
         </section>
 

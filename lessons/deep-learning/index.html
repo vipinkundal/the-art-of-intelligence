@@ -51,17 +51,17 @@
           <h2>6.1 Neural networks</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Perceptrons:</strong> Simple linear classifiers that combine weighted inputs and a threshold.</li>
-            <li><strong>Multilayer perceptrons:</strong> Stacked fully connected layers that learn nonlinear functions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Perceptron" target="_blank" rel="noopener noreferrer" title="Wikipedia: Perceptron">Perceptrons</a>:</strong> Simple linear classifiers that combine weighted inputs and a threshold.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Feedforward_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Feedforward neural network">Multilayer perceptrons</a>:</strong> Stacked fully connected layers that learn nonlinear functions.</li>
             <li><strong>Computational graphs:</strong> Represent operations and dependencies so gradients can be computed automatically.</li>
-            <li><strong>Backpropagation:</strong> Applies the chain rule backward through the graph to compute parameter gradients.</li>
-            <li><strong>Activation functions:</strong> Add nonlinearity so networks can model more than linear transformations.</li>
-            <li><strong>Weight initialization:</strong> Chooses starting weights that keep signals and gradients at useful scales.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Backpropagation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Backpropagation">Backpropagation</a>:</strong> Applies the chain rule backward through the graph to compute parameter gradients.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Activation_function" target="_blank" rel="noopener noreferrer" title="Wikipedia: Activation function">Activation functions</a>:</strong> Add nonlinearity so networks can model more than linear transformations.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Weight_initialization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Weight initialization">Weight initialization</a>:</strong> Chooses starting weights that keep signals and gradients at useful scales.</li>
             <li><strong>Normalization:</strong> Stabilizes activations or weights to make training faster and more reliable.</li>
             <li><strong>Residual connections:</strong> Add skip paths so layers can learn refinements and gradients can flow more easily.</li>
             <li><strong>Regularization:</strong> Discourages overfitting by constraining parameters, activations, or training behavior.</li>
-            <li><strong>Universal approximation:</strong> Shows neural networks can approximate broad classes of functions with enough capacity.</li>
-            <li><strong>Representation learning:</strong> Learns internal features that make downstream prediction or generation easier.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Universal_approximation_theorem" target="_blank" rel="noopener noreferrer" title="Wikipedia: Universal approximation theorem">Universal approximation</a>:</strong> Shows neural networks can approximate broad classes of functions with enough capacity.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Feature_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Feature learning">Representation learning</a>:</strong> Learns internal features that make downstream prediction or generation easier.</li>
           </ul>
         </section>
 
@@ -93,16 +93,16 @@
         <section>
           <h2>Learn</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Batch normalization:</strong> Normalizes activations using batch statistics to stabilize training.</li>
-            <li><strong>Layer normalization:</strong> Normalizes features within each example, common in transformers.</li>
-            <li><strong>RMSNorm:</strong> Normalizes by root mean square without centering, often cheaper than layer normalization.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Batch_normalization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Batch normalization">Batch normalization</a>:</strong> Normalizes activations using batch statistics to stabilize training.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Normalization_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Normalization (machine learning)">Layer normalization</a>:</strong> Normalizes features within each example, common in transformers.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Normalization_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Normalization (machine learning)">RMSNorm</a>:</strong> Normalizes by root mean square without centering, often cheaper than layer normalization.</li>
             <li><strong>Dropout:</strong> Randomly disables activations during training so the model does not rely too heavily on one path.</li>
-            <li><strong>Weight decay:</strong> Penalizes large weights to encourage simpler solutions.</li>
-            <li><strong>Early stopping:</strong> Stops training when validation performance stops improving.</li>
-            <li><strong>Data augmentation:</strong> Creates transformed training examples to improve robustness.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ridge_regression" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ridge regression">Weight decay</a>:</strong> Penalizes large weights to encourage simpler solutions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Early_stopping" target="_blank" rel="noopener noreferrer" title="Wikipedia: Early stopping">Early stopping</a>:</strong> Stops training when validation performance stops improving.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_augmentation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data augmentation">Data augmentation</a>:</strong> Creates transformed training examples to improve robustness.</li>
             <li><strong>Gradient clipping:</strong> Caps gradient size to prevent unstable updates.</li>
             <li><strong>Label smoothing:</strong> Softens target labels so the model is less overconfident.</li>
-            <li><strong>Knowledge distillation:</strong> Trains a smaller model to imitate a stronger teacher model.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Knowledge_distillation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Knowledge distillation">Knowledge distillation</a>:</strong> Trains a smaller model to imitate a stronger teacher model.</li>
           </ul>
         </section>
 
@@ -110,13 +110,13 @@
           <h2>6.2 Convolutional neural networks</h2>
           <p>Understand:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Discrete convolution:</strong> Slides a small kernel over data to detect local patterns.</li>
-            <li><strong>Cross-correlation:</strong> The operation most deep learning libraries call convolution, without flipping the kernel.</li>
-            <li><strong>Padding:</strong> Adds border values so output size and edge behavior can be controlled.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Convolution" target="_blank" rel="noopener noreferrer" title="Wikipedia: Convolution">Discrete convolution</a>:</strong> Slides a small kernel over data to detect local patterns.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Cross-correlation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Cross-correlation">Cross-correlation</a>:</strong> The operation most deep learning libraries call convolution, without flipping the kernel.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Padding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Padding">Padding</a>:</strong> Adds border values so output size and edge behavior can be controlled.</li>
             <li><strong>Stride:</strong> Moves the kernel by larger steps to reduce spatial resolution.</li>
             <li><strong>Dilation:</strong> Spreads kernel points apart to expand context without adding many parameters.</li>
             <li><strong>Pooling:</strong> Downsamples features by summarizing local regions.</li>
-            <li><strong>Receptive fields:</strong> Describe how much input context can influence a feature.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Receptive_field" target="_blank" rel="noopener noreferrer" title="Wikipedia: Receptive field">Receptive fields</a>:</strong> Describe how much input context can influence a feature.</li>
             <li><strong>Translation equivariance:</strong> A shifted input produces shifted features, useful for images and signals.</li>
             <li><strong>Depthwise and separable convolutions:</strong> Reduce compute by splitting spatial and channel mixing.</li>
             <li><strong>Residual networks:</strong> Use skip connections to train very deep convolutional models.</li>
@@ -135,15 +135,15 @@
         <section>
           <h2>Important architectures and ideas</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>LeNet:</strong> Early convolutional network for handwritten digit recognition.</li>
-            <li><strong>AlexNet:</strong> Popularized deep CNNs on GPUs for large-scale image classification.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/LeNet" target="_blank" rel="noopener noreferrer" title="Wikipedia: LeNet">LeNet</a>:</strong> Early convolutional network for handwritten digit recognition.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/AlexNet" target="_blank" rel="noopener noreferrer" title="Wikipedia: AlexNet">AlexNet</a>:</strong> Popularized deep CNNs on GPUs for large-scale image classification.</li>
             <li><strong>VGG:</strong> Demonstrated strong results with simple stacks of small convolutions.</li>
-            <li><strong>Inception:</strong> Uses parallel convolution paths to capture patterns at multiple scales.</li>
-            <li><strong>ResNet:</strong> Introduced residual blocks that made very deep networks practical.</li>
-            <li><strong>DenseNet:</strong> Connects each layer to many later layers to encourage feature reuse.</li>
-            <li><strong>EfficientNet:</strong> Scales network depth, width, and resolution together.</li>
-            <li><strong>MobileNet:</strong> Uses efficient convolutions for mobile and edge deployment.</li>
-            <li><strong>U-Net:</strong> A segmentation architecture that combines local detail with high-level context.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Inception" target="_blank" rel="noopener noreferrer" title="Wikipedia: Inception">Inception</a>:</strong> Uses parallel convolution paths to capture patterns at multiple scales.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Residual_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Residual neural network">ResNet</a>:</strong> Introduced residual blocks that made very deep networks practical.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Residual_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Residual neural network">DenseNet</a>:</strong> Connects each layer to many later layers to encourage feature reuse.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/EfficientNet" target="_blank" rel="noopener noreferrer" title="Wikipedia: EfficientNet">EfficientNet</a>:</strong> Scales network depth, width, and resolution together.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/MobileNet" target="_blank" rel="noopener noreferrer" title="Wikipedia: MobileNet">MobileNet</a>:</strong> Uses efficient convolutions for mobile and edge deployment.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/U-Net" target="_blank" rel="noopener noreferrer" title="Wikipedia: U-Net">U-Net</a>:</strong> A segmentation architecture that combines local detail with high-level context.</li>
           </ul>
         </section>
 
@@ -151,16 +151,16 @@
           <h2>6.3 Recurrent and sequence models</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Recurrent neural networks:</strong> Process sequences by updating a hidden state over time.</li>
-            <li><strong>Backpropagation through time:</strong> Unrolls recurrent computation across steps to compute gradients.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Recurrent_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Recurrent neural network">Recurrent neural networks</a>:</strong> Process sequences by updating a hidden state over time.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Backpropagation_through_time" target="_blank" rel="noopener noreferrer" title="Wikipedia: Backpropagation through time">Backpropagation through time</a>:</strong> Unrolls recurrent computation across steps to compute gradients.</li>
             <li><strong>Vanishing and exploding gradients:</strong> Long sequences can shrink or amplify gradients, making training unstable.</li>
-            <li><strong>LSTM:</strong> Uses gates and memory cells to preserve information over longer spans.</li>
-            <li><strong>GRU:</strong> A simpler gated recurrent unit that controls update and reset behavior.</li>
-            <li><strong>Bidirectional RNNs:</strong> Read sequences forward and backward when full context is available.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Long_short-term_memory" target="_blank" rel="noopener noreferrer" title="Wikipedia: Long short-term memory">LSTM</a>:</strong> Uses gates and memory cells to preserve information over longer spans.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Gated_recurrent_unit" target="_blank" rel="noopener noreferrer" title="Wikipedia: Gated recurrent unit">GRU</a>:</strong> A simpler gated recurrent unit that controls update and reset behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bidirectional_recurrent_neural_networks" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bidirectional recurrent neural networks">Bidirectional RNNs</a>:</strong> Read sequences forward and backward when full context is available.</li>
             <li><strong>Sequence-to-sequence models:</strong> Map one sequence to another, such as translation or summarization.</li>
             <li><strong>Encoder-decoder models:</strong> Encode an input sequence into representations and decode an output sequence.</li>
-            <li><strong>Attention:</strong> Lets the decoder focus on relevant input positions instead of relying on one fixed vector.</li>
-            <li><strong>Connectionist temporal classification:</strong> Trains sequence labels when exact input-output alignment is unknown.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Attention" target="_blank" rel="noopener noreferrer" title="Wikipedia: Attention">Attention</a>:</strong> Lets the decoder focus on relevant input positions instead of relying on one fixed vector.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Connectionist_temporal_classification" target="_blank" rel="noopener noreferrer" title="Wikipedia: Connectionist temporal classification">Connectionist temporal classification</a>:</strong> Trains sequence labels when exact input-output alignment is unknown.</li>
           </ul>
         </section>
 

@@ -49,24 +49,24 @@
           <h2>3.1 Search algorithms</h2>
           <p>Learn and implement:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Breadth-first search:</strong> Expands the shallowest states first, so it finds the shortest path when every step has the same cost.</li>
-            <li><strong>Depth-first search:</strong> Follows one branch deeply before backtracking, which saves memory but can miss shorter answers without safeguards.</li>
-            <li><strong>Depth-limited search:</strong> Caps how far DFS can go, making it useful when infinite branches or cycles are possible.</li>
-            <li><strong>Iterative deepening:</strong> Repeats depth-limited search with larger limits, combining BFS-like completeness with DFS-like memory use.</li>
-            <li><strong>Uniform-cost search:</strong> Expands the cheapest path so far, which is essential when actions have different costs.</li>
-            <li><strong>Dijkstra's algorithm:</strong> Computes shortest paths from a start node when edge costs are non-negative.</li>
-            <li><strong>Bidirectional search:</strong> Searches forward from the start and backward from the goal to reduce the explored state space.</li>
-            <li><strong>Greedy best-first search:</strong> Chases the state that appears closest to the goal, making it fast but not necessarily optimal.</li>
-            <li><strong>A*:</strong> Balances path cost so far with estimated remaining cost to find optimal paths when the heuristic is valid.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Breadth-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Breadth-first search">Breadth-first search</a>:</strong> Expands the shallowest states first, so it finds the shortest path when every step has the same cost.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Depth-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Depth-first search">Depth-first search</a>:</strong> Follows one branch deeply before backtracking, which saves memory but can miss shorter answers without safeguards.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Iterative deepening depth-first search">Depth-limited search</a>:</strong> Caps how far DFS can go, making it useful when infinite branches or cycles are possible.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Iterative deepening depth-first search">Iterative deepening</a>:</strong> Repeats depth-limited search with larger limits, combining BFS-like completeness with DFS-like memory use.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Dijkstra's algorithm">Uniform-cost search</a>:</strong> Expands the cheapest path so far, which is essential when actions have different costs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Dijkstra's algorithm">Dijkstra's algorithm</a>:</strong> Computes shortest paths from a start node when edge costs are non-negative.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bidirectional_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bidirectional search">Bidirectional search</a>:</strong> Searches forward from the start and backward from the goal to reduce the explored state space.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Best-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Best-first search">Greedy best-first search</a>:</strong> Chases the state that appears closest to the goal, making it fast but not necessarily optimal.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/A*_search_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: A* search algorithm">A*</a>:</strong> Balances path cost so far with estimated remaining cost to find optimal paths when the heuristic is valid.</li>
             <li><strong>Weighted A*:</strong> Gives the heuristic extra influence, often trading perfect optimality for faster solutions.</li>
             <li><strong>Iterative Deepening A*:</strong> Uses increasing cost thresholds to get A* style guidance with lower memory usage.</li>
-            <li><strong>Beam search:</strong> Keeps only the best few candidate states at each layer, useful when full search is too expensive.</li>
-            <li><strong>Branch and bound:</strong> Prunes branches that cannot beat the best solution found so far.</li>
-            <li><strong>Hill climbing:</strong> Moves to a better neighboring state repeatedly, which is simple but can get stuck on local optima.</li>
-            <li><strong>Random-restart hill climbing:</strong> Runs hill climbing from many starting points to escape unlucky local optima.</li>
-            <li><strong>Simulated annealing:</strong> Sometimes accepts worse moves early on, then gradually becomes more selective.</li>
-            <li><strong>Tabu search:</strong> Remembers recent choices to avoid cycling back to the same unhelpful states.</li>
-            <li><strong>Local beam search:</strong> Tracks several candidate states in parallel so promising regions can compete.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Beam search">Beam search</a>:</strong> Keeps only the best few candidate states at each layer, useful when full search is too expensive.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Branch_and_bound" target="_blank" rel="noopener noreferrer" title="Wikipedia: Branch and bound">Branch and bound</a>:</strong> Prunes branches that cannot beat the best solution found so far.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hill_climbing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hill climbing">Hill climbing</a>:</strong> Moves to a better neighboring state repeatedly, which is simple but can get stuck on local optima.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hill_climbing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hill climbing">Random-restart hill climbing</a>:</strong> Runs hill climbing from many starting points to escape unlucky local optima.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Simulated_annealing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Simulated annealing">Simulated annealing</a>:</strong> Sometimes accepts worse moves early on, then gradually becomes more selective.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tabu_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tabu search">Tabu search</a>:</strong> Remembers recent choices to avoid cycling back to the same unhelpful states.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Beam search">Local beam search</a>:</strong> Tracks several candidate states in parallel so promising regions can compete.</li>
           </ul>
         </section>
 
@@ -88,7 +88,7 @@
             <li><strong>Completeness:</strong> Whether an algorithm is guaranteed to find a solution when one exists.</li>
             <li><strong>Optimality:</strong> Whether the solution found is guaranteed to be the best according to the objective.</li>
             <li><strong>Time and memory complexity:</strong> How search effort grows with branching factor, depth, and stored frontier size.</li>
-            <li><strong>State-space representation:</strong> The choice of variables, actions, and transitions that defines what the search can reason about.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/State-space_representation" target="_blank" rel="noopener noreferrer" title="Wikipedia: State-space representation">State-space representation</a>:</strong> The choice of variables, actions, and transitions that defines what the search can reason about.</li>
             <li><strong>Duplicate-state detection:</strong> Avoids re-expanding the same state through different paths, which is often the difference between feasible and impossible search.</li>
           </ul>
         </section>
@@ -97,16 +97,16 @@
           <h2>3.2 Adversarial search and games</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Minimax:</strong> Chooses moves assuming the opponent will also choose the best reply.</li>
-            <li><strong>Alpha-beta pruning:</strong> Skips branches that cannot change the minimax decision, preserving the answer while saving work.</li>
-            <li><strong>Negamax:</strong> Rewrites two-player zero-sum search with one symmetric value function.</li>
-            <li><strong>Expectimax:</strong> Handles random events or stochastic opponents by averaging possible outcomes.</li>
-            <li><strong>Iterative deepening:</strong> Searches deeper and deeper game trees, keeping the best move available if time runs out.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Minimax" target="_blank" rel="noopener noreferrer" title="Wikipedia: Minimax">Minimax</a>:</strong> Chooses moves assuming the opponent will also choose the best reply.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Alpha–beta pruning">Alpha-beta pruning</a>:</strong> Skips branches that cannot change the minimax decision, preserving the answer while saving work.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Negamax" target="_blank" rel="noopener noreferrer" title="Wikipedia: Negamax">Negamax</a>:</strong> Rewrites two-player zero-sum search with one symmetric value function.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Expectiminimax" target="_blank" rel="noopener noreferrer" title="Wikipedia: Expectiminimax">Expectimax</a>:</strong> Handles random events or stochastic opponents by averaging possible outcomes.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Iterative deepening depth-first search">Iterative deepening</a>:</strong> Searches deeper and deeper game trees, keeping the best move available if time runs out.</li>
             <li><strong>Transposition tables:</strong> Cache positions reached by different move orders so the game tree behaves more like a graph.</li>
-            <li><strong>Monte Carlo Tree Search:</strong> Builds a search tree by simulating many possible continuations and focusing on promising moves.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Monte_Carlo_tree_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Monte Carlo tree search">Monte Carlo Tree Search</a>:</strong> Builds a search tree by simulating many possible continuations and focusing on promising moves.</li>
             <li><strong>UCT:</strong> Selects MCTS branches by balancing high average reward with under-explored actions.</li>
             <li><strong>Counterfactual regret minimization:</strong> Learns strategies by reducing regret for not having chosen alternatives at decision points.</li>
-            <li><strong>Self-play:</strong> Improves a strategy by training or evaluating it against versions of itself.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Self-play" target="_blank" rel="noopener noreferrer" title="Wikipedia: Self-play">Self-play</a>:</strong> Improves a strategy by training or evaluating it against versions of itself.</li>
           </ul>
         </section>
 
@@ -128,22 +128,22 @@
           <h2>3.3 Constraint satisfaction and satisfiability</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Constraint-satisfaction problems:</strong> Assign values to variables while satisfying rules such as all-different, ordering, or capacity constraints.</li>
-            <li><strong>Backtracking:</strong> Builds an assignment step by step and retreats when a choice violates constraints.</li>
-            <li><strong>Forward checking:</strong> Removes values that would become impossible after the current assignment.</li>
-            <li><strong>Constraint propagation:</strong> Pushes implications of constraints through the problem before or during search.</li>
-            <li><strong>Arc consistency:</strong> Ensures every value for one variable has at least one compatible value in a connected variable.</li>
-            <li><strong>AC-3:</strong> A standard algorithm for repeatedly enforcing arc consistency across binary constraints.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Constraint_satisfaction_problem" target="_blank" rel="noopener noreferrer" title="Wikipedia: Constraint satisfaction problem">Constraint-satisfaction problems</a>:</strong> Assign values to variables while satisfying rules such as all-different, ordering, or capacity constraints.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Backtracking" target="_blank" rel="noopener noreferrer" title="Wikipedia: Backtracking">Backtracking</a>:</strong> Builds an assignment step by step and retreats when a choice violates constraints.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Look-ahead_(backtracking)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Look-ahead (backtracking)">Forward checking</a>:</strong> Removes values that would become impossible after the current assignment.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Local_consistency" target="_blank" rel="noopener noreferrer" title="Wikipedia: Local consistency">Constraint propagation</a>:</strong> Pushes implications of constraints through the problem before or during search.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Local_consistency" target="_blank" rel="noopener noreferrer" title="Wikipedia: Local consistency">Arc consistency</a>:</strong> Ensures every value for one variable has at least one compatible value in a connected variable.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/AC-3_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: AC-3 algorithm">AC-3</a>:</strong> A standard algorithm for repeatedly enforcing arc consistency across binary constraints.</li>
             <li><strong>Minimum remaining values:</strong> Chooses the variable with the fewest legal values to expose conflicts early.</li>
             <li><strong>Degree heuristic:</strong> Chooses the variable involved in many constraints because it can reduce the problem fastest.</li>
             <li><strong>Least-constraining value:</strong> Tries the value that leaves the most options open for later variables.</li>
-            <li><strong>Min-conflicts:</strong> Repairs a complete but inconsistent assignment by changing variables that cause conflicts.</li>
-            <li><strong>Boolean satisfiability:</strong> Asks whether true/false assignments can make a logical formula true.</li>
-            <li><strong>DPLL:</strong> Solves SAT with recursive splitting plus simplifications such as unit propagation.</li>
-            <li><strong>Conflict-driven clause learning:</strong> Learns new clauses from contradictions so the solver does not repeat the same mistake.</li>
-            <li><strong>WalkSAT:</strong> Uses local search over truth assignments to quickly find satisfying assignments in many practical cases.</li>
-            <li><strong>Integer programming:</strong> Optimizes an objective while decision variables must take integer values.</li>
-            <li><strong>Mixed-integer programming:</strong> Combines integer and continuous variables for scheduling, routing, allocation, and planning tasks.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Min-conflicts_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Min-conflicts algorithm">Min-conflicts</a>:</strong> Repairs a complete but inconsistent assignment by changing variables that cause conflicts.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem" target="_blank" rel="noopener noreferrer" title="Wikipedia: Boolean satisfiability problem">Boolean satisfiability</a>:</strong> Asks whether true/false assignments can make a logical formula true.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/DPLL_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: DPLL algorithm">DPLL</a>:</strong> Solves SAT with recursive splitting plus simplifications such as unit propagation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Conflict-driven_clause_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Conflict-driven clause learning">Conflict-driven clause learning</a>:</strong> Learns new clauses from contradictions so the solver does not repeat the same mistake.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/WalkSAT" target="_blank" rel="noopener noreferrer" title="Wikipedia: WalkSAT">WalkSAT</a>:</strong> Uses local search over truth assignments to quickly find satisfying assignments in many practical cases.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Integer_programming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Integer programming">Integer programming</a>:</strong> Optimizes an objective while decision variables must take integer values.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Integer_programming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Integer programming">Mixed-integer programming</a>:</strong> Combines integer and continuous variables for scheduling, routing, allocation, and planning tasks.</li>
           </ul>
           <p>
             These patterns are useful in scheduling, verification, program synthesis, planning, and structured generation.
@@ -154,24 +154,24 @@
           <h2>3.4 Logic and symbolic reasoning</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Propositional logic:</strong> Represents facts as true or false statements connected by operators such as and, or, and not.</li>
-            <li><strong>First-order predicate logic:</strong> Adds objects, relations, variables, and quantified statements about a domain.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Propositional_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Propositional logic">Propositional logic</a>:</strong> Represents facts as true or false statements connected by operators such as and, or, and not.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/First-order_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: First-order logic">First-order predicate logic</a>:</strong> Adds objects, relations, variables, and quantified statements about a domain.</li>
             <li><strong>Quantifiers:</strong> Express whether a statement applies to all objects or at least one object.</li>
             <li><strong>Unification:</strong> Finds substitutions that make two logical expressions match.</li>
             <li><strong>Resolution:</strong> Proves statements by showing that denying the conclusion leads to contradiction.</li>
-            <li><strong>Forward chaining:</strong> Starts from known facts and applies rules until new conclusions appear.</li>
-            <li><strong>Backward chaining:</strong> Starts from a goal and works backward to see which facts would prove it.</li>
-            <li><strong>Horn clauses:</strong> Rule-like logical clauses that support efficient inference in many expert systems.</li>
-            <li><strong>Logic programming:</strong> Describes relationships and rules, then lets an inference engine answer queries.</li>
-            <li><strong>Description logic:</strong> Represents classes, properties, and relationships behind many ontology systems.</li>
-            <li><strong>Knowledge bases:</strong> Store facts and rules in a form that inference systems can query.</li>
-            <li><strong>Ontologies:</strong> Define shared concepts and relationships so systems agree on what terms mean.</li>
-            <li><strong>Non-monotonic reasoning:</strong> Allows conclusions to be withdrawn when new evidence appears.</li>
-            <li><strong>Default logic:</strong> Handles usual assumptions, such as treating something as true unless contradicted.</li>
-            <li><strong>Temporal logic:</strong> Reasons about time, order, and eventual or always conditions.</li>
-            <li><strong>Modal logic:</strong> Reasons about necessity, possibility, belief, knowledge, or obligation.</li>
-            <li><strong>Fuzzy logic:</strong> Represents graded truth rather than only true or false.</li>
-            <li><strong>Automated theorem proving:</strong> Uses algorithms to prove mathematical or logical statements from axioms.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Forward_chaining" target="_blank" rel="noopener noreferrer" title="Wikipedia: Forward chaining">Forward chaining</a>:</strong> Starts from known facts and applies rules until new conclusions appear.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Backward_chaining" target="_blank" rel="noopener noreferrer" title="Wikipedia: Backward chaining">Backward chaining</a>:</strong> Starts from a goal and works backward to see which facts would prove it.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Horn_clause" target="_blank" rel="noopener noreferrer" title="Wikipedia: Horn clause">Horn clauses</a>:</strong> Rule-like logical clauses that support efficient inference in many expert systems.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Logic_programming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Logic programming">Logic programming</a>:</strong> Describes relationships and rules, then lets an inference engine answer queries.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Description_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Description logic">Description logic</a>:</strong> Represents classes, properties, and relationships behind many ontology systems.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Knowledge_base" target="_blank" rel="noopener noreferrer" title="Wikipedia: Knowledge base">Knowledge bases</a>:</strong> Store facts and rules in a form that inference systems can query.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ontology_(information_science)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ontology (information science)">Ontologies</a>:</strong> Define shared concepts and relationships so systems agree on what terms mean.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Non-monotonic_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Non-monotonic logic">Non-monotonic reasoning</a>:</strong> Allows conclusions to be withdrawn when new evidence appears.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Default_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Default logic">Default logic</a>:</strong> Handles usual assumptions, such as treating something as true unless contradicted.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Temporal_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Temporal logic">Temporal logic</a>:</strong> Reasons about time, order, and eventual or always conditions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Modal_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Modal logic">Modal logic</a>:</strong> Reasons about necessity, possibility, belief, knowledge, or obligation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Fuzzy_logic" target="_blank" rel="noopener noreferrer" title="Wikipedia: Fuzzy logic">Fuzzy logic</a>:</strong> Represents graded truth rather than only true or false.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Automated_theorem_proving" target="_blank" rel="noopener noreferrer" title="Wikipedia: Automated theorem proving">Automated theorem proving</a>:</strong> Uses algorithms to prove mathematical or logical statements from axioms.</li>
           </ul>
         </section>
 
@@ -185,7 +185,7 @@
             <li><strong>Deduction:</strong> rule plus fact produces a necessary conclusion.</li>
             <li><strong>Induction:</strong> observations support a general rule.</li>
             <li><strong>Abduction:</strong> infer the best explanation.</li>
-            <li><strong>Analogy:</strong> transfer structure from a similar case.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Analogy" target="_blank" rel="noopener noreferrer" title="Wikipedia: Analogy">Analogy</a>:</strong> transfer structure from a similar case.</li>
             <li><strong>Counterfactual reasoning:</strong> determine what would happen under a different intervention.</li>
           </ul>
           <p>
@@ -197,17 +197,17 @@
           <h2>3.5 Planning</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>State-space planning:</strong> Searches through possible world states created by applying actions.</li>
-            <li><strong>STRIPS:</strong> Describes actions with preconditions plus add and delete effects.</li>
-            <li><strong>PDDL:</strong> A standard planning language for defining domains, actions, objects, and goals.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/State-space_planning" target="_blank" rel="noopener noreferrer" title="Wikipedia: State-space planning">State-space planning</a>:</strong> Searches through possible world states created by applying actions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver" target="_blank" rel="noopener noreferrer" title="Wikipedia: Stanford Research Institute Problem Solver">STRIPS</a>:</strong> Describes actions with preconditions plus add and delete effects.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language" target="_blank" rel="noopener noreferrer" title="Wikipedia: Planning Domain Definition Language">PDDL</a>:</strong> A standard planning language for defining domains, actions, objects, and goals.</li>
             <li><strong>Forward and backward planning:</strong> Forward planning starts from the initial state; backward planning regresses from the goal.</li>
-            <li><strong>Partial-order planning:</strong> Builds plans where only necessary action orderings are fixed.</li>
-            <li><strong>Graphplan:</strong> Uses a planning graph to alternate reachable facts and actions across time steps.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Partial-order_planning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Partial-order planning">Partial-order planning</a>:</strong> Builds plans where only necessary action orderings are fixed.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Graphplan" target="_blank" rel="noopener noreferrer" title="Wikipedia: Graphplan">Graphplan</a>:</strong> Uses a planning graph to alternate reachable facts and actions across time steps.</li>
             <li><strong>Hierarchical task networks:</strong> Decompose high-level tasks into smaller executable subtasks.</li>
             <li><strong>Contingent planning:</strong> Creates plans with branches for different observations or outcomes.</li>
             <li><strong>Planning under uncertainty:</strong> Chooses actions when outcomes, observations, or world state are not fully known.</li>
-            <li><strong>Temporal planning:</strong> Handles action durations, deadlines, concurrency, and time windows.</li>
-            <li><strong>Multi-agent planning:</strong> Coordinates actions among multiple agents with shared or competing goals.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Automated_planning_and_scheduling" target="_blank" rel="noopener noreferrer" title="Wikipedia: Automated planning and scheduling">Temporal planning</a>:</strong> Handles action durations, deadlines, concurrency, and time windows.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Multi-agent_planning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Multi-agent planning">Multi-agent planning</a>:</strong> Coordinates actions among multiple agents with shared or competing goals.</li>
             <li><strong>Receding-horizon planning:</strong> Plans a few steps ahead, executes the first step, then replans with updated information.</li>
           </ul>
           <p>

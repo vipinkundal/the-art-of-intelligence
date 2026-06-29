@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Representative Research-Paper Sequence | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 27</p>
+        <h1>27. Representative Research-Paper Sequence</h1>
+        <p class="lesson-summary">
+          This is a curated backbone, not a claim that these are the only important papers. Use it to connect the methods in the roadmap to representative research artifacts, historical turning points, and modern systems work.
+        </p>
+
+        <section>
+          <h2>How to read the sequence</h2>
+          <div class="lesson-graphic" aria-label="Research-paper reading sequence">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Trace the idea</strong>
+                <span>Read papers as a sequence of problems, assumptions, datasets, objectives, and architectural choices.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Compare the claim</strong>
+                <span>Ask what changed relative to earlier baselines: data, scale, optimization, inference, or system design.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Extract the pattern</strong>
+                <span>Turn each paper into reusable concepts, failure modes, and implementation questions.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Foundations</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list">
+            <li><strong>The Perceptron:</strong> Establishes the early linear-threshold view of machine learning.</li>
+            <li><strong>Learning Representations by Back-Propagating Errors:</strong> Makes gradient-based multilayer neural-network training practical.</li>
+            <li><strong>Support-Vector Networks:</strong> Shows large-margin kernel methods as a powerful supervised-learning paradigm.</li>
+            <li><strong>Random Forests:</strong> Demonstrates the strength of averaging randomized decision trees.</li>
+            <li><strong>Gradient Boosting Machine:</strong> Frames boosting as stage-wise function optimization.</li>
+            <li><strong>ImageNet Classification with Deep Convolutional Neural Networks:</strong> Marks the modern deep-learning breakthrough on large-scale vision.</li>
+            <li><strong>Deep Residual Learning for Image Recognition:</strong> Introduces residual connections as a practical way to train very deep networks.</li>
+            <li><strong>Efficient Estimation of Word Representations in Vector Space:</strong> Popularizes scalable word embeddings and distributional representation learning.</li>
+            <li><strong>Sequence to Sequence Learning with Neural Networks:</strong> Shows encoder-decoder neural models for variable-length sequence transduction.</li>
+            <li><strong>Neural Machine Translation by Jointly Learning to Align and Translate:</strong> Introduces attention as a learned alignment mechanism for translation.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Transformers and language models</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list" start="11">
+            <li><strong>Attention Is All You Need:</strong> Replaces recurrence with transformer attention as the central sequence-modeling architecture.</li>
+            <li><strong>BERT:</strong> Shows the power of bidirectional masked-language-model pretraining for language understanding.</li>
+            <li><strong>Language Models are Few-Shot Learners:</strong> Demonstrates broad task transfer through scale and prompting.</li>
+            <li><strong>Scaling Laws for Neural Language Models:</strong> Studies predictable relationships between loss, data, parameters, and compute.</li>
+            <li><strong>Training Compute-Optimal Large Language Models:</strong> Rebalances model size and data size for efficient language-model scaling.</li>
+            <li><strong>FlashAttention:</strong> Shows that exact attention can be made much faster through IO-aware implementation.</li>
+            <li><strong>Switch Transformers:</strong> Uses sparse mixture-of-experts routing to scale parameter count efficiently.</li>
+            <li><strong>LoRA:</strong> Introduces low-rank adaptation as a parameter-efficient fine-tuning method.</li>
+            <li><strong>Retrieval-Augmented Generation:</strong> Combines parametric language models with retrieved non-parametric memory.</li>
+            <li><strong>Training Language Models to Follow Instructions with Human Feedback:</strong> Establishes instruction tuning and human-feedback alignment as a practical post-training recipe.</li>
+            <li><strong>Direct Preference Optimization:</strong> Optimizes preferences directly without an explicit reinforcement-learning loop.</li>
+            <li><strong>ReAct:</strong> Interleaves reasoning traces with tool or environment actions.</li>
+            <li><strong>Toolformer:</strong> Teaches a language model when and how to call external tools.</li>
+            <li><strong>Test-Time Compute or inference-scaling work:</strong> Represents the line of work showing that spending more compute at inference can improve reasoning quality.</li>
+            <li><strong>DeepSeek-R1:</strong> Represents recent reasoning-model work based on reinforcement learning and long-form reasoning behavior.</li>
+          </ol>
+          <p>
+            RAG, DPO, ReAct, Toolformer, reasoning-time computation, and DeepSeek-R1 are representative of topics now appearing in current language-model curricula.
+          </p>
+        </section>
+
+        <section>
+          <h2>Vision and multimodality</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list" start="26">
+            <li><strong>Very Deep Convolutional Networks:</strong> Shows the value of simple, deep convolutional stacks for visual recognition.</li>
+            <li><strong>Vision Transformer:</strong> Applies transformer-style patch tokenization and attention to images.</li>
+            <li><strong>Learning Transferable Visual Models From Natural Language Supervision:</strong> Connects vision and language through contrastive pretraining.</li>
+            <li><strong>A Simple Framework for Contrastive Learning:</strong> Presents a clean contrastive-learning recipe for visual representation learning.</li>
+            <li><strong>Masked Autoencoders Are Scalable Vision Learners:</strong> Uses masked reconstruction to train strong vision representations.</li>
+            <li><strong>Detection Transformer:</strong> Recasts object detection as set prediction with transformers.</li>
+            <li><strong>Segment Anything:</strong> Builds a promptable foundation model for image segmentation.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Generative models</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list" start="33">
+            <li><strong>Auto-Encoding Variational Bayes:</strong> Introduces the variational autoencoder training objective.</li>
+            <li><strong>Generative Adversarial Nets:</strong> Frames generation as a game between a generator and discriminator.</li>
+            <li><strong>Denoising Diffusion Probabilistic Models:</strong> Makes denoising diffusion a practical high-quality generative modeling framework.</li>
+            <li><strong>Score-Based Generative Modeling through Stochastic Differential Equations:</strong> Connects score models, diffusion processes, and SDE-based sampling.</li>
+            <li><strong>Flow Matching for Generative Modeling:</strong> Presents simulation-free training for continuous normalizing flows.</li>
+            <li><strong>Scalable Diffusion Models with Transformers:</strong> Uses transformer backbones for scalable diffusion generation.</li>
+            <li><strong>Latent Diffusion Models:</strong> Moves diffusion into a compressed latent space for efficient high-resolution generation.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Reinforcement learning</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list" start="40">
+            <li><strong>Human-Level Control through Deep Reinforcement Learning:</strong> Combines deep Q-learning with Atari-scale visual control.</li>
+            <li><strong>Trust Region Policy Optimization:</strong> Constrains policy updates to improve stability.</li>
+            <li><strong>Proximal Policy Optimization Algorithms:</strong> Provides a simpler clipped-objective policy-gradient method.</li>
+            <li><strong>Soft Actor-Critic:</strong> Optimizes both reward and policy entropy for robust continuous control.</li>
+            <li><strong>Mastering the Game of Go without Human Knowledge:</strong> Shows self-play reinforcement learning reaching superhuman Go performance without human examples.</li>
+            <li><strong>Mastering Chess and Shogi by Self-Play:</strong> Extends self-play reinforcement learning across multiple board games.</li>
+            <li><strong>Conservative Q-Learning:</strong> Addresses overestimation and distribution shift in offline reinforcement learning.</li>
+            <li><strong>Decision Transformer:</strong> Treats reinforcement learning trajectories as sequence modeling.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Graphs, sequence alternatives and interpretability</h2>
+          <ol class="lesson-list dense-list topic-detail-list paper-sequence-list" start="48">
+            <li><strong>Semi-Supervised Classification with Graph Convolutional Networks:</strong> Introduces a widely used graph convolutional network formulation.</li>
+            <li><strong>Graph Attention Networks:</strong> Adds attention-based neighbor aggregation to graph neural networks.</li>
+            <li><strong>How Powerful Are Graph Neural Networks?</strong> Analyzes expressive limits and motivates the graph isomorphism network.</li>
+            <li><strong>Efficiently Modeling Long Sequences with Structured State Spaces:</strong> Shows structured state-space models as efficient long-sequence alternatives.</li>
+            <li><strong>Mamba:</strong> Uses selective state-space updates as an attention alternative for long sequences.</li>
+            <li><strong>Transformer Circuits and subsequent mechanistic-interpretability work:</strong> Represents the program of reverse-engineering transformer internals.</li>
+            <li><strong>Automated circuit-discovery research:</strong> Represents work that tries to identify model circuits at scale.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            A paper sequence gives the roadmap historical texture. It helps you see which ideas are algorithmic, which are scaling results, which are systems contributions, and which are experimental recipes that changed what practitioners could build.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to place representative AI papers into a rough sequence, explain the main contribution of each cluster, connect papers to roadmap topics, and use the sequence to choose what to read next.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../logical-and-problem-solving-patterns/index.html">Previous: Logical And Problem-Solving Patterns</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

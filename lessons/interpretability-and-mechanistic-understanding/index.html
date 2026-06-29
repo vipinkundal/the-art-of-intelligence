@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interpretability And Mechanistic Understanding | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 22</p>
+        <h1>22. Interpretability And Mechanistic Understanding</h1>
+        <p class="lesson-summary">
+          Interpretability studies how to explain model behavior, inspect neural representations, and identify internal mechanisms instead of treating an AI system as a black box.
+        </p>
+
+        <section>
+          <h2>Learn three levels</h2>
+          <div class="lesson-graphic" aria-label="Three levels of interpretability">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Model-agnostic explanations</strong>
+                <span>Explain predictions from the outside using perturbations, surrogates, importance scores, and counterfactuals.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Neural-network interpretation</strong>
+                <span>Inspect gradients, saliency, activations, probes, features, and representation geometry.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Mechanistic understanding</strong>
+                <span>Find circuits, causal pathways, features, and computational structures inside trained models.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Model-agnostic interpretation</h2>
+          <p>
+            These methods can be applied to many model families because they mostly treat the model as a prediction function and examine how outputs change when inputs change.
+          </p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Permutation importance:</strong> Measures performance drop after shuffling a feature, estimating how much the model relies on that feature.</li>
+            <li><strong>Partial dependence plots:</strong> Show average model predictions as one or two features vary across a chosen range.</li>
+            <li><strong>Individual conditional expectation:</strong> Shows feature-response curves for individual examples instead of only the population average.</li>
+            <li><strong>LIME:</strong> Fits a simple local surrogate model around one prediction to approximate nearby model behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Shapley_value" target="_blank" rel="noopener noreferrer" title="Wikipedia: Shapley value">SHAP</a>:</strong> Assigns feature contributions using Shapley-value ideas from cooperative game theory.</li>
+            <li><strong>Counterfactual explanations:</strong> Finds small input changes that would flip or meaningfully change a prediction.</li>
+            <li><strong>Surrogate models:</strong> Trains an interpretable model to mimic a more complex model globally or locally.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Neural-network interpretation</h2>
+          <p>
+            These methods inspect gradients, internal activations, spatial regions, learned directions, and representation spaces in neural networks.
+          </p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Saliency maps:</strong> Highlight input dimensions that most affect a prediction according to gradients or related scores.</li>
+            <li><strong>Integrated gradients:</strong> Attribute prediction change to features by accumulating gradients from a baseline to the input.</li>
+            <li><strong>Grad-CAM:</strong> Uses gradients flowing into convolutional feature maps to localize image regions relevant to a class.</li>
+            <li><strong>Occlusion analysis:</strong> Masks or removes input regions to see which parts cause prediction changes.</li>
+            <li><strong>Feature visualization:</strong> Optimizes inputs or patterns that strongly activate a neuron, channel, layer, or feature direction.</li>
+            <li><strong>Representation similarity:</strong> Compares activation spaces across layers, models, checkpoints, or datasets.</li>
+            <li><strong>Linear probes:</strong> Train simple classifiers on frozen activations to test what information is linearly accessible.</li>
+            <li><strong>Concept activation vectors:</strong> Represent human-defined concepts as directions in activation space and test their influence.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Mechanistic interpretability</h2>
+          <p>
+            Mechanistic interpretability attempts to identify internal computational structures rather than only describing input-output correlations.
+          </p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Activation patching:</strong> Replaces activations from one run with activations from another to test causal influence on behavior.</li>
+            <li><strong>Causal tracing:</strong> Tracks where information is stored and used by intervening on hidden states across layers and positions.</li>
+            <li><strong>Logit attribution:</strong> Decomposes contributions to output logits across residual streams, heads, layers, or features.</li>
+            <li><strong>Attention-head analysis:</strong> Studies specialized heads, attention patterns, induction behavior, copying, retrieval, or syntax-like roles.</li>
+            <li><strong>Circuit analysis:</strong> Identifies subnetworks of features, heads, MLPs, and residual paths that implement a behavior.</li>
+            <li><strong>Superposition:</strong> Studies how models represent more features than dimensions by using overlapping directions.</li>
+            <li><strong>Sparse autoencoders:</strong> Decompose dense activations into sparse, more interpretable feature sets.</li>
+            <li><strong>Feature dictionaries:</strong> Build catalogs of learned features and their activation patterns for model inspection.</li>
+            <li><strong>Automated circuit discovery:</strong> Uses algorithms to search for model components and connections that explain a behavior.</li>
+            <li><strong>Model editing:</strong> Modifies model internals or parameters to change a targeted fact, behavior, or association.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Useful formulas and tests</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>Permutation importance</span>
+              <code>I_j = score(f, X, y) - score(f, permute_j(X), y)</code>
+            </div>
+            <div class="formula-row">
+              <span>Integrated gradients</span>
+              <code>IG_i(x) = (x_i - x'_i) integral_0^1 dF(x' + a(x - x')) / dx_i da</code>
+            </div>
+            <div class="formula-row">
+              <span>Local surrogate</span>
+              <code>explanation(x) = argmin_g L(f, g, pi_x) + Omega(g)</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Interpretability helps teams debug failures, detect shortcut learning, audit high-impact models, compare representations, and build more trustworthy systems. Mechanistic work becomes especially important when models are too capable or too opaque to evaluate only through aggregate benchmarks.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to compare model-agnostic explanations, neural-network attribution methods, probes, feature visualization, activation patching, causal tracing, logit attribution, circuit analysis, superposition, sparse autoencoders, automated circuit discovery, and model editing, while explaining what each method can and cannot prove.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../causal-inference/index.html">Previous: Causal Inference</a>
+          <a href="../ai-safety-security-privacy-and-governance/index.html">Next: AI Safety, Security, Privacy And Governance</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

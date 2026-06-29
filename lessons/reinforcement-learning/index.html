@@ -49,16 +49,16 @@
           <h2>18.1 Foundations</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Multi-armed bandits:</strong> Model repeated choices where each option has an unknown reward distribution and no long-term state.</li>
-            <li><strong>Markov decision processes:</strong> Formalize sequential decisions with states, actions, transition probabilities, rewards, and discounting.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Multi-armed_bandit" target="_blank" rel="noopener noreferrer" title="Wikipedia: Multi-armed bandit">Multi-armed bandits</a>:</strong> Model repeated choices where each option has an unknown reward distribution and no long-term state.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Markov_decision_process" target="_blank" rel="noopener noreferrer" title="Wikipedia: Markov decision process">Markov decision processes</a>:</strong> Formalize sequential decisions with states, actions, transition probabilities, rewards, and discounting.</li>
             <li><strong>Partially observable MDPs:</strong> Handle settings where the agent receives observations instead of the full hidden state.</li>
             <li><strong>States, actions, rewards and transitions:</strong> Define what the agent sees, what it can do, what feedback it receives, and how the world changes.</li>
             <li><strong>Policies:</strong> Map states or observations to actions, either deterministically or as probabilities.</li>
             <li><strong>Returns:</strong> Sum future rewards so the agent optimizes long-term outcome rather than only immediate feedback.</li>
-            <li><strong>Discounting:</strong> Weighs near-term rewards more than distant rewards, often making infinite-horizon problems stable.</li>
-            <li><strong>Value functions:</strong> Estimate how much future return to expect from a state or state-action pair.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Discounting" target="_blank" rel="noopener noreferrer" title="Wikipedia: Discounting">Discounting</a>:</strong> Weighs near-term rewards more than distant rewards, often making infinite-horizon problems stable.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Value_function" target="_blank" rel="noopener noreferrer" title="Wikipedia: Value function">Value functions</a>:</strong> Estimate how much future return to expect from a state or state-action pair.</li>
             <li><strong>Advantage functions:</strong> Measure whether an action is better or worse than the usual value of the state.</li>
-            <li><strong>Bellman equations:</strong> Express values recursively as immediate reward plus discounted future value.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bellman_equation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bellman equation">Bellman equations</a>:</strong> Express values recursively as immediate reward plus discounted future value.</li>
             <li><strong>Exploration versus exploitation:</strong> Balances trying uncertain actions against using the best-known action.</li>
           </ul>
           <p>Return:</p>
@@ -79,9 +79,9 @@
           <h2>18.2 Bandits</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>epsilon-greedy:</strong> Usually picks the best-known action but sometimes explores randomly.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Multi-armed_bandit" target="_blank" rel="noopener noreferrer" title="Wikipedia: Multi-armed bandit">epsilon-greedy</a>:</strong> Usually picks the best-known action but sometimes explores randomly.</li>
             <li><strong>Upper-confidence bound:</strong> Chooses actions using both estimated reward and uncertainty about that estimate.</li>
-            <li><strong>Thompson sampling:</strong> Samples from a belief distribution over action quality, naturally exploring uncertain options.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Thompson_sampling" target="_blank" rel="noopener noreferrer" title="Wikipedia: Thompson sampling">Thompson sampling</a>:</strong> Samples from a belief distribution over action quality, naturally exploring uncertain options.</li>
             <li><strong>Contextual bandits:</strong> Use side information about the current user, item, or situation before choosing an action.</li>
             <li><strong>Bayesian bandits:</strong> Maintain probability distributions over unknown rewards and update them as evidence arrives.</li>
             <li><strong>Regret analysis:</strong> Measures how much reward was lost compared with always choosing the best action in hindsight.</li>
@@ -92,16 +92,16 @@
           <h2>18.3 Tabular reinforcement learning</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Dynamic programming:</strong> Solves MDPs by using known transition and reward models to update values exactly.</li>
-            <li><strong>Policy evaluation:</strong> Computes how good a fixed policy is before trying to improve it.</li>
-            <li><strong>Policy iteration:</strong> Alternates evaluating a policy and making it greedier with respect to its values.</li>
-            <li><strong>Value iteration:</strong> Repeatedly applies the Bellman optimality update until values imply a strong policy.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Dynamic programming">Dynamic programming</a>:</strong> Solves MDPs by using known transition and reward models to update values exactly.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Program_evaluation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Program evaluation">Policy evaluation</a>:</strong> Computes how good a fixed policy is before trying to improve it.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Markov_decision_process" target="_blank" rel="noopener noreferrer" title="Wikipedia: Markov decision process">Policy iteration</a>:</strong> Alternates evaluating a policy and making it greedier with respect to its values.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Markov_decision_process" target="_blank" rel="noopener noreferrer" title="Wikipedia: Markov decision process">Value iteration</a>:</strong> Repeatedly applies the Bellman optimality update until values imply a strong policy.</li>
             <li><strong>Monte Carlo prediction and control:</strong> Learns from complete sampled episodes rather than a known model.</li>
-            <li><strong>Temporal-difference learning:</strong> Updates estimates from partial experience using bootstrapped predictions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Temporal_difference_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Temporal difference learning">Temporal-difference learning</a>:</strong> Updates estimates from partial experience using bootstrapped predictions.</li>
             <li><strong>TD(0):</strong> Updates a value estimate one step at a time using the next state's estimate.</li>
             <li><strong>TD(lambda):</strong> Blends short and long credit assignment through eligibility traces.</li>
             <li><strong>SARSA:</strong> Learns action values for the policy actually being followed, including its exploration behavior.</li>
-            <li><strong>Q-learning:</strong> Learns optimal action values off-policy by bootstrapping from the best next action.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Q-learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Q-learning">Q-learning</a>:</strong> Learns optimal action values off-policy by bootstrapping from the best next action.</li>
             <li><strong>Eligibility traces:</strong> Keep temporary credit for recently visited states or actions so rewards can update them together.</li>
           </ul>
           <p>Q-learning:</p>
@@ -114,19 +114,19 @@
           <h2>18.4 Deep reinforcement learning</h2>
           <p>Value-based:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>DQN:</strong> Uses a neural network to approximate Q-values for high-dimensional observations such as pixels.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Q-learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Q-learning">DQN</a>:</strong> Uses a neural network to approximate Q-values for high-dimensional observations such as pixels.</li>
             <li><strong>Double DQN:</strong> Reduces overestimation by separating action selection from action evaluation.</li>
             <li><strong>Dueling DQN:</strong> Splits value and advantage streams so the network can learn state value separately from action preference.</li>
             <li><strong>Prioritized replay:</strong> Reuses important or surprising experiences more often during training.</li>
             <li><strong>Distributional RL:</strong> Predicts a distribution of returns instead of only the expected return.</li>
-            <li><strong>Rainbow:</strong> Combines several DQN improvements into one stronger value-based agent.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Rainbow" target="_blank" rel="noopener noreferrer" title="Wikipedia: Rainbow">Rainbow</a>:</strong> Combines several DQN improvements into one stronger value-based agent.</li>
           </ul>
           <p>Policy-based:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>REINFORCE:</strong> Estimates policy gradients from sampled returns and directly increases probability of rewarding actions.</li>
             <li><strong>Natural policy gradient:</strong> Scales updates by the geometry of the policy distribution for more stable steps.</li>
             <li><strong>TRPO:</strong> Limits each policy update so the new policy stays close to the old one.</li>
-            <li><strong>PPO:</strong> Uses a clipped objective to get much of TRPO's stability with simpler implementation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Proximal_policy_optimization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Proximal policy optimization">PPO</a>:</strong> Uses a clipped objective to get much of TRPO's stability with simpler implementation.</li>
           </ul>
           <p>Actor-critic:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
@@ -153,24 +153,24 @@
             <li><strong>Model-based RL:</strong> Learns or uses a model of environment dynamics to plan before acting.</li>
             <li><strong>Dyna:</strong> Mixes real experience with simulated experience generated from a learned model.</li>
             <li><strong>Learned world models:</strong> Predict future observations, states, or rewards so agents can imagine rollouts.</li>
-            <li><strong>Model-predictive control:</strong> Plans over a short horizon, executes the first action, then replans.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Model_predictive_control" target="_blank" rel="noopener noreferrer" title="Wikipedia: Model predictive control">Model-predictive control</a>:</strong> Plans over a short horizon, executes the first action, then replans.</li>
             <li><strong>Offline RL:</strong> Learns policies from fixed logged data without additional environment interaction.</li>
             <li><strong>Conservative Q-learning:</strong> Penalizes over-optimistic values for unseen actions in offline datasets.</li>
             <li><strong>Implicit Q-learning:</strong> Learns from offline data without explicitly maximizing over actions outside the dataset.</li>
             <li><strong>Advantage-weighted actor-critic:</strong> Imitates dataset actions more strongly when their estimated advantage is high.</li>
-            <li><strong>Imitation learning:</strong> Learns behavior from demonstrations rather than reward trial and error alone.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Imitation_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Imitation learning">Imitation learning</a>:</strong> Learns behavior from demonstrations rather than reward trial and error alone.</li>
             <li><strong>Behaviour cloning:</strong> Trains a policy as supervised learning from expert state-action examples.</li>
             <li><strong>DAgger:</strong> Collects expert corrections on the learner's visited states to reduce compounding mistakes.</li>
             <li><strong>Inverse RL:</strong> Infers a reward function that would make expert behavior look rational.</li>
             <li><strong>GAIL:</strong> Uses adversarial training to make learner behavior indistinguishable from demonstrations.</li>
             <li><strong>Hierarchical RL:</strong> Learns high-level skills or subgoals that organize lower-level actions.</li>
             <li><strong>Options:</strong> Represent temporally extended actions with an initiation set, internal policy, and termination rule.</li>
-            <li><strong>Meta-RL:</strong> Trains agents to adapt quickly to new tasks from limited experience.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Meta-learning_(computer_science)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Meta-learning (computer science)">Meta-RL</a>:</strong> Trains agents to adapt quickly to new tasks from limited experience.</li>
             <li><strong>Multi-agent RL:</strong> Studies learning when multiple agents interact, cooperate, or compete.</li>
             <li><strong>QMIX:</strong> Learns decentralized agent policies with a centralized value decomposition during training.</li>
             <li><strong>MADDPG:</strong> Extends actor-critic methods to multiple agents with centralized critics.</li>
-            <li><strong>Self-play:</strong> Generates increasingly challenging opponents or partners from the agent's own past policies.</li>
-            <li><strong>Curriculum learning:</strong> Orders tasks from easier to harder so policies build useful capabilities gradually.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Self-play" target="_blank" rel="noopener noreferrer" title="Wikipedia: Self-play">Self-play</a>:</strong> Generates increasingly challenging opponents or partners from the agent's own past policies.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Curriculum_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Curriculum learning">Curriculum learning</a>:</strong> Orders tasks from easier to harder so policies build useful capabilities gradually.</li>
             <li><strong>Safe RL:</strong> Tries to maximize reward while avoiding unacceptable harm, constraint violations, or unsafe exploration.</li>
             <li><strong>Constrained MDPs:</strong> Add cost constraints to the MDP so optimization must satisfy safety or resource limits.</li>
           </ul>

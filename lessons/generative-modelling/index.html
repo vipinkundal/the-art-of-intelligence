@@ -57,9 +57,9 @@
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Autoregressive language models:</strong> Generate one token at a time, conditioning each token on previous context.</li>
             <li><strong>PixelRNN and PixelCNN:</strong> Generate images pixel by pixel using sequential or masked-convolution dependencies.</li>
-            <li><strong>WaveNet:</strong> Generates audio samples autoregressively with dilated causal convolutions.</li>
-            <li><strong>Teacher forcing:</strong> Trains next-step prediction using the true previous tokens rather than the model's sampled tokens.</li>
-            <li><strong>Exposure bias:</strong> Occurs when training sees clean histories but generation must handle its own mistakes.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/WaveNet" target="_blank" rel="noopener noreferrer" title="Wikipedia: WaveNet">WaveNet</a>:</strong> Generates audio samples autoregressively with dilated causal convolutions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Teacher_forcing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Teacher forcing">Teacher forcing</a>:</strong> Trains next-step prediction using the true previous tokens rather than the model's sampled tokens.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Exposure_compensation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Exposure compensation">Exposure bias</a>:</strong> Occurs when training sees clean histories but generation must handle its own mistakes.</li>
             <li><strong>Causal masking:</strong> Prevents a model from attending to future tokens during autoregressive training.</li>
             <li><strong>Sequence likelihood:</strong> Scores a whole sequence as the product of conditional next-token probabilities.</li>
           </ul>
@@ -69,14 +69,14 @@
           <h2>12.2 Autoencoders and variational autoencoders</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Autoencoders:</strong> Compress inputs into latent codes and reconstruct them, learning useful internal representations.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Autoencoder" target="_blank" rel="noopener noreferrer" title="Wikipedia: Autoencoder">Autoencoders</a>:</strong> Compress inputs into latent codes and reconstruct them, learning useful internal representations.</li>
             <li><strong>Denoising autoencoders:</strong> Reconstruct clean inputs from corrupted versions, encouraging robust features.</li>
             <li><strong>Sparse autoencoders:</strong> Encourage only a small number of latent units to activate for each input.</li>
             <li><strong>Contractive autoencoders:</strong> Penalize sensitivity so nearby inputs map to stable representations.</li>
-            <li><strong>Variational autoencoders:</strong> Learn probabilistic latent variables and generate by sampling from the latent space.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Variational_autoencoder" target="_blank" rel="noopener noreferrer" title="Wikipedia: Variational autoencoder">Variational autoencoders</a>:</strong> Learn probabilistic latent variables and generate by sampling from the latent space.</li>
             <li><strong>beta-VAE:</strong> Increases the KL penalty to encourage more disentangled latent factors.</li>
             <li><strong>Vector-quantized VAE:</strong> Uses discrete latent codes selected from a learned codebook.</li>
-            <li><strong>Latent-variable models:</strong> Explain observed data through hidden variables that capture underlying causes or structure.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Latent_variable_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Latent variable model">Latent-variable models</a>:</strong> Explain observed data through hidden variables that capture underlying causes or structure.</li>
           </ul>
           <p>VAE evidence lower bound:</p>
           <div class="formula-display">
@@ -92,14 +92,14 @@
           <h2>12.3 Generative adversarial networks</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>GAN:</strong> Trains a generator to fool a discriminator that distinguishes real from fake samples.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Generative_adversarial_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Generative adversarial network">GAN</a>:</strong> Trains a generator to fool a discriminator that distinguishes real from fake samples.</li>
             <li><strong>Conditional GAN:</strong> Conditions generation on labels, text, images, or other controls.</li>
             <li><strong>DCGAN:</strong> Uses convolutional architectures to make GAN image generation more stable.</li>
-            <li><strong>Wasserstein GAN:</strong> Uses an earth-mover distance objective to improve training behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Wasserstein_GAN" target="_blank" rel="noopener noreferrer" title="Wikipedia: Wasserstein GAN">Wasserstein GAN</a>:</strong> Uses an earth-mover distance objective to improve training behavior.</li>
             <li><strong>Gradient penalty:</strong> Regularizes discriminator gradients to support stable Wasserstein training.</li>
-            <li><strong>StyleGAN:</strong> Controls image generation through style-based latent modulation across layers.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/StyleGAN" target="_blank" rel="noopener noreferrer" title="Wikipedia: StyleGAN">StyleGAN</a>:</strong> Controls image generation through style-based latent modulation across layers.</li>
             <li><strong>CycleGAN:</strong> Learns image-to-image translation without paired examples using cycle consistency.</li>
-            <li><strong>Mode collapse:</strong> Happens when the generator produces limited variety despite diverse training data.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Mode_collapse" target="_blank" rel="noopener noreferrer" title="Wikipedia: Mode collapse">Mode collapse</a>:</strong> Happens when the generator produces limited variety despite diverse training data.</li>
             <li><strong>Training instability:</strong> GANs can oscillate or fail because generator and discriminator co-adapt.</li>
           </ul>
           <p>Original GAN objective:</p>
@@ -138,7 +138,7 @@
             <li><strong>Score-based SDEs:</strong> Formulate generation as reversing a stochastic differential equation.</li>
             <li><strong>Classifier guidance:</strong> Uses an external classifier to steer diffusion samples toward a class.</li>
             <li><strong>Classifier-free guidance:</strong> Steers generation by mixing conditional and unconditional model predictions.</li>
-            <li><strong>Latent diffusion:</strong> Runs diffusion in a compressed latent space instead of raw pixels.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Latent_diffusion_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Latent diffusion model">Latent diffusion</a>:</strong> Runs diffusion in a compressed latent space instead of raw pixels.</li>
             <li><strong>Diffusion transformers:</strong> Use transformer blocks as the denoising network.</li>
             <li><strong>Consistency models:</strong> Learn direct mappings that can generate high-quality samples in fewer steps.</li>
             <li><strong>Distillation and fast sampling:</strong> Compress slow samplers into fewer denoising steps.</li>

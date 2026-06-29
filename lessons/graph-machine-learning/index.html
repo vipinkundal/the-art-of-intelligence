@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Graph Machine Learning | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 20</p>
+        <h1>20. Graph Machine Learning</h1>
+        <p class="lesson-summary">
+          Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.
+        </p>
+
+        <section>
+          <h2>Graph learning workflow</h2>
+          <div class="lesson-graphic" aria-label="Graph machine learning workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Represent structure</strong>
+                <span>Encode entities as nodes, relationships as edges, and neighborhoods as graph context.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Propagate information</strong>
+                <span>Aggregate messages from neighbors using random walks, spectral filters, or neural layers.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Predict on graphs</strong>
+                <span>Classify nodes, edges, whole graphs, links, communities, or retrieved knowledge.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Study</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Graph terminology:</strong> Learn nodes, edges, degree, paths, walks, components, directed graphs, weighted graphs, bipartite graphs, and heterogeneous graphs.</li>
+            <li><strong>Adjacency and Laplacian matrices:</strong> Represent graph connectivity with matrices used by spectral methods, diffusion, and graph neural networks.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Spectral_graph_theory" target="_blank" rel="noopener noreferrer" title="Wikipedia: Spectral graph theory">Spectral graph theory</a>:</strong> Uses eigenvalues and eigenvectors of graph operators to study smoothness, cuts, clustering, and convolution-like filters.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Random_walk" target="_blank" rel="noopener noreferrer" title="Wikipedia: Random walk">Random walks</a>:</strong> Sample local graph neighborhoods and define transition processes used by ranking, embeddings, and diffusion methods.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener noreferrer" title="Wikipedia: PageRank">PageRank</a>:</strong> Scores nodes by stationary importance under a random-surfer model with teleportation.</li>
+            <li><strong>Community detection:</strong> Finds groups of nodes that are more densely connected internally than externally.</li>
+            <li><strong>Graph embeddings:</strong> Map nodes, edges, or whole graphs into vectors that preserve useful structure for downstream models.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Knowledge_graph" target="_blank" rel="noopener noreferrer" title="Wikipedia: Knowledge graph">Knowledge graphs</a>:</strong> Represent typed facts as entities and relations, often as triples such as subject, relation, object.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Link_prediction" target="_blank" rel="noopener noreferrer" title="Wikipedia: Link prediction">Link prediction</a>:</strong> Predicts missing or future edges from topology, node features, relation types, or learned embeddings.</li>
+            <li><strong>Node classification:</strong> Predicts labels for individual nodes using their features and graph neighborhood context.</li>
+            <li><strong>Edge classification:</strong> Predicts labels or relation types for edges, such as transaction risk or semantic relation category.</li>
+            <li><strong>Graph classification:</strong> Predicts labels for whole graphs, such as molecule property, program behavior, or document structure.</li>
+            <li><strong>Message-passing neural networks:</strong> Update each node by aggregating transformed information from neighboring nodes and edges.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Core matrices and scores</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>Adjacency</span>
+              <code>A_ij = 1 if edge i -> j exists, otherwise 0</code>
+            </div>
+            <div class="formula-row">
+              <span>Graph Laplacian</span>
+              <code>L = D - A</code>
+            </div>
+            <div class="formula-row">
+              <span>Normalized Laplacian</span>
+              <code>L_norm = I - D^(-1/2) A D^(-1/2)</code>
+            </div>
+            <div class="formula-row">
+              <span>PageRank</span>
+              <code>r = alpha P^T r + (1 - alpha) v</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Important algorithms</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/PageRank" target="_blank" rel="noopener noreferrer" title="Wikipedia: PageRank">PageRank</a>:</strong> Ranks pages, papers, accounts, or entities by recursive importance in a link graph.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Node2vec" target="_blank" rel="noopener noreferrer" title="Wikipedia: Node2vec">Node2vec</a>:</strong> Learns node embeddings from biased random walks that trade off breadth-first and depth-first exploration.</li>
+            <li><strong>DeepWalk:</strong> Learns node embeddings by treating random walks like sentences and optimizing a skip-gram objective.</li>
+            <li><strong>Graph convolutional networks:</strong> Apply neighborhood averaging and feature transforms to learn node representations.</li>
+            <li><strong>GraphSAGE:</strong> Samples and aggregates neighbors so graph neural networks can scale and generalize to unseen nodes.</li>
+            <li><strong>Graph attention networks:</strong> Learn attention weights over neighbors instead of treating all neighbor messages equally.</li>
+            <li><strong>Graph isomorphism networks:</strong> Use expressive aggregation to distinguish graph structures more strongly than basic GCN layers.</li>
+            <li><strong>Relational GCN:</strong> Extends graph convolution to multi-relation graphs such as knowledge graphs.</li>
+            <li><strong>Graph transformers:</strong> Use attention over graph tokens, often with structural encodings for distance, paths, or edge types.</li>
+            <li><strong>TransE:</strong> Learns knowledge-graph embeddings where head plus relation vector should land near the tail vector.</li>
+            <li><strong>Graph-based retrieval:</strong> Uses graph neighborhoods, paths, communities, or knowledge links to retrieve evidence for search and RAG systems.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Generic message passing</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>Aggregate</span>
+              <code>m_v^(l) = AGG({ phi(h_u^(l), h_v^(l), e_uv) : u in N(v) })</code>
+            </div>
+            <div class="formula-row">
+              <span>Update</span>
+              <code>h_v^(l+1) = psi(h_v^(l), m_v^(l))</code>
+            </div>
+          </div>
+          <p>
+            The main design choice is what counts as a message, how messages are aggregated, and how the node state is updated without losing useful structural information.
+          </p>
+        </section>
+
+        <section>
+          <h2>Where it connects now</h2>
+          <p>
+            Graph ML increasingly intersects with foundation models, retrieval, and agent systems. Knowledge graphs can ground retrieval, graph embeddings can improve recommendations and search, and graph neural networks can reason over molecules, social networks, fraud networks, code, traffic, documents, and structured memory.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to represent graph data with adjacency and Laplacian matrices, explain random-walk and spectral methods, compare PageRank, Node2vec, DeepWalk, GCN, GraphSAGE, GAT, GIN, R-GCN, graph transformers, and knowledge-graph embeddings, and choose graph-learning methods for node, edge, graph, link-prediction, retrieval, and knowledge-graph tasks.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../portfolio/index.html">Previous: Portfolio</a>
+          <a href="../causal-inference/index.html">Next: Causal Inference</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

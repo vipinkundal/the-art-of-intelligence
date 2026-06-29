@@ -51,16 +51,16 @@
           <h2>8.1 Classical information retrieval</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Inverted indexes:</strong> Map terms to the documents that contain them, making keyword lookup fast.</li>
-            <li><strong>Term frequency:</strong> Measures how often a query term appears in a document.</li>
-            <li><strong>Inverse document frequency:</strong> Downweights common terms and upweights rarer, more specific terms.</li>
-            <li><strong>TF-IDF:</strong> Scores documents by combining local term frequency with global term rarity.</li>
-            <li><strong>BM25:</strong> A strong lexical ranking function that normalizes term frequency and document length.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Inverted_index" target="_blank" rel="noopener noreferrer" title="Wikipedia: Inverted index">Inverted indexes</a>:</strong> Map terms to the documents that contain them, making keyword lookup fast.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tf–idf">Term frequency</a>:</strong> Measures how often a query term appears in a document.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tf–idf">Inverse document frequency</a>:</strong> Downweights common terms and upweights rarer, more specific terms.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tf–idf">TF-IDF</a>:</strong> Scores documents by combining local term frequency with global term rarity.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Okapi_BM25" target="_blank" rel="noopener noreferrer" title="Wikipedia: Okapi BM25">BM25</a>:</strong> A strong lexical ranking function that normalizes term frequency and document length.</li>
             <li><strong>Boolean retrieval:</strong> Uses exact logical operators such as AND, OR, and NOT to match documents.</li>
             <li><strong>Tokenization and stemming:</strong> Break text into searchable units and reduce variants to shared roots.</li>
             <li><strong>Fielded search:</strong> Searches structured fields like title, author, tags, or body with different weights.</li>
-            <li><strong>Query expansion:</strong> Adds related terms or reformulations to improve recall.</li>
-            <li><strong>Learning to rank:</strong> Trains ranking models from relevance labels, clicks, or preference data.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Query_expansion" target="_blank" rel="noopener noreferrer" title="Wikipedia: Query expansion">Query expansion</a>:</strong> Adds related terms or reformulations to improve recall.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Learning_to_rank" target="_blank" rel="noopener noreferrer" title="Wikipedia: Learning to rank">Learning to rank</a>:</strong> Trains ranking models from relevance labels, clicks, or preference data.</li>
           </ul>
         </section>
 
@@ -100,10 +100,10 @@
         <section>
           <h2>Approximate nearest-neighbour algorithms</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Locality-sensitive hashing:</strong> Hashes similar vectors into the same buckets with high probability.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Locality-sensitive hashing">Locality-sensitive hashing</a>:</strong> Hashes similar vectors into the same buckets with high probability.</li>
             <li><strong>Product quantization:</strong> Compresses vectors into compact codes for memory-efficient similarity search.</li>
             <li><strong>Inverted file indexes:</strong> Partition vector space into clusters and search only promising partitions.</li>
-            <li><strong>Hierarchical navigable small worlds:</strong> Build graph indexes that navigate quickly toward nearby vectors.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hierarchical navigable small world">Hierarchical navigable small worlds</a>:</strong> Build graph indexes that navigate quickly toward nearby vectors.</li>
             <li><strong>ScaNN-style partitioning and scoring:</strong> Uses partitioning, quantization, and optimized scoring for fast large-scale retrieval.</li>
           </ul>
         </section>
@@ -112,17 +112,17 @@
           <h2>8.3 RAG architecture</h2>
           <p>Understand the complete pipeline:</p>
           <ol class="lesson-list dense-list topic-detail-list">
-            <li><strong>Ingestion:</strong> Bring documents, records, pages, or data feeds into the retrieval system.</li>
-            <li><strong>Parsing:</strong> Extract usable text, tables, structure, and attachments from raw files.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ingestion" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ingestion">Ingestion</a>:</strong> Bring documents, records, pages, or data feeds into the retrieval system.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Parsing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Parsing">Parsing</a>:</strong> Extract usable text, tables, structure, and attachments from raw files.</li>
             <li><strong>Chunking:</strong> Split content into retrieval-sized units that preserve enough context.</li>
             <li><strong>Metadata extraction:</strong> Attach source, date, permissions, topic, author, and other filters to each chunk.</li>
-            <li><strong>Embedding:</strong> Convert chunks into vectors for semantic search.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Embedding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Embedding">Embedding</a>:</strong> Convert chunks into vectors for semantic search.</li>
             <li><strong>Indexing:</strong> Store sparse, dense, or hybrid searchable representations.</li>
-            <li><strong>Query rewriting:</strong> Reformulate the user request into better retrieval queries.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Query_rewriting" target="_blank" rel="noopener noreferrer" title="Wikipedia: Query rewriting">Query rewriting</a>:</strong> Reformulate the user request into better retrieval queries.</li>
             <li><strong>Retrieval:</strong> Pull candidate chunks that may answer the request.</li>
             <li><strong>Reranking:</strong> Sort candidates by a stronger relevance model before generation.</li>
             <li><strong>Context packing:</strong> Fit the best evidence into the model context without wasting tokens.</li>
-            <li><strong>Generation:</strong> Ask the model to answer using the supplied evidence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Generation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Generation">Generation</a>:</strong> Ask the model to answer using the supplied evidence.</li>
             <li><strong>Citation or provenance generation:</strong> Link claims back to source chunks or documents.</li>
             <li><strong>Faithfulness evaluation:</strong> Check whether the answer is supported by retrieved evidence.</li>
             <li><strong>Cache and index refresh:</strong> Keep results fast and update indexes when source content changes.</li>

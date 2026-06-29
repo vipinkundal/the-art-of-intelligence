@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Safety, Security, Privacy And Governance | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 23</p>
+        <h1>23. AI Safety, Security, Privacy And Governance</h1>
+        <p class="lesson-summary">
+          AI safety, security, privacy, and governance are required engineering knowledge, not an optional ethics appendix. Responsible AI work combines robustness, threat modeling, privacy protection, measurement, documentation, accountability, and risk management.
+        </p>
+
+        <section>
+          <h2>Risk workflow</h2>
+          <div class="lesson-graphic" aria-label="Responsible AI risk workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Map risks</strong>
+                <span>Identify model, data, user, system, deployment, security, privacy, and governance risks.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Measure behavior</strong>
+                <span>Stress-test robustness, uncertainty, fairness, privacy leakage, abuse resistance, and failure modes.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Manage controls</strong>
+                <span>Apply mitigations, monitoring, oversight, incident response, documentation, and accountability.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>23.1 Robustness and uncertainty</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Distribution shift:</strong> The deployment distribution differs from the training distribution.</li>
+            <li><strong>Covariate shift:</strong> Input feature distributions change while the conditional label relationship is assumed stable.</li>
+            <li><strong>Label shift:</strong> Class proportions change while class-conditional feature distributions are assumed stable.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Domain_adaptation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Domain adaptation">Domain adaptation</a>:</strong> Adapts models trained in one domain to perform reliably in another.</li>
+            <li><strong>Out-of-distribution detection:</strong> Flags inputs that do not resemble training data or supported use cases.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Uncertainty_quantification" target="_blank" rel="noopener noreferrer" title="Wikipedia: Uncertainty quantification">Aleatoric uncertainty</a>:</strong> Irreducible uncertainty from noise or ambiguity in the data-generating process.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Uncertainty_quantification" target="_blank" rel="noopener noreferrer" title="Wikipedia: Uncertainty quantification">Epistemic uncertainty</a>:</strong> Reducible uncertainty from limited data, weak coverage, or uncertain model parameters.</li>
+            <li><strong>Deep ensembles:</strong> Combine multiple independently trained models to improve uncertainty estimates.</li>
+            <li><strong>Monte Carlo dropout:</strong> Samples predictions with dropout active at inference as an approximate uncertainty method.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Conformal_prediction" target="_blank" rel="noopener noreferrer" title="Wikipedia: Conformal prediction">Conformal prediction</a>:</strong> Produces prediction sets with coverage guarantees under exchangeability assumptions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Calibration" target="_blank" rel="noopener noreferrer" title="Wikipedia: Calibration">Calibration</a>:</strong> Checks whether predicted confidence matches observed accuracy.</li>
+            <li><strong>Selective prediction:</strong> Allows the model to answer only when confidence or risk thresholds are satisfied.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Abstention" target="_blank" rel="noopener noreferrer" title="Wikipedia: Abstention">Abstention</a>:</strong> Refuses or escalates uncertain cases instead of forcing a low-confidence prediction.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>23.2 Adversarial machine learning</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Evasion attacks:</strong> Modify inputs at inference time to induce incorrect behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Adversarial_machine_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Adversarial machine learning">FGSM</a>:</strong> Uses the sign of the input gradient to create a small adversarial perturbation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Proximal_gradient_methods_for_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Proximal gradient methods for learning">PGD</a>:</strong> Repeats projected gradient steps to search for stronger bounded perturbations.</li>
+            <li><strong>Adversarial training:</strong> Trains on adversarial examples to improve robustness against known perturbation classes.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Adversarial_machine_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Adversarial machine learning">Data poisoning</a>:</strong> Corrupts training data so the learned model behaves incorrectly.</li>
+            <li><strong>Backdoors:</strong> Hide a trigger pattern that causes targeted behavior when present.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Adversarial_machine_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Adversarial machine learning">Model extraction</a>:</strong> Attempts to reconstruct model behavior through queries or exposed outputs.</li>
+            <li><strong>Membership inference:</strong> Infers whether a record was included in training data.</li>
+            <li><strong>Model inversion:</strong> Recovers sensitive information about inputs or training data from model behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Supply_chain_attack" target="_blank" rel="noopener noreferrer" title="Wikipedia: Supply chain attack">Supply-chain attacks</a>:</strong> Compromise models, datasets, packages, checkpoints, or infrastructure used in the AI pipeline.</li>
+          </ul>
+          <p>FGSM:</p>
+          <div class="formula-display" aria-label="Fast gradient sign method">
+            <code>x_adv = x + epsilon sign(grad_x L(theta, x, y))</code>
+          </div>
+        </section>
+
+        <section>
+          <h2>23.3 Language-model and agent security</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Prompt_injection" target="_blank" rel="noopener noreferrer" title="Wikipedia: Prompt injection">Prompt injection</a>:</strong> Untrusted input tries to override the intended instruction hierarchy.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Prompt_injection" target="_blank" rel="noopener noreferrer" title="Wikipedia: Prompt injection">Indirect prompt injection</a>:</strong> Malicious instructions arrive through retrieved documents, webpages, emails, files, or tool outputs.</li>
+            <li><strong>Jailbreaks:</strong> Prompts attempt to bypass model safety constraints or policy boundaries.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_exfiltration" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data exfiltration">Data exfiltration</a>:</strong> Attempts to leak secrets, private data, hidden prompts, credentials, or protected context.</li>
+            <li><strong>Tool manipulation:</strong> Steers an agent into unsafe or unintended tool calls.</li>
+            <li><strong>Retrieval poisoning:</strong> Pollutes a retrieval index so the model grounds answers in attacker-controlled content.</li>
+            <li><strong>Memory poisoning:</strong> Injects false or malicious state into long-term or session memory.</li>
+            <li><strong>Output-parser attacks:</strong> Exploit fragile structured-output parsing or downstream command interpretation.</li>
+            <li><strong>Unsafe code execution:</strong> Lets generated or retrieved code run without appropriate sandboxing and review.</li>
+            <li><strong>Excessive agency:</strong> Grants a system too much autonomy, scope, or persistence for the risk level.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Privilege_separation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Privilege separation">Privilege separation</a>:</strong> Limits what each component, tool, credential, and runtime can access.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Capability-based_security" target="_blank" rel="noopener noreferrer" title="Wikipedia: Capability-based security">Capability-based security</a>:</strong> Grants narrow, explicit capabilities instead of broad ambient authority.</li>
+            <li><strong>Sandboxing:</strong> Runs untrusted actions in constrained environments with resource and permission limits.</li>
+            <li><strong>Content provenance:</strong> Tracks where information came from and whether it should be trusted.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Red_team" target="_blank" rel="noopener noreferrer" title="Wikipedia: Red team">Red teaming</a>:</strong> Systematically probes failures, abuse paths, and unsafe behavior before and after deployment.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>23.4 Privacy</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Differential_privacy" target="_blank" rel="noopener noreferrer" title="Wikipedia: Differential privacy">Differential privacy</a>:</strong> Bounds how much one record can affect observable outputs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Differentially_private_stochastic_gradient_descent" target="_blank" rel="noopener noreferrer" title="Wikipedia: Differentially private stochastic gradient descent">DP-SGD</a>:</strong> Clips per-example gradients and adds noise during training to provide privacy guarantees.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Federated_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Federated learning">Federated learning</a>:</strong> Trains across distributed clients while keeping raw data local.</li>
+            <li><strong>Federated averaging:</strong> Aggregates client updates into a shared model update.</li>
+            <li><strong>Secure aggregation:</strong> Combines client updates without exposing individual updates to the server.</li>
+            <li><strong>Homomorphic encryption concepts:</strong> Enables limited computation over encrypted data in privacy-preserving workflows.</li>
+            <li><strong>Trusted execution environments:</strong> Run sensitive computation in hardware-backed isolated environments.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_minimization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data minimization">Data minimization</a>:</strong> Collects, stores, and exposes only the data needed for a defined purpose.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Machine_unlearning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Machine unlearning">Machine unlearning</a>:</strong> Attempts to remove the influence of specific data from trained systems.</li>
+          </ul>
+          <p>Differential privacy:</p>
+          <div class="formula-display" aria-label="Differential privacy definition">
+            <code>P[M(D) in S] &lt;= exp(epsilon) P[M(D') in S] + delta</code>
+          </div>
+          <p>for neighbouring datasets <code>D</code>, <code>D'</code>.</p>
+        </section>
+
+        <section>
+          <h2>23.5 Fairness and governance</h2>
+          <p>Understand:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Demographic parity:</strong> Requires positive prediction rates to be similar across groups.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Equalized_odds" target="_blank" rel="noopener noreferrer" title="Wikipedia: Equalized odds">Equalized odds</a>:</strong> Requires error rates such as true-positive and false-positive rates to be similar across groups.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Equal_opportunity" target="_blank" rel="noopener noreferrer" title="Wikipedia: Equal opportunity">Equal opportunity</a>:</strong> Focuses on equal true-positive rates across groups.</li>
+            <li><strong>Predictive parity:</strong> Requires predicted-positive cases to have similar precision across groups.</li>
+            <li><strong>Calibration across groups:</strong> Checks whether confidence means the same thing for different groups.</li>
+            <li><strong>Subgroup evaluation:</strong> Measures performance across meaningful slices instead of only aggregate metrics.</li>
+            <li><strong>Dataset documentation:</strong> Records data provenance, collection limits, consent, labeling, coverage, and known risks.</li>
+            <li><strong>Model cards:</strong> Summarize intended use, evaluation, limitations, risk controls, and deployment guidance.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Risk_assessment" target="_blank" rel="noopener noreferrer" title="Wikipedia: Risk assessment">Risk assessments</a>:</strong> Identify severity, likelihood, mitigations, residual risk, and responsible owners.</li>
+            <li><strong>Audit trails:</strong> Preserve decision records, model versions, data lineage, evaluations, and approval steps.</li>
+            <li><strong>Human oversight:</strong> Defines when humans review, override, escalate, or stop automated behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Incident_management" target="_blank" rel="noopener noreferrer" title="Wikipedia: Incident management">Incident response</a>:</strong> Plans how to detect, triage, contain, disclose, and remediate failures.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Accountability" target="_blank" rel="noopener noreferrer" title="Wikipedia: Accountability">Accountability</a>:</strong> Assigns responsibility for design choices, approvals, monitoring, and harms.</li>
+            <li><strong>Transparency:</strong> Communicates system purpose, limits, uncertainty, data use, and user-facing implications.</li>
+            <li><strong>Explainability limits:</strong> Recognizes when explanations are incomplete, unstable, misleading, or not causal.</li>
+          </ul>
+          <p>
+            A practical risk workflow is to govern, map, measure, and manage AI risks across the full system lifecycle.
+          </p>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            AI systems fail through data shift, uncertainty, adversarial behavior, privacy leakage, unsafe tool use, unfair outcomes, and weak operational controls. Strong teams treat these as engineering requirements that must be measured, tested, mitigated, documented, and monitored.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain robustness and uncertainty methods, adversarial ML threats, language-model and agent security risks, privacy-preserving training concepts, fairness metrics, documentation practices, oversight mechanisms, and a practical governance workflow for mapping, measuring, and managing AI risk.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../interpretability-and-mechanistic-understanding/index.html">Previous: Interpretability And Mechanistic Understanding</a>
+          <a href="../ai-systems-and-infrastructure/index.html">Next: AI Systems And Infrastructure</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

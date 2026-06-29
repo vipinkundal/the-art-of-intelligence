@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Systems And Infrastructure | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 24</p>
+        <h1>24. AI Systems And Infrastructure</h1>
+        <p class="lesson-summary">
+          A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.
+        </p>
+
+        <section>
+          <h2>System workflow</h2>
+          <div class="lesson-graphic" aria-label="AI systems and infrastructure workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Train at scale</strong>
+                <span>Shard model state, data, activations, and communication across accelerator clusters.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Serve efficiently</strong>
+                <span>Optimize latency, throughput, memory, kernels, batching, caching, and cost per token.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Operate reliably</strong>
+                <span>Version artifacts, monitor behavior, evaluate continuously, collect traces, and recover from incidents.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>24.1 Training systems</h2>
+          <p>Study:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_parallelism" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data parallelism">Data parallelism</a>:</strong> Replicates the model across workers while each worker processes different batches.</li>
+            <li><strong>Distributed data parallel:</strong> Synchronizes gradients across replicas, commonly through all-reduce communication.</li>
+            <li><strong>Fully sharded data parallel:</strong> Shards parameters, gradients, and optimizer states across workers to reduce per-device memory.</li>
+            <li><strong>ZeRO:</strong> Partitions optimizer states, gradients, and parameters across data-parallel ranks.</li>
+            <li><strong>Tensor parallelism:</strong> Splits tensor operations and model layers across devices.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Pipeline_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Pipeline (computing)">Pipeline parallelism</a>:</strong> Splits model layers into stages and pipelines microbatches across devices.</li>
+            <li><strong>Sequence parallelism:</strong> Splits sequence dimensions across devices to reduce memory or communication cost.</li>
+            <li><strong>Context parallelism:</strong> Distributes long-context computation across devices or partitions.</li>
+            <li><strong>Expert parallelism:</strong> Routes sparse mixture-of-experts computation across expert shards.</li>
+            <li><strong>Gradient accumulation:</strong> Accumulates gradients over microbatches to simulate a larger batch size.</li>
+            <li><strong>Activation checkpointing:</strong> Saves memory by recomputing selected activations during backpropagation.</li>
+            <li><strong>Asynchronous data loading:</strong> Keeps accelerators fed by overlapping input loading, preprocessing, and host-to-device transfer.</li>
+            <li><strong>Checkpoint sharding:</strong> Stores model checkpoints in shards suitable for distributed loading and recovery.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Fault_tolerance" target="_blank" rel="noopener noreferrer" title="Wikipedia: Fault tolerance">Fault tolerance</a>:</strong> Recovers from worker failures, preemptions, corrupted checkpoints, or transient infrastructure issues.</li>
+            <li><strong>Network collectives:</strong> Coordinate communication patterns such as reductions, gathers, and scatters across devices.</li>
+            <li><strong>All-reduce:</strong> Aggregates values across workers and returns the result to every worker.</li>
+            <li><strong>All-gather:</strong> Collects shards from all workers so each worker receives the full set.</li>
+            <li><strong>Reduce-scatter:</strong> Reduces values and scatters shards of the reduced result across workers.</li>
+            <li><strong>GPU topology:</strong> Accounts for device interconnects, nodes, links, and bandwidth when placing parallel work.</li>
+            <li><strong>Compute and communication overlap:</strong> Hides communication latency by scheduling communication alongside useful computation.</li>
+          </ul>
+          <p>
+            Modern large-model courses explicitly include FLOPs, memory, arithmetic intensity, GPUs, custom kernels, distributed training, and scaling analysis.
+          </p>
+        </section>
+
+        <section>
+          <h2>24.2 Efficient inference</h2>
+          <p>Learn:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Continuous batching:</strong> Dynamically packs requests into batches as they arrive and finish.</li>
+            <li><strong>Dynamic batching:</strong> Groups requests within a short window to improve hardware utilization.</li>
+            <li><strong>KV caching:</strong> Stores key-value tensors from prior tokens to avoid recomputing attention history.</li>
+            <li><strong>Paged KV cache:</strong> Manages KV memory in blocks to reduce fragmentation and improve serving throughput.</li>
+            <li><strong>Prefix caching:</strong> Reuses cached computation for shared prompt prefixes.</li>
+            <li><strong>Quantization:</strong> Reduces numeric precision to lower memory bandwidth, storage, and compute cost.</li>
+            <li><strong>GPTQ-style post-training quantization:</strong> Quantizes pretrained weights with calibration data and approximate second-order correction.</li>
+            <li><strong>AWQ-style activation-aware quantization:</strong> Preserves important weight channels based on activation sensitivity.</li>
+            <li><strong>SmoothQuant concepts:</strong> Smooths activation outliers into weights to make lower-precision inference easier.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Speculative_decoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Speculative decoding">Speculative decoding</a>:</strong> Uses a smaller draft model and verifies tokens with a larger model to reduce latency.</li>
+            <li><strong>Tensor parallel serving:</strong> Splits inference computation across multiple accelerators.</li>
+            <li><strong>Pipeline serving:</strong> Serves model stages across devices, often trading latency for capacity.</li>
+            <li><strong>Disaggregated prefill and decode:</strong> Separates prompt processing from token generation to optimize each phase independently.</li>
+            <li><strong>Request scheduling:</strong> Chooses which requests run, batch, preempt, or resume under latency and memory constraints.</li>
+            <li><strong>Memory offloading:</strong> Moves weights, caches, or intermediate state between device, host, and storage tiers.</li>
+            <li><strong>Model compilation:</strong> Lowers model graphs into optimized kernels or execution plans.</li>
+            <li><strong>Kernel fusion:</strong> Combines operations into fewer kernels to reduce memory traffic and launch overhead.</li>
+            <li><strong>CUDA and Triton fundamentals:</strong> Provide the programming model behind many custom GPU kernels.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Key performance concepts</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Network_throughput" target="_blank" rel="noopener noreferrer" title="Wikipedia: Network throughput">Throughput</a>:</strong> Amount of work completed per unit time.</li>
+            <li><strong>Time to first token:</strong> Delay before the first generated token is returned.</li>
+            <li><strong>Inter-token latency:</strong> Delay between successive generated tokens.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tail_latency" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tail latency">Tail latency</a>:</strong> Slow-end latency, often measured at p95, p99, or worse percentiles.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Memory_bandwidth" target="_blank" rel="noopener noreferrer" title="Wikipedia: Memory bandwidth">Memory bandwidth</a>:</strong> Rate at which data moves between memory and compute units.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Roofline_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Roofline model">Arithmetic intensity</a>:</strong> Ratio of compute operations to memory traffic.</li>
+            <li><strong>Compute utilization:</strong> Fraction of available accelerator compute actually used.</li>
+            <li><strong>Tokens per second:</strong> Generation or processing rate for token workloads.</li>
+            <li><strong>Cost per million tokens:</strong> Serving cost normalized by token volume.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Energy_consumption" target="_blank" rel="noopener noreferrer" title="Wikipedia: Energy consumption">Energy use</a>:</strong> Power and energy required to train or serve the system.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>24.3 MLOps and LLMOps</h2>
+          <p>Understand:</p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_version_control" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data version control">Data versioning</a>:</strong> Tracks datasets, splits, preprocessing, labels, and lineage over time.</li>
+            <li><strong>Experiment tracking:</strong> Records runs, metrics, hyperparameters, code versions, artifacts, and notes.</li>
+            <li><strong>Model registries:</strong> Manage model versions, metadata, approvals, promotion, and deployment status.</li>
+            <li><strong>Feature stores:</strong> Provide governed, reusable features for training and serving.</li>
+            <li><strong>Reproducible pipelines:</strong> Make data processing, training, evaluation, and deployment repeatable.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="noopener noreferrer" title="Wikipedia: Continuous integration">Continuous integration</a>:</strong> Tests model code, data transforms, pipelines, and system contracts before release.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Continuous_deployment" target="_blank" rel="noopener noreferrer" title="Wikipedia: Continuous deployment">Continuous deployment</a>:</strong> Releases models and services through automated, controlled deployment paths.</li>
+            <li><strong>Shadow deployment:</strong> Runs a candidate system beside production without serving user-visible results.</li>
+            <li><strong>Canary deployment:</strong> Gradually sends a small traffic slice to a new model before broader rollout.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/A/B_testing" target="_blank" rel="noopener noreferrer" title="Wikipedia: A/B testing">A/B testing</a>:</strong> Compares variants under live or controlled traffic with defined metrics and guardrails.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Concept_drift" target="_blank" rel="noopener noreferrer" title="Wikipedia: Concept drift">Drift detection</a>:</strong> Detects input, label, prediction, or performance distribution changes.</li>
+            <li><strong>Monitoring:</strong> Tracks reliability, latency, cost, quality, safety, and data health in production.</li>
+            <li><strong>Evaluation pipelines:</strong> Run repeatable offline and online evaluations for models, prompts, and retrieval systems.</li>
+            <li><strong>Prompt versioning:</strong> Tracks prompt templates, system messages, tools, policies, and evaluation results.</li>
+            <li><strong>Retrieval-index versioning:</strong> Versions embeddings, chunking, metadata, documents, and index configurations.</li>
+            <li><strong>Trace collection:</strong> Captures request flows, tool calls, retrieval results, model outputs, and latency spans.</li>
+            <li><strong>Feedback collection:</strong> Gathers human ratings, corrections, implicit signals, and failure reports.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Rollback" target="_blank" rel="noopener noreferrer" title="Wikipedia: Rollback">Rollback</a>:</strong> Returns to a known-good model, prompt, index, or service version after a failure.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Incident_management" target="_blank" rel="noopener noreferrer" title="Wikipedia: Incident management">Incident management</a>:</strong> Defines detection, triage, ownership, mitigation, communication, and postmortems.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Model quality depends on the surrounding system. Training infrastructure controls scale and reliability, inference infrastructure controls latency and cost, and operations infrastructure controls reproducibility, monitoring, deployment safety, and recovery.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to explain major training parallelism strategies, key collective communication patterns, inference caching and batching methods, quantization and compilation concepts, performance metrics, deployment strategies, versioning needs, monitoring workflows, and incident-management practices for AI systems.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../ai-safety-security-privacy-and-governance/index.html">Previous: AI Safety, Security, Privacy And Governance</a>
+          <a href="../research-methodology/index.html">Next: Research Methodology</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

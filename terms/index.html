@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Term | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../index.html#terms">Terms</a>
+        <a href="../index.html#lessons">Lessons</a>
+        <a href="../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="term-detail-main">
+      <article id="term-detail" class="term-detail-card" aria-live="polite">
+        <p class="eyebrow">AI term</p>
+        <h1>Loading term...</h1>
+      </article>
+    </main>
+
+    <script>
+      const terms = [
+        {
+          term: "Linear Algebra",
+          category: "Mathematical Foundations",
+          definition: "The math of vectors, matrices, tensors, and transformations used to represent and move information through AI models.",
+          example: "Embeddings are vectors, neural network weights are matrices, and similarity search often uses dot products.",
+          whyItMatters: "Linear algebra is how AI systems store meaning, transform data, compare similarity, and compute model layers efficiently.",
+          mentalModel: "Think of it as a coordinate system for information. A model turns words, images, or signals into vectors and then moves those vectors through matrix operations.",
+          lessonHref: "../lessons/mathematical-foundations/linear-algebra/index.html"
+        },
+        {
+          term: "Calculus",
+          category: "Mathematical Foundations",
+          definition: "The math of change, including derivatives, gradients, and approximations used to understand how outputs respond to inputs or parameters.",
+          example: "Gradient descent uses derivatives to decide how model weights should change to reduce loss.",
+          whyItMatters: "Training depends on knowing which direction changes the model toward better predictions.",
+          mentalModel: "Calculus tells you the slope of the error surface so optimization can take a useful next step.",
+          lessonHref: "../lessons/mathematical-foundations/calculus-and-matrix-calculus/index.html"
+        },
+        {
+          term: "Probability",
+          category: "Mathematical Foundations",
+          definition: "The math of uncertainty, including events, random variables, distributions, expectation, variance, and Bayesian reasoning.",
+          example: "A classifier can output probabilities for several labels instead of only one fixed answer.",
+          whyItMatters: "AI systems often act under uncertainty, so probability helps represent confidence, risk, noise, and expected outcomes.",
+          mentalModel: "Instead of saying only what will happen, probability describes how likely each possible outcome is.",
+          lessonHref: "../lessons/mathematical-foundations/probability/index.html"
+        },
+        {
+          term: "Statistics",
+          category: "Mathematical Foundations",
+          definition: "The practice of learning from data using estimation, uncertainty, tests, intervals, experimental design, and model diagnostics.",
+          example: "A model evaluation report can use confidence intervals and calibration checks to decide whether a result is reliable.",
+          whyItMatters: "Statistics helps you avoid overtrusting noisy results and measure whether a model improvement is real.",
+          mentalModel: "Statistics turns samples into evidence, while also keeping track of how uncertain that evidence is.",
+          lessonHref: "../lessons/mathematical-foundations/statistics/index.html"
+        },
+        {
+          term: "Optimization",
+          category: "Mathematical Foundations",
+          definition: "The process of choosing parameters or decisions that minimize loss, maximize reward, or satisfy constraints.",
+          example: "Training a neural network uses optimization to adjust weights so prediction error decreases.",
+          whyItMatters: "Most AI learning is an optimization problem: define what better means, then search for settings that improve it.",
+          mentalModel: "Imagine walking downhill on a landscape where height is error. Optimization chooses each step.",
+          lessonHref: "../lessons/mathematical-foundations/optimization/index.html"
+        },
+        {
+          term: "Information Theory",
+          category: "Mathematical Foundations",
+          definition: "The math of uncertainty, surprise, compression, and information flow between variables or distributions.",
+          example: "Cross-entropy loss trains a classifier by comparing the predicted probability distribution with the correct label distribution.",
+          whyItMatters: "It explains losses, compression, token prediction, uncertainty, and how much one signal tells us about another.",
+          mentalModel: "Information theory measures how surprising a message is and how efficiently it can be represented.",
+          lessonHref: "../lessons/mathematical-foundations/information-theory/index.html"
+        },
+        {
+          term: "Discrete Mathematics",
+          category: "Mathematical Foundations",
+          definition: "The study of countable structures such as sets, graphs, trees, logic, proofs, automata, and algorithms.",
+          example: "Search, planning, graph reasoning, and complexity analysis all rely on discrete mathematics.",
+          whyItMatters: "Many AI systems use graphs, rules, tokens, states, and algorithms that are discrete rather than continuous.",
+          mentalModel: "Discrete math is the toolkit for reasoning about separate objects and the relationships between them.",
+          lessonHref: "../lessons/mathematical-foundations/discrete-mathematics-theoretical-computer-science/index.html"
+        },
+        {
+          term: "Artificial Intelligence",
+          category: "Foundations",
+          definition: "Software that performs tasks that usually require human judgment, such as understanding language, recognizing patterns, or making decisions.",
+          example: "A support assistant that reads a question and suggests a useful answer is using AI.",
+          whyItMatters: "This is the umbrella idea behind machine learning, generative models, search, planning, and agent systems.",
+          mentalModel: "AI is software that uses patterns, rules, or learned behavior to produce useful decisions or outputs.",
+          lessonHref: "../lessons/foundations/what-is-ai/index.html"
+        },
+        {
+          term: "Data",
+          category: "Foundations",
+          definition: "The examples, measurements, text, images, or records an AI system learns from or uses to make a decision.",
+          example: "A house-price model may learn from past sale prices, locations, sizes, and room counts.",
+          whyItMatters: "The quality, coverage, and bias of data strongly shape what an AI system can learn and where it fails.",
+          mentalModel: "Data is the evidence the system receives before it learns or answers."
+        },
+        {
+          term: "Dataset",
+          category: "Foundations",
+          definition: "A structured collection of data used for training, testing, or evaluating a model.",
+          example: "A spreadsheet of customer messages with labels like billing, technical, or cancellation is a dataset.",
+          whyItMatters: "Datasets define the examples a model sees and the benchmark used to judge performance.",
+          mentalModel: "A dataset is the training and testing material for the model, like a workbook plus answer key."
+        },
+        {
+          term: "Model",
+          category: "Machine Learning",
+          definition: "A system that has learned patterns from data and can use those patterns to make predictions or generate outputs.",
+          example: "A model can learn from past emails and predict whether a new email is spam.",
+          whyItMatters: "The model is the learned part of an AI system, and its behavior depends on architecture, training data, and objective.",
+          mentalModel: "A model is a compressed set of learned patterns that turns input into output."
+        },
+        {
+          term: "Training",
+          category: "Machine Learning",
+          definition: "The process of showing a model examples so it can adjust itself and improve at a task.",
+          example: "Training a vision model means showing it many images and the correct labels.",
+          whyItMatters: "Training is where the system learns behavior from examples, feedback, losses, or rewards.",
+          mentalModel: "Training is practice with feedback: the model tries, measures error, and updates.",
+          lessonHref: "../lessons/machine-learning/training-a-model/index.html"
+        },
+        {
+          term: "Inference",
+          category: "Machine Learning",
+          definition: "The moment when a trained model is used to produce an answer, prediction, classification, or generated result.",
+          example: "When you ask a chatbot a question and it replies, that reply is produced during inference.",
+          whyItMatters: "Inference is the production path users experience, so latency, cost, safety, and reliability matter there.",
+          mentalModel: "Training is learning; inference is using what was learned."
+        },
+        {
+          term: "Feature",
+          category: "Machine Learning",
+          definition: "A piece of input information that helps a model learn or make a prediction.",
+          example: "For predicting delivery time, distance, traffic, and weather can be features.",
+          whyItMatters: "Good features make useful patterns easier for models to learn, especially in classical machine learning.",
+          mentalModel: "A feature is one clue the model can use."
+        },
+        {
+          term: "Label",
+          category: "Machine Learning",
+          definition: "The answer or category attached to an example so the model can learn what correct output looks like.",
+          example: "In a dataset of dog and cat photos, each photo's label says dog or cat.",
+          whyItMatters: "Labels provide supervised feedback, so label quality directly affects model quality.",
+          mentalModel: "A label is the answer key attached to a training example."
+        },
+        {
+          term: "Overfitting",
+          category: "Machine Learning",
+          definition: "When a model memorizes training examples too closely and performs poorly on new examples.",
+          example: "A student who memorizes practice questions but fails changed questions is overfitting.",
+          whyItMatters: "Overfitting makes a model look good in training but unreliable in real use.",
+          mentalModel: "The model learned the homework answers instead of the underlying skill."
+        },
+        {
+          term: "Neural Network",
+          category: "Machine Learning",
+          definition: "A model made of connected layers that transform inputs step by step to learn complex patterns.",
+          example: "Neural networks are commonly used for image recognition and language models.",
+          whyItMatters: "Neural networks power most modern deep learning systems because they can learn flexible representations.",
+          mentalModel: "Each layer rewrites the input into a more useful form until the final layer can make a prediction.",
+          lessonHref: "../lessons/deep-learning/neural-networks/index.html"
+        },
+        {
+          term: "Transformer",
+          category: "Generative AI",
+          definition: "A neural network design that is especially good at working with sequences like text, code, audio, and image patches.",
+          example: "Modern language models use transformers to understand which words relate to each other.",
+          whyItMatters: "Transformers are the core architecture behind many current language, vision-language, and code models.",
+          mentalModel: "A transformer lets each token look at other tokens and decide which relationships matter.",
+          lessonHref: "../lessons/generative-ai/transformers/index.html"
+        },
+        {
+          term: "Token",
+          category: "Generative AI",
+          definition: "A small chunk of text that a language model reads or writes, often a word, part of a word, punctuation, or symbol.",
+          example: "The sentence 'AI is useful' may be split into several tokens before the model reads it.",
+          whyItMatters: "Tokenization affects context length, cost, speed, and how a model represents language.",
+          mentalModel: "Tokens are the pieces of text the model actually sees."
+        },
+        {
+          term: "Embedding",
+          category: "Generative AI",
+          definition: "A numeric representation of meaning that lets software compare text, images, or other data by similarity.",
+          example: "Search can use embeddings to find articles that mean the same thing even if they use different words.",
+          whyItMatters: "Embeddings make semantic search, clustering, recommendation, and retrieval possible.",
+          mentalModel: "An embedding places meaning into coordinates so similar things land near each other."
+        },
+        {
+          term: "Prompt",
+          category: "Generative AI",
+          definition: "The instruction, question, context, or examples given to a generative AI model before it responds.",
+          example: "Asking 'summarize this article in five bullets' is a prompt.",
+          whyItMatters: "Prompts shape model behavior at inference time and can include goals, constraints, examples, and context.",
+          mentalModel: "A prompt is the task brief the model reads before answering."
+        },
+        {
+          term: "RAG",
+          category: "Generative AI",
+          definition: "Retrieval-augmented generation: a pattern where an AI system first finds relevant information, then uses it to answer.",
+          example: "A company chatbot can search policy documents before answering an employee question.",
+          whyItMatters: "RAG helps models answer from current or private sources without relying only on memorized training data.",
+          mentalModel: "RAG is open-book generation: retrieve the right notes first, then write the answer from them.",
+          lessonHref: "../lessons/retrieval-search-and-rag/index.html"
+        },
+        {
+          term: "Agent",
+          category: "AI Systems",
+          definition: "An AI system that can choose steps, use tools, inspect results, and continue working toward a goal.",
+          example: "An agent might search files, edit code, run tests, and report what changed.",
+          whyItMatters: "Agents connect model reasoning to multi-step work in real software environments.",
+          mentalModel: "An agent is a model wrapped in a loop: plan, act, observe, adjust.",
+          lessonHref: "../lessons/ai-systems/agents-and-tools/index.html"
+        },
+        {
+          term: "Tool Use",
+          category: "AI Systems",
+          definition: "When an AI system calls external functions, apps, APIs, databases, or commands to complete a task.",
+          example: "A travel assistant may call a flight API instead of guessing ticket prices.",
+          whyItMatters: "Tool use lets AI systems get fresh data, perform actions, and avoid guessing when an external source can answer.",
+          mentalModel: "The model decides when it needs a tool, then reads the tool result before continuing."
+        },
+        {
+          term: "Evaluation",
+          category: "AI Systems",
+          definition: "The process of checking whether an AI system is correct, reliable, useful, and safe for its intended task.",
+          example: "A summarizer can be evaluated by checking accuracy, missing facts, and unsupported claims.",
+          whyItMatters: "Evaluation is how teams detect regressions, compare approaches, and decide whether an AI system is ready.",
+          mentalModel: "Evaluation is the scorecard and inspection process for AI behavior."
+        }
+      ];
+
+      function termSlug(term) {
+        return term
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "");
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const selectedSlug = params.get("term") || "";
+      const selectedTerm = terms.find((item) => termSlug(item.term) === selectedSlug);
+      const detail = document.querySelector("#term-detail");
+
+      if (!selectedTerm) {
+        detail.innerHTML = `
+          <p class="eyebrow">AI term</p>
+          <h1>Term not found</h1>
+          <p class="lesson-summary">Choose a term from the glossary to open its information page.</p>
+          <div class="term-detail-actions">
+            <a href="../index.html#terms">Back to terms</a>
+          </div>
+        `;
+      } else {
+        document.title = `${selectedTerm.term} | The Art of Intelligence`;
+        const lessonLink = selectedTerm.lessonHref
+          ? `<a class="related-lesson-link">Open related lesson</a>`
+          : "";
+
+        detail.innerHTML = `
+          <p class="eyebrow">${selectedTerm.category}</p>
+          <h1>${selectedTerm.term}</h1>
+          <p class="lesson-summary">${selectedTerm.definition}</p>
+
+          <section class="lesson-graphic" aria-label="${selectedTerm.term} concept flow">
+            <h2>How to think about it</h2>
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Meaning</strong>
+                <span>${selectedTerm.mentalModel}</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Example</strong>
+                <span>${selectedTerm.example}</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Why it matters</strong>
+                <span>${selectedTerm.whyItMatters}</span>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Plain explanation</h2>
+            <p>${selectedTerm.mentalModel}</p>
+            <p>${selectedTerm.whyItMatters}</p>
+          </section>
+
+          <section>
+            <h2>Example</h2>
+            <p>${selectedTerm.example}</p>
+          </section>
+
+          <div class="term-detail-actions">
+            <a href="../index.html#terms">Back to terms</a>
+            ${lessonLink}
+          </div>
+        `;
+
+        const relatedLessonLink = detail.querySelector(".related-lesson-link");
+        if (relatedLessonLink) {
+          relatedLessonLink.setAttribute("href", selectedTerm.lessonHref);
+        }
+      }
+    </script>
+  </body>
+</html>

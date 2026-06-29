@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Research Methodology | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 25</p>
+        <h1>25. Research Methodology</h1>
+        <p class="lesson-summary">
+          Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.
+        </p>
+
+        <section>
+          <h2>Research workflow</h2>
+          <div class="lesson-graphic" aria-label="AI research methodology workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Read critically</strong>
+                <span>Find the problem, assumptions, contribution, missing controls, and claim being tested.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Reproduce carefully</strong>
+                <span>Recreate baselines, control seeds and compute, and check whether results survive implementation details.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Evaluate honestly</strong>
+                <span>Run ablations, report uncertainty, inspect failures, and separate exploratory from confirmatory evidence.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>To understand AI research</h2>
+          <p>
+            Strong research reading is not passive. You should be able to turn a paper into a set of testable assumptions, experimental controls, reproduction steps, and possible falsification tests.
+          </p>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>How to search the literature:</strong> Track related work through citations, surveys, benchmark leaderboards, authors, labs, and recurring problem settings.</li>
+            <li><strong>How to read equations:</strong> Translate symbols into data, parameters, objectives, distributions, estimators, and algorithmic steps.</li>
+            <li><strong>How to reconstruct missing assumptions:</strong> Identify what must be true about data, labels, compute, optimization, and evaluation for the claim to hold.</li>
+            <li><strong>How to identify the actual contribution:</strong> Separate a new objective, architecture, dataset, training recipe, evaluation protocol, system trick, or analysis result.</li>
+            <li><strong>How to distinguish architecture, objective, data and compute effects:</strong> Check whether gains come from model design or from changed scale, data, training budget, or tuning.</li>
+            <li><strong>How to reproduce a baseline:</strong> Rebuild the comparison method with matching preprocessing, hyperparameters, compute, seeds, and evaluation code.</li>
+            <li><strong>How to design ablations:</strong> Remove or vary one component at a time to test whether each claimed part matters.</li>
+            <li><strong>How to control random seeds:</strong> Run enough seeds and report variance when optimization noise can change conclusions.</li>
+            <li><strong>How to report uncertainty:</strong> Use confidence intervals, standard deviations, bootstrap estimates, or paired tests instead of single-number claims.</li>
+            <li><strong>How to avoid benchmark contamination:</strong> Check overlap between train data, pretraining data, validation data, test sets, and public benchmark examples.</li>
+            <li><strong>How to perform qualitative error analysis:</strong> Inspect failures, clusters of mistakes, edge cases, and examples that contradict the headline metric.</li>
+            <li><strong>How to perform statistical significance testing:</strong> Test whether observed differences are larger than expected from sampling or run-to-run variability.</li>
+            <li><strong>How to document negative results:</strong> Record failed hypotheses, weak ablations, and non-improvements so the research process stays honest.</li>
+            <li><strong>How to separate exploratory and confirmatory experiments:</strong> Treat hypothesis generation differently from final tests chosen before looking at results.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>A paper-reading template</h2>
+          <ol class="lesson-list dense-list topic-detail-list">
+            <li><strong>What problem is being solved?</strong> Name the task, setting, constraint, and practical motivation.</li>
+            <li><strong>Why do existing methods fail?</strong> Identify the stated gap and whether the evidence actually supports it.</li>
+            <li><strong>What exactly is new?</strong> Locate the contribution in the method, data, objective, system, analysis, or benchmark.</li>
+            <li><strong>Is the innovation in the data, objective, architecture, training or evaluation?</strong> Classify the source of the claimed gain.</li>
+            <li><strong>What assumptions are required?</strong> List assumptions about data distribution, labels, compute, access, model scale, or deployment context.</li>
+            <li><strong>What is the strongest baseline?</strong> Compare against the best relevant prior method under fair conditions.</li>
+            <li><strong>Is compute controlled?</strong> Check training budget, inference cost, hardware, search effort, and tuning budget.</li>
+            <li><strong>Are ablations sufficient?</strong> Verify that each important component is tested independently.</li>
+            <li><strong>Are evaluation data contaminated?</strong> Look for benchmark leakage, duplicated examples, pretraining overlap, or tuned-on-test behavior.</li>
+            <li><strong>Can the result be reproduced?</strong> Check code, data, seeds, environment, hyperparameters, and exact evaluation scripts.</li>
+            <li><strong>Where does the method fail?</strong> Study error cases, limitations, scaling limits, and out-of-distribution behavior.</li>
+            <li><strong>What experiment could falsify the main claim?</strong> Design a test that would make the central claim weaker if it failed.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Common research failure modes</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Unfair baselines:</strong> The new method receives more tuning, data, compute, or implementation care than comparisons.</li>
+            <li><strong>Metric overfitting:</strong> The method improves one benchmark number while degrading robustness, calibration, cost, or user-visible quality.</li>
+            <li><strong>Hidden confounds:</strong> Multiple variables change at once, making it unclear what caused the improvement.</li>
+            <li><strong>Underreported variance:</strong> A single lucky run is treated as a stable result.</li>
+            <li><strong>Contaminated evaluation:</strong> Test examples leak through training data, benchmark iteration, prompt tuning, or public solution exposure.</li>
+            <li><strong>Unsupported generalization:</strong> A claim from one dataset, model size, or domain is presented as broadly true.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Research methodology protects you from over-reading papers, copying weak claims, and mistaking benchmark movement for understanding. It also makes you a better builder because you can design experiments that reveal whether an idea works, why it works, and when it fails.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to read an AI paper, identify its real contribution, reconstruct assumptions, evaluate baselines and compute controls, design ablations, report uncertainty, detect contamination risks, document negative results, and propose an experiment that could falsify the main claim.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../ai-systems-and-infrastructure/index.html">Previous: AI Systems And Infrastructure</a>
+          <a href="../logical-and-problem-solving-patterns/index.html">Next: Logical And Problem-Solving Patterns</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

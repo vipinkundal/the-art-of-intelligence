@@ -51,32 +51,32 @@
           <h2>4.1 Probabilistic graphical models</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Bayesian networks:</strong> Directed graphs that represent probabilistic cause-effect or dependency structure between variables.</li>
-            <li><strong>Markov random fields:</strong> Undirected graphs that model variables through local compatibility rather than directed causes.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bayesian network">Bayesian networks</a>:</strong> Directed graphs that represent probabilistic cause-effect or dependency structure between variables.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Markov_random_field" target="_blank" rel="noopener noreferrer" title="Wikipedia: Markov random field">Markov random fields</a>:</strong> Undirected graphs that model variables through local compatibility rather than directed causes.</li>
             <li><strong>Factor graphs:</strong> Bipartite graphs that separate variables from factor functions, making inference algorithms easier to express.</li>
-            <li><strong>Conditional random fields:</strong> Discriminative graphical models that predict structured outputs conditioned on observed inputs.</li>
-            <li><strong>Conditional independence:</strong> States when two variables become unrelated after another variable is known.</li>
-            <li><strong>D-separation:</strong> A graph rule for reading conditional independence relationships from a Bayesian network.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Conditional_random_field" target="_blank" rel="noopener noreferrer" title="Wikipedia: Conditional random field">Conditional random fields</a>:</strong> Discriminative graphical models that predict structured outputs conditioned on observed inputs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Conditional_independence" target="_blank" rel="noopener noreferrer" title="Wikipedia: Conditional independence">Conditional independence</a>:</strong> States when two variables become unrelated after another variable is known.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bayesian network">D-separation</a>:</strong> A graph rule for reading conditional independence relationships from a Bayesian network.</li>
             <li><strong>Exact inference:</strong> Computes posterior probabilities exactly, usually only feasible for smaller or structured graphs.</li>
-            <li><strong>Approximate inference:</strong> Trades exactness for tractability using sampling, optimization, or message approximations.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Approximate_inference" target="_blank" rel="noopener noreferrer" title="Wikipedia: Approximate inference">Approximate inference</a>:</strong> Trades exactness for tractability using sampling, optimization, or message approximations.</li>
           </ul>
         </section>
 
         <section>
           <h2>Important algorithms</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Variable elimination:</strong> Sums out hidden variables one at a time to answer probability queries.</li>
-            <li><strong>Sum-product algorithm:</strong> Passes messages to compute marginal probabilities efficiently on tree-structured graphs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Variable_elimination" target="_blank" rel="noopener noreferrer" title="Wikipedia: Variable elimination">Variable elimination</a>:</strong> Sums out hidden variables one at a time to answer probability queries.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Belief_propagation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Belief propagation">Sum-product algorithm</a>:</strong> Passes messages to compute marginal probabilities efficiently on tree-structured graphs.</li>
             <li><strong>Max-product algorithm:</strong> Finds the most likely assignment instead of marginal probabilities.</li>
-            <li><strong>Belief propagation:</strong> Updates local beliefs by passing messages between connected variables and factors.</li>
-            <li><strong>Loopy belief propagation:</strong> Applies message passing to graphs with cycles, often useful but not always exact.</li>
-            <li><strong>Junction-tree algorithm:</strong> Converts a graph into a tree of variable clusters to enable exact inference.</li>
-            <li><strong>Expectation-maximization:</strong> Alternates between estimating hidden variables and updating model parameters.</li>
-            <li><strong>Variational inference:</strong> Approximates a hard posterior with a simpler distribution found through optimization.</li>
-            <li><strong>Gibbs sampling:</strong> Samples one variable at a time from its conditional distribution.</li>
-            <li><strong>Metropolis-Hastings:</strong> Proposes random moves and accepts them with a probability that preserves the target distribution.</li>
-            <li><strong>Hamiltonian Monte Carlo:</strong> Uses gradient-informed proposals to explore continuous posteriors more efficiently.</li>
-            <li><strong>Sequential Monte Carlo:</strong> Tracks a distribution over time using weighted particles and resampling.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Belief_propagation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Belief propagation">Belief propagation</a>:</strong> Updates local beliefs by passing messages between connected variables and factors.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Belief_propagation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Belief propagation">Loopy belief propagation</a>:</strong> Applies message passing to graphs with cycles, often useful but not always exact.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Junction_tree_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Junction tree algorithm">Junction-tree algorithm</a>:</strong> Converts a graph into a tree of variable clusters to enable exact inference.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Expectation–maximization algorithm">Expectation-maximization</a>:</strong> Alternates between estimating hidden variables and updating model parameters.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Variational_Bayesian_methods" target="_blank" rel="noopener noreferrer" title="Wikipedia: Variational Bayesian methods">Variational inference</a>:</strong> Approximates a hard posterior with a simpler distribution found through optimization.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Gibbs_sampling" target="_blank" rel="noopener noreferrer" title="Wikipedia: Gibbs sampling">Gibbs sampling</a>:</strong> Samples one variable at a time from its conditional distribution.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Metropolis–Hastings algorithm">Metropolis-Hastings</a>:</strong> Proposes random moves and accepts them with a probability that preserves the target distribution.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hamiltonian Monte Carlo">Hamiltonian Monte Carlo</a>:</strong> Uses gradient-informed proposals to explore continuous posteriors more efficiently.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Particle_filter" target="_blank" rel="noopener noreferrer" title="Wikipedia: Particle filter">Sequential Monte Carlo</a>:</strong> Tracks a distribution over time using weighted particles and resampling.</li>
           </ul>
         </section>
 
@@ -84,15 +84,15 @@
           <h2>4.2 Sequential models and state estimation</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Markov chains:</strong> Model state sequences where the next state depends only on the current state.</li>
-            <li><strong>Hidden Markov models:</strong> Add hidden states that generate observations, useful when the true state is not directly visible.</li>
-            <li><strong>Forward-backward algorithm:</strong> Computes smoothed probabilities over hidden states using past and future evidence.</li>
-            <li><strong>Viterbi decoding:</strong> Finds the single most likely hidden-state path through a sequence.</li>
-            <li><strong>Kalman filter:</strong> Tracks a linear-Gaussian hidden state as new noisy observations arrive.</li>
-            <li><strong>Extended Kalman filter:</strong> Linearizes nonlinear dynamics around the current estimate.</li>
-            <li><strong>Unscented Kalman filter:</strong> Uses carefully chosen sample points to handle nonlinear transformations more accurately.</li>
-            <li><strong>Particle filter:</strong> Represents hidden-state uncertainty with weighted samples instead of a single Gaussian.</li>
-            <li><strong>Dynamic Bayesian networks:</strong> Extend graphical models across time steps to represent temporal dependencies.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Markov_chain" target="_blank" rel="noopener noreferrer" title="Wikipedia: Markov chain">Markov chains</a>:</strong> Model state sequences where the next state depends only on the current state.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hidden_Markov_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hidden Markov model">Hidden Markov models</a>:</strong> Add hidden states that generate observations, useful when the true state is not directly visible.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Forward%E2%80%93backward_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Forward–backward algorithm">Forward-backward algorithm</a>:</strong> Computes smoothed probabilities over hidden states using past and future evidence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Viterbi_decoder" target="_blank" rel="noopener noreferrer" title="Wikipedia: Viterbi decoder">Viterbi decoding</a>:</strong> Finds the single most likely hidden-state path through a sequence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Kalman_filter" target="_blank" rel="noopener noreferrer" title="Wikipedia: Kalman filter">Kalman filter</a>:</strong> Tracks a linear-Gaussian hidden state as new noisy observations arrive.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Extended_Kalman_filter" target="_blank" rel="noopener noreferrer" title="Wikipedia: Extended Kalman filter">Extended Kalman filter</a>:</strong> Linearizes nonlinear dynamics around the current estimate.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Kalman_filter" target="_blank" rel="noopener noreferrer" title="Wikipedia: Kalman filter">Unscented Kalman filter</a>:</strong> Uses carefully chosen sample points to handle nonlinear transformations more accurately.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Particle_filter" target="_blank" rel="noopener noreferrer" title="Wikipedia: Particle filter">Particle filter</a>:</strong> Represents hidden-state uncertainty with weighted samples instead of a single Gaussian.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Dynamic_Bayesian_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Dynamic Bayesian network">Dynamic Bayesian networks</a>:</strong> Extend graphical models across time steps to represent temporal dependencies.</li>
           </ul>
         </section>
 

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Causal Inference | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 21</p>
+        <h1>21. Causal Inference</h1>
+        <p class="lesson-summary">
+          Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.
+        </p>
+
+        <section>
+          <h2>Causal reasoning workflow</h2>
+          <div class="lesson-graphic" aria-label="Causal inference workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Model assumptions</strong>
+                <span>Represent variables, arrows, hidden causes, and the question the data alone cannot settle.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Identify effects</strong>
+                <span>Use adjustment, instruments, discontinuities, panels, or experiments to isolate causal signal.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Estimate and decide</strong>
+                <span>Estimate treatment effects, quantify uncertainty, and check whether the answer supports action.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Predictive correlation is not causation</h2>
+          <p>
+            A model can predict an outcome from variables that are only associated with it. Causal inference asks what would happen if an intervention changed one variable while the rest of the system followed the causal structure.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learn</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank" rel="noopener noreferrer" title="Wikipedia: Directed acyclic graph">Directed acyclic graphs</a>:</strong> Represent causal assumptions with arrows and no directed cycles.</li>
+            <li><strong>Structural causal models:</strong> Describe each variable as a function of its direct causes plus noise.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Confounding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Confounding">Confounding</a>:</strong> Occurs when a common cause influences both the treatment and the outcome.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Collider_(statistics)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Collider (statistics)">Colliders</a>:</strong> Variables caused by two other variables; conditioning on them can create misleading associations.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Mediation_(statistics)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Mediation (statistics)">Mediators</a>:</strong> Variables that transmit part of a treatment effect from cause to outcome.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bayesian_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bayesian network">D-separation</a>:</strong> Reads conditional independence from graph structure by checking whether paths are blocked.</li>
+            <li><strong>Back-door criterion:</strong> Identifies adjustment sets that block non-causal paths from treatment to outcome.</li>
+            <li><strong>Front-door criterion:</strong> Identifies effects through a mediator when direct confounding blocks back-door adjustment.</li>
+            <li><strong>Interventions:</strong> Replace the usual mechanism for a variable with an externally set value.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Do-calculus" target="_blank" rel="noopener noreferrer" title="Wikipedia: Do-calculus">Do-calculus</a>:</strong> Uses rules for transforming interventional expressions into estimable observational quantities.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Counterfactual_conditional" target="_blank" rel="noopener noreferrer" title="Wikipedia: Counterfactual conditional">Counterfactuals</a>:</strong> Ask what would have happened to the same unit under a different treatment or action.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Rubin_causal_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Rubin causal model">Potential outcomes</a>:</strong> Represent each unit's possible outcomes under different treatment states.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Average_treatment_effect" target="_blank" rel="noopener noreferrer" title="Wikipedia: Average treatment effect">Average treatment effects</a>:</strong> Measure the expected difference between treated and untreated potential outcomes.</li>
+            <li><strong>Propensity scores:</strong> Estimate the probability of receiving treatment given observed covariates.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Inverse_probability_weighting" target="_blank" rel="noopener noreferrer" title="Wikipedia: Inverse probability weighting">Inverse-probability weighting</a>:</strong> Reweights units so treatment groups resemble a balanced pseudo-population.</li>
+            <li><strong>Doubly robust estimation:</strong> Combines outcome modeling and propensity weighting so one correct model can still identify the effect.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Instrumental_variables" target="_blank" rel="noopener noreferrer" title="Wikipedia: Instrumental variables">Instrumental variables</a>:</strong> Use a source of treatment variation that affects the outcome only through treatment.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Regression_discontinuity_design" target="_blank" rel="noopener noreferrer" title="Wikipedia: Regression discontinuity design">Regression discontinuity</a>:</strong> Estimates causal effects near a threshold that assigns treatment.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Difference_in_differences" target="_blank" rel="noopener noreferrer" title="Wikipedia: Difference in differences">Difference-in-differences</a>:</strong> Compares outcome changes over time between treated and comparison groups.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Exploratory_causal_analysis" target="_blank" rel="noopener noreferrer" title="Wikipedia: Exploratory causal analysis">Causal discovery</a>:</strong> Attempts to infer causal graph structure from data plus assumptions.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Interventions and effects</h2>
+          <div class="formula-stack">
+            <div class="formula-row">
+              <span>Intervention</span>
+              <code>P(Y | do(X = x))</code>
+            </div>
+            <div class="formula-row">
+              <span>Average treatment effect</span>
+              <code>ATE = E[Y(1) - Y(0)]</code>
+            </div>
+            <div class="formula-row">
+              <span>Back-door adjustment</span>
+              <code>P(Y | do(X = x)) = sum_z P(Y | X = x, Z = z) P(Z = z)</code>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Identification strategies</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Randomized_experiment" target="_blank" rel="noopener noreferrer" title="Wikipedia: Randomized experiment">Randomized experiments</a>:</strong> Break confounding by assigning treatment independently of potential outcomes.</li>
+            <li><strong>Covariate adjustment:</strong> Controls for observed confounders that block back-door paths.</li>
+            <li><strong>Matching:</strong> Compares treated and untreated units with similar covariates or propensity scores.</li>
+            <li><strong>Weighting:</strong> Creates a balanced weighted population for treatment-effect estimation.</li>
+            <li><strong>Instrumental-variable estimation:</strong> Uses exogenous treatment variation when direct adjustment is not enough.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Regression_discontinuity_design" target="_blank" rel="noopener noreferrer" title="Wikipedia: Regression discontinuity design">Regression discontinuity designs</a>:</strong> Focus on units close to an assignment cutoff.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Difference_in_differences" target="_blank" rel="noopener noreferrer" title="Wikipedia: Difference in differences">Difference-in-differences designs</a>:</strong> Use pre/post changes to remove stable baseline differences.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Sensitivity_analysis" target="_blank" rel="noopener noreferrer" title="Wikipedia: Sensitivity analysis">Sensitivity analysis</a>:</strong> Tests how strong hidden confounding would need to be to change the conclusion.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Causal discovery</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>PC algorithm:</strong> Uses conditional-independence tests to recover a graph equivalence class under assumptions such as causal sufficiency.</li>
+            <li><strong>GES:</strong> Searches over graph structures with a score-based greedy procedure.</li>
+            <li><strong>NOTEARS:</strong> Casts DAG learning as continuous optimization with an acyclicity constraint.</li>
+            <li><strong>Assumption checks:</strong> Causal discovery depends heavily on faithfulness, no hidden confounding, temporal order, and measurement quality.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            Causal reasoning is especially important for medicine, economics, policy, scientific discovery, and decision-making systems. It helps AI teams decide whether a model's recommendation would actually improve an outcome rather than merely predict who already has a high or low risk.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to distinguish prediction from causal effect estimation, read simple DAGs, identify confounders, colliders, mediators, back-door and front-door conditions, explain interventions and counterfactuals, estimate average treatment effects with weighting or doubly robust methods, and recognize when IV, regression discontinuity, difference-in-differences, or causal discovery methods are appropriate.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../graph-machine-learning/index.html">Previous: Graph Machine Learning</a>
+          <a href="../interpretability-and-mechanistic-understanding/index.html">Next: Interpretability And Mechanistic Understanding</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

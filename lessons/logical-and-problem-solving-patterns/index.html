@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logical And Problem-Solving Patterns To Recognize | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span>The Art of Intelligence</span>
+        </a>
+        <a href="../../index.html#terms">Terms</a>
+        <a href="../index.html">Lessons</a>
+        <a href="../../index.html#roadmap">Roadmap</a>
+      </nav>
+    </header>
+
+    <main class="lesson-main">
+      <article class="lesson-article phase-article">
+        <p class="eyebrow">Phase 26</p>
+        <h1>26. Logical And Problem-Solving Patterns To Recognize</h1>
+        <p class="lesson-summary">
+          These reasoning, algorithmic, foundation-model, and scientific patterns recur across nearly every branch of AI. Recognizing them helps you understand papers, design systems, debug failures, and transfer ideas between fields.
+        </p>
+
+        <section>
+          <h2>Pattern recognition workflow</h2>
+          <div class="lesson-graphic" aria-label="Problem-solving pattern workflow">
+            <div class="graphic-flow">
+              <div class="graphic-node">
+                <strong>Name the pattern</strong>
+                <span>Identify whether a problem needs reasoning, search, optimization, evidence, decomposition, or control.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Match the mechanism</strong>
+                <span>Choose a method such as dynamic programming, sampling, retrieval, verification, or ablation.</span>
+              </div>
+              <div class="graphic-node">
+                <strong>Test the result</strong>
+                <span>Check assumptions, compare baselines, inspect failures, and look for counterexamples.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Reasoning patterns</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Deduction:</strong> Derives conclusions that must follow from stated premises.</li>
+            <li><strong>Induction:</strong> Generalizes from observed examples to broader patterns.</li>
+            <li><strong>Abduction:</strong> Chooses the best explanation for incomplete or surprising evidence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Analogy" target="_blank" rel="noopener noreferrer" title="Wikipedia: Analogy">Analogy</a>:</strong> Transfers structure from a familiar problem to a new one.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Bayesian_inference" target="_blank" rel="noopener noreferrer" title="Wikipedia: Bayesian inference">Bayesian updating</a>:</strong> Revises beliefs as evidence changes likelihoods.</li>
+            <li><strong>Causal intervention:</strong> Asks what would happen if a variable were actively changed.</li>
+            <li><strong>Counterfactual analysis:</strong> Studies what would have happened under a different condition.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Case-based_reasoning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Case-based reasoning">Case-based reasoning</a>:</strong> Solves new problems by adapting prior similar cases.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Means%E2%80%93ends_analysis" target="_blank" rel="noopener noreferrer" title="Wikipedia: Means–ends analysis">Means-ends analysis</a>:</strong> Compares current state to goal state and chooses actions that reduce the gap.</li>
+            <li><strong>Hypothesis generation and testing:</strong> Proposes explanations and designs tests that can support or reject them.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Algorithmic patterns</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Divide_and_conquer" target="_blank" rel="noopener noreferrer" title="Wikipedia: Divide and conquer">Divide and conquer</a>:</strong> Splits a problem into smaller independent subproblems and combines their answers.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Dynamic_programming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Dynamic programming">Dynamic programming</a>:</strong> Reuses solutions to overlapping subproblems.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Memoization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Memoization">Memoization</a>:</strong> Caches repeated computations so they are not recomputed.</li>
+            <li><strong>Greedy optimization:</strong> Makes locally best choices when that strategy is justified or useful as a heuristic.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Branch_and_bound" target="_blank" rel="noopener noreferrer" title="Wikipedia: Branch and bound">Branch and bound</a>:</strong> Searches candidate solutions while pruning regions that cannot beat the best known answer.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Backtracking" target="_blank" rel="noopener noreferrer" title="Wikipedia: Backtracking">Backtracking</a>:</strong> Builds partial solutions and retreats when constraints are violated.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Local_consistency" target="_blank" rel="noopener noreferrer" title="Wikipedia: Local consistency">Constraint propagation</a>:</strong> Uses known constraints to shrink the set of possible values.</li>
+            <li><strong>Relaxation:</strong> Replaces a hard problem with an easier approximate version.</li>
+            <li><strong>Alternating optimization:</strong> Optimizes one set of variables at a time while holding others fixed.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Expectation–maximization algorithm">Expectation-maximization</a>:</strong> Alternates between estimating hidden variables and updating model parameters.</li>
+            <li><strong>Sampling:</strong> Uses random draws to approximate distributions, expectations, or search spaces.</li>
+            <li><strong>Importance weighting:</strong> Reweights examples or samples to correct for distribution mismatch.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ensemble_averaging_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ensemble averaging (machine learning)">Ensemble averaging</a>:</strong> Combines multiple predictors to reduce variance or improve robustness.</li>
+            <li><strong>Bagging:</strong> Trains models on resampled data and averages predictions.</li>
+            <li><strong>Boosting:</strong> Trains later models to focus on examples earlier models handled poorly.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Self-play" target="_blank" rel="noopener noreferrer" title="Wikipedia: Self-play">Self-play</a>:</strong> Generates training experience through agents competing or interacting with versions of themselves.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Curriculum_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Curriculum learning">Curriculum learning</a>:</strong> Orders tasks from easier to harder to shape learning.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Modern foundation-model patterns</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Retrieve then generate:</strong> Finds external context before producing an answer.</li>
+            <li><strong>Decompose then solve:</strong> Breaks a task into smaller subproblems before answering.</li>
+            <li><strong>Generate then verify:</strong> Produces candidate answers and checks them with tests, critics, tools, or constraints.</li>
+            <li><strong>Generate then rank:</strong> Samples candidates and selects the best one by score or preference.</li>
+            <li><strong>Propose then critique:</strong> Creates a plan or answer, then reviews it for flaws.</li>
+            <li><strong>Plan then execute:</strong> Builds an explicit sequence of actions before using tools or taking steps.</li>
+            <li><strong>Route then specialize:</strong> Sends inputs to specialized models, tools, experts, prompts, or workflows.</li>
+            <li><strong>Sample then vote:</strong> Aggregates multiple sampled reasoning paths or answers.</li>
+            <li><strong>Search over reasoning traces:</strong> Explores candidate chains of thought, plans, or proof paths before choosing one.</li>
+            <li><strong>Use tools for exact operations:</strong> Delegates computation, lookup, code execution, retrieval, or structured actions to tools.</li>
+            <li><strong>Ground claims in external evidence:</strong> Connects answers to retrieved documents, databases, citations, logs, or observations.</li>
+            <li><strong>Maintain explicit state:</strong> Stores task state, intermediate results, memory, or plans outside the model context alone.</li>
+            <li><strong>Escalate uncertain cases to humans:</strong> Routes ambiguous, high-risk, or low-confidence cases to human review.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Scientific patterns</h2>
+          <ul class="lesson-list two-column-list dense-list topic-detail-list">
+            <li><strong>Establish a simple baseline:</strong> Start with the simplest credible comparison before adding complexity.</li>
+            <li><strong>Change one variable at a time:</strong> Isolate causes by controlling all other factors.</li>
+            <li><strong>Run ablations:</strong> Remove or vary components to test whether they actually matter.</li>
+            <li><strong>Separate training and evaluation data:</strong> Prevent evaluation from leaking into training or tuning.</li>
+            <li><strong>Measure variance across runs:</strong> Check whether results survive random seeds, sampling, initialization, and data order.</li>
+            <li><strong>Inspect failures, not only averages:</strong> Look at examples, slices, and edge cases behind aggregate metrics.</li>
+            <li><strong>Test out-of-distribution behaviour:</strong> Evaluate whether behavior holds beyond the original data distribution.</li>
+            <li><strong>Attempt to falsify your own hypothesis:</strong> Design tests that could prove your preferred explanation wrong.</li>
+            <li><strong>Distinguish correlation from causation:</strong> Avoid treating predictive association as evidence of causal effect.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Why it matters for AI</h2>
+          <p>
+            AI techniques often look unrelated until you recognize the shared pattern underneath. A retrieval system, an agent workflow, an RL algorithm, a causal study, and a scientific paper can all use the same deeper moves: decompose, search, update, verify, compare, intervene, and measure.
+          </p>
+        </section>
+
+        <section>
+          <h2>Learning target</h2>
+          <p>
+            You should be able to recognize recurring reasoning, algorithmic, foundation-model, and scientific patterns, explain when each pattern is useful, and use them to read AI methods, design experiments, diagnose failures, and choose practical solution strategies.
+          </p>
+        </section>
+
+        <nav class="lesson-nav" aria-label="Lesson navigation">
+          <a href="../research-methodology/index.html">Previous: Research Methodology</a>
+          <a href="../representative-research-paper-sequence/index.html">Next: Representative Research-Paper Sequence</a>
+          <a href="../index.html">All lessons</a>
+        </nav>
+      </article>
+    </main>
+  </body>
+</html>

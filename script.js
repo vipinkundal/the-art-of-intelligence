@@ -189,11 +189,19 @@ const terms = [
 ];
 
 const termsGrid = document.querySelector("#terms-grid");
+const termResults = document.querySelector("#term-results");
 const searchInput = document.querySelector("#term-search");
 const filterButtons = document.querySelectorAll(".filter-button");
 const termCount = document.querySelector("#term-count");
 
 let activeCategory = "all";
+
+function termSlug(term) {
+  return term
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 function renderTerms() {
   const query = searchInput.value.trim().toLowerCase();
@@ -203,26 +211,57 @@ function renderTerms() {
     return matchesCategory && searchableText.includes(query);
   });
 
-  termsGrid.innerHTML = visibleTerms
+  if (termsGrid) {
+    termsGrid.innerHTML = visibleTerms
+      .map((item) => {
+        const termHref = `terms/index.html?term=${termSlug(item.term)}`;
+
+        return `
+          <a class="term-card" href="${termHref}" aria-label="Open ${item.term} information page">
+            <span class="term-tag">${item.label}</span>
+            <h3>${item.term}</h3>
+            <p>${item.definition}</p>
+            <div class="term-example"><strong>Example:</strong> ${item.example}</div>
+            <span class="term-lesson-link">Open term page</span>
+          </a>
+        `;
+      })
+      .join("");
+
+    const termWord = visibleTerms.length === 1 ? "term" : "terms";
+    termCount.textContent = `${visibleTerms.length} ${termWord} shown`;
+    return;
+  }
+
+  if (!termResults) {
+    return;
+  }
+
+  if (!query) {
+    termResults.innerHTML = "";
+    termCount.textContent = "Search a term above, or use an infographic link.";
+    return;
+  }
+
+  const previewTerms = visibleTerms.slice(0, 6);
+  termResults.innerHTML = previewTerms
     .map((item) => {
-      const lessonLink = item.lessonHref
-        ? `<a class="term-lesson-link" href="${item.lessonHref}">Open lesson</a>`
-        : "";
+      const termHref = `terms/index.html?term=${termSlug(item.term)}`;
 
       return `
-        <article class="term-card">
-          <span class="term-tag">${item.label}</span>
-          <h3>${item.term}</h3>
-          <p>${item.definition}</p>
-          <div class="term-example"><strong>Example:</strong> ${item.example}</div>
-          ${lessonLink}
-        </article>
+        <a class="term-result-link" href="${termHref}">
+          <span>${item.label}</span>
+          <strong>${item.term}</strong>
+        </a>
       `;
     })
     .join("");
 
+  const shownCount = previewTerms.length;
   const termWord = visibleTerms.length === 1 ? "term" : "terms";
-  termCount.textContent = `${visibleTerms.length} ${termWord} shown`;
+  termCount.textContent = visibleTerms.length
+    ? `${shownCount} of ${visibleTerms.length} matching ${termWord}`
+    : "No matching terms yet";
 }
 
 filterButtons.forEach((button) => {
@@ -237,6 +276,6 @@ filterButtons.forEach((button) => {
   });
 });
 
-searchInput.addEventListener("input", renderTerms);
+searchInput?.addEventListener("input", renderTerms);
 
 renderTerms();

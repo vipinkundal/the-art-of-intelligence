@@ -285,6 +285,12 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+.section-heading p:not(.eyebrow) {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
 h2 {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.4rem);
@@ -340,6 +346,15 @@ h2 {
   background: var(--surface-strong);
   padding: 1rem;
   box-shadow: 0 10px 24px rgba(23, 32, 38, 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.term-card:hover,
+.term-card:focus-visible {
+  border-color: rgba(31, 122, 92, 0.45);
+  box-shadow: 0 18px 38px rgba(23, 32, 38, 0.1);
+  outline: none;
+  transform: translateY(-2px);
 }
 
 .term-card h3 {
@@ -381,6 +396,221 @@ h2 {
 
 .term-lesson-link:hover {
   color: var(--ink);
+}
+
+.infographic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.infographic-card {
+  min-height: 310px;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(31, 122, 92, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 122, 92, 0.07) 1px, transparent 1px),
+    var(--surface-strong);
+  background-size: 28px 28px;
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(23, 32, 38, 0.06);
+}
+
+.infographic-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.infographic-card h3 {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.08;
+}
+
+.infographic-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.compact-flow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.infographic-step {
+  display: flex;
+  min-height: 150px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+  padding: 0.85rem;
+}
+
+.infographic-step:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.infographic-step:nth-child(3) {
+  border-top-color: var(--plum);
+}
+
+.infographic-step:nth-child(4) {
+  border-top-color: var(--gold);
+}
+
+.infographic-step strong {
+  font-size: 1rem;
+}
+
+.infographic-step span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.infographic-step:hover,
+.infographic-step:focus-visible,
+.loop-diagram a:hover,
+.loop-diagram a:focus-visible,
+.agent-cycle a:hover,
+.agent-cycle a:focus-visible,
+.route-step:hover,
+.route-step:focus-visible,
+.term-result-link:hover,
+.term-result-link:focus-visible {
+  border-color: rgba(31, 122, 92, 0.45);
+  color: var(--green);
+  outline: none;
+}
+
+.loop-diagram,
+.agent-cycle {
+  display: grid;
+  min-height: 210px;
+  gap: 0.75rem;
+}
+
+.loop-diagram {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.loop-diagram a,
+.agent-cycle a {
+  display: grid;
+  min-height: 88px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+  color: var(--ink);
+  font-weight: 850;
+  text-align: center;
+}
+
+.agent-cycle {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+}
+
+.agent-cycle a {
+  min-height: 132px;
+}
+
+.infographic-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 1rem;
+  border-bottom: 2px solid var(--green);
+  color: var(--green);
+  font-weight: 800;
+}
+
+.term-search-panel {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.term-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.term-result-link {
+  display: grid;
+  min-height: 86px;
+  gap: 0.25rem;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 0.8rem;
+}
+
+.term-result-link span {
+  color: var(--green);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.term-result-link strong {
+  color: var(--ink);
+  font-size: 1.08rem;
+}
+
+.term-detail-main {
+  max-width: 920px;
+}
+
+.term-detail-card {
+  border-left: 4px solid var(--green);
+  background: rgba(255, 253, 248, 0.72);
+  padding: 3rem 0 1rem 2rem;
+}
+
+.term-detail-card h1 {
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+}
+
+.term-detail-card section {
+  margin-top: 2.25rem;
+}
+
+.term-detail-card h2 {
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+}
+
+.term-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.term-detail-actions a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  font-weight: 800;
+  padding: 0.6rem 0.85rem;
+}
+
+.term-detail-actions a:hover {
+  border-color: var(--green);
+  color: var(--green);
 }
 
 .lesson-grid,
@@ -523,6 +753,64 @@ h2 {
   font-weight: 800;
 }
 
+.route-map {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.route-step {
+  display: flex;
+  min-height: 220px;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-top: 4px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(23, 32, 38, 0.06);
+}
+
+.route-step:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.route-step:nth-child(3) {
+  border-top-color: var(--plum);
+}
+
+.route-step:nth-child(4) {
+  border-top-color: var(--gold);
+}
+
+.route-step:nth-child(5) {
+  border-top-color: var(--red);
+}
+
+.route-step span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fffdf8;
+  font-size: 0.9rem;
+  font-weight: 850;
+}
+
+.route-step strong {
+  font-size: 1.08rem;
+  line-height: 1.15;
+}
+
+.route-step small {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 .lesson-resource a:hover {
   color: var(--ink);
 }
@@ -537,6 +825,16 @@ h2 {
 
 .lesson-list strong {
   color: var(--ink);
+}
+
+.lesson-list strong .wiki-term {
+  border-bottom: 1px solid rgba(31, 122, 92, 0.45);
+  color: inherit;
+}
+
+.lesson-list strong .wiki-term:hover {
+  border-bottom-color: currentColor;
+  color: var(--green);
 }
 
 .topic-detail-list li {
@@ -734,7 +1032,15 @@ h2 {
   .terms-grid,
   .lesson-grid,
   .lesson-library,
+  .infographic-grid,
+  .term-results,
   .roadmap-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .compact-flow,
+  .agent-cycle,
+  .route-map {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -783,6 +1089,9 @@ h2 {
   .terms-grid,
   .lesson-grid,
   .lesson-library,
+  .infographic-grid,
+  .term-results,
+  .route-map,
   .roadmap-list {
     grid-template-columns: 1fr;
   }
@@ -794,7 +1103,10 @@ h2 {
 
   .two-column-list,
   .formula-row,
-  .graphic-flow {
+  .graphic-flow,
+  .infographic-flow,
+  .compact-flow,
+  .agent-cycle {
     grid-template-columns: 1fr;
   }
 

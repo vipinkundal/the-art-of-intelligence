@@ -59,7 +59,7 @@
             <li><strong>Queries, keys and values:</strong> Attention compares queries to keys, then mixes the matching values.</li>
             <li><strong>Self-attention:</strong> Lets tokens in one sequence exchange information with each other.</li>
             <li><strong>Cross-attention:</strong> Lets one sequence attend to another, such as decoder tokens attending to encoder outputs.</li>
-            <li><strong>Multi-head attention:</strong> Runs several attention heads in parallel so different relationships can be captured.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Attention_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Attention (machine learning)">Multi-head attention</a>:</strong> Runs several attention heads in parallel so different relationships can be captured.</li>
             <li><strong>Masked causal attention:</strong> Prevents tokens from seeing future tokens during autoregressive generation.</li>
             <li><strong>Feed-forward networks:</strong> Per-token MLP blocks that transform features after attention mixes context.</li>
             <li><strong>Residual streams:</strong> Carry information across layers through skip connections.</li>
@@ -104,12 +104,12 @@
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Character tokenization:</strong> Splits text into characters, simple but often inefficient for long contexts.</li>
             <li><strong>Word tokenization:</strong> Splits by words, intuitive but brittle for rare words and multilingual text.</li>
-            <li><strong>Byte-pair encoding:</strong> Learns frequent subword merges to balance vocabulary size and sequence length.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Byte-pair_encoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Byte-pair encoding">Byte-pair encoding</a>:</strong> Learns frequent subword merges to balance vocabulary size and sequence length.</li>
             <li><strong>WordPiece:</strong> Builds subword units that improve likelihood under a language-model objective.</li>
             <li><strong>Unigram language-model tokenization:</strong> Chooses a probabilistic vocabulary of subwords and tokenizes by likelihood.</li>
             <li><strong>Byte-level tokenization:</strong> Represents text through bytes so every string can be encoded.</li>
             <li><strong>Vocabulary construction:</strong> Chooses which tokens exist and therefore what the model can represent efficiently.</li>
-            <li><strong>Unicode normalization:</strong> Standardizes visually similar text forms before tokenization.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Unicode_equivalence" target="_blank" rel="noopener noreferrer" title="Wikipedia: Unicode equivalence">Unicode normalization</a>:</strong> Standardizes visually similar text forms before tokenization.</li>
             <li><strong>Special tokens:</strong> Mark boundaries, roles, padding, tools, images, or control instructions.</li>
             <li><strong>Token fertility:</strong> Measures how many tokens are needed for a word or phrase, affecting cost and fairness across languages.</li>
             <li><strong>Multilingual tokenization:</strong> Balances vocabulary coverage across scripts and languages.</li>
@@ -125,7 +125,7 @@
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Multi-query attention:</strong> Shares keys and values across heads to reduce cache memory.</li>
-            <li><strong>Grouped-query attention:</strong> Shares keys and values across groups of query heads for a quality-efficiency trade-off.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Transformer_(deep_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Transformer (deep learning)">Grouped-query attention</a>:</strong> Shares keys and values across groups of query heads for a quality-efficiency trade-off.</li>
             <li><strong>Sparse attention:</strong> Attends to a subset of token pairs instead of all pairs.</li>
             <li><strong>Sliding-window attention:</strong> Restricts attention to nearby tokens for efficient long sequences.</li>
             <li><strong>Block-sparse attention:</strong> Uses structured blocks of allowed attention for faster computation.</li>
@@ -156,10 +156,10 @@
             <li><strong>Data mixtures:</strong> Balance sources such as web, code, math, books, dialogue, and domain data.</li>
             <li><strong>Data filtering:</strong> Removes low-quality, unsafe, duplicate, or irrelevant examples.</li>
             <li><strong>Deduplication:</strong> Reduces repeated examples that can waste compute or increase memorization.</li>
-            <li><strong>Contamination:</strong> Occurs when benchmark or evaluation data leaks into training.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Contamination" target="_blank" rel="noopener noreferrer" title="Wikipedia: Contamination">Contamination</a>:</strong> Occurs when benchmark or evaluation data leaks into training.</li>
             <li><strong>Curriculum ordering:</strong> Controls data order or difficulty over training.</li>
-            <li><strong>Synthetic data:</strong> Uses generated examples to add coverage, supervision, or practice tasks.</li>
-            <li><strong>Scaling laws:</strong> Empirical relationships between model size, data, compute, and loss.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Synthetic_data" target="_blank" rel="noopener noreferrer" title="Wikipedia: Synthetic data">Synthetic data</a>:</strong> Uses generated examples to add coverage, supervision, or practice tasks.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Power_law" target="_blank" rel="noopener noreferrer" title="Wikipedia: Power law">Scaling laws</a>:</strong> Empirical relationships between model size, data, compute, and loss.</li>
             <li><strong>Compute-optimal training:</strong> Balances model size and data size for a fixed compute budget.</li>
             <li><strong>Checkpointing and recovery:</strong> Saves model and optimizer state so long training runs can resume.</li>
           </ul>
@@ -181,14 +181,14 @@
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Continued pretraining:</strong> Keeps training the base objective on new or domain-specific data.</li>
-            <li><strong>Domain adaptation:</strong> Specializes a model for a field such as law, medicine, code, or finance.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Domain_adaptation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Domain adaptation">Domain adaptation</a>:</strong> Specializes a model for a field such as law, medicine, code, or finance.</li>
             <li><strong>Supervised fine-tuning:</strong> Trains on input-output examples that demonstrate desired behavior.</li>
             <li><strong>Instruction tuning:</strong> Fine-tunes on tasks phrased as instructions so the model follows user requests better.</li>
             <li><strong>Rejection-sampling fine-tuning:</strong> Samples outputs, filters or ranks them, then fine-tunes on the better examples.</li>
             <li><strong>Reward modelling:</strong> Trains a model to score outputs according to human or AI preferences.</li>
             <li><strong>Preference modelling:</strong> Learns from comparisons such as chosen versus rejected responses.</li>
-            <li><strong>RLHF:</strong> Uses human feedback and reinforcement learning to align outputs with preferences.</li>
-            <li><strong>RLAIF:</strong> Uses AI feedback instead of, or alongside, human feedback for preference signals.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reinforcement learning from human feedback">RLHF</a>:</strong> Uses human feedback and reinforcement learning to align outputs with preferences.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reinforcement learning from human feedback">RLAIF</a>:</strong> Uses AI feedback instead of, or alongside, human feedback for preference signals.</li>
             <li><strong>PPO-based post-training:</strong> Uses policy-gradient reinforcement learning to optimize a reward model.</li>
             <li><strong>Direct Preference Optimization:</strong> Optimizes preference pairs directly without a separate RL loop.</li>
             <li><strong>Identity Preference Optimization:</strong> A preference-optimization variant focused on preserving desired model identity or style behavior.</li>
@@ -222,7 +222,7 @@
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Adapters:</strong> Add small trainable modules while keeping most base weights frozen.</li>
-            <li><strong>LoRA:</strong> Learns low-rank weight updates instead of fine-tuning full matrices.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/LoRA_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: LoRA (machine learning)">LoRA</a>:</strong> Learns low-rank weight updates instead of fine-tuning full matrices.</li>
             <li><strong>QLoRA:</strong> Combines low-rank adaptation with quantized base weights to save memory.</li>
             <li><strong>Prefix tuning:</strong> Learns prefix vectors that steer model behavior without changing core weights.</li>
             <li><strong>Prompt tuning:</strong> Learns soft prompt embeddings for a task.</li>
@@ -248,7 +248,7 @@
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong>Greedy decoding:</strong> Always selects the highest-probability next token.</li>
-            <li><strong>Beam search:</strong> Keeps several high-scoring partial sequences while decoding.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Beam search">Beam search</a>:</strong> Keeps several high-scoring partial sequences while decoding.</li>
             <li><strong>Temperature sampling:</strong> Adjusts randomness by sharpening or flattening token probabilities.</li>
             <li><strong>Top-k sampling:</strong> Samples only from the k most likely next tokens.</li>
             <li><strong>Top-p, or nucleus, sampling:</strong> Samples from the smallest token set whose probability mass reaches p.</li>
@@ -257,7 +257,7 @@
             <li><strong>Diverse beam search:</strong> Encourages beams to explore different output options.</li>
             <li><strong>Constrained decoding:</strong> Forces outputs to satisfy required words, structure, or rules.</li>
             <li><strong>Grammar-constrained decoding:</strong> Restricts generation to a formal grammar such as JSON or SQL syntax.</li>
-            <li><strong>Speculative decoding:</strong> Uses a small draft model and a larger verifier model to speed generation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Speculative_decoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Speculative decoding">Speculative decoding</a>:</strong> Uses a small draft model and a larger verifier model to speed generation.</li>
             <li><strong>Parallel decoding:</strong> Predicts or validates multiple tokens or branches at once.</li>
             <li><strong>Best-of-N:</strong> Generates multiple candidates and selects the best by a scorer or verifier.</li>
             <li><strong>Reranking:</strong> Reorders generated candidates after decoding.</li>

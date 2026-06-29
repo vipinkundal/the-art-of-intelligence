@@ -112,11 +112,8 @@ async function auditHomepageLessonLinks() {
   const homepagePath = path.join(rootDir, "index.html");
   const homepageHtml = await readFile(homepagePath, "utf8");
 
-  for (const topicPage of topicPages) {
-    const href = path.relative(rootDir, topicPage).replaceAll(path.sep, "/");
-    if (!homepageHtml.includes(`href="${href}"`)) {
-      failures.push(`Homepage does not link topic page: ${href}`);
-    }
+  if (!homepageHtml.includes('href="lessons/index.html"')) {
+    failures.push("Homepage does not link the full lesson library: lessons/index.html");
   }
 }
 
@@ -129,9 +126,11 @@ async function auditGlossaryData() {
   const termCategories = new Set(extractObjectPropertyValues(scriptText, "category"));
   const lessonHrefs = extractObjectPropertyValues(scriptText, "lessonHref");
 
-  for (const category of termCategories) {
-    if (!filterCategories.has(category)) {
-      failures.push(`Glossary term category has no matching filter button: ${category}`);
+  if (filterCategories.size > 0) {
+    for (const category of termCategories) {
+      if (!filterCategories.has(category)) {
+        failures.push(`Glossary term category has no matching filter button: ${category}`);
+      }
     }
   }
 
@@ -241,7 +240,8 @@ function isExternalOrPageOnlyLink(href) {
 }
 
 function resolveHref(fromFile, href) {
-  const [withoutHash] = href.split("#");
+  const [withoutQuery] = href.split("?");
+  const [withoutHash] = withoutQuery.split("#");
   const target = path.resolve(path.dirname(fromFile), withoutHash);
 
   if (target.endsWith(path.sep) || withoutHash.endsWith("/")) {

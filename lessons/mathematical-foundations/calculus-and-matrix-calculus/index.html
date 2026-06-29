@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">1. Mathematical Foundations</p>
-        <h1>1.2 Calculus And Matrix Calculus</h1>
-        <p class="lesson-summary">
-          Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.
-        </p>
-
+    <template data-lesson-page data-eyebrow="1. Mathematical Foundations" data-title="1.2 Calculus And Matrix Calculus" data-summary="Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.">
         <section>
           <h2>The simple idea</h2>
           <p>
@@ -116,7 +99,8 @@
           <a href="../linear-algebra/index.html">Previous: Linear Algebra</a>
           <a href="../probability/index.html">Next: Probability</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>

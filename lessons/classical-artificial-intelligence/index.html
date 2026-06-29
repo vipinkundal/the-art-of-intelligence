@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 3</p>
-        <h1>3. Classical Artificial Intelligence</h1>
-        <p class="lesson-summary">
-          Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 3" data-title="3. Classical Artificial Intelligence" data-summary="Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents." data-article-class="phase-article">
         <section class="lesson-graphic" aria-labelledby="classical-ai-map-title">
           <h2 id="classical-ai-map-title">Classical AI problem-solving loop</h2>
           <div class="graphic-flow" aria-label="Classical AI maps a goal into a model, searches or reasons over options, then chooses an action plan.">
@@ -227,7 +210,8 @@
           <a href="../index.html">All lessons</a>
           <a href="../machine-learning/index.html">Next: Machine Learning</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

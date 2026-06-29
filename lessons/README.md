@@ -47,11 +47,34 @@ lessons/generative-ai/transformers/index.html
 - Keep one lesson topic per folder.
 - Link back to `../../index.html` for the lesson library.
 - Link shared styles with `../../../styles.css`.
+- Use the shared site header and footer placeholders instead of copying navigation or footer HTML.
 - Include a short summary, the simple idea, study items, an example, AI relevance, a learning target, and lesson navigation.
 
 ## Template
 
 Copy `lessons/_template/topic-name/index.html` when starting a new topic page.
+
+The page chrome comes from `site-template.js`. A nested lesson page should keep this structure:
+
+```html
+<div data-site-header data-root="../../../" data-active="lessons"></div>
+<template data-lesson-page data-eyebrow="Phase Name" data-title="Topic Title" data-summary="Short summary.">
+  <section>...</section>
+  <nav class="lesson-nav" aria-label="Lesson navigation">...</nav>
+</template>
+<div data-site-footer></div>
+<script src="../../../site-template.js"></script>
+```
+
+Run `npm run apply:templates` after manual HTML edits if a page accidentally gets copied header or footer markup.
+
+Lesson-card grids come from the shared data in `lesson-data.js`. Phase pages with topic cards should use a placeholder instead of hardcoding cards:
+
+```html
+<div data-phase-card-grid="mathematical-foundations" data-label="Mathematical foundations lessons"></div>
+<script src="../../lesson-data.js"></script>
+<script src="../../site-template.js"></script>
+```
 
 ## Generator
 
@@ -67,7 +90,7 @@ This creates:
 lessons/mathematical-foundations/numerical-methods/index.html
 ```
 
-The generator will not overwrite an existing lesson page. It also links the new topic from the homepage, phase landing page, and main lesson library.
+The generator will not overwrite an existing lesson page. It also links the new topic from its phase landing page and the main lesson library.
 
 Useful content options:
 
@@ -96,7 +119,7 @@ After adding or editing lessons, run:
 npm run check
 ```
 
-The check command validates local scripts, confirms topic pages include the required lesson sections, audits that phase pages exist, checks that topic pages are linked from their phase page, the homepage, and the lesson library, verifies glossary lesson links, and confirms local HTML links resolve to real files.
+The check command validates local scripts, confirms topic pages include the required lesson sections, audits that phase pages exist, checks that topic pages are linked from their phase page and the lesson library, verifies glossary lesson links, confirms shared template usage, and confirms local HTML links resolve to real files.
 
 ## Local Preview
 
@@ -106,4 +129,4 @@ Run the static site locally with:
 npm run serve
 ```
 
-The default local URL is `http://127.0.0.1:8000/index.html`.
+The default local URL is `http://127.0.0.1:57391/index.html`.

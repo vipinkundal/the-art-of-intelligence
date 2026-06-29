@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../index.html#terms">Terms</a>
-        <a href="index.html">Lessons</a>
-        <a href="../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../" data-active="lessons"></div>
 
     <main>
       <section class="lesson-hero" aria-labelledby="lessons-title">
@@ -46,154 +36,24 @@
         </div>
       </section>
 
+      <section class="sequence-callout" aria-labelledby="sequence-callout-title">
+        <div>
+          <p class="eyebrow">Recommended order</p>
+          <h2 id="sequence-callout-title">Use the eight-stage sequence when you want a concrete path.</h2>
+          <p>
+            It turns the broad phase library into a full-stack learning plan: implement models from scratch, build retrieval, evaluate agents, learn serving, then specialize.
+          </p>
+        </div>
+        <a class="all-lessons-link" href="learning-sequence/index.html">Open learning sequence</a>
+      </section>
+
       <section class="phase-library" aria-labelledby="phase-library-title">
         <div class="section-heading">
           <p class="eyebrow">Browse by phase</p>
           <h2 id="phase-library-title">Phase Folders</h2>
         </div>
 
-        <div class="lesson-library">
-          <a class="lesson-link-card compact-card" href="mathematical-foundations/index.html">
-            <span class="term-tag">Phase 1</span>
-            <h2>Mathematical Foundations</h2>
-            <p>Linear algebra, discrete math, proofs, graphs, and other math tools for AI.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="programming-and-systems-foundations/index.html">
-            <span class="term-tag">Phase 2</span>
-            <h2>Programming And Systems Foundations</h2>
-            <p>Python, tensor programming, systems tools, hardware basics, precision, profiling, and reproducibility.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="classical-artificial-intelligence/index.html">
-            <span class="term-tag">Phase 3</span>
-            <h2>Classical Artificial Intelligence</h2>
-            <p>Search, heuristics, state spaces, completeness, optimality, and planning foundations.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="probabilistic-ai/index.html">
-            <span class="term-tag">Phase 4</span>
-            <h2>Probabilistic AI</h2>
-            <p>Graphical models, inference algorithms, sequential models, HMMs, and state estimation.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="foundations/index.html">
-            <span class="term-tag">Basics</span>
-            <h2>Foundations</h2>
-            <p>Plain-language starting points for core AI ideas.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="machine-learning/index.html">
-            <span class="term-tag">Phase 5</span>
-            <h2>Classical Machine Learning</h2>
-            <p>Regression, classification, linear models, SVMs, trees, ensembles, calibration, and losses.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="deep-learning/index.html">
-            <span class="term-tag">Phase 6</span>
-            <h2>Deep Learning Foundations</h2>
-            <p>Neural networks, activations, normalization, CNNs, RNNs, sequence models, and architectures.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="generative-ai/index.html">
-            <span class="term-tag">Phase 7</span>
-            <h2>Transformers And Foundation Models</h2>
-            <p>Transformer blocks, tokenization, efficient attention, pretraining, post-training, LoRA, and decoding.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="retrieval-search-and-rag/index.html">
-            <span class="term-tag">Phase 8</span>
-            <h2>Retrieval, Search And RAG</h2>
-            <p>Classical retrieval, dense search, ANN indexes, reranking, and RAG architecture.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="reasoning-models-and-inference-time-computation/index.html">
-            <span class="term-tag">Phase 9</span>
-            <h2>Reasoning Models And Inference-Time Computation</h2>
-            <p>Reasoning traces, self-consistency, verifier-guided search, tool use, and test-time scaling.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="ai-systems/index.html">
-            <span class="term-tag">Phase 10</span>
-            <h2>Agents And Tool-Using Systems</h2>
-            <p>Agent patterns, tool routing, structured output, recovery policies, permissions, and production safety.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="representation-learning-and-self-supervision/index.html">
-            <span class="term-tag">Phase 11</span>
-            <h2>Representation Learning And Self-Supervision</h2>
-            <p>Word embeddings, metric learning, contrastive objectives, CLIP, masked autoencoders, DINO, and JEPA-style methods.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="generative-modelling/index.html">
-            <span class="term-tag">Phase 12</span>
-            <h2>Generative Modelling</h2>
-            <p>Autoregressive models, VAEs, GANs, normalizing flows, diffusion models, score models, and flow matching.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="state-space-models-and-alternative-sequence-architectures/index.html">
-            <span class="term-tag">Phase 13</span>
-            <h2>State-Space Models And Alternative Sequence Architectures</h2>
-            <p>Linear dynamical systems, structured state spaces, S4, Mamba, gated convolutions, retention, and transformer hybrids.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="mixture-of-experts-models/index.html">
-            <span class="term-tag">Phase 14</span>
-            <h2>Mixture-Of-Experts Models</h2>
-            <p>Sparse MoE layers, expert routing, top-k gating, load balancing, capacity, expert parallelism, and specialization.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="computer-vision/index.html">
-            <span class="term-tag">Phase 15</span>
-            <h2>Computer Vision</h2>
-            <p>Classical vision, detection, segmentation, pose, tracking, depth, vision transformers, 3D reconstruction, and neural rendering.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="speech-audio-and-time-series-ai/index.html">
-            <span class="term-tag">Phase 16</span>
-            <h2>Speech, Audio And Time-Series AI</h2>
-            <p>Signal processing, spectral features, forecasting, speech recognition, vocoders, audio generation, and source separation.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="multimodal-ai/index.html">
-            <span class="term-tag">Phase 17</span>
-            <h2>Multimodal AI</h2>
-            <p>Vision-language learning, multimodal tokenization, fusion, VQA, captioning, document understanding, retrieval, and multimodal agents.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="reinforcement-learning/index.html">
-            <span class="term-tag">Phase 18</span>
-            <h2>Reinforcement Learning</h2>
-            <p>Bandits, MDPs, Bellman equations, tabular RL, DQN, policy gradients, actor-critic methods, offline RL, imitation, and multi-agent RL.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="portfolio/index.html">
-            <span class="term-tag">Phase 19</span>
-            <h2>Portfolio</h2>
-            <p>Projects and notes that show applied skill.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="graph-machine-learning/index.html">
-            <span class="term-tag">Phase 20</span>
-            <h2>Graph Machine Learning</h2>
-            <p>Graph terminology, spectral methods, random walks, PageRank, embeddings, GNNs, knowledge graphs, and graph retrieval.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="causal-inference/index.html">
-            <span class="term-tag">Phase 21</span>
-            <h2>Causal Inference</h2>
-            <p>DAGs, structural causal models, confounding, interventions, do-calculus, treatment effects, and causal discovery.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="interpretability-and-mechanistic-understanding/index.html">
-            <span class="term-tag">Phase 22</span>
-            <h2>Interpretability And Mechanistic Understanding</h2>
-            <p>Model-agnostic explanations, neural attribution, representation probes, circuits, sparse autoencoders, and model editing.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="ai-safety-security-privacy-and-governance/index.html">
-            <span class="term-tag">Phase 23</span>
-            <h2>AI Safety, Security, Privacy And Governance</h2>
-            <p>Robustness, uncertainty, adversarial ML, language-model security, privacy, fairness, governance, and risk management.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="ai-systems-and-infrastructure/index.html">
-            <span class="term-tag">Phase 24</span>
-            <h2>AI Systems And Infrastructure</h2>
-            <p>Distributed training, efficient inference, batching, KV caching, quantization, serving, monitoring, deployment, and LLMOps.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="research-methodology/index.html">
-            <span class="term-tag">Phase 25</span>
-            <h2>Research Methodology</h2>
-            <p>Literature search, equations, assumptions, contributions, baselines, ablations, seeds, uncertainty, and reproducibility.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="logical-and-problem-solving-patterns/index.html">
-            <span class="term-tag">Phase 26</span>
-            <h2>Logical And Problem-Solving Patterns To Recognize</h2>
-            <p>Reasoning, algorithmic, foundation-model, and scientific patterns that recur across AI.</p>
-          </a>
-          <a class="lesson-link-card compact-card" href="representative-research-paper-sequence/index.html">
-            <span class="term-tag">Phase 27</span>
-            <h2>Representative Research-Paper Sequence</h2>
-            <p>A curated backbone of papers across foundations, language models, vision, generation, RL, graphs, sequence models, and interpretability.</p>
-          </a>
-        </div>
+        <div data-lesson-card-grid="phaseCards" data-compact="true"></div>
       </section>
 
       <section class="phase-library" aria-labelledby="topic-library-title">
@@ -202,128 +62,7 @@
           <h2 id="topic-library-title">All Lessons</h2>
         </div>
 
-        <div class="lesson-library" aria-label="Available lessons">
-          <a class="lesson-link-card" href="mathematical-foundations/linear-algebra/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Linear Algebra</h2>
-            <p>Learn vectors, matrices, norms, eigendecomposition, SVD, and the math behind AI models.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/calculus-and-matrix-calculus/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Calculus And Matrix Calculus</h2>
-            <p>Learn derivatives, gradients, Jacobians, Hessians, Taylor approximations, and automatic differentiation.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/probability/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Probability</h2>
-            <p>Understand uncertainty, Bayes' theorem, expectation, variance, common distributions, and sampling.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/statistics/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Statistics</h2>
-            <p>Learn estimation, hypothesis testing, confidence intervals, calibration, and distribution shift.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/optimization/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Optimization</h2>
-            <p>Learn objectives, losses, gradient descent, stochastic optimization, regularization, and constraints.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/information-theory/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Information Theory</h2>
-            <p>Learn entropy, cross-entropy, KL divergence, mutual information, perplexity, and information bottlenecks.</p>
-          </a>
-          <a class="lesson-link-card" href="mathematical-foundations/discrete-mathematics-theoretical-computer-science/index.html">
-            <span class="term-tag">Mathematical Foundations</span>
-            <h2>Discrete Mathematics And Theoretical Computer Science</h2>
-            <p>Study sets, graphs, proofs, automata, computability, complexity, and algorithms for AI systems.</p>
-          </a>
-          <a class="lesson-link-card" href="programming-and-systems-foundations/index.html">
-            <span class="term-tag">Phase 2</span>
-            <h2>Programming And Systems Foundations</h2>
-            <p>Learn the implementation layer behind reliable, efficient AI model code.</p>
-          </a>
-          <a class="lesson-link-card" href="classical-artificial-intelligence/index.html">
-            <span class="term-tag">Phase 3</span>
-            <h2>Classical Artificial Intelligence</h2>
-            <p>Learn search algorithms, heuristics, state-space reasoning, completeness, and optimality.</p>
-          </a>
-          <a class="lesson-link-card" href="probabilistic-ai/index.html">
-            <span class="term-tag">Phase 4</span>
-            <h2>Probabilistic AI</h2>
-            <p>Learn probabilistic graphical models, inference, HMMs, and filtering methods.</p>
-          </a>
-          <a class="lesson-link-card" href="foundations/what-is-ai/index.html">
-            <span class="term-tag">Foundations</span>
-            <h2>What Is AI?</h2>
-            <p>Understand AI as software that recognizes patterns, makes predictions, or generates useful outputs.</p>
-          </a>
-          <a class="lesson-link-card" href="machine-learning/training-a-model/index.html">
-            <span class="term-tag">Machine Learning</span>
-            <h2>Training A Model</h2>
-            <p>Learn how examples, labels, loss, and feedback help a model improve.</p>
-          </a>
-          <a class="lesson-link-card" href="deep-learning/neural-networks/index.html">
-            <span class="term-tag">Deep Learning</span>
-            <h2>Neural Networks</h2>
-            <p>See how layers transform information into predictions.</p>
-          </a>
-          <a class="lesson-link-card" href="generative-ai/transformers/index.html">
-            <span class="term-tag">Generative AI</span>
-            <h2>Transformers</h2>
-            <p>Learn why attention makes modern language models powerful.</p>
-          </a>
-          <a class="lesson-link-card" href="ai-systems/agents-and-tools/index.html">
-            <span class="term-tag">AI Systems</span>
-            <h2>Agents And Tools</h2>
-            <p>Connect model output to actions, APIs, files, and workflows.</p>
-          </a>
-          <a class="lesson-link-card" href="portfolio/ai-projects/index.html">
-            <span class="term-tag">Portfolio</span>
-            <h2>AI Projects</h2>
-            <p>Turn lessons into visible work that proves understanding.</p>
-          </a>
-          <a class="lesson-link-card" href="graph-machine-learning/index.html">
-            <span class="term-tag">Phase 20</span>
-            <h2>Graph Machine Learning</h2>
-            <p>Learn graph terminology, adjacency and Laplacian matrices, spectral graph theory, random walks, PageRank, graph embeddings, GNNs, knowledge graphs, link prediction, and graph-based retrieval.</p>
-          </a>
-          <a class="lesson-link-card" href="causal-inference/index.html">
-            <span class="term-tag">Phase 21</span>
-            <h2>Causal Inference</h2>
-            <p>Learn DAGs, structural causal models, confounding, colliders, mediators, interventions, do-calculus, counterfactuals, treatment effects, propensity scores, doubly robust estimation, natural experiments, and causal discovery.</p>
-          </a>
-          <a class="lesson-link-card" href="interpretability-and-mechanistic-understanding/index.html">
-            <span class="term-tag">Phase 22</span>
-            <h2>Interpretability And Mechanistic Understanding</h2>
-            <p>Learn permutation importance, PDPs, ICE, LIME, SHAP, counterfactuals, saliency maps, integrated gradients, Grad-CAM, probes, activation patching, causal tracing, circuit analysis, sparse autoencoders, and model editing.</p>
-          </a>
-          <a class="lesson-link-card" href="ai-safety-security-privacy-and-governance/index.html">
-            <span class="term-tag">Phase 23</span>
-            <h2>AI Safety, Security, Privacy And Governance</h2>
-            <p>Learn distribution shift, uncertainty, conformal prediction, adversarial examples, data poisoning, agent security, privacy-preserving learning, fairness metrics, model cards, risk assessments, incident response, accountability, transparency, and governance workflows.</p>
-          </a>
-          <a class="lesson-link-card" href="ai-systems-and-infrastructure/index.html">
-            <span class="term-tag">Phase 24</span>
-            <h2>AI Systems And Infrastructure</h2>
-            <p>Learn data, tensor, pipeline, sequence, context and expert parallelism, ZeRO and FSDP, collectives, GPU topology, efficient inference, KV caching, quantization, scheduling, performance metrics, MLOps, LLMOps, deployment strategies, monitoring, rollback, and incident management.</p>
-          </a>
-          <a class="lesson-link-card" href="research-methodology/index.html">
-            <span class="term-tag">Phase 25</span>
-            <h2>Research Methodology</h2>
-            <p>Learn how to search literature, read equations, reconstruct assumptions, identify contributions, reproduce baselines, design ablations, control seeds, report uncertainty, avoid contamination, analyze errors, test significance, document negative results, and separate exploratory from confirmatory experiments.</p>
-          </a>
-          <a class="lesson-link-card" href="logical-and-problem-solving-patterns/index.html">
-            <span class="term-tag">Phase 26</span>
-            <h2>Logical And Problem-Solving Patterns To Recognize</h2>
-            <p>Learn deduction, induction, abduction, Bayesian updating, causal and counterfactual reasoning, dynamic programming, greedy search, sampling, ensembles, retrieve-then-generate, decompose-then-solve, generate-then-verify, tool use, evidence grounding, ablations, and falsification.</p>
-          </a>
-          <a class="lesson-link-card" href="representative-research-paper-sequence/index.html">
-            <span class="term-tag">Phase 27</span>
-            <h2>Representative Research-Paper Sequence</h2>
-            <p>Read a curated paper backbone from the Perceptron and backpropagation through SVMs, random forests, ImageNet, ResNet, word2vec, seq2seq, attention, BERT, GPT-3, Chinchilla, FlashAttention, RAG, DPO, ReAct, Toolformer, CLIP, ViT, diffusion, RL, GNNs, S4, Mamba, and mechanistic interpretability.</p>
-          </a>
-        </div>
+        <div data-lesson-card-grid="topicCards" data-label="Available lessons"></div>
       </section>
 
       <section class="lesson-pattern" aria-labelledby="lesson-pattern-title">
@@ -335,8 +74,8 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
+    <div data-site-footer></div>
+    <script src="../lesson-data.js"></script>
+    <script src="../site-template.js"></script>
   </body>
 </html>

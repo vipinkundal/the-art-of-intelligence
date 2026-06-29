@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../index.html#terms">Terms</a>
-        <a href="../index.html#lessons">Lessons</a>
-        <a href="../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../" data-active="terms"></div>
 
     <main class="term-detail-main">
       <article id="term-detail" class="term-detail-card" aria-live="polite">
@@ -316,5 +306,7 @@
         }
       }
     </script>
+    <div data-site-footer></div>
+    <script src="../site-template.js"></script>
   </body>
 </html>

@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 25</p>
-        <h1>25. Research Methodology</h1>
-        <p class="lesson-summary">
-          Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 25" data-title="25. Research Methodology" data-summary="Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim." data-article-class="phase-article">
         <section>
           <h2>Research workflow</h2>
           <div class="lesson-graphic" aria-label="AI research methodology workflow">
@@ -119,7 +102,8 @@
           <a href="../logical-and-problem-solving-patterns/index.html">Next: Logical And Problem-Solving Patterns</a>
           <a href="../index.html">All lessons</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

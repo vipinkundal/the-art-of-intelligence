@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 15</p>
-        <h1>15. Computer Vision</h1>
-        <p class="lesson-summary">
-          Computer vision covers classical image processing, recognition, detection, segmentation, geometry, reconstruction, and modern visual generation.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 15" data-title="15. Computer Vision" data-summary="Computer vision covers classical image processing, recognition, detection, segmentation, geometry, reconstruction, and modern visual generation." data-article-class="phase-article">
         <section>
           <h2>Vision pipeline</h2>
           <div class="lesson-graphic" aria-label="Computer vision pipeline">
@@ -148,7 +131,8 @@
           <a href="../speech-audio-and-time-series-ai/index.html">Next: Speech, Audio And Time-Series AI</a>
           <a href="../index.html">All lessons</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

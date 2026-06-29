@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">Deep Learning</p>
-        <h1>Neural Networks</h1>
-        <p class="lesson-summary">
-          A neural network is a model made of layers that transform input data into useful predictions or generated outputs.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Deep Learning" data-title="Neural Networks" data-summary="A neural network is a model made of layers that transform input data into useful predictions or generated outputs.">
         <section>
           <h2>The simple idea</h2>
           <p>
@@ -91,7 +74,8 @@
           <a href="../../machine-learning/training-a-model/index.html">Previous: Training A Model</a>
           <a href="../../generative-ai/transformers/index.html">Next: Transformers</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>

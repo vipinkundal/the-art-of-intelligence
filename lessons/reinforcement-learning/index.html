@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 18</p>
-        <h1>18. Reinforcement Learning</h1>
-        <p class="lesson-summary">
-          Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 18" data-title="18. Reinforcement Learning" data-summary="Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation." data-article-class="phase-article">
         <section class="lesson-graphic" aria-labelledby="rl-loop-title">
           <h2 id="rl-loop-title">Reinforcement learning loop</h2>
           <div class="graphic-flow" aria-label="An agent observes a state, takes an action, receives reward and next state, then updates its policy or value estimate.">
@@ -188,7 +171,8 @@
           <a href="../portfolio/index.html">Next: Portfolio</a>
           <a href="../index.html">All lessons</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

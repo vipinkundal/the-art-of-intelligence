@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">Foundations</p>
-        <h1>What Is AI?</h1>
-        <p class="lesson-summary">
-          Artificial intelligence is software designed to do tasks that normally require human judgment, such as recognizing patterns, understanding language, making predictions, or generating content.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Foundations" data-title="What Is AI?" data-summary="Artificial intelligence is software designed to do tasks that normally require human judgment, such as recognizing patterns, understanding language, making predictions, or generating content.">
         <section>
           <h2>The simple idea</h2>
           <p>
@@ -91,7 +74,8 @@
           <a href="../../index.html">All lessons</a>
           <a href="../../machine-learning/training-a-model/index.html">Next: Training A Model</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>

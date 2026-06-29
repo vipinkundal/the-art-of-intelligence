@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recommended Learning Sequence | The Art of Intelligence</title>
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <div data-site-header data-root="../../" data-active="sequence"></div>
+
+    <main>
+      <section class="sequence-hero" aria-labelledby="sequence-title">
+        <div>
+          <p class="eyebrow">Recommended learning sequence</p>
+          <h1 id="sequence-title">A practical route from math to working AI systems.</h1>
+          <p class="intro-text">
+            For a full-stack developer, this ordering maximizes practical progress without sacrificing theory. Build each layer once, measure it, then move forward.
+          </p>
+          <div class="sequence-actions" aria-label="Sequence actions">
+            <a href="#sequence-roadmap">Start the sequence</a>
+            <a href="../index.html">Browse all lessons</a>
+          </div>
+        </div>
+
+        <aside class="sequence-snapshot" aria-label="Sequence summary">
+          <div>
+            <span>01-03</span>
+            <strong>Model foundations</strong>
+            <p>Math, classical ML, deep learning, and transformers from scratch.</p>
+          </div>
+          <div>
+            <span>04-06</span>
+            <strong>Application systems</strong>
+            <p>Retrieval, post-training, and constrained tool-using agents.</p>
+          </div>
+          <div>
+            <span>07-08</span>
+            <strong>Scale and focus</strong>
+            <p>Serving, optimization, monitoring, then one specialization track.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sequence-principles" aria-labelledby="sequence-principles-title">
+        <div class="section-heading">
+          <p class="eyebrow">How to use it</p>
+          <h2 id="sequence-principles-title">Do not only read. Produce evidence.</h2>
+        </div>
+
+        <div class="graphic-flow">
+          <div class="graphic-node">
+            <strong>Implement once</strong>
+            <span>Build core algorithms with minimal libraries before leaning on frameworks.</span>
+          </div>
+          <div class="graphic-node">
+            <strong>Measure behavior</strong>
+            <span>Track accuracy, cost, latency, calibration, regressions, and failure cases.</span>
+          </div>
+          <div class="graphic-node">
+            <strong>Ship artifacts</strong>
+            <span>Turn each stage into notes, code, experiments, and one visible project.</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="sequence-roadmap" class="sequence-section" aria-labelledby="sequence-roadmap-title">
+        <div class="section-heading">
+          <p class="eyebrow">Eight stages</p>
+          <h2 id="sequence-roadmap-title">The Roadmap</h2>
+        </div>
+
+        <ol class="sequence-roadmap">
+          <li class="sequence-stage">
+            <div class="stage-marker">01</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 1</p>
+              <h2>Mathematics and classical ML</h2>
+              <p>Learn linear algebra, calculus, probability, statistics, and optimization alongside core machine-learning methods.</p>
+              <ul class="stage-topic-list">
+                <li>Linear regression</li>
+                <li>Logistic regression</li>
+                <li>k-means</li>
+                <li>PCA</li>
+                <li>Decision trees</li>
+                <li>Random forests</li>
+                <li>Gradient boosting</li>
+                <li>SVMs</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Build:</strong>
+                <span>Every algorithm once using only NumPy.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../mathematical-foundations/index.html">Math lessons</a>
+                <a href="../machine-learning/index.html">ML lessons</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">02</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 2</p>
+              <h2>Deep-learning fundamentals</h2>
+              <p>Implement the machinery that makes neural networks trainable before treating a framework as a black box.</p>
+              <ul class="stage-topic-list">
+                <li>A small autodiff engine</li>
+                <li>MLP</li>
+                <li>Backpropagation</li>
+                <li>CNN</li>
+                <li>RNN or LSTM</li>
+                <li>Optimizers</li>
+                <li>Normalization</li>
+                <li>Training and validation loops</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Then:</strong>
+                <span>Reproduce a modest image-classification experiment in PyTorch.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../deep-learning/index.html">Deep learning</a>
+                <a href="../computer-vision/index.html">Vision track</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">03</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 3</p>
+              <h2>Transformers from scratch</h2>
+              <p>Build the complete decoder-only stack so language-model systems feel concrete, not magical.</p>
+              <ul class="stage-topic-list">
+                <li>BPE tokenizer</li>
+                <li>Token embedding</li>
+                <li>Causal self-attention</li>
+                <li>Multi-head attention</li>
+                <li>Transformer block</li>
+                <li>Decoder-only language model</li>
+                <li>Training loop</li>
+                <li>Sampling system</li>
+                <li>KV cache</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Outcome:</strong>
+                <span>A tiny language model trained, sampled, and profiled end to end.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../generative-ai/index.html">Transformers</a>
+                <a href="../generative-ai/transformers/index.html">Attention lesson</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">04</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 4</p>
+              <h2>Retrieval system</h2>
+              <p>Do not begin with an agent. First make retrieval measurable and reliable.</p>
+              <ul class="stage-topic-list">
+                <li>BM25</li>
+                <li>Dense embeddings</li>
+                <li>Hybrid retrieval</li>
+                <li>Cross-encoder reranking</li>
+                <li>Citation generation</li>
+                <li>Retrieval evaluation</li>
+                <li>Faithfulness evaluation</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Build:</strong>
+                <span>A RAG system with source-grounded answers and evaluation reports.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../retrieval-search-and-rag/index.html">RAG lesson</a>
+                <a href="../reasoning-models-and-inference-time-computation/index.html">Reasoning</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">05</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 5</p>
+              <h2>Post-training</h2>
+              <p>Run small controlled comparisons before treating fine-tuning or preference optimization as defaults.</p>
+              <ul class="stage-topic-list">
+                <li>Prompting only</li>
+                <li>Supervised fine-tuning</li>
+                <li>LoRA</li>
+                <li>Preference optimization</li>
+                <li>Best-of-N plus a verifier</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Track:</strong>
+                <span>Capability improvement, forgetting, calibration, cost, and regressions.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../generative-ai/index.html">Foundation models</a>
+                <a href="../ai-safety-security-privacy-and-governance/index.html">Risk checks</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">06</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 6</p>
+              <h2>Agent engineering</h2>
+              <p>Build a constrained tool-using agent with explicit boundaries, observable state, and repeatable tests.</p>
+              <ul class="stage-topic-list">
+                <li>Typed tool schemas</li>
+                <li>Explicit state</li>
+                <li>Planning</li>
+                <li>Retry limits</li>
+                <li>Sandboxed execution</li>
+                <li>Human approval for consequential actions</li>
+                <li>Tracing</li>
+                <li>A reproducible evaluation suite</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Avoid:</strong>
+                <span>Uncontrolled recursive autonomous-agent loops.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../ai-systems/index.html">Agents</a>
+                <a href="../ai-systems/agents-and-tools/index.html">Tools lesson</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">07</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 7</p>
+              <h2>AI systems</h2>
+              <p>Learn how models behave under real serving, memory, latency, and monitoring constraints.</p>
+              <ul class="stage-topic-list">
+                <li>Profiling</li>
+                <li>GPU memory calculation</li>
+                <li>Mixed precision</li>
+                <li>FlashAttention</li>
+                <li>Distributed data parallelism</li>
+                <li>Quantization</li>
+                <li>KV caching</li>
+                <li>Batching</li>
+                <li>Speculative decoding</li>
+                <li>Serving and monitoring</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Build:</strong>
+                <span>A small serving stack with metrics, batching, rollback notes, and cost estimates.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../ai-systems-and-infrastructure/index.html">Infrastructure</a>
+                <a href="../programming-and-systems-foundations/index.html">Systems foundations</a>
+              </div>
+            </div>
+          </li>
+
+          <li class="sequence-stage">
+            <div class="stage-marker">08</div>
+            <div class="stage-card">
+              <p class="term-tag">Stage 8</p>
+              <h2>Choose a specialization</h2>
+              <p>Choose one primary area, reproduce two or three papers, and attempt one original extension.</p>
+              <ul class="stage-topic-list">
+                <li>Language models and agents</li>
+                <li>Computer vision and multimodality</li>
+                <li>Generative media</li>
+                <li>Reinforcement learning and robotics</li>
+                <li>Graph machine learning</li>
+                <li>Causal inference</li>
+                <li>Interpretability and safety</li>
+                <li>AI systems and compilers</li>
+                <li>Scientific machine learning</li>
+              </ul>
+              <div class="stage-deliverable">
+                <strong>Proof:</strong>
+                <span>A focused portfolio artifact with reproduction notes and one tested extension.</span>
+              </div>
+              <div class="stage-links">
+                <a href="../representative-research-paper-sequence/index.html">Paper sequence</a>
+                <a href="../portfolio/index.html">Portfolio</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
+  </body>
+</html>

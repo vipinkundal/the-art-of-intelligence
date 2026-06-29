@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">1. Mathematical Foundations</p>
-        <h1>1.7 Discrete Mathematics And Theoretical Computer Science</h1>
-        <p class="lesson-summary">
-          Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.
-        </p>
-
+    <template data-lesson-page data-eyebrow="1. Mathematical Foundations" data-title="1.7 Discrete Mathematics And Theoretical Computer Science" data-summary="Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.">
         <section>
           <h2>Study</h2>
           <ul class="lesson-list two-column-list topic-detail-list">
@@ -100,7 +83,8 @@
           <a href="../information-theory/index.html">Previous: Information Theory</a>
           <a href="../../index.html">All lessons</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>

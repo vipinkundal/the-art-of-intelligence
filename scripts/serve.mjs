@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const host = process.env.HOST || "127.0.0.1";
-const port = Number(process.env.PORT || 8000);
+const port = Number(process.env.PORT || 57391);
 
 const contentTypes = new Map([
   [".css", "text/css; charset=utf-8"],

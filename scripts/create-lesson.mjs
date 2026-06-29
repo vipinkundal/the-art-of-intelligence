@@ -38,8 +38,7 @@ const topicDir = path.join(rootDir, "lessons", phaseSlug, topicSlug);
 const outputFile = path.join(topicDir, "index.html");
 const relativeOutput = path.relative(rootDir, outputFile).replaceAll(path.sep, "/");
 const phaseIndexFile = path.join(rootDir, "lessons", phaseSlug, "index.html");
-const lessonLibraryFile = path.join(rootDir, "lessons", "index.html");
-const homePageFile = path.join(rootDir, "index.html");
+const lessonDataFile = path.join(rootDir, "lesson-data.js");
 
 await mkdir(topicDir, { recursive: true });
 
@@ -78,15 +77,7 @@ await ensurePhaseIndex({
   summary: cardSummary,
 });
 
-await ensureLessonLibraryLinks({
-  phaseSlug,
-  phaseLabel,
-  lessonTitle,
-  topicSlug,
-  summary: cardSummary,
-});
-
-await ensureHomepageLessonLink({
+await ensureLessonDataLinks({
   phaseSlug,
   phaseLabel,
   lessonTitle,
@@ -168,6 +159,10 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function escapeHtmlAttribute(value) {
+  return escapeHtml(value);
+}
+
 function parseList(value) {
   if (!value || value === true) {
     return [];
@@ -243,26 +238,9 @@ function renderLessonPage({
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">${safePhaseLabel}</p>
-        <h1>${safeLessonTitle}</h1>
-        <p class="lesson-summary">
-          ${safeSummary}
-        </p>
-
+    <template data-lesson-page data-eyebrow="${escapeHtmlAttribute(phaseLabel)}" data-title="${escapeHtmlAttribute(lessonTitle)}" data-summary="${escapeHtmlAttribute(summary)}">
         <section>
           <h2>The simple idea</h2>
           <p>
@@ -301,8 +279,9 @@ ${renderedNoteSection}
           <a href="../../index.html">All lessons</a>
           <a href="../../../index.html#roadmap">Roadmap</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>
 `;
@@ -348,103 +327,47 @@ ${rows}
 }
 
 async function ensurePhaseIndex({ phaseSlug, phaseLabel, lessonTitle, topicSlug, summary }) {
-  const phaseHref = `${topicSlug}/index.html`;
-
   if (!(await exists(phaseIndexFile))) {
     await writeFile(
       phaseIndexFile,
       renderPhaseIndex({
+        phaseSlug,
         phaseLabel,
-        lessonTitle,
-        phaseHref,
-        summary,
       }),
       { flag: "wx" },
     );
-    return;
   }
-
-  const phaseHtml = await readFile(phaseIndexFile, "utf8");
-  if (phaseHtml.includes(`href="${phaseHref}"`)) {
-    return;
-  }
-
-  const card = renderLessonCard({
-    href: phaseHref,
-    tag: args.number || phaseLabel,
-    title: lessonTitle,
-    summary,
-    indent: 8,
-  });
-
-  await writeFile(phaseIndexFile, insertBeforeLastLessonLibraryClose(phaseHtml, card));
 }
 
-async function ensureLessonLibraryLinks({ phaseSlug, phaseLabel, lessonTitle, topicSlug, summary }) {
-  const lessonLibraryHtml = await readFile(lessonLibraryFile, "utf8");
+async function ensureLessonDataLinks({ phaseSlug, phaseLabel, lessonTitle, topicSlug, summary }) {
   const phaseHref = `${phaseSlug}/index.html`;
   const lessonHref = `${phaseSlug}/${topicSlug}/index.html`;
-  let updatedHtml = lessonLibraryHtml;
+  const phaseTopicHref = `${topicSlug}/index.html`;
+  let source = await readFile(lessonDataFile, "utf8");
 
-  if (!updatedHtml.includes(`href="${phaseHref}"`)) {
-    const phaseCard = renderLessonCard({
-      href: phaseHref,
-      tag: "Phase",
-      title: phaseLabel,
-      summary: `${phaseLabel} lessons and topic pages.`,
-      indent: 10,
-      extraClass: " compact-card",
-    });
-    updatedHtml = insertBeforeSectionClose(updatedHtml, "phase-library-title", phaseCard);
-  }
-
-  if (!updatedHtml.includes(`href="${lessonHref}"`)) {
-    const lessonCard = renderLessonCard({
-      href: lessonHref,
-      tag: phaseLabel,
-      title: lessonTitle,
-      summary,
-      indent: 10,
-    });
-    updatedHtml = insertBeforeSectionClose(updatedHtml, "topic-library-title", lessonCard);
-  }
-
-  if (updatedHtml !== lessonLibraryHtml) {
-    await writeFile(lessonLibraryFile, updatedHtml);
-  }
-}
-
-async function ensureHomepageLessonLink({ phaseSlug, phaseLabel, lessonTitle, topicSlug, summary }) {
-  const homeHtml = await readFile(homePageFile, "utf8");
-  const lessonHref = `lessons/${phaseSlug}/${topicSlug}/index.html`;
-
-  if (homeHtml.includes(`href="${lessonHref}"`)) {
-    return;
-  }
-
-  const lessonCard = renderLessonCard({
+  source = insertCardIntoNamedArray(source, "phaseCards", {
+    href: phaseHref,
+    tag: "Phase",
+    title: phaseLabel,
+    summary: `${phaseLabel} lessons and topic pages.`,
+  });
+  source = insertCardIntoNamedArray(source, "topicCards", {
     href: lessonHref,
     tag: phaseLabel,
     title: lessonTitle,
     summary,
-    indent: 10,
-    headingLevel: 3,
+  });
+  source = insertCardIntoPhaseGroup(source, phaseSlug, {
+    href: phaseTopicHref,
+    tag: args.number || phaseLabel,
+    title: lessonTitle,
+    summary,
   });
 
-  await writeFile(homePageFile, insertBeforeHomepageLessonGridClose(homeHtml, lessonCard));
+  await writeFile(lessonDataFile, source);
 }
 
-function renderLessonCard({ href, tag, title, summary, indent, extraClass = "", headingLevel = 2 }) {
-  const space = " ".repeat(indent);
-  return `${space}<a class="lesson-link-card${extraClass}" href="${escapeHtml(href)}">
-${space}  <span class="term-tag">${escapeHtml(tag)}</span>
-${space}  <h${headingLevel}>${escapeHtml(title)}</h${headingLevel}>
-${space}  <p>${escapeHtml(summary)}</p>
-${space}</a>
-`;
-}
-
-function renderPhaseIndex({ phaseLabel, lessonTitle, phaseHref, summary }) {
+function renderPhaseIndex({ phaseSlug, phaseLabel }) {
   const safePhaseLabel = escapeHtml(phaseLabel);
   return `<!doctype html>
 <html lang="en">
@@ -455,17 +378,7 @@ function renderPhaseIndex({ phaseLabel, lessonTitle, phaseHref, summary }) {
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
     <main>
       <section class="lesson-hero" aria-labelledby="phase-title">
@@ -476,69 +389,77 @@ function renderPhaseIndex({ phaseLabel, lessonTitle, phaseHref, summary }) {
         </p>
       </section>
 
-      <section class="lesson-library" aria-label="${safePhaseLabel} lessons">
-${renderLessonCard({
-  href: phaseHref,
-  tag: args.number || safePhaseLabel,
-  title: lessonTitle,
-  summary,
-  indent: 8,
-})}      </section>
+      <div data-phase-card-grid="${escapeHtml(phaseSlug)}" data-label="${safePhaseLabel} lessons"></div>
     </main>
 
-    <footer class="site-footer">
-      <p>The Art of Intelligence: a simple roadmap for learning AI clearly.</p>
-    </footer>
+    <div data-site-footer></div>
+    <script src="../../lesson-data.js"></script>
+    <script src="../../site-template.js"></script>
   </body>
 </html>
 `;
 }
 
-function insertBeforeLastLessonLibraryClose(html, insertion) {
-  const marker = "      </section>\n    </main>";
-  const index = html.lastIndexOf(marker);
-  if (index === -1) {
-    throw new Error(`Could not find lesson library insertion point in ${path.relative(rootDir, phaseIndexFile)}`);
+function insertCardIntoNamedArray(source, arrayName, card) {
+  const arrayStart = source.indexOf(`    ${arrayName}: [`);
+  if (arrayStart === -1) {
+    throw new Error(`Could not find ${arrayName} in lesson-data.js`);
   }
 
-  return `${html.slice(0, index)}${insertion}${html.slice(index)}`;
+  const arrayEnd = source.indexOf("    ],", arrayStart);
+  if (arrayEnd === -1) {
+    throw new Error(`Could not find ${arrayName} closing marker in lesson-data.js`);
+  }
+
+  const arraySource = source.slice(arrayStart, arrayEnd);
+  if (arraySource.includes(`href: "${escapeJsString(card.href)}"`)) {
+    return source;
+  }
+
+  return `${source.slice(0, arrayEnd)}${formatDataCard(card, 6)}${source.slice(arrayEnd)}`;
 }
 
-function insertBeforeSectionClose(html, labelledBy, insertion) {
-  const sectionStart = html.indexOf(`<section class="phase-library" aria-labelledby="${labelledBy}">`);
-  if (sectionStart === -1) {
-    throw new Error(`Could not find section ${labelledBy} in lessons/index.html`);
+function insertCardIntoPhaseGroup(source, phaseSlug, card) {
+  const groupStart = source.indexOf(`      "${phaseSlug}": [`);
+
+  if (groupStart !== -1) {
+    const groupEnd = source.indexOf("      ],", groupStart);
+    if (groupEnd === -1) {
+      throw new Error(`Could not find phase group closing marker for ${phaseSlug} in lesson-data.js`);
+    }
+
+    const groupSource = source.slice(groupStart, groupEnd);
+    if (groupSource.includes(`href: "${escapeJsString(card.href)}"`)) {
+      return source;
+    }
+
+    return `${source.slice(0, groupEnd)}${formatDataCard(card, 8)}${source.slice(groupEnd)}`;
   }
 
-  const nextSection = html.indexOf("\n\n      <section", sectionStart + 1);
-  const sectionEnd = nextSection === -1 ? html.indexOf("\n    </main>", sectionStart) : nextSection;
-  const sectionHtml = html.slice(sectionStart, sectionEnd);
-  const closeIndexInSection = sectionHtml.lastIndexOf("        </div>");
-
-  if (closeIndexInSection === -1) {
-    throw new Error(`Could not find card grid insertion point for ${labelledBy}`);
+  const objectEnd = source.indexOf("    },\n  };");
+  if (objectEnd === -1) {
+    throw new Error("Could not find phaseTopicCards closing marker in lesson-data.js");
   }
 
-  const insertAt = sectionStart + closeIndexInSection;
-  return `${html.slice(0, insertAt)}${insertion}${html.slice(insertAt)}`;
+  const group = `      "${escapeJsString(phaseSlug)}": [
+${formatDataCard(card, 8)}      ],
+`;
+  return `${source.slice(0, objectEnd)}${group}${source.slice(objectEnd)}`;
 }
 
-function insertBeforeHomepageLessonGridClose(html, insertion) {
-  const sectionStart = html.indexOf('<section id="lessons"');
-  if (sectionStart === -1) {
-    throw new Error("Could not find homepage lessons section");
-  }
+function formatDataCard(card, indent) {
+  const space = " ".repeat(indent);
+  return `${space}{
+${space}  href: "${escapeJsString(card.href)}",
+${space}  tag: "${escapeJsString(card.tag)}",
+${space}  title: "${escapeJsString(card.title)}",
+${space}  summary: "${escapeJsString(card.summary)}",
+${space}},
+`;
+}
 
-  const sectionEnd = html.indexOf("\n      </section>", sectionStart);
-  const sectionHtml = html.slice(sectionStart, sectionEnd);
-  const closeIndexInSection = sectionHtml.lastIndexOf("        </div>");
-
-  if (closeIndexInSection === -1) {
-    throw new Error("Could not find homepage lesson grid insertion point");
-  }
-
-  const insertAt = sectionStart + closeIndexInSection;
-  return `${html.slice(0, insertAt)}${insertion}${html.slice(insertAt)}`;
+function escapeJsString(value) {
+  return String(value).replace(/\\/g, "\\\\").replace(/"/g, '\\"');
 }
 
 async function exists(filePath) {

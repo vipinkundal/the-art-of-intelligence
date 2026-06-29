@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 7</p>
-        <h1>7. Transformers And Foundation Models</h1>
-        <p class="lesson-summary">
-          The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 7" data-title="7. Transformers And Foundation Models" data-summary="The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details." data-article-class="phase-article">
         <section>
           <h2>Foundation model pipeline</h2>
           <div class="lesson-graphic" aria-label="Foundation model pipeline">
@@ -288,7 +271,8 @@
           <a href="transformers/index.html">Topic: Transformers</a>
           <a href="../ai-systems/index.html">Next: AI Systems</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../index.html#terms">Terms</a>
-        <a href="../index.html">Lessons</a>
-        <a href="../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article phase-article">
-        <p class="eyebrow">Phase 12</p>
-        <h1>12. Generative Modelling</h1>
-        <p class="lesson-summary">
-          Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.
-        </p>
-
+    <template data-lesson-page data-eyebrow="Phase 12" data-title="12. Generative Modelling" data-summary="Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data." data-article-class="phase-article">
         <section>
           <h2>Generator families</h2>
           <div class="lesson-graphic" aria-label="Generative model family map">
@@ -191,7 +174,8 @@
           <a href="../state-space-models-and-alternative-sequence-architectures/index.html">Next: State-Space Models And Alternative Sequence Architectures</a>
           <a href="../index.html">All lessons</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../site-template.js"></script>
   </body>
 </html>

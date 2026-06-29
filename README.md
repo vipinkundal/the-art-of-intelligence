@@ -76,7 +76,7 @@ You can also generate a starter lesson page with:
 npm run create:lesson -- --phase "mathematical foundations" --title "Numerical Methods" --number "1.8"
 ```
 
-The generator creates the topic page and links it from the homepage, matching phase page, and lesson library.
+The generator creates the topic page and links it from the matching phase page and lesson library.
 
 You can pass content while generating:
 
@@ -98,7 +98,45 @@ After adding or editing lessons, run:
 npm run check
 ```
 
-The check command validates local scripts, audits phase, homepage, lesson-library, and glossary lesson links, and checks that topic pages contain the required lesson sections.
+The check command validates local scripts, audits phase, homepage, lesson-library, glossary lesson links, shared template usage, and checks that topic pages contain the required lesson sections.
+
+## Shared Templates
+
+The site header and footer are rendered from [site-template.js](site-template.js). HTML pages should use placeholders instead of copying the full navigation and footer markup:
+
+```html
+<div data-site-header data-root="../../" data-active="lessons"></div>
+...
+<div data-site-footer></div>
+<script src="../../site-template.js"></script>
+```
+
+Use the correct `data-root` depth for the page location. Use `data-active="terms"`, `data-active="lessons"`, or `data-active="sequence"` when a top navigation item should be marked as current.
+
+Lesson card grids are rendered from [lesson-data.js](lesson-data.js). Use `data-lesson-card-grid` for shared lesson-library grids and `data-phase-card-grid` for phase landing pages:
+
+```html
+<div data-lesson-card-grid="phaseCards" data-compact="true"></div>
+<div data-lesson-card-grid="topicCards" data-label="Available lessons"></div>
+<div data-phase-card-grid="mathematical-foundations" data-label="Mathematical foundations lessons"></div>
+```
+
+Pages that use card-grid placeholders must load `lesson-data.js` before `site-template.js`.
+
+Lesson article pages use the same shared renderer. Put the unique sections and lesson navigation inside the template:
+
+```html
+<template data-lesson-page data-eyebrow="Phase 8" data-title="8. Retrieval, Search And RAG" data-summary="Short summary." data-article-class="phase-article">
+  <section>...</section>
+  <nav class="lesson-nav" aria-label="Lesson navigation">...</nav>
+</template>
+```
+
+To normalize existing pages after manual edits, run:
+
+```text
+npm run apply:templates
+```
 
 To serve the static site locally:
 
@@ -106,7 +144,7 @@ To serve the static site locally:
 npm run serve
 ```
 
-The default local URL is `http://127.0.0.1:8000/index.html`. Set `PORT` if 8000 is already in use.
+The default local URL is `http://127.0.0.1:57391/index.html`. Set `PORT` if that port is already in use.
 
 ## Project Goals
 

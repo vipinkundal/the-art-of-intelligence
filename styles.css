@@ -702,6 +702,18 @@ h2 {
   font-weight: 800;
 }
 
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.secondary-link {
+  border-bottom-color: var(--line);
+  color: var(--muted);
+}
+
 .lesson-hero {
   max-width: 850px;
   padding: 4rem 0 2rem;
@@ -759,6 +771,10 @@ h2 {
   gap: 0.75rem;
 }
 
+.sequence-preview {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .route-step {
   display: flex;
   min-height: 220px;
@@ -788,6 +804,18 @@ h2 {
   border-top-color: var(--red);
 }
 
+.route-step:nth-child(6) {
+  border-top-color: var(--green);
+}
+
+.route-step:nth-child(7) {
+  border-top-color: var(--blue);
+}
+
+.route-step:nth-child(8) {
+  border-top-color: var(--plum);
+}
+
 .route-step span {
   display: grid;
   width: 44px;
@@ -809,6 +837,239 @@ h2 {
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+.sequence-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.56fr);
+  gap: 2rem;
+  align-items: center;
+  padding: 4rem 0 3rem;
+}
+
+.sequence-hero h1 {
+  max-width: 880px;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+}
+
+.sequence-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sequence-actions a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fffdf8;
+  font-weight: 850;
+  padding: 0.65rem 0.95rem;
+}
+
+.sequence-actions a + a {
+  border-color: var(--line);
+  background: var(--surface-strong);
+  color: var(--ink);
+}
+
+.sequence-actions a:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.sequence-snapshot {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sequence-snapshot div {
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-left: 4px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 1rem;
+  box-shadow: 0 10px 24px rgba(23, 32, 38, 0.06);
+}
+
+.sequence-snapshot div:nth-child(2) {
+  border-left-color: var(--blue);
+}
+
+.sequence-snapshot div:nth-child(3) {
+  border-left-color: var(--gold);
+}
+
+.sequence-snapshot span {
+  display: block;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.sequence-snapshot strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 1.15rem;
+}
+
+.sequence-snapshot p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.sequence-callout,
+.sequence-principles {
+  margin-top: 1rem;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(39, 106, 143, 0.075) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39, 106, 143, 0.075) 1px, transparent 1px),
+    var(--surface-strong);
+  background-size: 28px 28px;
+  padding: 1rem;
+}
+
+.sequence-callout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.25rem;
+  align-items: end;
+}
+
+.sequence-callout h2 {
+  max-width: 840px;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+}
+
+.sequence-callout p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+}
+
+.sequence-section {
+  padding: 4rem 0 1rem;
+}
+
+.sequence-roadmap {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sequence-stage {
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.stage-marker {
+  position: sticky;
+  top: 88px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 8px;
+  background: var(--ink);
+  color: #fffdf8;
+  font-weight: 850;
+}
+
+.stage-card {
+  display: grid;
+  gap: 1rem;
+  border: 1px solid rgba(23, 32, 38, 0.1);
+  border-top: 4px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 1.25rem;
+  box-shadow: 0 10px 24px rgba(23, 32, 38, 0.06);
+}
+
+.sequence-stage:nth-child(2n) .stage-card {
+  border-top-color: var(--blue);
+}
+
+.sequence-stage:nth-child(3n) .stage-card {
+  border-top-color: var(--plum);
+}
+
+.sequence-stage:nth-child(4n) .stage-card {
+  border-top-color: var(--gold);
+}
+
+.stage-card h2 {
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
+
+.stage-card p {
+  max-width: 820px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.stage-topic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1rem;
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.stage-topic-list li {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.stage-deliverable {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.stage-deliverable strong {
+  color: var(--ink);
+}
+
+.stage-deliverable span {
+  color: var(--muted);
+}
+
+.stage-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.stage-links a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.94);
+  color: var(--ink);
+  font-weight: 800;
+  padding: 0.55rem 0.8rem;
+}
+
+.stage-links a:hover,
+.stage-links a:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
+  outline: none;
 }
 
 .lesson-resource a:hover {
@@ -1040,8 +1301,18 @@ h2 {
 
   .compact-flow,
   .agent-cycle,
-  .route-map {
+  .route-map,
+  .sequence-preview {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sequence-hero,
+  .sequence-callout {
+    grid-template-columns: 1fr;
+  }
+
+  .sequence-callout {
+    align-items: start;
   }
 }
 
@@ -1092,6 +1363,7 @@ h2 {
   .infographic-grid,
   .term-results,
   .route-map,
+  .sequence-preview,
   .roadmap-list {
     grid-template-columns: 1fr;
   }
@@ -1113,5 +1385,27 @@ h2 {
   .lesson-article {
     border-left: 0;
     padding-left: 0;
+  }
+
+  .sequence-hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .sequence-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-marker {
+    position: static;
+    width: 48px;
+    height: 48px;
+  }
+
+  .stage-card {
+    padding: 1rem;
+  }
+
+  .stage-topic-list {
+    grid-template-columns: 1fr;
   }
 }

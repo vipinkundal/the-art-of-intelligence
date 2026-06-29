@@ -7,26 +7,9 @@
     <link rel="stylesheet" href="../../../styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <nav class="topbar" aria-label="Main navigation">
-        <a class="brand" href="../../../index.html" aria-label="The Art of Intelligence home">
-          <span class="brand-mark" aria-hidden="true">AI</span>
-          <span>The Art of Intelligence</span>
-        </a>
-        <a href="../../../index.html#terms">Terms</a>
-        <a href="../../index.html">Lessons</a>
-        <a href="../../../index.html#roadmap">Roadmap</a>
-      </nav>
-    </header>
+    <div data-site-header data-root="../../../" data-active="lessons"></div>
 
-    <main class="lesson-main">
-      <article class="lesson-article">
-        <p class="eyebrow">AI Systems</p>
-        <h1>Agents And Tools</h1>
-        <p class="lesson-summary">
-          An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.
-        </p>
-
+    <template data-lesson-page data-eyebrow="AI Systems" data-title="Agents And Tools" data-summary="An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.">
         <section>
           <h2>The simple idea</h2>
           <p>
@@ -91,7 +74,8 @@
           <a href="../../generative-ai/transformers/index.html">Previous: Transformers</a>
           <a href="../../portfolio/ai-projects/index.html">Next: AI Projects</a>
         </nav>
-      </article>
-    </main>
+    </template>
+    <div data-site-footer></div>
+    <script src="../../../site-template.js"></script>
   </body>
 </html>

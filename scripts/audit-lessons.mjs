@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const lessonsDir = path.join(rootDir, "lessons");
+const lessonDataFile = path.join(rootDir, "lesson-data.js");
 const ignoredLessonFolders = new Set(["_template"]);
 const failures = [];
 
@@ -25,6 +26,7 @@ await auditTopicPageStructure();
 await auditPhaseTopicLinks();
 await auditLessonLibrary();
 await auditHomepageLessonLinks();
+await auditSiteTemplates();
 await auditGlossaryData();
 await auditLinks(htmlFiles);
 
@@ -55,9 +57,9 @@ async function auditPhaseFolders() {
 
 async function auditTopicPageStructure() {
   const requiredChecks = [
-    ["lesson article wrapper", /<article\b[^>]*class="[^"]*\blesson-article\b[^"]*"/i],
-    ["h1 title", /<h1\b[^>]*>[\s\S]*?<\/h1>/i],
-    ["lesson summary", /<p\b[^>]*class="[^"]*\blesson-summary\b[^"]*"/i],
+    ["lesson page template", /<template\b[^>]*\bdata-lesson-page\b[^>]*>/i],
+    ["lesson title", /<template\b[^>]*\bdata-title="[^"]+"/i],
+    ["lesson summary", /<template\b[^>]*\bdata-summary="[^"]+"/i],
     ["simple idea section", /<h2\b[^>]*>\s*The simple idea\s*<\/h2>/i],
     ["study list", /<ul\b[^>]*class="[^"]*\blesson-list\b[^"]*"/i],
     ["AI relevance section", /<h2\b[^>]*>\s*Why it matters(?: for AI)?\s*<\/h2>/i],
@@ -79,30 +81,56 @@ async function auditTopicPageStructure() {
     if (placeholderPattern.test(html)) {
       failures.push(`Topic page ${relativeTopicPage} still contains starter placeholder text.`);
     }
+
+    if (html.includes('<main class="lesson-main"') || html.includes('<article class="lesson-article')) {
+      failures.push(`Topic page ${relativeTopicPage} should use data-lesson-page instead of copied lesson article shell markup.`);
+    }
   }
 }
 
 async function auditLessonLibrary() {
   const libraryPath = path.join(lessonsDir, "index.html");
   const libraryHtml = await readFile(libraryPath, "utf8");
+  const lessonDataText = await readFile(lessonDataFile, "utf8");
+
+  if (libraryHtml.includes("lesson-link-card")) {
+    failures.push("Lesson library should render lesson cards from lesson-data.js instead of hardcoded lesson-link-card markup.");
+  }
+
+  if (!libraryHtml.includes('data-lesson-card-grid="phaseCards"')) {
+    failures.push("Lesson library is missing phaseCards template placeholder.");
+  }
+
+  if (!libraryHtml.includes('data-lesson-card-grid="topicCards"')) {
+    failures.push("Lesson library is missing topicCards template placeholder.");
+  }
 
   for (const topicPage of topicPages) {
     const href = path.relative(lessonsDir, topicPage).replaceAll(path.sep, "/");
-    if (!libraryHtml.includes(`href="${href}"`)) {
+    if (!libraryHtml.includes(`href="${href}"`) && !lessonDataText.includes(`href: "${href}"`)) {
       failures.push(`Lesson library does not link topic page: ${href}`);
     }
   }
 }
 
 async function auditPhaseTopicLinks() {
+  const lessonDataText = await readFile(lessonDataFile, "utf8");
+
   for (const topicPage of topicPages) {
     const relativeParts = path.relative(lessonsDir, topicPage).split(path.sep);
     const [phaseFolder, topicFolder] = relativeParts;
     const phaseIndex = path.join(lessonsDir, phaseFolder, "index.html");
     const phaseHtml = await readFile(phaseIndex, "utf8");
     const href = `${topicFolder}/index.html`;
+    const phaseGroupSource = extractPhaseGroupSource(lessonDataText, phaseFolder);
+    const renderedFromPhaseData =
+      phaseHtml.includes(`data-phase-card-grid="${phaseFolder}"`) && phaseGroupSource.includes(`href: "${href}"`);
 
-    if (!phaseHtml.includes(`href="${href}"`)) {
+    if (phaseHtml.includes(`data-phase-card-grid="${phaseFolder}"`) && phaseHtml.includes("lesson-link-card")) {
+      failures.push(`Phase page ${phaseFolder}/index.html should render its card grid from lesson-data.js instead of hardcoded cards.`);
+    }
+
+    if (!phaseHtml.includes(`href="${href}"`) && !renderedFromPhaseData) {
       failures.push(`Phase page ${phaseFolder}/index.html does not link topic page: ${href}`);
     }
   }
@@ -114,6 +142,59 @@ async function auditHomepageLessonLinks() {
 
   if (!homepageHtml.includes('href="lessons/index.html"')) {
     failures.push("Homepage does not link the full lesson library: lessons/index.html");
+  }
+}
+
+async function auditSiteTemplates() {
+  for (const file of htmlFiles) {
+    const html = await readFile(file, "utf8");
+    const relativeFile = relativePath(file);
+    const scriptSources = extractHtmlAttributeValues(html, "src").filter((src) => src.endsWith("site-template.js"));
+    const lessonDataScriptSources = extractHtmlAttributeValues(html, "src").filter((src) => src.endsWith("lesson-data.js"));
+    const usesLessonData =
+      html.includes("data-lesson-card-grid") || html.includes("data-phase-card-grid");
+
+    if (html.includes('<header class="site-header"')) {
+      failures.push(`HTML page still contains copied site header instead of template placeholder: ${relativeFile}`);
+    }
+
+    if (html.includes('<footer class="site-footer"')) {
+      failures.push(`HTML page still contains copied site footer instead of template placeholder: ${relativeFile}`);
+    }
+
+    if (isInside(file, lessonsDir) && (html.includes('<main class="lesson-main"') || html.includes('<article class="lesson-article'))) {
+      failures.push(`Lesson HTML page should use data-lesson-page instead of copied lesson article shell markup: ${relativeFile}`);
+    }
+
+    if (!html.includes("data-site-header")) {
+      failures.push(`HTML page is missing site header template placeholder: ${relativeFile}`);
+    }
+
+    if (!html.includes("data-site-footer")) {
+      failures.push(`HTML page is missing site footer template placeholder: ${relativeFile}`);
+    }
+
+    if (scriptSources.length !== 1) {
+      failures.push(`HTML page should include exactly one site-template.js script: ${relativeFile}`);
+      continue;
+    }
+
+    const scriptTarget = resolveHref(file, scriptSources[0]);
+    if (!(await exists(scriptTarget))) {
+      failures.push(`Site template script does not resolve in ${relativeFile}: ${scriptSources[0]}`);
+    }
+
+    if (usesLessonData && lessonDataScriptSources.length !== 1) {
+      failures.push(`HTML page with lesson-card data placeholders should include exactly one lesson-data.js script: ${relativeFile}`);
+      continue;
+    }
+
+    if (lessonDataScriptSources.length > 0) {
+      const lessonDataTarget = resolveHref(file, lessonDataScriptSources[0]);
+      if (!(await exists(lessonDataTarget))) {
+        failures.push(`Lesson data script does not resolve in ${relativeFile}: ${lessonDataScriptSources[0]}`);
+      }
+    }
   }
 }
 
@@ -207,6 +288,17 @@ function extractObjectPropertyValues(source, propertyName) {
   }
 
   return values;
+}
+
+function extractPhaseGroupSource(source, phaseFolder) {
+  const groupStart = source.indexOf(`      "${phaseFolder}": [`);
+
+  if (groupStart === -1) {
+    return "";
+  }
+
+  const groupEnd = source.indexOf("      ],", groupStart);
+  return groupEnd === -1 ? source.slice(groupStart) : source.slice(groupStart, groupEnd);
 }
 
 function extractLocalHrefs(html) {

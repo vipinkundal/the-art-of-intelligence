@@ -3,10 +3,14 @@
 import { readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import vm from "node:vm";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const lessonsDir = path.join(rootDir, "lessons");
 const lessonDataFile = path.join(rootDir, "lesson-data.js");
+const generativeModellingDir = path.join(lessonsDir, "generative-modelling");
+const generativeTopicDir = path.join(generativeModellingDir, "topics");
+const generativeTopicDataFile = path.join(generativeModellingDir, "generative-modelling-data.js");
 const ignoredLessonFolders = new Set(["_template"]);
 const failures = [];
 
@@ -28,6 +32,7 @@ await auditLessonLibrary();
 await auditHomepageLessonLinks();
 await auditSiteTemplates();
 await auditGlossaryData();
+await auditGenerativeModellingTopics();
 await auditLinks(htmlFiles);
 
 if (failures.length > 0) {
@@ -221,6 +226,130 @@ async function auditGlossaryData() {
       failures.push(`Glossary lesson link does not resolve: ${href} -> ${relativePath(target)}`);
     }
   }
+}
+
+async function auditGenerativeModellingTopics() {
+  if (!(await exists(generativeTopicDataFile))) {
+    failures.push(`Missing Generative Modelling topic data: ${relativePath(generativeTopicDataFile)}`);
+    return;
+  }
+
+  const parentPath = path.join(generativeModellingDir, "index.html");
+  const parentHtml = await readFile(parentPath, "utf8");
+  const topics = await loadGenerativeModellingTopics();
+  const topicIds = new Set();
+  const requiredFields = [
+    "id",
+    "group",
+    "title",
+    "summary",
+    "simpleIdea",
+    "howItWorks",
+    "whatToLearn",
+    "whyItMatters",
+    "pitfalls",
+    "example",
+    "resources",
+  ];
+
+  if (topics.length !== 51) {
+    failures.push(`Generative Modelling should define exactly 51 deep-dive topics, found ${topics.length}.`);
+  }
+
+  for (const topic of topics) {
+    const topicLabel = topic?.id || topic?.title || "unknown topic";
+
+    for (const field of requiredFields) {
+      if (!hasTopicValue(topic?.[field])) {
+        failures.push(`Generative Modelling topic ${topicLabel} is missing required field: ${field}.`);
+      }
+    }
+
+    if (topicIds.has(topic.id)) {
+      failures.push(`Duplicate Generative Modelling topic id: ${topic.id}`);
+    }
+    topicIds.add(topic.id);
+
+    if (!Array.isArray(topic.whatToLearn) || topic.whatToLearn.length === 0) {
+      failures.push(`Generative Modelling topic ${topicLabel} must have a non-empty whatToLearn list.`);
+    }
+
+    if (!Array.isArray(topic.pitfalls) || topic.pitfalls.length === 0) {
+      failures.push(`Generative Modelling topic ${topicLabel} must have a non-empty pitfalls list.`);
+    }
+
+    if (!Array.isArray(topic.resources) || topic.resources.length === 0) {
+      failures.push(`Generative Modelling topic ${topicLabel} must have at least one external resource.`);
+    } else {
+      for (const resource of topic.resources) {
+        if (!resource?.label || !resource?.url || !/^https?:\/\//.test(resource.url)) {
+          failures.push(`Generative Modelling topic ${topicLabel} has an invalid external resource.`);
+        }
+      }
+    }
+
+    const expectedPage = path.join(generativeTopicDir, topic.id, "index.html");
+    if (!(await exists(expectedPage))) {
+      failures.push(`Missing Generative Modelling deep-dive page: ${relativePath(expectedPage)}`);
+      continue;
+    }
+
+    const pageHtml = await readFile(expectedPage, "utf8");
+    const relativePage = relativePath(expectedPage);
+
+    if (!pageHtml.includes(`data-generative-topic="${topic.id}"`)) {
+      failures.push(`Generative Modelling page ${relativePage} is missing its topic placeholder.`);
+    }
+
+    for (const scriptName of ["generative-modelling-data.js", "generative-modelling-topic.js", "site-template.js"]) {
+      const scriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) => src.endsWith(scriptName));
+      if (scriptSources.length !== 1) {
+        failures.push(`Generative Modelling page ${relativePage} should include exactly one ${scriptName} script.`);
+        continue;
+      }
+
+      const scriptTarget = resolveHref(expectedPage, scriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Generative Modelling script does not resolve in ${relativePage}: ${scriptSources[0]}`);
+      }
+    }
+
+    if (pageHtml.includes('<main class="lesson-main"') || pageHtml.includes('<article class="lesson-article"')) {
+      failures.push(`Generative Modelling page ${relativePage} should be a topic stub, not copied lesson article markup.`);
+    }
+
+    if (pageHtml.includes("<section") || pageHtml.includes("<h1")) {
+      failures.push(`Generative Modelling page ${relativePage} should render article content from shared data, not copied sections.`);
+    }
+
+    if (!parentHtml.includes(`href="topics/${topic.id}/index.html"`)) {
+      failures.push(`Generative Modelling parent page does not link local topic page: topics/${topic.id}/index.html`);
+    }
+  }
+
+  if (await exists(generativeTopicDir)) {
+    const generatedPages = (await collectHtmlFiles(generativeTopicDir)).filter((file) => path.basename(file) === "index.html");
+    if (generatedPages.length !== 51) {
+      failures.push(`Generative Modelling should have exactly 51 generated deep-dive pages, found ${generatedPages.length}.`);
+    }
+  } else {
+    failures.push(`Missing Generative Modelling topic directory: ${relativePath(generativeTopicDir)}`);
+  }
+}
+
+async function loadGenerativeModellingTopics() {
+  const source = await readFile(generativeTopicDataFile, "utf8");
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: generativeTopicDataFile });
+  return sandbox.window.generativeModellingTopics || [];
+}
+
+function hasTopicValue(value) {
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+
+  return value !== undefined && value !== null && value !== "";
 }
 
 async function auditLinks(files) {

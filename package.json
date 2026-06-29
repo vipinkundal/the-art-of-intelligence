@@ -8,7 +8,7 @@
     "audit:lessons": "node scripts/audit-lessons.mjs",
     "apply:templates": "node scripts/apply-site-templates.mjs",
     "check": "npm run check:scripts && npm run audit:lessons",
-    "check:scripts": "node --check lesson-data.js && node --check site-template.js && node --check scripts/audit-lessons.mjs && node --check scripts/apply-site-templates.mjs && node --check scripts/create-lesson.mjs && node --check scripts/list-lessons.mjs && node --check scripts/serve.mjs",
+    "check:scripts": "node --check lesson-data.js && node --check site-template.js && node --check lessons/generative-modelling/generative-modelling-data.js && node --check lessons/generative-modelling/generative-modelling-topic.js && node --check scripts/audit-lessons.mjs && node --check scripts/apply-site-templates.mjs && node --check scripts/create-lesson.mjs && node --check scripts/list-lessons.mjs && node --check scripts/serve.mjs",
     "create:lesson": "node scripts/create-lesson.mjs",
     "list:lessons": "node scripts/list-lessons.mjs",
     "serve": "node scripts/serve.mjs"

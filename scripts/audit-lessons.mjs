@@ -8,6 +8,9 @@ import vm from "node:vm";
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const lessonsDir = path.join(rootDir, "lessons");
 const lessonDataFile = path.join(rootDir, "lesson-data.js");
+const mathematicalFoundationsDir = path.join(lessonsDir, "mathematical-foundations");
+const mathematicalTopicDir = path.join(mathematicalFoundationsDir, "topics");
+const mathematicalTopicDataFile = path.join(mathematicalFoundationsDir, "mathematical-foundations-data.js");
 const generativeModellingDir = path.join(lessonsDir, "generative-modelling");
 const generativeTopicDir = path.join(generativeModellingDir, "topics");
 const generativeTopicDataFile = path.join(generativeModellingDir, "generative-modelling-data.js");
@@ -32,6 +35,7 @@ await auditLessonLibrary();
 await auditHomepageLessonLinks();
 await auditSiteTemplates();
 await auditGlossaryData();
+await auditMathematicalFoundationsTopics();
 await auditGenerativeModellingTopics();
 await auditLinks(htmlFiles);
 
@@ -335,6 +339,123 @@ async function auditGenerativeModellingTopics() {
   } else {
     failures.push(`Missing Generative Modelling topic directory: ${relativePath(generativeTopicDir)}`);
   }
+}
+
+async function auditMathematicalFoundationsTopics() {
+  if (!(await exists(mathematicalTopicDataFile))) {
+    failures.push(`Missing Mathematical Foundations topic data: ${relativePath(mathematicalTopicDataFile)}`);
+    return;
+  }
+
+  const topics = await loadMathematicalFoundationsTopics();
+  const topicIds = new Set();
+  const requiredFields = [
+    "id",
+    "group",
+    "section",
+    "title",
+    "summary",
+    "simpleIdea",
+    "howItWorks",
+    "whatToLearn",
+    "whyItMatters",
+    "pitfalls",
+    "example",
+    "resources",
+  ];
+
+  if (topics.length !== 133) {
+    failures.push(`Mathematical Foundations should define exactly 133 deep-dive topics, found ${topics.length}.`);
+  }
+
+  for (const topic of topics) {
+    const topicLabel = topic?.id || topic?.title || "unknown topic";
+
+    for (const field of requiredFields) {
+      if (!hasTopicValue(topic?.[field])) {
+        failures.push(`Mathematical Foundations topic ${topicLabel} is missing required field: ${field}.`);
+      }
+    }
+
+    if (topicIds.has(topic.id)) {
+      failures.push(`Duplicate Mathematical Foundations topic id: ${topic.id}`);
+    }
+    topicIds.add(topic.id);
+
+    if (!Array.isArray(topic.whatToLearn) || topic.whatToLearn.length === 0) {
+      failures.push(`Mathematical Foundations topic ${topicLabel} must have a non-empty whatToLearn list.`);
+    }
+
+    if (!Array.isArray(topic.pitfalls) || topic.pitfalls.length === 0) {
+      failures.push(`Mathematical Foundations topic ${topicLabel} must have a non-empty pitfalls list.`);
+    }
+
+    if (!Array.isArray(topic.resources) || topic.resources.length === 0) {
+      failures.push(`Mathematical Foundations topic ${topicLabel} must have at least one external resource.`);
+    } else {
+      for (const resource of topic.resources) {
+        if (!resource?.label || !resource?.url || !/^https?:\/\//.test(resource.url)) {
+          failures.push(`Mathematical Foundations topic ${topicLabel} has an invalid external resource.`);
+        }
+      }
+    }
+
+    const expectedPage = path.join(mathematicalTopicDir, topic.id, "index.html");
+    if (!(await exists(expectedPage))) {
+      failures.push(`Missing Mathematical Foundations deep-dive page: ${relativePath(expectedPage)}`);
+      continue;
+    }
+
+    const pageHtml = await readFile(expectedPage, "utf8");
+    const relativePage = relativePath(expectedPage);
+
+    if (!pageHtml.includes(`data-math-topic="${topic.id}"`)) {
+      failures.push(`Mathematical Foundations page ${relativePage} is missing its topic placeholder.`);
+    }
+
+    for (const scriptName of ["mathematical-foundations-data.js", "mathematical-foundations-topic.js", "site-template.js"]) {
+      const scriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) => src.endsWith(scriptName));
+      if (scriptSources.length !== 1) {
+        failures.push(`Mathematical Foundations page ${relativePage} should include exactly one ${scriptName} script.`);
+        continue;
+      }
+
+      const scriptTarget = resolveHref(expectedPage, scriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Mathematical Foundations script does not resolve in ${relativePage}: ${scriptSources[0]}`);
+      }
+    }
+
+    if (pageHtml.includes('<main class="lesson-main"') || pageHtml.includes('<article class="lesson-article"')) {
+      failures.push(`Mathematical Foundations page ${relativePage} should be a topic stub, not copied lesson article markup.`);
+    }
+
+    if (pageHtml.includes("<section") || pageHtml.includes("<h1")) {
+      failures.push(`Mathematical Foundations page ${relativePage} should render article content from shared data, not copied sections.`);
+    }
+
+    const groupPage = path.join(mathematicalFoundationsDir, topic.group, "index.html");
+    const groupHtml = await readFile(groupPage, "utf8");
+    if (!groupHtml.includes(`href="../topics/${topic.id}/index.html"`)) {
+      failures.push(`Mathematical Foundations lesson ${topic.group}/index.html does not link local topic page: ../topics/${topic.id}/index.html`);
+    }
+  }
+
+  if (await exists(mathematicalTopicDir)) {
+    const generatedPages = (await collectHtmlFiles(mathematicalTopicDir)).filter((file) => path.basename(file) === "index.html");
+    if (generatedPages.length !== 133) {
+      failures.push(`Mathematical Foundations should have exactly 133 generated deep-dive pages, found ${generatedPages.length}.`);
+    }
+  } else {
+    failures.push(`Missing Mathematical Foundations topic directory: ${relativePath(mathematicalTopicDir)}`);
+  }
+}
+
+async function loadMathematicalFoundationsTopics() {
+  const source = await readFile(mathematicalTopicDataFile, "utf8");
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: mathematicalTopicDataFile });
+  return sandbox.window.mathematicalFoundationTopics || [];
 }
 
 async function loadGenerativeModellingTopics() {

@@ -8,7 +8,9 @@ import { fileURLToPath } from "node:url";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const host = process.env.HOST || "127.0.0.1";
-const port = Number(process.env.PORT || 57391);
+const hasExplicitPort = Boolean(process.env.PORT);
+const requestedPort = hasExplicitPort ? parsePort(process.env.PORT) : 0;
+let activePort = requestedPort;
 
 const contentTypes = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -47,15 +49,13 @@ const server = createServer(async (request, response) => {
   createReadStream(filePath).pipe(response);
 });
 
-server.listen(port, host, () => {
-  console.log(`Serving The Art of Intelligence at http://${host}:${port}/index.html`);
-});
+await startServer();
 
 async function resolveRequestPath(url) {
   let pathname;
 
   try {
-    pathname = decodeURIComponent(new URL(url, `http://${host}:${port}`).pathname);
+    pathname = decodeURIComponent(new URL(url, `http://${host}:${activePort}`).pathname);
   } catch {
     return null;
   }
@@ -94,4 +94,71 @@ async function resolveExistingFile(candidate) {
 function isInsideRoot(candidate) {
   const relative = path.relative(rootDir, candidate);
   return relative === "" || (!relative.startsWith("..") && !path.isAbsolute(relative));
+}
+
+async function startServer() {
+  try {
+    await listen(requestedPort);
+    activePort = getListeningPort();
+    console.log(`Serving The Art of Intelligence at http://${host}:${activePort}/index.html`);
+  } catch (error) {
+    printListenFailure(requestedPort, error);
+    process.exit(1);
+  }
+}
+
+function listen(candidatePort) {
+  return new Promise((resolve, reject) => {
+    const handleError = (error) => {
+      server.off("listening", handleListening);
+      reject(error);
+    };
+
+    const handleListening = () => {
+      server.off("error", handleError);
+      resolve();
+    };
+
+    server.once("error", handleError);
+    server.once("listening", handleListening);
+    server.listen(candidatePort, host);
+  });
+}
+
+function parsePort(value) {
+  const parsed = Number(value);
+
+  if (!Number.isInteger(parsed) || parsed < 0 || parsed > 65535) {
+    console.error(`Invalid PORT value: ${value}. Use a number from 0 to 65535.`);
+    process.exit(1);
+  }
+
+  return parsed;
+}
+
+function printListenFailure(candidatePort, error) {
+  const portLabel = candidatePort === 0 ? "an available local port" : `${host}:${candidatePort}`;
+
+  if (error && error.code === "EACCES") {
+    console.error(`Permission denied while trying to listen on ${portLabel}.`);
+    return;
+  }
+
+  if (error && error.code === "EADDRINUSE") {
+    console.error(`Port ${candidatePort} is already in use on ${host}. Try a different port, for example: PORT=8001 npm run serve`);
+    return;
+  }
+
+  console.error(`Could not start the dev server on ${host}:${candidatePort}: ${error?.message || "unknown error"}`);
+}
+
+function getListeningPort() {
+  const address = server.address();
+
+  if (!address || typeof address === "string") {
+    console.error("Could not determine the selected local port.");
+    process.exit(1);
+  }
+
+  return address.port;
 }

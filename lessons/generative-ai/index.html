@@ -34,22 +34,22 @@
           <h2>7.1 Transformer fundamentals</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Token embeddings:</strong> Learned vectors that turn discrete tokens into continuous model inputs.</li>
-            <li><strong>Positional encoding:</strong> Adds order information so the model can distinguish token positions.</li>
-            <li><strong>Sinusoidal positions:</strong> Fixed wave-based position features used in the original transformer.</li>
-            <li><strong>Rotary positional embeddings:</strong> Rotate query and key features so attention depends on relative positions.</li>
-            <li><strong>ALiBi:</strong> Adds linear attention biases that favor nearby tokens and can support length extrapolation.</li>
-            <li><strong>Queries, keys and values:</strong> Attention compares queries to keys, then mixes the matching values.</li>
-            <li><strong>Self-attention:</strong> Lets tokens in one sequence exchange information with each other.</li>
-            <li><strong>Cross-attention:</strong> Lets one sequence attend to another, such as decoder tokens attending to encoder outputs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Word_embedding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Word embedding">Token embeddings</a>:</strong> Learned vectors that turn discrete tokens into continuous model inputs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Transformer_(deep_learning)#Positional_encoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Transformer positional encoding">Positional encoding</a>:</strong> Adds order information so the model can distinguish token positions.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer" title="arXiv: Attention Is All You Need">Sinusoidal positions</a>:</strong> Fixed wave-based position features used in the original transformer.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2104.09864" target="_blank" rel="noopener noreferrer" title="arXiv: RoFormer">Rotary positional embeddings</a>:</strong> Rotate query and key features so attention depends on relative positions.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2108.12409" target="_blank" rel="noopener noreferrer" title="arXiv: Train Short, Test Long">ALiBi</a>:</strong> Adds linear attention biases that favor nearby tokens and can support length extrapolation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Attention_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Attention (machine learning)">Queries, keys and values</a>:</strong> Attention compares queries to keys, then mixes the matching values.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Self-attention" target="_blank" rel="noopener noreferrer" title="Wikipedia: Self-attention">Self-attention</a>:</strong> Lets tokens in one sequence exchange information with each other.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Attention_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Attention (machine learning)">Cross-attention</a>:</strong> Lets one sequence attend to another, such as decoder tokens attending to encoder outputs.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Attention_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Attention (machine learning)">Multi-head attention</a>:</strong> Runs several attention heads in parallel so different relationships can be captured.</li>
-            <li><strong>Masked causal attention:</strong> Prevents tokens from seeing future tokens during autoregressive generation.</li>
-            <li><strong>Feed-forward networks:</strong> Per-token MLP blocks that transform features after attention mixes context.</li>
-            <li><strong>Residual streams:</strong> Carry information across layers through skip connections.</li>
-            <li><strong>Pre-norm and post-norm:</strong> Place normalization before or after sublayers, affecting training stability.</li>
-            <li><strong>Encoder-only models:</strong> Build bidirectional representations, common for classification and retrieval encoders.</li>
-            <li><strong>Decoder-only models:</strong> Generate autoregressively, common for modern language models.</li>
-            <li><strong>Encoder-decoder models:</strong> Encode an input sequence and decode an output sequence, common for translation and summarization.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Autoregressive_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Autoregressive model">Masked causal attention</a>:</strong> Prevents tokens from seeing future tokens during autoregressive generation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Feedforward_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Feedforward neural network">Feed-forward networks</a>:</strong> Per-token MLP blocks that transform features after attention mixes context.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Residual_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Residual neural network">Residual streams</a>:</strong> Carry information across layers through skip connections.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Layer_normalization" target="_blank" rel="noopener noreferrer" title="Wikipedia: Layer normalization">Pre-norm and post-norm</a>:</strong> Place normalization before or after sublayers, affecting training stability.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/BERT_(language_model)" target="_blank" rel="noopener noreferrer" title="Wikipedia: BERT">Encoder-only models</a>:</strong> Build bidirectional representations, common for classification and retrieval encoders.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Generative_pre-trained_transformer" target="_blank" rel="noopener noreferrer" title="Wikipedia: Generative pre-trained transformer">Decoder-only models</a>:</strong> Generate autoregressively, common for modern language models.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Seq2seq" target="_blank" rel="noopener noreferrer" title="Wikipedia: Seq2seq">Encoder-decoder models</a>:</strong> Encode an input sequence and decode an output sequence, common for translation and summarization.</li>
           </ul>
         </section>
 
@@ -85,18 +85,18 @@
           <h2>7.2 Tokenization</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Character tokenization:</strong> Splits text into characters, simple but often inefficient for long contexts.</li>
-            <li><strong>Word tokenization:</strong> Splits by words, intuitive but brittle for rare words and multilingual text.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/tokenizer_summary" target="_blank" rel="noopener noreferrer" title="Hugging Face: Tokenizer summary">Character tokenization</a>:</strong> Splits text into characters, simple but often inefficient for long contexts.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/tokenizer_summary" target="_blank" rel="noopener noreferrer" title="Hugging Face: Tokenizer summary">Word tokenization</a>:</strong> Splits by words, intuitive but brittle for rare words and multilingual text.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Byte-pair_encoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Byte-pair encoding">Byte-pair encoding</a>:</strong> Learns frequent subword merges to balance vocabulary size and sequence length.</li>
-            <li><strong>WordPiece:</strong> Builds subword units that improve likelihood under a language-model objective.</li>
-            <li><strong>Unigram language-model tokenization:</strong> Chooses a probabilistic vocabulary of subwords and tokenizes by likelihood.</li>
-            <li><strong>Byte-level tokenization:</strong> Represents text through bytes so every string can be encoded.</li>
-            <li><strong>Vocabulary construction:</strong> Chooses which tokens exist and therefore what the model can represent efficiently.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/learn/llm-course/chapter6/6?fw=pt" target="_blank" rel="noopener noreferrer" title="Hugging Face LLM Course: WordPiece tokenization">WordPiece</a>:</strong> Builds subword units that improve likelihood under a language-model objective.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/learn/llm-course/chapter6/7?fw=pt" target="_blank" rel="noopener noreferrer" title="Hugging Face LLM Course: Unigram tokenization">Unigram language-model tokenization</a>:</strong> Chooses a probabilistic vocabulary of subwords and tokenizes by likelihood.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/tokenizer_summary#bytelevel-bpe" target="_blank" rel="noopener noreferrer" title="Hugging Face: Byte-level BPE">Byte-level tokenization</a>:</strong> Represents text through bytes so every string can be encoded.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/tokenizers/pipeline" target="_blank" rel="noopener noreferrer" title="Hugging Face Tokenizers: Pipeline">Vocabulary construction</a>:</strong> Chooses which tokens exist and therefore what the model can represent efficiently.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Unicode_equivalence" target="_blank" rel="noopener noreferrer" title="Wikipedia: Unicode equivalence">Unicode normalization</a>:</strong> Standardizes visually similar text forms before tokenization.</li>
-            <li><strong>Special tokens:</strong> Mark boundaries, roles, padding, tools, images, or control instructions.</li>
-            <li><strong>Token fertility:</strong> Measures how many tokens are needed for a word or phrase, affecting cost and fairness across languages.</li>
-            <li><strong>Multilingual tokenization:</strong> Balances vocabulary coverage across scripts and languages.</li>
-            <li><strong>Tokenizer security and prompt-boundary problems:</strong> Tokenization can blur user, system, and data boundaries if controls are not explicit.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/main_classes/tokenizer#transformers.PreTrainedTokenizer.add_special_tokens" target="_blank" rel="noopener noreferrer" title="Hugging Face: Special tokens">Special tokens</a>:</strong> Mark boundaries, roles, padding, tools, images, or control instructions.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.15425" target="_blank" rel="noopener noreferrer" title="arXiv: Tokenization and language-model evaluation">Token fertility</a>:</strong> Measures how many tokens are needed for a word or phrase, affecting cost and fairness across languages.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1911.02116" target="_blank" rel="noopener noreferrer" title="arXiv: XLM-R">Multilingual tokenization</a>:</strong> Balances vocabulary coverage across scripts and languages.</li>
+            <li><strong><a class="wiki-term" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" title="OWASP: Top 10 for LLM Applications">Tokenizer security and prompt-boundary problems</a>:</strong> Tokenization can blur user, system, and data boundaries if controls are not explicit.</li>
           </ul>
           <p>
             Implementing BPE from scratch is an excellent foundational project.
@@ -107,19 +107,19 @@
           <h2>7.3 Efficient and alternative attention</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Multi-query attention:</strong> Shares keys and values across heads to reduce cache memory.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1911.02150" target="_blank" rel="noopener noreferrer" title="arXiv: Fast Transformer Decoding">Multi-query attention</a>:</strong> Shares keys and values across heads to reduce cache memory.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Transformer_(deep_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Transformer (deep learning)">Grouped-query attention</a>:</strong> Shares keys and values across groups of query heads for a quality-efficiency trade-off.</li>
-            <li><strong>Sparse attention:</strong> Attends to a subset of token pairs instead of all pairs.</li>
-            <li><strong>Sliding-window attention:</strong> Restricts attention to nearby tokens for efficient long sequences.</li>
-            <li><strong>Block-sparse attention:</strong> Uses structured blocks of allowed attention for faster computation.</li>
-            <li><strong>Linear attention:</strong> Rewrites attention to scale approximately linearly with sequence length.</li>
-            <li><strong>Local-global attention:</strong> Combines local neighborhoods with selected global tokens.</li>
-            <li><strong>FlashAttention:</strong> Computes exact attention with less high-bandwidth memory movement.</li>
-            <li><strong>Paged attention:</strong> Manages KV cache memory in pages for efficient serving.</li>
-            <li><strong>KV-cache management:</strong> Stores previous keys and values so generation does not recompute old context.</li>
-            <li><strong>Attention sinks:</strong> Tokens that attract attention and can stabilize long-context behavior.</li>
-            <li><strong>Long-context methods:</strong> Techniques that extend usable context length through architecture, training, or retrieval.</li>
-            <li><strong>Context parallelism:</strong> Splits long context processing across devices.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1904.10509" target="_blank" rel="noopener noreferrer" title="arXiv: Sparse Transformer">Sparse attention</a>:</strong> Attends to a subset of token pairs instead of all pairs.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.05150" target="_blank" rel="noopener noreferrer" title="arXiv: Longformer">Sliding-window attention</a>:</strong> Restricts attention to nearby tokens for efficient long sequences.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2007.14062" target="_blank" rel="noopener noreferrer" title="arXiv: BigBird">Block-sparse attention</a>:</strong> Uses structured blocks of allowed attention for faster computation.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2006.16236" target="_blank" rel="noopener noreferrer" title="arXiv: Transformers are RNNs">Linear attention</a>:</strong> Rewrites attention to scale approximately linearly with sequence length.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.05150" target="_blank" rel="noopener noreferrer" title="arXiv: Longformer">Local-global attention</a>:</strong> Combines local neighborhoods with selected global tokens.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2205.14135" target="_blank" rel="noopener noreferrer" title="arXiv: FlashAttention">FlashAttention</a>:</strong> Computes exact attention with less high-bandwidth memory movement.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener noreferrer" title="arXiv: vLLM and PagedAttention">Paged attention</a>:</strong> Manages KV cache memory in pages for efficient serving.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/cache_explanation" target="_blank" rel="noopener noreferrer" title="Hugging Face: KV cache explanation">KV-cache management</a>:</strong> Stores previous keys and values so generation does not recompute old context.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2309.17453" target="_blank" rel="noopener noreferrer" title="arXiv: Attention sinks">Attention sinks</a>:</strong> Tokens that attract attention and can stabilize long-context behavior.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2402.02244" target="_blank" rel="noopener noreferrer" title="arXiv: Long-context LLM survey">Long-context methods</a>:</strong> Techniques that extend usable context length through architecture, training, or retrieval.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/accelerate/usage_guides/context_parallelism" target="_blank" rel="noopener noreferrer" title="Hugging Face Accelerate: Context parallelism">Context parallelism</a>:</strong> Splits long context processing across devices.</li>
           </ul>
           <p>
             FlashAttention is an exact, IO-aware attention algorithm designed to reduce expensive memory movement rather than merely reducing arithmetic operations.
@@ -130,21 +130,21 @@
           <h2>7.4 Pretraining</h2>
           <p>Understand:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Causal language modelling:</strong> Predicts the next token from previous tokens.</li>
-            <li><strong>Masked language modelling:</strong> Predicts hidden tokens from surrounding context.</li>
-            <li><strong>Prefix language modelling:</strong> Conditions on a visible prefix and predicts the continuation.</li>
-            <li><strong>Span corruption:</strong> Masks spans of text and trains the model to reconstruct them.</li>
-            <li><strong>Denoising objectives:</strong> Corrupt inputs and train the model to recover clean data.</li>
-            <li><strong>Next-sentence and sentence-order objectives:</strong> Train models to reason about relationships between text segments.</li>
-            <li><strong>Data mixtures:</strong> Balance sources such as web, code, math, books, dialogue, and domain data.</li>
-            <li><strong>Data filtering:</strong> Removes low-quality, unsafe, duplicate, or irrelevant examples.</li>
-            <li><strong>Deduplication:</strong> Reduces repeated examples that can waste compute or increase memorization.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/tasks/language_modeling" target="_blank" rel="noopener noreferrer" title="Hugging Face: Causal language modeling">Causal language modelling</a>:</strong> Predicts the next token from previous tokens.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/tasks/language_modeling" target="_blank" rel="noopener noreferrer" title="Hugging Face: Masked language modeling">Masked language modelling</a>:</strong> Predicts hidden tokens from surrounding context.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1910.10683" target="_blank" rel="noopener noreferrer" title="arXiv: T5">Prefix language modelling</a>:</strong> Conditions on a visible prefix and predicts the continuation.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1910.10683" target="_blank" rel="noopener noreferrer" title="arXiv: T5">Span corruption</a>:</strong> Masks spans of text and trains the model to reconstruct them.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1910.13461" target="_blank" rel="noopener noreferrer" title="arXiv: BART">Denoising objectives</a>:</strong> Corrupt inputs and train the model to recover clean data.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1909.11942" target="_blank" rel="noopener noreferrer" title="arXiv: ALBERT">Next-sentence and sentence-order objectives</a>:</strong> Train models to reason about relationships between text segments.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2101.00027" target="_blank" rel="noopener noreferrer" title="arXiv: The Pile">Data mixtures</a>:</strong> Balance sources such as web, code, math, books, dialogue, and domain data.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2306.01116" target="_blank" rel="noopener noreferrer" title="arXiv: RefinedWeb">Data filtering</a>:</strong> Removes low-quality, unsafe, duplicate, or irrelevant examples.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2107.06499" target="_blank" rel="noopener noreferrer" title="arXiv: Deduplicating Training Data">Deduplication</a>:</strong> Reduces repeated examples that can waste compute or increase memorization.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Contamination" target="_blank" rel="noopener noreferrer" title="Wikipedia: Contamination">Contamination</a>:</strong> Occurs when benchmark or evaluation data leaks into training.</li>
-            <li><strong>Curriculum ordering:</strong> Controls data order or difficulty over training.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Curriculum_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Curriculum learning">Curriculum ordering</a>:</strong> Controls data order or difficulty over training.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Synthetic_data" target="_blank" rel="noopener noreferrer" title="Wikipedia: Synthetic data">Synthetic data</a>:</strong> Uses generated examples to add coverage, supervision, or practice tasks.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Power_law" target="_blank" rel="noopener noreferrer" title="Wikipedia: Power law">Scaling laws</a>:</strong> Empirical relationships between model size, data, compute, and loss.</li>
-            <li><strong>Compute-optimal training:</strong> Balances model size and data size for a fixed compute budget.</li>
-            <li><strong>Checkpointing and recovery:</strong> Saves model and optimizer state so long training runs can resume.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener noreferrer" title="arXiv: Chinchilla compute-optimal training">Compute-optimal training</a>:</strong> Balances model size and data size for a fixed compute budget.</li>
+            <li><strong><a class="wiki-term" href="https://docs.pytorch.org/tutorials/beginner/saving_loading_models.html" target="_blank" rel="noopener noreferrer" title="PyTorch: Saving and loading models">Checkpointing and recovery</a>:</strong> Saves model and optimizer state so long training runs can resume.</li>
           </ul>
         </section>
 
@@ -163,27 +163,27 @@
           <p>This is one of the largest areas missing from older roadmaps.</p>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Continued pretraining:</strong> Keeps training the base objective on new or domain-specific data.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.10964" target="_blank" rel="noopener noreferrer" title="arXiv: Don't Stop Pretraining">Continued pretraining</a>:</strong> Keeps training the base objective on new or domain-specific data.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Domain_adaptation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Domain adaptation">Domain adaptation</a>:</strong> Specializes a model for a field such as law, medicine, code, or finance.</li>
-            <li><strong>Supervised fine-tuning:</strong> Trains on input-output examples that demonstrate desired behavior.</li>
-            <li><strong>Instruction tuning:</strong> Fine-tunes on tasks phrased as instructions so the model follows user requests better.</li>
-            <li><strong>Rejection-sampling fine-tuning:</strong> Samples outputs, filters or ranks them, then fine-tunes on the better examples.</li>
-            <li><strong>Reward modelling:</strong> Trains a model to score outputs according to human or AI preferences.</li>
-            <li><strong>Preference modelling:</strong> Learns from comparisons such as chosen versus rejected responses.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/trl/sft_trainer" target="_blank" rel="noopener noreferrer" title="Hugging Face TRL: SFT Trainer">Supervised fine-tuning</a>:</strong> Trains on input-output examples that demonstrate desired behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Instruction_tuning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Instruction tuning">Instruction tuning</a>:</strong> Fine-tunes on tasks phrased as instructions so the model follows user requests better.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Rejection-sampling fine-tuning</a>:</strong> Samples outputs, filters or ranks them, then fine-tunes on the better examples.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Reward modelling</a>:</strong> Trains a model to score outputs according to human or AI preferences.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback" target="_blank" rel="noopener noreferrer" title="Wikipedia: RLHF">Preference modelling</a>:</strong> Learns from comparisons such as chosen versus rejected responses.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reinforcement learning from human feedback">RLHF</a>:</strong> Uses human feedback and reinforcement learning to align outputs with preferences.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reinforcement_learning_from_human_feedback" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reinforcement learning from human feedback">RLAIF</a>:</strong> Uses AI feedback instead of, or alongside, human feedback for preference signals.</li>
-            <li><strong>PPO-based post-training:</strong> Uses policy-gradient reinforcement learning to optimize a reward model.</li>
-            <li><strong>Direct Preference Optimization:</strong> Optimizes preference pairs directly without a separate RL loop.</li>
-            <li><strong>Identity Preference Optimization:</strong> A preference-optimization variant focused on preserving desired model identity or style behavior.</li>
-            <li><strong>Kahneman-Tversky Optimization:</strong> A preference objective inspired by asymmetric treatment of desirable and undesirable examples.</li>
-            <li><strong>Odds-ratio preference optimization:</strong> Optimizes preference odds between chosen and rejected responses.</li>
-            <li><strong>Group-relative policy optimization:</strong> Compares sampled outputs within a group to create relative training signals.</li>
-            <li><strong>Reinforcement learning with verifiable rewards:</strong> Uses tasks where correctness can be checked automatically.</li>
-            <li><strong>Process reward models:</strong> Score intermediate reasoning steps, not only final answers.</li>
-            <li><strong>Outcome reward models:</strong> Score the final result regardless of the path used to produce it.</li>
-            <li><strong>Constitutional approaches:</strong> Use written principles to critique, revise, or judge model outputs.</li>
-            <li><strong>Distillation from stronger models:</strong> Trains smaller or cheaper models to imitate stronger systems.</li>
-            <li><strong>Online versus offline preference learning:</strong> Online methods collect feedback during deployment; offline methods train from fixed preference datasets.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1707.06347" target="_blank" rel="noopener noreferrer" title="arXiv: Proximal Policy Optimization">PPO-based post-training</a>:</strong> Uses policy-gradient reinforcement learning to optimize a reward model.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener noreferrer" title="arXiv: Direct Preference Optimization">Direct Preference Optimization</a>:</strong> Optimizes preference pairs directly without a separate RL loop.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2310.12036" target="_blank" rel="noopener noreferrer" title="arXiv: Identity Preference Optimization">Identity Preference Optimization</a>:</strong> A preference-optimization variant focused on preserving desired model identity or style behavior.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2402.01306" target="_blank" rel="noopener noreferrer" title="arXiv: Kahneman-Tversky Optimization">Kahneman-Tversky Optimization</a>:</strong> A preference objective inspired by asymmetric treatment of desirable and undesirable examples.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2403.07691" target="_blank" rel="noopener noreferrer" title="arXiv: Odds Ratio Preference Optimization">Odds-ratio preference optimization</a>:</strong> Optimizes preference odds between chosen and rejected responses.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2402.03300" target="_blank" rel="noopener noreferrer" title="arXiv: DeepSeekMath GRPO">Group-relative policy optimization</a>:</strong> Compares sampled outputs within a group to create relative training signals.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2501.12948" target="_blank" rel="noopener noreferrer" title="arXiv: DeepSeek-R1">Reinforcement learning with verifiable rewards</a>:</strong> Uses tasks where correctness can be checked automatically.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noopener noreferrer" title="arXiv: Let's Verify Step by Step">Process reward models</a>:</strong> Score intermediate reasoning steps, not only final answers.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Outcome reward models</a>:</strong> Score the final result regardless of the path used to produce it.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener noreferrer" title="arXiv: Constitutional AI">Constitutional approaches</a>:</strong> Use written principles to critique, revise, or judge model outputs.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Knowledge_distillation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Knowledge distillation">Distillation from stronger models</a>:</strong> Trains smaller or cheaper models to imitate stronger systems.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/trl/index" target="_blank" rel="noopener noreferrer" title="Hugging Face TRL">Online versus offline preference learning</a>:</strong> Online methods collect feedback during deployment; offline methods train from fixed preference datasets.</li>
           </ul>
         </section>
 
@@ -204,15 +204,15 @@
           <h2>7.6 Parameter-efficient adaptation</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Adapters:</strong> Add small trainable modules while keeping most base weights frozen.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1902.00751" target="_blank" rel="noopener noreferrer" title="arXiv: Adapter modules">Adapters</a>:</strong> Add small trainable modules while keeping most base weights frozen.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/LoRA_(machine_learning)" target="_blank" rel="noopener noreferrer" title="Wikipedia: LoRA (machine learning)">LoRA</a>:</strong> Learns low-rank weight updates instead of fine-tuning full matrices.</li>
-            <li><strong>QLoRA:</strong> Combines low-rank adaptation with quantized base weights to save memory.</li>
-            <li><strong>Prefix tuning:</strong> Learns prefix vectors that steer model behavior without changing core weights.</li>
-            <li><strong>Prompt tuning:</strong> Learns soft prompt embeddings for a task.</li>
-            <li><strong>P-tuning:</strong> Uses trainable prompt representations, often with deeper prompt encoders.</li>
-            <li><strong>Low-rank and sparse updates:</strong> Restrict trainable changes to compact or selective parameter subsets.</li>
-            <li><strong>Partial fine-tuning:</strong> Updates only selected layers, heads, or modules.</li>
-            <li><strong>Quantization-aware adaptation:</strong> Adapts models while accounting for low-precision weights or activations.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener noreferrer" title="arXiv: QLoRA">QLoRA</a>:</strong> Combines low-rank adaptation with quantized base weights to save memory.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2101.00190" target="_blank" rel="noopener noreferrer" title="arXiv: Prefix tuning">Prefix tuning</a>:</strong> Learns prefix vectors that steer model behavior without changing core weights.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2104.08691" target="_blank" rel="noopener noreferrer" title="arXiv: Prompt tuning">Prompt tuning</a>:</strong> Learns soft prompt embeddings for a task.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2103.10385" target="_blank" rel="noopener noreferrer" title="arXiv: P-tuning">P-tuning</a>:</strong> Uses trainable prompt representations, often with deeper prompt encoders.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener noreferrer" title="arXiv: LoRA">Low-rank and sparse updates</a>:</strong> Restrict trainable changes to compact or selective parameter subsets.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2106.10199" target="_blank" rel="noopener noreferrer" title="arXiv: BitFit">Partial fine-tuning</a>:</strong> Updates only selected layers, heads, or modules.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.14314" target="_blank" rel="noopener noreferrer" title="arXiv: QLoRA">Quantization-aware adaptation</a>:</strong> Adapts models while accounting for low-precision weights or activations.</li>
           </ul>
         </section>
 
@@ -230,22 +230,22 @@
           <h2>7.7 Decoding and inference algorithms</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Greedy decoding:</strong> Always selects the highest-probability next token.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Greedy_algorithm" target="_blank" rel="noopener noreferrer" title="Wikipedia: Greedy algorithm">Greedy decoding</a>:</strong> Always selects the highest-probability next token.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Beam search">Beam search</a>:</strong> Keeps several high-scoring partial sequences while decoding.</li>
-            <li><strong>Temperature sampling:</strong> Adjusts randomness by sharpening or flattening token probabilities.</li>
-            <li><strong>Top-k sampling:</strong> Samples only from the k most likely next tokens.</li>
-            <li><strong>Top-p, or nucleus, sampling:</strong> Samples from the smallest token set whose probability mass reaches p.</li>
-            <li><strong>Typical sampling:</strong> Prefers tokens whose surprise is close to expected surprise.</li>
-            <li><strong>Contrastive decoding:</strong> Chooses tokens that are likely under a strong model and less favored by a weaker reference.</li>
-            <li><strong>Diverse beam search:</strong> Encourages beams to explore different output options.</li>
-            <li><strong>Constrained decoding:</strong> Forces outputs to satisfy required words, structure, or rules.</li>
-            <li><strong>Grammar-constrained decoding:</strong> Restricts generation to a formal grammar such as JSON or SQL syntax.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/generation_strategies" target="_blank" rel="noopener noreferrer" title="Hugging Face: Text generation strategies">Temperature sampling</a>:</strong> Adjusts randomness by sharpening or flattening token probabilities.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/docs/transformers/generation_strategies" target="_blank" rel="noopener noreferrer" title="Hugging Face: Text generation strategies">Top-k sampling</a>:</strong> Samples only from the k most likely next tokens.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1904.09751" target="_blank" rel="noopener noreferrer" title="arXiv: The Curious Case of Neural Text Degeneration">Top-p, or nucleus, sampling</a>:</strong> Samples from the smallest token set whose probability mass reaches p.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2202.00666" target="_blank" rel="noopener noreferrer" title="arXiv: Typical decoding">Typical sampling</a>:</strong> Prefers tokens whose surprise is close to expected surprise.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2202.06417" target="_blank" rel="noopener noreferrer" title="arXiv: Contrastive decoding">Contrastive decoding</a>:</strong> Chooses tokens that are likely under a strong model and less favored by a weaker reference.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1610.02424" target="_blank" rel="noopener noreferrer" title="arXiv: Diverse beam search">Diverse beam search</a>:</strong> Encourages beams to explore different output options.</li>
+            <li><strong><a class="wiki-term" href="https://huggingface.co/blog/constrained-beam-search" target="_blank" rel="noopener noreferrer" title="Hugging Face: Constrained beam search">Constrained decoding</a>:</strong> Forces outputs to satisfy required words, structure, or rules.</li>
+            <li><strong><a class="wiki-term" href="https://github.com/dottxt-ai/outlines" target="_blank" rel="noopener noreferrer" title="Outlines: Structured generation">Grammar-constrained decoding</a>:</strong> Restricts generation to a formal grammar such as JSON or SQL syntax.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Speculative_decoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Speculative decoding">Speculative decoding</a>:</strong> Uses a small draft model and a larger verifier model to speed generation.</li>
-            <li><strong>Parallel decoding:</strong> Predicts or validates multiple tokens or branches at once.</li>
-            <li><strong>Best-of-N:</strong> Generates multiple candidates and selects the best by a scorer or verifier.</li>
-            <li><strong>Reranking:</strong> Reorders generated candidates after decoding.</li>
-            <li><strong>Self-consistency:</strong> Samples several reasoning paths and picks the most consistent answer.</li>
-            <li><strong>Verifier-guided search:</strong> Uses a verifier model or rule checker to guide decoding decisions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Speculative_decoding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Speculative decoding">Parallel decoding</a>:</strong> Predicts or validates multiple tokens or branches at once.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Best-of-N</a>:</strong> Generates multiple candidates and selects the best by a scorer or verifier.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Learning_to_rank" target="_blank" rel="noopener noreferrer" title="Wikipedia: Learning to rank">Reranking</a>:</strong> Reorders generated candidates after decoding.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.11171" target="_blank" rel="noopener noreferrer" title="arXiv: Self-consistency">Self-consistency</a>:</strong> Samples several reasoning paths and picks the most consistent answer.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noopener noreferrer" title="arXiv: Let's Verify Step by Step">Verifier-guided search</a>:</strong> Uses a verifier model or rule checker to guide decoding decisions.</li>
           </ul>
         </section>
 

@@ -39,9 +39,9 @@
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tf–idf">Inverse document frequency</a>:</strong> Downweights common terms and upweights rarer, more specific terms.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tf%E2%80%93idf" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tf–idf">TF-IDF</a>:</strong> Scores documents by combining local term frequency with global term rarity.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Okapi_BM25" target="_blank" rel="noopener noreferrer" title="Wikipedia: Okapi BM25">BM25</a>:</strong> A strong lexical ranking function that normalizes term frequency and document length.</li>
-            <li><strong>Boolean retrieval:</strong> Uses exact logical operators such as AND, OR, and NOT to match documents.</li>
-            <li><strong>Tokenization and stemming:</strong> Break text into searchable units and reduce variants to shared roots.</li>
-            <li><strong>Fielded search:</strong> Searches structured fields like title, author, tags, or body with different weights.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Standard_Boolean_model" target="_blank" rel="noopener noreferrer" title="Wikipedia: Standard Boolean model">Boolean retrieval</a>:</strong> Uses exact logical operators such as AND, OR, and NOT to match documents.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Stemming" target="_blank" rel="noopener noreferrer" title="Wikipedia: Stemming">Tokenization and stemming</a>:</strong> Break text into searchable units and reduce variants to shared roots.</li>
+            <li><strong><a class="wiki-term" href="https://lucene.apache.org/core/3_4_0/queryparsersyntax.html#Fields" target="_blank" rel="noopener noreferrer" title="Apache Lucene: Fielded search syntax">Fielded search</a>:</strong> Searches structured fields like title, author, tags, or body with different weights.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Query_expansion" target="_blank" rel="noopener noreferrer" title="Wikipedia: Query expansion">Query expansion</a>:</strong> Adds related terms or reformulations to improve recall.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Learning_to_rank" target="_blank" rel="noopener noreferrer" title="Wikipedia: Learning to rank">Learning to rank</a>:</strong> Trains ranking models from relevance labels, clicks, or preference data.</li>
           </ul>
@@ -65,18 +65,18 @@
           <h2>8.2 Neural retrieval</h2>
           <p>Learn:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Embedding models:</strong> Encode queries and documents as vectors so semantic similarity can be searched.</li>
-            <li><strong>Bi-encoders:</strong> Encode query and document separately, enabling fast approximate vector search.</li>
-            <li><strong>Cross-encoders:</strong> Score query-document pairs together, often more accurate but slower.</li>
-            <li><strong>Late-interaction models:</strong> Keep token-level representations and compare them late for a quality-speed middle ground.</li>
-            <li><strong>Dense passage retrieval:</strong> Retrieves text passages using dense vector similarity rather than exact keywords.</li>
-            <li><strong>Contrastive retriever training:</strong> Pulls matching query-document pairs together and pushes nonmatches apart.</li>
-            <li><strong>Hard-negative mining:</strong> Trains on confusing wrong results so the retriever learns finer distinctions.</li>
-            <li><strong>Reranking:</strong> Reorders an initial candidate set with a stronger but slower model.</li>
-            <li><strong>Hybrid sparse-dense retrieval:</strong> Combines lexical matching with semantic embedding search.</li>
-            <li><strong>Reciprocal-rank fusion:</strong> Merges multiple ranked lists by rewarding documents that rank well across systems.</li>
-            <li><strong>Metadata filtering:</strong> Restricts search by fields such as date, source, permission, topic, or user segment.</li>
-            <li><strong>Multivector retrieval:</strong> Stores multiple vectors per document to capture different passages, fields, or token-level signals.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Sentence_embedding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Sentence embedding">Embedding models</a>:</strong> Encode queries and documents as vectors so semantic similarity can be searched.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1908.10084" target="_blank" rel="noopener noreferrer" title="arXiv: Sentence-BERT">Bi-encoders</a>:</strong> Encode query and document separately, enabling fast approximate vector search.</li>
+            <li><strong><a class="wiki-term" href="https://www.sbert.net/examples/cross_encoder/applications/README.html" target="_blank" rel="noopener noreferrer" title="Sentence Transformers: Cross-encoder applications">Cross-encoders</a>:</strong> Score query-document pairs together, often more accurate but slower.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.12832" target="_blank" rel="noopener noreferrer" title="arXiv: ColBERT">Late-interaction models</a>:</strong> Keep token-level representations and compare them late for a quality-speed middle ground.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.04906" target="_blank" rel="noopener noreferrer" title="arXiv: Dense Passage Retrieval">Dense passage retrieval</a>:</strong> Retrieves text passages using dense vector similarity rather than exact keywords.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Contrastive_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Contrastive learning">Contrastive retriever training</a>:</strong> Pulls matching query-document pairs together and pushes nonmatches apart.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2010.08191" target="_blank" rel="noopener noreferrer" title="arXiv: RocketQA hard negatives">Hard-negative mining</a>:</strong> Trains on confusing wrong results so the retriever learns finer distinctions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Learning_to_rank" target="_blank" rel="noopener noreferrer" title="Wikipedia: Learning to rank">Reranking</a>:</strong> Reorders an initial candidate set with a stronger but slower model.</li>
+            <li><strong><a class="wiki-term" href="https://weaviate.io/developers/weaviate/search/hybrid" target="_blank" rel="noopener noreferrer" title="Weaviate: Hybrid search">Hybrid sparse-dense retrieval</a>:</strong> Combines lexical matching with semantic embedding search.</li>
+            <li><strong><a class="wiki-term" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rrf.html" target="_blank" rel="noopener noreferrer" title="Elasticsearch: Reciprocal rank fusion">Reciprocal-rank fusion</a>:</strong> Merges multiple ranked lists by rewarding documents that rank well across systems.</li>
+            <li><strong><a class="wiki-term" href="https://docs.pinecone.io/guides/search/filter-by-metadata" target="_blank" rel="noopener noreferrer" title="Pinecone: Metadata filtering">Metadata filtering</a>:</strong> Restricts search by fields such as date, source, permission, topic, or user segment.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2004.12832" target="_blank" rel="noopener noreferrer" title="arXiv: ColBERT">Multivector retrieval</a>:</strong> Stores multiple vectors per document to capture different passages, fields, or token-level signals.</li>
           </ul>
         </section>
 
@@ -84,10 +84,10 @@
           <h2>Approximate nearest-neighbour algorithms</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Locality-sensitive hashing">Locality-sensitive hashing</a>:</strong> Hashes similar vectors into the same buckets with high probability.</li>
-            <li><strong>Product quantization:</strong> Compresses vectors into compact codes for memory-efficient similarity search.</li>
-            <li><strong>Inverted file indexes:</strong> Partition vector space into clusters and search only promising partitions.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1011.3182" target="_blank" rel="noopener noreferrer" title="arXiv: Product quantization for nearest neighbor search">Product quantization</a>:</strong> Compresses vectors into compact codes for memory-efficient similarity search.</li>
+            <li><strong><a class="wiki-term" href="https://github.com/facebookresearch/faiss/wiki/Faiss-indexes" target="_blank" rel="noopener noreferrer" title="FAISS wiki: Index types">Inverted file indexes</a>:</strong> Partition vector space into clusters and search only promising partitions.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world" target="_blank" rel="noopener noreferrer" title="Wikipedia: Hierarchical navigable small world">Hierarchical navigable small worlds</a>:</strong> Build graph indexes that navigate quickly toward nearby vectors.</li>
-            <li><strong>ScaNN-style partitioning and scoring:</strong> Uses partitioning, quantization, and optimized scoring for fast large-scale retrieval.</li>
+            <li><strong><a class="wiki-term" href="https://github.com/google-research/google-research/tree/master/scann" target="_blank" rel="noopener noreferrer" title="Google Research: ScaNN">ScaNN-style partitioning and scoring</a>:</strong> Uses partitioning, quantization, and optimized scoring for fast large-scale retrieval.</li>
           </ul>
         </section>
 
@@ -97,36 +97,36 @@
           <ol class="lesson-list dense-list topic-detail-list">
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ingestion" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ingestion">Ingestion</a>:</strong> Bring documents, records, pages, or data feeds into the retrieval system.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Parsing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Parsing">Parsing</a>:</strong> Extract usable text, tables, structure, and attachments from raw files.</li>
-            <li><strong>Chunking:</strong> Split content into retrieval-sized units that preserve enough context.</li>
-            <li><strong>Metadata extraction:</strong> Attach source, date, permissions, topic, author, and other filters to each chunk.</li>
+            <li><strong><a class="wiki-term" href="https://www.pinecone.io/learn/chunking-strategies/" target="_blank" rel="noopener noreferrer" title="Pinecone: Chunking strategies">Chunking</a>:</strong> Split content into retrieval-sized units that preserve enough context.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Metadata" target="_blank" rel="noopener noreferrer" title="Wikipedia: Metadata">Metadata extraction</a>:</strong> Attach source, date, permissions, topic, author, and other filters to each chunk.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Embedding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Embedding">Embedding</a>:</strong> Convert chunks into vectors for semantic search.</li>
-            <li><strong>Indexing:</strong> Store sparse, dense, or hybrid searchable representations.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Search_engine_indexing" target="_blank" rel="noopener noreferrer" title="Wikipedia: Search engine indexing">Indexing</a>:</strong> Store sparse, dense, or hybrid searchable representations.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Query_rewriting" target="_blank" rel="noopener noreferrer" title="Wikipedia: Query rewriting">Query rewriting</a>:</strong> Reformulate the user request into better retrieval queries.</li>
-            <li><strong>Retrieval:</strong> Pull candidate chunks that may answer the request.</li>
-            <li><strong>Reranking:</strong> Sort candidates by a stronger relevance model before generation.</li>
-            <li><strong>Context packing:</strong> Fit the best evidence into the model context without wasting tokens.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Document_retrieval" target="_blank" rel="noopener noreferrer" title="Wikipedia: Document retrieval">Retrieval</a>:</strong> Pull candidate chunks that may answer the request.</li>
+            <li><strong><a class="wiki-term" href="https://www.pinecone.io/learn/series/rag/rerankers/" target="_blank" rel="noopener noreferrer" title="Pinecone: Rerankers">Reranking</a>:</strong> Sort candidates by a stronger relevance model before generation.</li>
+            <li><strong><a class="wiki-term" href="https://www.pinecone.io/learn/series/rag/rerankers/" target="_blank" rel="noopener noreferrer" title="Pinecone: RAG reranking and context selection">Context packing</a>:</strong> Fit the best evidence into the model context without wasting tokens.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Generation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Generation">Generation</a>:</strong> Ask the model to answer using the supplied evidence.</li>
-            <li><strong>Citation or provenance generation:</strong> Link claims back to source chunks or documents.</li>
-            <li><strong>Faithfulness evaluation:</strong> Check whether the answer is supported by retrieved evidence.</li>
-            <li><strong>Cache and index refresh:</strong> Keep results fast and update indexes when source content changes.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Provenance" target="_blank" rel="noopener noreferrer" title="Wikipedia: Provenance">Citation or provenance generation</a>:</strong> Link claims back to source chunks or documents.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener noreferrer" title="arXiv: RAGAS">Faithfulness evaluation</a>:</strong> Check whether the answer is supported by retrieved evidence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Cache_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Cache (computing)">Cache and index refresh</a>:</strong> Keep results fast and update indexes when source content changes.</li>
           </ol>
         </section>
 
         <section>
           <h2>Study</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Naive RAG:</strong> Retrieves a few chunks and passes them directly to a generator.</li>
-            <li><strong>Hybrid RAG:</strong> Combines lexical, dense, metadata, and reranking signals.</li>
-            <li><strong>Multi-query retrieval:</strong> Runs several query variants to improve recall.</li>
-            <li><strong>Query decomposition:</strong> Breaks complex questions into smaller retrieval subquestions.</li>
-            <li><strong>Parent-child retrieval:</strong> Retrieves small chunks but returns larger parent context for generation.</li>
-            <li><strong>Graph RAG:</strong> Uses entities and relationships to retrieve or summarize connected knowledge.</li>
-            <li><strong>Agentic retrieval:</strong> Lets an agent decide when and how to search while solving a task.</li>
-            <li><strong>Iterative retrieval:</strong> Searches, reasons, and searches again as new information is needed.</li>
-            <li><strong>Corrective RAG:</strong> Detects weak retrieval and repairs it through rewriting, fallback search, or validation.</li>
-            <li><strong>Retrieval routing:</strong> Sends queries to the right index, tool, retriever, or knowledge source.</li>
-            <li><strong>Context compression:</strong> Shortens retrieved evidence while preserving the pieces needed for the answer.</li>
-            <li><strong>Lost-in-the-middle effects:</strong> Long contexts can cause models to ignore evidence placed away from the beginning or end.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener noreferrer" title="arXiv: Retrieval-Augmented Generation">Naive RAG</a>:</strong> Retrieves a few chunks and passes them directly to a generator.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2404.07221" target="_blank" rel="noopener noreferrer" title="arXiv: RAG survey">Hybrid RAG</a>:</strong> Combines lexical, dense, metadata, and reranking signals.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2402.03367" target="_blank" rel="noopener noreferrer" title="arXiv: Query expansion and multi-query retrieval">Multi-query retrieval</a>:</strong> Runs several query variants to improve recall.</li>
+            <li><strong><a class="wiki-term" href="https://docs.llamaindex.ai/en/stable/examples/query_engine/sub_question_query_engine/" target="_blank" rel="noopener noreferrer" title="LlamaIndex: Sub-question query engine">Query decomposition</a>:</strong> Breaks complex questions into smaller retrieval subquestions.</li>
+            <li><strong><a class="wiki-term" href="https://developers.llamaindex.ai/python/framework/integrations/retrievers/recursive_retriever_nodes/" target="_blank" rel="noopener noreferrer" title="LlamaIndex: Recursive retrieval">Parent-child retrieval</a>:</strong> Retrieves small chunks but returns larger parent context for generation.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2401.00309" target="_blank" rel="noopener noreferrer" title="arXiv: GraphRAG">Graph RAG</a>:</strong> Uses entities and relationships to retrieve or summarize connected knowledge.</li>
+            <li><strong><a class="wiki-term" href="https://docs.llamaindex.ai/en/stable/examples/agent/openai_agent_retrieval/" target="_blank" rel="noopener noreferrer" title="LlamaIndex: Agentic retrieval">Agentic retrieval</a>:</strong> Lets an agent decide when and how to search while solving a task.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2310.11511" target="_blank" rel="noopener noreferrer" title="arXiv: Self-RAG">Iterative retrieval</a>:</strong> Searches, reasons, and searches again as new information is needed.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2401.15884" target="_blank" rel="noopener noreferrer" title="arXiv: Corrective RAG">Corrective RAG</a>:</strong> Detects weak retrieval and repairs it through rewriting, fallback search, or validation.</li>
+            <li><strong><a class="wiki-term" href="https://docs.llamaindex.ai/en/stable/examples/query_engine/RouterQueryEngine/" target="_blank" rel="noopener noreferrer" title="LlamaIndex: Router query engine">Retrieval routing</a>:</strong> Sends queries to the right index, tool, retriever, or knowledge source.</li>
+            <li><strong><a class="wiki-term" href="https://docs.llamaindex.ai/en/stable/examples/node_postprocessor/LongContextReorder/" target="_blank" rel="noopener noreferrer" title="LlamaIndex: Long context reorder">Context compression</a>:</strong> Shortens retrieved evidence while preserving the pieces needed for the answer.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener noreferrer" title="arXiv: Lost in the Middle">Lost-in-the-middle effects</a>:</strong> Long contexts can cause models to ignore evidence placed away from the beginning or end.</li>
           </ul>
         </section>
 

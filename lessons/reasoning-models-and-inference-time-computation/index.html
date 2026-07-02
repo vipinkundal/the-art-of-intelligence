@@ -34,25 +34,25 @@
           <h2>Learn</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Prompt_engineering" target="_blank" rel="noopener noreferrer" title="Wikipedia: Prompt engineering">Chain-of-thought prompting</a>:</strong> Encourages intermediate reasoning text before the final answer.</li>
-            <li><strong>Scratchpad computation:</strong> Gives the model working space for calculations, notes, or intermediate state.</li>
-            <li><strong>Self-consistency:</strong> Samples multiple reasoning paths and chooses the answer that appears most consistently.</li>
-            <li><strong>Least-to-most prompting:</strong> Solves simpler subproblems first, then combines them into the full solution.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2112.00114" target="_blank" rel="noopener noreferrer" title="arXiv: Show Your Work">Scratchpad computation</a>:</strong> Gives the model working space for calculations, notes, or intermediate state.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.11171" target="_blank" rel="noopener noreferrer" title="arXiv: Self-consistency improves chain of thought">Self-consistency</a>:</strong> Samples multiple reasoning paths and chooses the answer that appears most consistently.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2205.10625" target="_blank" rel="noopener noreferrer" title="arXiv: Least-to-most prompting">Least-to-most prompting</a>:</strong> Solves simpler subproblems first, then combines them into the full solution.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Decomposition" target="_blank" rel="noopener noreferrer" title="Wikipedia: Decomposition">Decomposition</a>:</strong> Breaks a hard task into smaller questions that can be solved and checked independently.</li>
-            <li><strong>Tree of Thoughts:</strong> Searches a branching tree of candidate reasoning steps.</li>
-            <li><strong>Graph of Thoughts:</strong> Allows reasoning states to merge, revise, and connect more flexibly than a tree.</li>
-            <li><strong>Beam search over reasoning traces:</strong> Keeps the best few partial reasoning paths at each step.</li>
-            <li><strong>Best-of-N sampling:</strong> Generates many candidate answers and picks the strongest by scoring or verification.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.10601" target="_blank" rel="noopener noreferrer" title="arXiv: Tree of Thoughts">Tree of Thoughts</a>:</strong> Searches a branching tree of candidate reasoning steps.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2308.09687" target="_blank" rel="noopener noreferrer" title="arXiv: Graph of Thoughts">Graph of Thoughts</a>:</strong> Allows reasoning states to merge, revise, and connect more flexibly than a tree.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Beam_search" target="_blank" rel="noopener noreferrer" title="Wikipedia: Beam search">Beam search over reasoning traces</a>:</strong> Keeps the best few partial reasoning paths at each step.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Best-of-N sampling</a>:</strong> Generates many candidate answers and picks the strongest by scoring or verification.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Majority_rule" target="_blank" rel="noopener noreferrer" title="Wikipedia: Majority rule">Majority voting</a>:</strong> Chooses the most common answer across independent attempts.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Process_supervision" target="_blank" rel="noopener noreferrer" title="Wikipedia: Process supervision">Process supervision</a>:</strong> Trains or scores the intermediate reasoning steps, not just the final answer.</li>
-            <li><strong>Outcome supervision:</strong> Rewards only the final result, even if the internal path is unknown or messy.</li>
-            <li><strong>Step-level verification:</strong> Checks each intermediate claim or operation for correctness.</li>
-            <li><strong>Program-aided reasoning:</strong> Uses generated code or symbolic programs to perform exact calculations.</li>
-            <li><strong>Tool-assisted reasoning:</strong> Calls search, calculators, code, retrieval, or APIs to ground the answer.</li>
-            <li><strong>Code execution:</strong> Runs code to test hypotheses, compute results, or verify examples.</li>
-            <li><strong>Search over latent or textual reasoning:</strong> Explores multiple internal or visible paths before committing.</li>
-            <li><strong>Test-time adaptation:</strong> Adjusts behavior during inference based on the current task or feedback.</li>
-            <li><strong>Adaptive computation:</strong> Spends more reasoning steps on harder examples and fewer on easy ones.</li>
-            <li><strong>Inference-time scaling:</strong> Improves answers by increasing compute used during generation, search, or verification.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noopener noreferrer" title="arXiv: Let's Verify Step by Step">Outcome supervision</a>:</strong> Rewards only the final result, even if the internal path is unknown or messy.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.20050" target="_blank" rel="noopener noreferrer" title="arXiv: Let's Verify Step by Step">Step-level verification</a>:</strong> Checks each intermediate claim or operation for correctness.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2211.10435" target="_blank" rel="noopener noreferrer" title="arXiv: Program-aided language models">Program-aided reasoning</a>:</strong> Uses generated code or symbolic programs to perform exact calculations.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer" title="arXiv: Toolformer">Tool-assisted reasoning</a>:</strong> Calls search, calculators, code, retrieval, or APIs to ground the answer.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Execution_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Execution (computing)">Code execution</a>:</strong> Runs code to test hypotheses, compute results, or verify examples.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.10601" target="_blank" rel="noopener noreferrer" title="arXiv: Tree of Thoughts">Search over latent or textual reasoning</a>:</strong> Explores multiple internal or visible paths before committing.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1909.13231" target="_blank" rel="noopener noreferrer" title="arXiv: Test-time training">Test-time adaptation</a>:</strong> Adjusts behavior during inference based on the current task or feedback.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1603.08983" target="_blank" rel="noopener noreferrer" title="arXiv: Adaptive computation time">Adaptive computation</a>:</strong> Spends more reasoning steps on harder examples and fewer on easy ones.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2408.03314" target="_blank" rel="noopener noreferrer" title="arXiv: Scaling test-time compute">Inference-time scaling</a>:</strong> Improves answers by increasing compute used during generation, search, or verification.</li>
           </ul>
         </section>
 
@@ -66,11 +66,11 @@
         <section>
           <h2>Important distinction</h2>
           <ul class="lesson-list dense-list">
-            <li><strong>Fluency</strong> is not reasoning.</li>
-            <li><strong>Long output</strong> is not necessarily better reasoning.</li>
-            <li><strong>Self-explanation</strong> is not proof of internal correctness.</li>
-            <li><strong>Benchmark accuracy</strong> does not guarantee robustness outside the benchmark.</li>
-            <li><strong>A verifier</strong> can be as important as the generator.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Fluency" target="_blank" rel="noopener noreferrer" title="Wikipedia: Fluency">Fluency</a></strong> is not reasoning.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Verbosity" target="_blank" rel="noopener noreferrer" title="Wikipedia: Verbosity">Long output</a></strong> is not necessarily better reasoning.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Explainable_artificial_intelligence" target="_blank" rel="noopener noreferrer" title="Wikipedia: Explainable artificial intelligence">Self-explanation</a></strong> is not proof of internal correctness.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Benchmark_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Benchmark (computing)">Benchmark accuracy</a></strong> does not guarantee robustness outside the benchmark.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Verification_and_validation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Verification and validation">A verifier</a></strong> can be as important as the generator.</li>
           </ul>
         </section>
 

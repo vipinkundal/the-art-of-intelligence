@@ -34,23 +34,23 @@
           <h2>10.1 Agent patterns</h2>
           <p>Study:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>ReAct:</strong> Interleaves reasoning, tool actions, and observations so the agent can adapt after each result.</li>
-            <li><strong>Planner-executor:</strong> Separates high-level planning from step execution, making long tasks easier to inspect and retry.</li>
-            <li><strong>Router-specialist:</strong> Sends tasks to specialized prompts, models, tools, or workflows based on task type.</li>
-            <li><strong>Generate-critique-revise:</strong> Produces an answer, critiques it, and revises it before returning the final output.</li>
-            <li><strong>Generate-rank-verify:</strong> Creates multiple candidates, ranks them, and verifies the strongest option.</li>
-            <li><strong>Reflection loops:</strong> Let an agent inspect past failures or results and update its next attempt.</li>
-            <li><strong>State-machine agents:</strong> Move through explicit states, making control flow predictable and debuggable.</li>
-            <li><strong>Workflow graphs:</strong> Represent agent steps as connected nodes with branching, retries, and dependencies.</li>
-            <li><strong>Hierarchical agents:</strong> Use manager and worker roles so complex goals can be delegated to subtasks.</li>
-            <li><strong>Multi-agent debate:</strong> Uses multiple agents to propose, challenge, and compare answers before selection.</li>
-            <li><strong>Blackboard architectures:</strong> Let independent components read and write to a shared working memory.</li>
-            <li><strong>Event-driven agents:</strong> React to messages, file changes, webhooks, or system events instead of only direct prompts.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer" title="arXiv: ReAct">ReAct</a>:</strong> Interleaves reasoning, tool actions, and observations so the agent can adapt after each result.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.04091" target="_blank" rel="noopener noreferrer" title="arXiv: Plan-and-Solve prompting">Planner-executor</a>:</strong> Separates high-level planning from step execution, making long tasks easier to inspect and retry.</li>
+            <li><strong><a class="wiki-term" href="https://langchain-ai.github.io/langgraph/concepts/multi_agent/" target="_blank" rel="noopener noreferrer" title="LangGraph: Multi-agent systems">Router-specialist</a>:</strong> Sends tasks to specialized prompts, models, tools, or workflows based on task type.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2303.17651" target="_blank" rel="noopener noreferrer" title="arXiv: Self-Refine">Generate-critique-revise</a>:</strong> Produces an answer, critiques it, and revises it before returning the final output.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener noreferrer" title="arXiv: InstructGPT">Generate-rank-verify</a>:</strong> Creates multiple candidates, ranks them, and verifies the strongest option.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noopener noreferrer" title="arXiv: Reflexion">Reflection loops</a>:</strong> Let an agent inspect past failures or results and update its next attempt.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank" rel="noopener noreferrer" title="Wikipedia: Finite-state machine">State-machine agents</a>:</strong> Move through explicit states, making control flow predictable and debuggable.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Directed_acyclic_graph" target="_blank" rel="noopener noreferrer" title="Wikipedia: Directed acyclic graph">Workflow graphs</a>:</strong> Represent agent steps as connected nodes with branching, retries, and dependencies.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Multi-agent_system" target="_blank" rel="noopener noreferrer" title="Wikipedia: Multi-agent system">Hierarchical agents</a>:</strong> Use manager and worker roles so complex goals can be delegated to subtasks.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2305.14325" target="_blank" rel="noopener noreferrer" title="arXiv: Multi-agent debate">Multi-agent debate</a>:</strong> Uses multiple agents to propose, challenge, and compare answers before selection.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Blackboard_system" target="_blank" rel="noopener noreferrer" title="Wikipedia: Blackboard system">Blackboard architectures</a>:</strong> Let independent components read and write to a shared working memory.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Event-driven_architecture" target="_blank" rel="noopener noreferrer" title="Wikipedia: Event-driven architecture">Event-driven agents</a>:</strong> React to messages, file changes, webhooks, or system events instead of only direct prompts.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Human-in-the-loop" target="_blank" rel="noopener noreferrer" title="Wikipedia: Human-in-the-loop">Human-in-the-loop systems</a>:</strong> Insert human review where stakes, ambiguity, or permissions require judgment.</li>
-            <li><strong>Long-term and episodic memory:</strong> Store durable facts and past interactions so future decisions can use prior context.</li>
-            <li><strong>Tool routing:</strong> Chooses the right tool or API for a step based on intent, input type, and available permissions.</li>
-            <li><strong>Structured output:</strong> Forces model responses into schemas that code can validate and consume reliably.</li>
-            <li><strong>Recovery and retry policies:</strong> Define what to do when tools fail, outputs are invalid, or progress stalls.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2304.03442" target="_blank" rel="noopener noreferrer" title="arXiv: Generative Agents">Long-term and episodic memory</a>:</strong> Store durable facts and past interactions so future decisions can use prior context.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2302.04761" target="_blank" rel="noopener noreferrer" title="arXiv: Toolformer">Tool routing</a>:</strong> Chooses the right tool or API for a step based on intent, input type, and available permissions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/JSON_Schema" target="_blank" rel="noopener noreferrer" title="Wikipedia: JSON Schema">Structured output</a>:</strong> Forces model responses into schemas that code can validate and consume reliably.</li>
+            <li><strong><a class="wiki-term" href="https://learn.microsoft.com/en-us/azure/architecture/patterns/retry" target="_blank" rel="noopener noreferrer" title="Microsoft Azure Architecture: Retry pattern">Recovery and retry policies</a>:</strong> Define what to do when tools fail, outputs are invalid, or progress stalls.</li>
           </ul>
           <p>
             ReAct combines interleaved reasoning traces with actions and observations from an external environment.
@@ -64,25 +64,25 @@
           <h2>10.2 Production concerns for agents</h2>
           <p>Understand:</p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Idempotent tools:</strong> Tools should be safe to retry without duplicating side effects.</li>
-            <li><strong>Permission boundaries:</strong> Limit what the agent can read, write, call, or change.</li>
-            <li><strong>Sandboxing:</strong> Runs risky code or actions in restricted environments.</li>
-            <li><strong>Tool schemas:</strong> Define exact inputs and outputs so model calls can be validated.</li>
-            <li><strong>Timeouts:</strong> Stop slow or stuck tool calls before they block the workflow.</li>
-            <li><strong>Retries and backoff:</strong> Repeat transient failures with spacing so systems can recover.</li>
-            <li><strong>State persistence:</strong> Saves progress so long-running tasks can resume after interruption.</li>
-            <li><strong>Durable execution:</strong> Ensures workflows survive process restarts, crashes, or delayed callbacks.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Idempotence" target="_blank" rel="noopener noreferrer" title="Wikipedia: Idempotence">Idempotent tools</a>:</strong> Tools should be safe to retry without duplicating side effects.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Access_control" target="_blank" rel="noopener noreferrer" title="Wikipedia: Access control">Permission boundaries</a>:</strong> Limit what the agent can read, write, call, or change.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Sandbox_(computer_security)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Sandbox (computer security)">Sandboxing</a>:</strong> Runs risky code or actions in restricted environments.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/JSON_Schema" target="_blank" rel="noopener noreferrer" title="Wikipedia: JSON Schema">Tool schemas</a>:</strong> Define exact inputs and outputs so model calls can be validated.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Timeout_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Timeout (computing)">Timeouts</a>:</strong> Stop slow or stuck tool calls before they block the workflow.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Exponential_backoff" target="_blank" rel="noopener noreferrer" title="Wikipedia: Exponential backoff">Retries and backoff</a>:</strong> Repeat transient failures with spacing so systems can recover.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Persistence_(computer_science)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Persistence (computer science)">State persistence</a>:</strong> Saves progress so long-running tasks can resume after interruption.</li>
+            <li><strong><a class="wiki-term" href="https://docs.temporal.io/workflows" target="_blank" rel="noopener noreferrer" title="Temporal: Workflows">Durable execution</a>:</strong> Ensures workflows survive process restarts, crashes, or delayed callbacks.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Context_management" target="_blank" rel="noopener noreferrer" title="Wikipedia: Context management">Context management</a>:</strong> Controls what evidence, memory, and instructions fit into the model window.</li>
-            <li><strong>Trace logging:</strong> Records decisions, tool calls, observations, and errors for debugging and audit.</li>
-            <li><strong>Budget limits:</strong> Cap tokens, time, money, tool calls, or external side effects.</li>
-            <li><strong>Human approval points:</strong> Require explicit review before sensitive actions are taken.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Tracing_(software)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Tracing (software)">Trace logging</a>:</strong> Records decisions, tool calls, observations, and errors for debugging and audit.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Rate_limiting" target="_blank" rel="noopener noreferrer" title="Wikipedia: Rate limiting">Budget limits</a>:</strong> Cap tokens, time, money, tool calls, or external side effects.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Human-in-the-loop" target="_blank" rel="noopener noreferrer" title="Wikipedia: Human-in-the-loop">Human approval points</a>:</strong> Require explicit review before sensitive actions are taken.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Prompt_injection" target="_blank" rel="noopener noreferrer" title="Wikipedia: Prompt injection">Prompt injection</a>:</strong> Malicious instructions try to override the system through user-visible text.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Prompt_injection" target="_blank" rel="noopener noreferrer" title="Wikipedia: Prompt injection">Indirect prompt injection</a>:</strong> Malicious instructions arrive through retrieved pages, files, emails, or tool outputs.</li>
-            <li><strong>Exfiltration attacks:</strong> Attempts to make the agent reveal secrets or private data.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_exfiltration" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data exfiltration">Exfiltration attacks</a>:</strong> Attempts to make the agent reveal secrets or private data.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Confused_deputy_problem" target="_blank" rel="noopener noreferrer" title="Wikipedia: Confused deputy problem">Confused-deputy problems</a>:</strong> The agent misuses its authority on behalf of untrusted content.</li>
-            <li><strong>Tool-result validation:</strong> Checks whether tool output is complete, expected, safe, and consistent.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_validation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data validation">Tool-result validation</a>:</strong> Checks whether tool output is complete, expected, safe, and consistent.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Business_transaction_management" target="_blank" rel="noopener noreferrer" title="Wikipedia: Business transaction management">Transaction management</a>:</strong> Groups actions so partial completion does not leave systems inconsistent.</li>
-            <li><strong>Rollback and compensation:</strong> Undo or counteract side effects when later steps fail.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Compensating_transaction" target="_blank" rel="noopener noreferrer" title="Wikipedia: Compensating transaction">Rollback and compensation</a>:</strong> Undo or counteract side effects when later steps fail.</li>
           </ul>
           <p>
             For application integration, Model Context Protocol is a current open standard for connecting AI applications to tools, data sources, and external systems. It belongs in the engineering layer of the roadmap, not in the mathematical core of AI.

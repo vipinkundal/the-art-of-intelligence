@@ -451,7 +451,7 @@
       whatToLearn: ["score function", "log-density gradients", "unnormalized models", "connection to denoising"],
       pitfalls: ["Raw score matching can be hard in high dimensions.", "Boundary conditions and noise levels matter."],
       example: "A score model around a noisy image predicts the direction that moves the image toward higher data density.",
-      resources: [{ label: "Wikipedia: Score matching", url: "https://en.wikipedia.org/wiki/Score_matching" }],
+      resources: [{ label: "Score Matching paper", url: "https://jmlr.org/papers/v6/hyvarinen05a.html" }],
     },
     {
       id: "denoising-score-matching",

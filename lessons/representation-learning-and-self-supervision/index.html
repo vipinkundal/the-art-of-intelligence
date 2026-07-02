@@ -33,27 +33,27 @@
         <section>
           <h2>Study</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Distributed word representations:</strong> Represent words as dense vectors whose geometry captures usage and meaning.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Word_embedding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Word embedding">Distributed word representations</a>:</strong> Represent words as dense vectors whose geometry captures usage and meaning.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="noopener noreferrer" title="Wikipedia: Word2vec">Word2vec</a>:</strong> Learns word embeddings from local context prediction tasks.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="noopener noreferrer" title="Wikipedia: Word2vec">Skip-gram</a>:</strong> Predicts surrounding words from a center word.</li>
-            <li><strong>Continuous bag of words:</strong> Predicts a center word from surrounding context words.</li>
-            <li><strong>Negative sampling:</strong> Makes contrastive word training efficient by comparing positives against sampled negatives.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Word2vec" target="_blank" rel="noopener noreferrer" title="Wikipedia: Word2vec">Continuous bag of words</a>:</strong> Predicts a center word from surrounding context words.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1310.4546" target="_blank" rel="noopener noreferrer" title="arXiv: Distributed Representations of Words and Phrases and their Compositionality">Negative sampling</a>:</strong> Makes contrastive word training efficient by comparing positives against sampled negatives.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/GloVe" target="_blank" rel="noopener noreferrer" title="Wikipedia: GloVe">GloVe</a>:</strong> Learns embeddings from global word co-occurrence statistics.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/FastText" target="_blank" rel="noopener noreferrer" title="Wikipedia: FastText">FastText</a>:</strong> Builds word vectors from subword units, helping with rare or unseen words.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Similarity_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Similarity learning">Metric learning</a>:</strong> Trains embeddings so distances match semantic similarity or task relevance.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Siamese_neural_network" target="_blank" rel="noopener noreferrer" title="Wikipedia: Siamese neural network">Siamese networks</a>:</strong> Use shared encoders to compare two inputs in the same embedding space.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Triplet_loss" target="_blank" rel="noopener noreferrer" title="Wikipedia: Triplet loss">Triplet loss</a>:</strong> Pulls an anchor closer to a positive example than to a negative example by a margin.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Self-supervised_learning" target="_blank" rel="noopener noreferrer" title="Wikipedia: Self-supervised learning">Contrastive learning</a>:</strong> Learns by bringing related views together and pushing unrelated examples apart.</li>
-            <li><strong>InfoNCE:</strong> A contrastive loss that scores one positive against many negatives.</li>
-            <li><strong>SimCLR:</strong> Learns visual representations by contrasting augmented views of the same image.</li>
-            <li><strong>MoCo:</strong> Maintains a moving queue of negative examples for contrastive learning.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1807.03748" target="_blank" rel="noopener noreferrer" title="arXiv: Representation Learning with Contrastive Predictive Coding">InfoNCE</a>:</strong> A contrastive loss that scores one positive against many negatives.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2002.05709" target="_blank" rel="noopener noreferrer" title="arXiv: A Simple Framework for Contrastive Learning of Visual Representations">SimCLR</a>:</strong> Learns visual representations by contrasting augmented views of the same image.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1911.05722" target="_blank" rel="noopener noreferrer" title="arXiv: Momentum Contrast for Unsupervised Visual Representation Learning">MoCo</a>:</strong> Maintains a moving queue of negative examples for contrastive learning.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Contrastive_Language%E2%80%93Image_Pre-training" target="_blank" rel="noopener noreferrer" title="Wikipedia: Contrastive Language–Image Pre-training">CLIP</a>:</strong> Aligns image and text embeddings using contrastive training on paired captions and images.</li>
-            <li><strong>BYOL:</strong> Learns representations by predicting another network's view without explicit negatives.</li>
-            <li><strong>DINO:</strong> Uses self-distillation to learn strong visual features without labels.</li>
-            <li><strong>Masked autoencoders:</strong> Reconstruct missing parts of inputs from visible context.</li>
-            <li><strong>Masked language modelling:</strong> Predicts hidden tokens from surrounding text.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2006.07733" target="_blank" rel="noopener noreferrer" title="arXiv: Bootstrap Your Own Latent">BYOL</a>:</strong> Learns representations by predicting another network's view without explicit negatives.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2104.14294" target="_blank" rel="noopener noreferrer" title="arXiv: Emerging Properties in Self-Supervised Vision Transformers">DINO</a>:</strong> Uses self-distillation to learn strong visual features without labels.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2111.06377" target="_blank" rel="noopener noreferrer" title="arXiv: Masked Autoencoders Are Scalable Vision Learners">Masked autoencoders</a>:</strong> Reconstruct missing parts of inputs from visible context.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/BERT_(language_model)" target="_blank" rel="noopener noreferrer" title="Wikipedia: BERT language model">Masked language modelling</a>:</strong> Predicts hidden tokens from surrounding text.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Predictive_coding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Predictive coding">Predictive coding</a>:</strong> Learns by predicting future, missing, or compressed signals.</li>
-            <li><strong>Joint-embedding predictive architectures:</strong> Predict representations of target observations rather than reconstructing raw pixels or tokens.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2301.08243" target="_blank" rel="noopener noreferrer" title="arXiv: Self-Supervised Learning from Images with a Joint-Embedding Predictive Architecture">Joint-embedding predictive architectures</a>:</strong> Predict representations of target observations rather than reconstructing raw pixels or tokens.</li>
           </ul>
         </section>
 

@@ -1098,6 +1098,30 @@ h2 {
   color: var(--green);
 }
 
+.lesson-list strong .topic-source-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5em;
+  margin-left: 0.25rem;
+  border: 1px solid rgba(31, 122, 92, 0.24);
+  border-radius: 999px;
+  background: rgba(31, 122, 92, 0.08);
+  color: var(--green);
+  padding: 0.05rem 0.38rem;
+  font-size: 0.72rem;
+  font-weight: 850;
+  line-height: 1.2;
+  vertical-align: 0.08em;
+}
+
+.lesson-list strong .topic-source-link:hover,
+.lesson-list strong .topic-source-link:focus-visible {
+  border-color: rgba(31, 122, 92, 0.55);
+  background: rgba(31, 122, 92, 0.13);
+  color: var(--ink);
+  outline: none;
+}
+
 .topic-detail-list li {
   padding-right: 0.25rem;
 }

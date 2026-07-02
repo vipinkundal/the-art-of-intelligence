@@ -34,16 +34,16 @@
           <h2>Learn</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Mixture_of_experts" target="_blank" rel="noopener noreferrer" title="Wikipedia: Mixture of experts">Sparse mixture-of-experts</a>:</strong> Activates only a small subset of expert networks per token, increasing parameters without equal compute growth.</li>
-            <li><strong>Expert routing:</strong> Chooses which expert networks should process each token or example.</li>
-            <li><strong>Top-k gating:</strong> Sends a token to the highest-scoring few experts rather than all experts.</li>
-            <li><strong>Load balancing:</strong> Prevents the router from overusing a few experts while leaving others idle.</li>
-            <li><strong>Expert capacity:</strong> Limits how many tokens an expert can handle in one batch, affecting dropped tokens and efficiency.</li>
-            <li><strong>Expert parallelism:</strong> Places different experts on different devices so large expert sets can run in parallel.</li>
-            <li><strong>Router instability:</strong> Routing choices can fluctuate or collapse, making training harder than dense models.</li>
-            <li><strong>Auxiliary routing loss:</strong> Adds training pressure that encourages balanced and useful expert assignment.</li>
-            <li><strong>Shared experts:</strong> Always-active experts provide common capability while routed experts add specialization.</li>
-            <li><strong>Fine-grained experts:</strong> Use smaller or more numerous experts to give the router more precise choices.</li>
-            <li><strong>Expert specialization:</strong> Experts can learn different patterns, domains, token types, or functions through routing pressure.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1701.06538" target="_blank" rel="noopener noreferrer" title="arXiv: Outrageously Large Neural Networks">Expert routing</a>:</strong> Chooses which expert networks should process each token or example.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1701.06538" target="_blank" rel="noopener noreferrer" title="arXiv: Outrageously Large Neural Networks">Top-k gating</a>:</strong> Sends a token to the highest-scoring few experts rather than all experts.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2101.03961" target="_blank" rel="noopener noreferrer" title="arXiv: Switch Transformers">Load balancing</a>:</strong> Prevents the router from overusing a few experts while leaving others idle.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2101.03961" target="_blank" rel="noopener noreferrer" title="arXiv: Switch Transformers">Expert capacity</a>:</strong> Limits how many tokens an expert can handle in one batch, affecting dropped tokens and efficiency.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2006.16668" target="_blank" rel="noopener noreferrer" title="arXiv: GShard">Expert parallelism</a>:</strong> Places different experts on different devices so large expert sets can run in parallel.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2202.08906" target="_blank" rel="noopener noreferrer" title="arXiv: ST-MoE">Router instability</a>:</strong> Routing choices can fluctuate or collapse, making training harder than dense models.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2101.03961" target="_blank" rel="noopener noreferrer" title="arXiv: Switch Transformers">Auxiliary routing loss</a>:</strong> Adds training pressure that encourages balanced and useful expert assignment.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2401.06066" target="_blank" rel="noopener noreferrer" title="arXiv: DeepSeekMoE">Shared experts</a>:</strong> Always-active experts provide common capability while routed experts add specialization.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2401.06066" target="_blank" rel="noopener noreferrer" title="arXiv: DeepSeekMoE">Fine-grained experts</a>:</strong> Use smaller or more numerous experts to give the router more precise choices.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2401.06066" target="_blank" rel="noopener noreferrer" title="arXiv: DeepSeekMoE">Expert specialization</a>:</strong> Experts can learn different patterns, domains, token types, or functions through routing pressure.</li>
           </ul>
         </section>
 

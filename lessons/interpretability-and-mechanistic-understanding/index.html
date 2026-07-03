@@ -36,13 +36,13 @@
             These methods can be applied to many model families because they mostly treat the model as a prediction function and examine how outputs change when inputs change.
           </p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Permutation importance:</strong> Measures performance drop after shuffling a feature, estimating how much the model relies on that feature.</li>
-            <li><strong>Partial dependence plots:</strong> Show average model predictions as one or two features vary across a chosen range.</li>
-            <li><strong>Individual conditional expectation:</strong> Shows feature-response curves for individual examples instead of only the population average.</li>
-            <li><strong>LIME:</strong> Fits a simple local surrogate model around one prediction to approximate nearby model behavior.</li>
+            <li><strong><a class="wiki-term" href="https://scikit-learn.org/stable/modules/permutation_importance.html" target="_blank" rel="noopener noreferrer" title="scikit-learn: Permutation feature importance">Permutation importance</a>:</strong> Measures performance drop after shuffling a feature, estimating how much the model relies on that feature.</li>
+            <li><strong><a class="wiki-term" href="https://scikit-learn.org/stable/modules/partial_dependence.html" target="_blank" rel="noopener noreferrer" title="scikit-learn: Partial dependence and ICE plots">Partial dependence plots</a>:</strong> Show average model predictions as one or two features vary across a chosen range.</li>
+            <li><strong><a class="wiki-term" href="https://christophm.github.io/interpretable-ml-book/ice.html" target="_blank" rel="noopener noreferrer" title="Interpretable Machine Learning: Individual Conditional Expectation">Individual conditional expectation</a>:</strong> Shows feature-response curves for individual examples instead of only the population average.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1602.04938" target="_blank" rel="noopener noreferrer" title="arXiv: Why Should I Trust You?">LIME</a>:</strong> Fits a simple local surrogate model around one prediction to approximate nearby model behavior.</li>
             <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Shapley_value" target="_blank" rel="noopener noreferrer" title="Wikipedia: Shapley value">SHAP</a>:</strong> Assigns feature contributions using Shapley-value ideas from cooperative game theory.</li>
-            <li><strong>Counterfactual explanations:</strong> Finds small input changes that would flip or meaningfully change a prediction.</li>
-            <li><strong>Surrogate models:</strong> Trains an interpretable model to mimic a more complex model globally or locally.</li>
+            <li><strong><a class="wiki-term" href="https://christophm.github.io/interpretable-ml-book/counterfactual.html" target="_blank" rel="noopener noreferrer" title="Interpretable Machine Learning: Counterfactual Explanations">Counterfactual explanations</a>:</strong> Finds small input changes that would flip or meaningfully change a prediction.</li>
+            <li><strong><a class="wiki-term" href="https://christophm.github.io/interpretable-ml-book/global.html" target="_blank" rel="noopener noreferrer" title="Interpretable Machine Learning: Global surrogate models">Surrogate models</a>:</strong> Trains an interpretable model to mimic a more complex model globally or locally.</li>
           </ul>
         </section>
 
@@ -52,14 +52,14 @@
             These methods inspect gradients, internal activations, spatial regions, learned directions, and representation spaces in neural networks.
           </p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Saliency maps:</strong> Highlight input dimensions that most affect a prediction according to gradients or related scores.</li>
-            <li><strong>Integrated gradients:</strong> Attribute prediction change to features by accumulating gradients from a baseline to the input.</li>
-            <li><strong>Grad-CAM:</strong> Uses gradients flowing into convolutional feature maps to localize image regions relevant to a class.</li>
-            <li><strong>Occlusion analysis:</strong> Masks or removes input regions to see which parts cause prediction changes.</li>
-            <li><strong>Feature visualization:</strong> Optimizes inputs or patterns that strongly activate a neuron, channel, layer, or feature direction.</li>
-            <li><strong>Representation similarity:</strong> Compares activation spaces across layers, models, checkpoints, or datasets.</li>
-            <li><strong>Linear probes:</strong> Train simple classifiers on frozen activations to test what information is linearly accessible.</li>
-            <li><strong>Concept activation vectors:</strong> Represent human-defined concepts as directions in activation space and test their influence.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Saliency_map" target="_blank" rel="noopener noreferrer" title="Wikipedia: Saliency map">Saliency maps</a>:</strong> Highlight input dimensions that most affect a prediction according to gradients or related scores.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1703.01365" target="_blank" rel="noopener noreferrer" title="arXiv: Axiomatic Attribution for Deep Networks">Integrated gradients</a>:</strong> Attribute prediction change to features by accumulating gradients from a baseline to the input.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1610.02391" target="_blank" rel="noopener noreferrer" title="arXiv: Grad-CAM">Grad-CAM</a>:</strong> Uses gradients flowing into convolutional feature maps to localize image regions relevant to a class.</li>
+            <li><strong><a class="wiki-term" href="https://christophm.github.io/interpretable-ml-book/pixel-attribution.html" target="_blank" rel="noopener noreferrer" title="Interpretable Machine Learning: Pixel attribution">Occlusion analysis</a>:</strong> Masks or removes input regions to see which parts cause prediction changes.</li>
+            <li><strong><a class="wiki-term" href="https://distill.pub/2017/feature-visualization/" target="_blank" rel="noopener noreferrer" title="Distill: Feature Visualization">Feature visualization</a>:</strong> Optimizes inputs or patterns that strongly activate a neuron, channel, layer, or feature direction.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1905.00414" target="_blank" rel="noopener noreferrer" title="arXiv: Similarity of Neural Network Representations Revisited">Representation similarity</a>:</strong> Compares activation spaces across layers, models, checkpoints, or datasets.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1909.03368" target="_blank" rel="noopener noreferrer" title="arXiv: Designing and Interpreting Probes with Control Tasks">Linear probes</a>:</strong> Train simple classifiers on frozen activations to test what information is linearly accessible.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/1711.11279" target="_blank" rel="noopener noreferrer" title="arXiv: Testing with Concept Activation Vectors">Concept activation vectors</a>:</strong> Represent human-defined concepts as directions in activation space and test their influence.</li>
           </ul>
         </section>
 
@@ -69,16 +69,16 @@
             Mechanistic interpretability attempts to identify internal computational structures rather than only describing input-output correlations.
           </p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Activation patching:</strong> Replaces activations from one run with activations from another to test causal influence on behavior.</li>
-            <li><strong>Causal tracing:</strong> Tracks where information is stored and used by intervening on hidden states across layers and positions.</li>
-            <li><strong>Logit attribution:</strong> Decomposes contributions to output logits across residual streams, heads, layers, or features.</li>
-            <li><strong>Attention-head analysis:</strong> Studies specialized heads, attention patterns, induction behavior, copying, retrieval, or syntax-like roles.</li>
-            <li><strong>Circuit analysis:</strong> Identifies subnetworks of features, heads, MLPs, and residual paths that implement a behavior.</li>
-            <li><strong>Superposition:</strong> Studies how models represent more features than dimensions by using overlapping directions.</li>
-            <li><strong>Sparse autoencoders:</strong> Decompose dense activations into sparse, more interpretable feature sets.</li>
-            <li><strong>Feature dictionaries:</strong> Build catalogs of learned features and their activation patterns for model inspection.</li>
-            <li><strong>Automated circuit discovery:</strong> Uses algorithms to search for model components and connections that explain a behavior.</li>
-            <li><strong>Model editing:</strong> Modifies model internals or parameters to change a targeted fact, behavior, or association.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: A Mathematical Framework">Activation patching</a>:</strong> Replaces activations from one run with activations from another to test causal influence on behavior.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2202.05262" target="_blank" rel="noopener noreferrer" title="arXiv: Locating and Editing Factual Associations in GPT">Causal tracing</a>:</strong> Tracks where information is stored and used by intervening on hidden states across layers and positions.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: A Mathematical Framework">Logit attribution</a>:</strong> Decomposes contributions to output logits across residual streams, heads, layers, or features.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: A Mathematical Framework">Attention-head analysis</a>:</strong> Studies specialized heads, attention patterns, induction behavior, copying, retrieval, or syntax-like roles.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2021/framework/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: A Mathematical Framework">Circuit analysis</a>:</strong> Identifies subnetworks of features, heads, MLPs, and residual paths that implement a behavior.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2022/toy_model/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: Toy Models of Superposition">Superposition</a>:</strong> Studies how models represent more features than dimensions by using overlapping directions.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2023/monosemantic-features/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: Monosemanticity and Sparse Autoencoders">Sparse autoencoders</a>:</strong> Decompose dense activations into sparse, more interpretable feature sets.</li>
+            <li><strong><a class="wiki-term" href="https://transformer-circuits.pub/2023/monosemantic-features/index.html" target="_blank" rel="noopener noreferrer" title="Transformer Circuits: Monosemanticity and Sparse Autoencoders">Feature dictionaries</a>:</strong> Build catalogs of learned features and their activation patterns for model inspection.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2304.14997" target="_blank" rel="noopener noreferrer" title="arXiv: Towards Automated Circuit Discovery for Mechanistic Interpretability">Automated circuit discovery</a>:</strong> Uses algorithms to search for model components and connections that explain a behavior.</li>
+            <li><strong><a class="wiki-term" href="https://arxiv.org/abs/2210.07229" target="_blank" rel="noopener noreferrer" title="arXiv: Mass-Editing Memory in a Transformer">Model editing</a>:</strong> Modifies model internals or parameters to change a targeted fact, behavior, or association.</li>
           </ul>
         </section>
 

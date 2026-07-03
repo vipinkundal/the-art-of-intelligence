@@ -36,50 +36,50 @@
             Strong research reading is not passive. You should be able to turn a paper into a set of testable assumptions, experimental controls, reproduction steps, and possible falsification tests.
           </p>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>How to search the literature:</strong> Track related work through citations, surveys, benchmark leaderboards, authors, labs, and recurring problem settings.</li>
-            <li><strong>How to read equations:</strong> Translate symbols into data, parameters, objectives, distributions, estimators, and algorithmic steps.</li>
-            <li><strong>How to reconstruct missing assumptions:</strong> Identify what must be true about data, labels, compute, optimization, and evaluation for the claim to hold.</li>
-            <li><strong>How to identify the actual contribution:</strong> Separate a new objective, architecture, dataset, training recipe, evaluation protocol, system trick, or analysis result.</li>
-            <li><strong>How to distinguish architecture, objective, data and compute effects:</strong> Check whether gains come from model design or from changed scale, data, training budget, or tuning.</li>
-            <li><strong>How to reproduce a baseline:</strong> Rebuild the comparison method with matching preprocessing, hyperparameters, compute, seeds, and evaluation code.</li>
-            <li><strong>How to design ablations:</strong> Remove or vary one component at a time to test whether each claimed part matters.</li>
-            <li><strong>How to control random seeds:</strong> Run enough seeds and report variance when optimization noise can change conclusions.</li>
-            <li><strong>How to report uncertainty:</strong> Use confidence intervals, standard deviations, bootstrap estimates, or paired tests instead of single-number claims.</li>
-            <li><strong>How to avoid benchmark contamination:</strong> Check overlap between train data, pretraining data, validation data, test sets, and public benchmark examples.</li>
-            <li><strong>How to perform qualitative error analysis:</strong> Inspect failures, clusters of mistakes, edge cases, and examples that contradict the headline metric.</li>
-            <li><strong>How to perform statistical significance testing:</strong> Test whether observed differences are larger than expected from sampling or run-to-run variability.</li>
-            <li><strong>How to document negative results:</strong> Record failed hypotheses, weak ablations, and non-improvements so the research process stays honest.</li>
-            <li><strong>How to separate exploratory and confirmatory experiments:</strong> Treat hypothesis generation differently from final tests chosen before looking at results.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Literature_review" target="_blank" rel="noopener noreferrer" title="Wikipedia: Literature review">How to search the literature</a>:</strong> Track related work through citations, surveys, benchmark leaderboards, authors, labs, and recurring problem settings.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Mathematical_notation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Mathematical notation">How to read equations</a>:</strong> Translate symbols into data, parameters, objectives, distributions, estimators, and algorithmic steps.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Assumption" target="_blank" rel="noopener noreferrer" title="Wikipedia: Assumption">How to reconstruct missing assumptions</a>:</strong> Identify what must be true about data, labels, compute, optimization, and evaluation for the claim to hold.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Scientific_literature" target="_blank" rel="noopener noreferrer" title="Wikipedia: Scientific literature">How to identify the actual contribution</a>:</strong> Separate a new objective, architecture, dataset, training recipe, evaluation protocol, system trick, or analysis result.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Confounding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Confounding">How to distinguish architecture, objective, data and compute effects</a>:</strong> Check whether gains come from model design or from changed scale, data, training budget, or tuning.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reproducibility" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reproducibility">How to reproduce a baseline</a>:</strong> Rebuild the comparison method with matching preprocessing, hyperparameters, compute, seeds, and evaluation code.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ablation (artificial intelligence)">How to design ablations</a>:</strong> Remove or vary one component at a time to test whether each claimed part matters.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Random_seed" target="_blank" rel="noopener noreferrer" title="Wikipedia: Random seed">How to control random seeds</a>:</strong> Run enough seeds and report variance when optimization noise can change conclusions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Uncertainty_quantification" target="_blank" rel="noopener noreferrer" title="Wikipedia: Uncertainty quantification">How to report uncertainty</a>:</strong> Use confidence intervals, standard deviations, bootstrap estimates, or paired tests instead of single-number claims.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_leakage" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data leakage">How to avoid benchmark contamination</a>:</strong> Check overlap between train data, pretraining data, validation data, test sets, and public benchmark examples.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Error_analysis_(linguistics)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Error analysis">How to perform qualitative error analysis</a>:</strong> Inspect failures, clusters of mistakes, edge cases, and examples that contradict the headline metric.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Statistical_hypothesis_test" target="_blank" rel="noopener noreferrer" title="Wikipedia: Statistical hypothesis test">How to perform statistical significance testing</a>:</strong> Test whether observed differences are larger than expected from sampling or run-to-run variability.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Negative_result" target="_blank" rel="noopener noreferrer" title="Wikipedia: Negative result">How to document negative results</a>:</strong> Record failed hypotheses, weak ablations, and non-improvements so the research process stays honest.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Exploratory_research" target="_blank" rel="noopener noreferrer" title="Wikipedia: Exploratory research">How to separate exploratory and confirmatory experiments</a>:</strong> Treat hypothesis generation differently from final tests chosen before looking at results.</li>
           </ul>
         </section>
 
         <section>
           <h2>A paper-reading template</h2>
           <ol class="lesson-list dense-list topic-detail-list">
-            <li><strong>What problem is being solved?</strong> Name the task, setting, constraint, and practical motivation.</li>
-            <li><strong>Why do existing methods fail?</strong> Identify the stated gap and whether the evidence actually supports it.</li>
-            <li><strong>What exactly is new?</strong> Locate the contribution in the method, data, objective, system, analysis, or benchmark.</li>
-            <li><strong>Is the innovation in the data, objective, architecture, training or evaluation?</strong> Classify the source of the claimed gain.</li>
-            <li><strong>What assumptions are required?</strong> List assumptions about data distribution, labels, compute, access, model scale, or deployment context.</li>
-            <li><strong>What is the strongest baseline?</strong> Compare against the best relevant prior method under fair conditions.</li>
-            <li><strong>Is compute controlled?</strong> Check training budget, inference cost, hardware, search effort, and tuning budget.</li>
-            <li><strong>Are ablations sufficient?</strong> Verify that each important component is tested independently.</li>
-            <li><strong>Are evaluation data contaminated?</strong> Look for benchmark leakage, duplicated examples, pretraining overlap, or tuned-on-test behavior.</li>
-            <li><strong>Can the result be reproduced?</strong> Check code, data, seeds, environment, hyperparameters, and exact evaluation scripts.</li>
-            <li><strong>Where does the method fail?</strong> Study error cases, limitations, scaling limits, and out-of-distribution behavior.</li>
-            <li><strong>What experiment could falsify the main claim?</strong> Design a test that would make the central claim weaker if it failed.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Problem_statement" target="_blank" rel="noopener noreferrer" title="Wikipedia: Problem statement">What problem is being solved?</a></strong> Name the task, setting, constraint, and practical motivation.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Literature_review" target="_blank" rel="noopener noreferrer" title="Wikipedia: Literature review">Why do existing methods fail?</a></strong> Identify the stated gap and whether the evidence actually supports it.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Novelty" target="_blank" rel="noopener noreferrer" title="Wikipedia: Novelty">What exactly is new?</a></strong> Locate the contribution in the method, data, objective, system, analysis, or benchmark.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Innovation" target="_blank" rel="noopener noreferrer" title="Wikipedia: Innovation">Is the innovation in the data, objective, architecture, training or evaluation?</a></strong> Classify the source of the claimed gain.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Assumption" target="_blank" rel="noopener noreferrer" title="Wikipedia: Assumption">What assumptions are required?</a></strong> List assumptions about data distribution, labels, compute, access, model scale, or deployment context.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Benchmark_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Benchmark (computing)">What is the strongest baseline?</a></strong> Compare against the best relevant prior method under fair conditions.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Experimental_control" target="_blank" rel="noopener noreferrer" title="Wikipedia: Experimental control">Is compute controlled?</a></strong> Check training budget, inference cost, hardware, search effort, and tuning budget.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Ablation (artificial intelligence)">Are ablations sufficient?</a></strong> Verify that each important component is tested independently.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_leakage" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data leakage">Are evaluation data contaminated?</a></strong> Look for benchmark leakage, duplicated examples, pretraining overlap, or tuned-on-test behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Reproducibility" target="_blank" rel="noopener noreferrer" title="Wikipedia: Reproducibility">Can the result be reproduced?</a></strong> Check code, data, seeds, environment, hyperparameters, and exact evaluation scripts.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Error_analysis_(linguistics)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Error analysis">Where does the method fail?</a></strong> Study error cases, limitations, scaling limits, and out-of-distribution behavior.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Falsifiability" target="_blank" rel="noopener noreferrer" title="Wikipedia: Falsifiability">What experiment could falsify the main claim?</a></strong> Design a test that would make the central claim weaker if it failed.</li>
           </ol>
         </section>
 
         <section>
           <h2>Common research failure modes</h2>
           <ul class="lesson-list two-column-list dense-list topic-detail-list">
-            <li><strong>Unfair baselines:</strong> The new method receives more tuning, data, compute, or implementation care than comparisons.</li>
-            <li><strong>Metric overfitting:</strong> The method improves one benchmark number while degrading robustness, calibration, cost, or user-visible quality.</li>
-            <li><strong>Hidden confounds:</strong> Multiple variables change at once, making it unclear what caused the improvement.</li>
-            <li><strong>Underreported variance:</strong> A single lucky run is treated as a stable result.</li>
-            <li><strong>Contaminated evaluation:</strong> Test examples leak through training data, benchmark iteration, prompt tuning, or public solution exposure.</li>
-            <li><strong>Unsupported generalization:</strong> A claim from one dataset, model size, or domain is presented as broadly true.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Benchmark_(computing)" target="_blank" rel="noopener noreferrer" title="Wikipedia: Benchmark (computing)">Unfair baselines</a>:</strong> The new method receives more tuning, data, compute, or implementation care than comparisons.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Goodhart%27s_law" target="_blank" rel="noopener noreferrer" title="Wikipedia: Goodhart's law">Metric overfitting</a>:</strong> The method improves one benchmark number while degrading robustness, calibration, cost, or user-visible quality.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Confounding" target="_blank" rel="noopener noreferrer" title="Wikipedia: Confounding">Hidden confounds</a>:</strong> Multiple variables change at once, making it unclear what caused the improvement.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Variance" target="_blank" rel="noopener noreferrer" title="Wikipedia: Variance">Underreported variance</a>:</strong> A single lucky run is treated as a stable result.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/Data_leakage" target="_blank" rel="noopener noreferrer" title="Wikipedia: Data leakage">Contaminated evaluation</a>:</strong> Test examples leak through training data, benchmark iteration, prompt tuning, or public solution exposure.</li>
+            <li><strong><a class="wiki-term" href="https://en.wikipedia.org/wiki/External_validity" target="_blank" rel="noopener noreferrer" title="Wikipedia: External validity">Unsupported generalization</a>:</strong> A claim from one dataset, model size, or domain is presented as broadly true.</li>
           </ul>
         </section>
 

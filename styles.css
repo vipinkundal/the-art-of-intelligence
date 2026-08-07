@@ -765,6 +765,325 @@ h2 {
   font-weight: 800;
 }
 
+.section-intro {
+  max-width: 720px;
+  margin: 0.5rem 0 1rem;
+  color: var(--muted);
+}
+
+.topic-concept-stack {
+  border-top: 1px solid var(--line);
+}
+
+.topic-concept {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding: 1.35rem 0;
+}
+
+.topic-concept-number {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 6px;
+  background: var(--ink);
+  color: #fffdf8;
+  font-size: 0.85rem;
+  font-weight: 850;
+}
+
+.topic-concept h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.topic-concept p {
+  max-width: 760px;
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+}
+
+.topic-notation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: baseline;
+  margin-top: 0.8rem;
+}
+
+.topic-notation span {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.topic-notation code {
+  overflow-wrap: anywhere;
+  border-radius: 4px;
+  background: rgba(39, 106, 143, 0.09);
+  padding: 0.3rem 0.45rem;
+  color: var(--ink);
+}
+
+.topic-math-inline {
+  display: inline-block;
+  max-width: 100%;
+  overflow-x: auto;
+  color: var(--blue);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-weight: 750;
+  vertical-align: middle;
+}
+
+.topic-prerequisites {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.25rem;
+}
+
+.topic-notation-guide {
+  border-top: 1px solid var(--line);
+}
+
+.topic-notation-row {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.45fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 0.85rem 0;
+}
+
+.topic-notation-row p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.topic-mini-example strong {
+  color: var(--ink);
+}
+
+.topic-diagram {
+  margin: 0;
+  border: 1px solid rgba(23, 32, 38, 0.12);
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(39, 106, 143, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(39, 106, 143, 0.065) 1px, transparent 1px),
+    var(--surface-strong);
+  background-size: 24px 24px;
+  padding: 1.2rem;
+}
+
+.topic-diagram-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.topic-diagram-node {
+  position: relative;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: 6px;
+  background: var(--surface-strong);
+  padding: 0.9rem;
+}
+
+.topic-diagram-node:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.topic-diagram-node:nth-child(3) {
+  border-top-color: var(--gold);
+}
+
+.topic-diagram-node:nth-child(4) {
+  border-top-color: var(--plum);
+}
+
+.topic-diagram-node span {
+  display: block;
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.topic-diagram-node strong,
+.topic-diagram-node small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.topic-diagram-node strong {
+  margin-top: 0.25rem;
+}
+
+.topic-diagram-node small {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.topic-diagram figcaption {
+  margin-top: 0.9rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.topic-formula-list {
+  border-top: 1px solid var(--line);
+}
+
+.topic-formula {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.45fr) minmax(240px, 1fr) minmax(180px, 1fr);
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 0;
+}
+
+.topic-formula code,
+.topic-math-display {
+  overflow-wrap: anywhere;
+  color: var(--blue);
+  font-size: 0.94rem;
+  font-weight: 750;
+}
+
+.topic-math-display {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 0.35rem 0;
+}
+
+.topic-math-display .katex-display {
+  margin: 0;
+  text-align: left;
+}
+
+.topic-formula span {
+  color: var(--muted);
+}
+
+.topic-practice {
+  border-left: 4px solid var(--gold);
+  background: rgba(205, 151, 53, 0.09);
+  padding: 1rem 1.1rem;
+}
+
+.topic-practice > p {
+  margin: 0;
+  font-weight: 750;
+}
+
+.topic-practice details {
+  margin-top: 0.85rem;
+}
+
+.topic-practice summary {
+  width: fit-content;
+  cursor: pointer;
+  color: var(--green);
+  font-weight: 850;
+}
+
+.topic-practice details p {
+  max-width: 760px;
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+}
+
+.topic-derivation {
+  border-left: 4px solid var(--blue);
+  background: rgba(39, 106, 143, 0.07);
+  padding: 1rem 1.1rem;
+}
+
+.topic-derivation h3,
+.topic-worked-example h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.topic-derivation ol,
+.topic-worked-example ol {
+  margin: 0.8rem 0 0;
+  padding-left: 1.35rem;
+}
+
+.topic-derivation li,
+.topic-worked-example li {
+  margin-top: 0.55rem;
+  color: var(--muted);
+}
+
+.topic-worked-examples,
+.topic-exercises {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+
+.topic-worked-example,
+.topic-exercise {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  border-radius: 6px;
+  background: var(--surface-strong);
+  padding: 1rem;
+}
+
+.topic-worked-example:nth-child(2),
+.topic-exercise:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.topic-exercise:nth-child(3) {
+  border-top-color: var(--gold);
+}
+
+.topic-worked-example > span,
+.topic-exercise > span {
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.topic-worked-example p,
+.topic-exercise p {
+  color: var(--muted);
+}
+
+.topic-example-result {
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+}
+
+.topic-exercise details {
+  margin-top: 0.75rem;
+}
+
+.topic-exercise summary {
+  cursor: pointer;
+  color: var(--green);
+  font-weight: 800;
+}
+
+.topic-takeaways {
+  border-top: 4px solid var(--ink);
+  background: rgba(23, 32, 38, 0.05);
+  padding: 1.25rem;
+}
+
 .route-map {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1402,8 +1721,21 @@ h2 {
   .graphic-flow,
   .infographic-flow,
   .compact-flow,
-  .agent-cycle {
+  .agent-cycle,
+  .topic-diagram-flow,
+  .topic-formula {
     grid-template-columns: 1fr;
+  }
+
+  .topic-notation-row,
+  .topic-worked-examples,
+  .topic-exercises {
+    grid-template-columns: 1fr;
+  }
+
+  .topic-concept {
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 0.75rem;
   }
 
   .lesson-article {

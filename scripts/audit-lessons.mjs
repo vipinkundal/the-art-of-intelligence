@@ -11,6 +11,13 @@ const lessonDataFile = path.join(rootDir, "lesson-data.js");
 const mathematicalFoundationsDir = path.join(lessonsDir, "mathematical-foundations");
 const mathematicalTopicDir = path.join(mathematicalFoundationsDir, "topics");
 const mathematicalTopicDataFile = path.join(mathematicalFoundationsDir, "mathematical-foundations-data.js");
+const linearAlgebraDetailDataFile = path.join(mathematicalFoundationsDir, "linear-algebra-details.js");
+const calculusDetailDataFile = path.join(mathematicalFoundationsDir, "calculus-details.js");
+const probabilityDetailDataFile = path.join(mathematicalFoundationsDir, "probability-details.js");
+const statisticsDetailDataFile = path.join(mathematicalFoundationsDir, "statistics-details.js");
+const optimizationDetailDataFile = path.join(mathematicalFoundationsDir, "optimization-details.js");
+const informationTheoryDetailDataFile = path.join(mathematicalFoundationsDir, "information-theory-details.js");
+const discreteMathematicsDetailDataFile = path.join(mathematicalFoundationsDir, "discrete-mathematics-details.js");
 const generativeModellingDir = path.join(lessonsDir, "generative-modelling");
 const generativeTopicDir = path.join(generativeModellingDir, "topics");
 const generativeTopicDataFile = path.join(generativeModellingDir, "generative-modelling-data.js");
@@ -347,6 +354,41 @@ async function auditMathematicalFoundationsTopics() {
     return;
   }
 
+  if (!(await exists(linearAlgebraDetailDataFile))) {
+    failures.push(`Missing Linear Algebra detail data: ${relativePath(linearAlgebraDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(calculusDetailDataFile))) {
+    failures.push(`Missing Calculus detail data: ${relativePath(calculusDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(probabilityDetailDataFile))) {
+    failures.push(`Missing Probability detail data: ${relativePath(probabilityDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(statisticsDetailDataFile))) {
+    failures.push(`Missing Statistics detail data: ${relativePath(statisticsDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(optimizationDetailDataFile))) {
+    failures.push(`Missing Optimization detail data: ${relativePath(optimizationDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(informationTheoryDetailDataFile))) {
+    failures.push(`Missing Information Theory detail data: ${relativePath(informationTheoryDetailDataFile)}`);
+    return;
+  }
+
+  if (!(await exists(discreteMathematicsDetailDataFile))) {
+    failures.push(`Missing Discrete Mathematics detail data: ${relativePath(discreteMathematicsDetailDataFile)}`);
+    return;
+  }
+
   const topics = await loadMathematicalFoundationsTopics();
   const topicIds = new Set();
   const requiredFields = [
@@ -366,6 +408,38 @@ async function auditMathematicalFoundationsTopics() {
 
   if (topics.length !== 133) {
     failures.push(`Mathematical Foundations should define exactly 133 deep-dive topics, found ${topics.length}.`);
+  }
+
+  const calculusTopics = topics.filter((topic) => topic.group === "calculus-and-matrix-calculus");
+  if (calculusTopics.length !== 14) {
+    failures.push(`Calculus and Matrix Calculus should define exactly 14 detailed topics, found ${calculusTopics.length}.`);
+  }
+
+  const probabilityTopics = topics.filter((topic) => topic.group === "probability");
+  if (probabilityTopics.length !== 34) {
+    failures.push(`Probability should define exactly 34 detailed topics, found ${probabilityTopics.length}.`);
+  }
+
+  const statisticsTopics = topics.filter((topic) => topic.group === "statistics");
+  if (statisticsTopics.length !== 18) {
+    failures.push(`Statistics should define exactly 18 detailed topics, found ${statisticsTopics.length}.`);
+  }
+
+  const optimizationTopics = topics.filter((topic) => topic.group === "optimization");
+  if (optimizationTopics.length !== 18) {
+    failures.push(`Optimization should define exactly 18 detailed topics, found ${optimizationTopics.length}.`);
+  }
+
+  const informationTheoryTopics = topics.filter((topic) => topic.group === "information-theory");
+  if (informationTheoryTopics.length !== 11) {
+    failures.push(`Information Theory should define exactly 11 detailed topics, found ${informationTheoryTopics.length}.`);
+  }
+
+  const discreteMathematicsTopics = topics.filter(
+    (topic) => topic.group === "discrete-mathematics-theoretical-computer-science"
+  );
+  if (discreteMathematicsTopics.length !== 16) {
+    failures.push(`Discrete Mathematics should define exactly 16 detailed topics, found ${discreteMathematicsTopics.length}.`);
   }
 
   for (const topic of topics) {
@@ -400,6 +474,79 @@ async function auditMathematicalFoundationsTopics() {
       }
     }
 
+    if (["linear-algebra", "calculus-and-matrix-calculus", "probability", "statistics", "optimization", "information-theory", "discrete-mathematics-theoretical-computer-science"].includes(topic.group)) {
+      if (!Array.isArray(topic.concepts) || topic.concepts.length === 0) {
+        failures.push(`Detailed Mathematical Foundations topic ${topicLabel} must explain its named concepts individually.`);
+      } else {
+        for (const concept of topic.concepts) {
+          if (!concept?.title || !concept?.explanation || !concept?.example) {
+            failures.push(`Detailed Mathematical Foundations topic ${topicLabel} has an incomplete concept explanation.`);
+          }
+        }
+      }
+
+      if (!Array.isArray(topic.formulas) || topic.formulas.length === 0) {
+        failures.push(`Detailed Mathematical Foundations topic ${topicLabel} must include at least one explained formula.`);
+      }
+
+      if (!topic.diagram?.caption || !Array.isArray(topic.diagram?.nodes) || topic.diagram.nodes.length < 3) {
+        failures.push(`Detailed Mathematical Foundations topic ${topicLabel} must include a structured diagram with at least three nodes.`);
+      }
+
+      if (!topic.practice?.question || !topic.practice?.answer) {
+        failures.push(`Detailed Mathematical Foundations topic ${topicLabel} must include a practice question and answer.`);
+      }
+    }
+
+    if (["linear-algebra", "calculus-and-matrix-calculus", "probability", "statistics", "optimization", "information-theory", "discrete-mathematics-theoretical-computer-science"].includes(topic.group)) {
+      if (!Array.isArray(topic.prerequisites) || topic.prerequisites.length < 3) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include at least three prerequisites.`);
+      }
+
+      if (!Array.isArray(topic.notationGuide) || topic.notationGuide.length < 3) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include at least three notation entries.`);
+      } else if (topic.notationGuide.some((item) => !item?.symbol || !item?.meaning || !item?.latex)) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} has an incomplete notation entry.`);
+      }
+
+      if (!Array.isArray(topic.formulas) || topic.formulas.some((item) => !item?.latex)) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must provide LaTeX for every formula.`);
+      }
+
+      if (!topic.derivation?.title || !Array.isArray(topic.derivation?.steps) || topic.derivation.steps.length < 4) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include a four-step derivation.`);
+      }
+
+      if (!Array.isArray(topic.workedExamples) || topic.workedExamples.length < 2) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include at least two additional worked examples.`);
+      } else if (topic.workedExamples.some((item) => !item?.title || !item?.setup || !item?.result || !Array.isArray(item?.steps))) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} has an incomplete worked example.`);
+      }
+
+      if (!Array.isArray(topic.exercises) || topic.exercises.length < 3) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include beginner, intermediate, and applied exercises.`);
+      } else {
+        const exerciseLevels = new Set(topic.exercises.map((item) => item?.level));
+        for (const level of ["Beginner", "Intermediate", "Applied"]) {
+          if (!exerciseLevels.has(level)) {
+            failures.push(`Expanded Mathematical Foundations topic ${topicLabel} is missing its ${level} exercise.`);
+          }
+        }
+        if (topic.exercises.some((item) => !item?.question || !item?.answer)) {
+          failures.push(`Expanded Mathematical Foundations topic ${topicLabel} has an incomplete exercise.`);
+        }
+      }
+
+      if (!Array.isArray(topic.takeaways) || topic.takeaways.length < 4) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} must include at least four key takeaways.`);
+      }
+
+      const topicWordCount = countTopicWords(topic);
+      if (topicWordCount < 400 || topicWordCount > 2000) {
+        failures.push(`Expanded Mathematical Foundations topic ${topicLabel} should contain 400-2000 words, found ${topicWordCount}.`);
+      }
+    }
+
     const expectedPage = path.join(mathematicalTopicDir, topic.id, "index.html");
     if (!(await exists(expectedPage))) {
       failures.push(`Missing Mathematical Foundations deep-dive page: ${relativePath(expectedPage)}`);
@@ -423,6 +570,112 @@ async function auditMathematicalFoundationsTopics() {
       const scriptTarget = resolveHref(expectedPage, scriptSources[0]);
       if (!(await exists(scriptTarget))) {
         failures.push(`Mathematical Foundations script does not resolve in ${relativePage}: ${scriptSources[0]}`);
+      }
+    }
+
+    const detailScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("linear-algebra-details.js")
+    );
+    const expectedDetailScriptCount = topic.group === "linear-algebra" ? 1 : 0;
+    if (detailScriptSources.length !== expectedDetailScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedDetailScriptCount} linear-algebra-details.js script.`
+      );
+    } else if (detailScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, detailScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Linear Algebra detail script does not resolve in ${relativePage}: ${detailScriptSources[0]}`);
+      }
+    }
+
+    const calculusScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("calculus-details.js")
+    );
+    const expectedCalculusScriptCount = topic.group === "calculus-and-matrix-calculus" ? 1 : 0;
+    if (calculusScriptSources.length !== expectedCalculusScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedCalculusScriptCount} calculus-details.js script.`
+      );
+    } else if (calculusScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, calculusScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Calculus detail script does not resolve in ${relativePage}: ${calculusScriptSources[0]}`);
+      }
+    }
+
+    const probabilityScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("probability-details.js")
+    );
+    const expectedProbabilityScriptCount = topic.group === "probability" ? 1 : 0;
+    if (probabilityScriptSources.length !== expectedProbabilityScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedProbabilityScriptCount} probability-details.js script.`
+      );
+    } else if (probabilityScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, probabilityScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Probability detail script does not resolve in ${relativePage}: ${probabilityScriptSources[0]}`);
+      }
+    }
+
+    const statisticsScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("statistics-details.js")
+    );
+    const expectedStatisticsScriptCount = topic.group === "statistics" ? 1 : 0;
+    if (statisticsScriptSources.length !== expectedStatisticsScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedStatisticsScriptCount} statistics-details.js script.`
+      );
+    } else if (statisticsScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, statisticsScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Statistics detail script does not resolve in ${relativePage}: ${statisticsScriptSources[0]}`);
+      }
+    }
+
+    const optimizationScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("optimization-details.js")
+    );
+    const expectedOptimizationScriptCount = topic.group === "optimization" ? 1 : 0;
+    if (optimizationScriptSources.length !== expectedOptimizationScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedOptimizationScriptCount} optimization-details.js script.`
+      );
+    } else if (optimizationScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, optimizationScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Optimization detail script does not resolve in ${relativePage}: ${optimizationScriptSources[0]}`);
+      }
+    }
+
+    const informationTheoryScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("information-theory-details.js")
+    );
+    const expectedInformationTheoryScriptCount = topic.group === "information-theory" ? 1 : 0;
+    if (informationTheoryScriptSources.length !== expectedInformationTheoryScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedInformationTheoryScriptCount} information-theory-details.js script.`
+      );
+    } else if (informationTheoryScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, informationTheoryScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Information Theory detail script does not resolve in ${relativePage}: ${informationTheoryScriptSources[0]}`);
+      }
+    }
+
+    const discreteMathematicsScriptSources = extractHtmlAttributeValues(pageHtml, "src").filter((src) =>
+      src.endsWith("discrete-mathematics-details.js")
+    );
+    const expectedDiscreteMathematicsScriptCount =
+      topic.group === "discrete-mathematics-theoretical-computer-science" ? 1 : 0;
+    if (discreteMathematicsScriptSources.length !== expectedDiscreteMathematicsScriptCount) {
+      failures.push(
+        `Mathematical Foundations page ${relativePage} should include ${expectedDiscreteMathematicsScriptCount} discrete-mathematics-details.js script.`
+      );
+    } else if (discreteMathematicsScriptSources.length === 1) {
+      const scriptTarget = resolveHref(expectedPage, discreteMathematicsScriptSources[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Discrete Mathematics detail script does not resolve in ${relativePage}: ${discreteMathematicsScriptSources[0]}`);
       }
     }
 
@@ -453,8 +706,22 @@ async function auditMathematicalFoundationsTopics() {
 
 async function loadMathematicalFoundationsTopics() {
   const source = await readFile(mathematicalTopicDataFile, "utf8");
+  const linearAlgebraSource = await readFile(linearAlgebraDetailDataFile, "utf8");
+  const calculusSource = await readFile(calculusDetailDataFile, "utf8");
+  const probabilitySource = await readFile(probabilityDetailDataFile, "utf8");
+  const statisticsSource = await readFile(statisticsDetailDataFile, "utf8");
+  const optimizationSource = await readFile(optimizationDetailDataFile, "utf8");
+  const informationTheorySource = await readFile(informationTheoryDetailDataFile, "utf8");
+  const discreteMathematicsSource = await readFile(discreteMathematicsDetailDataFile, "utf8");
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox, { filename: mathematicalTopicDataFile });
+  vm.runInNewContext(linearAlgebraSource, sandbox, { filename: linearAlgebraDetailDataFile });
+  vm.runInNewContext(calculusSource, sandbox, { filename: calculusDetailDataFile });
+  vm.runInNewContext(probabilitySource, sandbox, { filename: probabilityDetailDataFile });
+  vm.runInNewContext(statisticsSource, sandbox, { filename: statisticsDetailDataFile });
+  vm.runInNewContext(optimizationSource, sandbox, { filename: optimizationDetailDataFile });
+  vm.runInNewContext(informationTheorySource, sandbox, { filename: informationTheoryDetailDataFile });
+  vm.runInNewContext(discreteMathematicsSource, sandbox, { filename: discreteMathematicsDetailDataFile });
   return sandbox.window.mathematicalFoundationTopics || [];
 }
 
@@ -471,6 +738,28 @@ function hasTopicValue(value) {
   }
 
   return value !== undefined && value !== null && value !== "";
+}
+
+function countTopicWords(value, key = "") {
+  if (["id", "group", "previousId", "nextId", "url"].includes(key)) {
+    return 0;
+  }
+
+  if (typeof value === "string") {
+    return value.trim().split(/\s+/).filter(Boolean).length;
+  }
+
+  if (Array.isArray(value)) {
+    return value.reduce((total, item) => total + countTopicWords(item), 0);
+  }
+
+  if (value && typeof value === "object") {
+    return Object.entries(value).reduce((total, [childKey, childValue]) => {
+      return total + countTopicWords(childValue, childKey);
+    }, 0);
+  }
+
+  return 0;
 }
 
 async function auditLinks(files) {

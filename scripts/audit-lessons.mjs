@@ -22,6 +22,10 @@ const classicalAiDir = path.join(lessonsDir, "classical-artificial-intelligence"
 const classicalAiTopicDir = path.join(classicalAiDir, "topics");
 const classicalAiTopicDataFile = path.join(classicalAiDir, "classical-ai-data.js");
 const classicalAiTopicRendererFile = path.join(classicalAiDir, "classical-ai-topic.js");
+const probabilisticAiDir = path.join(lessonsDir, "probabilistic-ai");
+const probabilisticAiTopicDir = path.join(probabilisticAiDir, "topics");
+const probabilisticAiTopicDataFile = path.join(probabilisticAiDir, "probabilistic-ai-data.js");
+const probabilisticAiTopicRendererFile = path.join(probabilisticAiDir, "probabilistic-ai-topic.js");
 const generativeModellingDir = path.join(lessonsDir, "generative-modelling");
 const generativeTopicDir = path.join(generativeModellingDir, "topics");
 const generativeTopicDataFile = path.join(generativeModellingDir, "generative-modelling-data.js");
@@ -50,6 +54,7 @@ await auditMathematicalFoundationsTopics();
 await auditMathematicalFoundationOverviews();
 await auditGenerativeModellingTopics();
 await auditClassicalAiTopics();
+await auditProbabilisticAiTopics();
 await auditLinks(htmlFiles);
 
 if (failures.length > 0) {
@@ -876,6 +881,109 @@ async function loadClassicalAiTopics() {
   const sandbox = { window: {} };
   vm.runInNewContext(source, sandbox, { filename: classicalAiTopicDataFile });
   return sandbox.window.classicalAiTopics || [];
+}
+
+async function auditProbabilisticAiTopics() {
+  if (!(await exists(probabilisticAiTopicDataFile))) {
+    failures.push("Probabilistic AI topic data file is missing.");
+    return;
+  }
+  if (!(await exists(probabilisticAiTopicRendererFile))) {
+    failures.push("Probabilistic AI topic renderer is missing.");
+    return;
+  }
+
+  const topics = await loadProbabilisticAiTopics();
+  const uniqueIds = new Set(topics.map((topic) => topic.id));
+  if (topics.length !== 29 || uniqueIds.size !== 29) {
+    failures.push(`Probabilistic AI must define 29 unique topics; found ${topics.length} entries and ${uniqueIds.size} unique ids.`);
+  }
+
+  const indexPath = path.join(probabilisticAiDir, "index.html");
+  const indexHtml = await readFile(indexPath, "utf8");
+
+  for (const topic of topics) {
+    const label = `Probabilistic AI topic ${topic.id || "<missing id>"}`;
+    for (const field of ["id", "group", "groupLabel", "title", "summary"]) {
+      if (typeof topic[field] !== "string" || topic[field].trim() === "") {
+        failures.push(`${label} is missing ${field}.`);
+      }
+    }
+
+    const arrayChecks = [
+      ["simple idea paragraphs", topic.simpleIdea, 2],
+      ["concepts", topic.concepts, 3],
+      ["process steps", topic.process, 4],
+      ["formulas", topic.formulas, 1],
+      ["AI relevance paragraphs", topic.whyItMatters, 2],
+      ["pitfalls", topic.pitfalls, 3],
+      ["takeaways", topic.takeaways, 4],
+      ["resources", topic.resources, 1],
+      ["worked example steps", topic.example?.steps, 3],
+      ["diagram nodes", topic.diagram?.nodes, 4],
+    ];
+    for (const [field, value, minimum] of arrayChecks) {
+      if (!Array.isArray(value) || value.length < minimum) {
+        failures.push(`${label} needs at least ${minimum} ${field}.`);
+      }
+    }
+
+    if (!topic.practice?.question || !topic.practice?.answer) {
+      failures.push(`${label} needs a practice question and answer.`);
+    }
+    if (!topic.example?.title || !topic.example?.setup || !topic.example?.result) {
+      failures.push(`${label} needs a complete worked example.`);
+    }
+    if (!topic.formulas?.every((formula) => formula.label && formula.expression && formula.meaning)) {
+      failures.push(`${label} has an incomplete formula or probability rule.`);
+    }
+    if (!topic.resources?.every((resource) => resource.label && /^https:\/\//.test(resource.url))) {
+      failures.push(`${label} must retain at least one labelled external HTTPS resource.`);
+    }
+
+    const topicPath = path.join(probabilisticAiTopicDir, topic.id, "index.html");
+    if (!(await exists(topicPath))) {
+      failures.push(`${label} page is missing: ${relativePath(topicPath)}.`);
+      continue;
+    }
+    const pageHtml = await readFile(topicPath, "utf8");
+    for (const fragment of [
+      `data-probabilistic-ai-topic="${topic.id}"`,
+      'src="../../probabilistic-ai-data.js"',
+      'src="../../probabilistic-ai-topic.js"',
+      'src="../../../../site-template.js"',
+      'href="../../../../styles.css"',
+    ]) {
+      if (!pageHtml.includes(fragment)) {
+        failures.push(`${label} page is missing ${fragment}.`);
+      }
+    }
+
+    const href = `topics/${topic.id}/index.html`;
+    const linkCount = (indexHtml.match(new RegExp(`href="${escapeRegExp(href)}"`, "g")) || []).length;
+    if (linkCount !== 1) {
+      failures.push(`${label} should be linked once from the phase page; found ${linkCount}.`);
+    }
+  }
+
+  const generatedPages = (await collectHtmlFiles(probabilisticAiTopicDir)).filter((file) => path.basename(file) === "index.html");
+  if (generatedPages.length !== 29) {
+    failures.push(`Probabilistic AI topics directory should contain 29 pages; found ${generatedPages.length}.`);
+  }
+  const localTopicLinks = (indexHtml.match(/href="topics\/[^"/]+\/index\.html"/g) || []).length;
+  if (localTopicLinks !== 29) {
+    failures.push(`Probabilistic AI phase page should contain 29 local topic links; found ${localTopicLinks}.`);
+  }
+  if (/<a\s+class="wiki-term"[^>]+href="https?:\/\//i.test(indexHtml)) {
+    failures.push("Probabilistic AI phase topics should open local explanations; external references belong inside topic pages.");
+  }
+}
+
+async function loadProbabilisticAiTopics() {
+  const source = await readFile(probabilisticAiTopicDataFile, "utf8");
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: probabilisticAiTopicDataFile });
+  return sandbox.window.probabilisticAiTopics || [];
 }
 
 async function loadMathematicalFoundationsTopics() {

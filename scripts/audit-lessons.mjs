@@ -18,6 +18,10 @@ const statisticsDetailDataFile = path.join(mathematicalFoundationsDir, "statisti
 const optimizationDetailDataFile = path.join(mathematicalFoundationsDir, "optimization-details.js");
 const informationTheoryDetailDataFile = path.join(mathematicalFoundationsDir, "information-theory-details.js");
 const discreteMathematicsDetailDataFile = path.join(mathematicalFoundationsDir, "discrete-mathematics-details.js");
+const classicalAiDir = path.join(lessonsDir, "classical-artificial-intelligence");
+const classicalAiTopicDir = path.join(classicalAiDir, "topics");
+const classicalAiTopicDataFile = path.join(classicalAiDir, "classical-ai-data.js");
+const classicalAiTopicRendererFile = path.join(classicalAiDir, "classical-ai-topic.js");
 const generativeModellingDir = path.join(lessonsDir, "generative-modelling");
 const generativeTopicDir = path.join(generativeModellingDir, "topics");
 const generativeTopicDataFile = path.join(generativeModellingDir, "generative-modelling-data.js");
@@ -43,7 +47,9 @@ await auditHomepageLessonLinks();
 await auditSiteTemplates();
 await auditGlossaryData();
 await auditMathematicalFoundationsTopics();
+await auditMathematicalFoundationOverviews();
 await auditGenerativeModellingTopics();
+await auditClassicalAiTopics();
 await auditLinks(htmlFiles);
 
 if (failures.length > 0) {
@@ -702,6 +708,174 @@ async function auditMathematicalFoundationsTopics() {
   } else {
     failures.push(`Missing Mathematical Foundations topic directory: ${relativePath(mathematicalTopicDir)}`);
   }
+}
+
+async function auditMathematicalFoundationOverviews() {
+  const overviewScriptName = "mathematical-foundations-overview.js";
+  const groupPages = [
+    ["linear-algebra", "linear-algebra-details.js", 22],
+    ["calculus-and-matrix-calculus", "calculus-details.js", 14],
+    ["probability", "probability-details.js", 34],
+    ["statistics", "statistics-details.js", 18],
+    ["optimization", "optimization-details.js", 18],
+    ["information-theory", "information-theory-details.js", 11],
+    ["discrete-mathematics-theoretical-computer-science", "discrete-mathematics-details.js", 16],
+  ];
+
+  for (const [group, detailScriptName, expectedTopicCount] of groupPages) {
+    const page = path.join(mathematicalFoundationsDir, group, "index.html");
+    const html = await readFile(page, "utf8");
+    const topicLinks = extractHtmlAttributeValues(html, "href").filter((href) =>
+      /^\.\.\/topics\/[^/]+\/index\.html$/.test(href)
+    );
+
+    if (topicLinks.length !== expectedTopicCount) {
+      failures.push(
+        `Mathematical Foundations overview ${group}/index.html should link ${expectedTopicCount} topics, found ${topicLinks.length}.`
+      );
+    }
+
+    const requiredScripts = [
+      "mathematical-foundations-data.js",
+      detailScriptName,
+      "site-template.js",
+      overviewScriptName,
+    ];
+    const scriptSources = extractHtmlAttributeValues(html, "src");
+    const scriptPositions = [];
+
+    for (const scriptName of requiredScripts) {
+      const matches = scriptSources.filter((src) => src.endsWith(scriptName));
+      if (matches.length !== 1) {
+        failures.push(`Mathematical Foundations overview ${group}/index.html should include exactly one ${scriptName}.`);
+        continue;
+      }
+
+      const scriptTarget = resolveHref(page, matches[0]);
+      if (!(await exists(scriptTarget))) {
+        failures.push(`Mathematical Foundations overview script does not resolve in ${group}/index.html: ${matches[0]}`);
+      }
+      scriptPositions.push(scriptSources.indexOf(matches[0]));
+    }
+
+    if (
+      scriptPositions.length === requiredScripts.length &&
+      scriptPositions.some((position, index) => index > 0 && position <= scriptPositions[index - 1])
+    ) {
+      failures.push(
+        `Mathematical Foundations overview ${group}/index.html must load topic data, detail data, site templates, and the overview enhancer in that order.`
+      );
+    }
+  }
+}
+
+async function auditClassicalAiTopics() {
+  if (!(await exists(classicalAiTopicDataFile))) {
+    failures.push("Classical AI topic data file is missing.");
+    return;
+  }
+  if (!(await exists(classicalAiTopicRendererFile))) {
+    failures.push("Classical AI topic renderer is missing.");
+    return;
+  }
+
+  const topics = await loadClassicalAiTopics();
+  const ids = topics.map((topic) => topic.id);
+  const uniqueIds = new Set(ids);
+  if (topics.length !== 85 || uniqueIds.size !== 85) {
+    failures.push(`Classical AI must define 85 unique topics; found ${topics.length} entries and ${uniqueIds.size} unique ids.`);
+  }
+
+  const indexPath = path.join(classicalAiDir, "index.html");
+  const indexHtml = await readFile(indexPath, "utf8");
+  let expectedLinks = 0;
+
+  for (const topic of topics) {
+    const label = `Classical AI topic ${topic.id || "<missing id>"}`;
+    const scalarFields = ["id", "group", "groupLabel", "title", "summary"];
+    for (const field of scalarFields) {
+      if (typeof topic[field] !== "string" || topic[field].trim() === "") {
+        failures.push(`${label} is missing ${field}.`);
+      }
+    }
+
+    const arrayChecks = [
+      ["simple idea paragraphs", topic.simpleIdea, 2],
+      ["concepts", topic.concepts, 3],
+      ["process steps", topic.process, 4],
+      ["formulas", topic.formulas, 1],
+      ["AI relevance paragraphs", topic.whyItMatters, 2],
+      ["pitfalls", topic.pitfalls, 3],
+      ["takeaways", topic.takeaways, 4],
+      ["resources", topic.resources, 1],
+      ["worked example steps", topic.example?.steps, 3],
+      ["diagram nodes", topic.diagram?.nodes, 4],
+    ];
+    for (const [field, value, minimum] of arrayChecks) {
+      if (!Array.isArray(value) || value.length < minimum) {
+        failures.push(`${label} needs at least ${minimum} ${field}.`);
+      }
+    }
+
+    if (!topic.practice?.question || !topic.practice?.answer) {
+      failures.push(`${label} needs a practice question and answer.`);
+    }
+    if (!topic.example?.title || !topic.example?.setup || !topic.example?.result) {
+      failures.push(`${label} needs a complete worked example.`);
+    }
+    if (!topic.formulas?.every((formula) => formula.label && formula.expression && formula.meaning)) {
+      failures.push(`${label} has an incomplete formula or formal rule.`);
+    }
+    if (!topic.resources?.every((resource) => resource.label && /^https:\/\//.test(resource.url))) {
+      failures.push(`${label} must retain at least one labelled external HTTPS resource.`);
+    }
+
+    const topicPath = path.join(classicalAiTopicDir, topic.id, "index.html");
+    if (!(await exists(topicPath))) {
+      failures.push(`${label} page is missing: ${relativePath(topicPath)}.`);
+      continue;
+    }
+    const pageHtml = await readFile(topicPath, "utf8");
+    const requiredPageFragments = [
+      `data-classical-ai-topic="${topic.id}"`,
+      'src="../../classical-ai-data.js"',
+      'src="../../classical-ai-topic.js"',
+      'src="../../../../site-template.js"',
+      'href="../../../../styles.css"',
+    ];
+    for (const fragment of requiredPageFragments) {
+      if (!pageHtml.includes(fragment)) {
+        failures.push(`${label} page is missing ${fragment}.`);
+      }
+    }
+
+    const occurrenceCount = Number.isInteger(topic.indexOccurrences) ? topic.indexOccurrences : 1;
+    const href = `topics/${topic.id}/index.html`;
+    const linkCount = (indexHtml.match(new RegExp(`href="${escapeRegExp(href)}"`, "g")) || []).length;
+    if (linkCount !== occurrenceCount) {
+      failures.push(`${label} should be linked ${occurrenceCount} time(s) from the phase page; found ${linkCount}.`);
+    }
+    expectedLinks += occurrenceCount;
+  }
+
+  const generatedPages = (await collectHtmlFiles(classicalAiTopicDir)).filter((file) => path.basename(file) === "index.html");
+  if (generatedPages.length !== 85) {
+    failures.push(`Classical AI topics directory should contain 85 pages; found ${generatedPages.length}.`);
+  }
+  const localTopicLinks = (indexHtml.match(/href="topics\/[^"/]+\/index\.html"/g) || []).length;
+  if (localTopicLinks !== expectedLinks || expectedLinks !== 86) {
+    failures.push(`Classical AI phase page should contain 86 local topic links; found ${localTopicLinks}.`);
+  }
+  if (/<a\s+class="wiki-term"[^>]+href="https?:\/\//i.test(indexHtml)) {
+    failures.push("Classical AI phase topics should open local explanations; external references belong inside topic pages.");
+  }
+}
+
+async function loadClassicalAiTopics() {
+  const source = await readFile(classicalAiTopicDataFile, "utf8");
+  const sandbox = { window: {} };
+  vm.runInNewContext(source, sandbox, { filename: classicalAiTopicDataFile });
+  return sandbox.window.classicalAiTopics || [];
 }
 
 async function loadMathematicalFoundationsTopics() {

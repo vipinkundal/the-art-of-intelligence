@@ -1445,6 +1445,76 @@ h2 {
   padding-right: 0.25rem;
 }
 
+.topic-overview-list {
+  gap: 1rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.topic-overview-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--green);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  padding: 1.15rem;
+  box-shadow: 0 10px 24px rgba(23, 32, 38, 0.05);
+}
+
+.topic-overview-title {
+  margin: 0;
+  font-size: 1.12rem;
+  line-height: 1.25;
+}
+
+.topic-overview-title .wiki-term {
+  border-bottom: 1px solid rgba(31, 122, 92, 0.45);
+  color: var(--ink);
+}
+
+.topic-overview-title .wiki-term:hover,
+.topic-overview-title .wiki-term:focus-visible {
+  border-bottom-color: currentColor;
+  color: var(--green);
+  outline: none;
+}
+
+.topic-overview-card p {
+  margin: 0.7rem 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.topic-overview-card p strong {
+  color: var(--ink);
+}
+
+.topic-overview-lead {
+  font-size: 1rem;
+}
+
+.topic-overview-ai {
+  border-left: 3px solid rgba(31, 122, 92, 0.32);
+  padding-left: 0.75rem;
+}
+
+.topic-overview-link {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-bottom: 1px solid currentColor;
+  color: var(--green);
+  font-weight: 850;
+}
+
+.topic-overview-link:hover,
+.topic-overview-link:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
 .lesson-graphic {
   margin-top: 1rem;
   border: 1px solid rgba(23, 32, 38, 0.1);

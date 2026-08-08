@@ -34,7 +34,7 @@
     const active = target.dataset.active || "";
     const links = [
       { key: "terms", label: "Terms", href: homeHref(root, "terms") },
-      { key: "lessons", label: "Lessons", href: root ? `${root}lessons/index.html` : "#lessons" },
+      { key: "lessons", label: "Lessons", href: `${root}lessons/index.html` },
       { key: "sequence", label: "Sequence", href: `${root}lessons/learning-sequence/index.html` },
       { key: "roadmap", label: "Roadmap", href: homeHref(root, "roadmap") },
     ];

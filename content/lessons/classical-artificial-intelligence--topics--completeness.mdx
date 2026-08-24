@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Completeness: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "State the problem class and prove that the search cannot indefinitely avoid every solution."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+    }
+  ],
+  "process": [
+    "Completeness step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Completeness step 2: Apply the central rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
+    "Completeness step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Completeness step 4: Stop and interpret the result using this criterion: Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+  ],
+  "formulas": [
+    {
+      "label": "Completeness rule",
+      "expression": "solution exists => algorithm eventually returns a solution",
+      "meaning": "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+    }
+  ],
+  "example": {
+    "title": "Completeness in a small case",
+    "setup": "Compare BFS on a finite-branching tree with unrestricted DFS on a tree containing an infinite first branch.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "BFS is complete under the assumption; DFS can miss an existing goal forever."
+  },
+  "pitfalls": [
+    "Completeness failure 1: Always state the assumptions attached to a completeness claim.",
+    "Completeness failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Completeness failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Completeness explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Completeness, compare the quantity named in “Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.” across training, evaluation, and shifted inputs.",
+    "Ship Completeness with a counterexample test derived from “Always state the assumptions attached to a completeness claim.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
+    "State the problem class and prove that the search cannot indefinitely avoid every solution.",
+    "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds.",
+    "BFS is complete under the assumption; DFS can miss an existing goal forever."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Consistent heuristics: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A consistent heuristic obeys a triangle-inequality rule across every transition.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Require h(n) <= c(n,n') + h(n') and h(goal)=0."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+    }
+  ],
+  "process": [
+    "Consistent heuristics step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Consistent heuristics step 2: Apply the central rule: Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
+    "Consistent heuristics step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Consistent heuristics step 4: Stop and interpret the result using this criterion: Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+  ],
+  "formulas": [
+    {
+      "label": "Consistent heuristics rule",
+      "expression": "h(n) <= c(n,n') + h(n')",
+      "meaning": "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+    }
+  ],
+  "example": {
+    "title": "Consistent heuristics in a small case",
+    "setup": "Straight-line distance remains consistent when each road cost is at least the direct distance between its endpoints.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A* can safely finalize an expanded state's best g-value under the standard assumptions."
+  },
+  "pitfalls": [
+    "Consistent heuristics failure 1: Admissibility alone does not necessarily imply consistency.",
+    "Consistent heuristics failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Consistent heuristics failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Consistent heuristics explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Consistent heuristics, compare the quantity named in “A consistent heuristic obeys a triangle-inequality rule across every transition.” across training, evaluation, and shifted inputs.",
+    "Ship Consistent heuristics with a counterexample test derived from “Admissibility alone does not necessarily imply consistency.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A consistent heuristic obeys a triangle-inequality rule across every transition.",
+    "Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
+    "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states.",
+    "A* can safely finalize an expanded state's best g-value under the standard assumptions."
+  ]
+};
+
+<LessonBody narrative={narrative} />

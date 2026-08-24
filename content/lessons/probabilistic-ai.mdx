@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Probabilistic AI as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.",
+  "concepts": [
+    {
+      "title": "4.1 Probabilistic graphical models",
+      "explanation": "Bayesian networks : Directed graphs that represent probabilistic cause-effect or dependency structure between variables."
+    },
+    {
+      "title": "4.1 Probabilistic graphical models",
+      "explanation": "Markov random fields : Undirected graphs that model variables through local compatibility rather than directed causes."
+    },
+    {
+      "title": "4.1 Probabilistic graphical models",
+      "explanation": "Factor graphs : Bipartite graphs that separate variables from factor functions, making inference algorithms easier to express."
+    },
+    {
+      "title": "4.1 Probabilistic graphical models",
+      "explanation": "Conditional random fields : Discriminative graphical models that predict structured outputs conditioned on observed inputs."
+    },
+    {
+      "title": "4.1 Probabilistic graphical models",
+      "explanation": "Conditional independence : States when two variables become unrelated after another variable is known."
+    },
+    {
+      "title": "Important algorithms",
+      "explanation": "Variable elimination : Sums out hidden variables one at a time to answer probability queries."
+    },
+    {
+      "title": "Important algorithms",
+      "explanation": "Sum-product algorithm : Passes messages to compute marginal probabilities efficiently on tree-structured graphs."
+    },
+    {
+      "title": "Important algorithms",
+      "explanation": "Max-product algorithm : Finds the most likely assignment instead of marginal probabilities."
+    }
+  ],
+  "process": [
+    "Bayesian networks : Directed graphs that represent probabilistic cause-effect or dependency structure between variables.",
+    "Markov random fields : Undirected graphs that model variables through local compatibility rather than directed causes.",
+    "Factor graphs : Bipartite graphs that separate variables from factor functions, making inference algorithms easier to express.",
+    "Conditional random fields : Discriminative graphical models that predict structured outputs conditioned on observed inputs.",
+    "Conditional independence : States when two variables become unrelated after another variable is known."
+  ],
+  "formulas": [
+    {
+      "label": "Probabilistic AI field relation",
+      "expression": "p(z|x) ∝ p(x|z)p(z)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+    }
+  ],
+  "example": {
+    "title": "Probabilistic AI in operation",
+    "setup": "Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Probabilistic AI."
+  },
+  "pitfalls": [
+    "Probabilistic AI failure 1: A correct definition of Probabilistic AI can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.",
+    "You should be able to represent uncertainty with graphical models, choose an inference algorithm, explain how sequence models track hidden state over time, and recognize when filtering or smoothing is the right tool."
+  ]
+};
+
+<LessonBody narrative={narrative} />

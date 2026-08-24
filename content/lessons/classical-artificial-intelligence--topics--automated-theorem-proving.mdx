@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Automated theorem proving: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Automated theorem proving searches for a formal proof from axioms and inference rules.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood."
+    }
+  ],
+  "process": [
+    "Automated theorem proving step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Automated theorem proving step 2: Apply the central rule: Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
+    "Automated theorem proving step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Automated theorem proving step 4: Stop and interpret the result using this criterion: A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood."
+  ],
+  "formulas": [
+    {
+      "label": "Automated theorem proving rule",
+      "expression": "axioms |- theorem via proof steps",
+      "meaning": "A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood."
+    }
+  ],
+  "example": {
+    "title": "Automated theorem proving in a small case",
+    "setup": "Prove a small algebraic identity from group axioms.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The prover returns a sequence of substitutions and inference steps that an independent checker can verify."
+  },
+  "pitfalls": [
+    "Automated theorem proving failure 1: Unsound axioms or inconsistent libraries can prove meaningless conclusions.",
+    "Automated theorem proving failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Automated theorem proving failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Automated theorem proving explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Automated theorem proving, compare the quantity named in “Automated theorem proving searches for a formal proof from axioms and inference rules.” across training, evaluation, and shifted inputs.",
+    "Ship Automated theorem proving with a counterexample test derived from “Unsound axioms or inconsistent libraries can prove meaningless conclusions.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Automated theorem proving searches for a formal proof from axioms and inference rules.",
+    "Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
+    "A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood.",
+    "The prover returns a sequence of substitutions and inference steps that an independent checker can verify."
+  ]
+};
+
+<LessonBody narrative={narrative} />

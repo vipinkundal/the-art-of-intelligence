@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Temporal planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Assign start times and durations while maintaining temporal and resource constraints between actions."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It produces executable schedules rather than only action order, but interacting numeric resources make solving harder."
+    }
+  ],
+  "process": [
+    "Temporal planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Temporal planning step 2: Apply the central rule: Assign start times and durations while maintaining temporal and resource constraints between actions.",
+    "Temporal planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Temporal planning step 4: Stop and interpret the result using this criterion: It produces executable schedules rather than only action order, but interacting numeric resources make solving harder."
+  ],
+  "formulas": [
+    {
+      "label": "Temporal planning rule",
+      "expression": "start(B) >= end(A); resource_use(t) <= capacity",
+      "meaning": "It produces executable schedules rather than only action order, but interacting numeric resources make solving harder."
+    }
+  ],
+  "example": {
+    "title": "Temporal planning in a small case",
+    "setup": "Schedule two machines where heating lasts ten minutes and inspection can overlap only after cooling starts.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Assign start times and durations while maintaining temporal and resource constraints between actions.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The plan satisfies precedence, duration, and equipment capacity constraints."
+  },
+  "pitfalls": [
+    "Temporal planning failure 1: A causally valid sequence can still be temporally impossible.",
+    "Temporal planning failure 2: A plan is only as reliable as its action model and observations.",
+    "Temporal planning failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for Temporal planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Temporal planning, compare the quantity named in “Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.” across training, evaluation, and shifted inputs.",
+    "Ship Temporal planning with a counterexample test derived from “A causally valid sequence can still be temporally impossible.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.",
+    "Assign start times and durations while maintaining temporal and resource constraints between actions.",
+    "It produces executable schedules rather than only action order, but interacting numeric resources make solving harder.",
+    "The plan satisfies precedence, duration, and equipment capacity constraints."
+  ]
+};
+
+<LessonBody narrative={narrative} />

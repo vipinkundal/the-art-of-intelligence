@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Data augmentation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.",
+  "concepts": [
+    {
+      "title": "Label preservation",
+      "explanation": "The transformation must respect what the target means for the task."
+    },
+    {
+      "title": "Transformation distribution",
+      "explanation": "Its range and probability define which invariances the model is encouraged to learn."
+    },
+    {
+      "title": "Target-aware transforms",
+      "explanation": "Boxes, masks, audio alignment, or text labels may need to change together with the input."
+    }
+  ],
+  "process": [
+    "Data augmentation step 1: Identify realistic nuisance variation in deployment.",
+    "Data augmentation step 2: Define transformations and valid parameter ranges.",
+    "Data augmentation step 3: Apply them to training examples and any structured targets.",
+    "Data augmentation step 4: Compare clean, augmented, subgroup, and shifted validation performance."
+  ],
+  "formulas": [
+    {
+      "label": "Augmented risk",
+      "expression": "E_(x,y) E_(T) [ loss(f(T(x)), T_y(y)) ]",
+      "meaning": "train over both examples and sampled valid transformations"
+    }
+  ],
+  "example": {
+    "title": "Augment an image classifier",
+    "setup": "Use random crop and horizontal flip for an object category unaffected by left-right orientation.",
+    "steps": [
+      "Sample crop coordinates within a safe scale range.",
+      "Flip with a chosen probability.",
+      "Keep the class label while transforming any spatial annotation consistently."
+    ],
+    "result": "The model sees many plausible views of each source image."
+  },
+  "pitfalls": [
+    "Data augmentation failure 1: An invalid transformation creates mislabeled examples and teaches the wrong invariance.",
+    "Data augmentation failure 2: Overly strong augmentation can move data outside the deployment distribution.",
+    "Data augmentation failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Data augmentation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Data augmentation, compare the quantity named in “Random transformations are sampled online or offline, and the model is trained on the transformed input with the origina” across training, evaluation, and shifted inputs.",
+    "Ship Data augmentation with a counterexample test derived from “An invalid transformation creates mislabeled examples and teaches the wrong invariance.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.",
+    "Random transformations are sampled online or offline, and the model is trained on the transformed input with the original or transformed target.",
+    "Augmentation improves robustness, reduces memorization, and injects domain knowledge without collecting a new label for every variation.",
+    "An invalid transformation creates mislabeled examples and teaches the wrong invariance."
+  ]
+};
+
+<LessonBody narrative={narrative} />

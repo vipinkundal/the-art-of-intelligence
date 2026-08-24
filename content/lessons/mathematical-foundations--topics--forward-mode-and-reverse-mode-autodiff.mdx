@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Forward-mode and reverse-mode autodiff: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.",
+  "concepts": [
+    {
+      "title": "Forward-mode and reverse-mode autodiff definition",
+      "explanation": "Forward-mode and reverse-mode autodiff lens: The definition and notation for Forward-mode and reverse-mode autodiff."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Forward-mode and reverse-mode autodiff lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Forward-mode and reverse-mode autodiff lens: how this supports gradients, backpropagation, automatic differentiation, continuous dynamics, or training stability"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Forward-mode and reverse-mode autodiff lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Forward-mode and reverse-mode autodiff step 1: Forward-mode and reverse-mode autodiff belongs to rates of change, sensitivity, curvature, and differentiable programs. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Forward-mode and reverse-mode autodiff field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "During training, forward-mode and reverse-mode autodiff can be used to interpret forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.",
+    "steps": [],
+    "result": "During training, forward-mode and reverse-mode autodiff can be used to interpret forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss."
+  },
+  "pitfalls": [
+    "Forward-mode and reverse-mode autodiff failure 1: do not treat Forward-mode and reverse-mode autodiff as a label without being able to compute or sketch a small example.",
+    "Forward-mode and reverse-mode autodiff failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Forward-mode and reverse-mode autodiff failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Forward-mode and reverse-mode autodiff explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Forward-mode and reverse-mode autodiff, compare the quantity named in “Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.” across training, evaluation, and shifted inputs.",
+    "Ship Forward-mode and reverse-mode autodiff with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Forward-mode and reverse-mode autodiff matters for AI because explains how changing inputs or parameters changes losses, outputs, and trajectories. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Weight decay: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Weight decay shrinks parameters during optimization, discouraging unnecessarily large weights.",
+  "concepts": [
+    {
+      "title": "L2 penalty",
+      "explanation": "The objective includes lambda times the sum of squared parameters."
+    },
+    {
+      "title": "Decoupled decay",
+      "explanation": "AdamW applies parameter shrinkage separately from adaptive gradient scaling."
+    },
+    {
+      "title": "Parameter exclusions",
+      "explanation": "Biases and normalization gains are often treated differently from weight matrices."
+    }
+  ],
+  "process": [
+    "Weight decay step 1: Select parameters that should decay.",
+    "Weight decay step 2: Choose a decay coefficient.",
+    "Weight decay step 3: Apply the data-loss gradient update.",
+    "Weight decay step 4: Apply coupled or decoupled shrinkage according to the optimizer."
+  ],
+  "formulas": [
+    {
+      "label": "L2 objective",
+      "expression": "L_total = L_data + (lambda/2)||w||_2^2",
+      "meaning": "penalize squared parameter magnitude"
+    },
+    {
+      "label": "Decoupled step",
+      "expression": "w <- (1 - eta lambda)w - eta g",
+      "meaning": "shrink weights independently of the gradient"
+    }
+  ],
+  "example": {
+    "title": "Apply one decoupled update",
+    "setup": "Let w=2, gradient g=0.3, eta=0.1, and lambda=0.01.",
+    "steps": [
+      "Shrink factor is 1-0.001=0.999.",
+      "The decayed weight is 1.998.",
+      "Subtract the gradient step 0.03."
+    ],
+    "result": "The new weight is 1.968."
+  },
+  "pitfalls": [
+    "Weight decay failure 1: L2 regularization and decoupled weight decay are not equivalent for adaptive optimizers.",
+    "Weight decay failure 2: Applying the same decay to every parameter type can harm normalization and bias parameters.",
+    "Weight decay failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Weight decay explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Weight decay, compare the quantity named in “Classical L2 regularization adds a squared-weight penalty; decoupled weight decay applies shrinkage separately from the ” across training, evaluation, and shifted inputs.",
+    "Ship Weight decay with a counterexample test derived from “L2 regularization and decoupled weight decay are not equivalent for adaptive optimizers.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Weight decay shrinks parameters during optimization, discouraging unnecessarily large weights.",
+    "Classical L2 regularization adds a squared-weight penalty; decoupled weight decay applies shrinkage separately from the loss gradient.",
+    "Weight decay is a standard component of modern training recipes and often improves validation behavior in overparameterized models.",
+    "L2 regularization and decoupled weight decay are not equivalent for adaptive optimizers."
+  ]
+};
+
+<LessonBody narrative={narrative} />

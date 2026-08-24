@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for AC-3: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+    }
+  ],
+  "process": [
+    "AC-3 step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "AC-3 step 2: Apply the central rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
+    "AC-3 step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "AC-3 step 4: Stop and interpret the result using this criterion: Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+  ],
+  "formulas": [
+    {
+      "label": "AC-3 rule",
+      "expression": "while queue: if REVISE(X,Y) then enqueue(Z,X)",
+      "meaning": "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+    }
+  ],
+  "example": {
+    "title": "AC-3 in a small case",
+    "setup": "Run AC-3 on a small map-coloring network after one region becomes red.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Domain reductions travel through neighboring arcs until the queue is empty."
+  },
+  "pitfalls": [
+    "AC-3 failure 1: Queue membership and domain restoration must be efficient inside backtracking search.",
+    "AC-3 failure 2: A weak model can make an easy real problem hard for the solver.",
+    "AC-3 failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for AC-3 explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For AC-3, compare the quantity named in “AC-3 enforces arc consistency by revising a queue of directed binary arcs.” across training, evaluation, and shifted inputs.",
+    "Ship AC-3 with a counterexample test derived from “Queue membership and domain restoration must be efficient inside backtracking search.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
+    "Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
+    "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search.",
+    "Domain reductions travel through neighboring arcs until the queue is empty."
+  ]
+};
+
+<LessonBody narrative={narrative} />

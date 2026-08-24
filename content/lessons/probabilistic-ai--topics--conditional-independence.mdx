@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Conditional independence: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Test whether the conditional joint factorizes into the product of conditional marginals."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+    }
+  ],
+  "process": [
+    "Conditional independence step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Conditional independence step 2: Apply the central computation: Test whether the conditional joint factorizes into the product of conditional marginals.",
+    "Conditional independence step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Conditional independence step 4: Interpret the result under this limitation: It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+  ],
+  "formulas": [
+    {
+      "label": "Conditional independence rule",
+      "expression": "X independent of Y given Z iff P(X,Y|Z)=P(X|Z)P(Y|Z)",
+      "meaning": "It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+    }
+  ],
+  "example": {
+    "title": "Conditional independence in a small case",
+    "setup": "Suppose two diagnostic tests share only an underlying disease cause.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Test whether the conditional joint factorizes into the product of conditional marginals.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Once disease status is known, one test result may add no information about the other under the model."
+  },
+  "pitfalls": [
+    "Conditional independence failure 1: Never omit the conditioning variables when stating an independence claim.",
+    "Conditional independence failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Conditional independence failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for Conditional independence explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Conditional independence, compare the quantity named in “Conditional independence states that two variables provide no additional information about one another once a third set ” across training, evaluation, and shifted inputs.",
+    "Ship Conditional independence with a counterexample test derived from “Never omit the conditioning variables when stating an independence claim.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
+    "Test whether the conditional joint factorizes into the product of conditional marginals.",
+    "It enables compact models and efficient inference, but the statement always depends on the conditioning set.",
+    "Once disease status is known, one test result may add no information about the other under the model."
+  ]
+};
+
+<LessonBody narrative={narrative} />

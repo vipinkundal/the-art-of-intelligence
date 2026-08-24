@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Forward chaining: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Maintain an agenda of new facts and add each rule conclusion when all antecedents become true."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+    }
+  ],
+  "process": [
+    "Forward chaining step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Forward chaining step 2: Apply the central rule: Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
+    "Forward chaining step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Forward chaining step 4: Stop and interpret the result using this criterion: It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+  ],
+  "formulas": [
+    {
+      "label": "Forward chaining rule",
+      "expression": "facts and (A1 and ... and Ak => B) entails add B",
+      "meaning": "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+    }
+  ],
+  "example": {
+    "title": "Forward chaining in a small case",
+    "setup": "From fever and rash plus a rule, derive a candidate diagnosis fact.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "New facts can trigger later rules until no further conclusion appears."
+  },
+  "pitfalls": [
+    "Forward chaining failure 1: Rule cycles require duplicate fact detection.",
+    "Forward chaining failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Forward chaining failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Forward chaining explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Forward chaining, compare the quantity named in “Forward chaining repeatedly fires rules whose premises are satisfied by known facts.” across training, evaluation, and shifted inputs.",
+    "Ship Forward chaining with a counterexample test derived from “Rule cycles require duplicate fact detection.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
+    "Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
+    "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts.",
+    "New facts can trigger later rules until no further conclusion appears."
+  ]
+};
+
+<LessonBody narrative={narrative} />

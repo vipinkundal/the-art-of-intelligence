@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Classical Artificial Intelligence as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+  "concepts": [
+    {
+      "title": "3.1 Search algorithms",
+      "explanation": "Learn and implement:"
+    },
+    {
+      "title": "3.1 Search algorithms",
+      "explanation": "Breadth-first search : Expands the shallowest states first, so it finds the shortest path when every step has the same cost."
+    },
+    {
+      "title": "3.1 Search algorithms",
+      "explanation": "Depth-first search : Follows one branch deeply before backtracking, which saves memory but can miss shorter answers without safeguards."
+    },
+    {
+      "title": "3.1 Search algorithms",
+      "explanation": "Depth-limited search : Caps how far DFS can go, making it useful when infinite branches or cycles are possible."
+    },
+    {
+      "title": "3.1 Search algorithms",
+      "explanation": "Iterative deepening : Repeats depth-limited search with larger limits, combining BFS-like completeness with DFS-like memory use."
+    },
+    {
+      "title": "A* evaluation",
+      "explanation": "where g(n) is the path cost so far and h(n) estimates the remaining cost."
+    },
+    {
+      "title": "Understand",
+      "explanation": "Admissible heuristics : Estimates that never overstate the remaining cost, preserving optimality for A*."
+    },
+    {
+      "title": "Understand",
+      "explanation": "Consistent heuristics : Estimates that obey a triangle-inequality style rule, preventing A* from needing repeated repairs."
+    }
+  ],
+  "process": [
+    "Admissible heuristics : Estimates that never overstate the remaining cost, preserving optimality for A*.",
+    "Consistent heuristics : Estimates that obey a triangle-inequality style rule, preventing A* from needing repeated repairs.",
+    "Completeness : Whether an algorithm is guaranteed to find a solution when one exists.",
+    "Optimality : Whether the solution found is guaranteed to be the best according to the objective.",
+    "Time and memory complexity : How search effort grows with branching factor, depth, and stored frontier size."
+  ],
+  "formulas": [
+    {
+      "label": "Classical Artificial Intelligence field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Classical Artificial Intelligence in operation",
+    "setup": "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Classical Artificial Intelligence."
+  },
+  "pitfalls": [
+    "Classical Artificial Intelligence failure 1: A correct definition of Classical Artificial Intelligence can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+    "You should be able to model a problem as states and transitions, choose an appropriate search strategy, explain its complexity, reason about whether it is complete or optimal, implement basic game-playing search with evaluation functions, recognize when a task should be framed as a constraint or satisfiability problem, distinguish the main symbolic reasoning patterns, and connect classical planning ideas to modern agent workflows."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,54 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Contractive autoencoders: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Contractive autoencoders penalize sensitivity so nearby inputs map to stable latent codes.",
+  "concepts": [
+    {
+      "title": "Contractive autoencoders definition",
+      "explanation": "Contractive autoencoders lens: Jacobian penalty"
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Contractive autoencoders lens: local invariance"
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Contractive autoencoders lens: robust representations"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Contractive autoencoders lens: manifold intuition"
+    }
+  ],
+  "process": [
+    "Contractive autoencoders step 1: The loss includes a penalty on the encoder Jacobian. This encourages local invariance and pushes the encoder to capture robust factors of variation."
+  ],
+  "formulas": [
+    {
+      "label": "Contractive autoencoders field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "A contractive autoencoder can learn digit representations that are less sensitive to tiny pixel noise.",
+    "steps": [],
+    "result": "A contractive autoencoder can learn digit representations that are less sensitive to tiny pixel noise."
+  },
+  "pitfalls": [
+    "Contractive autoencoders failure 1: Computing or approximating Jacobian penalties can be expensive.",
+    "Contractive autoencoders failure 2: Over-contraction can erase meaningful variation."
+  ],
+  "implementation": [
+    "Represent the central state for Contractive autoencoders explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Contractive autoencoders, compare the quantity named in “Contractive autoencoders penalize sensitivity so nearby inputs map to stable latent codes.” across training, evaluation, and shifted inputs.",
+    "Ship Contractive autoencoders with a counterexample test derived from “Computing or approximating Jacobian penalties can be expensive.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Contractive autoencoders matters because it connects representation learning, compression, latent-space editing, and sample generation. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
+  ]
+};
+
+<LessonBody narrative={narrative} />

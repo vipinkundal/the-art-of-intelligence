@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for D-separation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+    }
+  ],
+  "process": [
+    "D-separation step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "D-separation step 2: Apply the central computation: Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
+    "D-separation step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "D-separation step 4: Interpret the result under this limitation: A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+  ],
+  "formulas": [
+    {
+      "label": "D-separation rule",
+      "expression": "X d-separated from Y by Z => X independent of Y given Z",
+      "meaning": "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+    }
+  ],
+  "example": {
+    "title": "D-separation in a small case",
+    "setup": "Analyze the collider Rain -> WetGrass <- Sprinkler.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Rain and Sprinkler are independent through this path until WetGrass or its descendant is conditioned on."
+  },
+  "pitfalls": [
+    "D-separation failure 1: Path rules differ for colliders versus chains and forks; applying one blocking rule to all three is incorrect.",
+    "D-separation failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "D-separation failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for D-separation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For D-separation, compare the quantity named in “D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.” across training, evaluation, and shifted inputs.",
+    "Ship D-separation with a counterexample test derived from “Path rules differ for colliders versus chains and forks; applying one blocking rule to all three is incorrect.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
+    "Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
+    "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength.",
+    "Rain and Sprinkler are independent through this path until WetGrass or its descendant is conditioned on."
+  ]
+};
+
+<LessonBody narrative={narrative} />

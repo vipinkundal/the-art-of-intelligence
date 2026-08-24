@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Batch normalization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.",
+  "concepts": [
+    {
+      "title": "Batch statistics",
+      "explanation": "Mean and variance are estimated across examples, often separately for each channel."
+    },
+    {
+      "title": "Running statistics",
+      "explanation": "Moving averages provide deterministic normalization during evaluation."
+    },
+    {
+      "title": "Learned affine parameters",
+      "explanation": "Gamma and beta restore useful scale and shift after standardization."
+    }
+  ],
+  "process": [
+    "Batch normalization step 1: Compute per-feature batch mean and variance.",
+    "Batch normalization step 2: Normalize with epsilon for numerical safety.",
+    "Batch normalization step 3: Apply learned gamma and beta.",
+    "Batch normalization step 4: Update running statistics and use them in evaluation mode."
+  ],
+  "formulas": [
+    {
+      "label": "BatchNorm",
+      "expression": "y = gamma * (x - mu_B)/sqrt(var_B + epsilon) + beta",
+      "meaning": "normalize with mini-batch statistics"
+    }
+  ],
+  "example": {
+    "title": "Normalize one feature",
+    "setup": "A batch feature contains (1,3), with mean 2 and variance 1.",
+    "steps": [
+      "Subtract 2 to obtain (-1,1).",
+      "Divide by sqrt(1+epsilon).",
+      "Apply the learned gain and bias."
+    ],
+    "result": "Before the affine recovery, the two values are approximately -1 and 1."
+  },
+  "pitfalls": [
+    "Batch normalization failure 1: Small or nonrepresentative batches produce unreliable statistics.",
+    "Batch normalization failure 2: Forgetting to switch to evaluation mode changes predictions and updates running state.",
+    "Batch normalization failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Batch normalization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Batch normalization, compare the quantity named in “Training uses the batch mean and variance; inference normally uses running estimates accumulated during training.” across training, evaluation, and shifted inputs.",
+    "Ship Batch normalization with a counterexample test derived from “Small or nonrepresentative batches produce unreliable statistics.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.",
+    "Training uses the batch mean and variance; inference normally uses running estimates accumulated during training.",
+    "BatchNorm made deep convolutional models easier to optimize and supports larger learning rates in many vision settings.",
+    "Small or nonrepresentative batches produce unreliable statistics."
+  ]
+};
+
+<LessonBody narrative={narrative} />

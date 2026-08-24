@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Sum-product algorithm: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+    }
+  ],
+  "process": [
+    "Sum-product algorithm step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Sum-product algorithm step 2: Apply the central computation: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
+    "Sum-product algorithm step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Sum-product algorithm step 4: Interpret the result under this limitation: It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+  ],
+  "formulas": [
+    {
+      "label": "Sum-product algorithm rule",
+      "expression": "m_{f->x}(x)=sum_{x_f\\x} f(x_f) product_{y in N(f)\\x} m_{y->f}(y)",
+      "meaning": "It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+    }
+  ],
+  "example": {
+    "title": "Sum-product algorithm in a small case",
+    "setup": "Infer bit marginals in a tree-shaped parity-check factor graph.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Multiplying incoming messages at each bit yields its normalized posterior belief."
+  },
+  "pitfalls": [
+    "Sum-product algorithm failure 1: Normalize messages when useful for numerical stability, but retain their relative values.",
+    "Sum-product algorithm failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Sum-product algorithm failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+  ],
+  "implementation": [
+    "Represent the central state for Sum-product algorithm explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Sum-product algorithm, compare the quantity named in “The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.” across training, evaluation, and shifted inputs.",
+    "Ship Sum-product algorithm with a counterexample test derived from “Normalize messages when useful for numerical stability, but retain their relative values.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
+    "A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
+    "It is exact on trees and often efficient, while cyclic graphs require loopy approximations.",
+    "Multiplying incoming messages at each bit yields its normalized posterior belief."
+  ]
+};
+
+<LessonBody narrative={narrative} />

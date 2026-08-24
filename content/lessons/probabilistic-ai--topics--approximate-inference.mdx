@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Approximate inference: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It scales to larger models but introduces bias, variance, convergence questions, or all three."
+    }
+  ],
+  "process": [
+    "Approximate inference step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Approximate inference step 2: Apply the central computation: Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
+    "Approximate inference step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Approximate inference step 4: Interpret the result under this limitation: It scales to larger models but introduces bias, variance, convergence questions, or all three."
+  ],
+  "formulas": [
+    {
+      "label": "Approximate inference rule",
+      "expression": "E_p[f(X)] approximately (1/N) sum_i f(x_i)",
+      "meaning": "It scales to larger models but introduces bias, variance, convergence questions, or all three."
+    }
+  ],
+  "example": {
+    "title": "Approximate inference in a small case",
+    "setup": "Estimate a posterior risk probability in a dense network using Monte Carlo samples.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "The sample fraction converges toward the desired probability while retaining measurable uncertainty."
+  },
+  "pitfalls": [
+    "Approximate inference failure 1: A precise-looking decimal is not evidence of accuracy without convergence or error diagnostics.",
+    "Approximate inference failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Approximate inference failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for Approximate inference explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Approximate inference, compare the quantity named in “Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.” across training, evaluation, and shifted inputs.",
+    "Ship Approximate inference with a counterexample test derived from “A precise-looking decimal is not evidence of accuracy without convergence or error diagnostics.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
+    "Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
+    "It scales to larger models but introduces bias, variance, convergence questions, or all three.",
+    "The sample fraction converges toward the desired probability while retaining measurable uncertainty."
+  ]
+};
+
+<LessonBody narrative={narrative} />

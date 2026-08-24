@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Gibbs sampling: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+    }
+  ],
+  "process": [
+    "Gibbs sampling step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Gibbs sampling step 2: Apply the central computation: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
+    "Gibbs sampling step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Gibbs sampling step 4: Interpret the result under this limitation: It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+  ],
+  "formulas": [
+    {
+      "label": "Gibbs sampling rule",
+      "expression": "x_i^(t+1) ~ p(x_i | x_{-i})",
+      "meaning": "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+    }
+  ],
+  "example": {
+    "title": "Gibbs sampling in a small case",
+    "setup": "Sample means and variances from a Bayesian normal model using their conjugate full conditionals.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "After convergence, retained draws approximate the joint posterior despite changing one block at a time."
+  },
+  "pitfalls": [
+    "Gibbs sampling failure 1: Inspect trace plots and effective sample size; sample count alone can exaggerate information.",
+    "Gibbs sampling failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Gibbs sampling failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+  ],
+  "implementation": [
+    "Represent the central state for Gibbs sampling explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Gibbs sampling, compare the quantity named in “Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given al” across training, evaluation, and shifted inputs.",
+    "Ship Gibbs sampling with a counterexample test derived from “Inspect trace plots and effective sample size; sample count alone can exaggerate information.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
+    "Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
+    "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples.",
+    "After convergence, retained draws approximate the joint posterior despite changing one block at a time."
+  ]
+};
+
+<LessonBody narrative={narrative} />

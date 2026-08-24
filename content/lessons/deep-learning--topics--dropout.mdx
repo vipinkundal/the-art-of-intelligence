@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Dropout: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Dropout randomly masks activations during training and rescales the surviving paths.",
+  "concepts": [
+    {
+      "title": "Drop probability",
+      "explanation": "The chance that an activation is set to zero during one training pass."
+    },
+    {
+      "title": "Inverted scaling",
+      "explanation": "Kept values are divided by the keep probability to preserve their expectation."
+    },
+    {
+      "title": "Evaluation mode",
+      "explanation": "Dropout is disabled for deterministic inference using the complete network."
+    }
+  ],
+  "process": [
+    "Dropout step 1: Choose a drop probability p.",
+    "Dropout step 2: Sample an independent or structured mask during training.",
+    "Dropout step 3: Zero dropped units and scale retained units by 1/(1-p).",
+    "Dropout step 4: Disable masking at evaluation time."
+  ],
+  "formulas": [
+    {
+      "label": "Inverted dropout",
+      "expression": "y = m * x / (1-p), m ~ Bernoulli(1-p)",
+      "meaning": "preserve expected activation while randomly masking paths"
+    }
+  ],
+  "example": {
+    "title": "Apply dropout",
+    "setup": "Let x=(2,4), p=0.5, and sampled mask m=(1,0).",
+    "steps": [
+      "Keep the first coordinate and drop the second.",
+      "Divide the kept value by 0.5.",
+      "Return the masked, rescaled vector."
+    ],
+    "result": "The training output is (4,0), whose expectation over masks equals x."
+  },
+  "pitfalls": [
+    "Dropout failure 1: Leaving dropout enabled during ordinary inference makes outputs stochastic and mis-scaled for expected evaluation.",
+    "Dropout failure 2: High dropout can destroy too much signal or interact poorly with normalization.",
+    "Dropout failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Dropout explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Dropout, compare the quantity named in “A Bernoulli mask is sampled during training; inverted dropout divides kept activations by the keep probability so evalua” across training, evaluation, and shifted inputs.",
+    "Ship Dropout with a counterexample test derived from “Leaving dropout enabled during ordinary inference makes outputs stochastic and mis-scaled for expected evaluation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Dropout randomly masks activations during training and rescales the surviving paths.",
+    "A Bernoulli mask is sampled during training; inverted dropout divides kept activations by the keep probability so evaluation needs no rescaling.",
+    "Dropout can reduce co-adaptation and overfitting in dense networks, attention blocks, and prediction heads.",
+    "Leaving dropout enabled during ordinary inference makes outputs stochastic and mis-scaled for expected evaluation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

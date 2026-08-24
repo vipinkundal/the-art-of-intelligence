@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat What Is AI? as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Artificial intelligence is software designed to do tasks that normally require human judgment, such as recognizing patterns, understanding language, making predictions, or generating content.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "AI systems take input, process it using rules or learned patterns, and produce an output. The output might be a label, a recommendation, an answer, a generated image, or the next action in a workflow."
+    },
+    {
+      "title": "Think of it like this",
+      "explanation": "Normal app: The programmer writes the exact rules, so the behavior is usually predictable when the inputs match those rules."
+    },
+    {
+      "title": "Think of it like this",
+      "explanation": "AI app: The app still runs code, but some behavior comes from patterns learned from data, examples, feedback, or demonstrations."
+    },
+    {
+      "title": "Think of it like this",
+      "explanation": "Reliability question: The practical test is whether the system performs a defined task accurately, consistently, safely, and under realistic conditions."
+    },
+    {
+      "title": "Example",
+      "explanation": "A spam filter looks at email text, sender details, and past examples. It predicts whether a new message is safe or spam."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "This definition separates AI from ordinary software and gives every later topic a clear reference point: inputs, learned patterns, outputs, and reliability."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain what makes a system AI, name the input and output of a simple AI system, and describe one way to judge whether it works."
+    },
+    {
+      "title": "For more information",
+      "explanation": "Read IBM's overview, What is artificial intelligence? , for a broader map of AI, machine learning, deep learning, and generative AI."
+    }
+  ],
+  "process": [
+    "AI systems take input, process it using rules or learned patterns, and produce an output. The output might be a label, a recommendation, an answer, a generated image, or the next action in a workflow."
+  ],
+  "formulas": [
+    {
+      "label": "What Is AI? field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+    }
+  ],
+  "example": {
+    "title": "What Is AI? in operation",
+    "setup": "A spam filter looks at email text, sender details, and past examples. It predicts whether a new message is safe or spam.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term What Is AI?."
+  },
+  "pitfalls": [
+    "What Is AI? failure 1: A correct definition of What Is AI? can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Artificial intelligence is software designed to do tasks that normally require human judgment, such as recognizing patterns, understanding language, making predictions, or generating content.",
+    "Read IBM's overview, What is artificial intelligence? , for a broader map of AI, machine learning, deep learning, and generative AI."
+  ]
+};
+
+<LessonBody narrative={narrative} />

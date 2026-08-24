@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Iterative deepening: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Iterative deepening repeats depth-limited DFS with successively larger limits.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+    }
+  ],
+  "process": [
+    "Iterative deepening step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Iterative deepening step 2: Apply the central rule: Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
+    "Iterative deepening step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Iterative deepening step 4: Stop and interpret the result using this criterion: For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+  ],
+  "formulas": [
+    {
+      "label": "Iterative deepening rule",
+      "expression": "for L = 0,1,2,...: DLS(start,L)",
+      "meaning": "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+    }
+  ],
+  "example": {
+    "title": "Iterative deepening in a small case",
+    "setup": "Search a tree whose shallowest goal is at depth four by running four bounded passes.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The depth-four pass returns a minimum-depth goal while retaining only one DFS path at a time."
+  },
+  "pitfalls": [
+    "Iterative deepening failure 1: The shallowest solution guarantee assumes equal action costs.",
+    "Iterative deepening failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Iterative deepening failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Iterative deepening explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Iterative deepening, compare the quantity named in “Iterative deepening repeats depth-limited DFS with successively larger limits.” across training, evaluation, and shifted inputs.",
+    "Ship Iterative deepening with a counterexample test derived from “The shallowest solution guarantee assumes equal action costs.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Iterative deepening repeats depth-limited DFS with successively larger limits.",
+    "Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
+    "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels.",
+    "The depth-four pass returns a minimum-depth goal while retaining only one DFS path at a time."
+  ]
+};
+
+<LessonBody narrative={narrative} />

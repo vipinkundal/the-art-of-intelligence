@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Factor graphs: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Connect each factor to exactly the variables in its scope, then perform local message passing along those edges."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The representation makes reusable inference rules clear, though cycles can make message passing approximate."
+    }
+  ],
+  "process": [
+    "Factor graphs step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Factor graphs step 2: Apply the central computation: Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
+    "Factor graphs step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Factor graphs step 4: Interpret the result under this limitation: The representation makes reusable inference rules clear, though cycles can make message passing approximate."
+  ],
+  "formulas": [
+    {
+      "label": "Factor graphs rule",
+      "expression": "p(x) proportional product_a f_a(x_a)",
+      "meaning": "The representation makes reusable inference rules clear, though cycles can make message passing approximate."
+    }
+  ],
+  "example": {
+    "title": "Factor graphs in a small case",
+    "setup": "Express an error-correcting code with bit variables and parity-check factors.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Messages combine channel evidence with parity constraints to estimate each transmitted bit."
+  },
+  "pitfalls": [
+    "Factor graphs failure 1: A factor graph and a Bayesian network can represent related distributions but encode structure differently.",
+    "Factor graphs failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Factor graphs failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for Factor graphs explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Factor graphs, compare the quantity named in “A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization expli” across training, evaluation, and shifted inputs.",
+    "Ship Factor graphs with a counterexample test derived from “A factor graph and a Bayesian network can represent related distributions but encode structure differently.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
+    "Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
+    "The representation makes reusable inference rules clear, though cycles can make message passing approximate.",
+    "Messages combine channel evidence with parity constraints to estimate each transmitted bit."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Multilayer perceptrons: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A multilayer perceptron stacks affine transformations and nonlinear activations to learn complex functions.",
+  "concepts": [
+    {
+      "title": "Hidden layer",
+      "explanation": "An intermediate representation learned for the task rather than supplied as a target."
+    },
+    {
+      "title": "Width and depth",
+      "explanation": "Width controls units per layer; depth controls how many transformations are composed."
+    },
+    {
+      "title": "Output head",
+      "explanation": "The final layer converts the last representation into logits, values, or other task-specific outputs."
+    }
+  ],
+  "process": [
+    "Multilayer perceptrons step 1: Feed the input into the first affine layer.",
+    "Multilayer perceptrons step 2: Apply a nonlinear activation to its outputs.",
+    "Multilayer perceptrons step 3: Repeat through all hidden layers.",
+    "Multilayer perceptrons step 4: Compute a task loss and update every layer by backpropagation."
+  ],
+  "formulas": [
+    {
+      "label": "Layer",
+      "expression": "h_l = phi(W_l h_(l-1) + b_l)",
+      "meaning": "transform the previous representation and apply nonlinearity"
+    },
+    {
+      "label": "Classifier",
+      "expression": "p(y|x) = softmax(W_o h_L + b_o)",
+      "meaning": "convert the last hidden state into class probabilities"
+    }
+  ],
+  "example": {
+    "title": "Learn XOR",
+    "setup": "Use two inputs, a small hidden layer, and one output.",
+    "steps": [
+      "Hidden units learn different half-space tests.",
+      "The activation turns those tests into nonlinear features.",
+      "The output combines the features to isolate the two XOR-positive corners."
+    ],
+    "result": "A two-layer network represents a decision pattern that one perceptron cannot."
+  },
+  "pitfalls": [
+    "Multilayer perceptrons failure 1: Removing nonlinear activations collapses the entire stack into one linear transformation.",
+    "Multilayer perceptrons failure 2: More layers and parameters increase capacity but do not guarantee useful generalization.",
+    "Multilayer perceptrons failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Multilayer perceptrons explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Multilayer perceptrons, compare the quantity named in “Each layer computes an affine map followed by an activation; backpropagation supplies gradients for every weight and bia” across training, evaluation, and shifted inputs.",
+    "Ship Multilayer perceptrons with a counterexample test derived from “Removing nonlinear activations collapses the entire stack into one linear transformation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A multilayer perceptron stacks affine transformations and nonlinear activations to learn complex functions.",
+    "Each layer computes an affine map followed by an activation; backpropagation supplies gradients for every weight and bias.",
+    "MLPs are the basic feed-forward building block behind classifiers, transformer feed-forward blocks, tabular models, and learned projection heads.",
+    "Removing nonlinear activations collapses the entire stack into one linear transformation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

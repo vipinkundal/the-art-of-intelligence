@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Induction: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Induction generalizes patterns from observed cases to unobserved cases or broader rules.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on observations or facts, a candidate rule or model, and a question."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Summarize evidence, estimate a regularity, and evaluate how well it predicts new data."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Its conclusions are defeasible and depend on sampling, bias, noise, and the assumed stability of the process."
+    }
+  ],
+  "process": [
+    "Induction step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Induction step 2: Apply the central rule: Summarize evidence, estimate a regularity, and evaluate how well it predicts new data.",
+    "Induction step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Induction step 4: Stop and interpret the result using this criterion: Its conclusions are defeasible and depend on sampling, bias, noise, and the assumed stability of the process."
+  ],
+  "formulas": [
+    {
+      "label": "Induction rule",
+      "expression": "observations -> probable generalization",
+      "meaning": "Its conclusions are defeasible and depend on sampling, bias, noise, and the assumed stability of the process."
+    }
+  ],
+  "example": {
+    "title": "Induction in a small case",
+    "setup": "Observe many tested components from a production process and estimate their failure rate.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Summarize evidence, estimate a regularity, and evaluate how well it predicts new data.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The rule supports a probabilistic forecast, not certainty about the next component."
+  },
+  "pitfalls": [
+    "Induction failure 1: A biased sample can make a stable-looking generalization fail in deployment.",
+    "Induction failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Induction failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+  ],
+  "implementation": [
+    "Represent the central state for Induction explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Induction, compare the quantity named in “Induction generalizes patterns from observed cases to unobserved cases or broader rules.” across training, evaluation, and shifted inputs.",
+    "Ship Induction with a counterexample test derived from “A biased sample can make a stable-looking generalization fail in deployment.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Induction generalizes patterns from observed cases to unobserved cases or broader rules.",
+    "Summarize evidence, estimate a regularity, and evaluate how well it predicts new data.",
+    "Its conclusions are defeasible and depend on sampling, bias, noise, and the assumed stability of the process.",
+    "The rule supports a probabilistic forecast, not certainty about the next component."
+  ]
+};
+
+<LessonBody narrative={narrative} />

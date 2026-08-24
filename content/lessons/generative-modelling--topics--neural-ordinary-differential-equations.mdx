@@ -1,0 +1,54 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Neural ordinary differential equations: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Neural ODEs represent transformations as continuous dynamics parameterized by neural networks.",
+  "concepts": [
+    {
+      "title": "Neural ordinary differential equations definition",
+      "explanation": "Neural ordinary differential equations lens: ODE state dynamics"
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Neural ordinary differential equations lens: adjoint method"
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Neural ordinary differential equations lens: solver tolerances"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Neural ordinary differential equations lens: continuous-depth networks"
+    }
+  ],
+  "process": [
+    "Neural ordinary differential equations step 1: An ODE solver integrates dx/dt = f_theta(x,t) from a start time to an end time. Generative flows use this to move samples through continuous transformations."
+  ],
+  "formulas": [
+    {
+      "label": "Neural ordinary differential equations field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the transport lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "A neural ODE can define the continuous transformation used by a flow-matching sampler.",
+    "steps": [],
+    "result": "A neural ODE can define the continuous transformation used by a flow-matching sampler."
+  },
+  "pitfalls": [
+    "Neural ordinary differential equations failure 1: Solver choices affect speed and accuracy.",
+    "Neural ordinary differential equations failure 2: Stiff dynamics can be difficult to integrate reliably."
+  ],
+  "implementation": [
+    "Represent the central state for Neural ordinary differential equations explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Neural ordinary differential equations, compare the quantity named in “Neural ODEs represent transformations as continuous dynamics parameterized by neural networks.” across training, evaluation, and shifted inputs.",
+    "Ship Neural ordinary differential equations with a counterexample test derived from “Solver choices affect speed and accuracy.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Neural ordinary differential equations matters because it connects diffusion-style generation with continuous flows, ODE solvers, and fast deterministic sampling. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
+  ]
+};
+
+<LessonBody narrative={narrative} />

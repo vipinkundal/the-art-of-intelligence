@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Expectimax: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Expectimax backs up expected values through random events or stochastic behavior.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use maximization at decision nodes and probability-weighted averages at chance nodes."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+    }
+  ],
+  "process": [
+    "Expectimax step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Expectimax step 2: Apply the central rule: Use maximization at decision nodes and probability-weighted averages at chance nodes.",
+    "Expectimax step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Expectimax step 4: Stop and interpret the result using this criterion: It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+  ],
+  "formulas": [
+    {
+      "label": "Expectimax rule",
+      "expression": "V(chance)=sum_o P(o|s,a)V(T(s,a,o))",
+      "meaning": "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+    }
+  ],
+  "example": {
+    "title": "Expectimax in a small case",
+    "setup": "Choose a dice-game action with several possible rolls and payoffs.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use maximization at decision nodes and probability-weighted averages at chance nodes.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The selected move has the highest probability-weighted return rather than the best worst case."
+  },
+  "pitfalls": [
+    "Expectimax failure 1: Probabilities must sum to one and should reflect the real environment.",
+    "Expectimax failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
+    "Expectimax failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+  ],
+  "implementation": [
+    "Represent the central state for Expectimax explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Expectimax, compare the quantity named in “Expectimax backs up expected values through random events or stochastic behavior.” across training, evaluation, and shifted inputs.",
+    "Ship Expectimax with a counterexample test derived from “Probabilities must sum to one and should reflect the real environment.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Expectimax backs up expected values through random events or stochastic behavior.",
+    "Use maximization at decision nodes and probability-weighted averages at chance nodes.",
+    "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error.",
+    "The selected move has the highest probability-weighted return rather than the best worst case."
+  ]
+};
+
+<LessonBody narrative={narrative} />

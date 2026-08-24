@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for First-order predicate logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is far more expressive than propositional logic, but general validity is only semi-decidable."
+    }
+  ],
+  "process": [
+    "First-order predicate logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "First-order predicate logic step 2: Apply the central rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
+    "First-order predicate logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "First-order predicate logic step 4: Stop and interpret the result using this criterion: It is far more expressive than propositional logic, but general validity is only semi-decidable."
+  ],
+  "formulas": [
+    {
+      "label": "First-order predicate logic rule",
+      "expression": "forall x Human(x) => Mortal(x)",
+      "meaning": "It is far more expressive than propositional logic, but general validity is only semi-decidable."
+    }
+  ],
+  "example": {
+    "title": "First-order predicate logic in a small case",
+    "setup": "Add Human(Socrates) to a rule that every human is mortal.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Instantiate the universal rule and derive Mortal(Socrates)."
+  },
+  "pitfalls": [
+    "First-order predicate logic failure 1: Variable scope and accidental capture must be handled correctly during substitution.",
+    "First-order predicate logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "First-order predicate logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for First-order predicate logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For First-order predicate logic, compare the quantity named in “First-order logic represents objects, predicates, functions, variables, and quantified relations.” across training, evaluation, and shifted inputs.",
+    "Ship First-order predicate logic with a counterexample test derived from “Variable scope and accidental capture must be handled correctly during substitution.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
+    "Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
+    "It is far more expressive than propositional logic, but general validity is only semi-decidable.",
+    "Instantiate the universal rule and derive Mortal(Socrates)."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Gradient clipping: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Gradient clipping limits an update signal when gradient magnitude becomes dangerously large.",
+  "concepts": [
+    {
+      "title": "Global norm",
+      "explanation": "The combined L2 norm across selected parameter gradients."
+    },
+    {
+      "title": "Norm clipping",
+      "explanation": "Preserves direction while reducing the whole vector's magnitude."
+    },
+    {
+      "title": "Value clipping",
+      "explanation": "Caps each coordinate and can alter gradient direction."
+    }
+  ],
+  "process": [
+    "Gradient clipping step 1: Backpropagate to compute all gradients.",
+    "Gradient clipping step 2: Measure the chosen global or per-group norm.",
+    "Gradient clipping step 3: If it exceeds the threshold, apply the clipping rule.",
+    "Gradient clipping step 4: Pass the clipped gradients to the optimizer and log clipping frequency."
+  ],
+  "formulas": [
+    {
+      "label": "Global norm clip",
+      "expression": "g_clipped = g * min(1, c/||g||_2)",
+      "meaning": "rescale only when the norm exceeds threshold c"
+    }
+  ],
+  "example": {
+    "title": "Clip an oversized gradient",
+    "setup": "A gradient has norm 20 and the threshold is 5.",
+    "steps": [
+      "Compute c/||g|| = 5/20 = 0.25.",
+      "Multiply every gradient coordinate by 0.25.",
+      "The direction remains unchanged."
+    ],
+    "result": "The clipped gradient norm is 5."
+  },
+  "pitfalls": [
+    "Gradient clipping failure 1: A threshold that is too small suppresses useful learning.",
+    "Gradient clipping failure 2: Clipping hides symptoms but does not fix the source of persistent exploding gradients.",
+    "Gradient clipping failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Gradient clipping explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Gradient clipping, compare the quantity named in “Norm clipping rescales the complete gradient vector when its norm exceeds a threshold; value clipping truncates coordina” across training, evaluation, and shifted inputs.",
+    "Ship Gradient clipping with a counterexample test derived from “A threshold that is too small suppresses useful learning.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Gradient clipping limits an update signal when gradient magnitude becomes dangerously large.",
+    "Norm clipping rescales the complete gradient vector when its norm exceeds a threshold; value clipping truncates coordinates individually.",
+    "Clipping prevents rare spikes from destroying parameters or overflowing reduced-precision arithmetic.",
+    "A threshold that is too small suppresses useful learning."
+  ]
+};
+
+<LessonBody narrative={narrative} />

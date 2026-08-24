@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for State-space representation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A state-space representation defines what a solver treats as a state and which transitions are possible.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+    }
+  ],
+  "process": [
+    "State-space representation step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "State-space representation step 2: Apply the central rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
+    "State-space representation step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "State-space representation step 4: Stop and interpret the result using this criterion: A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+  ],
+  "formulas": [
+    {
+      "label": "State-space representation rule",
+      "expression": "problem = (S, A, T, s0, Goal)",
+      "meaning": "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+    }
+  ],
+  "example": {
+    "title": "State-space representation in a small case",
+    "setup": "Represent a sliding puzzle by tile positions rather than by the physical motion history used to reach them.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Equivalent histories collapse to one state while every legal next move remains determined."
+  },
+  "pitfalls": [
+    "State-space representation failure 1: Test whether two apparently equal states can have different legal futures; if so, the representation is missing information.",
+    "State-space representation failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "State-space representation failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for State-space representation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For State-space representation, compare the quantity named in “A state-space representation defines what a solver treats as a state and which transitions are possible.” across training, evaluation, and shifted inputs.",
+    "Ship State-space representation with a counterexample test derived from “Test whether two apparently equal states can have different legal futures; if so, the representation is missing informat”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A state-space representation defines what a solver treats as a state and which transitions are possible.",
+    "Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
+    "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states.",
+    "Equivalent histories collapse to one state while every legal next move remains determined."
+  ]
+};
+
+<LessonBody narrative={narrative} />

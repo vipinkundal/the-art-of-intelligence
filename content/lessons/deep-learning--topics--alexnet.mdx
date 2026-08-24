@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for AlexNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.",
+  "concepts": [
+    {
+      "title": "GPU training",
+      "explanation": "The model was split across GPUs to make large-scale convolution practical at the time."
+    },
+    {
+      "title": "ReLU",
+      "explanation": "Non-saturating activations accelerated optimization compared with tanh-like alternatives."
+    },
+    {
+      "title": "Training recipe",
+      "explanation": "Augmentation, momentum, weight decay, and dropout were essential parts of the result."
+    }
+  ],
+  "process": [
+    "AlexNet step 1: Resize and augment an RGB image.",
+    "AlexNet step 2: Apply large early filters followed by deeper convolutional stages.",
+    "AlexNet step 3: Pool selected feature maps and flatten the representation.",
+    "AlexNet step 4: Classify through dense layers with dropout during training."
+  ],
+  "formulas": [
+    {
+      "label": "ReLU activation",
+      "expression": "h = max(0, z)",
+      "meaning": "introduce fast piecewise-linear nonlinearity"
+    }
+  ],
+  "example": {
+    "title": "Understand the breakthrough",
+    "setup": "Train on the 1,000-class ImageNet dataset.",
+    "steps": [
+      "GPUs make repeated convolution feasible at scale.",
+      "Augmentation expands image variation.",
+      "The deep hierarchy learns object-discriminative features."
+    ],
+    "result": "AlexNet dramatically reduced ImageNet error and triggered broad adoption of deep vision models."
+  },
+  "pitfalls": [
+    "AlexNet failure 1: Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe.",
+    "AlexNet failure 2: Its large dense layers and early kernels are inefficient by modern standards.",
+    "AlexNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for AlexNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For AlexNet, compare the quantity named in “Five convolutional stages learn visual hierarchies, followed by large dense layers that produce ImageNet class predictio” across training, evaluation, and shifted inputs.",
+    "Ship AlexNet with a counterexample test derived from “Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.",
+    "Five convolutional stages learn visual hierarchies, followed by large dense layers that produce ImageNet class predictions.",
+    "AlexNet marks the modern deep-learning breakthrough in computer vision and highlighted the joint role of data, compute, architecture, and optimization.",
+    "Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe."
+  ]
+};
+
+<LessonBody narrative={narrative} />

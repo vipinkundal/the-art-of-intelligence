@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Negamax: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use the identity that one player's value is the negative of the opponent's value and negate recursive returns."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+    }
+  ],
+  "process": [
+    "Negamax step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Negamax step 2: Apply the central rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
+    "Negamax step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Negamax step 4: Stop and interpret the result using this criterion: It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+  ],
+  "formulas": [
+    {
+      "label": "Negamax rule",
+      "expression": "V(s)=max_a[-V(T(s,a))]",
+      "meaning": "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+    }
+  ],
+  "example": {
+    "title": "Negamax in a small case",
+    "setup": "Evaluate a board by the score from the side-to-move perspective.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "One recursive function handles both players by changing sign at every ply."
+  },
+  "pitfalls": [
+    "Negamax failure 1: Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.",
+    "Negamax failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
+    "Negamax failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+  ],
+  "implementation": [
+    "Represent the central state for Negamax explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Negamax, compare the quantity named in “Negamax expresses zero-sum minimax with one symmetric maximization procedure.” across training, evaluation, and shifted inputs.",
+    "Ship Negamax with a counterexample test derived from “Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
+    "Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
+    "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs.",
+    "One recursive function handles both players by changing sign at every ply."
+  ]
+};
+
+<LessonBody narrative={narrative} />

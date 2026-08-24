@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Analogy: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Analogical reasoning transfers relational structure from a familiar source case to a new target case.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on observations or facts, a candidate rule or model, and a question."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Align corresponding entities and relations, project candidate inferences, and verify where the mapping breaks."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It can generate useful hypotheses with little data, but superficial similarity can support a false transfer."
+    }
+  ],
+  "process": [
+    "Analogy step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Analogy step 2: Apply the central rule: Align corresponding entities and relations, project candidate inferences, and verify where the mapping breaks.",
+    "Analogy step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Analogy step 4: Stop and interpret the result using this criterion: It can generate useful hypotheses with little data, but superficial similarity can support a false transfer."
+  ],
+  "formulas": [
+    {
+      "label": "Analogy rule",
+      "expression": "map relations(source) -> relations(target)",
+      "meaning": "It can generate useful hypotheses with little data, but superficial similarity can support a false transfer."
+    }
+  ],
+  "example": {
+    "title": "Analogy in a small case",
+    "setup": "Use water-flow relationships to build intuition for current and resistance in a circuit.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Align corresponding entities and relations, project candidate inferences, and verify where the mapping breaks.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The analogy helps predict qualitative behavior while electrical equations validate the transfer."
+  },
+  "pitfalls": [
+    "Analogy failure 1: Explicitly list disanalogies so the metaphor does not silently overreach.",
+    "Analogy failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Analogy failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+  ],
+  "implementation": [
+    "Represent the central state for Analogy explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Analogy, compare the quantity named in “Analogical reasoning transfers relational structure from a familiar source case to a new target case.” across training, evaluation, and shifted inputs.",
+    "Ship Analogy with a counterexample test derived from “Explicitly list disanalogies so the metaphor does not silently overreach.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Analogical reasoning transfers relational structure from a familiar source case to a new target case.",
+    "Align corresponding entities and relations, project candidate inferences, and verify where the mapping breaks.",
+    "It can generate useful hypotheses with little data, but superficial similarity can support a false transfer.",
+    "The analogy helps predict qualitative behavior while electrical equations validate the transfer."
+  ]
+};
+
+<LessonBody narrative={narrative} />

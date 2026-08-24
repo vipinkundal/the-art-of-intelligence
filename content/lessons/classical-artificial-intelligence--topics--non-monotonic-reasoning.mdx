@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Non-monotonic reasoning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Non-monotonic reasoning permits conclusions to be withdrawn when new information arrives.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Draw defeasible conclusions from current knowledge while tracking exceptions and preference among rules."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It matches commonsense revision but loses the simple property that adding facts only adds conclusions."
+    }
+  ],
+  "process": [
+    "Non-monotonic reasoning step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Non-monotonic reasoning step 2: Apply the central rule: Draw defeasible conclusions from current knowledge while tracking exceptions and preference among rules.",
+    "Non-monotonic reasoning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Non-monotonic reasoning step 4: Stop and interpret the result using this criterion: It matches commonsense revision but loses the simple property that adding facts only adds conclusions."
+  ],
+  "formulas": [
+    {
+      "label": "Non-monotonic reasoning rule",
+      "expression": "KB entails P but KB union {E} may not entail P",
+      "meaning": "It matches commonsense revision but loses the simple property that adding facts only adds conclusions."
+    }
+  ],
+  "example": {
+    "title": "Non-monotonic reasoning in a small case",
+    "setup": "Assume birds fly, infer Tweety flies, then learn Tweety is a penguin.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Draw defeasible conclusions from current knowledge while tracking exceptions and preference among rules.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The earlier conclusion is retracted when the exception becomes known."
+  },
+  "pitfalls": [
+    "Non-monotonic reasoning failure 1: Conflicting defaults need an explicit priority or semantics.",
+    "Non-monotonic reasoning failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Non-monotonic reasoning failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Non-monotonic reasoning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Non-monotonic reasoning, compare the quantity named in “Non-monotonic reasoning permits conclusions to be withdrawn when new information arrives.” across training, evaluation, and shifted inputs.",
+    "Ship Non-monotonic reasoning with a counterexample test derived from “Conflicting defaults need an explicit priority or semantics.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Non-monotonic reasoning permits conclusions to be withdrawn when new information arrives.",
+    "Draw defeasible conclusions from current knowledge while tracking exceptions and preference among rules.",
+    "It matches commonsense revision but loses the simple property that adding facts only adds conclusions.",
+    "The earlier conclusion is retracted when the exception becomes known."
+  ]
+};
+
+<LessonBody narrative={narrative} />

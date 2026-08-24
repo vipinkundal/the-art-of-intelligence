@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Neural Networks as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "A neural network is a model made of layers that transform input data into useful predictions or generated outputs.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Each layer changes the data a little. Early layers may detect simple patterns, while later layers combine those patterns into more useful meaning."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Inputs and outputs: Inputs are encoded as numbers; outputs are the task result, such as probabilities, values, embeddings, or generated tokens."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Layers, weights, and activations: Weights control each transformation, while activation functions add non-linearity so the network can model complex patterns."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Depth: More layers let the network combine simple signals into higher-level features, but also make training stability and data quality more important."
+    },
+    {
+      "title": "Example",
+      "explanation": "In image recognition, one layer might detect edges, another might detect shapes, and a later layer might help identify the object."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Neural networks are flexible enough to work with images, audio, text, code, and many other forms of data, which makes them the core building block of modern deep learning."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain a neural network as layered transformations from input to output and identify what weights and activations do."
+    },
+    {
+      "title": "For more information",
+      "explanation": "Watch 3Blue1Brown's neural networks lesson to see layers, activations, and handwritten digit recognition animated."
+    }
+  ],
+  "process": [
+    "Each layer changes the data a little. Early layers may detect simple patterns, while later layers combine those patterns into more useful meaning."
+  ],
+  "formulas": [
+    {
+      "label": "Neural Networks field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the timeline lab."
+    }
+  ],
+  "example": {
+    "title": "Neural Networks in operation",
+    "setup": "In image recognition, one layer might detect edges, another might detect shapes, and a later layer might help identify the object.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Neural Networks."
+  },
+  "pitfalls": [
+    "Neural Networks failure 1: A correct definition of Neural Networks can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "A neural network is a model made of layers that transform input data into useful predictions or generated outputs.",
+    "Watch 3Blue1Brown's neural networks lesson to see layers, activations, and handwritten digit recognition animated."
+  ]
+};
+
+<LessonBody narrative={narrative} />

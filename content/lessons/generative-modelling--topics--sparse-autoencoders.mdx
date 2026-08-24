@@ -1,0 +1,54 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Sparse autoencoders: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Sparse autoencoders encourage only a small set of latent units to activate for each input.",
+  "concepts": [
+    {
+      "title": "Sparse autoencoders definition",
+      "explanation": "Sparse autoencoders lens: sparsity penalties"
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Sparse autoencoders lens: feature specialization"
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Sparse autoencoders lens: overcomplete representations"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Sparse autoencoders lens: interpretability uses"
+    }
+  ],
+  "process": [
+    "Sparse autoencoders step 1: A sparsity penalty is added to the reconstruction objective. This encourages latent units to specialize and can make representations easier to inspect."
+  ],
+  "formulas": [
+    {
+      "label": "Sparse autoencoders field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "A sparse autoencoder on neural activations may learn units that correspond to recurring concepts or directions.",
+    "steps": [],
+    "result": "A sparse autoencoder on neural activations may learn units that correspond to recurring concepts or directions."
+  },
+  "pitfalls": [
+    "Sparse autoencoders failure 1: Too much sparsity hurts reconstruction.",
+    "Sparse autoencoders failure 2: Sparse units can still be entangled or hard to interpret."
+  ],
+  "implementation": [
+    "Represent the central state for Sparse autoencoders explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Sparse autoencoders, compare the quantity named in “Sparse autoencoders encourage only a small set of latent units to activate for each input.” across training, evaluation, and shifted inputs.",
+    "Ship Sparse autoencoders with a counterexample test derived from “Too much sparsity hurts reconstruction.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Sparse autoencoders matters because it connects representation learning, compression, latent-space editing, and sample generation. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
+  ]
+};
+
+<LessonBody narrative={narrative} />

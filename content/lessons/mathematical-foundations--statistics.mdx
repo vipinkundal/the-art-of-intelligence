@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat 4 Statistics as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Populations and samples : The population is what you want to understand; the sample is the data you actually observe."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Bias and variance : Bias is systematic error; variance is sensitivity to the particular sample or training data."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Point estimation : Produces a single best estimate of an unknown quantity from data."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Maximum likelihood estimation : Chooses parameters that make the observed data most probable under the model."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Maximum a posteriori estimation : Combines likelihood with a prior preference over parameters."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Statistics helps you decide whether a model improvement is real, whether a dataset represents the target population, and whether predictions remain calibrated after deployment."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Estimation methods such as MLE and MAP connect data, likelihoods, priors, and model parameters. Bias-variance reasoning explains why models can underfit, overfit, or fail under distribution shift."
+    }
+  ],
+  "process": [
+    "Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model."
+  ],
+  "formulas": [
+    {
+      "label": "4 Statistics field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+    }
+  ],
+  "example": {
+    "title": "4 Statistics in operation",
+    "setup": "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term 4 Statistics."
+  },
+  "pitfalls": [
+    "4 Statistics failure 1: A correct definition of 4 Statistics can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+    "Use OpenIntro Statistics for a free textbook, examples, exercises, and teaching resources on statistical reasoning."
+  ]
+};
+
+<LessonBody narrative={narrative} />

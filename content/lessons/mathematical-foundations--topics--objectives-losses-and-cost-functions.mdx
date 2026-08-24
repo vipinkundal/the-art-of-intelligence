@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Objectives, losses, and cost functions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "These define what the system is trying to minimize, maximize, or balance.",
+  "concepts": [
+    {
+      "title": "Objectives, losses, and cost functions definition",
+      "explanation": "Objectives, losses, and cost functions lens: The definition and notation for Objectives, losses, and cost functions."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Objectives, losses, and cost functions lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Objectives, losses, and cost functions lens: how this affects loss minimization, parameter updates, training speed, regularization, or convergence"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Objectives, losses, and cost functions lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Objectives, losses, and cost functions step 1: Objectives, losses, and cost functions belongs to objectives, constraints, gradients, update rules, and numerical stability. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Objectives, losses, and cost functions field relation",
+      "expression": "θₜ₊₁ = θₜ − η∇L(θₜ)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "In a training loop, objectives, losses, and cost functions can be used to interpret these define what the system is trying to minimize, maximize, or balance.",
+    "steps": [],
+    "result": "In a training loop, objectives, losses, and cost functions can be used to interpret these define what the system is trying to minimize, maximize, or balance."
+  },
+  "pitfalls": [
+    "Objectives, losses, and cost functions failure 1: do not treat Objectives, losses, and cost functions as a label without being able to compute or sketch a small example.",
+    "Objectives, losses, and cost functions failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Objectives, losses, and cost functions failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Objectives, losses, and cost functions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Objectives, losses, and cost functions, compare the quantity named in “These define what the system is trying to minimize, maximize, or balance.” across training, evaluation, and shifted inputs.",
+    "Ship Objectives, losses, and cost functions with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Objectives, losses, and cost functions matters for AI because turns model training into a disciplined search for better parameters under practical constraints. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

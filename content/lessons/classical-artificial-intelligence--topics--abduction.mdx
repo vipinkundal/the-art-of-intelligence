@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Abduction: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Abduction proposes the best available explanation for an observation.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on observations or facts, a candidate rule or model, and a question."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Generate hypotheses that could produce the evidence, score them by fit and prior plausibility, and seek discriminating tests."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It supports diagnosis and hypothesis formation, but several explanations may fit the same evidence."
+    }
+  ],
+  "process": [
+    "Abduction step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Abduction step 2: Apply the central rule: Generate hypotheses that could produce the evidence, score them by fit and prior plausibility, and seek discriminating tests.",
+    "Abduction step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Abduction step 4: Stop and interpret the result using this criterion: It supports diagnosis and hypothesis formation, but several explanations may fit the same evidence."
+  ],
+  "formulas": [
+    {
+      "label": "Abduction rule",
+      "expression": "best H = argmax_H P(H|E) proportional P(E|H)P(H)",
+      "meaning": "It supports diagnosis and hypothesis formation, but several explanations may fit the same evidence."
+    }
+  ],
+  "example": {
+    "title": "Abduction in a small case",
+    "setup": "A service is slow and error rates rose after a deployment.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Generate hypotheses that could produce the evidence, score them by fit and prior plausibility, and seek discriminating tests.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Propose deployment regression, traffic spike, or dependency failure and gather evidence to distinguish them."
+  },
+  "pitfalls": [
+    "Abduction failure 1: Do not stop at the first plausible explanation; compare alternatives and tests.",
+    "Abduction failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Abduction failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+  ],
+  "implementation": [
+    "Represent the central state for Abduction explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Abduction, compare the quantity named in “Abduction proposes the best available explanation for an observation.” across training, evaluation, and shifted inputs.",
+    "Ship Abduction with a counterexample test derived from “Do not stop at the first plausible explanation; compare alternatives and tests.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Abduction proposes the best available explanation for an observation.",
+    "Generate hypotheses that could produce the evidence, score them by fit and prior plausibility, and seek discriminating tests.",
+    "It supports diagnosis and hypothesis formation, but several explanations may fit the same evidence.",
+    "Propose deployment regression, traffic spike, or dependency failure and gather evidence to distinguish them."
+  ]
+};
+
+<LessonBody narrative={narrative} />

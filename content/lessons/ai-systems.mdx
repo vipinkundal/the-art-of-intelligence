@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Agents And Tool-Using Systems as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
+  "concepts": [
+    {
+      "title": "10.1 Agent patterns",
+      "explanation": "ReAct combines interleaved reasoning traces with actions and observations from an external environment."
+    },
+    {
+      "title": "10.1 Agent patterns",
+      "explanation": "Toolformer demonstrated self-supervised learning of when and how a language model can call external tools."
+    },
+    {
+      "title": "10.1 Agent patterns",
+      "explanation": "ReAct : Interleaves reasoning, tool actions, and observations so the agent can adapt after each result."
+    },
+    {
+      "title": "10.1 Agent patterns",
+      "explanation": "Planner-executor : Separates high-level planning from step execution, making long tasks easier to inspect and retry."
+    },
+    {
+      "title": "10.1 Agent patterns",
+      "explanation": "Router-specialist : Sends tasks to specialized prompts, models, tools, or workflows based on task type."
+    },
+    {
+      "title": "10.2 Production concerns for agents",
+      "explanation": "For application integration, Model Context Protocol is a current open standard for connecting AI applications to tools, data sources, and external systems. It belongs in the engineering layer of the roadmap, not in the mathematical core of AI."
+    },
+    {
+      "title": "10.2 Production concerns for agents",
+      "explanation": "Idempotent tools : Tools should be safe to retry without duplicating side effects."
+    },
+    {
+      "title": "10.2 Production concerns for agents",
+      "explanation": "Permission boundaries : Limit what the agent can read, write, call, or change."
+    }
+  ],
+  "process": [
+    "ReAct combines interleaved reasoning traces with actions and observations from an external environment.",
+    "Toolformer demonstrated self-supervised learning of when and how a language model can call external tools.",
+    "ReAct : Interleaves reasoning, tool actions, and observations so the agent can adapt after each result.",
+    "Planner-executor : Separates high-level planning from step execution, making long tasks easier to inspect and retry.",
+    "Router-specialist : Sends tasks to specialized prompts, models, tools, or workflows based on task type."
+  ],
+  "formulas": [
+    {
+      "label": "Agents And Tool-Using Systems field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the transport lab."
+    }
+  ],
+  "example": {
+    "title": "Agents And Tool-Using Systems in operation",
+    "setup": "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Agents And Tool-Using Systems."
+  },
+  "pitfalls": [
+    "Agents And Tool-Using Systems failure 1: A correct definition of Agents And Tool-Using Systems can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
+    "You should be able to design agent workflows with explicit state, tool contracts, validation, human approval points, retry behavior, and security boundaries."
+  ]
+};
+
+<LessonBody narrative={narrative} />

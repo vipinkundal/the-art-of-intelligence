@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for STRIPS: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "STRIPS represents actions with preconditions, add effects, and delete effects.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "An applicable action removes facts in its delete list and inserts facts in its add list."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+    }
+  ],
+  "process": [
+    "STRIPS step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "STRIPS step 2: Apply the central rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
+    "STRIPS step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "STRIPS step 4: Stop and interpret the result using this criterion: The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+  ],
+  "formulas": [
+    {
+      "label": "STRIPS rule",
+      "expression": "Result(s,a)=(s - Delete(a)) union Add(a)",
+      "meaning": "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+    }
+  ],
+  "example": {
+    "title": "STRIPS in a small case",
+    "setup": "Move a robot from A to B with precondition At(A), add At(B), and delete At(A).",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Applying the action produces a state where the robot is at B and no longer at A."
+  },
+  "pitfalls": [
+    "STRIPS failure 1: Frame assumptions and interacting effects must be encoded explicitly.",
+    "STRIPS failure 2: A plan is only as reliable as its action model and observations.",
+    "STRIPS failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for STRIPS explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For STRIPS, compare the quantity named in “STRIPS represents actions with preconditions, add effects, and delete effects.” across training, evaluation, and shifted inputs.",
+    "Ship STRIPS with a counterexample test derived from “Frame assumptions and interacting effects must be encoded explicitly.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "STRIPS represents actions with preconditions, add effects, and delete effects.",
+    "An applicable action removes facts in its delete list and inserts facts in its add list.",
+    "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change.",
+    "Applying the action produces a state where the robot is at B and no longer at A."
+  ]
+};
+
+<LessonBody narrative={narrative} />

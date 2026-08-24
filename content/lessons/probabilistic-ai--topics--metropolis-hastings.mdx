@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Metropolis-Hastings: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+    }
+  ],
+  "process": [
+    "Metropolis-Hastings step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Metropolis-Hastings step 2: Apply the central computation: Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
+    "Metropolis-Hastings step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Metropolis-Hastings step 4: Interpret the result under this limitation: It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+  ],
+  "formulas": [
+    {
+      "label": "Metropolis-Hastings rule",
+      "expression": "alpha(x,y)=min(1, [pi(y)q(x|y)]/[pi(x)q(y|x)])",
+      "meaning": "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+    }
+  ],
+  "example": {
+    "title": "Metropolis-Hastings in a small case",
+    "setup": "Estimate a one-dimensional posterior with a Gaussian random-walk proposal.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Accepted and repeated states form a chain whose stationary distribution is the desired posterior."
+  },
+  "pitfalls": [
+    "Metropolis-Hastings failure 1: A high acceptance rate can still indicate tiny moves and poor exploration.",
+    "Metropolis-Hastings failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Metropolis-Hastings failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+  ],
+  "implementation": [
+    "Represent the central state for Metropolis-Hastings explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Metropolis-Hastings, compare the quantity named in “Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting t” across training, evaluation, and shifted inputs.",
+    "Ship Metropolis-Hastings with a counterexample test derived from “A high acceptance rate can still indicate tiny moves and poor exploration.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
+    "Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
+    "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance.",
+    "Accepted and repeated states form a chain whose stationary distribution is the desired posterior."
+  ]
+};
+
+<LessonBody narrative={narrative} />

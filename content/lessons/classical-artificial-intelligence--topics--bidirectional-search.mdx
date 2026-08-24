@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Bidirectional search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Bidirectional search grows one frontier from the start and another from the goal.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Alternate or balance forward and backward expansion until the explored regions meet, then join their paths."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+    }
+  ],
+  "process": [
+    "Bidirectional search step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Bidirectional search step 2: Apply the central rule: Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
+    "Bidirectional search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Bidirectional search step 4: Stop and interpret the result using this criterion: It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+  ],
+  "formulas": [
+    {
+      "label": "Bidirectional search rule",
+      "expression": "work approximately O(b^(d/2)) instead of O(b^d)",
+      "meaning": "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+    }
+  ],
+  "example": {
+    "title": "Bidirectional search in a small case",
+    "setup": "Find a word-ladder path by expanding transformations from both the source and target words.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A shared intermediate word connects the two partial paths."
+  },
+  "pitfalls": [
+    "Bidirectional search failure 1: The first intersection is not always optimal in weighted search; compare frontier costs carefully.",
+    "Bidirectional search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Bidirectional search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Bidirectional search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Bidirectional search, compare the quantity named in “Bidirectional search grows one frontier from the start and another from the goal.” across training, evaluation, and shifted inputs.",
+    "Ship Bidirectional search with a counterexample test derived from “The first intersection is not always optimal in weighted search; compare frontier costs carefully.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Bidirectional search grows one frontier from the start and another from the goal.",
+    "Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
+    "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition.",
+    "A shared intermediate word connects the two partial paths."
+  ]
+};
+
+<LessonBody narrative={narrative} />

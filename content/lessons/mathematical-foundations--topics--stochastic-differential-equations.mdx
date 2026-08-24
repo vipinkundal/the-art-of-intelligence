@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Stochastic differential equations: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.",
+  "concepts": [
+    {
+      "title": "Stochastic differential equations definition",
+      "explanation": "Stochastic differential equations lens: The definition and notation for Stochastic differential equations."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Stochastic differential equations lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Stochastic differential equations lens: how this supports gradients, backpropagation, automatic differentiation, continuous dynamics, or training stability"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Stochastic differential equations lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Stochastic differential equations step 1: Stochastic differential equations belongs to rates of change, sensitivity, curvature, and differentiable programs. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Stochastic differential equations field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "During training, stochastic differential equations can be used to interpret add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.",
+    "steps": [],
+    "result": "During training, stochastic differential equations can be used to interpret add random noise to continuous-time dynamics, useful for diffusion and uncertainty models."
+  },
+  "pitfalls": [
+    "Stochastic differential equations failure 1: do not treat Stochastic differential equations as a label without being able to compute or sketch a small example.",
+    "Stochastic differential equations failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Stochastic differential equations failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Stochastic differential equations explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Stochastic differential equations, compare the quantity named in “Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.” across training, evaluation, and shifted inputs.",
+    "Ship Stochastic differential equations with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Stochastic differential equations matters for AI because explains how changing inputs or parameters changes losses, outputs, and trajectories. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

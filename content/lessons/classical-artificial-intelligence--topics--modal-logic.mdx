@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Modal logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Modal logic qualifies statements with modes such as necessity, possibility, knowledge, belief, or obligation.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Evaluate formulas across possible worlds connected by an accessibility relation."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It supports reasoning about agents and alternatives, but axioms about accessibility must match the intended modality."
+    }
+  ],
+  "process": [
+    "Modal logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Modal logic step 2: Apply the central rule: Evaluate formulas across possible worlds connected by an accessibility relation.",
+    "Modal logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Modal logic step 4: Stop and interpret the result using this criterion: It supports reasoning about agents and alternatives, but axioms about accessibility must match the intended modality."
+  ],
+  "formulas": [
+    {
+      "label": "Modal logic rule",
+      "expression": "Box P = necessary P; Diamond P = possible P",
+      "meaning": "It supports reasoning about agents and alternatives, but axioms about accessibility must match the intended modality."
+    }
+  ],
+  "example": {
+    "title": "Modal logic in a small case",
+    "setup": "Represent that an agent knows a key is in one of two rooms but not which one.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Evaluate formulas across possible worlds connected by an accessibility relation.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Epistemic accessibility distinguishes the actual world from worlds the agent considers possible."
+  },
+  "pitfalls": [
+    "Modal logic failure 1: Do not assume belief is truthful or knowledge is introspective without selecting corresponding axioms.",
+    "Modal logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Modal logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Modal logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Modal logic, compare the quantity named in “Modal logic qualifies statements with modes such as necessity, possibility, knowledge, belief, or obligation.” across training, evaluation, and shifted inputs.",
+    "Ship Modal logic with a counterexample test derived from “Do not assume belief is truthful or knowledge is introspective without selecting corresponding axioms.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Modal logic qualifies statements with modes such as necessity, possibility, knowledge, belief, or obligation.",
+    "Evaluate formulas across possible worlds connected by an accessibility relation.",
+    "It supports reasoning about agents and alternatives, but axioms about accessibility must match the intended modality.",
+    "Epistemic accessibility distinguishes the actual world from worlds the agent considers possible."
+  ]
+};
+
+<LessonBody narrative={narrative} />

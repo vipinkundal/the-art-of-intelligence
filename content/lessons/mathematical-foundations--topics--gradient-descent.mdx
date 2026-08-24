@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Gradient descent: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Moves parameters opposite the gradient to reduce the objective locally.",
+  "concepts": [
+    {
+      "title": "Gradient descent definition",
+      "explanation": "Gradient descent lens: The definition and notation for Gradient descent."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Gradient descent lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Gradient descent lens: how this affects loss minimization, parameter updates, training speed, regularization, or convergence"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Gradient descent lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Gradient descent step 1: Gradient descent belongs to objectives, constraints, gradients, update rules, and numerical stability. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Gradient descent field relation",
+      "expression": "θₜ₊₁ = θₜ − η∇L(θₜ)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "In a training loop, gradient descent can be used to interpret moves parameters opposite the gradient to reduce the objective locally.",
+    "steps": [],
+    "result": "In a training loop, gradient descent can be used to interpret moves parameters opposite the gradient to reduce the objective locally."
+  },
+  "pitfalls": [
+    "Gradient descent failure 1: do not treat Gradient descent as a label without being able to compute or sketch a small example.",
+    "Gradient descent failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Gradient descent failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Gradient descent explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Gradient descent, compare the quantity named in “Moves parameters opposite the gradient to reduce the objective locally.” across training, evaluation, and shifted inputs.",
+    "Ship Gradient descent with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Gradient descent matters for AI because turns model training into a disciplined search for better parameters under practical constraints. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

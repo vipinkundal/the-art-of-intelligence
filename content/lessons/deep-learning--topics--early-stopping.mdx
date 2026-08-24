@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Early stopping: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Early stopping ends training when a held-out validation signal stops improving.",
+  "concepts": [
+    {
+      "title": "Validation metric",
+      "explanation": "A held-out measurement aligned with the deployment objective."
+    },
+    {
+      "title": "Patience",
+      "explanation": "The number of evaluations allowed without sufficient improvement."
+    },
+    {
+      "title": "Checkpoint restoration",
+      "explanation": "The best observed parameters are restored rather than simply keeping the last step."
+    }
+  ],
+  "process": [
+    "Early stopping step 1: Choose the validation split, metric, evaluation interval, and minimum improvement.",
+    "Early stopping step 2: Save a checkpoint whenever the metric improves.",
+    "Early stopping step 3: Increment patience when improvement is insufficient.",
+    "Early stopping step 4: Stop at the limit and restore the best checkpoint."
+  ],
+  "formulas": [
+    {
+      "label": "Stopping rule",
+      "expression": "stop if t - t_best >= patience",
+      "meaning": "end training after a fixed window without a new best result"
+    }
+  ],
+  "example": {
+    "title": "Stop a classifier run",
+    "setup": "Validation loss is best at epoch 12 and patience is 3.",
+    "steps": [
+      "Epochs 13 and 14 do not beat the best loss.",
+      "Epoch 15 also fails to improve by the minimum delta.",
+      "Training stops and checkpoint 12 is restored."
+    ],
+    "result": "The selected model is the best validation checkpoint, not the final one."
+  },
+  "pitfalls": [
+    "Early stopping failure 1: Frequent decisions on a small validation set can overfit that validation set.",
+    "Early stopping failure 2: A noisy metric may require smoothing, patience, or multiple seeds rather than immediate stopping.",
+    "Early stopping failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Early stopping explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Early stopping, compare the quantity named in “Monitor a predefined metric, keep the best checkpoint, and stop after a patience window without meaningful improvement.” across training, evaluation, and shifted inputs.",
+    "Ship Early stopping with a counterexample test derived from “Frequent decisions on a small validation set can overfit that validation set.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Early stopping ends training when a held-out validation signal stops improving.",
+    "Monitor a predefined metric, keep the best checkpoint, and stop after a patience window without meaningful improvement.",
+    "Early stopping saves compute and can prevent continued fitting of noise or spurious patterns.",
+    "Frequent decisions on a small validation set can overfit that validation set."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Residual connections: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A residual connection adds a block's input to its transformed output, creating a direct information path.",
+  "concepts": [
+    {
+      "title": "Identity path",
+      "explanation": "A parameter-free route that carries activations and gradients around the residual branch."
+    },
+    {
+      "title": "Residual branch",
+      "explanation": "The learned transformation F(x) that refines the current state."
+    },
+    {
+      "title": "Pre-norm and post-norm",
+      "explanation": "Normalization placement changes gradient flow and stability in residual architectures."
+    }
+  ],
+  "process": [
+    "Residual connections step 1: Send x down the identity path.",
+    "Residual connections step 2: Compute F(x) through the learned branch.",
+    "Residual connections step 3: Align shapes if necessary.",
+    "Residual connections step 4: Add both paths and continue to the next block."
+  ],
+  "formulas": [
+    {
+      "label": "Residual block",
+      "expression": "y = x + F(x; theta)",
+      "meaning": "learn an update around an identity route"
+    },
+    {
+      "label": "Projected skip",
+      "expression": "y = P x + F(x)",
+      "meaning": "match channel or feature dimensions before addition"
+    }
+  ],
+  "example": {
+    "title": "Propagate a small correction",
+    "setup": "Suppose x=(2,-1) and F(x)=(0.2,0.3).",
+    "steps": [
+      "Keep the identity value x.",
+      "Compute the residual correction F(x).",
+      "Add coordinatewise."
+    ],
+    "result": "The block outputs (2.2,-0.7), preserving most of the original signal."
+  },
+  "pitfalls": [
+    "Residual connections failure 1: Addition requires compatible shapes or an explicit projection.",
+    "Residual connections failure 2: Residual connections improve optimization but do not eliminate exploding activations or poor normalization.",
+    "Residual connections failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Residual connections explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Residual connections, compare the quantity named in “When shapes match, the block returns x plus F(x); projections can align dimensions when they do not match.” across training, evaluation, and shifted inputs.",
+    "Ship Residual connections with a counterexample test derived from “Addition requires compatible shapes or an explicit projection.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A residual connection adds a block's input to its transformed output, creating a direct information path.",
+    "When shapes match, the block returns x plus F(x); projections can align dimensions when they do not match.",
+    "Residual paths made very deep convolutional networks practical and now organize transformers, diffusion models, and many multimodal systems.",
+    "Addition requires compatible shapes or an explicit projection."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat 2 Calculus And Matrix Calculus as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Limits and continuity : Limits describe behavior near a point, and continuity means small input changes do not cause jumps."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Derivatives and partial derivatives : Derivatives measure change; partial derivatives isolate one variable while holding others fixed."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Product, quotient, and chain rules : These rules break complex derivatives into manageable pieces, especially through nested functions."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Gradients : A gradient collects partial derivatives and points in the direction of steepest local increase."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Directional derivatives : These measure how a function changes along one chosen direction instead of all directions."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Training models means changing parameters to reduce a loss. Gradients tell us the direction of change, Jacobians describe vector-valued sensitivity, and Hessians describe curvature."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Backpropagation is mostly the repeated application of the chain rule over a computational graph."
+    }
+  ],
+  "process": [
+    "Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models."
+  ],
+  "formulas": [
+    {
+      "label": "2 Calculus And Matrix Calculus field relation",
+      "expression": "A v = λ v",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+    }
+  ],
+  "example": {
+    "title": "2 Calculus And Matrix Calculus in operation",
+    "setup": "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term 2 Calculus And Matrix Calculus."
+  },
+  "pitfalls": [
+    "2 Calculus And Matrix Calculus failure 1: A correct definition of 2 Calculus And Matrix Calculus can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+    "Read The Matrix Calculus You Need For Deep Learning for a focused bridge from derivatives to neural-network training."
+  ]
+};
+
+<LessonBody narrative={narrative} />

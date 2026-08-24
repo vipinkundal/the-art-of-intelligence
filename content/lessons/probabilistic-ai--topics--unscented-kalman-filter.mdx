@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Unscented Kalman filter: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "The unscented Kalman filter propagates carefully selected sigma points through nonlinear functions instead of linearizing with derivatives.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Construct weighted sigma points matching the current Gaussian moments, transform them, then recombine their weighted mean and covariance."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It often captures nonlinear moment changes better than an EKF without Jacobians, but still represents the posterior as Gaussian."
+    }
+  ],
+  "process": [
+    "Unscented Kalman filter step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Unscented Kalman filter step 2: Apply the central computation: Construct weighted sigma points matching the current Gaussian moments, transform them, then recombine their weighted mean and covariance.",
+    "Unscented Kalman filter step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Unscented Kalman filter step 4: Interpret the result under this limitation: It often captures nonlinear moment changes better than an EKF without Jacobians, but still represents the posterior as Gaussian."
+  ],
+  "formulas": [
+    {
+      "label": "Unscented Kalman filter rule",
+      "expression": "chi_0=m; chi_i=m +/- [sqrt((n+lambda)P)]_i",
+      "meaning": "It often captures nonlinear moment changes better than an EKF without Jacobians, but still represents the posterior as Gaussian."
+    }
+  ],
+  "example": {
+    "title": "Unscented Kalman filter in a small case",
+    "setup": "Estimate a target's location from a nonlinear distance sensor without deriving measurement Jacobians.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Construct weighted sigma points matching the current Gaussian moments, transform them, then recombine their weighted mean and covariance.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Transformed sigma points approximate the posterior mean and covariance after the observation."
+  },
+  "pitfalls": [
+    "Unscented Kalman filter failure 1: Scaling parameters can generate unstable covariance weights when chosen carelessly.",
+    "Unscented Kalman filter failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Unscented Kalman filter failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Unscented Kalman filter explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Unscented Kalman filter, compare the quantity named in “The unscented Kalman filter propagates carefully selected sigma points through nonlinear functions instead of linearizin” across training, evaluation, and shifted inputs.",
+    "Ship Unscented Kalman filter with a counterexample test derived from “Scaling parameters can generate unstable covariance weights when chosen carelessly.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "The unscented Kalman filter propagates carefully selected sigma points through nonlinear functions instead of linearizing with derivatives.",
+    "Construct weighted sigma points matching the current Gaussian moments, transform them, then recombine their weighted mean and covariance.",
+    "It often captures nonlinear moment changes better than an EKF without Jacobians, but still represents the posterior as Gaussian.",
+    "Transformed sigma points approximate the posterior mean and covariance after the observation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

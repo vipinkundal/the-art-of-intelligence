@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Counterfactual reasoning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Counterfactual reasoning asks what would have happened under a different action or condition.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on observations or facts, a candidate rule or model, and a question."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify."
+    }
+  ],
+  "process": [
+    "Counterfactual reasoning step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Counterfactual reasoning step 2: Apply the central rule: Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
+    "Counterfactual reasoning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Counterfactual reasoning step 4: Stop and interpret the result using this criterion: It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify."
+  ],
+  "formulas": [
+    {
+      "label": "Counterfactual reasoning rule",
+      "expression": "Y_x(u) = outcome under do(X=x) for unit u",
+      "meaning": "It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify."
+    }
+  ],
+  "example": {
+    "title": "Counterfactual reasoning in a small case",
+    "setup": "Ask whether a loan would have been approved if income were higher while other causal background remained fixed.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The model compares factual and intervened outcomes for the same case assumptions."
+  },
+  "pitfalls": [
+    "Counterfactual reasoning failure 1: State which variables are held fixed and justify the causal graph.",
+    "Counterfactual reasoning failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Counterfactual reasoning failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+  ],
+  "implementation": [
+    "Represent the central state for Counterfactual reasoning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Counterfactual reasoning, compare the quantity named in “Counterfactual reasoning asks what would have happened under a different action or condition.” across training, evaluation, and shifted inputs.",
+    "Ship Counterfactual reasoning with a counterexample test derived from “State which variables are held fixed and justify the causal graph.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Counterfactual reasoning asks what would have happened under a different action or condition.",
+    "Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
+    "It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify.",
+    "The model compares factual and intervened outcomes for the same case assumptions."
+  ]
+};
+
+<LessonBody narrative={narrative} />

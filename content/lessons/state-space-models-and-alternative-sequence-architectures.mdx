@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat State-Space Models And Alternative Sequence Architectures as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
+  "concepts": [
+    {
+      "title": "Study",
+      "explanation": "Linear dynamical systems : Model a hidden state that evolves through linear updates and emits observations over time."
+    },
+    {
+      "title": "Study",
+      "explanation": "State-space models : Track sequence history with a compact recurrent state instead of comparing every token to every other token."
+    },
+    {
+      "title": "Study",
+      "explanation": "Structured state spaces : Constrain the state update matrices so long sequences can be processed efficiently and stably."
+    },
+    {
+      "title": "Study",
+      "explanation": "S4 : A structured state-space architecture designed to model very long dependencies with efficient convolutional computation."
+    },
+    {
+      "title": "Study",
+      "explanation": "Mamba : Uses selective state-space updates so the model can choose which information to keep or forget based on the input."
+    },
+    {
+      "title": "Basic state-space form",
+      "explanation": "These models are relevant to long-sequence processing and efficient alternatives to quadratic attention. They should be learned after transformers, not instead of transformers."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain the recurrent state update, the output projection, why structured state spaces can scale to long sequences, and where SSMs, gated convolutions, retention, and transformer hybrids fit relative to attention."
+    }
+  ],
+  "process": [
+    "Linear dynamical systems : Model a hidden state that evolves through linear updates and emits observations over time.",
+    "State-space models : Track sequence history with a compact recurrent state instead of comparing every token to every other token.",
+    "Structured state spaces : Constrain the state update matrices so long sequences can be processed efficiently and stably.",
+    "S4 : A structured state-space architecture designed to model very long dependencies with efficient convolutional computation.",
+    "Mamba : Uses selective state-space updates so the model can choose which information to keep or forget based on the input."
+  ],
+  "formulas": [
+    {
+      "label": "State-Space Models And Alternative Sequence Architectures field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "State-Space Models And Alternative Sequence Architectures in operation",
+    "setup": "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term State-Space Models And Alternative Sequence Architectures."
+  },
+  "pitfalls": [
+    "State-Space Models And Alternative Sequence Architectures failure 1: A correct definition of State-Space Models And Alternative Sequence Architectures can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
+    "You should be able to explain the recurrent state update, the output projection, why structured state spaces can scale to long sequences, and where SSMs, gated convolutions, retention, and transformer hybrids fit relative to attention."
+  ]
+};
+
+<LessonBody narrative={narrative} />

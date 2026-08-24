@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Horn clauses: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Interpret a definite Horn clause as a conjunction of premises implying one conclusion."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+    }
+  ],
+  "process": [
+    "Horn clauses step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Horn clauses step 2: Apply the central rule: Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
+    "Horn clauses step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Horn clauses step 4: Stop and interpret the result using this criterion: Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+  ],
+  "formulas": [
+    {
+      "label": "Horn clauses rule",
+      "expression": "not A1 or ... or not Ak or B equiv A1 and ... and Ak => B",
+      "meaning": "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+    }
+  ],
+  "example": {
+    "title": "Horn clauses in a small case",
+    "setup": "Represent parent(x,y) and parent(y,z) => grandparent(x,z).",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Forward or backward chaining can use the rule efficiently."
+  },
+  "pitfalls": [
+    "Horn clauses failure 1: Not every disjunctive knowledge statement can be represented as a definite Horn rule.",
+    "Horn clauses failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Horn clauses failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Horn clauses explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Horn clauses, compare the quantity named in “A Horn clause contains at most one positive literal and naturally represents facts or implication rules.” across training, evaluation, and shifted inputs.",
+    "Ship Horn clauses with a counterexample test derived from “Not every disjunctive knowledge statement can be represented as a definite Horn rule.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
+    "Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
+    "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted.",
+    "Forward or backward chaining can use the rule efficiently."
+  ]
+};
+
+<LessonBody narrative={narrative} />

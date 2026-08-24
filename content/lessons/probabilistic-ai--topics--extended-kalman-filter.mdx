@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Extended Kalman filter: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+    }
+  ],
+  "process": [
+    "Extended Kalman filter step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Extended Kalman filter step 2: Apply the central computation: Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
+    "Extended Kalman filter step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Extended Kalman filter step 4: Interpret the result under this limitation: It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+  ],
+  "formulas": [
+    {
+      "label": "Extended Kalman filter rule",
+      "expression": "F_t = partial f/partial x at m_(t-1); H_t = partial h/partial x at m^-_t",
+      "meaning": "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+    }
+  ],
+  "example": {
+    "title": "Extended Kalman filter in a small case",
+    "setup": "Track a robot whose sensor reports nonlinear range and bearing to a landmark.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Jacobian-based updates approximate the posterior with a Gaussian around the current trajectory estimate."
+  },
+  "pitfalls": [
+    "Extended Kalman filter failure 1: Verify analytic Jacobians numerically and keep angle residuals properly wrapped.",
+    "Extended Kalman filter failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Extended Kalman filter failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Extended Kalman filter explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Extended Kalman filter, compare the quantity named in “The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.” across training, evaluation, and shifted inputs.",
+    "Ship Extended Kalman filter with a counterexample test derived from “Verify analytic Jacobians numerically and keep angle residuals properly wrapped.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
+    "Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
+    "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence.",
+    "Jacobian-based updates approximate the posterior with a Gaussian around the current trajectory estimate."
+  ]
+};
+
+<LessonBody narrative={narrative} />

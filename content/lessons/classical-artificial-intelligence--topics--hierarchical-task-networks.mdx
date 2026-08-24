@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Hierarchical task networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "HTN planning decomposes abstract tasks into smaller tasks until executable primitive actions remain.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Select a method whose conditions hold and replace a compound task with its ordered or partially ordered subtasks."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Domain knowledge can make planning efficient and natural, but methods may exclude valid plans outside the encoded hierarchy."
+    }
+  ],
+  "process": [
+    "Hierarchical task networks step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Hierarchical task networks step 2: Apply the central rule: Select a method whose conditions hold and replace a compound task with its ordered or partially ordered subtasks.",
+    "Hierarchical task networks step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Hierarchical task networks step 4: Stop and interpret the result using this criterion: Domain knowledge can make planning efficient and natural, but methods may exclude valid plans outside the encoded hierarchy."
+  ],
+  "formulas": [
+    {
+      "label": "Hierarchical task networks rule",
+      "expression": "compound_task -> method -> subtasks -> primitive actions",
+      "meaning": "Domain knowledge can make planning efficient and natural, but methods may exclude valid plans outside the encoded hierarchy."
+    }
+  ],
+  "example": {
+    "title": "Hierarchical task networks in a small case",
+    "setup": "Decompose 'organize trip' into book transport, reserve lodging, and prepare documents.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Select a method whose conditions hold and replace a compound task with its ordered or partially ordered subtasks.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Further methods refine each subtask into executable service calls and checks."
+  },
+  "pitfalls": [
+    "Hierarchical task networks failure 1: Check method termination and avoid recursive decompositions without progress.",
+    "Hierarchical task networks failure 2: A plan is only as reliable as its action model and observations.",
+    "Hierarchical task networks failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for Hierarchical task networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Hierarchical task networks, compare the quantity named in “HTN planning decomposes abstract tasks into smaller tasks until executable primitive actions remain.” across training, evaluation, and shifted inputs.",
+    "Ship Hierarchical task networks with a counterexample test derived from “Check method termination and avoid recursive decompositions without progress.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "HTN planning decomposes abstract tasks into smaller tasks until executable primitive actions remain.",
+    "Select a method whose conditions hold and replace a compound task with its ordered or partially ordered subtasks.",
+    "Domain knowledge can make planning efficient and natural, but methods may exclude valid plans outside the encoded hierarchy.",
+    "Further methods refine each subtask into executable service calls and checks."
+  ]
+};
+
+<LessonBody narrative={narrative} />

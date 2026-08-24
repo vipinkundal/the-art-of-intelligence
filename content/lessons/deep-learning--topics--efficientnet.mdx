@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for EfficientNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "EfficientNet scales network depth, width, and input resolution together using a compound rule.",
+  "concepts": [
+    {
+      "title": "Compound scaling",
+      "explanation": "One coefficient phi jointly controls depth, width, and resolution."
+    },
+    {
+      "title": "MBConv",
+      "explanation": "An inverted residual mobile block forms the baseline network."
+    },
+    {
+      "title": "Squeeze-and-excitation",
+      "explanation": "Channelwise gates recalibrate features using global context."
+    }
+  ],
+  "process": [
+    "EfficientNet step 1: Start from the baseline EfficientNet-B0 architecture.",
+    "EfficientNet step 2: Choose a scale coefficient phi for the compute budget.",
+    "EfficientNet step 3: Increase depth, width, and resolution with the learned constants.",
+    "EfficientNet step 4: Retrain and benchmark actual latency as well as theoretical compute."
+  ],
+  "formulas": [
+    {
+      "label": "Compound rule",
+      "expression": "depth=alpha^phi, width=beta^phi, resolution=gamma^phi",
+      "meaning": "scale three dimensions in a coordinated way"
+    },
+    {
+      "label": "Compute constraint",
+      "expression": "alpha * beta^2 * gamma^2 approximately 2",
+      "meaning": "roughly double computation for each unit increase in phi"
+    }
+  ],
+  "example": {
+    "title": "Scale a baseline",
+    "setup": "Suppose phi increases by one.",
+    "steps": [
+      "Add layers according to alpha.",
+      "Increase channels according to beta.",
+      "Increase input resolution according to gamma."
+    ],
+    "result": "The model spends the larger budget across representation depth, capacity, and visual detail."
+  },
+  "pitfalls": [
+    "EfficientNet failure 1: Higher input resolution can dominate memory and data-pipeline cost.",
+    "EfficientNet failure 2: FLOPs do not guarantee device latency; operator support and memory movement matter.",
+    "EfficientNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for EfficientNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For EfficientNet, compare the quantity named in “A searched baseline block is enlarged with fixed coefficients that determine how depth, channels, and resolution grow wi” across training, evaluation, and shifted inputs.",
+    "Ship EfficientNet with a counterexample test derived from “Higher input resolution can dominate memory and data-pipeline cost.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "EfficientNet scales network depth, width, and input resolution together using a compound rule.",
+    "A searched baseline block is enlarged with fixed coefficients that determine how depth, channels, and resolution grow with a global scale parameter.",
+    "EfficientNet demonstrated strong accuracy-efficiency tradeoffs and made scaling strategy an explicit architecture design question.",
+    "Higher input resolution can dominate memory and data-pipeline cost."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Padding: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Padding adds values around an input boundary to control output size and what filters see near edges.",
+  "concepts": [
+    {
+      "title": "Valid padding",
+      "explanation": "No values are added, so only fully contained windows produce outputs."
+    },
+    {
+      "title": "Same padding",
+      "explanation": "Padding is selected so stride-one output usually matches input size."
+    },
+    {
+      "title": "Boundary condition",
+      "explanation": "The chosen values express an assumption about what exists beyond the observed field."
+    }
+  ],
+  "process": [
+    "Padding step 1: Choose desired output size and boundary behavior.",
+    "Padding step 2: Compute left, right, top, and bottom pad widths.",
+    "Padding step 3: Construct the extended input using the selected rule.",
+    "Padding step 4: Apply the convolution and confirm the resulting spatial dimensions."
+  ],
+  "formulas": [
+    {
+      "label": "Output size",
+      "expression": "N_out = floor((N + 2P - K)/S) + 1",
+      "meaning": "relate one-dimensional size, padding, kernel, and stride"
+    },
+    {
+      "label": "Odd same kernel",
+      "expression": "P = (K-1)/2",
+      "meaning": "preserve size for stride one and an odd undilated kernel"
+    }
+  ],
+  "example": {
+    "title": "Preserve a five-pixel signal",
+    "setup": "Use kernel size 3, stride 1, input size 5, and padding 1.",
+    "steps": [
+      "Extend the signal to effective size 7.",
+      "There are 7-3+1 valid window positions.",
+      "Map those positions back to the original coordinate centers."
+    ],
+    "result": "The output size remains 5."
+  },
+  "pitfalls": [
+    "Padding failure 1: Zero padding introduces an artificial edge that may not match the domain.",
+    "Padding failure 2: Even kernels, dilation, and stride can require asymmetric padding for an intended alignment.",
+    "Padding failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Padding explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Padding, compare the quantity named in “Zero, reflection, replication, circular, or learned values extend the input before the kernel slides.” across training, evaluation, and shifted inputs.",
+    "Ship Padding with a counterexample test derived from “Zero padding introduces an artificial edge that may not match the domain.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Padding adds values around an input boundary to control output size and what filters see near edges.",
+    "Zero, reflection, replication, circular, or learned values extend the input before the kernel slides.",
+    "Padding lets deep CNNs retain resolution, align skip connections, and predict near image or sequence borders.",
+    "Zero padding introduces an artificial edge that may not match the domain."
+  ]
+};
+
+<LessonBody narrative={narrative} />

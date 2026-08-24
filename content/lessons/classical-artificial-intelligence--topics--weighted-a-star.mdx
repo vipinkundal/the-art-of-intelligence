@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Weighted A*: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Weighted A* gives the heuristic more influence to find good solutions faster.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Expand nodes by g(n)+w h(n) for a weight w greater than one."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+    }
+  ],
+  "process": [
+    "Weighted A* step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Weighted A* step 2: Apply the central rule: Expand nodes by g(n)+w h(n) for a weight w greater than one.",
+    "Weighted A* step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Weighted A* step 4: Stop and interpret the result using this criterion: It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+  ],
+  "formulas": [
+    {
+      "label": "Weighted A* rule",
+      "expression": "f_w(n) = g(n) + w h(n), w > 1",
+      "meaning": "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+    }
+  ],
+  "example": {
+    "title": "Weighted A* in a small case",
+    "setup": "Plan a robot route under a tight latency budget with w=1.5.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Expand nodes by g(n)+w h(n) for a weight w greater than one.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The planner often explores fewer states and returns a near-optimal route sooner."
+  },
+  "pitfalls": [
+    "Weighted A* failure 1: A very large weight approaches greedy search and can produce poor solutions.",
+    "Weighted A* failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Weighted A* failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Weighted A* explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Weighted A*, compare the quantity named in “Weighted A* gives the heuristic more influence to find good solutions faster.” across training, evaluation, and shifted inputs.",
+    "Ship Weighted A* with a counterexample test derived from “A very large weight approaches greedy search and can produce poor solutions.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Weighted A* gives the heuristic more influence to find good solutions faster.",
+    "Expand nodes by g(n)+w h(n) for a weight w greater than one.",
+    "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight.",
+    "The planner often explores fewer states and returns a near-optimal route sooner."
+  ]
+};
+
+<LessonBody narrative={narrative} />

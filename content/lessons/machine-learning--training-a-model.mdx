@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Training A Model as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Training is the process of showing a model examples so it can adjust itself and get better at a task.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "A model starts with weak guesses. During training, it compares its guesses with the correct answers, measures the error, and updates itself to reduce that error."
+    },
+    {
+      "title": "Important terms",
+      "explanation": "Example: One training case, such as a row, image, sentence, clip, or record that gives the model something to learn from."
+    },
+    {
+      "title": "Important terms",
+      "explanation": "Label: The target answer attached to an example, such as the class name, price, next token, rating, or human preference."
+    },
+    {
+      "title": "Important terms",
+      "explanation": "Loss: A numeric error score. Lower loss means the model's output better matches the training target under the chosen objective."
+    },
+    {
+      "title": "Example",
+      "explanation": "To train a model that predicts house prices, you show it many houses with size, location, room count, and final sale price."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Training is the step where data changes model behavior. Understanding it helps you reason about errors, overfitting, evaluation, and why better examples can improve predictions."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to describe the training loop in plain language: make a guess, measure loss, update the model, and check whether performance improves."
+    },
+    {
+      "title": "For more information",
+      "explanation": "Use Stanford CS229 as a deeper reference for supervised learning, loss functions, optimization, and model evaluation."
+    }
+  ],
+  "process": [
+    "A model starts with weak guesses. During training, it compares its guesses with the correct answers, measures the error, and updates itself to reduce that error."
+  ],
+  "formulas": [
+    {
+      "label": "Training A Model field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+    }
+  ],
+  "example": {
+    "title": "Training A Model in operation",
+    "setup": "To train a model that predicts house prices, you show it many houses with size, location, room count, and final sale price.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Training A Model."
+  },
+  "pitfalls": [
+    "Training A Model failure 1: A correct definition of Training A Model can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Training is the process of showing a model examples so it can adjust itself and get better at a task.",
+    "Use Stanford CS229 as a deeper reference for supervised learning, loss functions, optimization, and model evaluation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

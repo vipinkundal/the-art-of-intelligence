@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for U-Net architectures: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "U-Net architectures pair a contracting encoder with a symmetric decoder and same-scale skip connections.",
+  "concepts": [
+    {
+      "title": "Contracting path",
+      "explanation": "Downsamples while increasing semantic abstraction and receptive field."
+    },
+    {
+      "title": "Expanding path",
+      "explanation": "Upsamples toward the original spatial resolution."
+    },
+    {
+      "title": "Lateral skip",
+      "explanation": "Transfers encoder features directly to a decoder stage at the same scale."
+    }
+  ],
+  "process": [
+    "U-Net architectures step 1: Encode the input through multiple resolution levels.",
+    "U-Net architectures step 2: Save the feature map at each level.",
+    "U-Net architectures step 3: Upsample one decoder level and combine its feature with the matching saved encoder feature.",
+    "U-Net architectures step 4: Refine and repeat until producing a full-resolution output."
+  ],
+  "formulas": [
+    {
+      "label": "Skip fusion",
+      "expression": "d_l = Conv(concat(upsample(d_(l+1)), e_l))",
+      "meaning": "combine decoder context with same-scale encoder detail"
+    }
+  ],
+  "example": {
+    "title": "Segment a small structure",
+    "setup": "A medical image contains a thin boundary that disappears in the bottleneck.",
+    "steps": [
+      "Early encoder features retain the boundary location.",
+      "Deep features identify the surrounding object semantically.",
+      "The decoder concatenates both sources at matching resolution."
+    ],
+    "result": "The output can preserve the thin boundary while using global context."
+  },
+  "pitfalls": [
+    "U-Net architectures failure 1: Skip connections can pass noise or shortcuts as well as useful detail.",
+    "U-Net architectures failure 2: Cropping, padding, and odd spatial sizes can misalign encoder and decoder features.",
+    "U-Net architectures failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for U-Net architectures explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For U-Net architectures, compare the quantity named in “Features from each encoder resolution are copied or projected into the corresponding decoder stage before refinement.” across training, evaluation, and shifted inputs.",
+    "Ship U-Net architectures with a counterexample test derived from “Skip connections can pass noise or shortcuts as well as useful detail.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "U-Net architectures pair a contracting encoder with a symmetric decoder and same-scale skip connections.",
+    "Features from each encoder resolution are copied or projected into the corresponding decoder stage before refinement.",
+    "U-Net variants are standard for biomedical segmentation, remote sensing, image restoration, diffusion denoisers, and many scientific imaging tasks.",
+    "Skip connections can pass noise or shortcuts as well as useful detail."
+  ]
+};
+
+<LessonBody narrative={narrative} />

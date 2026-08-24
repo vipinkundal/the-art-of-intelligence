@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Hidden Markov models: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Combine a transition probability between hidden states with an emission likelihood for each observation."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+    }
+  ],
+  "process": [
+    "Hidden Markov models step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Hidden Markov models step 2: Apply the central computation: Combine a transition probability between hidden states with an emission likelihood for each observation.",
+    "Hidden Markov models step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Hidden Markov models step 4: Interpret the result under this limitation: HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+  ],
+  "formulas": [
+    {
+      "label": "Hidden Markov models rule",
+      "expression": "P(z_1:T,x_1:T)=P(z_1) product_t P(x_t|z_t) product_{t=2}^T P(z_t|z_(t-1))",
+      "meaning": "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+    }
+  ],
+  "example": {
+    "title": "Hidden Markov models in a small case",
+    "setup": "Infer whether a machine is healthy or failing from a sequence of noisy vibration categories.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Combine a transition probability between hidden states with an emission likelihood for each observation.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "The posterior assigns a probability to each hidden condition at each time rather than trusting an observation directly."
+  },
+  "pitfalls": [
+    "Hidden Markov models failure 1: Label switching and weakly separated emissions can make learned hidden states hard to interpret.",
+    "Hidden Markov models failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Hidden Markov models failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Hidden Markov models explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Hidden Markov models, compare the quantity named in “A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.” across training, evaluation, and shifted inputs.",
+    "Ship Hidden Markov models with a counterexample test derived from “Label switching and weakly separated emissions can make learned hidden states hard to interpret.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
+    "Combine a transition probability between hidden states with an emission likelihood for each observation.",
+    "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive.",
+    "The posterior assigns a probability to each hidden condition at each time rather than trusting an observation directly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

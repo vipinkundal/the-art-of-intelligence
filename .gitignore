@@ -15,6 +15,9 @@ venv/
 dist/
 build/
 .cache/
+.next/
+out/
+*.tsbuildinfo
 
 # JavaScript package manager output
 node_modules/

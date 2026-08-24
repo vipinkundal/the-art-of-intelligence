@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for VGG: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "VGG networks use simple repeated 3x3 convolutions to build deep, regular visual feature hierarchies.",
+  "concepts": [
+    {
+      "title": "3x3 stack",
+      "explanation": "Two 3x3 layers cover a 5x5 receptive field while inserting an extra nonlinearity."
+    },
+    {
+      "title": "Stage pattern",
+      "explanation": "Resolution decreases and channels increase across regular blocks."
+    },
+    {
+      "title": "VGG-16 and VGG-19",
+      "explanation": "Common variants named by their number of learned layers."
+    }
+  ],
+  "process": [
+    "VGG step 1: Apply several 3x3 convolutions at the current resolution.",
+    "VGG step 2: Use ReLU after each convolution.",
+    "VGG step 3: Downsample with max pooling between stages.",
+    "VGG step 4: Classify from the deepest features using the original dense head or a modern replacement."
+  ],
+  "formulas": [
+    {
+      "label": "Two-layer receptive field",
+      "expression": "3 + (3-1) = 5",
+      "meaning": "two stride-one 3x3 layers span five pixels per axis"
+    }
+  ],
+  "example": {
+    "title": "Replace one 5x5 layer",
+    "setup": "Compare C input and C output channels.",
+    "steps": [
+      "A 5x5 layer uses 25 C^2 weights.",
+      "Two 3x3 layers use 18 C^2 weights.",
+      "The two-layer version also adds an intermediate activation."
+    ],
+    "result": "Stacked small kernels are more parameter-efficient and more nonlinear."
+  },
+  "pitfalls": [
+    "VGG failure 1: VGG is compute- and memory-heavy, especially its original dense classifier.",
+    "VGG failure 2: A simple architecture does not mean a cheap architecture.",
+    "VGG failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for VGG explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For VGG, compare the quantity named in “Convolutional blocks repeat 3x3 layers at one resolution, then pooling reduces size while channel width increases.” across training, evaluation, and shifted inputs.",
+    "Ship VGG with a counterexample test derived from “VGG is compute- and memory-heavy, especially its original dense classifier.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "VGG networks use simple repeated 3x3 convolutions to build deep, regular visual feature hierarchies.",
+    "Convolutional blocks repeat 3x3 layers at one resolution, then pooling reduces size while channel width increases.",
+    "VGG established a clear, reusable design style and its pretrained features became a standard backbone and perceptual-loss network.",
+    "VGG is compute- and memory-heavy, especially its original dense classifier."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Speech, Audio And Time-Series AI as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Speech, audio, and time-series AI combine signal processing, sequence modelling, forecasting, recognition, generation, and source separation.",
+  "concepts": [
+    {
+      "title": "Study",
+      "explanation": "Sampling theory : Explains how often to measure a continuous signal so important frequencies are preserved."
+    },
+    {
+      "title": "Study",
+      "explanation": "Fourier transform : Converts a signal from time view into frequency components."
+    },
+    {
+      "title": "Study",
+      "explanation": "Fast Fourier transform : Computes Fourier transforms efficiently for practical signal processing."
+    },
+    {
+      "title": "Study",
+      "explanation": "Short-time Fourier transform : Applies Fourier analysis over sliding windows to show how frequencies change over time."
+    },
+    {
+      "title": "Study",
+      "explanation": "Spectrograms : Visualize time, frequency, and intensity in one representation."
+    },
+    {
+      "title": "Speech algorithms and architectures",
+      "explanation": "HMM-GMM speech recognition : A classical ASR approach that combines hidden state sequences with Gaussian acoustic models."
+    },
+    {
+      "title": "Speech algorithms and architectures",
+      "explanation": "Connectionist temporal classification : Trains sequence models without exact frame-level alignments between audio and text."
+    },
+    {
+      "title": "Speech algorithms and architectures",
+      "explanation": "RNN Transducer : Predicts output tokens while jointly modelling acoustic time steps and generated text history."
+    }
+  ],
+  "process": [
+    "Sampling theory : Explains how often to measure a continuous signal so important frequencies are preserved.",
+    "Fourier transform : Converts a signal from time view into frequency components.",
+    "Fast Fourier transform : Computes Fourier transforms efficiently for practical signal processing.",
+    "Short-time Fourier transform : Applies Fourier analysis over sliding windows to show how frequencies change over time.",
+    "Spectrograms : Visualize time, frequency, and intensity in one representation."
+  ],
+  "formulas": [
+    {
+      "label": "Speech, Audio And Time-Series AI field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Speech, Audio And Time-Series AI in operation",
+    "setup": "Speech, audio, and time-series AI combine signal processing, sequence modelling, forecasting, recognition, generation, and source separation.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Speech, Audio And Time-Series AI."
+  },
+  "pitfalls": [
+    "Speech, Audio And Time-Series AI failure 1: A correct definition of Speech, Audio And Time-Series AI can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Speech, audio, and time-series AI combine signal processing, sequence modelling, forecasting, recognition, generation, and source separation.",
+    "You should be able to explain how signals become spectral features, how classical forecasting differs from neural sequence forecasting, and how modern speech systems combine acoustic representations, alignment, decoding, and generation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

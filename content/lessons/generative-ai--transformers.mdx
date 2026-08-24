@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Transformers as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Transformers use attention to decide which parts of the input are most relevant to each other. This helps the model connect context across long text."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Tokens and sequences : Models process ordered token streams, so tokenization and context length shape what the model can represent."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Attention : Attention lets each token weigh other tokens, which helps the model resolve references, dependencies, and long-range context."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Foundation-model reach : The same architecture can process language, code, retrieval context, images, and audio when those inputs are represented as tokens or embeddings."
+    },
+    {
+      "title": "Example",
+      "explanation": "In the sentence \"The robot picked up the cup because it was empty,\" attention helps the model reason about what \"it\" refers to."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Modern language models rely on transformers because they can process context, generate coherent text, write code, summarize documents, and power assistants."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain attention as a mechanism for relating tokens and describe why transformers are central to generative AI."
+    },
+    {
+      "title": "For more information",
+      "explanation": "Study The Illustrated Transformer for a diagram-heavy walkthrough of attention, encoders, decoders, and token flow."
+    }
+  ],
+  "process": [
+    "Transformers use attention to decide which parts of the input are most relevant to each other. This helps the model connect context across long text."
+  ],
+  "formulas": [
+    {
+      "label": "Transformers field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Transformers in operation",
+    "setup": "In the sentence \"The robot picked up the cup because it was empty,\" attention helps the model reason about what \"it\" refers to.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Transformers."
+  },
+  "pitfalls": [
+    "Transformers failure 1: A correct definition of Transformers can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.",
+    "Study The Illustrated Transformer for a diagram-heavy walkthrough of attention, encoders, decoders, and token flow."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Reasoning Models And Inference-Time Computation as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "This is another major 2026 addition. Current curricula explicitly include reasoning models, test-time computation, and verifier-guided methods.",
+  "concepts": [
+    {
+      "title": "Learn",
+      "explanation": "Chain-of-thought prompting : Encourages intermediate reasoning text before the final answer."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Scratchpad computation : Gives the model working space for calculations, notes, or intermediate state."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Self-consistency : Samples multiple reasoning paths and chooses the answer that appears most consistently."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Least-to-most prompting : Solves simpler subproblems first, then combines them into the full solution."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Decomposition : Breaks a hard task into smaller questions that can be solved and checked independently."
+    },
+    {
+      "title": "Reference model",
+      "explanation": "DeepSeek-R1 is an important reference for reinforcement-learning-driven reasoning behaviour and for studying the role of verification, reflection, and post-training."
+    },
+    {
+      "title": "Important distinction",
+      "explanation": "Fluency is not reasoning."
+    },
+    {
+      "title": "Important distinction",
+      "explanation": "Long output is not necessarily better reasoning."
+    }
+  ],
+  "process": [
+    "Chain-of-thought prompting : Encourages intermediate reasoning text before the final answer.",
+    "Scratchpad computation : Gives the model working space for calculations, notes, or intermediate state.",
+    "Self-consistency : Samples multiple reasoning paths and chooses the answer that appears most consistently.",
+    "Least-to-most prompting : Solves simpler subproblems first, then combines them into the full solution.",
+    "Decomposition : Breaks a hard task into smaller questions that can be solved and checked independently."
+  ],
+  "formulas": [
+    {
+      "label": "Reasoning Models And Inference-Time Computation field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the evaluation lab."
+    }
+  ],
+  "example": {
+    "title": "Reasoning Models And Inference-Time Computation in operation",
+    "setup": "This is another major 2026 addition. Current curricula explicitly include reasoning models, test-time computation, and verifier-guided methods.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Reasoning Models And Inference-Time Computation."
+  },
+  "pitfalls": [
+    "Reasoning Models And Inference-Time Computation failure 1: A correct definition of Reasoning Models And Inference-Time Computation can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "This is another major 2026 addition. Current curricula explicitly include reasoning models, test-time computation, and verifier-guided methods.",
+    "You should be able to compare prompting, search, verification, tool-use, and test-time computation strategies, and explain why stronger reasoning claims require checks beyond fluent explanations."
+  ]
+};
+
+<LessonBody narrative={narrative} />

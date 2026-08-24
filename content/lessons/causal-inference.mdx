@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Causal Inference as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
+  "concepts": [
+    {
+      "title": "Predictive correlation is not causation",
+      "explanation": "A model can predict an outcome from variables that are only associated with it. Causal inference asks what would happen if an intervention changed one variable while the rest of the system followed the causal structure."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Directed acyclic graphs : Represent causal assumptions with arrows and no directed cycles."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Structural causal models : Describe each variable as a function of its direct causes plus noise."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Confounding : Occurs when a common cause influences both the treatment and the outcome."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Colliders : Variables caused by two other variables; conditioning on them can create misleading associations."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Mediators : Variables that transmit part of a treatment effect from cause to outcome."
+    },
+    {
+      "title": "Identification strategies",
+      "explanation": "Randomized experiments : Break confounding by assigning treatment independently of potential outcomes."
+    },
+    {
+      "title": "Identification strategies",
+      "explanation": "Covariate adjustment : Controls for observed confounders that block back-door paths."
+    }
+  ],
+  "process": [
+    "A model can predict an outcome from variables that are only associated with it. Causal inference asks what would happen if an intervention changed one variable while the rest of the system followed the causal structure."
+  ],
+  "formulas": [
+    {
+      "label": "Causal Inference field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+    }
+  ],
+  "example": {
+    "title": "Causal Inference in operation",
+    "setup": "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Causal Inference."
+  },
+  "pitfalls": [
+    "Causal Inference failure 1: A correct definition of Causal Inference can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
+    "You should be able to distinguish prediction from causal effect estimation, read simple DAGs, identify confounders, colliders, mediators, back-door and front-door conditions, explain interventions and counterfactuals, estimate average treatment effects with weighting or doubly robust methods, and recognize when IV, regression discontinuity, difference-in-differences, or causal discovery methods are appropriate."
+  ]
+};
+
+<LessonBody narrative={narrative} />

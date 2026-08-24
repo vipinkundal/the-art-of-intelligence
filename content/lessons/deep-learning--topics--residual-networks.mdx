@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Residual networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Residual networks organize convolutional layers into blocks with shortcut additions around learned transformations.",
+  "concepts": [
+    {
+      "title": "Basic block",
+      "explanation": "Typically two 3x3 convolutions with a shortcut."
+    },
+    {
+      "title": "Bottleneck block",
+      "explanation": "Uses 1x1, 3x3, and 1x1 layers to reduce then restore channel width."
+    },
+    {
+      "title": "Projection shortcut",
+      "explanation": "A strided or 1x1 layer aligns resolution and channels when stages change shape."
+    }
+  ],
+  "process": [
+    "Residual networks step 1: Transform x through the residual branch.",
+    "Residual networks step 2: Keep x or project it to the branch output shape.",
+    "Residual networks step 3: Add the two paths elementwise.",
+    "Residual networks step 4: Stack blocks into stages with occasional downsampling."
+  ],
+  "formulas": [
+    {
+      "label": "Residual network block",
+      "expression": "y = shortcut(x) + F(x)",
+      "meaning": "combine preserved information with a learned refinement"
+    }
+  ],
+  "example": {
+    "title": "Change channels safely",
+    "setup": "A block changes 64 channels to 128 while halving resolution.",
+    "steps": [
+      "The residual branch uses stride 2 and produces 128 channels.",
+      "The shortcut applies a stride-2 1x1 projection.",
+      "Both outputs now have equal shape and can be added."
+    ],
+    "result": "The stage transition preserves a direct learned shortcut despite changing dimensions."
+  },
+  "pitfalls": [
+    "Residual networks failure 1: A mismatched shortcut cannot be added without alignment.",
+    "Residual networks failure 2: Depth alone does not improve a model if optimization, data, regularization, and compute are inadequate.",
+    "Residual networks failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Residual networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Residual networks, compare the quantity named in “Each block computes F(x), adds an identity or projected shortcut, then applies the architecture's activation and normali” across training, evaluation, and shifted inputs.",
+    "Ship Residual networks with a counterexample test derived from “A mismatched shortcut cannot be added without alignment.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Residual networks organize convolutional layers into blocks with shortcut additions around learned transformations.",
+    "Each block computes F(x), adds an identity or projected shortcut, then applies the architecture's activation and normalization pattern.",
+    "Residual networks made hundred-layer CNNs trainable and established a design pattern used across modern deep learning.",
+    "A mismatched shortcut cannot be added without alignment."
+  ]
+};
+
+<LessonBody narrative={narrative} />

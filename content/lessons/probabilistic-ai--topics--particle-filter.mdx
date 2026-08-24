@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Particle filter: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+    }
+  ],
+  "process": [
+    "Particle filter step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Particle filter step 2: Apply the central computation: Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
+    "Particle filter step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Particle filter step 4: Interpret the result under this limitation: It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+  ],
+  "formulas": [
+    {
+      "label": "Particle filter rule",
+      "expression": "p(x_t|y_1:t) approximately sum_i w_t^i delta(x_t-x_t^i)",
+      "meaning": "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+    }
+  ],
+  "example": {
+    "title": "Particle filter in a small case",
+    "setup": "Localize a robot that might be in either of two similar corridors.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "The particle cloud retains both location hypotheses until later observations shift weight toward one corridor."
+  },
+  "pitfalls": [
+    "Particle filter failure 1: Injecting noise is not a substitute for a principled proposal and resampling strategy.",
+    "Particle filter failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Particle filter failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Particle filter explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Particle filter, compare the quantity named in “A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.” across training, evaluation, and shifted inputs.",
+    "Ship Particle filter with a counterexample test derived from “Injecting noise is not a substitute for a principled proposal and resampling strategy.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
+    "Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
+    "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions.",
+    "The particle cloud retains both location hypotheses until later observations shift weight toward one corridor."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Stochastic gradient descent: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Estimates the gradient from small random batches, trading exactness for speed.",
+  "concepts": [
+    {
+      "title": "Stochastic gradient descent definition",
+      "explanation": "Stochastic gradient descent lens: The definition and notation for Stochastic gradient descent."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Stochastic gradient descent lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Stochastic gradient descent lens: how this affects loss minimization, parameter updates, training speed, regularization, or convergence"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Stochastic gradient descent lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Stochastic gradient descent step 1: Stochastic gradient descent belongs to objectives, constraints, gradients, update rules, and numerical stability. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Stochastic gradient descent field relation",
+      "expression": "θₜ₊₁ = θₜ − η∇L(θₜ)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "In a training loop, stochastic gradient descent can be used to interpret estimates the gradient from small random batches, trading exactness for speed.",
+    "steps": [],
+    "result": "In a training loop, stochastic gradient descent can be used to interpret estimates the gradient from small random batches, trading exactness for speed."
+  },
+  "pitfalls": [
+    "Stochastic gradient descent failure 1: do not treat Stochastic gradient descent as a label without being able to compute or sketch a small example.",
+    "Stochastic gradient descent failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Stochastic gradient descent failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Stochastic gradient descent explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Stochastic gradient descent, compare the quantity named in “Estimates the gradient from small random batches, trading exactness for speed.” across training, evaluation, and shifted inputs.",
+    "Ship Stochastic gradient descent with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Stochastic gradient descent matters for AI because turns model training into a disciplined search for better parameters under practical constraints. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

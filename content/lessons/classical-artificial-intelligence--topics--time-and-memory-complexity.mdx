@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Time and memory complexity: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+    }
+  ],
+  "process": [
+    "Time and memory complexity step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Time and memory complexity step 2: Apply the central rule: Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
+    "Time and memory complexity step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Time and memory complexity step 4: Stop and interpret the result using this criterion: Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+  ],
+  "formulas": [
+    {
+      "label": "Time and memory complexity rule",
+      "expression": "BFS time,memory = O(b^d); DFS memory = O(bm)",
+      "meaning": "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+    }
+  ],
+  "example": {
+    "title": "Time and memory complexity in a small case",
+    "setup": "Estimate a tree with branching factor 10 and solution depth 6.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A full breadth frontier can approach one million nodes, while DFS stores a small number of paths."
+  },
+  "pitfalls": [
+    "Time and memory complexity failure 1: Do not quote tree-search bounds for a graph without explaining duplicate detection.",
+    "Time and memory complexity failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Time and memory complexity failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Time and memory complexity explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Time and memory complexity, compare the quantity named in “Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.” across training, evaluation, and shifted inputs.",
+    "Ship Time and memory complexity with a counterexample test derived from “Do not quote tree-search bounds for a graph without explaining duplicate detection.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
+    "Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
+    "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance.",
+    "A full breadth frontier can approach one million nodes, while DFS stores a small number of paths."
+  ]
+};
+
+<LessonBody narrative={narrative} />

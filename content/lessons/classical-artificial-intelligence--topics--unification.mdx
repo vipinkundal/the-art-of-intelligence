@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Unification: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Unification finds substitutions that make symbolic expressions identical.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Recursively match function symbols and arguments while binding variables consistently and performing an occurs check."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "A most-general unifier preserves maximum flexibility; some expression pairs have no unifier."
+    }
+  ],
+  "process": [
+    "Unification step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Unification step 2: Apply the central rule: Recursively match function symbols and arguments while binding variables consistently and performing an occurs check.",
+    "Unification step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Unification step 4: Stop and interpret the result using this criterion: A most-general unifier preserves maximum flexibility; some expression pairs have no unifier."
+  ],
+  "formulas": [
+    {
+      "label": "Unification rule",
+      "expression": "unify(P(x,a), P(b,y)) = {x/b, y/a}",
+      "meaning": "A most-general unifier preserves maximum flexibility; some expression pairs have no unifier."
+    }
+  ],
+  "example": {
+    "title": "Unification in a small case",
+    "setup": "Match parent(x,Alice) with parent(Bob,y).",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Recursively match function symbols and arguments while binding variables consistently and performing an occurs check.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The substitution x=Bob and y=Alice makes both expressions identical."
+  },
+  "pitfalls": [
+    "Unification failure 1: Applying substitutions inconsistently across remaining equations produces unsound matches.",
+    "Unification failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Unification failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Unification explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Unification, compare the quantity named in “Unification finds substitutions that make symbolic expressions identical.” across training, evaluation, and shifted inputs.",
+    "Ship Unification with a counterexample test derived from “Applying substitutions inconsistently across remaining equations produces unsound matches.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Unification finds substitutions that make symbolic expressions identical.",
+    "Recursively match function symbols and arguments while binding variables consistently and performing an occurs check.",
+    "A most-general unifier preserves maximum flexibility; some expression pairs have no unifier.",
+    "The substitution x=Bob and y=Alice makes both expressions identical."
+  ]
+};
+
+<LessonBody narrative={narrative} />

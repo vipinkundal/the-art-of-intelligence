@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Arc consistency: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution."
+    }
+  ],
+  "process": [
+    "Arc consistency step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Arc consistency step 2: Apply the central rule: For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
+    "Arc consistency step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Arc consistency step 4: Stop and interpret the result using this criterion: It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution."
+  ],
+  "formulas": [
+    {
+      "label": "Arc consistency rule",
+      "expression": "for all x in D(X), exists y in D(Y): C_XY(x,y)",
+      "meaning": "It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution."
+    }
+  ],
+  "example": {
+    "title": "Arc consistency in a small case",
+    "setup": "For X<Y with D(X)={1,2,3} and D(Y)={2,3}, inspect each X value.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Value 3 is removed from X because no larger Y value supports it."
+  },
+  "pitfalls": [
+    "Arc consistency failure 1: Arc direction matters; enforce both directions for a binary constraint when required.",
+    "Arc consistency failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Arc consistency failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Arc consistency explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Arc consistency, compare the quantity named in “An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.” across training, evaluation, and shifted inputs.",
+    "Ship Arc consistency with a counterexample test derived from “Arc direction matters; enforce both directions for a binary constraint when required.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
+    "For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
+    "It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution.",
+    "Value 3 is removed from X because no larger Y value supports it."
+  ]
+};
+
+<LessonBody narrative={narrative} />

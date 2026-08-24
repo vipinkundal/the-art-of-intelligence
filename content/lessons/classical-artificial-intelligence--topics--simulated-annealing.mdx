@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Simulated annealing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+    }
+  ],
+  "process": [
+    "Simulated annealing step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Simulated annealing step 2: Apply the central rule: Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
+    "Simulated annealing step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Simulated annealing step 4: Stop and interpret the result using this criterion: Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+  ],
+  "formulas": [
+    {
+      "label": "Simulated annealing rule",
+      "expression": "P(accept worse) = exp(-Delta/T)",
+      "meaning": "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+    }
+  ],
+  "example": {
+    "title": "Simulated annealing in a small case",
+    "setup": "Optimize a route by proposing random edge swaps and gradually lowering temperature.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Early uphill moves cross barriers; later steps concentrate around a strong route."
+  },
+  "pitfalls": [
+    "Simulated annealing failure 1: Objective scale and cooling schedule must be matched; a temperature meaningful for one problem may be useless for another.",
+    "Simulated annealing failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Simulated annealing failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Simulated annealing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Simulated annealing, compare the quantity named in “Simulated annealing sometimes accepts worse moves so local search can escape early traps.” across training, evaluation, and shifted inputs.",
+    "Ship Simulated annealing with a counterexample test derived from “Objective scale and cooling schedule must be matched; a temperature meaningful for one problem may be useless for anothe”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
+    "Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
+    "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin.",
+    "Early uphill moves cross barriers; later steps concentrate around a strong route."
+  ]
+};
+
+<LessonBody narrative={narrative} />

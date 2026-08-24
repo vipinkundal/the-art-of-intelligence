@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for DenseNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "DenseNet connects each layer to every later layer within a block by concatenating their feature maps.",
+  "concepts": [
+    {
+      "title": "Dense connectivity",
+      "explanation": "All preceding features remain directly available to later layers."
+    },
+    {
+      "title": "Growth rate",
+      "explanation": "The number of new channels each layer adds."
+    },
+    {
+      "title": "Transition layer",
+      "explanation": "A compression and pooling stage between dense blocks controls width and resolution."
+    }
+  ],
+  "process": [
+    "DenseNet step 1: Start a dense block with initial features.",
+    "DenseNet step 2: Concatenate all available earlier features as the next layer input.",
+    "DenseNet step 3: Compute a small set of new feature maps and append them.",
+    "DenseNet step 4: Use a transition layer before the next resolution stage."
+  ],
+  "formulas": [
+    {
+      "label": "Dense layer",
+      "expression": "x_l = H_l([x_0, x_1, ..., x_(l-1)])",
+      "meaning": "transform the concatenation of every earlier feature"
+    }
+  ],
+  "example": {
+    "title": "Track channel growth",
+    "setup": "A block starts with 64 channels, growth rate 32, and has four layers.",
+    "steps": [
+      "Each layer appends 32 channels.",
+      "Four layers add 128 channels total.",
+      "Earlier 64 channels remain available throughout."
+    ],
+    "result": "The block ends with 192 channels before any transition compression."
+  },
+  "pitfalls": [
+    "DenseNet failure 1: Concatenating many feature maps can consume substantial activation memory.",
+    "DenseNet failure 2: Dense connectivity requires careful channel bookkeeping and efficient implementation.",
+    "DenseNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for DenseNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For DenseNet, compare the quantity named in “Layer l receives the concatenation of all earlier block outputs and appends its own growth-rate channels.” across training, evaluation, and shifted inputs.",
+    "Ship DenseNet with a counterexample test derived from “Concatenating many feature maps can consume substantial activation memory.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "DenseNet connects each layer to every later layer within a block by concatenating their feature maps.",
+    "Layer l receives the concatenation of all earlier block outputs and appends its own growth-rate channels.",
+    "DenseNet promotes feature reuse and strong gradient access with relatively parameter-efficient layers.",
+    "Concatenating many feature maps can consume substantial activation memory."
+  ]
+};
+
+<LessonBody narrative={narrative} />

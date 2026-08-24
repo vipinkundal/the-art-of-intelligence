@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Retrieval, Search And RAG as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
+  "concepts": [
+    {
+      "title": "8.1 Classical information retrieval",
+      "explanation": "Inverted indexes : Map terms to the documents that contain them, making keyword lookup fast."
+    },
+    {
+      "title": "8.1 Classical information retrieval",
+      "explanation": "Term frequency : Measures how often a query term appears in a document."
+    },
+    {
+      "title": "8.1 Classical information retrieval",
+      "explanation": "Inverse document frequency : Downweights common terms and upweights rarer, more specific terms."
+    },
+    {
+      "title": "8.1 Classical information retrieval",
+      "explanation": "TF-IDF : Scores documents by combining local term frequency with global term rarity."
+    },
+    {
+      "title": "8.1 Classical information retrieval",
+      "explanation": "BM25 : A strong lexical ranking function that normalizes term frequency and document length."
+    },
+    {
+      "title": "8.2 Neural retrieval",
+      "explanation": "Embedding models : Encode queries and documents as vectors so semantic similarity can be searched."
+    },
+    {
+      "title": "8.2 Neural retrieval",
+      "explanation": "Bi-encoders : Encode query and document separately, enabling fast approximate vector search."
+    },
+    {
+      "title": "8.2 Neural retrieval",
+      "explanation": "Cross-encoders : Score query-document pairs together, often more accurate but slower."
+    }
+  ],
+  "process": [
+    "Inverted indexes : Map terms to the documents that contain them, making keyword lookup fast.",
+    "Term frequency : Measures how often a query term appears in a document.",
+    "Inverse document frequency : Downweights common terms and upweights rarer, more specific terms.",
+    "TF-IDF : Scores documents by combining local term frequency with global term rarity.",
+    "BM25 : A strong lexical ranking function that normalizes term frequency and document length."
+  ],
+  "formulas": [
+    {
+      "label": "Retrieval, Search And RAG field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Retrieval, Search And RAG in operation",
+    "setup": "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Retrieval, Search And RAG."
+  },
+  "pitfalls": [
+    "Retrieval, Search And RAG failure 1: A correct definition of Retrieval, Search And RAG can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
+    "You should be able to compare lexical, dense, hybrid, and reranking retrieval systems, explain approximate nearest-neighbour tradeoffs, and design a RAG pipeline that preserves provenance and evaluates faithfulness."
+  ]
+};
+
+<LessonBody narrative={narrative} />

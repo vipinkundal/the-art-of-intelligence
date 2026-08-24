@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Programming And Systems Foundations as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Before advanced AI, become comfortable with the programming, systems, and implementation details that make model code reliable, efficient, and debuggable.",
+  "concepts": [
+    {
+      "title": "Core skills",
+      "explanation": "Python : The default language for AI experimentation, data processing, training scripts, and glue code."
+    },
+    {
+      "title": "Core skills",
+      "explanation": "NumPy-style vectorization : Replaces slow loops with array operations that libraries can execute efficiently."
+    },
+    {
+      "title": "Core skills",
+      "explanation": "PyTorch or JAX : Tensor frameworks that provide automatic differentiation, GPU execution, and neural network building blocks."
+    },
+    {
+      "title": "Core skills",
+      "explanation": "Data structures and algorithms: Help you choose representations and procedures that stay fast as data grows."
+    },
+    {
+      "title": "Core skills",
+      "explanation": "Computational complexity : Estimates how runtime and memory scale with input size, model size, or sequence length."
+    },
+    {
+      "title": "Important implementation topics",
+      "explanation": "Broadcasting : Automatically expands compatible tensor dimensions so operations can combine arrays of different shapes."
+    },
+    {
+      "title": "Important implementation topics",
+      "explanation": "Tensor shapes and strides: Shapes describe dimensions; strides describe how memory is stepped through to read elements."
+    },
+    {
+      "title": "Important implementation topics",
+      "explanation": "Contiguous versus non-contiguous memory: Contiguous tensors are laid out compactly, while views can require slower access or copies."
+    }
+  ],
+  "process": [
+    "Python : The default language for AI experimentation, data processing, training scripts, and glue code.",
+    "NumPy-style vectorization : Replaces slow loops with array operations that libraries can execute efficiently.",
+    "PyTorch or JAX : Tensor frameworks that provide automatic differentiation, GPU execution, and neural network building blocks.",
+    "Data structures and algorithms: Help you choose representations and procedures that stay fast as data grows.",
+    "Computational complexity : Estimates how runtime and memory scale with input size, model size, or sequence length."
+  ],
+  "formulas": [
+    {
+      "label": "Programming And Systems Foundations field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the systems lab."
+    }
+  ],
+  "example": {
+    "title": "Programming And Systems Foundations in operation",
+    "setup": "Before advanced AI, become comfortable with the programming, systems, and implementation details that make model code reliable, efficient, and debuggable.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Programming And Systems Foundations."
+  },
+  "pitfalls": [
+    "Programming And Systems Foundations failure 1: A correct definition of Programming And Systems Foundations can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Before advanced AI, become comfortable with the programming, systems, and implementation details that make model code reliable, efficient, and debuggable.",
+    "You should be able to read model code, reason about tensor shape and memory behavior, profile slow paths, and explain how precision choices affect correctness, speed, and cost."
+  ]
+};
+
+<LessonBody narrative={narrative} />

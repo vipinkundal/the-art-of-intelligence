@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Dynamic Bayesian networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+    }
+  ],
+  "process": [
+    "Dynamic Bayesian networks step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Dynamic Bayesian networks step 2: Apply the central computation: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
+    "Dynamic Bayesian networks step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Dynamic Bayesian networks step 4: Interpret the result under this limitation: DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+  ],
+  "formulas": [
+    {
+      "label": "Dynamic Bayesian networks rule",
+      "expression": "P(X_1:T)=P(X_1) product_{t=2}^T product_i P(X_t^i | parents(X_t^i))",
+      "meaning": "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+    }
+  ],
+  "example": {
+    "title": "Dynamic Bayesian networks in a small case",
+    "setup": "Model a patient's latent disease stage, medication, symptoms, and lab measurements across visits.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "The unrolled network supports posterior beliefs over several interacting hidden and observed processes through time."
+  },
+  "pitfalls": [
+    "Dynamic Bayesian networks failure 1: Make stationarity assumptions explicit when reusing the same transition template at every time step.",
+    "Dynamic Bayesian networks failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Dynamic Bayesian networks failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Dynamic Bayesian networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Dynamic Bayesian networks, compare the quantity named in “A dynamic Bayesian network repeats a directed graphical-model template across time slices.” across training, evaluation, and shifted inputs.",
+    "Ship Dynamic Bayesian networks with a counterexample test derived from “Make stationarity assumptions explicit when reusing the same transition template at every time step.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
+    "Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
+    "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width.",
+    "The unrolled network supports posterior beliefs over several interacting hidden and observed processes through time."
+  ]
+};
+
+<LessonBody narrative={narrative} />

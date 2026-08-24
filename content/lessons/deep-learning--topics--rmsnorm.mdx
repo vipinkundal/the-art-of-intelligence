@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for RMSNorm: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.",
+  "concepts": [
+    {
+      "title": "Root mean square",
+      "explanation": "The square root of the average squared feature value measures vector scale."
+    },
+    {
+      "title": "No centering",
+      "explanation": "The coordinate mean is not subtracted, reducing computation and preserving mean information."
+    },
+    {
+      "title": "Learned gain",
+      "explanation": "A trainable featurewise multiplier restores representational flexibility."
+    }
+  ],
+  "process": [
+    "RMSNorm step 1: Square every hidden coordinate.",
+    "RMSNorm step 2: Average the squares and add epsilon.",
+    "RMSNorm step 3: Divide the vector by the resulting root mean square.",
+    "RMSNorm step 4: Multiply by the learned gain vector."
+  ],
+  "formulas": [
+    {
+      "label": "RMSNorm",
+      "expression": "RMSNorm(h) = gamma * h / sqrt(mean(h^2)+epsilon)",
+      "meaning": "control hidden-vector magnitude without centering"
+    }
+  ],
+  "example": {
+    "title": "Rescale a two-value state",
+    "setup": "Let h=(3,4) and gamma=(1,1).",
+    "steps": [
+      "Average squares: (9+16)/2=12.5.",
+      "The RMS is sqrt(12.5), about 3.536.",
+      "Divide each coordinate by 3.536."
+    ],
+    "result": "The normalized state is approximately (0.849,1.131)."
+  },
+  "pitfalls": [
+    "RMSNorm failure 1: RMSNorm does not remove a large shared feature offset.",
+    "RMSNorm failure 2: Implementation details such as epsilon placement and precision can affect numerical behavior.",
+    "RMSNorm failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for RMSNorm explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For RMSNorm, compare the quantity named in “Compute the mean squared coordinate value, take its stabilized square root, divide, and apply a learned gain.” across training, evaluation, and shifted inputs.",
+    "Ship RMSNorm with a counterexample test derived from “RMSNorm does not remove a large shared feature offset.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.",
+    "Compute the mean squared coordinate value, take its stabilized square root, divide, and apply a learned gain.",
+    "RMSNorm is widely used in large language models because it is simple, efficient, and often provides sufficient scale stabilization.",
+    "RMSNorm does not remove a large shared feature offset."
+  ]
+};
+
+<LessonBody narrative={narrative} />

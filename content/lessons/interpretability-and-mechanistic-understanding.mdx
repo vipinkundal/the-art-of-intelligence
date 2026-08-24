@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Interpretability And Mechanistic Understanding as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Interpretability studies how to explain model behavior, inspect neural representations, and identify internal mechanisms instead of treating an AI system as a black box.",
+  "concepts": [
+    {
+      "title": "Model-agnostic interpretation",
+      "explanation": "These methods can be applied to many model families because they mostly treat the model as a prediction function and examine how outputs change when inputs change."
+    },
+    {
+      "title": "Model-agnostic interpretation",
+      "explanation": "Permutation importance : Measures performance drop after shuffling a feature, estimating how much the model relies on that feature."
+    },
+    {
+      "title": "Model-agnostic interpretation",
+      "explanation": "Partial dependence plots : Show average model predictions as one or two features vary across a chosen range."
+    },
+    {
+      "title": "Model-agnostic interpretation",
+      "explanation": "Individual conditional expectation : Shows feature-response curves for individual examples instead of only the population average."
+    },
+    {
+      "title": "Model-agnostic interpretation",
+      "explanation": "LIME : Fits a simple local surrogate model around one prediction to approximate nearby model behavior."
+    },
+    {
+      "title": "Neural-network interpretation",
+      "explanation": "These methods inspect gradients, internal activations, spatial regions, learned directions, and representation spaces in neural networks."
+    },
+    {
+      "title": "Neural-network interpretation",
+      "explanation": "Saliency maps : Highlight input dimensions that most affect a prediction according to gradients or related scores."
+    },
+    {
+      "title": "Neural-network interpretation",
+      "explanation": "Integrated gradients : Attribute prediction change to features by accumulating gradients from a baseline to the input."
+    }
+  ],
+  "process": [
+    "These methods inspect gradients, internal activations, spatial regions, learned directions, and representation spaces in neural networks.",
+    "Saliency maps : Highlight input dimensions that most affect a prediction according to gradients or related scores.",
+    "Integrated gradients : Attribute prediction change to features by accumulating gradients from a baseline to the input.",
+    "Grad-CAM : Uses gradients flowing into convolutional feature maps to localize image regions relevant to a class.",
+    "Occlusion analysis : Masks or removes input regions to see which parts cause prediction changes."
+  ],
+  "formulas": [
+    {
+      "label": "Interpretability And Mechanistic Understanding field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the systems lab."
+    }
+  ],
+  "example": {
+    "title": "Interpretability And Mechanistic Understanding in operation",
+    "setup": "Interpretability studies how to explain model behavior, inspect neural representations, and identify internal mechanisms instead of treating an AI system as a black box.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Interpretability And Mechanistic Understanding."
+  },
+  "pitfalls": [
+    "Interpretability And Mechanistic Understanding failure 1: A correct definition of Interpretability And Mechanistic Understanding can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Interpretability studies how to explain model behavior, inspect neural representations, and identify internal mechanisms instead of treating an AI system as a black box.",
+    "You should be able to compare model-agnostic explanations, neural-network attribution methods, probes, feature visualization, activation patching, causal tracing, logit attribution, circuit analysis, superposition, sparse autoencoders, automated circuit discovery, and model editing, while explaining what each method can and cannot prove."
+  ]
+};
+
+<LessonBody narrative={narrative} />

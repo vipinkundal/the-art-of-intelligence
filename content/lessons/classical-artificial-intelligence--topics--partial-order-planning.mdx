@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Partial-order planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+    }
+  ],
+  "process": [
+    "Partial-order planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Partial-order planning step 2: Apply the central rule: Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
+    "Partial-order planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Partial-order planning step 4: Stop and interpret the result using this criterion: Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+  ],
+  "formulas": [
+    {
+      "label": "Partial-order planning rule",
+      "expression": "A --p--> B means A establishes p for B",
+      "meaning": "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+    }
+  ],
+  "example": {
+    "title": "Partial-order planning in a small case",
+    "setup": "Prepare tea by boiling water and fetching a cup in either order before pouring.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The plan orders both prerequisites before pouring without unnecessarily ordering them against each other."
+  },
+  "pitfalls": [
+    "Partial-order planning failure 1: Every open precondition and causal threat must be resolved before the plan is complete.",
+    "Partial-order planning failure 2: A plan is only as reliable as its action model and observations.",
+    "Partial-order planning failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for Partial-order planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Partial-order planning, compare the quantity named in “Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.” across training, evaluation, and shifted inputs.",
+    "Ship Partial-order planning with a counterexample test derived from “Every open precondition and causal threat must be resolved before the plan is complete.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
+    "Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
+    "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex.",
+    "The plan orders both prerequisites before pouring without unnecessarily ordering them against each other."
+  ]
+};
+
+<LessonBody narrative={narrative} />

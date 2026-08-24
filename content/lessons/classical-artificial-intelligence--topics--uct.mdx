@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for UCT: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "UCT selects MCTS actions by balancing high estimated value with low visit count.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits)."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+    }
+  ],
+  "process": [
+    "UCT step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "UCT step 2: Apply the central rule: Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
+    "UCT step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "UCT step 4: Stop and interpret the result using this criterion: The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+  ],
+  "formulas": [
+    {
+      "label": "UCT rule",
+      "expression": "UCT=Q(s,a)+c*sqrt(ln N(s)/N(s,a))",
+      "meaning": "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+    }
+  ],
+  "example": {
+    "title": "UCT in a small case",
+    "setup": "A root has one well-tested good move and one rarely tried move.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The exploration bonus eventually gives the underexplored move a fair test."
+  },
+  "pitfalls": [
+    "UCT failure 1: Reward scale changes the appropriate exploration constant c.",
+    "UCT failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
+    "UCT failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+  ],
+  "implementation": [
+    "Represent the central state for UCT explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For UCT, compare the quantity named in “UCT selects MCTS actions by balancing high estimated value with low visit count.” across training, evaluation, and shifted inputs.",
+    "Ship UCT with a counterexample test derived from “Reward scale changes the appropriate exploration constant c.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "UCT selects MCTS actions by balancing high estimated value with low visit count.",
+    "Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
+    "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations.",
+    "The exploration bonus eventually gives the underexplored move a fair test."
+  ]
+};
+
+<LessonBody narrative={narrative} />

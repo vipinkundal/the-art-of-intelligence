@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for LeNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.",
+  "concepts": [
+    {
+      "title": "LeNet-5",
+      "explanation": "The influential architecture designed for digit and document recognition."
+    },
+    {
+      "title": "Subsampling",
+      "explanation": "Early pooling stages reduced spatial resolution and sensitivity to small shifts."
+    },
+    {
+      "title": "Hierarchical features",
+      "explanation": "Later maps combine simple early edges and strokes into digit-level evidence."
+    }
+  ],
+  "process": [
+    "LeNet step 1: Input a normalized grayscale character image.",
+    "LeNet step 2: Alternate convolution and subsampling stages.",
+    "LeNet step 3: Flatten the final feature maps.",
+    "LeNet step 4: Use dense layers to predict the character class."
+  ],
+  "formulas": [
+    {
+      "label": "Convolutional stage",
+      "expression": "H_l = phi(K_l star H_(l-1) + b_l)",
+      "meaning": "build learned feature maps from local neighborhoods"
+    }
+  ],
+  "example": {
+    "title": "Recognize a handwritten digit",
+    "setup": "A 32x32 grayscale image enters LeNet-5.",
+    "steps": [
+      "Early filters respond to strokes and edges.",
+      "Subsampling makes responses less sensitive to small position changes.",
+      "Dense layers combine stroke patterns into ten digit scores."
+    ],
+    "result": "The highest output score selects the predicted digit."
+  },
+  "pitfalls": [
+    "LeNet failure 1: LeNet's capacity and recipe are not competitive for modern high-resolution tasks.",
+    "LeNet failure 2: Historical implementations used activations and pooling conventions that differ from contemporary defaults.",
+    "LeNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for LeNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For LeNet, compare the quantity named in “Small convolutions extract local patterns, pooling reduces resolution, and dense layers combine the final features into ” across training, evaluation, and shifted inputs.",
+    "Ship LeNet with a counterexample test derived from “LeNet's capacity and recipe are not competitive for modern high-resolution tasks.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.",
+    "Small convolutions extract local patterns, pooling reduces resolution, and dense layers combine the final features into class scores.",
+    "LeNet is historically important and remains an approachable architecture for learning tensor shapes, convolution, pooling, and end-to-end training.",
+    "LeNet's capacity and recipe are not competitive for modern high-resolution tasks."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Universal approximation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Universal approximation theorems show that sufficiently large neural networks can approximate broad function classes.",
+  "concepts": [
+    {
+      "title": "Approximation class",
+      "explanation": "The theorem specifies which target functions and domains are covered."
+    },
+    {
+      "title": "Capacity",
+      "explanation": "Enough hidden units or depth must be available to reach the desired approximation error."
+    },
+    {
+      "title": "Existence versus learnability",
+      "explanation": "A representation may exist even when gradient descent cannot find it or data cannot identify it."
+    }
+  ],
+  "process": [
+    "Universal approximation step 1: Choose a target function and compact input domain.",
+    "Universal approximation step 2: Select a qualifying non-polynomial activation.",
+    "Universal approximation step 3: Combine enough hidden responses to reduce approximation error.",
+    "Universal approximation step 4: Separate the existence claim from optimization and generalization claims."
+  ],
+  "formulas": [
+    {
+      "label": "Approximation statement",
+      "expression": "sup_x |f(x) - f_hat(x)| < epsilon",
+      "meaning": "make the maximum error on the domain smaller than a chosen tolerance"
+    }
+  ],
+  "example": {
+    "title": "Approximate a curved function",
+    "setup": "Use ReLU units to approximate x squared on a bounded interval.",
+    "steps": [
+      "Choose breakpoints across the interval.",
+      "Build linear segments between neighboring target values.",
+      "Represent slope changes with shifted ReLU units."
+    ],
+    "result": "More breakpoints reduce the piecewise-linear approximation error."
+  },
+  "pitfalls": [
+    "Universal approximation failure 1: The theorem does not guarantee good sample efficiency, robustness, or trainability.",
+    "Universal approximation failure 2: The required width may be impractically large without useful architecture or compositional structure.",
+    "Universal approximation failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Universal approximation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Universal approximation, compare the quantity named in “Nonlinear hidden units combine many simple basis-like responses to approximate a continuous target on a bounded domain.” across training, evaluation, and shifted inputs.",
+    "Ship Universal approximation with a counterexample test derived from “The theorem does not guarantee good sample efficiency, robustness, or trainability.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Universal approximation theorems show that sufficiently large neural networks can approximate broad function classes.",
+    "Nonlinear hidden units combine many simple basis-like responses to approximate a continuous target on a bounded domain.",
+    "The theorem explains why simple neural ingredients can represent complex mappings, supporting their use as flexible function estimators.",
+    "The theorem does not guarantee good sample efficiency, robustness, or trainability."
+  ]
+};
+
+<LessonBody narrative={narrative} />

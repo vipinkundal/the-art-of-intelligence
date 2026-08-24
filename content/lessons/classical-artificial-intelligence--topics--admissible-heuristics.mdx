@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Admissible heuristics: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "An admissible heuristic never overestimates the true cheapest remaining cost.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+    }
+  ],
+  "process": [
+    "Admissible heuristics step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Admissible heuristics step 2: Apply the central rule: For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
+    "Admissible heuristics step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Admissible heuristics step 4: Stop and interpret the result using this criterion: Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+  ],
+  "formulas": [
+    {
+      "label": "Admissible heuristics rule",
+      "expression": "0 <= h(n) <= h*(n)",
+      "meaning": "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+    }
+  ],
+  "example": {
+    "title": "Admissible heuristics in a small case",
+    "setup": "Use straight-line distance as a lower bound on road distance when travel cannot be shorter than the direct line.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The estimate guides A* without ruling out the optimal route."
+  },
+  "pitfalls": [
+    "Admissible heuristics failure 1: Validate the lower-bound argument for every allowed action, not just typical cases.",
+    "Admissible heuristics failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Admissible heuristics failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Admissible heuristics explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Admissible heuristics, compare the quantity named in “An admissible heuristic never overestimates the true cheapest remaining cost.” across training, evaluation, and shifted inputs.",
+    "Ship Admissible heuristics with a counterexample test derived from “Validate the lower-bound argument for every allowed action, not just typical cases.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "An admissible heuristic never overestimates the true cheapest remaining cost.",
+    "For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
+    "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes.",
+    "The estimate guides A* without ruling out the optimal route."
+  ]
+};
+
+<LessonBody narrative={narrative} />

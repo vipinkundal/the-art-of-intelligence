@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Backward chaining: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Backward chaining starts from a query and recursively seeks facts that would prove it.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+    }
+  ],
+  "process": [
+    "Backward chaining step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Backward chaining step 2: Apply the central rule: Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
+    "Backward chaining step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Backward chaining step 4: Stop and interpret the result using this criterion: It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+  ],
+  "formulas": [
+    {
+      "label": "Backward chaining rule",
+      "expression": "prove(G): choose rule A1...Ak=>G; prove each Ai",
+      "meaning": "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+    }
+  ],
+  "example": {
+    "title": "Backward chaining in a small case",
+    "setup": "To prove access_allowed(Ada), look for a rule requiring employee(Ada) and badge_valid(Ada).",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "If both subgoals are facts, the original access query succeeds."
+  },
+  "pitfalls": [
+    "Backward chaining failure 1: Memoize repeated subgoals and prevent recursive rule loops.",
+    "Backward chaining failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Backward chaining failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Backward chaining explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Backward chaining, compare the quantity named in “Backward chaining starts from a query and recursively seeks facts that would prove it.” across training, evaluation, and shifted inputs.",
+    "Ship Backward chaining with a counterexample test derived from “Memoize repeated subgoals and prevent recursive rule loops.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Backward chaining starts from a query and recursively seeks facts that would prove it.",
+    "Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
+    "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search.",
+    "If both subgoals are facts, the original access query succeeds."
+  ]
+};
+
+<LessonBody narrative={narrative} />

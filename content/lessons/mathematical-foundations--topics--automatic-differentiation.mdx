@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Automatic differentiation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Computes exact derivatives of programs by applying calculus rules to the computation graph.",
+  "concepts": [
+    {
+      "title": "Automatic differentiation definition",
+      "explanation": "Automatic differentiation lens: The definition and notation for Automatic differentiation."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Automatic differentiation lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Automatic differentiation lens: how this supports gradients, backpropagation, automatic differentiation, continuous dynamics, or training stability"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Automatic differentiation lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Automatic differentiation step 1: Automatic differentiation belongs to rates of change, sensitivity, curvature, and differentiable programs. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Automatic differentiation field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the systems lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "During training, automatic differentiation can be used to interpret computes exact derivatives of programs by applying calculus rules to the computation graph.",
+    "steps": [],
+    "result": "During training, automatic differentiation can be used to interpret computes exact derivatives of programs by applying calculus rules to the computation graph."
+  },
+  "pitfalls": [
+    "Automatic differentiation failure 1: do not treat Automatic differentiation as a label without being able to compute or sketch a small example.",
+    "Automatic differentiation failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Automatic differentiation failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Automatic differentiation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Automatic differentiation, compare the quantity named in “Computes exact derivatives of programs by applying calculus rules to the computation graph.” across training, evaluation, and shifted inputs.",
+    "Ship Automatic differentiation with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Automatic differentiation matters for AI because explains how changing inputs or parameters changes losses, outputs, and trajectories. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

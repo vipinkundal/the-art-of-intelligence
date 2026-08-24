@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Inception: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Inception blocks process features through parallel paths with different receptive-field scales and then combine them.",
+  "concepts": [
+    {
+      "title": "Multi-branch block",
+      "explanation": "Different operations analyze the same input in parallel."
+    },
+    {
+      "title": "1x1 reduction",
+      "explanation": "Pointwise convolutions reduce channels before expensive spatial filters."
+    },
+    {
+      "title": "Concatenation",
+      "explanation": "Branch outputs are joined along the feature dimension rather than added."
+    }
+  ],
+  "process": [
+    "Inception step 1: Send the input into several parallel branches.",
+    "Inception step 2: Use 1x1 bottlenecks to control branch cost.",
+    "Inception step 3: Compute multiple spatial scales and a pooling branch.",
+    "Inception step 4: Concatenate all branch outputs along channels."
+  ],
+  "formulas": [
+    {
+      "label": "Branch fusion",
+      "expression": "y = concat(b_1(x), b_2(x), ..., b_m(x))",
+      "meaning": "preserve features learned at several scales"
+    }
+  ],
+  "example": {
+    "title": "Control a 5x5 branch",
+    "setup": "An input has 192 channels and the branch needs 32 output filters.",
+    "steps": [
+      "A direct 5x5 layer would connect all 192 channels.",
+      "First reduce to 16 channels with a 1x1 convolution.",
+      "Apply the 5x5 filters to the smaller representation."
+    ],
+    "result": "The bottleneck greatly reduces spatial-convolution cost."
+  },
+  "pitfalls": [
+    "Inception failure 1: Branch widths and output shapes must be coordinated for concatenation.",
+    "Inception failure 2: Complex branching can be less hardware-friendly than a theoretically similar sequential block.",
+    "Inception failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for Inception explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Inception, compare the quantity named in “Parallel 1x1, larger convolution, and pooling branches produce compatible spatial maps that are concatenated along chann” across training, evaluation, and shifted inputs.",
+    "Ship Inception with a counterexample test derived from “Branch widths and output shapes must be coordinated for concatenation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Inception blocks process features through parallel paths with different receptive-field scales and then combine them.",
+    "Parallel 1x1, larger convolution, and pooling branches produce compatible spatial maps that are concatenated along channels.",
+    "Inception showed how multi-scale processing and channel bottlenecks could improve accuracy per computation.",
+    "Branch widths and output shapes must be coordinated for concatenation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

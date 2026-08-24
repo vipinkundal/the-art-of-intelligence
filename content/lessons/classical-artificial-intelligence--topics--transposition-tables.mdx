@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Transposition tables: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A transposition table caches values for positions reached through different move orders.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Hash a canonical position and store its searched depth, value, bound type, and often best move."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Caching saves repeated work and improves ordering, but collisions and stale shallow entries require careful replacement rules."
+    }
+  ],
+  "process": [
+    "Transposition tables step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Transposition tables step 2: Apply the central rule: Hash a canonical position and store its searched depth, value, bound type, and often best move.",
+    "Transposition tables step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Transposition tables step 4: Stop and interpret the result using this criterion: Caching saves repeated work and improves ordering, but collisions and stale shallow entries require careful replacement rules."
+  ],
+  "formulas": [
+    {
+      "label": "Transposition tables rule",
+      "expression": "entry = table[hash(position)] = (depth,value,bound,best_move)",
+      "meaning": "Caching saves repeated work and improves ordering, but collisions and stale shallow entries require careful replacement rules."
+    }
+  ],
+  "example": {
+    "title": "Transposition tables in a small case",
+    "setup": "Reach the same chess position by exchanging the order of two independent moves.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Hash a canonical position and store its searched depth, value, bound type, and often best move.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The second path reuses the earlier search result instead of expanding the position again."
+  },
+  "pitfalls": [
+    "Transposition tables failure 1: Zobrist-hash collisions need verification or sufficiently safe handling.",
+    "Transposition tables failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
+    "Transposition tables failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+  ],
+  "implementation": [
+    "Represent the central state for Transposition tables explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Transposition tables, compare the quantity named in “A transposition table caches values for positions reached through different move orders.” across training, evaluation, and shifted inputs.",
+    "Ship Transposition tables with a counterexample test derived from “Zobrist-hash collisions need verification or sufficiently safe handling.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A transposition table caches values for positions reached through different move orders.",
+    "Hash a canonical position and store its searched depth, value, bound type, and often best move.",
+    "Caching saves repeated work and improves ordering, but collisions and stale shallow entries require careful replacement rules.",
+    "The second path reuses the earlier search result instead of expanding the position again."
+  ]
+};
+
+<LessonBody narrative={narrative} />

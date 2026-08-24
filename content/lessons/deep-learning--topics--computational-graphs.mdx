@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Computational graphs: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A computational graph represents a calculation as values connected by primitive operations and dependencies.",
+  "concepts": [
+    {
+      "title": "Leaf value",
+      "explanation": "An input or trainable parameter supplied to the computation."
+    },
+    {
+      "title": "Operation node",
+      "explanation": "A differentiable primitive such as addition, multiplication, matrix multiplication, or activation."
+    },
+    {
+      "title": "Gradient accumulation",
+      "explanation": "When a value influences the loss through several paths, all path contributions are summed."
+    }
+  ],
+  "process": [
+    "Computational graphs step 1: Create nodes for inputs and parameters.",
+    "Computational graphs step 2: Run operations in dependency order and save needed intermediate values.",
+    "Computational graphs step 3: Start the loss gradient at one.",
+    "Computational graphs step 4: Traverse backward, applying local derivative rules and accumulating gradients."
+  ],
+  "formulas": [
+    {
+      "label": "Chain rule on a path",
+      "expression": "dL/dx = dL/dy * dy/dx",
+      "meaning": "combine an upstream gradient with a local derivative"
+    },
+    {
+      "label": "Multiple paths",
+      "expression": "dL/dx = sum_k dL/dy_k * dy_k/dx",
+      "meaning": "add every downstream contribution"
+    }
+  ],
+  "example": {
+    "title": "Differentiate a reused value",
+    "setup": "Let y=x*x and L=y+y.",
+    "steps": [
+      "The forward pass gives y=x squared and L=2y.",
+      "Both additions send a gradient of one to y, so dL/dy=2.",
+      "The multiplication contributes dy/dx=2x."
+    ],
+    "result": "The accumulated gradient is dL/dx=4x."
+  },
+  "pitfalls": [
+    "Computational graphs failure 1: Forgetting that a value is reused can hide additional gradient paths.",
+    "Computational graphs failure 2: Saving every intermediate tensor can exhaust memory during backpropagation.",
+    "Computational graphs failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Computational graphs explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Computational graphs, compare the quantity named in “Nodes store values or operations, directed edges record data dependencies, and a reverse traversal accumulates gradient ” across training, evaluation, and shifted inputs.",
+    "Ship Computational graphs with a counterexample test derived from “Forgetting that a value is reused can hide additional gradient paths.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A computational graph represents a calculation as values connected by primitive operations and dependencies.",
+    "Nodes store values or operations, directed edges record data dependencies, and a reverse traversal accumulates gradient contributions.",
+    "Frameworks such as PyTorch and JAX use graph-like traces to automate gradients, compile kernels, schedule devices, and optimize memory.",
+    "Forgetting that a value is reused can hide additional gradient paths."
+  ]
+};
+
+<LessonBody narrative={narrative} />

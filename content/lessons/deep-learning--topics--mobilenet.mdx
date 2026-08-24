@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for MobileNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "MobileNet families use efficient convolutional blocks designed for low-latency and resource-constrained deployment.",
+  "concepts": [
+    {
+      "title": "Width multiplier",
+      "explanation": "Scales channel counts to trade accuracy for compute and memory."
+    },
+    {
+      "title": "Inverted residual",
+      "explanation": "Expands channels, applies depthwise filtering, then projects back to a narrow representation."
+    },
+    {
+      "title": "Linear bottleneck",
+      "explanation": "Avoids destroying information with an activation in the narrow projected space."
+    }
+  ],
+  "process": [
+    "MobileNet step 1: Choose device latency, memory, and power targets.",
+    "MobileNet step 2: Select a MobileNet family, width, and input resolution.",
+    "MobileNet step 3: Build repeated efficient blocks with supported operators.",
+    "MobileNet step 4: Measure end-to-end latency on the actual target hardware."
+  ],
+  "formulas": [
+    {
+      "label": "Depthwise-separable cost ratio",
+      "expression": "1/C_out + 1/K^2",
+      "meaning": "approximate cost relative to standard convolution for large maps"
+    }
+  ],
+  "example": {
+    "title": "Build an inverted residual block",
+    "setup": "Input has 24 channels and expansion factor 6.",
+    "steps": [
+      "Expand to 144 channels with a 1x1 convolution.",
+      "Apply a 3x3 depthwise convolution.",
+      "Project to the required output width with a linear 1x1 layer."
+    ],
+    "result": "Most spatial work occurs channelwise, reducing cost while retaining a rich expanded computation."
+  },
+  "pitfalls": [
+    "MobileNet failure 1: The smallest theoretical model is not always fastest on a specific accelerator.",
+    "MobileNet failure 2: Overly narrow multipliers can create severe information bottlenecks and accuracy loss.",
+    "MobileNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for MobileNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For MobileNet, compare the quantity named in “Depthwise separable or inverted residual blocks perform cheap spatial filtering and targeted pointwise channel projectio” across training, evaluation, and shifted inputs.",
+    "Ship MobileNet with a counterexample test derived from “The smallest theoretical model is not always fastest on a specific accelerator.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "MobileNet families use efficient convolutional blocks designed for low-latency and resource-constrained deployment.",
+    "Depthwise separable or inverted residual blocks perform cheap spatial filtering and targeted pointwise channel projection.",
+    "MobileNet enables vision on phones, embedded systems, browsers, and real-time applications with constrained power.",
+    "The smallest theoretical model is not always fastest on a specific accelerator."
+  ]
+};
+
+<LessonBody narrative={narrative} />

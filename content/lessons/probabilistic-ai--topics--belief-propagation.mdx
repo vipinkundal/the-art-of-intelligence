@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Belief propagation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+    }
+  ],
+  "process": [
+    "Belief propagation step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Belief propagation step 2: Apply the central computation: Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
+    "Belief propagation step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Belief propagation step 4: Interpret the result under this limitation: On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+  ],
+  "formulas": [
+    {
+      "label": "Belief propagation rule",
+      "expression": "b_i(x_i) proportional product_{f in N(i)} m_{f->i}(x_i)",
+      "meaning": "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+    }
+  ],
+  "example": {
+    "title": "Belief propagation in a small case",
+    "setup": "Estimate component-failure probabilities in a tree-structured diagnostic network.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Each component belief combines all evidence arriving through its incident factors without double-counting on the tree."
+  },
+  "pitfalls": [
+    "Belief propagation failure 1: A message should exclude information arriving from the recipient edge to avoid immediate double-counting.",
+    "Belief propagation failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Belief propagation failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+  ],
+  "implementation": [
+    "Represent the central state for Belief propagation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Belief propagation, compare the quantity named in “Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.” across training, evaluation, and shifted inputs.",
+    "Ship Belief propagation with a counterexample test derived from “A message should exclude information arriving from the recipient edge to avoid immediate double-counting.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
+    "Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
+    "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior.",
+    "Each component belief combines all evidence arriving through its incident factors without double-counting on the tree."
+  ]
+};
+
+<LessonBody narrative={narrative} />

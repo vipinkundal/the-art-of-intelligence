@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Backpropagation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Backpropagation efficiently computes loss gradients by applying the chain rule from outputs back to parameters.",
+  "concepts": [
+    {
+      "title": "Upstream gradient",
+      "explanation": "The derivative of the final loss with respect to an operation's output."
+    },
+    {
+      "title": "Local derivative",
+      "explanation": "The operation-specific sensitivity of its output to each input."
+    },
+    {
+      "title": "Vector-Jacobian product",
+      "explanation": "The reverse-mode calculation that avoids materializing a full Jacobian."
+    }
+  ],
+  "process": [
+    "Backpropagation step 1: Run the model forward and compute a scalar loss.",
+    "Backpropagation step 2: Initialize dL/dL to one.",
+    "Backpropagation step 3: Visit operations in reverse topological order.",
+    "Backpropagation step 4: Use cached values to compute local gradients and accumulate parameter gradients."
+  ],
+  "formulas": [
+    {
+      "label": "Chain rule",
+      "expression": "dL/dx = dL/dy * dy/dx",
+      "meaning": "propagate sensitivity through one operation"
+    },
+    {
+      "label": "Affine layer gradients",
+      "expression": "dL/dW = delta x^T; dL/db = delta",
+      "meaning": "turn the layer's output gradient into parameter gradients"
+    }
+  ],
+  "example": {
+    "title": "Backpropagate through a sigmoid unit",
+    "setup": "Let z=wx+b, a=sigmoid(z), and L=(a-y)^2/2.",
+    "steps": [
+      "Compute dL/da=a-y.",
+      "Compute da/dz=a(1-a).",
+      "Multiply by dz/dw=x and dz/db=1."
+    ],
+    "result": "dL/dw=(a-y)a(1-a)x and dL/db=(a-y)a(1-a)."
+  },
+  "pitfalls": [
+    "Backpropagation failure 1: Backpropagation computes gradients; the optimizer decides how parameters change.",
+    "Backpropagation failure 2: Numerically tiny or huge local derivatives can make long chains unstable.",
+    "Backpropagation failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Backpropagation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Backpropagation, compare the quantity named in “A forward pass records values; the reverse pass multiplies upstream gradients by local Jacobians and accumulates results” across training, evaluation, and shifted inputs.",
+    "Ship Backpropagation with a counterexample test derived from “Backpropagation computes gradients; the optimizer decides how parameters change.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Backpropagation efficiently computes loss gradients by applying the chain rule from outputs back to parameters.",
+    "A forward pass records values; the reverse pass multiplies upstream gradients by local Jacobians and accumulates results at shared ancestors.",
+    "Backpropagation is the practical engine that trains deep networks with millions or billions of parameters using one reverse pass per loss.",
+    "Backpropagation computes gradients; the optimizer decides how parameters change."
+  ]
+};
+
+<LessonBody narrative={narrative} />

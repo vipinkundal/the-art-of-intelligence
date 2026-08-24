@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for A*: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A* balances cost already paid with an estimate of cost remaining.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+    }
+  ],
+  "process": [
+    "A* step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "A* step 2: Apply the central rule: Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
+    "A* step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "A* step 4: Stop and interpret the result using this criterion: With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+  ],
+  "formulas": [
+    {
+      "label": "A* rule",
+      "expression": "f(n) = g(n) + h(n)",
+      "meaning": "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+    }
+  ],
+  "example": {
+    "title": "A* in a small case",
+    "setup": "Route through a road map using distance traveled plus straight-line distance to the destination.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A* returns the lowest-cost route while using the heuristic to avoid irrelevant regions."
+  },
+  "pitfalls": [
+    "A* failure 1: An overestimating or inconsistent heuristic can break simple optimality assumptions or require state reopening.",
+    "A* failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "A* failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for A* explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For A*, compare the quantity named in “A* balances cost already paid with an estimate of cost remaining.” across training, evaluation, and shifted inputs.",
+    "Ship A* with a counterexample test derived from “An overestimating or inconsistent heuristic can break simple optimality assumptions or require state reopening.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A* balances cost already paid with an estimate of cost remaining.",
+    "Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
+    "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions.",
+    "A* returns the lowest-cost route while using the heuristic to avoid irrelevant regions."
+  ]
+};
+
+<LessonBody narrative={narrative} />

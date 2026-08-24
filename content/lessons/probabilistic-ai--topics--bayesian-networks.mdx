@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Bayesian networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Multiply one conditional probability for each node given its parents."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+    }
+  ],
+  "process": [
+    "Bayesian networks step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Bayesian networks step 2: Apply the central computation: Multiply one conditional probability for each node given its parents.",
+    "Bayesian networks step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Bayesian networks step 4: Interpret the result under this limitation: The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+  ],
+  "formulas": [
+    {
+      "label": "Bayesian networks rule",
+      "expression": "P(x_1,...,x_n) = product_i P(x_i | parents(x_i))",
+      "meaning": "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+    }
+  ],
+  "example": {
+    "title": "Bayesian networks in a small case",
+    "setup": "Model rain, a sprinkler, wet grass, and slippery pavement with directed dependencies.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Multiply one conditional probability for each node given its parents.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Evidence that the grass is wet updates the posterior probabilities of rain and sprinkler use."
+  },
+  "pitfalls": [
+    "Bayesian networks failure 1: An arrow may encode dependence without proving real-world causation.",
+    "Bayesian networks failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Bayesian networks failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for Bayesian networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Bayesian networks, compare the quantity named in “A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define ” across training, evaluation, and shifted inputs.",
+    "Ship Bayesian networks with a counterexample test derived from “An arrow may encode dependence without proving real-world causation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
+    "Multiply one conditional probability for each node given its parents.",
+    "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified.",
+    "Evidence that the grass is wet updates the posterior probabilities of rain and sprinkler use."
+  ]
+};
+
+<LessonBody narrative={narrative} />

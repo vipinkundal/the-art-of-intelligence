@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Layer normalization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Layer normalization standardizes features within each individual example or token.",
+  "concepts": [
+    {
+      "title": "Per-example statistics",
+      "explanation": "Each token or sample supplies its own normalization statistics."
+    },
+    {
+      "title": "Feature axis",
+      "explanation": "The hidden dimension is commonly normalized while batch and sequence positions remain independent."
+    },
+    {
+      "title": "Residual placement",
+      "explanation": "Pre-norm and post-norm transformer blocks have different stability properties."
+    }
+  ],
+  "process": [
+    "Layer normalization step 1: Select one feature vector h.",
+    "Layer normalization step 2: Compute its feature mean and variance.",
+    "Layer normalization step 3: Standardize all coordinates with those values.",
+    "Layer normalization step 4: Apply learned coordinatewise gain and bias."
+  ],
+  "formulas": [
+    {
+      "label": "LayerNorm",
+      "expression": "LN(h) = gamma * (h - mean(h))/sqrt(var(h)+epsilon) + beta",
+      "meaning": "normalize one hidden vector across features"
+    }
+  ],
+  "example": {
+    "title": "Normalize a token state",
+    "setup": "A token has hidden vector (1,2,3).",
+    "steps": [
+      "The feature mean is 2.",
+      "Center to (-1,0,1) and divide by the feature standard deviation.",
+      "Apply learned gamma and beta per feature."
+    ],
+    "result": "The token is normalized independently of other tokens and batch items."
+  },
+  "pitfalls": [
+    "Layer normalization failure 1: Normalizing over the wrong dimensions can mix tokens or examples unexpectedly.",
+    "Layer normalization failure 2: LayerNorm controls feature statistics but does not prevent every activation or gradient instability.",
+    "Layer normalization failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Layer normalization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Layer normalization, compare the quantity named in “For each normalized unit, compute mean and variance across its feature dimension, then apply learned gain and bias.” across training, evaluation, and shifted inputs.",
+    "Ship Layer normalization with a counterexample test derived from “Normalizing over the wrong dimensions can mix tokens or examples unexpectedly.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Layer normalization standardizes features within each individual example or token.",
+    "For each normalized unit, compute mean and variance across its feature dimension, then apply learned gain and bias.",
+    "LayerNorm is a central stabilizer in transformers, recurrent models, and other architectures where batch statistics are inconvenient.",
+    "Normalizing over the wrong dimensions can mix tokens or examples unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

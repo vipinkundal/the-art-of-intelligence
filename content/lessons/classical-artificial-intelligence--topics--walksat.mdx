@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for WalkSAT: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "WalkSAT uses stochastic local search over complete truth assignments for CNF formulas.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Choose an unsatisfied clause and either flip a random variable or the variable that best reduces broken clauses."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It can find satisfying assignments rapidly but is incomplete and normally cannot prove unsatisfiability."
+    }
+  ],
+  "process": [
+    "WalkSAT step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "WalkSAT step 2: Apply the central rule: Choose an unsatisfied clause and either flip a random variable or the variable that best reduces broken clauses.",
+    "WalkSAT step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "WalkSAT step 4: Stop and interpret the result using this criterion: It can find satisfying assignments rapidly but is incomplete and normally cannot prove unsatisfiability."
+  ],
+  "formulas": [
+    {
+      "label": "WalkSAT rule",
+      "expression": "flip x in random_unsatisfied_clause using noise p",
+      "meaning": "It can find satisfying assignments rapidly but is incomplete and normally cannot prove unsatisfiability."
+    }
+  ],
+  "example": {
+    "title": "WalkSAT in a small case",
+    "setup": "Start from random truth values for a satisfiable scheduling formula.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Choose an unsatisfied clause and either flip a random variable or the variable that best reduces broken clauses.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Focused flips reduce violated clauses until every clause is true."
+  },
+  "pitfalls": [
+    "WalkSAT failure 1: Noise must balance escaping local minima with preserving useful structure.",
+    "WalkSAT failure 2: A weak model can make an easy real problem hard for the solver.",
+    "WalkSAT failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for WalkSAT explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For WalkSAT, compare the quantity named in “WalkSAT uses stochastic local search over complete truth assignments for CNF formulas.” across training, evaluation, and shifted inputs.",
+    "Ship WalkSAT with a counterexample test derived from “Noise must balance escaping local minima with preserving useful structure.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "WalkSAT uses stochastic local search over complete truth assignments for CNF formulas.",
+    "Choose an unsatisfied clause and either flip a random variable or the variable that best reduces broken clauses.",
+    "It can find satisfying assignments rapidly but is incomplete and normally cannot prove unsatisfiability.",
+    "Focused flips reduce violated clauses until every clause is true."
+  ]
+};
+
+<LessonBody narrative={narrative} />

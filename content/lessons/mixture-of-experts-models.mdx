@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Mixture-Of-Experts Models as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Mixture-of-experts models scale parameter count by routing each token through a small subset of specialized expert networks.",
+  "concepts": [
+    {
+      "title": "Learn",
+      "explanation": "Sparse mixture-of-experts : Activates only a small subset of expert networks per token, increasing parameters without equal compute growth."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Expert routing : Chooses which expert networks should process each token or example."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Top-k gating : Sends a token to the highest-scoring few experts rather than all experts."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Load balancing : Prevents the router from overusing a few experts while leaving others idle."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Expert capacity : Limits how many tokens an expert can handle in one batch, affecting dropped tokens and efficiency."
+    },
+    {
+      "title": "Generic MoE layer",
+      "explanation": "MoE models allow parameter count to grow without activating every parameter for every token, although they introduce routing, communication, and load-balancing challenges."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain how token routing, expert capacity, auxiliary load-balancing losses, and expert parallelism affect MoE model quality and serving efficiency."
+    }
+  ],
+  "process": [
+    "Sparse mixture-of-experts : Activates only a small subset of expert networks per token, increasing parameters without equal compute growth.",
+    "Expert routing : Chooses which expert networks should process each token or example.",
+    "Top-k gating : Sends a token to the highest-scoring few experts rather than all experts.",
+    "Load balancing : Prevents the router from overusing a few experts while leaving others idle.",
+    "Expert capacity : Limits how many tokens an expert can handle in one batch, affecting dropped tokens and efficiency."
+  ],
+  "formulas": [
+    {
+      "label": "Mixture-Of-Experts Models field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
+    }
+  ],
+  "example": {
+    "title": "Mixture-Of-Experts Models in operation",
+    "setup": "Mixture-of-experts models scale parameter count by routing each token through a small subset of specialized expert networks.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Mixture-Of-Experts Models."
+  },
+  "pitfalls": [
+    "Mixture-Of-Experts Models failure 1: A correct definition of Mixture-Of-Experts Models can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Mixture-of-experts models scale parameter count by routing each token through a small subset of specialized expert networks.",
+    "You should be able to explain how token routing, expert capacity, auxiliary load-balancing losses, and expert parallelism affect MoE model quality and serving efficiency."
+  ]
+};
+
+<LessonBody narrative={narrative} />

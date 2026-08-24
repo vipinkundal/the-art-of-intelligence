@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Optimality: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+    }
+  ],
+  "process": [
+    "Optimality step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Optimality step 2: Apply the central rule: Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
+    "Optimality step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Optimality step 4: Stop and interpret the result using this criterion: Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+  ],
+  "formulas": [
+    {
+      "label": "Optimality rule",
+      "expression": "cost(returned) = min_(feasible x) cost(x)",
+      "meaning": "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+    }
+  ],
+  "example": {
+    "title": "Optimality in a small case",
+    "setup": "Compare BFS and uniform-cost search when one path has fewer edges but higher total cost.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Only the algorithm matched to the stated objective carries the relevant optimality guarantee."
+  },
+  "pitfalls": [
+    "Optimality failure 1: An objective must be explicit before the word optimal has meaning.",
+    "Optimality failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Optimality failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Optimality explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Optimality, compare the quantity named in “Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.” across training, evaluation, and shifted inputs.",
+    "Ship Optimality with a counterexample test derived from “An objective must be explicit before the word optimal has meaning.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
+    "Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
+    "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules.",
+    "Only the algorithm matched to the stated objective carries the relevant optimality guarantee."
+  ]
+};
+
+<LessonBody narrative={narrative} />

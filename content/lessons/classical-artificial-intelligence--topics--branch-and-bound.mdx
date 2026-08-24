@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Branch and bound: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+    }
+  ],
+  "process": [
+    "Branch and bound step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Branch and bound step 2: Apply the central rule: Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
+    "Branch and bound step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Branch and bound step 4: Stop and interpret the result using this criterion: Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+  ],
+  "formulas": [
+    {
+      "label": "Branch and bound rule",
+      "expression": "prune node if lower_bound(node) >= incumbent_cost",
+      "meaning": "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+    }
+  ],
+  "example": {
+    "title": "Branch and bound in a small case",
+    "setup": "Solve a traveling-salesperson instance with a lower bound for each partial tour.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "When no active branch can beat the incumbent, the incumbent tour is certified optimal."
+  },
+  "pitfalls": [
+    "Branch and bound failure 1: Confusing a heuristic estimate with a valid bound can silently destroy the optimality proof.",
+    "Branch and bound failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Branch and bound failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Branch and bound explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Branch and bound, compare the quantity named in “Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.” across training, evaluation, and shifted inputs.",
+    "Ship Branch and bound with a counterexample test derived from “Confusing a heuristic estimate with a valid bound can silently destroy the optimality proof.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
+    "Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
+    "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search.",
+    "When no active branch can beat the incumbent, the incumbent tour is certified optimal."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Forward checking: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Forward checking removes neighbor values made impossible by a new assignment.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+    }
+  ],
+  "process": [
+    "Forward checking step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Forward checking step 2: Apply the central rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
+    "Forward checking step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Forward checking step 4: Stop and interpret the result using this criterion: It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+  ],
+  "formulas": [
+    {
+      "label": "Forward checking rule",
+      "expression": "D(Y) <- {y in D(Y): C_XY(v,y)}",
+      "meaning": "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+    }
+  ],
+  "example": {
+    "title": "Forward checking in a small case",
+    "setup": "Assign one region red in a map-coloring CSP.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Red is removed from every unassigned adjacent region's domain."
+  },
+  "pitfalls": [
+    "Forward checking failure 1: All removed values must be restored when the assignment is undone.",
+    "Forward checking failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Forward checking failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Forward checking explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Forward checking, compare the quantity named in “Forward checking removes neighbor values made impossible by a new assignment.” across training, evaluation, and shifted inputs.",
+    "Ship Forward checking with a counterexample test derived from “All removed values must be restored when the assignment is undone.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Forward checking removes neighbor values made impossible by a new assignment.",
+    "After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
+    "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables.",
+    "Red is removed from every unassigned adjacent region's domain."
+  ]
+};
+
+<LessonBody narrative={narrative} />

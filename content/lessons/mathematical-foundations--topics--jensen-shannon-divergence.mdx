@@ -1,0 +1,55 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Jensen-Shannon divergence: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A symmetric, smoothed way to compare probability distributions.",
+  "concepts": [
+    {
+      "title": "Jensen-Shannon divergence definition",
+      "explanation": "Jensen-Shannon divergence lens: The definition and notation for Jensen-Shannon divergence."
+    },
+    {
+      "title": "Worked boundary",
+      "explanation": "Jensen-Shannon divergence lens: A small worked example you can compute by hand."
+    },
+    {
+      "title": "AI connection",
+      "explanation": "Jensen-Shannon divergence lens: how this appears in cross-entropy loss, language-model perplexity, KL regularization, representation learning, or compression"
+    },
+    {
+      "title": "Assumption audit",
+      "explanation": "Jensen-Shannon divergence lens: The assumptions that make the concept valid and the situations where those assumptions break."
+    }
+  ],
+  "process": [
+    "Jensen-Shannon divergence step 1: Jensen-Shannon divergence belongs to uncertainty, surprise, distribution mismatch, compression, and information flow. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+  ],
+  "formulas": [
+    {
+      "label": "Jensen-Shannon divergence field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+    }
+  ],
+  "example": {
+    "title": "Worked example",
+    "setup": "For a model distribution, jensen-shannon divergence can be used to interpret a symmetric, smoothed way to compare probability distributions.",
+    "steps": [],
+    "result": "For a model distribution, jensen-shannon divergence can be used to interpret a symmetric, smoothed way to compare probability distributions."
+  },
+  "pitfalls": [
+    "Jensen-Shannon divergence failure 1: do not treat Jensen-Shannon divergence as a label without being able to compute or sketch a small example.",
+    "Jensen-Shannon divergence failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
+    "Jensen-Shannon divergence failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+  ],
+  "implementation": [
+    "Represent the central state for Jensen-Shannon divergence explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Jensen-Shannon divergence, compare the quantity named in “A symmetric, smoothed way to compare probability distributions.” across training, evaluation, and shifted inputs.",
+    "Ship Jensen-Shannon divergence with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Jensen-Shannon divergence matters for AI because connects learning objectives with uncertainty, coding, compression, and distribution comparison. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+  ]
+};
+
+<LessonBody narrative={narrative} />

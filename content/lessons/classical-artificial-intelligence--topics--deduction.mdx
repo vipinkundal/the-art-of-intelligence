@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Deduction: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Deduction derives a conclusion that must be true if its premises and inference rules are true.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on observations or facts, a candidate rule or model, and a question."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Apply truth-preserving rules from general statements and facts to a specific conclusion."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion."
+    }
+  ],
+  "process": [
+    "Deduction step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Deduction step 2: Apply the central rule: Apply truth-preserving rules from general statements and facts to a specific conclusion.",
+    "Deduction step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Deduction step 4: Stop and interpret the result using this criterion: It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion."
+  ],
+  "formulas": [
+    {
+      "label": "Deduction rule",
+      "expression": "P, P=>Q |- Q",
+      "meaning": "It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion."
+    }
+  ],
+  "example": {
+    "title": "Deduction in a small case",
+    "setup": "All registered devices have owners; device D is registered.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Apply truth-preserving rules from general statements and facts to a specific conclusion.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Deduce that D has an owner."
+  },
+  "pitfalls": [
+    "Deduction failure 1: Validity and truth are different: a valid argument can start from a false premise.",
+    "Deduction failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Deduction failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+  ],
+  "implementation": [
+    "Represent the central state for Deduction explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Deduction, compare the quantity named in “Deduction derives a conclusion that must be true if its premises and inference rules are true.” across training, evaluation, and shifted inputs.",
+    "Ship Deduction with a counterexample test derived from “Validity and truth are different: a valid argument can start from a false premise.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Deduction derives a conclusion that must be true if its premises and inference rules are true.",
+    "Apply truth-preserving rules from general statements and facts to a specific conclusion.",
+    "It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion.",
+    "Deduce that D has an owner."
+  ]
+};
+
+<LessonBody narrative={narrative} />

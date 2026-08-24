@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Regularization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Regularization changes training so a model favors solutions expected to generalize beyond the training examples.",
+  "concepts": [
+    {
+      "title": "Explicit penalty",
+      "explanation": "A term such as an L2 norm is added directly to the loss."
+    },
+    {
+      "title": "Stochastic regularization",
+      "explanation": "Noise, dropout, or augmentation changes the examples or computation observed during training."
+    },
+    {
+      "title": "Implicit regularization",
+      "explanation": "Architecture, optimizer, batch size, and early stopping can bias which solution is found without an explicit penalty."
+    }
+  ],
+  "process": [
+    "Regularization step 1: Identify the observed generalization failure.",
+    "Regularization step 2: Choose a regularizer whose bias matches the desired behavior.",
+    "Regularization step 3: Tune its strength on validation data.",
+    "Regularization step 4: Check both overall performance and important subgroups under shift."
+  ],
+  "formulas": [
+    {
+      "label": "Penalized objective",
+      "expression": "L_total = L_data + lambda R(theta)",
+      "meaning": "balance data fit with a structural preference"
+    }
+  ],
+  "example": {
+    "title": "Add an L2 penalty",
+    "setup": "A classifier has cross-entropy loss 0.40 and squared-weight penalty 5 with lambda=0.01.",
+    "steps": [
+      "Scale the penalty: 0.01*5=0.05.",
+      "Add it to data loss 0.40.",
+      "Backpropagate through both terms."
+    ],
+    "result": "The optimized objective is 0.45 and pushes weights toward smaller values."
+  },
+  "pitfalls": [
+    "Regularization failure 1: Too much regularization causes underfitting.",
+    "Regularization failure 2: Tuning on the test set turns the test set into training information.",
+    "Regularization failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Regularization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Regularization, compare the quantity named in “A regularizer modifies the objective or training process, trading some training fit for simpler, smoother, or more robus” across training, evaluation, and shifted inputs.",
+    "Ship Regularization with a counterexample test derived from “Too much regularization causes underfitting.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Regularization changes training so a model favors solutions expected to generalize beyond the training examples.",
+    "A regularizer modifies the objective or training process, trading some training fit for simpler, smoother, or more robust behavior.",
+    "Deep networks can memorize training data, so regularization helps align training with robustness, calibration, sparsity, or deployment constraints.",
+    "Too much regularization causes underfitting."
+  ]
+};
+
+<LessonBody narrative={narrative} />

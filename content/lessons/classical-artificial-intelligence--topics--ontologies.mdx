@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Ontologies: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Ontologies define shared concepts, properties, constraints, and relationships for a domain.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Create a controlled vocabulary and axioms so systems can align data and infer classifications."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "They improve semantic interoperability but require governance, versioning, and careful commitment to meaning."
+    }
+  ],
+  "process": [
+    "Ontologies step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Ontologies step 2: Apply the central rule: Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
+    "Ontologies step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Ontologies step 4: Stop and interpret the result using this criterion: They improve semantic interoperability but require governance, versioning, and careful commitment to meaning."
+  ],
+  "formulas": [
+    {
+      "label": "Ontologies rule",
+      "expression": "ontology = concepts + relations + axioms",
+      "meaning": "They improve semantic interoperability but require governance, versioning, and careful commitment to meaning."
+    }
+  ],
+  "example": {
+    "title": "Ontologies in a small case",
+    "setup": "Define Vehicle, ElectricVehicle, hasPowerSource, and subclass rules.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Different datasets can map their labels into one shared conceptual model."
+  },
+  "pitfalls": [
+    "Ontologies failure 1: Do not encode temporary database structure as timeless domain truth.",
+    "Ontologies failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Ontologies failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Ontologies explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Ontologies, compare the quantity named in “Ontologies define shared concepts, properties, constraints, and relationships for a domain.” across training, evaluation, and shifted inputs.",
+    "Ship Ontologies with a counterexample test derived from “Do not encode temporary database structure as timeless domain truth.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Ontologies define shared concepts, properties, constraints, and relationships for a domain.",
+    "Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
+    "They improve semantic interoperability but require governance, versioning, and careful commitment to meaning.",
+    "Different datasets can map their labels into one shared conceptual model."
+  ]
+};
+
+<LessonBody narrative={narrative} />

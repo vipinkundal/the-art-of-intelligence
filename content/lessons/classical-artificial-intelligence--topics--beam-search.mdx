@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Beam search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Beam search retains only a fixed number of best candidates at each layer.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Generate successors for the current beam, score them, and keep the top k while discarding the rest."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+    }
+  ],
+  "process": [
+    "Beam search step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Beam search step 2: Apply the central rule: Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
+    "Beam search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Beam search step 4: Stop and interpret the result using this criterion: Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+  ],
+  "formulas": [
+    {
+      "label": "Beam search rule",
+      "expression": "beam_(t+1) = top_k(successors(beam_t), score)",
+      "meaning": "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+    }
+  ],
+  "example": {
+    "title": "Beam search in a small case",
+    "setup": "Decode a sentence while keeping five partial token sequences per time step.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The final output is the highest-scoring completed sequence that survived pruning."
+  },
+  "pitfalls": [
+    "Beam search failure 1: Normalize or otherwise handle sequence length when raw scores systematically favor short candidates.",
+    "Beam search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Beam search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Beam search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Beam search, compare the quantity named in “Beam search retains only a fixed number of best candidates at each layer.” across training, evaluation, and shifted inputs.",
+    "Ship Beam search with a counterexample test derived from “Normalize or otherwise handle sequence length when raw scores systematically favor short candidates.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Beam search retains only a fixed number of best candidates at each layer.",
+    "Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
+    "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution.",
+    "The final output is the highest-scoring completed sequence that survived pruning."
+  ]
+};
+
+<LessonBody narrative={narrative} />

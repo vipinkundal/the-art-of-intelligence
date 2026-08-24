@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Hill climbing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Evaluate local neighbors and choose an improving move until none is available."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+    }
+  ],
+  "process": [
+    "Hill climbing step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Hill climbing step 2: Apply the central rule: Evaluate local neighbors and choose an improving move until none is available.",
+    "Hill climbing step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Hill climbing step 4: Stop and interpret the result using this criterion: It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+  ],
+  "formulas": [
+    {
+      "label": "Hill climbing rule",
+      "expression": "x_(t+1) = argmax_(x' in N(x_t)) value(x')",
+      "meaning": "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+    }
+  ],
+  "example": {
+    "title": "Hill climbing in a small case",
+    "setup": "Place queens on a chessboard and move one queen to reduce conflicts.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Evaluate local neighbors and choose an improving move until none is available.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The method stops at a locally best board, which may or may not be a valid zero-conflict solution."
+  },
+  "pitfalls": [
+    "Hill climbing failure 1: Tie-breaking and sideways moves can cause cycles unless limited.",
+    "Hill climbing failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Hill climbing failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Hill climbing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Hill climbing, compare the quantity named in “Hill climbing repeatedly moves to a neighboring state with a better objective value.” across training, evaluation, and shifted inputs.",
+    "Ship Hill climbing with a counterexample test derived from “Tie-breaking and sideways moves can cause cycles unless limited.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
+    "Evaluate local neighbors and choose an improving move until none is available.",
+    "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress.",
+    "The method stops at a locally best board, which may or may not be a valid zero-conflict solution."
+  ]
+};
+
+<LessonBody narrative={narrative} />

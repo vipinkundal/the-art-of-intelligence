@@ -1,0 +1,3762 @@
+[
+  {
+    "term": "1 Linear Algebra",
+    "definition": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/linear-algebra/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "2 Calculus And Matrix Calculus",
+    "definition": "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/calculus-and-matrix-calculus/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "3 Probability",
+    "definition": "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/probability/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "4 Statistics",
+    "definition": "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/statistics/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "5 Optimization",
+    "definition": "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/optimization/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "6 Information Theory",
+    "definition": "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/information-theory/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "7 Discrete Mathematics And Theoretical Computer Science",
+    "definition": "Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/discrete-mathematics-theoretical-computer-science/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "A*",
+    "definition": "A* balances cost already paid with an estimate of cost remaining.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/a-star/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Abduction",
+    "definition": "Abduction proposes the best available explanation for an observation.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/abduction/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "AC-3",
+    "definition": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/ac-3/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Activation functions",
+    "definition": "Activation functions apply nonlinear transformations that determine which signals pass through a network.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/activation-functions/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Adam and RMSProp",
+    "definition": "Popular adaptive optimizers that track gradient statistics to scale updates.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/adam-and-rmsprop/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Admissible heuristics",
+    "definition": "An admissible heuristic never overestimates the true cheapest remaining cost.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/admissible-heuristics/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Agents And Tool-Using Systems",
+    "definition": "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
+    "phase": "AI Systems",
+    "href": "/lessons/ai-systems/",
+    "tags": []
+  },
+  {
+    "term": "Agents And Tools",
+    "definition": "An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.",
+    "phase": "AI Systems",
+    "href": "/lessons/ai-systems/agents-and-tools/",
+    "tags": []
+  },
+  {
+    "term": "AI Projects",
+    "definition": "AI projects turn vocabulary and theory into visible skill. A good project explains the problem, the data, the model or system, and how quality was checked.",
+    "phase": "Portfolio",
+    "href": "/lessons/portfolio/ai-projects/",
+    "tags": []
+  },
+  {
+    "term": "AI Safety, Security, Privacy And Governance",
+    "definition": "AI safety, security, privacy, and governance are required engineering knowledge, not an optional ethics appendix. Responsible AI work combines robustness, threat modeling, privacy protection, measurement, documentation, accountability, and risk management.",
+    "phase": "AI Safety, Security, Privacy And Governance",
+    "href": "/lessons/ai-safety-security-privacy-and-governance/",
+    "tags": [
+      "AI Safety, Security, Privacy And Governance",
+      "ai safety security privacy and governance"
+    ]
+  },
+  {
+    "term": "AI Systems And Infrastructure",
+    "definition": "A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.",
+    "phase": "AI Systems And Infrastructure",
+    "href": "/lessons/ai-systems-and-infrastructure/",
+    "tags": [
+      "AI Systems And Infrastructure",
+      "ai systems and infrastructure",
+      "infrastructure"
+    ]
+  },
+  {
+    "term": "AlexNet",
+    "definition": "AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/alexnet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Alpha-beta pruning",
+    "definition": "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/alpha-beta-pruning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Analogy",
+    "definition": "Analogical reasoning transfers relational structure from a familiar source case to a new target case.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/analogy/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Approximate inference",
+    "definition": "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/approximate-inference/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Approximation algorithms",
+    "definition": "Find near-good solutions when exact optimization is too expensive.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/approximation-algorithms/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "approximation"
+    ]
+  },
+  {
+    "term": "Arc consistency",
+    "definition": "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/arc-consistency/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Autoencoders",
+    "definition": "Autoencoders learn to compress data into latent codes and reconstruct the original input.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/autoencoders/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Automata and formal languages",
+    "definition": "Model machines and grammars that recognize structured symbol sequences.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/automata-and-formal-languages/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Automated theorem proving",
+    "definition": "Automated theorem proving searches for a formal proof from axioms and inference rules.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/automated-theorem-proving/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Automatic differentiation",
+    "definition": "Computes exact derivatives of programs by applying calculus rules to the computation graph.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/automatic-differentiation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "differentiation"
+    ]
+  },
+  {
+    "term": "Autoregressive flows",
+    "definition": "Autoregressive flows use sequential dependencies while preserving tractable density evaluation or sampling.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/autoregressive-flows/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling",
+      "autoregressive"
+    ]
+  },
+  {
+    "term": "Autoregressive language models",
+    "definition": "Autoregressive language models generate text one token at a time by predicting the next token from previous context.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/autoregressive-language-models/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling",
+      "autoregressive"
+    ]
+  },
+  {
+    "term": "Backpropagation",
+    "definition": "Backpropagation efficiently computes loss gradients by applying the chain rule from outputs back to parameters.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/backpropagation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "backpropagation"
+    ]
+  },
+  {
+    "term": "Backtracking",
+    "definition": "Backtracking builds a partial assignment and retreats when no legal extension remains.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/backtracking/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Backward chaining",
+    "definition": "Backward chaining starts from a query and recursively seeks facts that would prove it.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/backward-chaining/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Batch normalization",
+    "definition": "Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/batch-normalization/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "normalization"
+    ]
+  },
+  {
+    "term": "Bayes' theorem",
+    "definition": "Reverses conditioning so evidence can update beliefs about hidden causes.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/bayes-theorem/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Bayesian inference",
+    "definition": "Updates prior beliefs into posterior beliefs using observed evidence.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/bayesian-inference/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Bayesian networks",
+    "definition": "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/bayesian-networks/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Beam search",
+    "definition": "Beam search retains only a fixed number of best candidates at each layer.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/beam-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Belief propagation",
+    "definition": "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/belief-propagation/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Bernoulli",
+    "definition": "Models one yes-or-no trial, such as click or no click.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/bernoulli/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Beta",
+    "definition": "Models uncertainty over a probability between zero and one.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/beta/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "beta-VAE",
+    "definition": "beta-VAE increases the KL penalty in a VAE to encourage more disentangled latent factors.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/beta-vae/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Bias and variance",
+    "definition": "Bias is systematic error; variance is sensitivity to the particular sample or training data.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/bias-and-variance/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Bidirectional search",
+    "definition": "Bidirectional search grows one frontier from the start and another from the goal.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/bidirectional-search/",
+    "tags": [
+      "classical artificial intelligence",
+      "bidirectional"
+    ]
+  },
+  {
+    "term": "Binomial",
+    "definition": "Counts successes across a fixed number of Bernoulli trials.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/binomial/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Boolean algebra",
+    "definition": "The math of true/false logic, used in conditions, circuits, constraints, and symbolic reasoning.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/boolean-algebra/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Boolean satisfiability",
+    "definition": "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/boolean-satisfiability/",
+    "tags": [
+      "classical artificial intelligence",
+      "satisfiability"
+    ]
+  },
+  {
+    "term": "Bootstrap",
+    "definition": "Resamples observed data to estimate uncertainty without deriving a formula.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/bootstrap/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Branch and bound",
+    "definition": "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/branch-and-bound/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Breadth-first search",
+    "definition": "Breadth-first search expands the shallowest states before any deeper states.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/breadth-first-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Calibration",
+    "definition": "Checks whether predicted probabilities match real-world frequencies.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/calibration/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Categorical",
+    "definition": "Models one choice among several classes.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/categorical/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Causal Inference",
+    "definition": "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
+    "phase": "Causal Inference",
+    "href": "/lessons/causal-inference/",
+    "tags": [
+      "Causal Inference",
+      "causal inference"
+    ]
+  },
+  {
+    "term": "Causal masking",
+    "definition": "Causal masking prevents a sequence model from using future tokens when predicting the next token.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/causal-masking/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Central limit theorem",
+    "definition": "Many averaged random effects become approximately Gaussian under broad conditions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/central-limit-theorem/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Change of variables",
+    "definition": "Re-expresses integrals or densities in new coordinates while correcting for volume distortion.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/change-of-variables/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Change-of-variables formula",
+    "definition": "The change-of-variables formula tracks how probability density changes under an invertible transformation.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/change-of-variables-formula/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Classical Artificial Intelligence",
+    "definition": "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Classical Machine Learning",
+    "definition": "Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.",
+    "phase": "Machine Learning",
+    "href": "/lessons/machine-learning/",
+    "tags": [
+      "Machine Learning",
+      "machine learning"
+    ]
+  },
+  {
+    "term": "Classifier guidance",
+    "definition": "Classifier guidance uses an external classifier to steer diffusion samples toward a class.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/classifier-guidance/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Classifier-free guidance",
+    "definition": "Classifier-free guidance steers generation by mixing conditional and unconditional model predictions.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/classifier-free-guidance/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Coding theory",
+    "definition": "Connects probability to efficient representation, compression, and error correction.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/coding-theory/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Combinatorics",
+    "definition": "Counts arrangements, choices, and possibilities, which matters in search spaces and probability.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/combinatorics/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "combinatorics"
+    ]
+  },
+  {
+    "term": "Completeness",
+    "definition": "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/completeness/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Computability",
+    "definition": "Studies what can or cannot be solved by algorithms at all.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/computability/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "computability"
+    ]
+  },
+  {
+    "term": "Computational graphs",
+    "definition": "A computational graph represents a calculation as values connected by primitive operations and dependencies.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/computational-graphs/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "computational"
+    ]
+  },
+  {
+    "term": "Computer Vision",
+    "definition": "Computer vision covers classical image processing, recognition, detection, segmentation, geometry, reconstruction, and modern visual generation.",
+    "phase": "Computer Vision",
+    "href": "/lessons/computer-vision/",
+    "tags": [
+      "Computer Vision",
+      "computer vision"
+    ]
+  },
+  {
+    "term": "Conditional entropy",
+    "definition": "Measures remaining uncertainty in one variable after another variable is known.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/conditional-entropy/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Conditional flow matching",
+    "definition": "Conditional flow matching trains a velocity field along conditional probability paths.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/conditional-flow-matching/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Conditional GAN",
+    "definition": "Conditional GANs steer generation with labels, text, images, or other conditioning information.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/conditional-gan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Conditional independence",
+    "definition": "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/conditional-independence/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Conditional probability",
+    "definition": "Updates the chance of an event after you know another event has occurred.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/conditional-probability/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Conditional random fields",
+    "definition": "A conditional random field models a structured output directly conditional on observed input features.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/conditional-random-fields/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Confidence intervals",
+    "definition": "Provide a range that would capture the true value at a stated rate under repeated sampling.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/confidence-intervals/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Conflict-driven clause learning",
+    "definition": "CDCL extends SAT search by analyzing conflicts and learning clauses that prevent equivalent failures.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/conflict-driven-clause-learning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Conjugate priors",
+    "definition": "Priors that keep posterior calculations in the same distribution family.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/conjugate-priors/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Consistency models",
+    "definition": "Consistency models learn direct mappings that can generate high-quality samples in fewer steps.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/consistency-models/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Consistent heuristics",
+    "definition": "A consistent heuristic obeys a triangle-inequality rule across every transition.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/consistent-heuristics/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Constraint propagation",
+    "definition": "Constraint propagation repeatedly narrows domains using implications of the constraints.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/constraint-propagation/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Constraint-satisfaction problems",
+    "definition": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/constraint-satisfaction-problems/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Contingent planning",
+    "definition": "Contingent planning produces branches whose next action depends on observations or outcomes.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/contingent-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Continuous normalizing flows",
+    "definition": "Continuous normalizing flows define transformations through differential equations instead of discrete layers.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/continuous-normalizing-flows/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Contractive autoencoders",
+    "definition": "Contractive autoencoders penalize sensitivity so nearby inputs map to stable latent codes.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/contractive-autoencoders/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Convex and non-convex optimization",
+    "definition": "Convex problems have simpler global structure; non-convex problems can contain many local traps.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/convex-and-non-convex-optimization/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Correlation",
+    "definition": "A normalized covariance that ranges from negative to positive association.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/correlation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Counterfactual reasoning",
+    "definition": "Counterfactual reasoning asks what would have happened under a different action or condition.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/counterfactual-reasoning/",
+    "tags": [
+      "classical artificial intelligence",
+      "counterfactual"
+    ]
+  },
+  {
+    "term": "Counterfactual regret minimization",
+    "definition": "Counterfactual regret minimization learns imperfect-information strategies by minimizing regret at information sets.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/counterfactual-regret-minimization/",
+    "tags": [
+      "classical artificial intelligence",
+      "counterfactual"
+    ]
+  },
+  {
+    "term": "Coupling layers",
+    "definition": "Coupling layers split variables so part of the input transforms another part while remaining invertible.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/coupling-layers/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Cross-correlation",
+    "definition": "Cross-correlation slides a kernel without flipping it and is the operation most neural-network libraries call convolution.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/cross-correlation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Cross-entropy",
+    "definition": "Measures how costly it is to encode true outcomes using a model's predicted distribution.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/cross-entropy/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Cumulative distributions",
+    "definition": "Give the probability that a random variable is less than or equal to a value.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/cumulative-distributions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "distributions"
+    ]
+  },
+  {
+    "term": "CycleGAN",
+    "definition": "CycleGAN learns image-to-image translation without paired examples using cycle consistency.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/cyclegan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "D-separation",
+    "definition": "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/d-separation/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Data augmentation",
+    "definition": "Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/data-augmentation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "DCGAN",
+    "definition": "DCGAN uses convolutional generator and discriminator architectures to stabilize image GAN training.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/dcgan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Deduction",
+    "definition": "Deduction derives a conclusion that must be true if its premises and inference rules are true.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/deduction/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Deep Learning Foundations",
+    "definition": "Deep learning foundations cover neural network computation, convolutional architectures, and sequence models that underpin modern vision, speech, language, and multimodal systems.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Default logic",
+    "definition": "Default logic formalizes typical assumptions that apply when their justifications remain consistent.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/default-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Degree heuristic",
+    "definition": "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/degree-heuristic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Denoising autoencoders",
+    "definition": "Denoising autoencoders reconstruct clean inputs from corrupted inputs.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/denoising-autoencoders/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Denoising diffusion probabilistic models",
+    "definition": "DDPMs learn to reverse a gradual noising process step by step.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/denoising-diffusion-probabilistic-models/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling",
+      "probabilistic"
+    ]
+  },
+  {
+    "term": "Denoising score matching",
+    "definition": "Denoising score matching trains a model to predict how noisy samples should move toward clean data.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/denoising-score-matching/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "DenseNet",
+    "definition": "DenseNet connects each layer to every later layer within a block by concatenating their feature maps.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/densenet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Depth-first search",
+    "definition": "Depth-first search follows one branch as far as possible before backtracking.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/depth-first-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Depth-limited search",
+    "definition": "Depth-limited search is DFS with a maximum permitted depth.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/depth-limited-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Depthwise and separable convolutions",
+    "definition": "Depthwise separable convolution splits spatial filtering from channel mixing to reduce parameters and computation.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/depthwise-and-separable-convolutions/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Derivatives and partial derivatives",
+    "definition": "Derivatives measure change; partial derivatives isolate one variable while holding others fixed.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/derivatives-and-partial-derivatives/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Description logic",
+    "definition": "Description logics represent concepts, roles, individuals, and structured class restrictions.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/description-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Diffusion language models",
+    "definition": "Diffusion language models adapt denoising generation ideas to discrete or continuous text representations.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/diffusion-language-models/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Diffusion transformers",
+    "definition": "Diffusion transformers use transformer blocks as the denoising network.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/diffusion-transformers/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Dijkstra's algorithm",
+    "definition": "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/dijkstras-algorithm/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Dilation",
+    "definition": "Dilation spaces kernel taps apart so a small kernel covers a larger input region.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/dilation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Directional derivatives",
+    "definition": "These measure how a function changes along one chosen direction instead of all directions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/directional-derivatives/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Dirichlet",
+    "definition": "Models uncertainty over a vector of probabilities that sum to one.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/dirichlet/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Discrete convolution",
+    "definition": "Discrete convolution combines a signal with a shifted, flipped kernel to produce a local weighted response.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/discrete-convolution/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Distance and similarity metrics",
+    "definition": "Metrics such as Euclidean distance and cosine similarity compare embeddings, examples, and predictions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/distance-and-similarity-metrics/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Distillation and fast sampling",
+    "definition": "Distillation and fast sampling compress slow generative procedures into fewer denoising steps.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/distillation-and-fast-sampling/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Distillation to fewer steps",
+    "definition": "Distillation to fewer steps trains a faster generator to match a slower multi-step process.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/distillation-to-fewer-steps/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Distribution shift",
+    "definition": "Occurs when deployment data differs from training or validation data.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/distribution-shift/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Dot products and inner-product spaces",
+    "definition": "Dot products measure alignment and support similarity, projection, and geometric reasoning.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/dot-products-and-inner-product-spaces/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "DPLL",
+    "definition": "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/dpll/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Dropout",
+    "definition": "Dropout randomly masks activations during training and rescales the surviving paths.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/dropout/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Duplicate-state detection",
+    "definition": "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/duplicate-state-detection/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Dynamic Bayesian networks",
+    "definition": "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/dynamic-bayesian-networks/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Early stopping",
+    "definition": "Early stopping ends training when a held-out validation signal stops improving.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/early-stopping/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Early stopping",
+    "definition": "Stops training when validation behavior stops improving, reducing overfitting.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/early-stopping/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Effect size",
+    "definition": "Measures how large a difference is, not just whether it is statistically detectable.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/effect-size/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "EfficientNet",
+    "definition": "EfficientNet scales network depth, width, and input resolution together using a compound rule.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/efficientnet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Eigendecomposition",
+    "definition": "Decomposes a matrix into special directions, useful for covariance analysis and dynamics.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/eigendecomposition/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "eigendecomposition"
+    ]
+  },
+  {
+    "term": "Eigenvalues and eigenvectors",
+    "definition": "Eigenvectors keep their direction under a transformation, and eigenvalues say how much they scale.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/eigenvalues-and-eigenvectors/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Einstein summation",
+    "definition": "A compact notation for tensor contractions that makes high-dimensional operations easier to express.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/einstein-summation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Encoder-decoder networks",
+    "definition": "A convolutional encoder-decoder compresses spatial input into higher-level features and decodes them into a structured output.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/encoder-decoder-networks/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Entropy",
+    "definition": "Measures the uncertainty or average surprise in a probability distribution.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/entropy/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Exact inference",
+    "definition": "Exact inference computes a posterior, marginal, likelihood, or most-probable assignment without approximation error.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/exact-inference/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Expectation",
+    "definition": "The long-run average value of a random variable under its distribution.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/expectation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Expectation-maximization",
+    "definition": "Expectation-maximization estimates parameters when data contain latent or missing variables.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/expectation-maximization/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Expectimax",
+    "definition": "Expectimax backs up expected values through random events or stochastic behavior.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/expectimax/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Experimental design",
+    "definition": "Plans data collection so comparisons are fair, powered, and interpretable.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/experimental-design/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Exponential",
+    "definition": "Models waiting time between events in a Poisson process.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/exponential/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Exposure bias",
+    "definition": "Exposure bias is the gap between clean training histories and imperfect model-generated histories.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/exposure-bias/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Extended Kalman filter",
+    "definition": "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/extended-kalman-filter/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Factor graphs",
+    "definition": "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/factor-graphs/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "First-order predicate logic",
+    "definition": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/first-order-predicate-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Forward and backward planning",
+    "definition": "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/forward-and-backward-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Forward chaining",
+    "definition": "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/forward-chaining/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Forward checking",
+    "definition": "Forward checking removes neighbor values made impossible by a new assignment.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/forward-checking/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Forward-backward algorithm",
+    "definition": "The forward-backward algorithm computes every HMM state's smoothed probability using evidence before and after that time.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/forward-backward-algorithm/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Forward-mode and reverse-mode autodiff",
+    "definition": "Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/forward-mode-and-reverse-mode-autodiff/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Foundations",
+    "definition": "A field guide to the mechanisms, assumptions, and operating limits of Foundations.",
+    "phase": "Foundations",
+    "href": "/lessons/foundations/",
+    "tags": []
+  },
+  {
+    "term": "Fuzzy logic",
+    "definition": "Fuzzy logic represents graded membership and truth values between zero and one.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/fuzzy-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Gamma",
+    "definition": "Models positive continuous quantities such as waiting times or rates.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/gamma/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "GAN",
+    "definition": "A GAN trains a generator to fool a discriminator that distinguishes real samples from generated samples.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/gan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Gaussian",
+    "definition": "Models bell-shaped continuous variation around a mean.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/gaussian/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Generative Modelling",
+    "definition": "Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Gibbs sampling",
+    "definition": "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/gibbs-sampling/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Glow",
+    "definition": "Glow adds invertible 1x1 convolutions and multi-scale structure to image normalizing flows.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/glow/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Gradient clipping",
+    "definition": "Gradient clipping limits an update signal when gradient magnitude becomes dangerously large.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/gradient-clipping/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Gradient descent",
+    "definition": "Moves parameters opposite the gradient to reduce the objective locally.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/gradient-descent/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Gradient penalty",
+    "definition": "Gradient penalty regularizes discriminator or critic gradients to support stable Wasserstein training.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/gradient-penalty/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Gradients",
+    "definition": "A gradient collects partial derivatives and points in the direction of steepest local increase.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/gradients/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Graph Machine Learning",
+    "definition": "Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.",
+    "phase": "Graph Machine Learning",
+    "href": "/lessons/graph-machine-learning/",
+    "tags": [
+      "Graph Machine Learning",
+      "graph machine learning"
+    ]
+  },
+  {
+    "term": "Graph theory",
+    "definition": "Represents entities as nodes and relationships as edges, useful for networks, dependencies, and knowledge graphs.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/graph-theory/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Graphplan",
+    "definition": "Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/graphplan/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Greedy best-first search",
+    "definition": "Greedy best-first search expands the state estimated closest to the goal.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/greedy-best-first-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Gumbel",
+    "definition": "Models extremes and appears in differentiable sampling tricks.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/gumbel/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Hamiltonian Monte Carlo",
+    "definition": "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/hamiltonian-monte-carlo/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Hessians",
+    "definition": "A Hessian stores second-order derivatives and describes curvature, sharpness, and local optimization geometry.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/hessians/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Hidden Markov models",
+    "definition": "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/hidden-markov-models/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Hierarchical task networks",
+    "definition": "HTN planning decomposes abstract tasks into smaller tasks until executable primitive actions remain.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/hierarchical-task-networks/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Hill climbing",
+    "definition": "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/hill-climbing/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Horn clauses",
+    "definition": "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/horn-clauses/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Hypothesis testing",
+    "definition": "Uses data to evaluate whether an observed effect is surprising under a baseline assumption.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/hypothesis-testing/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Importance sampling",
+    "definition": "Samples from a more convenient distribution and reweights samples to estimate the target distribution.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/importance-sampling/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Inception",
+    "definition": "Inception blocks process features through parallel paths with different receptive-field scales and then combine them.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/inception/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Independence and conditional independence",
+    "definition": "Independence means one event gives no information about another; conditional independence means that after controlling for a third variable.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/independence-and-conditional-independence/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Induction",
+    "definition": "Induction generalizes patterns from observed cases to unobserved cases or broader rules.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/induction/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Information bottleneck",
+    "definition": "Learns compressed representations that preserve information relevant to a target.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/information-bottleneck/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Integer programming",
+    "definition": "Integer programming optimizes a linear objective with decision variables restricted to integers.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/integer-programming/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Interpretability And Mechanistic Understanding",
+    "definition": "Interpretability studies how to explain model behavior, inspect neural representations, and identify internal mechanisms instead of treating an AI system as a black box.",
+    "phase": "Interpretability And Mechanistic Understanding",
+    "href": "/lessons/interpretability-and-mechanistic-understanding/",
+    "tags": [
+      "Interpretability And Mechanistic Understanding",
+      "interpretability and mechanistic understanding",
+      "interpretability",
+      "understanding"
+    ]
+  },
+  {
+    "term": "Iterative deepening",
+    "definition": "Iterative deepening repeats depth-limited DFS with successively larger limits.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/iterative-deepening/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Iterative Deepening A*",
+    "definition": "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/iterative-deepening-a-star/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Jacobians",
+    "definition": "A Jacobian stores first-order derivatives for vector-valued functions, tracking how each output changes with each input.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/jacobians/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Jacobians and Hessians",
+    "definition": "Jacobians describe first-order vector sensitivity; Hessians describe curvature and second-order change.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/jacobians-and-hessians/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Jensen-Shannon divergence",
+    "definition": "A symmetric, smoothed way to compare probability distributions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/jensen-shannon-divergence/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Joint, marginal, and conditional distributions",
+    "definition": "Joint distributions model variables together, marginals focus on one variable, and conditionals update one variable given another.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/joint-marginal-and-conditional-distributions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "distributions"
+    ]
+  },
+  {
+    "term": "Junction-tree algorithm",
+    "definition": "The junction-tree algorithm transforms a graph into a tree of overlapping variable clusters for exact inference.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/junction-tree-algorithm/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Kalman filter",
+    "definition": "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/kalman-filter/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "KKT conditions",
+    "definition": "Generalize optimality conditions for constrained optimization problems.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/kkt-conditions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "KL divergence",
+    "definition": "Measures how much one distribution differs from another, with direction-dependent penalties.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/kl-divergence/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Knowledge bases",
+    "definition": "A knowledge base stores structured facts, entities, relations, and sometimes rules for query and inference.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/knowledge-bases/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Knowledge distillation",
+    "definition": "Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/knowledge-distillation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Kronecker products",
+    "definition": "Build large structured matrices from smaller ones, useful in tensor operations and efficient approximations.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/kronecker-products/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Label smoothing",
+    "definition": "Label smoothing replaces hard one-hot targets with a mixture of the target and a small reference distribution.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/label-smoothing/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Lagrange multipliers",
+    "definition": "Convert constrained problems into equations that balance objective and constraint forces.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/lagrange-multipliers/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Latent diffusion",
+    "definition": "Latent diffusion runs diffusion in a compressed latent space instead of raw pixels.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/latent-diffusion/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Latent-variable models",
+    "definition": "Latent-variable models explain observed data through hidden variables that capture underlying structure.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/latent-variable-models/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Law of large numbers",
+    "definition": "Sample averages converge toward expected values as sample size grows.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/law-of-large-numbers/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Law of total probability",
+    "definition": "Breaks a probability into cases and adds their weighted contributions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/law-of-total-probability/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Layer normalization",
+    "definition": "Layer normalization standardizes features within each individual example or token.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/layer-normalization/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "normalization"
+    ]
+  },
+  {
+    "term": "Learning rates and schedules",
+    "definition": "Control step size over time, strongly affecting speed and stability.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/learning-rates-and-schedules/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Least-constraining value",
+    "definition": "The least-constraining value orders choices by how many options they leave for neighboring variables.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/least-constraining-value/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "LeNet",
+    "definition": "LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/lenet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Limits and continuity",
+    "definition": "Limits describe behavior near a point, and continuity means small input changes do not cause jumps.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/limits-and-continuity/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Line search",
+    "definition": "Chooses a step size by testing how the objective changes along a direction.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/line-search/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Linear independence",
+    "definition": "A set of vectors is independent when none can be recreated from the others, which avoids redundant directions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/linear-independence/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Local beam search",
+    "definition": "Local beam search evolves several candidate states together and keeps the strongest combined successors.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/local-beam-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Local minima, global minima, and saddle points",
+    "definition": "These describe places where progress can stop or become ambiguous.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/local-minima-global-minima-and-saddle-points/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Log-normal",
+    "definition": "Models positive values whose logarithm is Gaussian.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/log-normal/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Logic programming",
+    "definition": "Logic programming describes facts and rules while an inference engine searches for variable bindings that satisfy queries.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/logic-programming/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Logical And Problem-Solving Patterns To Recognize",
+    "definition": "These reasoning, algorithmic, foundation-model, and scientific patterns recur across nearly every branch of AI. Recognizing them helps you understand papers, design systems, debug failures, and transfer ideas between fields.",
+    "phase": "Logical And Problem-Solving Patterns To Recognize",
+    "href": "/lessons/logical-and-problem-solving-patterns/",
+    "tags": [
+      "Logical And Problem-Solving Patterns To Recognize",
+      "logical and problem solving patterns"
+    ]
+  },
+  {
+    "term": "Loopy belief propagation",
+    "definition": "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/loopy-belief-propagation/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Low-rank approximation",
+    "definition": "Keeps the strongest directions while discarding weaker ones, which supports compression and denoising.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/low-rank-approximation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "approximation"
+    ]
+  },
+  {
+    "term": "Markov chains",
+    "definition": "Model sequences where the next state depends on the current state, not the full history.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/markov-chains/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Markov chains",
+    "definition": "A Markov chain models a sequence whose next-state distribution depends only on the current state.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/markov-chains/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Markov processes",
+    "definition": "Generalize memoryless state transitions over time.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/markov-processes/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Markov random fields",
+    "definition": "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/markov-random-fields/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Mathematical Foundations",
+    "definition": "A field guide to the mechanisms, assumptions, and operating limits of Mathematical Foundations.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Mathematical induction",
+    "definition": "Proves a claim for all cases by proving a base case and a step from one case to the next.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/mathematical-induction/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Matrix calculus",
+    "definition": "Extends derivatives to vectors and matrices so model parameters can be optimized.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/matrix-calculus/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Matrix multiplication and tensor contraction",
+    "definition": "These combine dimensions to transform data, compose layers, and aggregate features.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/matrix-multiplication-and-tensor-contraction/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "multiplication"
+    ]
+  },
+  {
+    "term": "Max-product algorithm",
+    "definition": "The max-product algorithm replaces summation in message passing with maximization to seek a maximum a posteriori configuration.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/max-product-algorithm/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Maximum a posteriori estimation",
+    "definition": "Combines likelihood with a prior preference over parameters.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/maximum-a-posteriori-estimation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Maximum likelihood estimation",
+    "definition": "Chooses parameters that make the observed data most probable under the model.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/maximum-likelihood-estimation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Metropolis-Hastings",
+    "definition": "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/metropolis-hastings/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Min-conflicts",
+    "definition": "Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/min-conflicts/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Mini-batch optimization",
+    "definition": "Uses batches large enough for stable estimates but small enough for efficient training.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/mini-batch-optimization/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Minimax",
+    "definition": "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/minimax/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Minimum description length",
+    "definition": "Prefers models that explain data well without requiring overly complex descriptions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/minimum-description-length/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Minimum remaining values",
+    "definition": "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/minimum-remaining-values/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Missing-data mechanisms",
+    "definition": "Describe why values are absent, which determines whether simple fixes are safe.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/missing-data-mechanisms/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Mixed-integer programming",
+    "definition": "Mixed-integer programming combines discrete integer decisions with continuous quantities.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/mixed-integer-programming/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Mixture-Of-Experts Models",
+    "definition": "Mixture-of-experts models scale parameter count by routing each token through a small subset of specialized expert networks.",
+    "phase": "Mixture-Of-Experts Models",
+    "href": "/lessons/mixture-of-experts-models/",
+    "tags": [
+      "Mixture-Of-Experts Models",
+      "mixture of experts models"
+    ]
+  },
+  {
+    "term": "MobileNet",
+    "definition": "MobileNet families use efficient convolutional blocks designed for low-latency and resource-constrained deployment.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/mobilenet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Modal logic",
+    "definition": "Modal logic qualifies statements with modes such as necessity, possibility, knowledge, belief, or obligation.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/modal-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Mode collapse",
+    "definition": "Mode collapse happens when a generator produces limited variety despite diverse training data.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/mode-collapse/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Momentum and adaptive methods",
+    "definition": "Smooth or rescale updates so optimization handles noisy or uneven gradients better.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/momentum-and-adaptive-methods/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Monte Carlo estimation",
+    "definition": "Uses random samples to approximate expectations or probabilities that are hard to compute exactly.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/monte-carlo-estimation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Monte Carlo Tree Search",
+    "definition": "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/monte-carlo-tree-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Multi-agent planning",
+    "definition": "Multi-agent planning coordinates actions among agents with shared, separate, or competing objectives.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/multi-agent-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Multilayer perceptrons",
+    "definition": "A multilayer perceptron stacks affine transformations and nonlinear activations to learn complex functions.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/multilayer-perceptrons/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Multimodal AI",
+    "definition": "Native multimodality is now a core frontier topic, covering combinations of text, image, video, audio, action, and sensor inputs.",
+    "phase": "Multimodal AI",
+    "href": "/lessons/multimodal-ai/",
+    "tags": [
+      "Multimodal AI",
+      "multimodal ai"
+    ]
+  },
+  {
+    "term": "Multinomial",
+    "definition": "Counts how many times each class appears across repeated categorical trials.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/multinomial/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Multiple-testing correction",
+    "definition": "Controls false discoveries when many hypotheses are tested at once.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/multiple-testing-correction/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Multivariable integration",
+    "definition": "Integrates quantities over areas, volumes, or higher-dimensional spaces.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/multivariable-integration/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "multivariable"
+    ]
+  },
+  {
+    "term": "Multivariate Gaussian",
+    "definition": "Extends Gaussian structure to vectors with covariance between dimensions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/multivariate-gaussian/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Mutual information",
+    "definition": "Measures how much knowing one variable reduces uncertainty about another.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/mutual-information/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Negamax",
+    "definition": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/negamax/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Neural Networks",
+    "definition": "A neural network is a model made of layers that transform input data into useful predictions or generated outputs.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/neural-networks/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Neural ordinary differential equations",
+    "definition": "Neural ODEs represent transformations as continuous dynamics parameterized by neural networks.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/neural-ordinary-differential-equations/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Newton and quasi-Newton methods",
+    "definition": "Use curvature information to choose more informed update steps.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/newton-and-quasi-newton-methods/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "NICE",
+    "definition": "NICE is an early normalizing-flow model built from additive coupling transformations.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/nice/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Noise schedules",
+    "definition": "Noise schedules choose how much noise is added at each diffusion timestep.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/noise-schedules/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Non-monotonic reasoning",
+    "definition": "Non-monotonic reasoning permits conclusions to be withdrawn when new information arrives.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/non-monotonic-reasoning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Normalization",
+    "definition": "Normalization controls activation or weight statistics to make optimization better conditioned and more predictable.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/normalization/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "normalization"
+    ]
+  },
+  {
+    "term": "Norms",
+    "definition": "L1, L2, Frobenius, spectral, and related norms measure size, error, sparsity, or operator strength.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/norms/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Numerical conditioning",
+    "definition": "Measures how much errors are amplified, which affects stability and trustworthy computation.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/numerical-conditioning/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Numerical stability",
+    "definition": "Keeps calculations reliable despite finite precision, overflow, underflow, or bad scaling.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/numerical-stability/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Objectives, losses, and cost functions",
+    "definition": "These define what the system is trying to minimize, maximize, or balance.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/objectives-losses-and-cost-functions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "ODE solvers",
+    "definition": "ODE solvers numerically integrate the learned velocity field during sampling.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/ode-solvers/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Online algorithms",
+    "definition": "Make decisions as data arrives without knowing the future.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/online-algorithms/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Ontologies",
+    "definition": "Ontologies define shared concepts, properties, constraints, and relationships for a domain.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/ontologies/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Optimal-transport paths",
+    "definition": "Optimal-transport paths move probability mass between distributions with transport-inspired geometry.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/optimal-transport-paths/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Optimality",
+    "definition": "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/optimality/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Ordinary differential equations",
+    "definition": "Describe systems whose state changes over continuous time according to deterministic rules.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/ordinary-differential-equations/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Orthogonality and orthonormal bases",
+    "definition": "Perpendicular unit directions make decompositions cleaner and reduce duplicate information.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/orthogonality-and-orthonormal-bases/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "orthogonality"
+    ]
+  },
+  {
+    "term": "p-values and statistical power",
+    "definition": "p-values quantify surprise under a null hypothesis; power measures the chance of detecting a real effect.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/p-values-and-statistical-power/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "P, NP, NP-hard, and NP-complete",
+    "definition": "Complexity classes that describe which problems are efficiently solvable or likely hard.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/p-np-np-hard-and-np-complete/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Padding",
+    "definition": "Padding adds values around an input boundary to control output size and what filters see near edges.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/padding/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Parameters and decision variables",
+    "definition": "Parameters are the adjustable values the optimizer changes.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/parameters-and-decision-variables/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Partial-order planning",
+    "definition": "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/partial-order-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Particle filter",
+    "definition": "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/particle-filter/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "PDDL",
+    "definition": "PDDL is a standard language for declaring planning domains and problem instances.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/pddl/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Perceptrons",
+    "definition": "A perceptron is a linear binary classifier that thresholds a weighted sum of input features.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/perceptrons/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Perplexity",
+    "definition": "Interprets language-model uncertainty as the effective number of plausible next choices.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/perplexity/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "PixelRNN and PixelCNN",
+    "definition": "PixelRNN and PixelCNN model images by predicting each pixel from previously generated pixels.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/pixelrnn-and-pixelcnn/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Planning under uncertainty",
+    "definition": "Planning under uncertainty chooses actions when state, observations, or outcomes are not fully known.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/planning-under-uncertainty/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Point estimation",
+    "definition": "Produces a single best estimate of an unknown quantity from data.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/point-estimation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Poisson",
+    "definition": "Counts events occurring in a fixed interval when events are rare and independent.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/poisson/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Pooling",
+    "definition": "Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/pooling/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Populations and samples",
+    "definition": "The population is what you want to understand; the sample is the data you actually observe.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/populations-and-samples/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Portfolio",
+    "definition": "A field guide to the mechanisms, assumptions, and operating limits of Portfolio.",
+    "phase": "portfolio",
+    "href": "/lessons/portfolio/",
+    "tags": []
+  },
+  {
+    "term": "Positive-semidefinite matrices",
+    "definition": "These matrices never produce negative quadratic forms and often represent covariance, kernels, or curvature.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/positive-semidefinite-matrices/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Posterior predictive distributions",
+    "definition": "Predict future observations while accounting for parameter uncertainty.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/posterior-predictive-distributions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "distributions"
+    ]
+  },
+  {
+    "term": "Probabilistic AI",
+    "definition": "Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai",
+      "probabilistic"
+    ]
+  },
+  {
+    "term": "Probability mass and density functions",
+    "definition": "PMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/probability-mass-and-density-functions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Probability paths",
+    "definition": "Probability paths define a continuous route between a simple noise distribution and the data distribution.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/probability-paths/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Product, quotient, and chain rules",
+    "definition": "These rules break complex derivatives into manageable pieces, especially through nested functions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/product-quotient-and-chain-rules/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Programming And Systems Foundations",
+    "definition": "Before advanced AI, become comfortable with the programming, systems, and implementation details that make model code reliable, efficient, and debuggable.",
+    "phase": "Programming And Systems Foundations",
+    "href": "/lessons/programming-and-systems-foundations/",
+    "tags": [
+      "Programming And Systems Foundations",
+      "programming and systems foundations"
+    ]
+  },
+  {
+    "term": "Projections",
+    "definition": "Projections drop a vector onto a subspace, keeping the part that matches chosen directions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/projections/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Proof by contradiction",
+    "definition": "Proves a claim by showing the opposite assumption leads to an impossibility.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/proof-by-contradiction/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "contradiction"
+    ]
+  },
+  {
+    "term": "Propositional logic",
+    "definition": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/propositional-logic/",
+    "tags": [
+      "classical artificial intelligence",
+      "propositional"
+    ]
+  },
+  {
+    "term": "Quantifiers",
+    "definition": "Quantifiers state whether a predicate holds for every object or for at least one object.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/quantifiers/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Random variables",
+    "definition": "Functions that assign numeric or categorical values to uncertain outcomes.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/random-variables/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Random-restart hill climbing",
+    "definition": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/random-restart-hill-climbing/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Randomized algorithms",
+    "definition": "Use randomness to simplify logic, improve average performance, or estimate hard quantities.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/randomized-algorithms/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Rank and null space",
+    "definition": "Rank counts independent output directions; the null space contains inputs a matrix maps to zero.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/rank-and-null-space/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Rate-distortion theory",
+    "definition": "Studies the trade-off between compression rate and acceptable reconstruction error.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/rate-distortion-theory/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "RealNVP",
+    "definition": "RealNVP extends coupling layers with scaling and translation for expressive density modelling.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/realnvp/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Reasoning Models And Inference-Time Computation",
+    "definition": "This is another major 2026 addition. Current curricula explicitly include reasoning models, test-time computation, and verifier-guided methods.",
+    "phase": "Reasoning Models And Inference-Time Computation",
+    "href": "/lessons/reasoning-models-and-inference-time-computation/",
+    "tags": [
+      "Reasoning Models And Inference-Time Computation",
+      "reasoning models and inference time computation"
+    ]
+  },
+  {
+    "term": "Receding-horizon planning",
+    "definition": "Receding-horizon planning repeatedly optimizes a limited future window, executes the first action, and replans.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/receding-horizon-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Receptive fields",
+    "definition": "A unit's receptive field is the region of the original input that can influence that unit.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/receptive-fields/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Recommended Learning Sequence",
+    "definition": "A field guide to the mechanisms, assumptions, and operating limits of Recommended Learning Sequence.",
+    "phase": "learning sequence",
+    "href": "/lessons/learning-sequence/",
+    "tags": [
+      "learning sequence"
+    ]
+  },
+  {
+    "term": "Rectified flow",
+    "definition": "Rectified flow learns straighter paths from noise to data to reduce sampling steps.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/rectified-flow/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Recurrence relations",
+    "definition": "Define values in terms of previous values, common in algorithms and dynamic programming.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/recurrence-relations/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Reductions",
+    "definition": "Transform one problem into another to compare difficulty or reuse solvers.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/reductions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Regularization",
+    "definition": "Regularization changes training so a model favors solutions expected to generalize beyond the training examples.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/regularization/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "regularization"
+    ]
+  },
+  {
+    "term": "Regularization and penalties",
+    "definition": "Add terms that discourage overly complex, unstable, or undesirable solutions.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/regularization-and-penalties/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "regularization"
+    ]
+  },
+  {
+    "term": "Reinforcement Learning",
+    "definition": "Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.",
+    "phase": "Reinforcement Learning",
+    "href": "/lessons/reinforcement-learning/",
+    "tags": [
+      "Reinforcement Learning",
+      "reinforcement learning",
+      "reinforcement"
+    ]
+  },
+  {
+    "term": "Rejection sampling",
+    "definition": "Samples from a proposal distribution and accepts only samples that fit the target shape.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/rejection-sampling/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Representation learning",
+    "definition": "Representation learning lets a model discover internal features that make useful structure easier to predict or generate.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/representation-learning/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "representation"
+    ]
+  },
+  {
+    "term": "Representation Learning And Self-Supervision",
+    "definition": "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
+    "phase": "Representation Learning And Self-Supervision",
+    "href": "/lessons/representation-learning-and-self-supervision/",
+    "tags": [
+      "Representation Learning And Self-Supervision",
+      "representation learning and self supervision",
+      "representation"
+    ]
+  },
+  {
+    "term": "Representative Research-Paper Sequence",
+    "definition": "This is a curated backbone, not a claim that these are the only important papers. Use it to connect the methods in the roadmap to representative research artifacts, historical turning points, and modern systems work.",
+    "phase": "Representative Research-Paper Sequence",
+    "href": "/lessons/representative-research-paper-sequence/",
+    "tags": [
+      "Representative Research-Paper Sequence",
+      "representative research paper sequence",
+      "representative"
+    ]
+  },
+  {
+    "term": "Research Methodology",
+    "definition": "Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.",
+    "phase": "Research Methodology",
+    "href": "/lessons/research-methodology/",
+    "tags": [
+      "Research Methodology",
+      "research methodology"
+    ]
+  },
+  {
+    "term": "Residual connections",
+    "definition": "A residual connection adds a block's input to its transformed output, creating a direct information path.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/residual-connections/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Residual networks",
+    "definition": "Residual networks organize convolutional layers into blocks with shortcut additions around learned transformations.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/residual-networks/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "ResNet",
+    "definition": "ResNet is a family of deep CNNs built from residual blocks and identity or projected shortcuts.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/resnet/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Resolution",
+    "definition": "Resolution derives a new clause by eliminating complementary literals from two clauses.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/resolution/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Retrieval, Search And RAG",
+    "definition": "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
+    "phase": "Retrieval, Search And RAG",
+    "href": "/lessons/retrieval-search-and-rag/",
+    "tags": [
+      "Retrieval, Search And RAG",
+      "retrieval search and rag"
+    ]
+  },
+  {
+    "term": "RMSNorm",
+    "definition": "RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/rmsnorm/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Sample spaces and events",
+    "definition": "The sample space lists possible outcomes; an event is a subset of outcomes you care about.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/sample-spaces-and-events/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Scalars, vectors, matrices, and tensors",
+    "definition": "Scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/scalars-vectors-matrices-and-tensors/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Score matching",
+    "definition": "Score matching learns gradients of the data density rather than the density itself.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/score-matching/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Score-based SDEs",
+    "definition": "Score-based SDEs formulate generation as reversing a stochastic differential equation.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/score-based-sdes/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Self-play",
+    "definition": "Self-play improves a policy by generating opponents and experience from versions of the same system.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/self-play/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Sequence likelihood",
+    "definition": "Sequence likelihood scores a full sequence by multiplying or summing the conditional likelihoods of its elements.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/sequence-likelihood/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Sequential Monte Carlo",
+    "definition": "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/sequential-monte-carlo/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Sets, relations, and functions",
+    "definition": "Basic objects for describing collections, mappings, and relationships between entities.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/sets-relations-and-functions/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Simulated annealing",
+    "definition": "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/simulated-annealing/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Singular value decomposition",
+    "definition": "SVD factors any matrix into rotations and scalings, revealing rank, structure, and compression opportunities.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/singular-value-decomposition/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "decomposition"
+    ]
+  },
+  {
+    "term": "Sparse autoencoders",
+    "definition": "Sparse autoencoders encourage only a small set of latent units to activate for each input.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/sparse-autoencoders/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Sparse matrices",
+    "definition": "Store mostly-zero data efficiently, common in text, graphs, recommendations, and large feature spaces.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/sparse-matrices/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Speech, Audio And Time-Series AI",
+    "definition": "Speech, audio, and time-series AI combine signal processing, sequence modelling, forecasting, recognition, generation, and source separation.",
+    "phase": "Speech, Audio And Time-Series AI",
+    "href": "/lessons/speech-audio-and-time-series-ai/",
+    "tags": [
+      "Speech, Audio And Time-Series AI",
+      "speech audio and time series ai"
+    ]
+  },
+  {
+    "term": "State-Space Models And Alternative Sequence Architectures",
+    "definition": "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
+    "phase": "State-Space Models And Alternative Sequence Architectures",
+    "href": "/lessons/state-space-models-and-alternative-sequence-architectures/",
+    "tags": [
+      "State-Space Models And Alternative Sequence Architectures",
+      "state space models and alternative sequence architectures",
+      "architectures"
+    ]
+  },
+  {
+    "term": "State-space planning",
+    "definition": "State-space planning searches through world states produced by applicable actions.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/state-space-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "State-space representation",
+    "definition": "A state-space representation defines what a solver treats as a state and which transitions are possible.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/state-space-representation/",
+    "tags": [
+      "classical artificial intelligence",
+      "representation"
+    ]
+  },
+  {
+    "term": "Stochastic differential equations",
+    "definition": "Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/stochastic-differential-equations/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Stochastic gradient descent",
+    "definition": "Estimates the gradient from small random batches, trading exactness for speed.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/stochastic-gradient-descent/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Stride",
+    "definition": "Stride is the number of input positions a convolutional window moves between neighboring outputs.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/stride/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "STRIPS",
+    "definition": "STRIPS represents actions with preconditions, add effects, and delete effects.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/strips/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Student's t",
+    "definition": "Handles heavier-tailed uncertainty, often when sample sizes are small.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/student-s-t/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "StyleGAN",
+    "definition": "StyleGAN controls image generation through style-based latent modulation across layers.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/stylegan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Sum-product algorithm",
+    "definition": "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/sum-product-algorithm/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Tabu search",
+    "definition": "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/tabu-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Taylor approximation",
+    "definition": "Taylor formulas approximate a function near a point using value, slope, and sometimes curvature.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/taylor-approximation/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "approximation"
+    ]
+  },
+  {
+    "term": "Teacher forcing",
+    "definition": "Teacher forcing trains sequence models using the true previous token rather than the model's sampled previous token.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/teacher-forcing/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Temporal logic",
+    "definition": "Temporal logic adds operators for what is always, eventually, next, or true until another condition.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/temporal-logic/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Temporal planning",
+    "definition": "Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/temporal-planning/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Time and memory complexity",
+    "definition": "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/time-and-memory-complexity/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Time and space complexity",
+    "definition": "Measures how computation and memory grow as input size increases.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/time-and-space-complexity/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Trace and determinant",
+    "definition": "Trace summarizes diagonal action, while determinant describes volume scaling and invertibility.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/trace-and-determinant/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Training A Model",
+    "definition": "Training is the process of showing a model examples so it can adjust itself and get better at a task.",
+    "phase": "Machine Learning",
+    "href": "/lessons/machine-learning/training-a-model/",
+    "tags": [
+      "Machine Learning",
+      "machine learning"
+    ]
+  },
+  {
+    "term": "Training instability",
+    "definition": "GAN training instability occurs because generator and discriminator objectives co-adapt during optimization.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/training-instability/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Transformers",
+    "definition": "A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.",
+    "phase": "Generative AI",
+    "href": "/lessons/generative-ai/transformers/",
+    "tags": [
+      "Generative AI",
+      "generative ai"
+    ]
+  },
+  {
+    "term": "Transformers And Foundation Models",
+    "definition": "The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.",
+    "phase": "Generative AI",
+    "href": "/lessons/generative-ai/",
+    "tags": [
+      "Generative AI",
+      "generative ai"
+    ]
+  },
+  {
+    "term": "Translation equivariance",
+    "definition": "Translation equivariance means shifting an input shifts the resulting feature map in the corresponding way.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/translation-equivariance/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Transposition tables",
+    "definition": "A transposition table caches values for positions reached through different move orders.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/transposition-tables/",
+    "tags": [
+      "classical artificial intelligence",
+      "transposition"
+    ]
+  },
+  {
+    "term": "Trees and directed acyclic graphs",
+    "definition": "Structured graphs that model hierarchies, computation graphs, parse trees, and pipelines.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/trees-and-directed-acyclic-graphs/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "U-Net",
+    "definition": "U-Net is a specific encoder-decoder architecture originally designed for precise biomedical image segmentation.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/u-net/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "U-Net architectures",
+    "definition": "U-Net architectures pair a contracting encoder with a symmetric decoder and same-scale skip connections.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/u-net-architectures/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "architectures"
+    ]
+  },
+  {
+    "term": "UCT",
+    "definition": "UCT selects MCTS actions by balancing high estimated value with low visit count.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/uct/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Unconstrained and constrained optimization",
+    "definition": "Unconstrained problems move freely; constrained problems must satisfy rules or limits.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/unconstrained-and-constrained-optimization/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations",
+      "unconstrained"
+    ]
+  },
+  {
+    "term": "Unification",
+    "definition": "Unification finds substitutions that make symbolic expressions identical.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/unification/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Uniform",
+    "definition": "Gives equal probability to each value in a range or set.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/uniform/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Uniform-cost search",
+    "definition": "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/uniform-cost-search/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Universal approximation",
+    "definition": "Universal approximation theorems show that sufficiently large neural networks can approximate broad function classes.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/universal-approximation/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "approximation"
+    ]
+  },
+  {
+    "term": "Unscented Kalman filter",
+    "definition": "The unscented Kalman filter propagates carefully selected sigma points through nonlinear functions instead of linearizing with derivatives.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/unscented-kalman-filter/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Variable elimination",
+    "definition": "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/variable-elimination/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Variance and covariance",
+    "definition": "Variance measures spread; covariance measures how two variables move together.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/variance-and-covariance/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Variance-preserving and variance-exploding diffusion",
+    "definition": "Variance-preserving and variance-exploding diffusion define different ways for signal and noise to scale over time.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/variance-preserving-and-variance-exploding-diffusion/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Variational autoencoders",
+    "definition": "Variational autoencoders learn probabilistic latent variables and generate by sampling from latent space.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/variational-autoencoders/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Variational inference",
+    "definition": "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/variational-inference/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "Vector spaces, subspaces, span, basis, and dimension",
+    "definition": "These describe which vectors can be combined, which directions are independent, and how many coordinates are needed.",
+    "phase": "Mathematical Foundations",
+    "href": "/lessons/mathematical-foundations/topics/vector-spaces-subspaces-span-basis-and-dimension/",
+    "tags": [
+      "Mathematical Foundations",
+      "mathematical foundations"
+    ]
+  },
+  {
+    "term": "Vector-quantized VAE",
+    "definition": "Vector-quantized VAEs use discrete latent codes selected from a learned codebook.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/vector-quantized-vae/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "VGG",
+    "definition": "VGG networks use simple repeated 3x3 convolutions to build deep, regular visual feature hierarchies.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/vgg/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Viterbi decoding",
+    "definition": "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
+    "phase": "Probabilistic AI",
+    "href": "/lessons/probabilistic-ai/topics/viterbi-decoding/",
+    "tags": [
+      "Probabilistic AI",
+      "probabilistic ai"
+    ]
+  },
+  {
+    "term": "WalkSAT",
+    "definition": "WalkSAT uses stochastic local search over complete truth assignments for CNF formulas.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/walksat/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "Wasserstein GAN",
+    "definition": "Wasserstein GANs use an earth-mover distance objective to improve GAN training behavior.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/wasserstein-gan/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "WaveNet",
+    "definition": "WaveNet generates raw audio samples autoregressively with dilated causal convolutions.",
+    "phase": "Generative Modelling",
+    "href": "/lessons/generative-modelling/topics/wavenet/",
+    "tags": [
+      "Generative Modelling",
+      "generative modelling"
+    ]
+  },
+  {
+    "term": "Weight decay",
+    "definition": "Weight decay shrinks parameters during optimization, discouraging unnecessarily large weights.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/weight-decay/",
+    "tags": [
+      "Deep Learning",
+      "deep learning"
+    ]
+  },
+  {
+    "term": "Weight initialization",
+    "definition": "Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.",
+    "phase": "Deep Learning",
+    "href": "/lessons/deep-learning/topics/weight-initialization/",
+    "tags": [
+      "Deep Learning",
+      "deep learning",
+      "initialization"
+    ]
+  },
+  {
+    "term": "Weighted A*",
+    "definition": "Weighted A* gives the heuristic more influence to find good solutions faster.",
+    "phase": "Classical AI",
+    "href": "/lessons/classical-artificial-intelligence/topics/weighted-a-star/",
+    "tags": [
+      "classical artificial intelligence"
+    ]
+  },
+  {
+    "term": "What Is AI?",
+    "definition": "Artificial intelligence is software designed to do tasks that normally require human judgment, such as recognizing patterns, understanding language, making predictions, or generating content.",
+    "phase": "Foundations",
+    "href": "/lessons/foundations/what-is-ai/",
+    "tags": []
+  }
+]

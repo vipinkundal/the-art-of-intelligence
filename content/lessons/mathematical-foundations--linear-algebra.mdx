@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat 1 Linear Algebra as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Linear algebra gives AI systems a way to store information as numbers and transform those numbers while preserving useful structure such as direction, distance, similarity, and rank."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Scalars, vectors, matrices, and tensors : Scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Vector spaces, subspaces, span, basis, and dimension : These describe which vectors can be combined, which directions are independent, and how many coordinates are needed."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Linear independence : A set of vectors is independent when none can be recreated from the others, which avoids redundant directions."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Dot products and inner-product spaces : Dot products measure alignment and support similarity, projection, and geometric reasoning."
+    },
+    {
+      "title": "You should understand",
+      "explanation": "Matrix multiplication and tensor contraction : These combine dimensions to transform data, compose layers, and aggregate features."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Data is often represented as vectors or matrices. Models transform those vectors using matrix multiplication, compare them with similarity metrics, and learn useful directions in high-dimensional space."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "PCA uses the eigenvectors of the covariance matrix, or equivalently the right singular vectors of the centered data matrix, to find high-variance directions."
+    }
+  ],
+  "process": [
+    "Linear algebra gives AI systems a way to store information as numbers and transform those numbers while preserving useful structure such as direction, distance, similarity, and rank."
+  ],
+  "formulas": [
+    {
+      "label": "1 Linear Algebra field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+    }
+  ],
+  "example": {
+    "title": "1 Linear Algebra in operation",
+    "setup": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term 1 Linear Algebra."
+  },
+  "pitfalls": [
+    "1 Linear Algebra failure 1: A correct definition of 1 Linear Algebra can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+    "Follow MIT OpenCourseWare's Linear Algebra course for lectures, problem sets, and worked examples."
+  ]
+};
+
+<LessonBody narrative={narrative} />

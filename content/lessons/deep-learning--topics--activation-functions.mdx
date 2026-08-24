@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Activation functions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Activation functions apply nonlinear transformations that determine which signals pass through a network.",
+  "concepts": [
+    {
+      "title": "ReLU family",
+      "explanation": "Keeps positive values and suppresses or reduces negative values, enabling sparse piecewise-linear computation."
+    },
+    {
+      "title": "Smooth gates",
+      "explanation": "GELU and SiLU smoothly scale inputs rather than using a hard corner at zero."
+    },
+    {
+      "title": "Saturation",
+      "explanation": "Sigmoid and tanh derivatives become small at extreme inputs, which can slow learning."
+    }
+  ],
+  "process": [
+    "Activation functions step 1: Compute a pre-activation z.",
+    "Activation functions step 2: Apply the chosen function phi(z).",
+    "Activation functions step 3: Pass the activated value to later layers.",
+    "Activation functions step 4: During backpropagation, multiply by phi prime evaluated at z."
+  ],
+  "formulas": [
+    {
+      "label": "ReLU",
+      "expression": "ReLU(x) = max(0, x)",
+      "meaning": "retain positive evidence"
+    },
+    {
+      "label": "SiLU",
+      "expression": "SiLU(x) = x * sigmoid(x)",
+      "meaning": "use a smooth self-gating function"
+    }
+  ],
+  "example": {
+    "title": "See why nonlinearity matters",
+    "setup": "Compare two stacked linear layers with the same stack using ReLU.",
+    "steps": [
+      "Without ReLU, W2(W1x) equals one matrix times x.",
+      "With ReLU, negative hidden coordinates can be removed.",
+      "Different input regions therefore follow different effective linear maps."
+    ],
+    "result": "The activated network forms a piecewise-linear nonlinear function."
+  },
+  "pitfalls": [
+    "Activation functions failure 1: ReLU units can die if their inputs remain negative and receive zero gradient.",
+    "Activation functions failure 2: An activation that works well in one scale or architecture may behave poorly without matching initialization.",
+    "Activation functions failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Activation functions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Activation functions, compare the quantity named in “An activation is applied elementwise or as a small vector operation after an affine transformation, and its derivative c” across training, evaluation, and shifted inputs.",
+    "Ship Activation functions with a counterexample test derived from “ReLU units can die if their inputs remain negative and receive zero gradient.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Activation functions apply nonlinear transformations that determine which signals pass through a network.",
+    "An activation is applied elementwise or as a small vector operation after an affine transformation, and its derivative controls backward signal flow.",
+    "Activation choice affects expressiveness, gradient flow, sparsity, compute cost, and the scale of hidden representations.",
+    "ReLU units can die if their inputs remain negative and receive zero gradient."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat 5 Optimization as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Objectives, losses, and cost functions : These define what the system is trying to minimize, maximize, or balance."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Parameters and decision variables : Parameters are the adjustable values the optimizer changes."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Unconstrained and constrained optimization : Unconstrained problems move freely; constrained problems must satisfy rules or limits."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Convex and non-convex optimization : Convex problems have simpler global structure; non-convex problems can contain many local traps."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Local minima, global minima, and saddle points : These describe places where progress can stop or become ambiguous."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Training a model is usually an optimization problem: choose parameters that reduce prediction error, improve likelihood, satisfy constraints, or maximize expected reward."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Optimization choices affect speed, stability, generalization, and cost. Learning rates, batch size, regularization, and optimizer choice can decide whether a model trains well or fails."
+    }
+  ],
+  "process": [
+    "A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints."
+  ],
+  "formulas": [
+    {
+      "label": "5 Optimization field relation",
+      "expression": "θₜ₊₁ = θₜ − η∇L(θₜ)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
+    }
+  ],
+  "example": {
+    "title": "5 Optimization in operation",
+    "setup": "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term 5 Optimization."
+  },
+  "pitfalls": [
+    "5 Optimization failure 1: A correct definition of 5 Optimization can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+    "Read Boyd and Vandenberghe's Convex Optimization materials for a rigorous foundation in objectives, constraints, and optimization geometry."
+  ]
+};
+
+<LessonBody narrative={narrative} />

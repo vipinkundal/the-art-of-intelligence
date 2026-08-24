@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Minimum remaining values: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "At each branch, compute legal domain sizes and select the most constrained variable."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+    }
+  ],
+  "process": [
+    "Minimum remaining values step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Minimum remaining values step 2: Apply the central rule: At each branch, compute legal domain sizes and select the most constrained variable.",
+    "Minimum remaining values step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Minimum remaining values step 4: Stop and interpret the result using this criterion: The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+  ],
+  "formulas": [
+    {
+      "label": "Minimum remaining values rule",
+      "expression": "X = argmin_unassigned |D(X)|",
+      "meaning": "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+    }
+  ],
+  "example": {
+    "title": "Minimum remaining values in a small case",
+    "setup": "In Sudoku, choose a cell with two candidates before a cell with six.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: At each branch, compute legal domain sizes and select the most constrained variable.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A wrong branch fails quickly instead of after many irrelevant assignments."
+  },
+  "pitfalls": [
+    "Minimum remaining values failure 1: Use current propagated domains, not original domain sizes.",
+    "Minimum remaining values failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Minimum remaining values failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Minimum remaining values explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Minimum remaining values, compare the quantity named in “Minimum remaining values chooses the unassigned variable with the smallest current domain.” across training, evaluation, and shifted inputs.",
+    "Ship Minimum remaining values with a counterexample test derived from “Use current propagated domains, not original domain sizes.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
+    "At each branch, compute legal domain sizes and select the most constrained variable.",
+    "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost.",
+    "A wrong branch fails quickly instead of after many irrelevant assignments."
+  ]
+};
+
+<LessonBody narrative={narrative} />

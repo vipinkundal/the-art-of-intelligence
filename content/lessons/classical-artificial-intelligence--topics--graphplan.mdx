@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Graphplan: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The graph provides reachability and heuristic information; extraction can still require combinatorial search."
+    }
+  ],
+  "process": [
+    "Graphplan step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Graphplan step 2: Apply the central rule: Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
+    "Graphplan step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Graphplan step 4: Stop and interpret the result using this criterion: The graph provides reachability and heuristic information; extraction can still require combinatorial search."
+  ],
+  "formulas": [
+    {
+      "label": "Graphplan rule",
+      "expression": "P0,A0,P1,A1,... with mutex relations",
+      "meaning": "The graph provides reachability and heuristic information; extraction can still require combinatorial search."
+    }
+  ],
+  "example": {
+    "title": "Graphplan in a small case",
+    "setup": "Build layers for a small logistics problem until all destination facts appear together.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Backward extraction selects non-mutex actions whose preconditions are supported by earlier layers."
+  },
+  "pitfalls": [
+    "Graphplan failure 1: Presence of each goal separately is insufficient; they must also be pairwise non-mutex.",
+    "Graphplan failure 2: A plan is only as reliable as its action model and observations.",
+    "Graphplan failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for Graphplan explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Graphplan, compare the quantity named in “Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.” across training, evaluation, and shifted inputs.",
+    "Ship Graphplan with a counterexample test derived from “Presence of each goal separately is insufficient; they must also be pairwise non-mutex.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.",
+    "Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
+    "The graph provides reachability and heuristic information; extraction can still require combinatorial search.",
+    "Backward extraction selects non-mutex actions whose preconditions are supported by earlier layers."
+  ]
+};
+
+<LessonBody narrative={narrative} />

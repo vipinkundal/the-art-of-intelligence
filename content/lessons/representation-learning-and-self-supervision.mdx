@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Representation Learning And Self-Supervision as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
+  "concepts": [
+    {
+      "title": "Study",
+      "explanation": "Distributed word representations : Represent words as dense vectors whose geometry captures usage and meaning."
+    },
+    {
+      "title": "Study",
+      "explanation": "Word2vec : Learns word embeddings from local context prediction tasks."
+    },
+    {
+      "title": "Study",
+      "explanation": "Skip-gram : Predicts surrounding words from a center word."
+    },
+    {
+      "title": "Study",
+      "explanation": "Continuous bag of words : Predicts a center word from surrounding context words."
+    },
+    {
+      "title": "Study",
+      "explanation": "Negative sampling : Makes contrastive word training efficient by comparing positives against sampled negatives."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to explain why good embeddings preserve task-relevant similarity, how contrastive objectives separate positives from negatives, and how masked or predictive tasks create labels without manual annotation."
+    }
+  ],
+  "process": [
+    "Distributed word representations : Represent words as dense vectors whose geometry captures usage and meaning.",
+    "Word2vec : Learns word embeddings from local context prediction tasks.",
+    "Skip-gram : Predicts surrounding words from a center word.",
+    "Continuous bag of words : Predicts a center word from surrounding context words.",
+    "Negative sampling : Makes contrastive word training efficient by comparing positives against sampled negatives."
+  ],
+  "formulas": [
+    {
+      "label": "Representation Learning And Self-Supervision field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the retrieval lab."
+    }
+  ],
+  "example": {
+    "title": "Representation Learning And Self-Supervision in operation",
+    "setup": "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Representation Learning And Self-Supervision."
+  },
+  "pitfalls": [
+    "Representation Learning And Self-Supervision failure 1: A correct definition of Representation Learning And Self-Supervision can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
+    "You should be able to explain why good embeddings preserve task-relevant similarity, how contrastive objectives separate positives from negatives, and how masked or predictive tasks create labels without manual annotation."
+  ]
+};
+
+<LessonBody narrative={narrative} />

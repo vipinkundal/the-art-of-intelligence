@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat Agents And Tools as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "A model alone produces text or predictions. An agent wraps that model with tools, state, instructions, and checks so it can take useful actions."
+    },
+    {
+      "title": "Common tools",
+      "explanation": "Search tools: Let the agent retrieve current or external information instead of relying only on the model's stored knowledge."
+    },
+    {
+      "title": "Common tools",
+      "explanation": "File tools: Let the agent inspect, create, and edit local artifacts while preserving a trace of what changed."
+    },
+    {
+      "title": "Common tools",
+      "explanation": "API tools: Let the agent read or update structured systems such as databases, calendars, issue trackers, or internal services."
+    },
+    {
+      "title": "Example",
+      "explanation": "A coding agent can inspect files, edit code, run tests, and summarize the result instead of only explaining what a human should do."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Tool use turns a model from a text generator into part of a working system. It introduces planning, action, feedback, and verification as core design concerns."
+    },
+    {
+      "title": "Learning target",
+      "explanation": "You should be able to describe the difference between a model and an agent, name common tool types, and explain why feedback checks matter."
+    },
+    {
+      "title": "For more information",
+      "explanation": "Read Anthropic's Building effective agents for practical diagrams and patterns for workflows, tools, and autonomous agents."
+    }
+  ],
+  "process": [
+    "A model alone produces text or predictions. An agent wraps that model with tools, state, instructions, and checks so it can take useful actions."
+  ],
+  "formulas": [
+    {
+      "label": "Agents And Tools field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the reinforcement lab."
+    }
+  ],
+  "example": {
+    "title": "Agents And Tools in operation",
+    "setup": "A coding agent can inspect files, edit code, run tests, and summarize the result instead of only explaining what a human should do.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term Agents And Tools."
+  },
+  "pitfalls": [
+    "Agents And Tools failure 1: A correct definition of Agents And Tools can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.",
+    "Read Anthropic's Building effective agents for practical diagrams and patterns for workflows, tools, and autonomous agents."
+  ]
+};
+
+<LessonBody narrative={narrative} />

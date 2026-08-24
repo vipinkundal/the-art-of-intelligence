@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Random-restart hill climbing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+    }
+  ],
+  "process": [
+    "Random-restart hill climbing step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Random-restart hill climbing step 2: Apply the central rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
+    "Random-restart hill climbing step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Random-restart hill climbing step 4: Stop and interpret the result using this criterion: More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+  ],
+  "formulas": [
+    {
+      "label": "Random-restart hill climbing rule",
+      "expression": "best = max_(r=1..R) HillClimb(random_start_r)",
+      "meaning": "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+    }
+  ],
+  "example": {
+    "title": "Random-restart hill climbing in a small case",
+    "setup": "Solve an N-queens instance from twenty random initial boards.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A restart that enters the basin of a zero-conflict board supplies a valid solution."
+  },
+  "pitfalls": [
+    "Random-restart hill climbing failure 1: Restarts should be genuinely diverse; nearly identical starts waste the additional runs.",
+    "Random-restart hill climbing failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Random-restart hill climbing failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Random-restart hill climbing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Random-restart hill climbing, compare the quantity named in “Random-restart hill climbing runs local search from multiple independently chosen starting states.” across training, evaluation, and shifted inputs.",
+    "Ship Random-restart hill climbing with a counterexample test derived from “Restarts should be genuinely diverse; nearly identical starts waste the additional runs.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
+    "Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
+    "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof.",
+    "A restart that enters the basin of a zero-conflict board supplies a valid solution."
+  ]
+};
+
+<LessonBody narrative={narrative} />

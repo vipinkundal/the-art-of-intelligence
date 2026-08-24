@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Conflict-driven clause learning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "CDCL extends SAT search by analyzing conflicts and learning clauses that prevent equivalent failures.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Record implication reasons, derive a conflict clause, backjump to a relevant decision level, and continue with learned knowledge."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Learning and non-chronological backtracking make industrial SAT solving powerful, but clause management and heuristics are complex."
+    }
+  ],
+  "process": [
+    "Conflict-driven clause learning step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Conflict-driven clause learning step 2: Apply the central rule: Record implication reasons, derive a conflict clause, backjump to a relevant decision level, and continue with learned knowledge.",
+    "Conflict-driven clause learning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Conflict-driven clause learning step 4: Stop and interpret the result using this criterion: Learning and non-chronological backtracking make industrial SAT solving powerful, but clause management and heuristics are complex."
+  ],
+  "formulas": [
+    {
+      "label": "Conflict-driven clause learning rule",
+      "expression": "conflict graph -> learned clause -> backjump",
+      "meaning": "Learning and non-chronological backtracking make industrial SAT solving powerful, but clause management and heuristics are complex."
+    }
+  ],
+  "example": {
+    "title": "Conflict-driven clause learning in a small case",
+    "setup": "A sequence of decisions implies both X and not X.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Record implication reasons, derive a conflict clause, backjump to a relevant decision level, and continue with learned knowledge.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The solver learns a clause blocking the responsible decision combination and jumps past irrelevant choices."
+  },
+  "pitfalls": [
+    "Conflict-driven clause learning failure 1: Keeping every learned clause forever can exhaust memory and slow propagation.",
+    "Conflict-driven clause learning failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Conflict-driven clause learning failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Conflict-driven clause learning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Conflict-driven clause learning, compare the quantity named in “CDCL extends SAT search by analyzing conflicts and learning clauses that prevent equivalent failures.” across training, evaluation, and shifted inputs.",
+    "Ship Conflict-driven clause learning with a counterexample test derived from “Keeping every learned clause forever can exhaust memory and slow propagation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "CDCL extends SAT search by analyzing conflicts and learning clauses that prevent equivalent failures.",
+    "Record implication reasons, derive a conflict clause, backjump to a relevant decision level, and continue with learned knowledge.",
+    "Learning and non-chronological backtracking make industrial SAT solving powerful, but clause management and heuristics are complex.",
+    "The solver learns a clause blocking the responsible decision combination and jumps past irrelevant choices."
+  ]
+};
+
+<LessonBody narrative={narrative} />

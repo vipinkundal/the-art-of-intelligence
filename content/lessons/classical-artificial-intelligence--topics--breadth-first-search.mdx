@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Breadth-first search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Breadth-first search expands the shallowest states before any deeper states.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use a FIFO queue, enqueuing each newly discovered successor after the current frontier."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+    }
+  ],
+  "process": [
+    "Breadth-first search step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Breadth-first search step 2: Apply the central rule: Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
+    "Breadth-first search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Breadth-first search step 4: Stop and interpret the result using this criterion: It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+  ],
+  "formulas": [
+    {
+      "label": "Breadth-first search rule",
+      "expression": "frontier = FIFO; time and memory = O(b^d)",
+      "meaning": "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+    }
+  ],
+  "example": {
+    "title": "Breadth-first search in a small case",
+    "setup": "In an unweighted maze, place the start cell in a queue and expand cells layer by layer.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The first time the goal is dequeued, its path uses the fewest moves."
+  },
+  "pitfalls": [
+    "Breadth-first search failure 1: Mark states when discovered to prevent cycles and repeated queue entries.",
+    "Breadth-first search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Breadth-first search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Breadth-first search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Breadth-first search, compare the quantity named in “Breadth-first search expands the shallowest states before any deeper states.” across training, evaluation, and shifted inputs.",
+    "Ship Breadth-first search with a counterexample test derived from “Mark states when discovered to prevent cycles and repeated queue entries.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Breadth-first search expands the shallowest states before any deeper states.",
+    "Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
+    "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier.",
+    "The first time the goal is dequeued, its path uses the fewest moves."
+  ]
+};
+
+<LessonBody narrative={narrative} />

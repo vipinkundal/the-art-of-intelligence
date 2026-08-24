@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Knowledge distillation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.",
+  "concepts": [
+    {
+      "title": "Teacher",
+      "explanation": "A stronger model or ensemble that supplies target behavior."
+    },
+    {
+      "title": "Student",
+      "explanation": "A usually smaller or faster model optimized to imitate the teacher."
+    },
+    {
+      "title": "Temperature",
+      "explanation": "A scale that softens logits so non-maximal class relationships become visible."
+    }
+  ],
+  "process": [
+    "Knowledge distillation step 1: Run the teacher on training inputs, often without gradient updates.",
+    "Knowledge distillation step 2: Soften teacher and student logits with temperature T.",
+    "Knowledge distillation step 3: Measure their distribution or feature mismatch.",
+    "Knowledge distillation step 4: Combine distillation and ground-truth losses to update the student."
+  ],
+  "formulas": [
+    {
+      "label": "Soft targets",
+      "expression": "p_T = softmax(z/T)",
+      "meaning": "expose relative class preferences with temperature T"
+    },
+    {
+      "label": "Student objective",
+      "expression": "L = alpha L_hard + (1-alpha) T^2 KL(p_teacher,T || p_student,T)",
+      "meaning": "balance labels with teacher imitation"
+    }
+  ],
+  "example": {
+    "title": "Distill an image classifier",
+    "setup": "A large teacher assigns probabilities (0.70,0.25,0.05) while the label is class 1.",
+    "steps": [
+      "The hard label says only that class 1 is correct.",
+      "The teacher also signals that class 2 resembles the input more than class 3.",
+      "The student learns from both signals."
+    ],
+    "result": "The student can inherit useful class structure while using fewer parameters."
+  },
+  "pitfalls": [
+    "Knowledge distillation failure 1: A biased or incorrect teacher transfers its errors to the student.",
+    "Knowledge distillation failure 2: Temperature, loss balance, data coverage, and student capacity strongly affect results.",
+    "Knowledge distillation failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+  ],
+  "implementation": [
+    "Represent the central state for Knowledge distillation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Knowledge distillation, compare the quantity named in “Student loss combines ordinary supervision with a temperature-scaled divergence from teacher outputs or selected feature” across training, evaluation, and shifted inputs.",
+    "Ship Knowledge distillation with a counterexample test derived from “A biased or incorrect teacher transfers its errors to the student.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.",
+    "Student loss combines ordinary supervision with a temperature-scaled divergence from teacher outputs or selected features.",
+    "Distillation supports deployment compression, ensemble transfer, model-family transfer, and self-distillation.",
+    "A biased or incorrect teacher transfers its errors to the student."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Markov random fields: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+    }
+  ],
+  "process": [
+    "Markov random fields step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Markov random fields step 2: Apply the central computation: Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
+    "Markov random fields step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Markov random fields step 4: Interpret the result under this limitation: Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+  ],
+  "formulas": [
+    {
+      "label": "Markov random fields rule",
+      "expression": "P(x) = (1/Z) product_c psi_c(x_c)",
+      "meaning": "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+    }
+  ],
+  "example": {
+    "title": "Markov random fields in a small case",
+    "setup": "Represent neighboring pixels whose labels prefer to agree while each pixel also follows its observed intensity.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "The posterior balances local image evidence against smoothness between neighboring labels."
+  },
+  "pitfalls": [
+    "Markov random fields failure 1: Potentials are compatibility scores, not probabilities unless the complete model is normalized.",
+    "Markov random fields failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Markov random fields failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+  ],
+  "implementation": [
+    "Represent the central state for Markov random fields explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Markov random fields, compare the quantity named in “A Markov random field is an undirected graph that represents local compatibility relationships between random variables.” across training, evaluation, and shifted inputs.",
+    "Ship Markov random fields with a counterexample test derived from “Potentials are compatibility scores, not probabilities unless the complete model is normalized.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
+    "Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
+    "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable.",
+    "The posterior balances local image evidence against smoothness between neighboring labels."
+  ]
+};
+
+<LessonBody narrative={narrative} />

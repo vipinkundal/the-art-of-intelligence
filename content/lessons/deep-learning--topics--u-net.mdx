@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for U-Net: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "U-Net is a specific encoder-decoder architecture originally designed for precise biomedical image segmentation.",
+  "concepts": [
+    {
+      "title": "Symmetric paths",
+      "explanation": "Encoder and decoder contain corresponding resolution levels."
+    },
+    {
+      "title": "Skip concatenation",
+      "explanation": "Same-scale encoder features expand the decoder's available detail."
+    },
+    {
+      "title": "Dense prediction head",
+      "explanation": "A final pointwise convolution produces per-pixel class logits."
+    }
+  ],
+  "process": [
+    "U-Net step 1: Apply repeated convolutions and downsampling in the encoder.",
+    "U-Net step 2: Process the lowest-resolution bottleneck.",
+    "U-Net step 3: Upsample one level and concatenate the matching encoder feature.",
+    "U-Net step 4: Repeat to full resolution and predict each pixel."
+  ],
+  "formulas": [
+    {
+      "label": "Pixel classifier",
+      "expression": "p(y_(i,j)|x) = softmax(W h_(i,j) + b)",
+      "meaning": "classify every output location from its decoded feature"
+    }
+  ],
+  "example": {
+    "title": "Segment cells with few images",
+    "setup": "Train U-Net on microscopy crops with corresponding masks.",
+    "steps": [
+      "Augment images and masks with the same transforms.",
+      "Use encoder context to recognize cell interiors.",
+      "Use skip detail to reconstruct cell boundaries."
+    ],
+    "result": "The network outputs a full-resolution probability mask for each cell class."
+  },
+  "pitfalls": [
+    "U-Net failure 1: The original valid convolutions required cropping skips; modern padded variants have different alignment behavior.",
+    "U-Net failure 2: Pixel accuracy can hide poor boundary or minority-class performance.",
+    "U-Net failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+  ],
+  "implementation": [
+    "Represent the central state for U-Net explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For U-Net, compare the quantity named in “At each decoder resolution, an upsampled feature map is concatenated with a cropped or aligned encoder feature from the ” across training, evaluation, and shifted inputs.",
+    "Ship U-Net with a counterexample test derived from “The original valid convolutions required cropping skips; modern padded variants have different alignment behavior.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "U-Net is a specific encoder-decoder architecture originally designed for precise biomedical image segmentation.",
+    "At each decoder resolution, an upsampled feature map is concatenated with a cropped or aligned encoder feature from the same scale.",
+    "U-Net became a default segmentation baseline and inspired architectures used in diffusion, restoration, medical imaging, and scientific analysis.",
+    "The original valid convolutions required cropping skips; modern padded variants have different alignment behavior."
+  ]
+};
+
+<LessonBody narrative={narrative} />

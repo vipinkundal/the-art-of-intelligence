@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Planning under uncertainty: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Planning under uncertainty chooses actions when state, observations, or outcomes are not fully known.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Maintain a belief distribution and optimize expected cumulative utility while accounting for information gained by actions."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "The framework is realistic but belief spaces are continuous and exact solutions are often intractable."
+    }
+  ],
+  "process": [
+    "Planning under uncertainty step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Planning under uncertainty step 2: Apply the central rule: Maintain a belief distribution and optimize expected cumulative utility while accounting for information gained by actions.",
+    "Planning under uncertainty step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Planning under uncertainty step 4: Stop and interpret the result using this criterion: The framework is realistic but belief spaces are continuous and exact solutions are often intractable."
+  ],
+  "formulas": [
+    {
+      "label": "Planning under uncertainty rule",
+      "expression": "b'(s') proportional O(o|s',a) sum_s T(s'|s,a)b(s)",
+      "meaning": "The framework is realistic but belief spaces are continuous and exact solutions are often intractable."
+    }
+  ],
+  "example": {
+    "title": "Planning under uncertainty in a small case",
+    "setup": "A maintenance agent chooses whether to inspect a machine before replacing a component.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Maintain a belief distribution and optimize expected cumulative utility while accounting for information gained by actions.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Inspection can be valuable because its observation improves later decisions, not because it directly repairs the machine."
+  },
+  "pitfalls": [
+    "Planning under uncertainty failure 1: Expected value depends on calibrated transition, observation, and reward models.",
+    "Planning under uncertainty failure 2: A plan is only as reliable as its action model and observations.",
+    "Planning under uncertainty failure 3: Execution monitoring and replanning are essential when the world can change."
+  ],
+  "implementation": [
+    "Represent the central state for Planning under uncertainty explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Planning under uncertainty, compare the quantity named in “Planning under uncertainty chooses actions when state, observations, or outcomes are not fully known.” across training, evaluation, and shifted inputs.",
+    "Ship Planning under uncertainty with a counterexample test derived from “Expected value depends on calibrated transition, observation, and reward models.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Planning under uncertainty chooses actions when state, observations, or outcomes are not fully known.",
+    "Maintain a belief distribution and optimize expected cumulative utility while accounting for information gained by actions.",
+    "The framework is realistic but belief spaces are continuous and exact solutions are often intractable.",
+    "Inspection can be valuable because its observation improves later decisions, not because it directly repairs the machine."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Dilation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Dilation spaces kernel taps apart so a small kernel covers a larger input region.",
+  "concepts": [
+    {
+      "title": "Effective kernel",
+      "explanation": "A K-wide kernel with dilation D spans D(K-1)+1 input positions."
+    },
+    {
+      "title": "Atrous convolution",
+      "explanation": "Another name for dilated convolution, emphasizing holes between taps."
+    },
+    {
+      "title": "Multi-scale context",
+      "explanation": "Combining dilation rates captures patterns at several spatial scales."
+    }
+  ],
+  "process": [
+    "Dilation step 1: Select the base kernel size.",
+    "Dilation step 2: Choose a dilation rate for the desired context span.",
+    "Dilation step 3: Sample the input at dilated offsets for each kernel tap.",
+    "Dilation step 4: Use padding that preserves the intended alignment and output size."
+  ],
+  "formulas": [
+    {
+      "label": "Effective kernel size",
+      "expression": "K_eff = D(K-1) + 1",
+      "meaning": "measure the span covered by a dilated kernel"
+    }
+  ],
+  "example": {
+    "title": "Expand a three-tap filter",
+    "setup": "Use K=3 with dilation D=2.",
+    "steps": [
+      "Tap offsets become 0, 2, and 4.",
+      "The filter still has three learned weights.",
+      "Its first-to-last span is five input positions."
+    ],
+    "result": "The effective kernel size is 5 without adding parameters."
+  },
+  "pitfalls": [
+    "Dilation failure 1: Large repeated dilation can create gridding artifacts and miss intermediate positions.",
+    "Dilation failure 2: Effective receptive field grows only if surrounding layers and padding preserve the information.",
+    "Dilation failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Dilation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Dilation, compare the quantity named in “A dilation factor D samples input positions D steps apart along each kernel axis.” across training, evaluation, and shifted inputs.",
+    "Ship Dilation with a counterexample test derived from “Large repeated dilation can create gridding artifacts and miss intermediate positions.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Dilation spaces kernel taps apart so a small kernel covers a larger input region.",
+    "A dilation factor D samples input positions D steps apart along each kernel axis.",
+    "Dilated convolutions add broad context for segmentation, audio generation, and temporal models while retaining dense outputs.",
+    "Large repeated dilation can create gridding artifacts and miss intermediate positions."
+  ]
+};
+
+<LessonBody narrative={narrative} />

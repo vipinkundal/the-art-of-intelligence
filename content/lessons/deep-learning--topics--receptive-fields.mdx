@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Receptive fields: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A unit's receptive field is the region of the original input that can influence that unit.",
+  "concepts": [
+    {
+      "title": "Theoretical receptive field",
+      "explanation": "All input positions connected to an output by the architecture."
+    },
+    {
+      "title": "Effective receptive field",
+      "explanation": "The subset that has substantial practical influence, often concentrated near the center."
+    },
+    {
+      "title": "Jump",
+      "explanation": "The distance in input coordinates between neighboring units at a layer."
+    }
+  ],
+  "process": [
+    "Receptive fields step 1: Start at an output unit with receptive field one and jump one.",
+    "Receptive fields step 2: For each earlier layer, add (K-1) times the current jump to the field size.",
+    "Receptive fields step 3: Multiply the jump by the layer stride.",
+    "Receptive fields step 4: Include dilation through the effective kernel size."
+  ],
+  "formulas": [
+    {
+      "label": "Receptive-field update",
+      "expression": "r_l = r_(l-1) + (K_l-1) j_(l-1)",
+      "meaning": "expand the field by the new kernel span"
+    },
+    {
+      "label": "Jump update",
+      "expression": "j_l = j_(l-1) S_l",
+      "meaning": "track spacing in original input coordinates"
+    }
+  ],
+  "example": {
+    "title": "Stack two three-by-three convolutions",
+    "setup": "Both layers have stride 1 and no dilation.",
+    "steps": [
+      "The first layer sees a 3-by-3 region.",
+      "The second adds two input positions on each span through the first layer's unit spacing.",
+      "No stride changes the jump."
+    ],
+    "result": "A second-layer unit has a 5-by-5 theoretical receptive field."
+  },
+  "pitfalls": [
+    "Receptive fields failure 1: Theoretical connectivity does not mean every input position has equal influence.",
+    "Receptive fields failure 2: Ignoring stride and dilation gives incorrect receptive-field calculations.",
+    "Receptive fields failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Receptive fields explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Receptive fields, compare the quantity named in “Track each layer's receptive-field span and jump between adjacent units back through the stack.” across training, evaluation, and shifted inputs.",
+    "Ship Receptive fields with a counterexample test derived from “Theoretical connectivity does not mean every input position has equal influence.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A unit's receptive field is the region of the original input that can influence that unit.",
+    "Track each layer's receptive-field span and jump between adjacent units back through the stack.",
+    "Receptive fields determine whether a feature can use enough context for objects, long audio patterns, or dense predictions.",
+    "Theoretical connectivity does not mean every input position has equal influence."
+  ]
+};
+
+<LessonBody narrative={narrative} />

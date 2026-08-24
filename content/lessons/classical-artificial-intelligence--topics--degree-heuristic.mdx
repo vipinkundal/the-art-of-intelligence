@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Degree heuristic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It can trigger broad propagation, but raw degree may not reflect constraint tightness."
+    }
+  ],
+  "process": [
+    "Degree heuristic step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Degree heuristic step 2: Apply the central rule: Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
+    "Degree heuristic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Degree heuristic step 4: Stop and interpret the result using this criterion: It can trigger broad propagation, but raw degree may not reflect constraint tightness."
+  ],
+  "formulas": [
+    {
+      "label": "Degree heuristic rule",
+      "expression": "X = argmax_unassigned degree_to_unassigned(X)",
+      "meaning": "It can trigger broad propagation, but raw degree may not reflect constraint tightness."
+    }
+  ],
+  "example": {
+    "title": "Degree heuristic in a small case",
+    "setup": "Two map regions each have two colors left; one borders five unassigned regions and the other borders one.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Choose the five-neighbor region to reduce more future choices."
+  },
+  "pitfalls": [
+    "Degree heuristic failure 1: Count only relevant unassigned neighbors during search.",
+    "Degree heuristic failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Degree heuristic failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Degree heuristic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Degree heuristic, compare the quantity named in “The degree heuristic selects a variable constraining the largest number of unassigned neighbors.” across training, evaluation, and shifted inputs.",
+    "Ship Degree heuristic with a counterexample test derived from “Count only relevant unassigned neighbors during search.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
+    "Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
+    "It can trigger broad propagation, but raw degree may not reflect constraint tightness.",
+    "Choose the five-neighbor region to reduce more future choices."
+  ]
+};
+
+<LessonBody narrative={narrative} />

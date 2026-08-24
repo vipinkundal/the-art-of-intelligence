@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Encoder-decoder networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A convolutional encoder-decoder compresses spatial input into higher-level features and decodes them into a structured output.",
+  "concepts": [
+    {
+      "title": "Encoder",
+      "explanation": "Transforms input into progressively lower-resolution, higher-channel features."
+    },
+    {
+      "title": "Bottleneck",
+      "explanation": "The most compressed representation with broad contextual coverage."
+    },
+    {
+      "title": "Decoder",
+      "explanation": "Upsamples and refines features into an output grid."
+    }
+  ],
+  "process": [
+    "Encoder-decoder networks step 1: Extract and downsample local features.",
+    "Encoder-decoder networks step 2: Process the compressed bottleneck representation.",
+    "Encoder-decoder networks step 3: Upsample with interpolation, unpooling, or learned transposed convolution.",
+    "Encoder-decoder networks step 4: Predict the required dense output and optimize a spatial loss."
+  ],
+  "formulas": [
+    {
+      "label": "Encoder-decoder mapping",
+      "expression": "y_hat = D_phi(E_theta(x))",
+      "meaning": "decode a learned encoded representation into a structured target"
+    }
+  ],
+  "example": {
+    "title": "Predict a segmentation mask",
+    "setup": "An encoder reduces a 256x256 image to a 16x16 bottleneck.",
+    "steps": [
+      "The encoder learns object and context features.",
+      "The decoder upsamples through several stages.",
+      "A final 1x1 convolution produces class logits at every pixel."
+    ],
+    "result": "The network outputs a 256x256 semantic label distribution."
+  },
+  "pitfalls": [
+    "Encoder-decoder networks failure 1: A narrow bottleneck can discard fine spatial information.",
+    "Encoder-decoder networks failure 2: Naive upsampling can create checkerboard artifacts or blurry boundaries.",
+    "Encoder-decoder networks failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Encoder-decoder networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Encoder-decoder networks, compare the quantity named in “Downsampling stages build abstractions, a bottleneck processes compact features, and upsampling stages reconstruct spati” across training, evaluation, and shifted inputs.",
+    "Ship Encoder-decoder networks with a counterexample test derived from “A narrow bottleneck can discard fine spatial information.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A convolutional encoder-decoder compresses spatial input into higher-level features and decodes them into a structured output.",
+    "Downsampling stages build abstractions, a bottleneck processes compact features, and upsampling stages reconstruct spatial detail.",
+    "Encoder-decoders support segmentation, restoration, super-resolution, depth estimation, autoencoding, and conditional generation.",
+    "A narrow bottleneck can discard fine spatial information."
+  ]
+};
+
+<LessonBody narrative={narrative} />

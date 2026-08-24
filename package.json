@@ -2,17 +2,46 @@
   "name": "the-art-of-intelligence",
   "version": "0.1.0",
   "private": true,
-  "description": "A simple AI learning roadmap and lesson website.",
+  "description": "A visual learning lab for advanced AI practitioners.",
   "type": "module",
   "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "npm run content:generate && npm run content:validate && next build --webpack",
+    "start": "next dev --hostname 127.0.0.1",
+    "preview": "SITE_ROOT=out node scripts/serve.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint app components lib mdx-components.tsx",
+    "content:generate": "node scripts/generate-next-content.mjs",
+    "content:validate": "node scripts/validate-next-content.mjs",
+    "test": "node --test scripts/visual-lab.test.mjs",
+    "check": "npm run content:generate && npm run content:validate && npm run test && npm run typecheck && npm run lint",
     "audit:lessons": "node scripts/audit-lessons.mjs",
-    "apply:templates": "node scripts/apply-site-templates.mjs",
-    "check": "npm run check:scripts && npm run audit:lessons",
-    "check:scripts": "node --check lesson-data.js && node --check site-template.js && node --check lessons/generative-modelling/generative-modelling-data.js && node --check lessons/generative-modelling/generative-modelling-index.js && node --check lessons/generative-modelling/generative-modelling-topic.js && node --check lessons/mathematical-foundations/mathematical-foundations-data.js && node --check lessons/mathematical-foundations/linear-algebra-details.js && node --check lessons/mathematical-foundations/calculus-details.js && node --check lessons/mathematical-foundations/probability-details.js && node --check lessons/mathematical-foundations/statistics-details.js && node --check lessons/mathematical-foundations/optimization-details.js && node --check lessons/mathematical-foundations/information-theory-details.js && node --check lessons/mathematical-foundations/discrete-mathematics-details.js && node --check lessons/mathematical-foundations/mathematical-foundations-topic.js && node --check lessons/mathematical-foundations/mathematical-foundations-overview.js && node --check lessons/classical-artificial-intelligence/classical-ai-data.js && node --check lessons/classical-artificial-intelligence/classical-ai-topic.js && node --check lessons/probabilistic-ai/probabilistic-ai-data.js && node --check lessons/probabilistic-ai/probabilistic-ai-topic.js && node --check scripts/generate-classical-ai-topics.mjs && node --check scripts/generate-probabilistic-ai-topics.mjs && node --check scripts/audit-lessons.mjs && node --check scripts/apply-site-templates.mjs && node --check scripts/create-lesson.mjs && node --check scripts/list-lessons.mjs && node --check scripts/serve.mjs",
+    "legacy:serve": "node scripts/serve.mjs",
     "generate:classical-ai-topics": "node scripts/generate-classical-ai-topics.mjs",
     "generate:probabilistic-ai-topics": "node scripts/generate-probabilistic-ai-topics.mjs",
     "create:lesson": "node scripts/create-lesson.mjs",
     "list:lessons": "node scripts/list-lessons.mjs",
-    "serve": "node scripts/serve.mjs"
+    "serve": "next dev --hostname 127.0.0.1"
+  },
+  "dependencies": {
+    "@mdx-js/loader": "^3.1.1",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "^16.3.2",
+    "@phosphor-icons/react": "^2.1.10",
+    "@types/mdx": "^2.0.14",
+    "d3": "^7.9.0",
+    "next": "^16.3.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.2",
+    "typescript": "^6.0.3"
   }
 }

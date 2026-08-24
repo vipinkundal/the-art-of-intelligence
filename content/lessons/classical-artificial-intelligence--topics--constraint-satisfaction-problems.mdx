@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Constraint-satisfaction problems: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Represent variables X, domains D, and constraints C, then combine propagation with search or local repair."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+    }
+  ],
+  "process": [
+    "Constraint-satisfaction problems step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Constraint-satisfaction problems step 2: Apply the central rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
+    "Constraint-satisfaction problems step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Constraint-satisfaction problems step 4: Stop and interpret the result using this criterion: CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+  ],
+  "formulas": [
+    {
+      "label": "Constraint-satisfaction problems rule",
+      "expression": "CSP=(X,D,C); find x such that all C_i(x)=true",
+      "meaning": "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+    }
+  ],
+  "example": {
+    "title": "Constraint-satisfaction problems in a small case",
+    "setup": "Color a map so adjacent regions receive different colors.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A complete assignment with no equal-colored neighbors is a solution."
+  },
+  "pitfalls": [
+    "Constraint-satisfaction problems failure 1: Distinguish hard constraints from preferences or optimization objectives.",
+    "Constraint-satisfaction problems failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Constraint-satisfaction problems failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Constraint-satisfaction problems explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Constraint-satisfaction problems, compare the quantity named in “A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.” across training, evaluation, and shifted inputs.",
+    "Ship Constraint-satisfaction problems with a counterexample test derived from “Distinguish hard constraints from preferences or optimization objectives.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
+    "Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
+    "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure.",
+    "A complete assignment with no equal-colored neighbors is a solution."
+  ]
+};
+
+<LessonBody narrative={narrative} />

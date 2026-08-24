@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Pooling: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.",
+  "concepts": [
+    {
+      "title": "Max pooling",
+      "explanation": "Keeps the strongest activation in each window."
+    },
+    {
+      "title": "Average pooling",
+      "explanation": "Keeps the mean response and preserves aggregate signal."
+    },
+    {
+      "title": "Global pooling",
+      "explanation": "Reduces an entire spatial map to one value per channel."
+    }
+  ],
+  "process": [
+    "Pooling step 1: Choose window size, stride, and padding.",
+    "Pooling step 2: Extract one local window per channel.",
+    "Pooling step 3: Apply max, mean, or another pooling statistic.",
+    "Pooling step 4: Repeat across the map and propagate gradients through the selected statistic."
+  ],
+  "formulas": [
+    {
+      "label": "Average pool",
+      "expression": "y[i] = (1/|R_i|) sum_(j in R_i) x[j]",
+      "meaning": "average values in pooling region R_i"
+    },
+    {
+      "label": "Max pool",
+      "expression": "y[i] = max_(j in R_i) x[j]",
+      "meaning": "keep the strongest local value"
+    }
+  ],
+  "example": {
+    "title": "Pool a two-by-two patch",
+    "setup": "The patch contains [[1,4],[2,3]].",
+    "steps": [
+      "List the four values.",
+      "Max pooling selects 4.",
+      "Average pooling computes (1+4+2+3)/4."
+    ],
+    "result": "Max output is 4 and average output is 2.5."
+  },
+  "pitfalls": [
+    "Pooling failure 1: Aggressive pooling discards precise position and small-object detail.",
+    "Pooling failure 2: Max pooling routes gradient only through selected maxima, which can make optimization sparse.",
+    "Pooling failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+  ],
+  "implementation": [
+    "Represent the central state for Pooling explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Pooling, compare the quantity named in “A window slides over each channel independently and replaces its covered values with one statistic.” across training, evaluation, and shifted inputs.",
+    "Ship Pooling with a counterexample test derived from “Aggressive pooling discards precise position and small-object detail.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.",
+    "A window slides over each channel independently and replaces its covered values with one statistic.",
+    "Pooling reduces compute and creates tolerance to small local translations in classic CNNs.",
+    "Aggressive pooling discards precise position and small-object detail."
+  ]
+};
+
+<LessonBody narrative={narrative} />

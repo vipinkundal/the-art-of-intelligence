@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Description logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Description logics represent concepts, roles, individuals, and structured class restrictions.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "They balance expressive ontology modelling with decidable inference; different DL families have different complexity."
+    }
+  ],
+  "process": [
+    "Description logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Description logic step 2: Apply the central rule: Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
+    "Description logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Description logic step 4: Stop and interpret the result using this criterion: They balance expressive ontology modelling with decidable inference; different DL families have different complexity."
+  ],
+  "formulas": [
+    {
+      "label": "Description logic rule",
+      "expression": "Parent subseteq Person and exists hasChild.Person",
+      "meaning": "They balance expressive ontology modelling with decidable inference; different DL families have different complexity."
+    }
+  ],
+  "example": {
+    "title": "Description logic in a small case",
+    "setup": "Define Surgeon as Doctor and exists performs.Surgery.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A reasoner can infer that every surgeon is a doctor and classify matching individuals."
+  },
+  "pitfalls": [
+    "Description logic failure 1: Adding expressive constructors can sharply increase reasoning cost.",
+    "Description logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Description logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Description logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Description logic, compare the quantity named in “Description logics represent concepts, roles, individuals, and structured class restrictions.” across training, evaluation, and shifted inputs.",
+    "Ship Description logic with a counterexample test derived from “Adding expressive constructors can sharply increase reasoning cost.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Description logics represent concepts, roles, individuals, and structured class restrictions.",
+    "Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
+    "They balance expressive ontology modelling with decidable inference; different DL families have different complexity.",
+    "A reasoner can infer that every surgeon is a doctor and classify matching individuals."
+  ]
+};
+
+<LessonBody narrative={narrative} />

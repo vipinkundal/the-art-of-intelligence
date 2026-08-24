@@ -1,0 +1,74 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat AI Safety, Security, Privacy And Governance as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "AI safety, security, privacy, and governance are required engineering knowledge, not an optional ethics appendix. Responsible AI work combines robustness, threat modeling, privacy protection, measurement, documentation, accountability, and risk management.",
+  "concepts": [
+    {
+      "title": "23.1 Robustness and uncertainty",
+      "explanation": "Distribution shift : The deployment distribution differs from the training distribution."
+    },
+    {
+      "title": "23.1 Robustness and uncertainty",
+      "explanation": "Covariate shift : Input feature distributions change while the conditional label relationship is assumed stable."
+    },
+    {
+      "title": "23.1 Robustness and uncertainty",
+      "explanation": "Label shift : Class proportions change while class-conditional feature distributions are assumed stable."
+    },
+    {
+      "title": "23.1 Robustness and uncertainty",
+      "explanation": "Domain adaptation : Adapts models trained in one domain to perform reliably in another."
+    },
+    {
+      "title": "23.1 Robustness and uncertainty",
+      "explanation": "Out-of-distribution detection : Flags inputs that do not resemble training data or supported use cases."
+    },
+    {
+      "title": "23.2 Adversarial machine learning",
+      "explanation": "Evasion attacks : Modify inputs at inference time to induce incorrect behavior."
+    },
+    {
+      "title": "23.2 Adversarial machine learning",
+      "explanation": "FGSM : Uses the sign of the input gradient to create a small adversarial perturbation."
+    },
+    {
+      "title": "23.2 Adversarial machine learning",
+      "explanation": "PGD : Repeats projected gradient steps to search for stronger bounded perturbations."
+    }
+  ],
+  "process": [
+    "Distribution shift : The deployment distribution differs from the training distribution.",
+    "Covariate shift : Input feature distributions change while the conditional label relationship is assumed stable.",
+    "Label shift : Class proportions change while class-conditional feature distributions are assumed stable.",
+    "Domain adaptation : Adapts models trained in one domain to perform reliably in another.",
+    "Out-of-distribution detection : Flags inputs that do not resemble training data or supported use cases."
+  ],
+  "formulas": [
+    {
+      "label": "AI Safety, Security, Privacy And Governance field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the evaluation lab."
+    }
+  ],
+  "example": {
+    "title": "AI Safety, Security, Privacy And Governance in operation",
+    "setup": "AI safety, security, privacy, and governance are required engineering knowledge, not an optional ethics appendix. Responsible AI work combines robustness, threat modeling, privacy protection, measurement, documentation, accountability, and risk management.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term AI Safety, Security, Privacy And Governance."
+  },
+  "pitfalls": [
+    "AI Safety, Security, Privacy And Governance failure 1: A correct definition of AI Safety, Security, Privacy And Governance can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "AI safety, security, privacy, and governance are required engineering knowledge, not an optional ethics appendix. Responsible AI work combines robustness, threat modeling, privacy protection, measurement, documentation, accountability, and risk management.",
+    "You should be able to explain robustness and uncertainty methods, adversarial ML threats, language-model and agent security risks, privacy-preserving training concepts, fairness metrics, documentation practices, oversight mechanisms, and a practical governance workflow for mapping, measuring, and managing AI risk."
+  ]
+};
+
+<LessonBody narrative={narrative} />

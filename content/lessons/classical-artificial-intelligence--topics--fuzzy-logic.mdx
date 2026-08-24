@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Fuzzy logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Fuzzy logic represents graded membership and truth values between zero and one.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Map crisp inputs through membership functions, combine fuzzy rules, aggregate outputs, and optionally defuzzify."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It expresses vague categories transparently but fuzzy degree is not the same as probability of uncertainty."
+    }
+  ],
+  "process": [
+    "Fuzzy logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Fuzzy logic step 2: Apply the central rule: Map crisp inputs through membership functions, combine fuzzy rules, aggregate outputs, and optionally defuzzify.",
+    "Fuzzy logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Fuzzy logic step 4: Stop and interpret the result using this criterion: It expresses vague categories transparently but fuzzy degree is not the same as probability of uncertainty."
+  ],
+  "formulas": [
+    {
+      "label": "Fuzzy logic rule",
+      "expression": "mu_A(x) in [0,1]; mu_(A and B)=min(mu_A,mu_B)",
+      "meaning": "It expresses vague categories transparently but fuzzy degree is not the same as probability of uncertainty."
+    }
+  ],
+  "example": {
+    "title": "Fuzzy logic in a small case",
+    "setup": "Control a fan using fuzzy rules for slightly hot, hot, and very hot temperatures.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Map crisp inputs through membership functions, combine fuzzy rules, aggregate outputs, and optionally defuzzify.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Overlapping memberships produce a smooth control output rather than hard threshold jumps."
+  },
+  "pitfalls": [
+    "Fuzzy logic failure 1: Membership functions and rule aggregation encode design choices that require validation.",
+    "Fuzzy logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Fuzzy logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Fuzzy logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Fuzzy logic, compare the quantity named in “Fuzzy logic represents graded membership and truth values between zero and one.” across training, evaluation, and shifted inputs.",
+    "Ship Fuzzy logic with a counterexample test derived from “Membership functions and rule aggregation encode design choices that require validation.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Fuzzy logic represents graded membership and truth values between zero and one.",
+    "Map crisp inputs through membership functions, combine fuzzy rules, aggregate outputs, and optionally defuzzify.",
+    "It expresses vague categories transparently but fuzzy degree is not the same as probability of uncertainty.",
+    "Overlapping memberships produce a smooth control output rather than hard threshold jumps."
+  ]
+};
+
+<LessonBody narrative={narrative} />

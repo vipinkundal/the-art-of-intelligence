@@ -6,7 +6,7 @@ import { createServer } from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", process.env.SITE_ROOT || ".");
 const host = process.env.HOST || "127.0.0.1";
 const hasExplicitPort = Boolean(process.env.PORT);
 const requestedPort = hasExplicitPort ? parsePort(process.env.PORT) : 0;

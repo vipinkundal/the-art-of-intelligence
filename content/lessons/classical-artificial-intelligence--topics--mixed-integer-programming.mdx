@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Mixed-integer programming: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Mixed-integer programming combines discrete integer decisions with continuous quantities.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Model logical choices using integer or binary variables and flows, amounts, or times using continuous variables."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is expressive for real operations and supports optimality bounds, but formulations and big-M constants strongly affect solve time."
+    }
+  ],
+  "process": [
+    "Mixed-integer programming step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Mixed-integer programming step 2: Apply the central rule: Model logical choices using integer or binary variables and flows, amounts, or times using continuous variables.",
+    "Mixed-integer programming step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Mixed-integer programming step 4: Stop and interpret the result using this criterion: It is expressive for real operations and supports optimality bounds, but formulations and big-M constants strongly affect solve time."
+  ],
+  "formulas": [
+    {
+      "label": "Mixed-integer programming rule",
+      "expression": "min c^T x subject to Ax<=b, x_I in Z, x_C in R",
+      "meaning": "It is expressive for real operations and supports optimality bounds, but formulations and big-M constants strongly affect solve time."
+    }
+  ],
+  "example": {
+    "title": "Mixed-integer programming in a small case",
+    "setup": "Decide whether to open warehouses and how much product each open site ships.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Model logical choices using integer or binary variables and flows, amounts, or times using continuous variables.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Binary variables select sites while continuous variables allocate flow at minimum total cost."
+  },
+  "pitfalls": [
+    "Mixed-integer programming failure 1: Loose big-M values produce weak relaxations and numerical problems.",
+    "Mixed-integer programming failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Mixed-integer programming failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Mixed-integer programming explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Mixed-integer programming, compare the quantity named in “Mixed-integer programming combines discrete integer decisions with continuous quantities.” across training, evaluation, and shifted inputs.",
+    "Ship Mixed-integer programming with a counterexample test derived from “Loose big-M values produce weak relaxations and numerical problems.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Mixed-integer programming combines discrete integer decisions with continuous quantities.",
+    "Model logical choices using integer or binary variables and flows, amounts, or times using continuous variables.",
+    "It is expressive for real operations and supports optimality bounds, but formulations and big-M constants strongly affect solve time.",
+    "Binary variables select sites while continuous variables allocate flow at minimum total cost."
+  ]
+};
+
+<LessonBody narrative={narrative} />

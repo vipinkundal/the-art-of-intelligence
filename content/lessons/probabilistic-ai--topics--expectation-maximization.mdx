@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Expectation-maximization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Expectation-maximization estimates parameters when data contain latent or missing variables.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+    }
+  ],
+  "process": [
+    "Expectation-maximization step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Expectation-maximization step 2: Apply the central computation: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
+    "Expectation-maximization step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Expectation-maximization step 4: Interpret the result under this limitation: Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+  ],
+  "formulas": [
+    {
+      "label": "Expectation-maximization rule",
+      "expression": "Q(theta|theta_old)=E_{Z|X,theta_old}[log p(X,Z|theta)]; theta_new=argmax Q",
+      "meaning": "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+    }
+  ],
+  "example": {
+    "title": "Expectation-maximization in a small case",
+    "setup": "Fit a two-component Gaussian mixture without observed component labels.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Responsibilities from the E-step become weights for updated means, variances, and mixture proportions in the M-step."
+  },
+  "pitfalls": [
+    "Expectation-maximization failure 1: Use multiple initializations and monitor likelihood rather than only parameter movement.",
+    "Expectation-maximization failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Expectation-maximization failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+  ],
+  "implementation": [
+    "Represent the central state for Expectation-maximization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Expectation-maximization, compare the quantity named in “Expectation-maximization estimates parameters when data contain latent or missing variables.” across training, evaluation, and shifted inputs.",
+    "Ship Expectation-maximization with a counterexample test derived from “Use multiple initializations and monitor likelihood rather than only parameter movement.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Expectation-maximization estimates parameters when data contain latent or missing variables.",
+    "The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
+    "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization.",
+    "Responsibilities from the E-step become weights for updated means, variances, and mixture proportions in the M-step."
+  ]
+};
+
+<LessonBody narrative={narrative} />

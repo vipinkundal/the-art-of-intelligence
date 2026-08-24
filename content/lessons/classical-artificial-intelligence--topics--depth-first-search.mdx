@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Depth-first search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Depth-first search follows one branch as far as possible before backtracking.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on states, actions, a start condition, and a goal test."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use a LIFO stack or recursion so the most recently generated successor is expanded next."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+    }
+  ],
+  "process": [
+    "Depth-first search step 1: Represent the task using states, actions, a start condition, and a goal test.",
+    "Depth-first search step 2: Apply the central rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
+    "Depth-first search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Depth-first search step 4: Stop and interpret the result using this criterion: It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+  ],
+  "formulas": [
+    {
+      "label": "Depth-first search rule",
+      "expression": "frontier = LIFO; memory = O(bm)",
+      "meaning": "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+    }
+  ],
+  "example": {
+    "title": "Depth-first search in a small case",
+    "setup": "In a maze, always take the first unexplored corridor and backtrack at a dead end.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "DFS may find a goal quickly on a lucky branch, but the returned route need not be shortest."
+  },
+  "pitfalls": [
+    "Depth-first search failure 1: Recursive DFS can also fail through call-stack exhaustion on deep problems.",
+    "Depth-first search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
+    "Depth-first search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+  ],
+  "implementation": [
+    "Represent the central state for Depth-first search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Depth-first search, compare the quantity named in “Depth-first search follows one branch as far as possible before backtracking.” across training, evaluation, and shifted inputs.",
+    "Ship Depth-first search with a counterexample test derived from “Recursive DFS can also fail through call-stack exhaustion on deep problems.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Depth-first search follows one branch as far as possible before backtracking.",
+    "Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
+    "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards.",
+    "DFS may find a goal quickly on a lucky branch, but the returned route need not be shortest."
+  ]
+};
+
+<LessonBody narrative={narrative} />

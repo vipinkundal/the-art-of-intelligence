@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Constraint propagation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Constraint propagation repeatedly narrows domains using implications of the constraints.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Apply local inference rules until no domain changes or a contradiction empties a domain."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+    }
+  ],
+  "process": [
+    "Constraint propagation step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Constraint propagation step 2: Apply the central rule: Apply local inference rules until no domain changes or a contradiction empties a domain.",
+    "Constraint propagation step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Constraint propagation step 4: Stop and interpret the result using this criterion: Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+  ],
+  "formulas": [
+    {
+      "label": "Constraint propagation rule",
+      "expression": "domains <- fixed_point(propagate(domains,constraints))",
+      "meaning": "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+    }
+  ],
+  "example": {
+    "title": "Constraint propagation in a small case",
+    "setup": "In Sudoku, a cell reduced to one value removes that value from its peers.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Apply local inference rules until no domain changes or a contradiction empties a domain.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Repeated consequences can fill several cells before any guess is made."
+  },
+  "pitfalls": [
+    "Constraint propagation failure 1: A fixed point under weak rules does not imply that the CSP is globally satisfiable.",
+    "Constraint propagation failure 2: A weak model can make an easy real problem hard for the solver.",
+    "Constraint propagation failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+  ],
+  "implementation": [
+    "Represent the central state for Constraint propagation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Constraint propagation, compare the quantity named in “Constraint propagation repeatedly narrows domains using implications of the constraints.” across training, evaluation, and shifted inputs.",
+    "Ship Constraint propagation with a counterexample test derived from “A fixed point under weak rules does not imply that the CSP is globally satisfiable.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Constraint propagation repeatedly narrows domains using implications of the constraints.",
+    "Apply local inference rules until no domain changes or a contradiction empties a domain.",
+    "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step.",
+    "Repeated consequences can fill several cells before any guess is made."
+  ]
+};
+
+<LessonBody narrative={narrative} />

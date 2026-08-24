@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Duplicate-state detection: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Use canonical state keys in a reached or closed map and retain the best known path information when costs matter."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+    }
+  ],
+  "process": [
+    "Duplicate-state detection step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Duplicate-state detection step 2: Apply the central rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
+    "Duplicate-state detection step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Duplicate-state detection step 4: Stop and interpret the result using this criterion: It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+  ],
+  "formulas": [
+    {
+      "label": "Duplicate-state detection rule",
+      "expression": "if new_g < reached[state].g then update/reopen",
+      "meaning": "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+    }
+  ],
+  "example": {
+    "title": "Duplicate-state detection in a small case",
+    "setup": "In a grid, reaching the same cell by north-then-east or east-then-north should not create two independent subtrees.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "The solver expands one canonical cell state and records the better path."
+  },
+  "pitfalls": [
+    "Duplicate-state detection failure 1: Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.",
+    "Duplicate-state detection failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Duplicate-state detection failure 3: Worst-case analysis and typical observed behavior answer different questions."
+  ],
+  "implementation": [
+    "Represent the central state for Duplicate-state detection explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Duplicate-state detection, compare the quantity named in “Duplicate-state detection recognizes when different search paths reach the same underlying state.” across training, evaluation, and shifted inputs.",
+    "Ship Duplicate-state detection with a counterexample test derived from “Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
+    "Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
+    "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct.",
+    "The solver expands one canonical cell state and records the better path."
+  ]
+};
+
+<LessonBody narrative={narrative} />

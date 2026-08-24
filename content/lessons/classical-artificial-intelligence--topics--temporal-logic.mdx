@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Temporal logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Temporal logic adds operators for what is always, eventually, next, or true until another condition.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Interpret formulas over sequences or branching structures of states and verify traces or transition systems."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It expresses safety and liveness precisely, but semantics and model-checking complexity depend on the temporal logic used."
+    }
+  ],
+  "process": [
+    "Temporal logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Temporal logic step 2: Apply the central rule: Interpret formulas over sequences or branching structures of states and verify traces or transition systems.",
+    "Temporal logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Temporal logic step 4: Stop and interpret the result using this criterion: It expresses safety and liveness precisely, but semantics and model-checking complexity depend on the temporal logic used."
+  ],
+  "formulas": [
+    {
+      "label": "Temporal logic rule",
+      "expression": "G safe; F goal; X next; P U Q",
+      "meaning": "It expresses safety and liveness precisely, but semantics and model-checking complexity depend on the temporal logic used."
+    }
+  ],
+  "example": {
+    "title": "Temporal logic in a small case",
+    "setup": "Specify that a request is eventually followed by a response: G(request => F response).",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Interpret formulas over sequences or branching structures of states and verify traces or transition systems.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "A model checker finds a violating execution trace or confirms the property for the model."
+  },
+  "pitfalls": [
+    "Temporal logic failure 1: Finite logs cannot always establish an infinite-trace liveness claim.",
+    "Temporal logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Temporal logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Temporal logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Temporal logic, compare the quantity named in “Temporal logic adds operators for what is always, eventually, next, or true until another condition.” across training, evaluation, and shifted inputs.",
+    "Ship Temporal logic with a counterexample test derived from “Finite logs cannot always establish an infinite-trace liveness claim.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Temporal logic adds operators for what is always, eventually, next, or true until another condition.",
+    "Interpret formulas over sequences or branching structures of states and verify traces or transition systems.",
+    "It expresses safety and liveness precisely, but semantics and model-checking complexity depend on the temporal logic used.",
+    "A model checker finds a violating execution trace or confirms the property for the model."
+  ]
+};
+
+<LessonBody narrative={narrative} />

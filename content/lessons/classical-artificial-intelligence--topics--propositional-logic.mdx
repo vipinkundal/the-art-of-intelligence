@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Propositional logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+  "concepts": [
+    {
+      "title": "Problem model",
+      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+    },
+    {
+      "title": "Core rule",
+      "explanation": "Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+    }
+  ],
+  "process": [
+    "Propositional logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Propositional logic step 2: Apply the central rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
+    "Propositional logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Propositional logic step 4: Stop and interpret the result using this criterion: It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+  ],
+  "formulas": [
+    {
+      "label": "Propositional logic rule",
+      "expression": "P and (P => Q) entails Q",
+      "meaning": "It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+    }
+  ],
+  "example": {
+    "title": "Propositional logic in a small case",
+    "setup": "Encode 'alarm implies evacuation' and the fact that the alarm is active.",
+    "steps": [
+      "Write the relevant states, variables, facts, or actions explicitly.",
+      "Apply the rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
+      "Check the outcome against the goal and stated assumptions."
+    ],
+    "result": "Modus ponens derives that evacuation is required."
+  },
+  "pitfalls": [
+    "Propositional logic failure 1: Do not confuse implication P=>Q with causation or the converse Q=>P.",
+    "Propositional logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Propositional logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+  ],
+  "implementation": [
+    "Represent the central state for Propositional logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Propositional logic, compare the quantity named in “Propositional logic represents atomic statements as true or false and combines them with logical connectives.” across training, evaluation, and shifted inputs.",
+    "Ship Propositional logic with a counterexample test derived from “Do not confuse implication P=>Q with causation or the converse Q=>P.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+    "Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
+    "It is precise and decidable but cannot directly quantify over objects or express internal relational structure.",
+    "Modus ponens derives that evacuation is required."
+  ]
+};
+
+<LessonBody narrative={narrative} />

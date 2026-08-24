@@ -1,0 +1,70 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Treat 6 Information Theory as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "overview": "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+  "concepts": [
+    {
+      "title": "The simple idea",
+      "explanation": "Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Entropy : Measures the uncertainty or average surprise in a probability distribution."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Cross-entropy : Measures how costly it is to encode true outcomes using a model's predicted distribution."
+    },
+    {
+      "title": "Learn",
+      "explanation": "KL divergence : Measures how much one distribution differs from another, with direction-dependent penalties."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Mutual information : Measures how much knowing one variable reduces uncertainty about another."
+    },
+    {
+      "title": "Learn",
+      "explanation": "Conditional entropy : Measures remaining uncertainty in one variable after another variable is known."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Classification and language models often train with cross-entropy. Generative models compare distributions, compress information, and learn representations that preserve useful signals while discarding noise."
+    },
+    {
+      "title": "Why it matters for AI",
+      "explanation": "Perplexity summarizes how uncertain a language model is, KL divergence compares probability distributions, and mutual information helps reason about dependence between variables."
+    }
+  ],
+  "process": [
+    "Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations."
+  ],
+  "formulas": [
+    {
+      "label": "6 Information Theory field relation",
+      "expression": "output = mechanism(input, context)",
+      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+    }
+  ],
+  "example": {
+    "title": "6 Information Theory in operation",
+    "setup": "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+    "steps": [],
+    "result": "The useful result is a measurable change in the system, not recognition of the term 6 Information Theory."
+  },
+  "pitfalls": [
+    "6 Information Theory failure 1: A correct definition of 6 Information Theory can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
+  ],
+  "implementation": [
+    "Write down the input and output contract before selecting an implementation.",
+    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
+    "Test the boundary case where the lab control is near zero and near its maximum."
+  ],
+  "takeaways": [
+    "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+    "Read David MacKay's Information Theory, Inference, and Learning Algorithms for a deeper connection between coding, inference, and machine learning."
+  ]
+};
+
+<LessonBody narrative={narrative} />

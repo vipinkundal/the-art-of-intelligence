@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Representation learning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Representation learning lets a model discover internal features that make useful structure easier to predict or generate.",
+  "concepts": [
+    {
+      "title": "Embedding",
+      "explanation": "A vector representation whose geometry can encode similarity, category, or context."
+    },
+    {
+      "title": "Invariance",
+      "explanation": "Desired changes in the input leave the representation stable."
+    },
+    {
+      "title": "Equivariance",
+      "explanation": "Structured input changes produce predictable changes in the representation."
+    }
+  ],
+  "process": [
+    "Representation learning step 1: Choose an encoder suited to the input modality.",
+    "Representation learning step 2: Train it with supervised, self-supervised, contrastive, or generative objectives.",
+    "Representation learning step 3: Inspect or evaluate the learned representation on held-out tasks.",
+    "Representation learning step 4: Fine-tune or freeze it for downstream use."
+  ],
+  "formulas": [
+    {
+      "label": "Encoder",
+      "expression": "h = f_theta(x)",
+      "meaning": "map raw input into a learned feature space"
+    },
+    {
+      "label": "Contrastive score",
+      "expression": "sim(h_i, h_j) / tau",
+      "meaning": "compare representations with a temperature-scaled similarity"
+    }
+  ],
+  "example": {
+    "title": "Learn image embeddings",
+    "setup": "Train two augmented views of the same image to have nearby embeddings.",
+    "steps": [
+      "Create two label-preserving views.",
+      "Encode both views with a shared network.",
+      "Pull their embeddings together while separating unrelated images."
+    ],
+    "result": "The encoder learns features useful beyond the exact augmentation pair."
+  },
+  "pitfalls": [
+    "Representation learning failure 1: A representation can encode shortcuts, bias, or private information along with useful features.",
+    "Representation learning failure 2: Visualizing embeddings does not by itself prove semantic quality or causal structure.",
+    "Representation learning failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Representation learning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Representation learning, compare the quantity named in “An encoder transforms raw input into embeddings, and objectives reward representations that retain task-relevant informa” across training, evaluation, and shifted inputs.",
+    "Ship Representation learning with a counterexample test derived from “A representation can encode shortcuts, bias, or private information along with useful features.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Representation learning lets a model discover internal features that make useful structure easier to predict or generate.",
+    "An encoder transforms raw input into embeddings, and objectives reward representations that retain task-relevant information while discarding nuisance variation.",
+    "Modern AI systems reuse pretrained representations for retrieval, transfer learning, multimodal alignment, clustering, and low-data adaptation.",
+    "A representation can encode shortcuts, bias, or private information along with useful features."
+  ]
+};
+
+<LessonBody narrative={narrative} />

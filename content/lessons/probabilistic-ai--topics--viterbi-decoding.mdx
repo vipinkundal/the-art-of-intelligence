@@ -1,0 +1,61 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Viterbi decoding: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
+  "concepts": [
+    {
+      "title": "Model and assumptions",
+      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+    },
+    {
+      "title": "Core computation",
+      "explanation": "For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state."
+    },
+    {
+      "title": "Guarantee or tradeoff",
+      "explanation": "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+    }
+  ],
+  "process": [
+    "Viterbi decoding step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Viterbi decoding step 2: Apply the central computation: For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
+    "Viterbi decoding step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Viterbi decoding step 4: Interpret the result under this limitation: Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+  ],
+  "formulas": [
+    {
+      "label": "Viterbi decoding rule",
+      "expression": "delta_t(j)=P(x_t|j) max_i [delta_(t-1)(i) T_ij]",
+      "meaning": "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+    }
+  ],
+  "example": {
+    "title": "Viterbi decoding in a small case",
+    "setup": "Decode the most likely part-of-speech tag sequence for a sentence.",
+    "steps": [
+      "List the observed variables, hidden quantities, and probability assumptions.",
+      "Apply the rule: For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
+      "Normalize or validate the result, then compare it with the stated query."
+    ],
+    "result": "Backtracking returns one globally coherent tag path that respects transition and emission probabilities."
+  },
+  "pitfalls": [
+    "Viterbi decoding failure 1: Use log probabilities so long products become stable sums.",
+    "Viterbi decoding failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "Viterbi decoding failure 3: State estimates become overconfident when process or observation noise is underestimated."
+  ],
+  "implementation": [
+    "Represent the central state for Viterbi decoding explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Viterbi decoding, compare the quantity named in “Viterbi decoding finds the single most probable hidden-state sequence in an HMM.” across training, evaluation, and shifted inputs.",
+    "Ship Viterbi decoding with a counterexample test derived from “Use log probabilities so long products become stable sums.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
+    "For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
+    "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state.",
+    "Backtracking returns one globally coherent tag path that respects transition and emission probabilities."
+  ]
+};
+
+<LessonBody narrative={narrative} />

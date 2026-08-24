@@ -1,0 +1,66 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The mnemonic for Weight initialization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "overview": "Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.",
+  "concepts": [
+    {
+      "title": "Fan-in",
+      "explanation": "The number of inputs entering a unit and a key determinant of pre-activation variance."
+    },
+    {
+      "title": "Xavier initialization",
+      "explanation": "Balances fan-in and fan-out for roughly symmetric activations such as tanh."
+    },
+    {
+      "title": "He initialization",
+      "explanation": "Uses variance near 2/fan-in to compensate for ReLU discarding negative activations."
+    }
+  ],
+  "process": [
+    "Weight initialization step 1: Identify the layer shape and activation.",
+    "Weight initialization step 2: Select a variance-preserving initialization rule.",
+    "Weight initialization step 3: Sample independent weights and initialize biases deliberately.",
+    "Weight initialization step 4: Inspect activation and gradient statistics in early passes."
+  ],
+  "formulas": [
+    {
+      "label": "Xavier variance",
+      "expression": "Var(W) approximately 2/(fan_in + fan_out)",
+      "meaning": "balance forward and backward variance"
+    },
+    {
+      "label": "He variance",
+      "expression": "Var(W) approximately 2/fan_in",
+      "meaning": "preserve ReLU activation scale"
+    }
+  ],
+  "example": {
+    "title": "Initialize a ReLU layer",
+    "setup": "A dense layer has 512 input features.",
+    "steps": [
+      "Compute 2/512 = 0.00390625.",
+      "The corresponding standard deviation is about 0.0625.",
+      "Sample weights near zero with that scale."
+    ],
+    "result": "Initial ReLU activations are less likely to vanish or explode across layers."
+  },
+  "pitfalls": [
+    "Weight initialization failure 1: Initializing all weights identically prevents units in the same layer from specializing.",
+    "Weight initialization failure 2: Variance rules are assumptions, not guarantees, and should be checked in the actual architecture.",
+    "Weight initialization failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+  ],
+  "implementation": [
+    "Represent the central state for Weight initialization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
+    "For Weight initialization, compare the quantity named in “Variance is chosen from fan-in, fan-out, and the activation so repeated layers approximately preserve second moments.” across training, evaluation, and shifted inputs.",
+    "Ship Weight initialization with a counterexample test derived from “Initializing all weights identically prevents units in the same layer from specializing.”, not only a happy-path metric."
+  ],
+  "takeaways": [
+    "Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.",
+    "Variance is chosen from fan-in, fan-out, and the activation so repeated layers approximately preserve second moments.",
+    "Initialization can decide whether a deep model begins in a trainable regime, especially before normalization compensates for scale.",
+    "Initializing all weights identically prevents units in the same layer from specializing."
+  ]
+};
+
+<LessonBody narrative={narrative} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Counterfactual reasoning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Counterfactual reasoning asks what would have happened under a different action or condition.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Counterfactual reasoning step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
-    "Counterfactual reasoning step 2: Apply the central rule: Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
-    "Counterfactual reasoning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Counterfactual reasoning step 4: Stop and interpret the result using this criterion: It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify."
+    "Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Apply the central rule: Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It informs explanation and decisions, but answers depend on causal assumptions that observational correlation alone cannot identify."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The model compares factual and intervened outcomes for the same case assumptions."
   },
   "pitfalls": [
-    "Counterfactual reasoning failure 1: State which variables are held fixed and justify the causal graph.",
-    "Counterfactual reasoning failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
-    "Counterfactual reasoning failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+    "State which variables are held fixed and justify the causal graph.",
+    "Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Correlation, analogy, and counterfactual causation require different evidence."
   ],
-  "implementation": [
-    "Represent the central state for Counterfactual reasoning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Counterfactual reasoning, compare the quantity named in “Counterfactual reasoning asks what would have happened under a different action or condition.” across training, evaluation, and shifted inputs.",
-    "Ship Counterfactual reasoning with a counterexample test derived from “State which variables are held fixed and justify the causal graph.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Counterfactual reasoning asks what would have happened under a different action or condition.",
     "Use a causal model to hold relevant background factors fixed, intervene on a variable, and predict the alternate outcome.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Counterfactual reasoning asks what would have happened under a different action or condition.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Counterfactual reasoning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

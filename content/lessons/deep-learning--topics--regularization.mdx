@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Regularization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Regularization changes training so a model favors solutions expected to generalize beyond the training examples.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Regularization step 1: Identify the observed generalization failure.",
-    "Regularization step 2: Choose a regularizer whose bias matches the desired behavior.",
-    "Regularization step 3: Tune its strength on validation data.",
-    "Regularization step 4: Check both overall performance and important subgroups under shift."
+    "Identify the observed generalization failure.",
+    "Choose a regularizer whose bias matches the desired behavior.",
+    "Tune its strength on validation data.",
+    "Check both overall performance and important subgroups under shift."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The optimized objective is 0.45 and pushes weights toward smaller values."
   },
   "pitfalls": [
-    "Regularization failure 1: Too much regularization causes underfitting.",
-    "Regularization failure 2: Tuning on the test set turns the test set into training information.",
-    "Regularization failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "Too much regularization causes underfitting.",
+    "Tuning on the test set turns the test set into training information.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Regularization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Regularization, compare the quantity named in “A regularizer modifies the objective or training process, trading some training fit for simpler, smoother, or more robus” across training, evaluation, and shifted inputs.",
-    "Ship Regularization with a counterexample test derived from “Too much regularization causes underfitting.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Regularization changes training so a model favors solutions expected to generalize beyond the training examples.",
     "A regularizer modifies the objective or training process, trading some training fit for simpler, smoother, or more robust behavior.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Regularization changes training so a model favors solutions expected to generalize beyond the training examples.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Regularization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

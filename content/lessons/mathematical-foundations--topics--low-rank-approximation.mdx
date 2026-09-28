@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Low-rank approximation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Keeps the strongest directions while discarding weaker ones, which supports compression and denoising.",
+  "hook": "Discard directions, then measure exactly what was lost.",
+  "overview": "Truncating an SVD to its k largest singular values gives a best rank-at-most-k approximation in spectral and Frobenius norms. The discarded singular values quantify the approximation error.",
   "concepts": [
     {
-      "title": "Low-rank approximation definition",
-      "explanation": "Low-rank approximation lens: The definition and notation for Low-rank approximation."
+      "title": "Two error questions",
+      "explanation": "Spectral norm measures the largest error over unit input directions. Frobenius norm sums squared entrywise errors and can penalize many small residual directions."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Low-rank approximation lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Low-rank approximation lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Low-rank approximation lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Compression is contextual",
+      "explanation": "A dense m×n matrix costs mn entries; factor storage for rank k costs about k(m+n+1). Very small matrices or large k may offer no storage saving."
     }
   ],
   "process": [
-    "Low-rank approximation step 1: Low-rank approximation belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Choose a norm and an error budget tied to the application.",
+    "Inspect the decay of singular values and select k.",
+    "Measure downstream performance separately from matrix reconstruction."
   ],
   "formulas": [
     {
-      "label": "Low-rank approximation field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "Aₖ=Σᵢ₌₁ᵏσᵢuᵢvᵢᵀ; ‖A−Aₖ‖F²=Σᵢ>ₖσᵢ²",
+      "meaning": "A=diag(4,2,1) has distinct singular values. The retained squared norm is measured against 4²+2²+1²=21. This is approximation energy, not task accuracy."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, low-rank approximation can be used to interpret keeps the strongest directions while discarding weaker ones, which supports compression and denoising.",
-    "steps": [],
-    "result": "In a model implementation, low-rank approximation can be used to interpret keeps the strongest directions while discarding weaker ones, which supports compression and denoising."
+    "title": "Keep one of three directions",
+    "setup": "For diag(4,2,1), keep only the first singular direction.",
+    "steps": [
+      "The approximation is diag(4,0,0); residual is diag(0,2,1).",
+      "Frobenius error is √5, spectral error is 2, and retained squared norm is 16/21≈76.19%."
+    ],
+    "result": "Keeping two directions reduces both residual norms to 1."
   },
   "pitfalls": [
-    "Low-rank approximation failure 1: do not treat Low-rank approximation as a label without being able to compute or sketch a small example.",
-    "Low-rank approximation failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Low-rank approximation failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A small reconstruction error need not preserve rare but important predictive directions.",
+    "Low-rank approximation is optimal only relative to its stated norm and rank constraint; it is not automatically the best denoiser."
   ],
   "implementation": [
-    "Represent the central state for Low-rank approximation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Low-rank approximation, compare the quantity named in “Keeps the strongest directions while discarding weaker ones, which supports compression and denoising.” across training, evaluation, and shifted inputs.",
-    "Ship Low-rank approximation with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "For large matrices, compare truncated or randomized methods against a residual estimate.",
+    "Center the data when interpreting SVD as conventional PCA of sample variation."
   ],
   "takeaways": [
-    "Low-rank approximation matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "The biggest discarded singular value sets spectral error; all discarded squared singular values contribute to Frobenius error.",
+    "Separate retained matrix energy from application quality."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Truncating an SVD to its k largest singular values gives a best rank-at-most-k approximation in spectral and Frobenius norms. The discarded singular values quantify the approximation error.","Compute spectral and Frobenius truncation errors.","Separate retained matrix energy from application quality.","Discard directions, then measure exactly what was lost.","Aₖ=Σᵢ₌₁ᵏσᵢuᵢvᵢᵀ; ‖A−Aₖ‖F²=Σᵢ>ₖσᵢ²","A=diag(4,2,1) has distinct singular values. The retained squared norm is measured against 4²+2²+1²=21. This is approximation energy, not task accuracy.","The biggest discarded singular value sets spectral error; all discarded squared singular values contribute to Frobenius error."]} />

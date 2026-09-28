@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Knowledge distillation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Knowledge distillation step 1: Run the teacher on training inputs, often without gradient updates.",
-    "Knowledge distillation step 2: Soften teacher and student logits with temperature T.",
-    "Knowledge distillation step 3: Measure their distribution or feature mismatch.",
-    "Knowledge distillation step 4: Combine distillation and ground-truth losses to update the student."
+    "Run the teacher on training inputs, often without gradient updates.",
+    "Soften teacher and student logits with temperature T.",
+    "Measure their distribution or feature mismatch.",
+    "Combine distillation and ground-truth losses to update the student."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The student can inherit useful class structure while using fewer parameters."
   },
   "pitfalls": [
-    "Knowledge distillation failure 1: A biased or incorrect teacher transfers its errors to the student.",
-    "Knowledge distillation failure 2: Temperature, loss balance, data coverage, and student capacity strongly affect results.",
-    "Knowledge distillation failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "A biased or incorrect teacher transfers its errors to the student.",
+    "Temperature, loss balance, data coverage, and student capacity strongly affect results.",
+    "Judge the method on held-out data; a lower training loss alone does not show better generalization."
   ],
-  "implementation": [
-    "Represent the central state for Knowledge distillation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Knowledge distillation, compare the quantity named in “Student loss combines ordinary supervision with a temperature-scaled divergence from teacher outputs or selected feature” across training, evaluation, and shifted inputs.",
-    "Ship Knowledge distillation with a counterexample test derived from “A biased or incorrect teacher transfers its errors to the student.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.",
     "Student loss combines ordinary supervision with a temperature-scaled divergence from teacher outputs or selected features.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Knowledge distillation trains a student model to match a teacher's softened predictions or internal representations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Knowledge distillation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

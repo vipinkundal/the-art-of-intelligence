@@ -1,0 +1,51 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "More measurements stabilize the mean without making people or events identical.",
+  "overview": "The standard error of an estimator is the standard deviation of its sampling distribution. It measures variability of the estimator across repeated samples, not variability of individual observations. An estimated standard error is itself computed from data and depends on a valid sampling model.",
+  "concepts": [
+    {
+      "title": "Covariances explain the square root",
+      "explanation": "For independent observations, only n diagonal variance terms remain in the double sum, producing σ²/n. Positive within-cluster correlations contribute extra terms, so merely counting all rows can understate SE."
+    },
+    {
+      "title": "Unknown spread must be estimated",
+      "explanation": "The familiar s/√n uses sample SD to estimate SE under iid sampling. That estimate is not generally unbiased for σ/√n. For normal data with unknown variance, a t pivot accounts for estimating the spread when making a mean interval."
+    }
+  ],
+  "process": [
+    "Identify the estimator and the independent sampling unit.",
+    "Derive or estimate its sampling variance, including covariance terms where needed.",
+    "Report SE in the target's units and justify any interval or test built from it."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "SE(x̄)=√Var(x̄)=σ/√n; Var(x̄)=n⁻²ΣᵢΣⱼCov(Xᵢ,Xⱼ)",
+      "meaning": "Independent normal observations with fixed population mean and known population standard deviation σ=10. The exact mean distribution is normal. The σ/√n variance formula also holds for iid finite-variance observations without normality, but normal interval calibration need not then be exact."
+    }
+  ],
+  "example": {
+    "title": "Twenty-five versus one hundred",
+    "setup": "Use known σ=10.",
+    "steps": [
+      "At n=25, variance of the mean is 100/25=4 and SE=2.",
+      "At n=100, variance is 1 and SE=1, while the population SD remains 10."
+    ],
+    "result": "Quadrupling independent data halves estimator spread; it does not narrow the distribution of a future individual observation."
+  },
+  "pitfalls": [
+    "A small SE does not include systematic sampling bias or model misspecification.",
+    "Repeated observations from the same subject do not automatically count as independent replicates."
+  ],
+  "implementation": [
+    "Name error bars explicitly as SD, SE or a specified interval rather than calling all of them uncertainty bars.",
+    "Use an appropriate clustered, design-based or resampling variance estimator when iid assumptions fail."
+  ],
+  "takeaways": [
+    "Label SD and SE explicitly: one describes the population spread, the other the uncertainty of an estimator under a sampling design.",
+    "Explain the role of independence in the square-root sample-size rule."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["The standard error of an estimator is the standard deviation of its sampling distribution. It measures variability of the estimator across repeated samples, not variability of individual observations. An estimated standard error is itself computed from data and depends on a valid sampling model.","Distinguish standard deviation from standard error.","Explain the role of independence in the square-root sample-size rule.","More measurements stabilize the mean without making people or events identical.","SE(x̄)=√Var(x̄)=σ/√n; Var(x̄)=n⁻²ΣᵢΣⱼCov(Xᵢ,Xⱼ)","Independent normal observations with fixed population mean and known population standard deviation σ=10. The exact mean distribution is normal. The σ/√n variance formula also holds for iid finite-variance observations without normality, but normal interval calibration need not then be exact.","Label SD and SE explicitly: one describes the population spread, the other the uncertainty of an estimator under a sampling design."]} />

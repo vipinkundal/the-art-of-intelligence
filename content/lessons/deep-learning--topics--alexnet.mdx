@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for AlexNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "AlexNet step 1: Resize and augment an RGB image.",
-    "AlexNet step 2: Apply large early filters followed by deeper convolutional stages.",
-    "AlexNet step 3: Pool selected feature maps and flatten the representation.",
-    "AlexNet step 4: Classify through dense layers with dropout during training."
+    "Resize and augment an RGB image.",
+    "Apply large early filters followed by deeper convolutional stages.",
+    "Pool selected feature maps and flatten the representation.",
+    "Classify through dense layers with dropout during training."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "AlexNet dramatically reduced ImageNet error and triggered broad adoption of deep vision models."
   },
   "pitfalls": [
-    "AlexNet failure 1: Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe.",
-    "AlexNet failure 2: Its large dense layers and early kernels are inefficient by modern standards.",
-    "AlexNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+    "Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe.",
+    "Its large dense layers and early kernels are inefficient by modern standards.",
+    "Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
   ],
-  "implementation": [
-    "Represent the central state for AlexNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For AlexNet, compare the quantity named in “Five convolutional stages learn visual hierarchies, followed by large dense layers that produce ImageNet class predictio” across training, evaluation, and shifted inputs.",
-    "Ship AlexNet with a counterexample test derived from “Attributing success to architecture alone ignores the dataset, GPU implementation, and training recipe.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.",
     "Five convolutional stages learn visual hierarchies, followed by large dense layers that produce ImageNet class predictions.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["AlexNet showed that deep GPU-trained CNNs could dominate large-scale image classification.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This AlexNet illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

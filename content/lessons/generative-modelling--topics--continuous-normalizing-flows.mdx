@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Continuous normalizing flows: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Continuous normalizing flows define transformations through differential equations instead of discrete layers.",
   "concepts": [
     {
-      "title": "Continuous normalizing flows definition",
-      "explanation": "Continuous normalizing flows lens: neural ODEs"
+      "title": "Concept",
+      "explanation": "neural ODEs"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Continuous normalizing flows lens: instantaneous change of variables"
+      "title": "Concept",
+      "explanation": "instantaneous change of variables"
     },
     {
-      "title": "AI connection",
-      "explanation": "Continuous normalizing flows lens: ODE integration"
+      "title": "Concept",
+      "explanation": "ODE integration"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Continuous normalizing flows lens: FFJORD-style trace estimation"
+      "title": "Concept",
+      "explanation": "FFJORD-style trace estimation"
     }
   ],
   "process": [
-    "Continuous normalizing flows step 1: A neural ODE specifies dx/dt. The model integrates both the state and the density change, often using trace estimators for scalability."
+    "A neural ODE specifies dx/dt. The model integrates both the state and the density change, often using trace estimators for scalability."
   ],
-  "formulas": [
-    {
-      "label": "Continuous normalizing flows field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A continuous flow can smoothly warp a Gaussian cloud into a two-moons distribution.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A continuous flow can smoothly warp a Gaussian cloud into a two-moons distribution."
   },
   "pitfalls": [
-    "Continuous normalizing flows failure 1: ODE solvers can be slow or numerically sensitive.",
-    "Continuous normalizing flows failure 2: Tolerances affect both speed and accuracy."
+    "ODE solvers can be slow or numerically sensitive.",
+    "Tolerances affect both speed and accuracy."
   ],
-  "implementation": [
-    "Represent the central state for Continuous normalizing flows explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Continuous normalizing flows, compare the quantity named in “Continuous normalizing flows define transformations through differential equations instead of discrete layers.” across training, evaluation, and shifted inputs.",
-    "Ship Continuous normalizing flows with a counterexample test derived from “ODE solvers can be slow or numerically sensitive.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Continuous normalizing flows matters because it shows how exact likelihood, reversible computation, and tractable sampling trade off against architectural constraints. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Continuous normalizing flows define transformations through differential equations instead of discrete layers.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Continuous normalizing flows illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Resolution: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Resolution derives a new clause by eliminating complementary literals from two clauses.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Resolution step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Resolution step 2: Apply the central rule: Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
-    "Resolution step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Resolution step 4: Stop and interpret the result using this criterion: Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Resolution derives a contradiction, so Q follows from the original facts."
   },
   "pitfalls": [
-    "Resolution failure 1: Clause conversion must preserve satisfiability and variable standardization.",
-    "Resolution failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Resolution failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Clause conversion must preserve satisfiability and variable standardization.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Resolution explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Resolution, compare the quantity named in “Resolution derives a new clause by eliminating complementary literals from two clauses.” across training, evaluation, and shifted inputs.",
-    "Ship Resolution with a counterexample test derived from “Clause conversion must preserve satisfiability and variable standardization.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Resolution derives a new clause by eliminating complementary literals from two clauses.",
     "Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Resolution derives a new clause by eliminating complementary literals from two clauses.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Resolution illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

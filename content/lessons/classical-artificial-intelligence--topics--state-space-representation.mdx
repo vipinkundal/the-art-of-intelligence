@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for State-space representation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A state-space representation defines what a solver treats as a state and which transitions are possible.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "State-space representation step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "State-space representation step 2: Apply the central rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
-    "State-space representation step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "State-space representation step 4: Stop and interpret the result using this criterion: A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+    "Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Apply the central rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Equivalent histories collapse to one state while every legal next move remains determined."
   },
   "pitfalls": [
-    "State-space representation failure 1: Test whether two apparently equal states can have different legal futures; if so, the representation is missing information.",
-    "State-space representation failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "State-space representation failure 3: Worst-case analysis and typical observed behavior answer different questions."
+    "Test whether two apparently equal states can have different legal futures; if so, the representation is missing information.",
+    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Worst-case analysis and typical observed behavior answer different questions."
   ],
-  "implementation": [
-    "Represent the central state for State-space representation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For State-space representation, compare the quantity named in “A state-space representation defines what a solver treats as a state and which transitions are possible.” across training, evaluation, and shifted inputs.",
-    "Ship State-space representation with a counterexample test derived from “Test whether two apparently equal states can have different legal futures; if so, the representation is missing informat”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A state-space representation defines what a solver treats as a state and which transitions are possible.",
     "Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A state-space representation defines what a solver treats as a state and which transitions are possible.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This State-space representation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

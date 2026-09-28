@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Student's t: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Handles heavier-tailed uncertainty, often when sample sizes are small.",
+  "hook": "The central bell can look familiar while the tails behave differently.",
+  "overview": "Student's t is a symmetric family with degrees of freedom ν>0 and heavier tails than a Gaussian. Standard t has mean zero only for ν>1 and finite variance ν/(ν−2) only for ν>2.",
   "concepts": [
     {
-      "title": "Student's t definition",
-      "explanation": "Student's t lens: The definition and notation for Student's t."
+      "title": "Estimated standard error",
+      "explanation": "For independent normal observations, (sample mean−μ)/(s/√n) has t distribution with n−1 degrees of freedom. Normality and the variance estimate matter to the exact statement."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Student's t lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Student's t lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Student's t lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Moment existence",
+      "explanation": "A t distribution has finite absolute moments of order r only when r<ν. Small degrees of freedom can therefore invalidate familiar mean/variance summaries."
     }
   ],
   "process": [
-    "Student's t step 1: Student's t belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "State degrees of freedom and whether scale or standard deviation is specified.",
+    "Check moment existence before reporting moments.",
+    "Use the appropriate t quantile for inference under its stated assumptions."
   ],
   "formulas": [
     {
-      "label": "Student's t field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "T=Z/√(V/ν), Z~N(0,1), V~χ²ν independently; Var(T)=ν/(ν−2) for ν>2",
+      "meaning": "The lab uses integer ν and unit scale. It compares t with a standard normal on [−6,6]; tails continue outside that window. Scale one does not mean variance one."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, student's t can be used to interpret handles heavier-tailed uncertainty, often when sample sizes are small.",
-    "steps": [],
-    "result": "In a probabilistic model, student's t can be used to interpret handles heavier-tailed uncertainty, often when sample sizes are small."
+    "title": "A standard t with five degrees",
+    "setup": "Set ν=5 and scale=1.",
+    "steps": [
+      "The mean is 0 and variance is 5/3≈1.666667.",
+      "Its standard deviation is √(5/3)≈1.291, not 1."
+    ],
+    "result": "Comparing equal-scale t and normal curves is not an equal-variance comparison."
   },
   "pitfalls": [
-    "Student's t failure 1: do not treat Student's t as a label without being able to compute or sketch a small example.",
-    "Student's t failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Student's t failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Symmetry alone does not imply a finite expectation.",
+    "Using t quantiles does not automatically make an analysis robust to arbitrary dependence or sampling bias."
   ],
   "implementation": [
-    "Represent the central state for Student's t explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Student's t, compare the quantity named in “Handles heavier-tailed uncertainty, often when sample sizes are small.” across training, evaluation, and shifted inputs.",
-    "Ship Student's t with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Treat undefined moments explicitly rather than silently displaying zero.",
+    "Use log-PDF and tail-probability routines when rare extremes matter."
   ],
   "takeaways": [
-    "Student's t matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "At ν=1 this is the Cauchy law: symmetry does not rescue an undefined mean. As ν grows, standard t converges to standard normal.",
+    "Distinguish degrees of freedom, scale, and variance."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Student's t is a symmetric family with degrees of freedom ν>0 and heavier tails than a Gaussian. Standard t has mean zero only for ν>1 and finite variance ν/(ν−2) only for ν>2.","Check which t moments exist.","Distinguish degrees of freedom, scale, and variance.","The central bell can look familiar while the tails behave differently.","T=Z/√(V/ν), Z~N(0,1), V~χ²ν independently; Var(T)=ν/(ν−2) for ν>2","The lab uses integer ν and unit scale. It compares t with a standard normal on [−6,6]; tails continue outside that window. Scale one does not mean variance one.","At ν=1 this is the Cauchy law: symmetry does not rescue an undefined mean. As ν grows, standard t converges to standard normal."]} />

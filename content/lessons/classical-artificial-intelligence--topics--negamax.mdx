@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Negamax: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Negamax step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Negamax step 2: Apply the central rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
-    "Negamax step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Negamax step 4: Stop and interpret the result using this criterion: It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "One recursive function handles both players by changing sign at every ply."
   },
   "pitfalls": [
-    "Negamax failure 1: Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.",
-    "Negamax failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Negamax failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Negamax explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Negamax, compare the quantity named in “Negamax expresses zero-sum minimax with one symmetric maximization procedure.” across training, evaluation, and shifted inputs.",
-    "Ship Negamax with a counterexample test derived from “Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
     "Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Negamax expresses zero-sum minimax with one symmetric maximization procedure.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Negamax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

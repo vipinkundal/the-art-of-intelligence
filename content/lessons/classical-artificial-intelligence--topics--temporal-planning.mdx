@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Temporal planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Temporal planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Temporal planning step 2: Apply the central rule: Assign start times and durations while maintaining temporal and resource constraints between actions.",
-    "Temporal planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Temporal planning step 4: Stop and interpret the result using this criterion: It produces executable schedules rather than only action order, but interacting numeric resources make solving harder."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: Assign start times and durations while maintaining temporal and resource constraints between actions.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It produces executable schedules rather than only action order, but interacting numeric resources make solving harder."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The plan satisfies precedence, duration, and equipment capacity constraints."
   },
   "pitfalls": [
-    "Temporal planning failure 1: A causally valid sequence can still be temporally impossible.",
-    "Temporal planning failure 2: A plan is only as reliable as its action model and observations.",
-    "Temporal planning failure 3: Execution monitoring and replanning are essential when the world can change."
+    "A causally valid sequence can still be temporally impossible.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for Temporal planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Temporal planning, compare the quantity named in “Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.” across training, evaluation, and shifted inputs.",
-    "Ship Temporal planning with a counterexample test derived from “A causally valid sequence can still be temporally impossible.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.",
     "Assign start times and durations while maintaining temporal and resource constraints between actions.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Temporal planning handles action duration, concurrency, deadlines, resources, and time windows.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Temporal planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

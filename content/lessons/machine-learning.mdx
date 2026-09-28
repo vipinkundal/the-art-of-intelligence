@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Classical Machine Learning as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "ROC-AUC: Measures ranking quality across true-positive and false-positive trade-offs.",
     "PR-AUC: Focuses on precision-recall trade-offs, useful for rare positive classes."
   ],
-  "formulas": [
-    {
-      "label": "Classical Machine Learning field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Classical Machine Learning in operation",
-    "setup": "Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.",
+    "title": "Classical Machine Learning example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Classical Machine Learning."
+    "result": ""
   },
-  "pitfalls": [
-    "Classical Machine Learning failure 1: A correct definition of Classical Machine Learning can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.",
     "You should be able to choose a regression or classification model, explain its objective, recognize the loss it optimizes, compare linear, kernel, tree, ensemble, and calibrated probabilistic classifiers, select unsupervised methods for clustering, dimensionality reduction, association mining, recommendation, and anomaly detection, and evaluate models without leaking data or over-trusting a single metric."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Classical machine learning covers the supervised models, objectives, losses, calibration methods, and model families that still power many reliable production systems.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Classical Machine Learning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Residual connections: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A residual connection adds a block's input to its transformed output, creating a direct information path.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Residual connections step 1: Send x down the identity path.",
-    "Residual connections step 2: Compute F(x) through the learned branch.",
-    "Residual connections step 3: Align shapes if necessary.",
-    "Residual connections step 4: Add both paths and continue to the next block."
+    "Send x down the identity path.",
+    "Compute F(x) through the learned branch.",
+    "Align shapes if necessary.",
+    "Add both paths and continue to the next block."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The block outputs (2.2,-0.7), preserving most of the original signal."
   },
   "pitfalls": [
-    "Residual connections failure 1: Addition requires compatible shapes or an explicit projection.",
-    "Residual connections failure 2: Residual connections improve optimization but do not eliminate exploding activations or poor normalization.",
-    "Residual connections failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "Addition requires compatible shapes or an explicit projection.",
+    "Residual connections improve optimization but do not eliminate exploding activations or poor normalization.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Residual connections explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Residual connections, compare the quantity named in “When shapes match, the block returns x plus F(x); projections can align dimensions when they do not match.” across training, evaluation, and shifted inputs.",
-    "Ship Residual connections with a counterexample test derived from “Addition requires compatible shapes or an explicit projection.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A residual connection adds a block's input to its transformed output, creating a direct information path.",
     "When shapes match, the block returns x plus F(x); projections can align dimensions when they do not match.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A residual connection adds a block's input to its transformed output, creating a direct information path.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Residual connections illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

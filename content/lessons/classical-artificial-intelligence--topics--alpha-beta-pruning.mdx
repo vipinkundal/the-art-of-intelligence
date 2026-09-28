@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Alpha-beta pruning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Alpha-beta pruning step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Alpha-beta pruning step 2: Apply the central rule: Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
-    "Alpha-beta pruning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Alpha-beta pruning step 4: Stop and interpret the result using this criterion: It returns the same move as minimax while good move ordering can roughly double practical search depth."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It returns the same move as minimax while good move ordering can roughly double practical search depth."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Branches proven worse than an already available alternative are not evaluated further."
   },
   "pitfalls": [
-    "Alpha-beta pruning failure 1: Incorrect value perspective or bound updates can silently prune valid moves.",
-    "Alpha-beta pruning failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Alpha-beta pruning failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Incorrect value perspective or bound updates can silently prune valid moves.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Alpha-beta pruning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Alpha-beta pruning, compare the quantity named in “Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.” across training, evaluation, and shifted inputs.",
-    "Ship Alpha-beta pruning with a counterexample test derived from “Incorrect value perspective or bound updates can silently prune valid moves.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
     "Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Alpha-beta pruning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

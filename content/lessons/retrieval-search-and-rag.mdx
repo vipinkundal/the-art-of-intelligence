@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Retrieval, Search And RAG as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "TF-IDF : Scores documents by combining local term frequency with global term rarity.",
     "BM25 : A strong lexical ranking function that normalizes term frequency and document length."
   ],
-  "formulas": [
-    {
-      "label": "Retrieval, Search And RAG field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Retrieval, Search And RAG in operation",
-    "setup": "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
+    "title": "Retrieval, Search And RAG example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Retrieval, Search And RAG."
+    "result": ""
   },
-  "pitfalls": [
-    "Retrieval, Search And RAG failure 1: A correct definition of Retrieval, Search And RAG can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.",
     "You should be able to compare lexical, dense, hybrid, and reranking retrieval systems, explain approximate nearest-neighbour tradeoffs, and design a RAG pipeline that preserves provenance and evaluates faithfulness."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Retrieval-augmented generation was proposed as a way to combine a parametric language model with non-parametric external memory.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Retrieval, Search And RAG illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

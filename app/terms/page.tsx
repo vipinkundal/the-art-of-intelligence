@@ -6,5 +6,5 @@ import { glossary } from "@/lib/content/lessons";
 export const metadata: Metadata = { title: "AI Glossary", description: "Search concepts beside their definitions, related ideas, and visual labs." };
 
 export default function TermsPage() {
-  return <main id="main-content" className="terms-page"><Suspense fallback={<p className="loading-state">Loading the concept graph…</p>}><TermsExplorer items={glossary} /></Suspense></main>;
+  return <main id="main-content" className="terms-page"><Suspense fallback={<section className="page-intro"><h1>Glossary</h1><p>Browse concepts and their lessons. Interactive filtering becomes available when the page loads.</p><ul>{glossary.map((item) => <li key={item.href}><a href={item.href}>{item.term}</a> — {item.definition}</li>)}</ul></section>}><TermsExplorer items={glossary} /></Suspense></main>;
 }

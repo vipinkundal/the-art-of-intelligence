@@ -1,4 +1,8 @@
 import { z } from "zod";
+import { linearModels } from "./linear-algebra.ts";
+import { distributionModels } from "./distributions.ts";
+import { probabilityModels } from "./probability-foundations.ts";
+import { inferenceModels } from "./statistical-inference.ts";
 
 const parameterSchema = z.object({
   id: z.string(),
@@ -21,6 +25,7 @@ const labBase = z.object({
 });
 
 export const labSpecSchema = z.discriminatedUnion("engine", [
+  labBase.extend({ engine: z.literal("calculation"), model: z.enum(["bernoulli", "binomial", "bayes", "entropy", "cross-entropy", "kl", "perplexity", "brier", "markov", "early-stopping", "eigen", "conformal", "conditional", "confidence", ...linearModels, ...distributionModels, ...probabilityModels, ...inferenceModels]), assumptions: z.string().min(20) }),
   labBase.extend({ engine: z.literal("geometry"), vectors: z.array(z.tuple([z.number(), z.number()])), transform: z.tuple([z.number(), z.number(), z.number(), z.number()]) }),
   labBase.extend({ engine: z.literal("probability"), modes: z.array(z.number()), spread: z.number().positive() }),
   labBase.extend({ engine: z.literal("optimization"), minima: z.array(z.number()), curvature: z.number().positive() }),
@@ -38,6 +43,8 @@ export const labSpecSchema = z.discriminatedUnion("engine", [
 export const lessonDocumentSchema = z.object({
   id: z.string(),
   slug: z.string(),
+  canonicalSlug: z.string(),
+  reviewStatus: z.enum(["pending", "reviewed"]),
   legacyPath: z.string(),
   phase: z.string(),
   phaseKey: z.string(),

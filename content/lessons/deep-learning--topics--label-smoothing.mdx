@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Label smoothing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Label smoothing replaces hard one-hot targets with a mixture of the target and a small reference distribution.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Label smoothing step 1: Choose smoothing coefficient epsilon.",
-    "Label smoothing step 2: Construct the reference distribution over classes.",
-    "Label smoothing step 3: Mix it with the one-hot target.",
-    "Label smoothing step 4: Compute ordinary cross-entropy against the resulting soft target."
+    "Choose smoothing coefficient epsilon.",
+    "Construct the reference distribution over classes.",
+    "Mix it with the one-hot target.",
+    "Compute ordinary cross-entropy against the resulting soft target."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The target is approximately (0.933,0.033,0.033)."
   },
   "pitfalls": [
-    "Label smoothing failure 1: It can hurt tasks that need sharply calibrated probabilities or meaningful dark knowledge between classes.",
-    "Label smoothing failure 2: Library conventions differ on whether smoothing mass includes the correct class.",
-    "Label smoothing failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "It can hurt tasks that need sharply calibrated probabilities or meaningful dark knowledge between classes.",
+    "Library conventions differ on whether smoothing mass includes the correct class.",
+    "Judge the method on held-out data; a lower training loss alone does not show better generalization."
   ],
-  "implementation": [
-    "Represent the central state for Label smoothing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Label smoothing, compare the quantity named in “A smoothing coefficient moves probability mass from the correct class to the other classes before cross-entropy is compu” across training, evaluation, and shifted inputs.",
-    "Ship Label smoothing with a counterexample test derived from “It can hurt tasks that need sharply calibrated probabilities or meaningful dark knowledge between classes.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Label smoothing replaces hard one-hot targets with a mixture of the target and a small reference distribution.",
     "A smoothing coefficient moves probability mass from the correct class to the other classes before cross-entropy is computed.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Label smoothing replaces hard one-hot targets with a mixture of the target and a small reference distribution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Label smoothing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Sparse matrices: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Store mostly-zero data efficiently, common in text, graphs, recommendations, and large feature spaces.",
+  "hook": "Zeros are free only after you pay for the address book.",
+  "overview": "Sparse formats store selected entries and their locations rather than allocating every cell. They save memory and computation only when the sparsity pattern, index overhead, and supported operations make that worthwhile.",
   "concepts": [
     {
-      "title": "Sparse matrices definition",
-      "explanation": "Sparse matrices lens: The definition and notation for Sparse matrices."
+      "title": "CSR layout",
+      "explanation": "Compressed sparse row format stores values, their column indices, and a row-pointer array. Adjacent pointers delimit the entries belonging to one row."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Sparse matrices lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Sparse matrices lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Sparse matrices lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Format follows access",
+      "explanation": "COO is useful for assembling coordinate contributions; CSR favors row-oriented operations; CSC favors column-oriented access. Conversion and fill-in have costs."
     }
   ],
   "process": [
-    "Sparse matrices step 1: Sparse matrices belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Measure nnz, index width, and the operation you need.",
+    "Estimate payload and factorization fill-in before selecting a format.",
+    "Benchmark the complete computation, including conversions."
   ],
   "formulas": [
     {
-      "label": "Sparse matrices field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "CSR bytes = nnz·(value bytes + index bytes) + (rows+1)·pointer bytes",
+      "meaning": "The toy matrix is 5×5. Values are float64 (8 bytes); column indices and row pointers are int32 (4 bytes). No object overhead, explicit zeros, or duplicate coordinates are included."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, sparse matrices can be used to interpret store mostly-zero data efficiently, common in text, graphs, recommendations, and large feature spaces.",
-    "steps": [],
-    "result": "In a model implementation, sparse matrices can be used to interpret store mostly-zero data efficiently, common in text, graphs, recommendations, and large feature spaces."
+    "title": "A payload crossover",
+    "setup": "A dense 5×5 float64 matrix uses 25×8=200 bytes.",
+    "steps": [
+      "At 5 nonzeros, CSR uses 5×12+6×4=84 bytes.",
+      "At 14 nonzeros it uses 192 bytes; at 15 it uses 204 bytes."
+    ],
+    "result": "CSR stops saving payload space between 14 and 15 stored entries under these assumptions."
   },
   "pitfalls": [
-    "Sparse matrices failure 1: do not treat Sparse matrices as a label without being able to compute or sketch a small example.",
-    "Sparse matrices failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Sparse matrices failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Stored entries can include explicit zeros, so stored nnz need not equal the mathematical nonzero count.",
+    "Sparse inputs can produce dense outputs or substantial factorization fill-in."
   ],
   "implementation": [
-    "Represent the central state for Sparse matrices explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Sparse matrices, compare the quantity named in “Store mostly-zero data efficiently, common in text, graphs, recommendations, and large feature spaces.” across training, evaluation, and shifted inputs.",
-    "Ship Sparse matrices with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "For SciPy sparse arrays, distinguish elementwise multiplication from matrix multiplication with @.",
+    "Inspect data, indices, and indptr byte counts rather than inferring real memory from density alone."
   ],
   "takeaways": [
-    "Sparse matrices matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Sparse storage has a break-even density. Sparse computation also depends on access patterns, not just the percentage of zeros.",
+    "Choose a representation based on operations and structure."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Sparse formats store selected entries and their locations rather than allocating every cell. They save memory and computation only when the sparsity pattern, index overhead, and supported operations make that worthwhile.","Calculate sparse-format storage overhead.","Choose a representation based on operations and structure.","Zeros are free only after you pay for the address book.","CSR bytes = nnz·(value bytes + index bytes) + (rows+1)·pointer bytes","The toy matrix is 5×5. Values are float64 (8 bytes); column indices and row pointers are int32 (4 bytes). No object overhead, explicit zeros, or duplicate coordinates are included.","Sparse storage has a break-even density. Sparse computation also depends on access patterns, not just the percentage of zeros."]} />

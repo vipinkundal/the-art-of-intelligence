@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Duplicate-state detection: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Duplicate-state detection step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Duplicate-state detection step 2: Apply the central rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
-    "Duplicate-state detection step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Duplicate-state detection step 4: Stop and interpret the result using this criterion: It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+    "Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Apply the central rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The solver expands one canonical cell state and records the better path."
   },
   "pitfalls": [
-    "Duplicate-state detection failure 1: Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.",
-    "Duplicate-state detection failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Duplicate-state detection failure 3: Worst-case analysis and typical observed behavior answer different questions."
+    "Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.",
+    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Worst-case analysis and typical observed behavior answer different questions."
   ],
-  "implementation": [
-    "Represent the central state for Duplicate-state detection explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Duplicate-state detection, compare the quantity named in “Duplicate-state detection recognizes when different search paths reach the same underlying state.” across training, evaluation, and shifted inputs.",
-    "Ship Duplicate-state detection with a counterexample test derived from “Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
     "Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Duplicate-state detection recognizes when different search paths reach the same underlying state.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Duplicate-state detection illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

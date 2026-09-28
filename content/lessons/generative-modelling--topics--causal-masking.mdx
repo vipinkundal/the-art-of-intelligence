@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Causal masking: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Causal masking prevents a sequence model from using future tokens when predicting the next token.",
   "concepts": [
     {
-      "title": "Causal masking definition",
-      "explanation": "Causal masking lens: attention masks"
+      "title": "Concept",
+      "explanation": "attention masks"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Causal masking lens: decoder-only transformers"
+      "title": "Concept",
+      "explanation": "decoder-only transformers"
     },
     {
-      "title": "AI connection",
-      "explanation": "Causal masking lens: parallel teacher-forced training"
+      "title": "Concept",
+      "explanation": "parallel teacher-forced training"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Causal masking lens: future-token leakage"
+      "title": "Concept",
+      "explanation": "future-token leakage"
     }
   ],
   "process": [
-    "Causal masking step 1: A triangular attention mask blocks attention from each token position to later positions. This allows parallel training while preserving the autoregressive dependency structure."
+    "A triangular attention mask blocks attention from each token position to later positions. This allows parallel training while preserving the autoregressive dependency structure."
   ],
-  "formulas": [
-    {
-      "label": "Causal masking field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "When predicting token 5, a transformer may attend to tokens 1 through 4 but not tokens 6 or later.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "When predicting token 5, a transformer may attend to tokens 1 through 4 but not tokens 6 or later."
   },
   "pitfalls": [
-    "Causal masking failure 1: Incorrect masks can leak labels and inflate validation scores.",
-    "Causal masking failure 2: Padding masks and causal masks must be combined carefully."
+    "Incorrect masks can leak labels and inflate validation scores.",
+    "Padding masks and causal masks must be combined carefully."
   ],
-  "implementation": [
-    "Represent the central state for Causal masking explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Causal masking, compare the quantity named in “Causal masking prevents a sequence model from using future tokens when predicting the next token.” across training, evaluation, and shifted inputs.",
-    "Ship Causal masking with a counterexample test derived from “Incorrect masks can leak labels and inflate validation scores.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Causal masking matters because it makes generation measurable with next-step likelihood and gives builders direct control over sampling order. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Causal masking prevents a sequence model from using future tokens when predicting the next token.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Causal masking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

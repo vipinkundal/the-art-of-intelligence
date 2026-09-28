@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Contingent planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Contingent planning produces branches whose next action depends on observations or outcomes.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Contingent planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Contingent planning step 2: Apply the central rule: Represent belief or observation conditions and build a policy tree rather than one fixed action sequence.",
-    "Contingent planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Contingent planning step 4: Stop and interpret the result using this criterion: It handles known uncertainty cases, but the number of branches can grow rapidly."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: Represent belief or observation conditions and build a policy tree rather than one fixed action sequence.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It handles known uncertainty cases, but the number of branches can grow rapidly."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The plan remains executable because both possible observations have a prepared continuation."
   },
   "pitfalls": [
-    "Contingent planning failure 1: Every reachable observation branch needs a valid continuation or a safe fallback.",
-    "Contingent planning failure 2: A plan is only as reliable as its action model and observations.",
-    "Contingent planning failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Every reachable observation branch needs a valid continuation or a safe fallback.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for Contingent planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Contingent planning, compare the quantity named in “Contingent planning produces branches whose next action depends on observations or outcomes.” across training, evaluation, and shifted inputs.",
-    "Ship Contingent planning with a counterexample test derived from “Every reachable observation branch needs a valid continuation or a safe fallback.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Contingent planning produces branches whose next action depends on observations or outcomes.",
     "Represent belief or observation conditions and build a policy tree rather than one fixed action sequence.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Contingent planning produces branches whose next action depends on observations or outcomes.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Contingent planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

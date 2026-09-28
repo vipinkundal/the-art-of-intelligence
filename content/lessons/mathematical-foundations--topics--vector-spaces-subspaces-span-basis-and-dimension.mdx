@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Vector spaces, subspaces, span, basis, and dimension: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "These describe which vectors can be combined, which directions are independent, and how many coordinates are needed.",
+  "hook": "Spanning gives reach; independence gives unique coordinates.",
+  "overview": "A vector space is closed under vector addition and scalar multiplication over a chosen field. A span contains every linear combination of given vectors; a basis spans a space without redundant vectors, and its size is the dimension.",
   "concepts": [
     {
-      "title": "Vector spaces, subspaces, span, basis, and dimension definition",
-      "explanation": "Vector spaces, subspaces, span, basis, and dimension lens: The definition and notation for Vector spaces, subspaces, span, basis, and dimension."
+      "title": "Subspace test",
+      "explanation": "A subspace contains zero and is closed under addition and scalar multiplication. A line through the origin qualifies; a parallel line not through the origin generally does not."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Vector spaces, subspaces, span, basis, and dimension lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Vector spaces, subspaces, span, basis, and dimension lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Vector spaces, subspaces, span, basis, and dimension lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Coordinates depend on the basis",
+      "explanation": "The physical vector can stay fixed while its coordinate tuple changes with the basis. Dimension describes the space, not a particular redundant list of spanning vectors."
     }
   ],
   "process": [
-    "Vector spaces, subspaces, span, basis, and dimension step 1: Vector spaces, subspaces, span, basis, and dimension belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Specify the scalar field and ambient space.",
+    "Form all allowed linear combinations to describe the span.",
+    "Check independence before treating coefficients as unique coordinates."
   ],
   "formulas": [
     {
-      "label": "Vector spaces, subspaces, span, basis, and dimension field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "span(u,v)={au+bv : a,b∈R}; u=(1,0), v=(1,1)",
+      "meaning": "Real vectors in R². The displayed slice fixes b=1 and varies a; varying both coefficients would fill the plane. The two columns have determinant 1."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, vector spaces, subspaces, span, basis, and dimension can be used to interpret these describe which vectors can be combined, which directions are independent, and how many coordinates are needed.",
-    "steps": [],
-    "result": "In a model implementation, vector spaces, subspaces, span, basis, and dimension can be used to interpret these describe which vectors can be combined, which directions are independent, and how many coordinates are needed."
+    "title": "Two coordinates for one location",
+    "setup": "Use u=(1,0) and v=(1,1) to represent x=(3,2).",
+    "steps": [
+      "The second coordinate of au+bv=(a+b,b) gives b=2.",
+      "The first coordinate then gives a+2=3, so a=1."
+    ],
+    "result": "The coordinates in the (u,v) basis are (1,2), while standard coordinates are (3,2)."
   },
   "pitfalls": [
-    "Vector spaces, subspaces, span, basis, and dimension failure 1: do not treat Vector spaces, subspaces, span, basis, and dimension as a label without being able to compute or sketch a small example.",
-    "Vector spaces, subspaces, span, basis, and dimension failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Vector spaces, subspaces, span, basis, and dimension failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A spanning set can contain more vectors than the space's dimension.",
+    "Affine combinations or translations are not automatically linear combinations in a subspace."
   ],
   "implementation": [
-    "Represent the central state for Vector spaces, subspaces, span, basis, and dimension explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Vector spaces, subspaces, span, basis, and dimension, compare the quantity named in “These describe which vectors can be combined, which directions are independent, and how many coordinates are needed.” across training, evaluation, and shifted inputs.",
-    "Ship Vector spaces, subspaces, span, basis, and dimension with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Store a basis as columns and solve Bc=x for coordinates.",
+    "Use numerical rank tests when columns are nearly dependent instead of assuming the coordinate solve is stable."
   ],
   "takeaways": [
-    "Vector spaces, subspaces, span, basis, and dimension matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A basis allows one coordinate tuple for every vector in its space. The slider shows only one slice of a two-dimensional span, not the entire span.",
+    "Recover coordinates in a specified basis and identify the space's dimension."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A vector space is closed under vector addition and scalar multiplication over a chosen field. A span contains every linear combination of given vectors; a basis spans a space without redundant vectors, and its size is the dimension.","Test a subspace and distinguish a span from a basis.","Recover coordinates in a specified basis and identify the space's dimension.","Spanning gives reach; independence gives unique coordinates.","span(u,v)={au+bv : a,b∈R}; u=(1,0), v=(1,1)","Real vectors in R². The displayed slice fixes b=1 and varies a; varying both coefficients would fill the plane. The two columns have determinant 1.","A basis allows one coordinate tuple for every vector in its space. The slider shows only one slice of a two-dimensional span, not the entire span."]} />

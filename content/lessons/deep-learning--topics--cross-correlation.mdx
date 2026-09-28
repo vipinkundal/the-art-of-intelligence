@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Cross-correlation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Cross-correlation slides a kernel without flipping it and is the operation most neural-network libraries call convolution.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Cross-correlation step 1: Select an input patch matching the kernel shape.",
-    "Cross-correlation step 2: Multiply aligned input and kernel entries.",
-    "Cross-correlation step 3: Sum across spatial positions and input channels, then add bias.",
-    "Cross-correlation step 4: Slide and repeat for every position and output filter."
+    "Select an input patch matching the kernel shape.",
+    "Multiply aligned input and kernel entries.",
+    "Sum across spatial positions and input channels, then add bias.",
+    "Slide and repeat for every position and output filter."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A strong positive response indicates a left-to-right brightness edge."
   },
   "pitfalls": [
-    "Cross-correlation failure 1: Calling the operation convolution can conceal the absent mathematical flip.",
-    "Cross-correlation failure 2: Frameworks differ in input layout, padding names, and whether correlation or convolution is used in signal-processing APIs.",
-    "Cross-correlation failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Calling the operation convolution can conceal the absent mathematical flip.",
+    "Frameworks differ in input layout, padding names, and whether correlation or convolution is used in signal-processing APIs.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Cross-correlation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Cross-correlation, compare the quantity named in “Each output is the sum of elementwise products between the kernel and the input patch at the same orientation.” across training, evaluation, and shifted inputs.",
-    "Ship Cross-correlation with a counterexample test derived from “Calling the operation convolution can conceal the absent mathematical flip.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Cross-correlation slides a kernel without flipping it and is the operation most neural-network libraries call convolution.",
     "Each output is the sum of elementwise products between the kernel and the input patch at the same orientation.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Cross-correlation slides a kernel without flipping it and is the operation most neural-network libraries call convolution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Cross-correlation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

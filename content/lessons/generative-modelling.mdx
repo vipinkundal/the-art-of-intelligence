@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Generative Modelling as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "DCGAN : Uses convolutional architectures to make GAN image generation more stable.",
     "Wasserstein GAN : Uses an earth-mover distance objective to improve training behavior."
   ],
-  "formulas": [
-    {
-      "label": "Generative Modelling field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Generative Modelling in operation",
-    "setup": "Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.",
+    "title": "Generative Modelling example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Generative Modelling."
+    "result": ""
   },
-  "pitfalls": [
-    "Generative Modelling failure 1: A correct definition of Generative Modelling can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.",
     "You should be able to compare likelihood-based, adversarial, flow-based, diffusion, and flow-matching generators by their training objective, sampling procedure, strengths, and failure modes."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Generative modelling studies how models learn probability distributions well enough to sample new text, images, audio, latents, or structured data.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Generative Modelling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

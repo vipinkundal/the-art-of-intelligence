@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Variance-preserving and variance-exploding diffusion: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Variance-preserving and variance-exploding diffusion define different ways for signal and noise to scale over time.",
   "concepts": [
     {
-      "title": "Variance-preserving and variance-exploding diffusion definition",
-      "explanation": "Variance-preserving and variance-exploding diffusion lens: VP SDE"
+      "title": "Concept",
+      "explanation": "VP SDE"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Variance-preserving and variance-exploding diffusion lens: VE SDE"
+      "title": "Concept",
+      "explanation": "VE SDE"
     },
     {
-      "title": "AI connection",
-      "explanation": "Variance-preserving and variance-exploding diffusion lens: sub-VP SDE"
+      "title": "Concept",
+      "explanation": "sub-VP SDE"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Variance-preserving and variance-exploding diffusion lens: noise scale parameterization"
+      "title": "Concept",
+      "explanation": "noise scale parameterization"
     }
   ],
   "process": [
-    "Variance-preserving and variance-exploding diffusion step 1: Variance-preserving processes keep total variance controlled while signal fades. Variance-exploding processes add increasing noise scale. Both can be described with SDEs and reversed for sampling."
+    "Variance-preserving processes keep total variance controlled while signal fades. Variance-exploding processes add increasing noise scale. Both can be described with SDEs and reversed for sampling."
   ],
-  "formulas": [
-    {
-      "label": "Variance-preserving and variance-exploding diffusion field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A score-based image model may use a VE SDE with very large terminal noise before reversing the process.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A score-based image model may use a VE SDE with very large terminal noise before reversing the process."
   },
   "pitfalls": [
-    "Variance-preserving and variance-exploding diffusion failure 1: Mixing parameterizations without care causes sampler and loss mistakes.",
-    "Variance-preserving and variance-exploding diffusion failure 2: Different processes need different numerical solvers and scaling conventions."
+    "Mixing parameterizations without care causes sampler and loss mistakes.",
+    "Different processes need different numerical solvers and scaling conventions."
   ],
-  "implementation": [
-    "Represent the central state for Variance-preserving and variance-exploding diffusion explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Variance-preserving and variance-exploding diffusion, compare the quantity named in “Variance-preserving and variance-exploding diffusion define different ways for signal and noise to scale over time.” across training, evaluation, and shifted inputs.",
-    "Ship Variance-preserving and variance-exploding diffusion with a counterexample test derived from “Mixing parameterizations without care causes sampler and loss mistakes.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Variance-preserving and variance-exploding diffusion matters because it explains the dominant modern recipe for high-quality image, audio, video, and latent generation. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Variance-preserving and variance-exploding diffusion define different ways for signal and noise to scale over time.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Variance-preserving and variance-exploding diffusion illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

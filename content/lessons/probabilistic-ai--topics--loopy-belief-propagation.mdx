@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Loopy belief propagation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Loopy belief propagation step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Loopy belief propagation step 2: Apply the central computation: Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
-    "Loopy belief propagation step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Loopy belief propagation step 4: Interpret the result under this limitation: It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Damped message updates produce smooth approximate marginals when the iteration stabilizes."
   },
   "pitfalls": [
-    "Loopy belief propagation failure 1: Always report the update schedule, damping, stopping rule, and whether convergence occurred.",
-    "Loopy belief propagation failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Loopy belief propagation failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Always report the update schedule, damping, stopping rule, and whether convergence occurred.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Loopy belief propagation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Loopy belief propagation, compare the quantity named in “Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.” across training, evaluation, and shifted inputs.",
-    "Ship Loopy belief propagation with a counterexample test derived from “Always report the update schedule, damping, stopping rule, and whether convergence occurred.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
     "Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Loopy belief propagation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

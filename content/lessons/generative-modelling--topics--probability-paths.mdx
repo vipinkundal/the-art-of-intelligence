@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Probability paths: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Probability paths define a continuous route between a simple noise distribution and the data distribution.",
   "concepts": [
     {
-      "title": "Probability paths definition",
-      "explanation": "Probability paths lens: source and target distributions"
+      "title": "Concept",
+      "explanation": "source and target distributions"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Probability paths lens: interpolants"
+      "title": "Concept",
+      "explanation": "interpolants"
     },
     {
-      "title": "AI connection",
-      "explanation": "Probability paths lens: time-dependent marginals"
+      "title": "Concept",
+      "explanation": "time-dependent marginals"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Probability paths lens: transport dynamics"
+      "title": "Concept",
+      "explanation": "transport dynamics"
     }
   ],
   "process": [
-    "Probability paths step 1: A path specifies intermediate distributions over time. A model learns dynamics that carry samples through those distributions toward data."
+    "A path specifies intermediate distributions over time. A model learns dynamics that carry samples through those distributions toward data."
   ],
-  "formulas": [
-    {
-      "label": "Probability paths field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A linear interpolation path can connect Gaussian noise to data samples while a model learns velocities along the path.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A linear interpolation path can connect Gaussian noise to data samples while a model learns velocities along the path."
   },
   "pitfalls": [
-    "Probability paths failure 1: Path choice affects training difficulty and sampling behavior.",
-    "Probability paths failure 2: Simple paths may not match the geometry of real data."
+    "Path choice affects training difficulty and sampling behavior.",
+    "Simple paths may not match the geometry of real data."
   ],
-  "implementation": [
-    "Represent the central state for Probability paths explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Probability paths, compare the quantity named in “Probability paths define a continuous route between a simple noise distribution and the data distribution.” across training, evaluation, and shifted inputs.",
-    "Ship Probability paths with a counterexample test derived from “Path choice affects training difficulty and sampling behavior.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Probability paths matters because it connects diffusion-style generation with continuous flows, ODE solvers, and fast deterministic sampling. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Probability paths define a continuous route between a simple noise distribution and the data distribution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Probability paths illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

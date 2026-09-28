@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Batch normalization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Batch normalization step 1: Compute per-feature batch mean and variance.",
-    "Batch normalization step 2: Normalize with epsilon for numerical safety.",
-    "Batch normalization step 3: Apply learned gamma and beta.",
-    "Batch normalization step 4: Update running statistics and use them in evaluation mode."
+    "Compute per-feature batch mean and variance.",
+    "Normalize with epsilon for numerical safety.",
+    "Apply learned gamma and beta.",
+    "Update running statistics and use them in evaluation mode."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Before the affine recovery, the two values are approximately -1 and 1."
   },
   "pitfalls": [
-    "Batch normalization failure 1: Small or nonrepresentative batches produce unreliable statistics.",
-    "Batch normalization failure 2: Forgetting to switch to evaluation mode changes predictions and updates running state.",
-    "Batch normalization failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "Small or nonrepresentative batches produce unreliable statistics.",
+    "Forgetting to switch to evaluation mode changes predictions and updates running state.",
+    "Judge the method on held-out data; a lower training loss alone does not show better generalization."
   ],
-  "implementation": [
-    "Represent the central state for Batch normalization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Batch normalization, compare the quantity named in “Training uses the batch mean and variance; inference normally uses running estimates accumulated during training.” across training, evaluation, and shifted inputs.",
-    "Ship Batch normalization with a counterexample test derived from “Small or nonrepresentative batches produce unreliable statistics.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.",
     "Training uses the batch mean and variance; inference normally uses running estimates accumulated during training.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Batch normalization standardizes activations with mini-batch statistics and learns a new scale and offset.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Batch normalization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

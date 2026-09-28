@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Orthogonality and orthonormal bases: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Perpendicular unit directions make decompositions cleaner and reduce duplicate information.",
+  "hook": "Independent unit rulers let you read each coordinate directly.",
+  "overview": "Orthogonal vectors have zero inner product. An orthonormal basis combines orthogonality with unit lengths, making coordinates obtainable by inner products and preserving Euclidean lengths under a square basis change.",
   "concepts": [
     {
-      "title": "Orthogonality and orthonormal bases definition",
-      "explanation": "Orthogonality and orthonormal bases lens: The definition and notation for Orthogonality and orthonormal bases."
+      "title": "Square versus rectangular Q",
+      "explanation": "Orthonormal columns give QᵀQ=I. For rectangular Q, QQᵀ is a projector onto its column space rather than the identity on the larger ambient space."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Orthogonality and orthonormal bases lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Orthogonality and orthonormal bases lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Orthogonality and orthonormal bases lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Finding the basis",
+      "explanation": "Gram-Schmidt removes components in earlier directions, then normalizes. Stable QR implementations often use Householder transformations."
     }
   ],
   "process": [
-    "Orthogonality and orthonormal bases step 1: Orthogonality and orthonormal bases belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Check each basis vector's length and pairwise inner products.",
+    "Calculate the coordinates by applying Qᵀ.",
+    "Reconstruct Qc and check the residual against x, allowing a projection residual for a proper subspace."
   ],
   "formulas": [
     {
-      "label": "Orthogonality and orthonormal bases field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "QᵀQ=I; c=Qᵀx; ‖c‖₂=‖x‖₂ for square orthogonal Q",
+      "meaning": "Q is a real 2×2 rotation matrix with columns (cosθ,sinθ) and (−sinθ,cosθ). The fixed vector is x=(2,1). Both coordinate axes use the same scale."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, orthogonality and orthonormal bases can be used to interpret perpendicular unit directions make decompositions cleaner and reduce duplicate information.",
-    "steps": [],
-    "result": "In a model implementation, orthogonality and orthonormal bases can be used to interpret perpendicular unit directions make decompositions cleaner and reduce duplicate information."
+    "title": "A 45° basis",
+    "setup": "Let q₁=(1,1)/√2 and q₂=(−1,1)/√2, with x=(2,1).",
+    "steps": [
+      "c₁=q₁ᵀx=3/√2 and c₂=q₂ᵀx=−1/√2.",
+      "The squared coordinate length is 9/2+1/2=5, equal to 2²+1²."
+    ],
+    "result": "Orthonormal coordinates preserve length even when their individual values change."
   },
   "pitfalls": [
-    "Orthogonality and orthonormal bases failure 1: do not treat Orthogonality and orthonormal bases as a label without being able to compute or sketch a small example.",
-    "Orthogonality and orthonormal bases failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Orthogonality and orthonormal bases failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Linear independence alone does not make vectors orthogonal.",
+    "A tall matrix with orthonormal columns cannot reconstruct every vector in its output space without projection error."
   ],
   "implementation": [
-    "Represent the central state for Orthogonality and orthonormal bases explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Orthogonality and orthonormal bases, compare the quantity named in “Perpendicular unit directions make decompositions cleaner and reduce duplicate information.” across training, evaluation, and shifted inputs.",
-    "Ship Orthogonality and orthonormal bases with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use a QR factorization instead of unstable hand-written classical Gram-Schmidt for difficult data.",
+    "Measure both orthogonality error ‖QᵀQ−I‖ and reconstruction error."
   ],
   "takeaways": [
-    "Orthogonality and orthonormal bases matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "The basis rotates and the coordinate values change, while x's squared length stays five. Orthogonal columns alone need normalization before Qᵀ gives inverse coordinates.",
+    "Distinguish an orthogonal change of basis from a subspace projection."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Orthogonal vectors have zero inner product. An orthonormal basis combines orthogonality with unit lengths, making coordinates obtainable by inner products and preserving Euclidean lengths under a square basis change.","Read coordinates in an orthonormal basis using inner products.","Distinguish an orthogonal change of basis from a subspace projection.","Independent unit rulers let you read each coordinate directly.","QᵀQ=I; c=Qᵀx; ‖c‖₂=‖x‖₂ for square orthogonal Q","Q is a real 2×2 rotation matrix with columns (cosθ,sinθ) and (−sinθ,cosθ). The fixed vector is x=(2,1). Both coordinate axes use the same scale.","The basis rotates and the coordinate values change, while x's squared length stays five. Orthogonal columns alone need normalization before Qᵀ gives inverse coordinates."]} />

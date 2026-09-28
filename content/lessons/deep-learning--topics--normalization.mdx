@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Normalization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Normalization controls activation or weight statistics to make optimization better conditioned and more predictable.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Normalization step 1: Choose the axes over which statistics are computed.",
-    "Normalization step 2: Center and/or scale the values with a stabilizing epsilon.",
-    "Normalization step 3: Apply learned gain and bias when the method supports them.",
-    "Normalization step 4: Use the method's correct evaluation-time statistics."
+    "Choose the axes over which statistics are computed.",
+    "Center and/or scale the values with a stabilizing epsilon.",
+    "Apply learned gain and bias when the method supports them.",
+    "Use the method's correct evaluation-time statistics."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The normalized coordinates are centered and share a controlled scale."
   },
   "pitfalls": [
-    "Normalization failure 1: Using the wrong axes changes the model, not just its numerical scale.",
-    "Normalization failure 2: Very small batches can make batch-dependent statistics noisy or biased.",
-    "Normalization failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "Using the wrong axes changes the model, not just its numerical scale.",
+    "Very small batches can make batch-dependent statistics noisy or biased.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Normalization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Normalization, compare the quantity named in “A normalization rule computes selected statistics, rescales values, and usually restores learned scale and offset parame” across training, evaluation, and shifted inputs.",
-    "Ship Normalization with a counterexample test derived from “Using the wrong axes changes the model, not just its numerical scale.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Normalization controls activation or weight statistics to make optimization better conditioned and more predictable.",
     "A normalization rule computes selected statistics, rescales values, and usually restores learned scale and offset parameters.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Normalization controls activation or weight statistics to make optimization better conditioned and more predictable.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Normalization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,61 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Early stopping: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Early stopping ends training when a held-out validation signal stops improving.",
+  "hook": "Keep the best checkpoint, not merely the checkpoint where patience runs out.",
+  "overview": "Early stopping selects a training checkpoint using a validation metric and stops after a defined run of insufficient improvements.",
   "concepts": [
     {
-      "title": "Validation metric",
-      "explanation": "A held-out measurement aligned with the deployment objective."
+      "title": "Checkpoint selection",
+      "explanation": "Validation loss chooses a model within a run. The untouched test set is reserved for evaluating the selected procedure, including the stopping rule."
     },
     {
-      "title": "Patience",
-      "explanation": "The number of evaluations allowed without sufficient improvement."
-    },
-    {
-      "title": "Checkpoint restoration",
-      "explanation": "The best observed parameters are restored rather than simply keeping the last step."
+      "title": "Patience and minimum improvement",
+      "explanation": "Patience counts unsuccessful validation checks. A minimum improvement filters tiny changes; both choices affect the stopping time."
     }
   ],
   "process": [
-    "Early stopping step 1: Choose the validation split, metric, evaluation interval, and minimum improvement.",
-    "Early stopping step 2: Save a checkpoint whenever the metric improves.",
-    "Early stopping step 3: Increment patience when improvement is insufficient.",
-    "Early stopping step 4: Stop at the limit and restore the best checkpoint."
+    "Choose the monitored quantity, direction, frequency, and patience before the run.",
+    "Save a checkpoint on a qualifying improvement and reset the waiting count.",
+    "Otherwise increment the count; stop at the threshold and restore the saved checkpoint."
   ],
   "formulas": [
     {
-      "label": "Stopping rule",
-      "expression": "stop if t - t_best >= patience",
-      "meaning": "end training after a fixed window without a new best result"
+      "label": "Definition and assumptions",
+      "expression": "improvement: lossₜ < best_loss − min_delta; stop when wait ≥ patience",
+      "meaning": "Illustrative fixed validation losses [0.90,0.70,0.55,0.50,0.51,0.52,0.49,0.53,0.54,0.55]. Lower is better, min_delta=0, one check per epoch, and the best observed checkpoint is restored."
     }
   ],
   "example": {
-    "title": "Stop a classifier run",
-    "setup": "Validation loss is best at epoch 12 and patience is 3.",
+    "title": "A delayed improvement",
+    "setup": "The lab's first six validation losses are 0.90, 0.70, 0.55, 0.50, 0.51, 0.52.",
     "steps": [
-      "Epochs 13 and 14 do not beat the best loss.",
-      "Epoch 15 also fails to improve by the minimum delta.",
-      "Training stops and checkpoint 12 is restored."
+      "With patience 2, epochs 5 and 6 consume the waiting window.",
+      "Stop at epoch 6 and restore epoch 4, whose loss was 0.50.",
+      "With patience 3, epoch 7 is observed; its loss 0.49 becomes the new best."
     ],
-    "result": "The selected model is the best validation checkpoint, not the final one."
+    "result": "Changing patience can change the selected model, not just the amount of computation."
   },
   "pitfalls": [
-    "Early stopping failure 1: Frequent decisions on a small validation set can overfit that validation set.",
-    "Early stopping failure 2: A noisy metric may require smoothing, patience, or multiple seeds rather than immediate stopping.",
-    "Early stopping failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "Tuning stopping rules repeatedly against one small validation set can overfit that set.",
+    "A library may not restore best weights by default; stopping and restoration are separate options."
   ],
   "implementation": [
-    "Represent the central state for Early stopping explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Early stopping, compare the quantity named in “Monitor a predefined metric, keep the best checkpoint, and stop after a patience window without meaningful improvement.” across training, evaluation, and shifted inputs.",
-    "Ship Early stopping with a counterexample test derived from “Frequent decisions on a small validation set can overfit that validation set.”, not only a happy-path metric."
+    "Checkpoint the state needed by the intended next action: inference needs weights, resumed training also needs optimizer and scheduler state.",
+    "Log the best epoch, stop epoch, metric direction, minimum change, and evaluation frequency."
   ],
   "takeaways": [
-    "Early stopping ends training when a held-out validation signal stops improving.",
-    "Monitor a predefined metric, keep the best checkpoint, and stop after a patience window without meaningful improvement.",
-    "Early stopping saves compute and can prevent continued fitting of noise or spurious patterns.",
-    "Frequent decisions on a small validation set can overfit that validation set."
+    "Patience changes which later improvements the run gets a chance to observe; the best available checkpoint can occur before the stopping epoch.",
+    "Keep final test data outside checkpoint selection and stopping-rule tuning."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Early stopping selects a training checkpoint using a validation metric and stops after a defined run of insufficient improvements.","Simulate patience and identify the restored checkpoint.","Keep final test data outside checkpoint selection and stopping-rule tuning.","Keep the best checkpoint, not merely the checkpoint where patience runs out.","improvement: lossₜ < best_loss − min_delta; stop when wait ≥ patience","Illustrative fixed validation losses [0.90,0.70,0.55,0.50,0.51,0.52,0.49,0.53,0.54,0.55]. Lower is better, min_delta=0, one check per epoch, and the best observed checkpoint is restored.","Patience changes which later improvements the run gets a chance to observe; the best available checkpoint can occur before the stopping epoch."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat State-Space Models And Alternative Sequence Architectures as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
     "S4 : A structured state-space architecture designed to model very long dependencies with efficient convolutional computation.",
     "Mamba : Uses selective state-space updates so the model can choose which information to keep or forget based on the input."
   ],
-  "formulas": [
-    {
-      "label": "State-Space Models And Alternative Sequence Architectures field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "State-Space Models And Alternative Sequence Architectures in operation",
-    "setup": "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
+    "title": "State-Space Models And Alternative Sequence Architectures example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term State-Space Models And Alternative Sequence Architectures."
+    "result": ""
   },
-  "pitfalls": [
-    "State-Space Models And Alternative Sequence Architectures failure 1: A correct definition of State-Space Models And Alternative Sequence Architectures can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.",
     "You should be able to explain the recurrent state update, the output projection, why structured state spaces can scale to long sequences, and where SSMs, gated convolutions, retention, and transformer hybrids fit relative to attention."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["State-space and convolutional sequence architectures are efficient alternatives and complements to attention for long-context modelling.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This State-Space Models And Alternative Sequence Architectures illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

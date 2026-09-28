@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for First-order predicate logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "First-order predicate logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "First-order predicate logic step 2: Apply the central rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
-    "First-order predicate logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "First-order predicate logic step 4: Stop and interpret the result using this criterion: It is far more expressive than propositional logic, but general validity is only semi-decidable."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is far more expressive than propositional logic, but general validity is only semi-decidable."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Instantiate the universal rule and derive Mortal(Socrates)."
   },
   "pitfalls": [
-    "First-order predicate logic failure 1: Variable scope and accidental capture must be handled correctly during substitution.",
-    "First-order predicate logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "First-order predicate logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Variable scope and accidental capture must be handled correctly during substitution.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for First-order predicate logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For First-order predicate logic, compare the quantity named in “First-order logic represents objects, predicates, functions, variables, and quantified relations.” across training, evaluation, and shifted inputs.",
-    "Ship First-order predicate logic with a counterexample test derived from “Variable scope and accidental capture must be handled correctly during substitution.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
     "Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["First-order logic represents objects, predicates, functions, variables, and quantified relations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This First-order predicate logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Random-restart hill climbing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Random-restart hill climbing step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Random-restart hill climbing step 2: Apply the central rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
-    "Random-restart hill climbing step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Random-restart hill climbing step 4: Stop and interpret the result using this criterion: More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A restart that enters the basin of a zero-conflict board supplies a valid solution."
   },
   "pitfalls": [
-    "Random-restart hill climbing failure 1: Restarts should be genuinely diverse; nearly identical starts waste the additional runs.",
-    "Random-restart hill climbing failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Random-restart hill climbing failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Restarts should be genuinely diverse; nearly identical starts waste the additional runs.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Random-restart hill climbing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Random-restart hill climbing, compare the quantity named in “Random-restart hill climbing runs local search from multiple independently chosen starting states.” across training, evaluation, and shifted inputs.",
-    "Ship Random-restart hill climbing with a counterexample test derived from “Restarts should be genuinely diverse; nearly identical starts waste the additional runs.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
     "Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Random-restart hill climbing runs local search from multiple independently chosen starting states.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Random-restart hill climbing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

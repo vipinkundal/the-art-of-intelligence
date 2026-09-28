@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Dijkstra's algorithm: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Dijkstra's algorithm step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Dijkstra's algorithm step 2: Apply the central rule: Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
-    "Dijkstra's algorithm step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Dijkstra's algorithm step 4: Stop and interpret the result using this criterion: Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The final distance table gives a shortest-path tree rooted at the depot."
   },
   "pitfalls": [
-    "Dijkstra's algorithm failure 1: A plain priority queue may contain stale entries; ignore them or use decrease-key correctly.",
-    "Dijkstra's algorithm failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Dijkstra's algorithm failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A plain priority queue may contain stale entries; ignore them or use decrease-key correctly.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Dijkstra's algorithm explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Dijkstra's algorithm, compare the quantity named in “Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.” across training, evaluation, and shifted inputs.",
-    "Ship Dijkstra's algorithm with a counterexample test derived from “A plain priority queue may contain stale entries; ignore them or use decrease-key correctly.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
     "Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Dijkstra's algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

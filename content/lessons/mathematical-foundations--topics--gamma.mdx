@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Gamma: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Models positive continuous quantities such as waiting times or rates.",
+  "hook": "Stack independent waits to reach the kth arrival.",
+  "overview": "A gamma distribution models positive values with shape α and either rate β or scale θ=1/β. Integer shape gives an Erlang waiting time: a sum of independent exponential waits with the same rate.",
   "concepts": [
     {
-      "title": "Gamma definition",
-      "explanation": "Gamma lens: The definition and notation for Gamma."
+      "title": "Exponential special case",
+      "explanation": "At shape 1, gamma reduces to exponential. Shapes below 1 have a density singularity at zero; they cannot be interpreted as a fractional count of arrivals."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Gamma lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Gamma lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Gamma lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Adding compatible gammas",
+      "explanation": "Independent gamma variables with a common rate sum to a gamma with summed shapes. Different rates do not generally retain the same gamma family."
     }
   ],
   "process": [
-    "Gamma step 1: Gamma belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Declare whether the second parameter is rate or scale.",
+    "Check whether an arrival-count interpretation requires integer shape.",
+    "Compute mean and variance before interpreting a plotted peak."
   ],
   "formulas": [
     {
-      "label": "Gamma field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "f(t)=β^α t^(α−1)e^(−βt)/Γ(α); E[T]=α/β; Var(T)=α/β²",
+      "meaning": "The lab uses integer shape k=1…6 and fixed rate 1/s. The density continues beyond the displayed 18-second window. General gamma shapes may be any positive real number."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, gamma can be used to interpret models positive continuous quantities such as waiting times or rates.",
-    "steps": [],
-    "result": "In a probabilistic model, gamma can be used to interpret models positive continuous quantities such as waiting times or rates."
+    "title": "Third arrival at rate two",
+    "setup": "Let T be the wait for arrival 3 of a rate-2/s Poisson process.",
+    "steps": [
+      "T has shape 3 and rate 2, so mean=1.5 seconds.",
+      "Variance=3/4 seconds² and mode=(3−1)/2=1 second."
+    ],
+    "result": "The most likely time is not the mean time."
   },
   "pitfalls": [
-    "Gamma failure 1: do not treat Gamma as a label without being able to compute or sketch a small example.",
-    "Gamma failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Gamma failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Gamma rate and gamma scale conventions are incompatible unless converted.",
+    "The integer-arrival story does not cover every gamma shape."
   ],
   "implementation": [
-    "Represent the central state for Gamma explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Gamma, compare the quantity named in “Models positive continuous quantities such as waiting times or rates.” across training, evaluation, and shifted inputs.",
-    "Ship Gamma with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Evaluate gamma densities in log space using log-gamma.",
+    "Handle the x=0 boundary separately, especially for shape below one."
   ],
   "takeaways": [
-    "Gamma matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Shape controls how many rate-matched exponential waits are summed only in the integer-shape interpretation.",
+    "Connect and distinguish gamma, Erlang, and exponential laws."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A gamma distribution models positive values with shape α and either rate β or scale θ=1/β. Integer shape gives an Erlang waiting time: a sum of independent exponential waits with the same rate.","Use gamma shape/rate moments correctly.","Connect and distinguish gamma, Erlang, and exponential laws.","Stack independent waits to reach the kth arrival.","f(t)=β^α t^(α−1)e^(−βt)/Γ(α); E[T]=α/β; Var(T)=α/β²","The lab uses integer shape k=1…6 and fixed rate 1/s. The density continues beyond the displayed 18-second window. General gamma shapes may be any positive real number.","Shape controls how many rate-matched exponential waits are summed only in the integer-shape interpretation."]} />

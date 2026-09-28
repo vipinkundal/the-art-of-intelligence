@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Transformers as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "Transformers use attention to decide which parts of the input are most relevant to each other. This helps the model connect context across long text."
   ],
-  "formulas": [
-    {
-      "label": "Transformers field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Transformers in operation",
+    "title": "Transformers example",
     "setup": "In the sentence \"The robot picked up the cup because it was empty,\" attention helps the model reason about what \"it\" refers to.",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Transformers."
+    "result": ""
   },
-  "pitfalls": [
-    "Transformers failure 1: A correct definition of Transformers can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.",
     "Study The Illustrated Transformer for a diagram-heavy walkthrough of attention, encoders, decoders, and token flow."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A transformer is a neural network design that helps models understand relationships across a sequence, such as words in a sentence or tokens in code.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Transformers illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Dynamic Bayesian networks: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Dynamic Bayesian networks step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Dynamic Bayesian networks step 2: Apply the central computation: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
-    "Dynamic Bayesian networks step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Dynamic Bayesian networks step 4: Interpret the result under this limitation: DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Apply the central computation: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The unrolled network supports posterior beliefs over several interacting hidden and observed processes through time."
   },
   "pitfalls": [
-    "Dynamic Bayesian networks failure 1: Make stationarity assumptions explicit when reusing the same transition template at every time step.",
-    "Dynamic Bayesian networks failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "Dynamic Bayesian networks failure 3: State estimates become overconfident when process or observation noise is underestimated."
+    "Make stationarity assumptions explicit when reusing the same transition template at every time step.",
+    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "State estimates become overconfident when process or observation noise is underestimated."
   ],
-  "implementation": [
-    "Represent the central state for Dynamic Bayesian networks explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Dynamic Bayesian networks, compare the quantity named in “A dynamic Bayesian network repeats a directed graphical-model template across time slices.” across training, evaluation, and shifted inputs.",
-    "Ship Dynamic Bayesian networks with a counterexample test derived from “Make stationarity assumptions explicit when reusing the same transition template at every time step.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
     "Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A dynamic Bayesian network repeats a directed graphical-model template across time slices.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Dynamic Bayesian networks illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

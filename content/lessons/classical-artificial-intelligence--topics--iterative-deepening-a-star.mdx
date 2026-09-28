@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Iterative Deepening A*: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Iterative Deepening A* step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Iterative Deepening A* step 2: Apply the central rule: Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
-    "Iterative Deepening A* step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Iterative Deepening A* step 4: Stop and interpret the result using this criterion: It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "IDA* finds an optimal solution with an admissible heuristic while storing mainly the current path."
   },
   "pitfalls": [
-    "Iterative Deepening A* failure 1: Path-cycle checking is essential, and weak heuristics cause many repeated passes.",
-    "Iterative Deepening A* failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Iterative Deepening A* failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Path-cycle checking is essential, and weak heuristics cause many repeated passes.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Iterative Deepening A* explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Iterative Deepening A*, compare the quantity named in “Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.” across training, evaluation, and shifted inputs.",
-    "Ship Iterative Deepening A* with a counterexample test derived from “Path-cycle checking is essential, and weak heuristics cause many repeated passes.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
     "Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Iterative Deepening A* illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

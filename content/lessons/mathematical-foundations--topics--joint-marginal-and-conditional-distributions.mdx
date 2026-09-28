@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Joint, marginal, and conditional distributions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Joint distributions model variables together, marginals focus on one variable, and conditionals update one variable given another.",
+  "hook": "A table's totals do not tell you how its cells are filled.",
+  "overview": "A joint distribution specifies variables together. Marginalization sums or integrates out unwanted variables; conditioning restricts a distribution and renormalizes it. Marginals alone generally cannot recover the joint dependence.",
   "concepts": [
     {
-      "title": "Joint, marginal, and conditional distributions definition",
-      "explanation": "Joint, marginal, and conditional distributions lens: The definition and notation for Joint, marginal, and conditional distributions."
+      "title": "Feasible dependence",
+      "explanation": "For binary events with probabilities a,b, their intersection lies between max(0,a+b−1) and min(a,b). Outside those bounds at least one joint cell would be negative."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Joint, marginal, and conditional distributions lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Joint, marginal, and conditional distributions lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Joint, marginal, and conditional distributions lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Continuous conditioning",
+      "explanation": "With joint and marginal densities, fX|Y(x|y)=fXY(x,y)/fY(y) where fY(y)>0. This is a density construction, not division by the zero point probability P(Y=y)."
     }
   ],
   "process": [
-    "Joint, marginal, and conditional distributions step 1: Joint, marginal, and conditional distributions belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Check every joint cell and their total mass.",
+    "Sum rows and columns to obtain marginals.",
+    "Normalize the selected conditioning slice and retain its support."
   ],
   "formulas": [
     {
-      "label": "Joint, marginal, and conditional distributions field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "pX(x)=Σy pXY(x,y); pX|Y(x|y)=pXY(x,y)/pY(y), pY(y)>0",
+      "meaning": "Binary variables keep P(X=1)=0.4 and P(Y=1)=0.5. The slider ranges over feasible q∈[0,0.4]. Bars show X given Y=1; the supporting table shows the full joint mass."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, joint, marginal, and conditional distributions can be used to interpret joint distributions model variables together, marginals focus on one variable, and conditionals update one variable given another.",
-    "steps": [],
-    "result": "In a probabilistic model, joint, marginal, and conditional distributions can be used to interpret joint distributions model variables together, marginals focus on one variable, and conditionals update one variable given another."
+    "title": "Same margins, different answer",
+    "setup": "Set q=0.3 in the displayed binary model.",
+    "steps": [
+      "The joint rows are (0.4,0.2) and (0.1,0.3).",
+      "The Y=1 column sums to 0.5, so P(X=1|Y=1)=0.3/0.5=0.6."
+    ],
+    "result": "The marginal P(X=1) remains 0.4 even though its conditional probability is 0.6."
   },
   "pitfalls": [
-    "Joint, marginal, and conditional distributions failure 1: do not treat Joint, marginal, and conditional distributions as a label without being able to compute or sketch a small example.",
-    "Joint, marginal, and conditional distributions failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Joint, marginal, and conditional distributions failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Multiplying marginal distributions silently assumes independence.",
+    "A zero-probability conditioning event does not admit the elementary conditional-probability ratio."
   ],
   "implementation": [
-    "Represent the central state for Joint, marginal, and conditional distributions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Joint, marginal, and conditional distributions, compare the quantity named in “Joint distributions model variables together, marginals focus on one variable, and conditionals update one variable give” across training, evaluation, and shifted inputs.",
-    "Ship Joint, marginal, and conditional distributions with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Document which tensor axis represents each variable before summing or normalizing.",
+    "Detect zero slice totals instead of replacing them with arbitrary conditional probabilities."
   ],
   "takeaways": [
-    "Joint, marginal, and conditional distributions matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Marginalizing adds cells. Conditioning divides a slice by its total. These are different operations.",
+    "Recognize dependence that marginal summaries cannot identify."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A joint distribution specifies variables together. Marginalization sums or integrates out unwanted variables; conditioning restricts a distribution and renormalizes it. Marginals alone generally cannot recover the joint dependence.","Compute marginals and conditionals from a joint table.","Recognize dependence that marginal summaries cannot identify.","A table's totals do not tell you how its cells are filled.","pX(x)=Σy pXY(x,y); pX|Y(x|y)=pXY(x,y)/pY(y), pY(y)>0","Binary variables keep P(X=1)=0.4 and P(Y=1)=0.5. The slider ranges over feasible q∈[0,0.4]. Bars show X given Y=1; the supporting table shows the full joint mass.","Marginalizing adds cells. Conditioning divides a slice by its total. These are different operations."]} />

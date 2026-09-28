@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Glow: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Glow adds invertible 1x1 convolutions and multi-scale structure to image normalizing flows.",
   "concepts": [
     {
-      "title": "Glow definition",
-      "explanation": "Glow lens: actnorm"
+      "title": "Concept",
+      "explanation": "actnorm"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Glow lens: invertible 1x1 convolution"
+      "title": "Concept",
+      "explanation": "invertible 1x1 convolution"
     },
     {
-      "title": "AI connection",
-      "explanation": "Glow lens: multi-scale factoring"
+      "title": "Concept",
+      "explanation": "multi-scale factoring"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Glow lens: flow-based image synthesis"
+      "title": "Concept",
+      "explanation": "flow-based image synthesis"
     }
   ],
   "process": [
-    "Glow step 1: Glow combines actnorm, invertible 1x1 convolutions, and affine coupling. The invertible convolution learns channel permutations rather than using fixed swaps."
+    "Glow combines actnorm, invertible 1x1 convolutions, and affine coupling. The invertible convolution learns channel permutations rather than using fixed swaps."
   ],
-  "formulas": [
-    {
-      "label": "Glow field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "Glow can interpolate between faces in latent space while preserving an exact inverse mapping.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "Glow can interpolate between faces in latent space while preserving an exact inverse mapping."
   },
   "pitfalls": [
-    "Glow failure 1: Memory and compute costs can be high.",
-    "Glow failure 2: Samples can lag behind diffusion models despite exact likelihood."
+    "Memory and compute costs can be high.",
+    "Samples can lag behind diffusion models despite exact likelihood."
   ],
-  "implementation": [
-    "Represent the central state for Glow explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Glow, compare the quantity named in “Glow adds invertible 1x1 convolutions and multi-scale structure to image normalizing flows.” across training, evaluation, and shifted inputs.",
-    "Ship Glow with a counterexample test derived from “Memory and compute costs can be high.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Glow matters because it shows how exact likelihood, reversible computation, and tractable sampling trade off against architectural constraints. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Glow adds invertible 1x1 convolutions and multi-scale structure to image normalizing flows.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Glow illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, BookOpen, Check, Clock, Flask, List, ShareNetwork } from "@phosphor-icons/react/dist/ssr";
 import type { ReactNode } from "react";
-import { lessonBySlug } from "@/lib/content/lessons";
+import { lessonBySlug, lessonById } from "@/lib/content/lessons";
 import type { LessonDocument } from "@/lib/content/schema";
 import { VisualLab } from "@/components/labs/VisualLab";
 
@@ -15,11 +15,12 @@ export function LessonShell({ lesson, children }: { lesson: LessonDocument; chil
         <Link href="/lessons/">All labs</Link>
         <a href="#field-lab" className="active"><Flask size={15} /> Field lab</a>
         <a href="#operational-model">Operational model</a>
-        <a href="#mechanism">Mechanism</a>
-        <a href="#worked-example">Worked example</a>
-        <a href="#failure-modes">Failure modes</a>
-        <a href="#implementation">Implementation</a>
-        <div className="rail-progress"><span>Reading map</span><div><i style={{ width: "18%" }} /></div><small>Begin with the invariant.</small></div>
+        {lesson.headings.includes("Mechanism") && <a href="#mechanism">Mechanism</a>}
+        {lesson.headings.includes("Formulas") && <a href="#formulas">Equations</a>}
+        {lesson.headings.includes("Worked example") && <a href="#worked-example">Worked example</a>}
+        {lesson.headings.includes("Failure modes") && <a href="#failure-modes">Failure modes</a>}
+        {lesson.headings.includes("Implementation notes") && <a href="#implementation">Implementation</a>}
+        <a href="#sources">Sources</a>
       </aside>
       <main id="main-content" className="lesson-main">
         <header className="lesson-hero">
@@ -28,7 +29,9 @@ export function LessonShell({ lesson, children }: { lesson: LessonDocument; chil
             <div><span className="lesson-sequence">{lesson.phase} · visual lab</span><h1>{lesson.title}</h1><p>{lesson.summary}</p></div>
             <div className="lesson-meta"><span><Clock size={15} /> 12–18 min</span><span><BookOpen size={15} /> Advanced</span><span><ShareNetwork size={15} /> {lesson.labs[0].engine}</span></div>
           </div>
-          <div className="outcome-strip">{lesson.outcomes.map((outcome) => <span key={outcome}><Check size={14} />{outcome}</span>)}</div>
+          <p className="review-status">{lesson.reviewStatus === "reviewed" ? `Content and calculated example reviewed · ${lesson.updatedAt}` : "Editorial review pending: this lesson has not yet received a full factual review."}</p>
+          {lesson.prerequisites.length > 0 && <p className="prerequisite-links">Before this lesson: {lesson.prerequisites.map((id) => { const prerequisite = lessonById.get(id); return prerequisite ? <Link key={id} href={`/lessons/${prerequisite.slug}/`}>{prerequisite.title}</Link> : null; })}</p>}
+          {lesson.outcomes.length > 0 && <div className="outcome-strip">{lesson.outcomes.map((outcome) => <span key={outcome}><Check size={14} />{outcome}</span>)}</div>}
         </header>
         <div id="field-lab"><VisualLab spec={lesson.labs[0]} /></div>
         {children}

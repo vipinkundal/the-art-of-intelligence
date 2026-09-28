@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Probability mass and density functions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "PMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve.",
+  "hook": "For a density, measure the area—not the height.",
+  "overview": "A PMF assigns probability to individual discrete outcomes. A PDF assigns density to a continuous variable: interval probability is an integral, while any individual point has probability zero for an absolutely continuous distribution.",
   "concepts": [
     {
-      "title": "Probability mass and density functions definition",
-      "explanation": "Probability mass and density functions lens: The definition and notation for Probability mass and density functions."
+      "title": "Different normalization rules",
+      "explanation": "Discrete masses sum to one over their support. An absolutely continuous density integrates to one; changing units changes its height."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Probability mass and density functions lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Probability mass and density functions lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Probability mass and density functions lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Not every law has a PDF",
+      "explanation": "A variable can have an atom at zero plus a continuous positive part. A single ordinary PDF cannot represent that atom, although a CDF represents the full law."
     }
   ],
   "process": [
-    "Probability mass and density functions step 1: Probability mass and density functions belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Identify whether outcomes are discrete, continuous, or mixed.",
+    "For a density, specify an interval before asking for probability.",
+    "Check the appropriate sum or integral and keep the units explicit."
   ],
   "formulas": [
     {
-      "label": "Probability mass and density functions field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "P(X=k)=p(k); P(a≤X≤b)=∫ₐᵇf(x)dx for an absolutely continuous X",
+      "meaning": "The graph is Uniform(0,b), not a PMF. The shaded interval is the left half of its support. Density has inverse-length units; probability is dimensionless."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, probability mass and density functions can be used to interpret pMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve.",
-    "steps": [],
-    "result": "In a probabilistic model, probability mass and density functions can be used to interpret pMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve."
+    "title": "A density taller than one",
+    "setup": "Take X uniform on [0,0.5].",
+    "steps": [
+      "The density is 2 per length unit.",
+      "The interval [0,0.25] has probability 0.25×2=0.5; P(X=0.25)=0."
+    ],
+    "result": "A height of 2 is valid because the full rectangle has area 1."
   },
   "pitfalls": [
-    "Probability mass and density functions failure 1: do not treat Probability mass and density functions as a label without being able to compute or sketch a small example.",
-    "Probability mass and density functions failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Probability mass and density functions failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Treating a PDF value as a point probability can produce impossible probability statements.",
+    "Histogram density heights depend on bin width; bin area carries probability."
   ],
   "implementation": [
-    "Represent the central state for Probability mass and density functions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Probability mass and density functions, compare the quantity named in “PMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve.” across training, evaluation, and shifted inputs.",
-    "Ship Probability mass and density functions with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use PMF routines for discrete counts and PDF/CDF routines for continuous quantities.",
+    "Use CDF differences or survival functions for interval/tail probabilities instead of treating sampled density values as masses."
   ],
   "takeaways": [
-    "Probability mass and density functions matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A density may exceed one. Its integral, not its height, must equal one; mixed distributions need both atomic masses and a continuous part.",
+    "Explain why density can exceed one without violating probability axioms."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A PMF assigns probability to individual discrete outcomes. A PDF assigns density to a continuous variable: interval probability is an integral, while any individual point has probability zero for an absolutely continuous distribution.","Distinguish PMF sums from PDF areas.","Explain why density can exceed one without violating probability axioms.","For a density, measure the area—not the height.","P(X=k)=p(k); P(a≤X≤b)=∫ₐᵇf(x)dx for an absolutely continuous X","The graph is Uniform(0,b), not a PMF. The shaded interval is the left half of its support. Density has inverse-length units; probability is dimensionless.","A density may exceed one. Its integral, not its height, must equal one; mixed distributions need both atomic masses and a continuous part."]} />

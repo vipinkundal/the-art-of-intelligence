@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Bayes' theorem: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Reverses conditioning so evidence can update beliefs about hidden causes.",
+  "hook": "Count both ways to trigger an alert before deciding what an alert means.",
+  "overview": "Bayes' theorem reverses a conditional probability by combining likelihoods with prior probabilities and normalizing over the evidence.",
   "concepts": [
     {
-      "title": "Bayes' theorem definition",
-      "explanation": "Bayes' theorem lens: The definition and notation for Bayes' theorem."
+      "title": "Two directions",
+      "explanation": "P(+|H) asks how often an event triggers an alert. P(H|+) asks how often an alert corresponds to the event. The denominators are different."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Bayes' theorem lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Bayes' theorem lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Bayes' theorem lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Normalization",
+      "explanation": "The evidence probability includes alerts from H and from its complement. Leaving out either contribution gives a wrong posterior."
     }
   ],
   "process": [
-    "Bayes' theorem step 1: Bayes' theorem belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Multiply the prior event probability by sensitivity.",
+    "Multiply the complementary prior by the false-positive rate.",
+    "Divide the first contribution by the sum of both contributions."
   ],
   "formulas": [
     {
-      "label": "Bayes' theorem field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "P(H|+)=sπ / [sπ + f(1−π)]",
+      "meaning": "Binary event H. Sensitivity s=P(+|H)=0.9 and false-positive rate f=P(+|not H)=0.1 stay fixed. The slider changes prior π=P(H)."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, bayes' theorem can be used to interpret reverses conditioning so evidence can update beliefs about hidden causes.",
-    "steps": [],
-    "result": "In a probabilistic model, bayes' theorem can be used to interpret reverses conditioning so evidence can update beliefs about hidden causes."
+    "title": "Alerts in 1,000 requests",
+    "setup": "Suppose 10% of requests are anomalous, sensitivity is 90%, and the false-positive rate is 10%.",
+    "steps": [
+      "Expected true alerts: 1,000 × 0.1 × 0.9=90.",
+      "Expected false alerts: 1,000 × 0.9 × 0.1=90.",
+      "An alert corresponds to an anomaly with probability 90/(90+90)=0.5."
+    ],
+    "result": "A detector with 90% sensitivity gives only 50% precision under these assumptions."
   },
   "pitfalls": [
-    "Bayes' theorem failure 1: do not treat Bayes' theorem as a label without being able to compute or sketch a small example.",
-    "Bayes' theorem failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Bayes' theorem failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "The false-positive rate conditions on negatives; precision conditions on alerts.",
+    "A new deployment population can change the prior and therefore the posterior even if the conditional detector rates stay fixed."
   ],
   "implementation": [
-    "Represent the central state for Bayes' theorem explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Bayes' theorem, compare the quantity named in “Reverses conditioning so evidence can update beliefs about hidden causes.” across training, evaluation, and shifted inputs.",
-    "Ship Bayes' theorem with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Document the population used to estimate each conditional rate.",
+    "Normalize log weights with log-sum-exp when probabilities become too small to multiply safely."
   ],
   "takeaways": [
-    "Bayes' theorem matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "The posterior depends on the base rate as well as the detector: a high sensitivity alone does not make every alert reliable.",
+    "Distinguish precision from sensitivity and explain the base-rate effect."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Bayes' theorem reverses a conditional probability by combining likelihoods with prior probabilities and normalizing over the evidence.","Compute a posterior from prior, sensitivity, and false-positive rate.","Distinguish precision from sensitivity and explain the base-rate effect.","Count both ways to trigger an alert before deciding what an alert means.","P(H|+)=sπ / [sπ + f(1−π)]","Binary event H. Sensitivity s=P(+|H)=0.9 and false-positive rate f=P(+|not H)=0.1 stay fixed. The slider changes prior π=P(H).","The posterior depends on the base rate as well as the detector: a high sensitivity alone does not make every alert reliable."]} />

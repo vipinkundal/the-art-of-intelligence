@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Self-play: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Self-play improves a policy by generating opponents and experience from versions of the same system.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Self-play step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Self-play step 2: Apply the central rule: Repeatedly play current or historical policies against one another and update from outcomes, search targets, or regret.",
-    "Self-play step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Self-play step 4: Stop and interpret the result using this criterion: It can create an automatic curriculum, but nontransitive strategies, forgetting, and population collapse require management."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Repeatedly play current or historical policies against one another and update from outcomes, search targets, or regret.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It can create an automatic curriculum, but nontransitive strategies, forgetting, and population collapse require management."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "As play strengthens, the generated data becomes harder and exposes new strategic weaknesses."
   },
   "pitfalls": [
-    "Self-play failure 1: Evaluate against fixed external baselines so simultaneous self-improvement is not mistaken for absolute progress.",
-    "Self-play failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Self-play failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Evaluate against fixed external baselines so simultaneous self-improvement is not mistaken for absolute progress.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Self-play explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Self-play, compare the quantity named in “Self-play improves a policy by generating opponents and experience from versions of the same system.” across training, evaluation, and shifted inputs.",
-    "Ship Self-play with a counterexample test derived from “Evaluate against fixed external baselines so simultaneous self-improvement is not mistaken for absolute progress.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Self-play improves a policy by generating opponents and experience from versions of the same system.",
     "Repeatedly play current or historical policies against one another and update from outcomes, search targets, or regret.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Self-play improves a policy by generating opponents and experience from versions of the same system.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Self-play illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

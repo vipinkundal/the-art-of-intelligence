@@ -4,6 +4,7 @@ import { ArrowCounterClockwise, Pause, Play } from "@phosphor-icons/react";
 import { curveMonotoneX, line as d3Line, scaleLinear } from "d3";
 import { useEffect, useId, useMemo, useState } from "react";
 import type { LabSpec } from "@/lib/content/schema";
+import { CalculatedLab } from "./CalculatedLab";
 
 const width = 980;
 const height = 500;
@@ -17,7 +18,7 @@ function seeded(seed: number, index: number) {
   return value - Math.floor(value);
 }
 
-function Plot({ spec, value, markerId }: { spec: LabSpec; value: number; markerId: string }) {
+function Plot({ spec, value, markerId }: { spec: Exclude<LabSpec, { engine: "calculation" }>; value: number; markerId: string }) {
   const t = (value - spec.parameter.min) / (spec.parameter.max - spec.parameter.min);
   const arrow = `url(#${markerId})`;
 
@@ -102,6 +103,11 @@ function Plot({ spec, value, markerId }: { spec: LabSpec; value: number; markerI
 }
 
 export function VisualLab({ spec }: { spec: LabSpec }) {
+  if (spec.engine === "calculation") return <CalculatedLab key={`${spec.model}:${spec.title}`} spec={spec} />;
+  return <IllustrativeLab spec={spec} />;
+}
+
+function IllustrativeLab({ spec }: { spec: Exclude<LabSpec, { engine: "calculation" }> }) {
   const [value, setValue] = useState(spec.parameter.initial);
   const [playing, setPlaying] = useState(false);
   const id = useId().replaceAll(":", "");
@@ -116,8 +122,8 @@ export function VisualLab({ spec }: { spec: LabSpec }) {
   return (
     <section className="visual-lab" aria-labelledby={`${id}-title`}>
       <div className="lab-header">
-        <div><span className="section-kicker">Interactive field lab · {spec.engine}</span><h2 id={`${id}-title`}>{spec.title}</h2><p>{spec.summary}</p></div>
-        <code>{spec.equation}</code>
+        <div><span className="section-kicker">Illustrative diagram · {spec.engine}</span><h2 id={`${id}-title`}>{spec.title}</h2><p>{spec.summary}</p></div>
+        {spec.equation && <code>{spec.equation}</code>}
       </div>
       <div className="lab-stage">
         <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-svg-title ${id}-svg-desc`}>
@@ -125,7 +131,7 @@ export function VisualLab({ spec }: { spec: LabSpec }) {
           <defs><marker id={`${id}-arrow`} markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" className="arrow-head" /></marker></defs>
           <Plot spec={spec} value={value} markerId={`${id}-arrow`} />
         </svg>
-        <div className="lab-corner-label">live model · {spec.engine}</div>
+        <div className="lab-corner-label">schematic · {spec.engine}</div>
       </div>
       <div className="lab-console">
         <div className="insight-readout"><span>Selected insight</span><strong>{spec.takeaway}</strong></div>

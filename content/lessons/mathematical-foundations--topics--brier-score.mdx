@@ -1,0 +1,51 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Measure how far the probability lands from the realized zero or one.",
+  "overview": "The binary Brier score is the mean squared difference between a predicted probability and a binary outcome. It evaluates probability forecasts without applying a classification threshold.",
+  "concepts": [
+    {
+      "title": "A proper probability score",
+      "explanation": "For Bernoulli outcomes with rate p, expected score equals (q−p)²+p(1−p). The first term penalizes a wrong probability; the second is irreducible under a constant forecast."
+    },
+    {
+      "title": "Calibration is not the whole score",
+      "explanation": "A score also reflects how predictions separate different risks. A lower Brier score alone does not prove better calibration."
+    }
+  ],
+  "process": [
+    "Keep probabilities instead of converting them into class labels.",
+    "Square each probability error against its 0/1 outcome.",
+    "Average across the evaluation sample and compare with an appropriate baseline."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "BS=(1/N)Σᵢ(qᵢ−yᵢ)²; E[BS]=(q−p)²+p(1−p)",
+      "meaning": "Binary score convention on [0,1]. The toy population has event probability p=0.7, and every item receives the same forecast q. The curve is expected loss."
+    }
+  ],
+  "example": {
+    "title": "Four probability forecasts",
+    "setup": "Forecasts are (0.8,0.6,0.2,0.1), with outcomes (1,0,0,1).",
+    "steps": [
+      "Squared errors are (0.04,0.36,0.04,0.81).",
+      "Their sum is 1.25, so the binary Brier score is 1.25/4=0.3125."
+    ],
+    "result": "The confidently wrong final forecast contributes the largest error."
+  },
+  "pitfalls": [
+    "Binary and multiclass score conventions can use different scaling; state the definition when comparing reports.",
+    "A change in base rates changes the baseline score, making comparisons across populations harder."
+  ],
+  "implementation": [
+    "Check probability bounds and the identity of the positive class.",
+    "Pair the score with a reliability diagram and sample counts; do not infer calibration from this single number."
+  ],
+  "takeaways": [
+    "The expected binary Brier score is minimized at the true event probability. Calibration is only one part of forecast quality.",
+    "Distinguish a proper scoring rule from a calibration-only diagnostic."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["The binary Brier score is the mean squared difference between a predicted probability and a binary outcome. It evaluates probability forecasts without applying a classification threshold.","Calculate a binary probability score without a threshold.","Distinguish a proper scoring rule from a calibration-only diagnostic.","Measure how far the probability lands from the realized zero or one.","BS=(1/N)Σᵢ(qᵢ−yᵢ)²; E[BS]=(q−p)²+p(1−p)","Binary score convention on [0,1]. The toy population has event probability p=0.7, and every item receives the same forecast q. The curve is expected loss.","The expected binary Brier score is minimized at the true event probability. Calibration is only one part of forecast quality."]} />

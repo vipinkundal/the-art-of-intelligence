@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Posterior predictive distributions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Predict future observations while accounting for parameter uncertainty.",
+  "hook": "Draw one uncertain probability, then a future batch.",
+  "overview": "A posterior predictive distribution averages the sampling distribution of future observations over the posterior of model parameters. It includes future observation noise and remaining parameter uncertainty, conditional on the assumed model and observed data.",
   "concepts": [
     {
-      "title": "Posterior predictive distributions definition",
-      "explanation": "Posterior predictive distributions lens: The definition and notation for Posterior predictive distributions."
+      "title": "Mixtures induce dependence",
+      "explanation": "The future trials share an uncertain p. They are independent conditional on p but generally dependent after integrating it out. For Beta(3,2), covariance between distinct future Bernoulli trials is Var(p)=0.04."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Posterior predictive distributions lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Posterior predictive distributions lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Posterior predictive distributions lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Two sources of variation",
+      "explanation": "Total variance separates E[Var(K̃|p)] from Var(E[K̃|p]). A plug-in binomial ignores the latter and changes the former by replacing p with its mean. The combined result here exceeds plug-in variance for m>1."
     }
   ],
   "process": [
-    "Posterior predictive distributions step 1: Posterior predictive distributions belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Obtain a posterior for the shared parameters.",
+    "For each predictive draw, sample parameters and then simulate future observations conditional on them.",
+    "Summarize future outcomes and assess predictive fit separately from parameter convergence."
   ],
   "formulas": [
     {
-      "label": "Posterior predictive distributions field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "P(K̃=k|data)=∫Binomial(k;m,p)π(p|data)dp; Var(K̃)=mμ(1−μ)(m+α+β)/(α+β+1)",
+      "meaning": "The current posterior is p|data~Beta(3,2), so μ=0.6. Future trials are conditionally independent given that same p. Grouped bars compare the exact beta-binomial predictive with Binomial(m,0.6); both display the complete count support. The shared vertical scale follows the larger peak as m changes."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, posterior predictive distributions can be used to interpret predict future observations while accounting for parameter uncertainty.",
-    "steps": [],
-    "result": "When evaluating a model, posterior predictive distributions can be used to interpret predict future observations while accounting for parameter uncertainty."
+    "title": "Five future trials",
+    "setup": "Take m=5 with posterior Beta(3,2).",
+    "steps": [
+      "Both distributions have mean 5×0.6=3.",
+      "Plug-in variance is 5×0.6×0.4=1.2; predictive variance is 1.2×(5+5)/6=2.",
+      "The beta-binomial probability of five successes is 1/6, versus 0.6⁵=0.07776 for the plug-in model."
+    ],
+    "result": "The same mean can coexist with substantially different tail probabilities."
   },
   "pitfalls": [
-    "Posterior predictive distributions failure 1: do not treat Posterior predictive distributions as a label without being able to compute or sketch a small example.",
-    "Posterior predictive distributions failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Posterior predictive distributions failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Parameter draws alone are not predictive observations; simulate the observation noise as well.",
+    "Prediction remains conditional on the model. Posterior uncertainty does not automatically cover distribution shift or omitted mechanisms."
   ],
   "implementation": [
-    "Represent the central state for Posterior predictive distributions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Posterior predictive distributions, compare the quantity named in “Predict future observations while accounting for parameter uncertainty.” across training, evaluation, and shifted inputs.",
-    "Ship Posterior predictive distributions with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use one shared parameter draw per future batch when that is what the model assumes; redrawing p independently for every trial changes the joint prediction.",
+    "Compute predictive log densities with log-sum-exp when averaging small likelihoods."
   ],
   "takeaways": [
-    "Posterior predictive distributions matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Plugging in a posterior mean may get the expected count right while understating uncertainty about a whole future batch.",
+    "Explain why shared parameter uncertainty changes joint future outcomes."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A posterior predictive distribution averages the sampling distribution of future observations over the posterior of model parameters. It includes future observation noise and remaining parameter uncertainty, conditional on the assumed model and observed data.","Calculate an exact beta-binomial posterior predictive.","Explain why shared parameter uncertainty changes joint future outcomes.","Draw one uncertain probability, then a future batch.","P(K̃=k|data)=∫Binomial(k;m,p)π(p|data)dp; Var(K̃)=mμ(1−μ)(m+α+β)/(α+β+1)","The current posterior is p|data~Beta(3,2), so μ=0.6. Future trials are conditionally independent given that same p. Grouped bars compare the exact beta-binomial predictive with Binomial(m,0.6); both display the complete count support. The shared vertical scale follows the larger peak as m changes.","Plugging in a posterior mean may get the expected count right while understating uncertainty about a whole future batch."]} />

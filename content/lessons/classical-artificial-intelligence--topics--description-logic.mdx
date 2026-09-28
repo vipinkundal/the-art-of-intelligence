@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Description logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Description logics represent concepts, roles, individuals, and structured class restrictions.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Description logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Description logic step 2: Apply the central rule: Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
-    "Description logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Description logic step 4: Stop and interpret the result using this criterion: They balance expressive ontology modelling with decidable inference; different DL families have different complexity."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: They balance expressive ontology modelling with decidable inference; different DL families have different complexity."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A reasoner can infer that every surgeon is a doctor and classify matching individuals."
   },
   "pitfalls": [
-    "Description logic failure 1: Adding expressive constructors can sharply increase reasoning cost.",
-    "Description logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Description logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Adding expressive constructors can sharply increase reasoning cost.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Description logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Description logic, compare the quantity named in “Description logics represent concepts, roles, individuals, and structured class restrictions.” across training, evaluation, and shifted inputs.",
-    "Ship Description logic with a counterexample test derived from “Adding expressive constructors can sharply increase reasoning cost.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Description logics represent concepts, roles, individuals, and structured class restrictions.",
     "Build a terminology of class definitions and assertions, then perform subsumption, consistency, and instance reasoning.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Description logics represent concepts, roles, individuals, and structured class restrictions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Description logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

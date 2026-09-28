@@ -34,7 +34,7 @@ export function SearchExplorer({ lessons, mode = "hero" }: { lessons: LessonDocu
     <div className={`search-explorer ${mode}`} id="search">
       <div className="search-input-wrap">
         <MagnifyingGlass size={19} aria-hidden />
-        <input ref={inputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search mechanisms, equations, or failure modes…" aria-label="Search every lesson" />
+        <input ref={inputRef} value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search lesson titles, summaries, or phases…" aria-label="Search every lesson" />
         {query ? <button type="button" onClick={() => setQuery("")} aria-label="Clear search"><X size={16} /></button> : <span className="key-hint"><Command size={13} /> K</span>}
       </div>
       <div className="search-results" aria-live="polite">
@@ -45,7 +45,7 @@ export function SearchExplorer({ lessons, mode = "hero" }: { lessons: LessonDocu
             <ArrowRight size={15} aria-hidden />
           </Link>
         ))}
-        {!results.length && <p className="empty-state">No exact match. Try a mechanism, equation, or phase name.</p>}
+        {!results.length && <p className="empty-state">No match. Try a topic or phase name.</p>}
       </div>
     </div>
   );

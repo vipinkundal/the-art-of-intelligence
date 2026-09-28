@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for ResNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "ResNet is a family of deep CNNs built from residual blocks and identity or projected shortcuts.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "ResNet step 1: Stem the image into initial feature maps.",
-    "ResNet step 2: Apply residual blocks at one resolution.",
-    "ResNet step 3: Use a projected downsampling block to begin the next stage.",
-    "ResNet step 4: Globally pool the final map and classify."
+    "Stem the image into initial feature maps.",
+    "Apply residual blocks at one resolution.",
+    "Use a projected downsampling block to begin the next stage.",
+    "Globally pool the final map and classify."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The residual parameterization makes the near-identity solution easy to express."
   },
   "pitfalls": [
-    "ResNet failure 1: ResNet is a family, so depth, block type, stem, and training recipe must be specified.",
-    "ResNet failure 2: Shortcuts help gradient flow but do not guarantee calibration, robustness, or efficient deployment.",
-    "ResNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+    "ResNet is a family, so depth, block type, stem, and training recipe must be specified.",
+    "Shortcuts help gradient flow but do not guarantee calibration, robustness, or efficient deployment.",
+    "Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
   ],
-  "implementation": [
-    "Represent the central state for ResNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For ResNet, compare the quantity named in “Basic or bottleneck residual blocks are grouped into stages; downsampling projections connect stages with different shap” across training, evaluation, and shifted inputs.",
-    "Ship ResNet with a counterexample test derived from “ResNet is a family, so depth, block type, stem, and training recipe must be specified.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "ResNet is a family of deep CNNs built from residual blocks and identity or projected shortcuts.",
     "Basic or bottleneck residual blocks are grouped into stages; downsampling projections connect stages with different shapes.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["ResNet is a family of deep CNNs built from residual blocks and identity or projected shortcuts.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This ResNet illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

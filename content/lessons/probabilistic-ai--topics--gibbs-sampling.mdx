@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Gibbs sampling: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Gibbs sampling step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Gibbs sampling step 2: Apply the central computation: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
-    "Gibbs sampling step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Gibbs sampling step 4: Interpret the result under this limitation: It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "After convergence, retained draws approximate the joint posterior despite changing one block at a time."
   },
   "pitfalls": [
-    "Gibbs sampling failure 1: Inspect trace plots and effective sample size; sample count alone can exaggerate information.",
-    "Gibbs sampling failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Gibbs sampling failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Inspect trace plots and effective sample size; sample count alone can exaggerate information.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Gibbs sampling explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Gibbs sampling, compare the quantity named in “Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given al” across training, evaluation, and shifted inputs.",
-    "Ship Gibbs sampling with a counterexample test derived from “Inspect trace plots and effective sample size; sample count alone can exaggerate information.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
     "Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Gibbs sampling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

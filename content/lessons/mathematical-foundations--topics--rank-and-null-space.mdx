@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Rank and null space: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Rank counts independent output directions; the null space contains inputs a matrix maps to zero.",
+  "hook": "Count the directions that survive and the directions that disappear.",
+  "overview": "The rank of A:Rⁿ→Rᵐ is the dimension of its image. Its null space contains inputs mapped to zero. Rank plus nullity equals n, the dimension of the domain.",
   "concepts": [
     {
-      "title": "Rank and null space definition",
-      "explanation": "Rank and null space lens: The definition and notation for Rank and null space."
+      "title": "Solutions with freedom",
+      "explanation": "If Ax=b has one solution x₀, all solutions are x₀+z with z in ker(A). Null directions describe ambiguity that output measurements cannot resolve."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Rank and null space lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Rank and null space lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Rank and null space lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Four related spaces",
+      "explanation": "Column space and left null space lie in Rᵐ; row space and null space lie in Rⁿ. The row space is orthogonal to the null space."
     }
   ],
   "process": [
-    "Rank and null space step 1: Rank and null space belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "State the domain and codomain dimensions.",
+    "Find independent columns or count nonzero singular values.",
+    "Solve Ax=0 and check its number of free dimensions against rank-nullity."
   ],
   "formulas": [
     {
-      "label": "Rank and null space field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "rank(A)+dim ker(A)=n; A=[[1,0,0],[0,t,0]]",
+      "meaning": "A maps R³ into R². The third input coordinate always disappears. At t=0 the second coordinate disappears as well. Rank is evaluated in exact arithmetic."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, rank and null space can be used to interpret rank counts independent output directions; the null space contains inputs a matrix maps to zero.",
-    "steps": [],
-    "result": "In a model implementation, rank and null space can be used to interpret rank counts independent output directions; the null space contains inputs a matrix maps to zero."
+    "title": "A discarded input coordinate",
+    "setup": "Set t=1, giving A=[[1,0,0],[0,1,0]].",
+    "steps": [
+      "A(x₁,x₂,x₃)=(x₁,x₂), so the image is all R² and rank is 2.",
+      "The null space consists of (0,0,s); its dimension is 1."
+    ],
+    "result": "Rank plus nullity is 2+1=3. Turning t to zero changes the split to 1+2=3."
   },
   "pitfalls": [
-    "Rank and null space failure 1: do not treat Rank and null space as a label without being able to compute or sketch a small example.",
-    "Rank and null space failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Rank and null space failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Rank is not the number of nonzero matrix entries.",
+    "A tiny singular value may indicate an unresolved direction rather than an exactly missing one."
   ],
   "implementation": [
-    "Represent the central state for Rank and null space explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Rank and null space, compare the quantity named in “Rank counts independent output directions; the null space contains inputs a matrix maps to zero.” across training, evaluation, and shifted inputs.",
-    "Ship Rank and null space with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Report the singular-value tolerance used for numerical rank.",
+    "For underdetermined systems, state the rule used to select one solution, such as minimum norm or regularization."
   ],
   "takeaways": [
-    "Rank and null space matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A nontrivial null space means different inputs can produce the same output. In this example the domain dimension is three, not the number of matrix rows.",
+    "Describe nonunique solutions using a null-space basis."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The rank of A:Rⁿ→Rᵐ is the dimension of its image. Its null space contains inputs mapped to zero. Rank plus nullity equals n, the dimension of the domain.","Use rank-nullity with the correct domain dimension.","Describe nonunique solutions using a null-space basis.","Count the directions that survive and the directions that disappear.","rank(A)+dim ker(A)=n; A=[[1,0,0],[0,t,0]]","A maps R³ into R². The third input coordinate always disappears. At t=0 the second coordinate disappears as well. Rank is evaluated in exact arithmetic.","A nontrivial null space means different inputs can produce the same output. In this example the domain dimension is three, not the number of matrix rows."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Data augmentation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Data augmentation step 1: Identify realistic nuisance variation in deployment.",
-    "Data augmentation step 2: Define transformations and valid parameter ranges.",
-    "Data augmentation step 3: Apply them to training examples and any structured targets.",
-    "Data augmentation step 4: Compare clean, augmented, subgroup, and shifted validation performance."
+    "Identify realistic nuisance variation in deployment.",
+    "Define transformations and valid parameter ranges.",
+    "Apply them to training examples and any structured targets.",
+    "Compare clean, augmented, subgroup, and shifted validation performance."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The model sees many plausible views of each source image."
   },
   "pitfalls": [
-    "Data augmentation failure 1: An invalid transformation creates mislabeled examples and teaches the wrong invariance.",
-    "Data augmentation failure 2: Overly strong augmentation can move data outside the deployment distribution.",
-    "Data augmentation failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "An invalid transformation creates mislabeled examples and teaches the wrong invariance.",
+    "Overly strong augmentation can move data outside the deployment distribution.",
+    "Judge the method on held-out data; a lower training loss alone does not show better generalization."
   ],
-  "implementation": [
-    "Represent the central state for Data augmentation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Data augmentation, compare the quantity named in “Random transformations are sampled online or offline, and the model is trained on the transformed input with the origina” across training, evaluation, and shifted inputs.",
-    "Ship Data augmentation with a counterexample test derived from “An invalid transformation creates mislabeled examples and teaches the wrong invariance.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.",
     "Random transformations are sampled online or offline, and the model is trained on the transformed input with the original or transformed target.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Data augmentation creates label-preserving training variations that encode desired invariances and increase effective diversity.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Data augmentation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

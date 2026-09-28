@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Activation functions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Activation functions apply nonlinear transformations that determine which signals pass through a network.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Activation functions step 1: Compute a pre-activation z.",
-    "Activation functions step 2: Apply the chosen function phi(z).",
-    "Activation functions step 3: Pass the activated value to later layers.",
-    "Activation functions step 4: During backpropagation, multiply by phi prime evaluated at z."
+    "Compute a pre-activation z.",
+    "Apply the chosen function phi(z).",
+    "Pass the activated value to later layers.",
+    "During backpropagation, multiply by phi prime evaluated at z."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The activated network forms a piecewise-linear nonlinear function."
   },
   "pitfalls": [
-    "Activation functions failure 1: ReLU units can die if their inputs remain negative and receive zero gradient.",
-    "Activation functions failure 2: An activation that works well in one scale or architecture may behave poorly without matching initialization.",
-    "Activation functions failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "ReLU units can die if their inputs remain negative and receive zero gradient.",
+    "An activation that works well in one scale or architecture may behave poorly without matching initialization.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Activation functions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Activation functions, compare the quantity named in “An activation is applied elementwise or as a small vector operation after an affine transformation, and its derivative c” across training, evaluation, and shifted inputs.",
-    "Ship Activation functions with a counterexample test derived from “ReLU units can die if their inputs remain negative and receive zero gradient.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Activation functions apply nonlinear transformations that determine which signals pass through a network.",
     "An activation is applied elementwise or as a small vector operation after an affine transformation, and its derivative controls backward signal flow.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Activation functions apply nonlinear transformations that determine which signals pass through a network.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Activation functions illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Sequential Monte Carlo: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Sequential Monte Carlo step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Sequential Monte Carlo step 2: Apply the central computation: Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
-    "Sequential Monte Carlo step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Sequential Monte Carlo step 4: Interpret the result under this limitation: It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The weighted particle cloud approximates the filtering distribution at each time step."
   },
   "pitfalls": [
-    "Sequential Monte Carlo failure 1: Resampling too often can destroy diversity; resampling too late wastes computation on dead particles.",
-    "Sequential Monte Carlo failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Sequential Monte Carlo failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Resampling too often can destroy diversity; resampling too late wastes computation on dead particles.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Sequential Monte Carlo explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Sequential Monte Carlo, compare the quantity named in “Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and ” across training, evaluation, and shifted inputs.",
-    "Ship Sequential Monte Carlo with a counterexample test derived from “Resampling too often can destroy diversity; resampling too late wastes computation on dead particles.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
     "Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Sequential Monte Carlo illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

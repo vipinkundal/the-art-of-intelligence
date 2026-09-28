@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Cumulative distributions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Give the probability that a random variable is less than or equal to a value.",
+  "hook": "Move a threshold rightward and collect everything to its left.",
+  "overview": "The cumulative distribution function F(t)=P(X≤t) describes any real-valued random variable. It is nondecreasing and right-continuous, with limits zero and one at negative and positive infinity.",
   "concepts": [
     {
-      "title": "Cumulative distributions definition",
-      "explanation": "Cumulative distributions lens: The definition and notation for Cumulative distributions."
+      "title": "Endpoint conventions",
+      "explanation": "F(b)−F(a) excludes a and includes b. Including an atom at a instead requires the left limit F(a−). For continuous laws the distinction disappears."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Cumulative distributions lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Cumulative distributions lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Cumulative distributions lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Recovering density",
+      "explanation": "Where an absolutely continuous CDF is differentiable, its derivative gives the PDF almost everywhere. Jumps cannot be recovered as ordinary finite density values."
     }
   ],
   "process": [
-    "Cumulative distributions step 1: Cumulative distributions belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "State whether the requested inequality includes its boundary.",
+    "Evaluate the CDF at both ends of an interval.",
+    "Account for atoms before swapping strict and non-strict inequalities."
   ],
   "formulas": [
     {
-      "label": "Cumulative distributions field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "F(t)=P(X≤t); P(a<X≤b)=F(b)−F(a)",
+      "meaning": "The live example is Uniform(0,1), so F is zero below 0, equals t on [0,1], and equals one above 1. This continuous example has no point masses."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, cumulative distributions can be used to interpret give the probability that a random variable is less than or equal to a value.",
-    "steps": [],
-    "result": "In a probabilistic model, cumulative distributions can be used to interpret give the probability that a random variable is less than or equal to a value."
+    "title": "Probability between two thresholds",
+    "setup": "For Uniform(0,1), find P(0.2<X≤0.7).",
+    "steps": [
+      "F(0.7)=0.7 and F(0.2)=0.2.",
+      "Subtract to obtain 0.5."
+    ],
+    "result": "For this continuous distribution, including or excluding the endpoints changes nothing."
   },
   "pitfalls": [
-    "Cumulative distributions failure 1: do not treat Cumulative distributions as a label without being able to compute or sketch a small example.",
-    "Cumulative distributions failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Cumulative distributions failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A CDF need not be smooth or even continuous.",
+    "The derivative of a CDF at one point is not the probability of that point."
   ],
   "implementation": [
-    "Represent the central state for Cumulative distributions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Cumulative distributions, compare the quantity named in “Give the probability that a random variable is less than or equal to a value.” across training, evaluation, and shifted inputs.",
-    "Ship Cumulative distributions with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Prefer survival-function routines for very small upper tails to avoid subtracting two nearly equal numbers.",
+    "Test CDF monotonicity, support boundaries, and discrete jump sizes."
   ],
   "takeaways": [
-    "Cumulative distributions matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "CDF height is already probability. For a discrete law, the size of a jump gives the probability at that point.",
+    "Read a CDF's jumps and flat regions."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The cumulative distribution function F(t)=P(X≤t) describes any real-valued random variable. It is nondecreasing and right-continuous, with limits zero and one at negative and positive infinity.","Compute interval probabilities with correct endpoints.","Read a CDF's jumps and flat regions.","Move a threshold rightward and collect everything to its left.","F(t)=P(X≤t); P(a<X≤b)=F(b)−F(a)","The live example is Uniform(0,1), so F is zero below 0, equals t on [0,1], and equals one above 1. This continuous example has no point masses.","CDF height is already probability. For a discrete law, the size of a jump gives the probability at that point."]} />

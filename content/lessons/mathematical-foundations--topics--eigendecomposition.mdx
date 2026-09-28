@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Eigendecomposition: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Decomposes a matrix into special directions, useful for covariance analysis and dynamics.",
+  "hook": "Turn into the eigenbasis, scale each axis, then turn back.",
+  "overview": "A diagonalizable square matrix can be written A=VΛV⁻¹. Its eigenvectors form a coordinate system in which the transformation scales each coordinate independently.",
   "concepts": [
     {
-      "title": "Eigendecomposition definition",
-      "explanation": "Eigendecomposition lens: The definition and notation for Eigendecomposition."
+      "title": "One eigenpair versus a decomposition",
+      "explanation": "Finding one nonzero v with Av=λv does not establish that a full eigenbasis exists. A decomposition needs enough independent eigenvectors."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Eigendecomposition lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Eigendecomposition lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Eigendecomposition lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "The symmetric case",
+      "explanation": "A real symmetric matrix admits an orthonormal eigenbasis, so V⁻¹=Vᵀ. This useful guarantee does not apply to arbitrary square matrices."
     }
   ],
   "process": [
-    "Eigendecomposition step 1: Eigendecomposition belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Find eigenvalues and corresponding nonzero eigenvectors.",
+    "Check whether those eigenvectors form a basis.",
+    "Assemble V and Λ, then verify AV≈VΛ with a scale-aware residual."
   ],
   "formulas": [
     {
-      "label": "Eigendecomposition field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "A=[[2,1],[1,2]]=V diag(3,1)Vᵀ; Av=λv for eigenvectors",
+      "meaning": "The lab uses the real symmetric 2×2 matrix [[2,1],[1,2]] and a unit input vector. Its orthonormal eigenvectors point at 45° and 135°; lengths and coordinates are dimensionless."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, eigendecomposition can be used to interpret decomposes a matrix into special directions, useful for covariance analysis and dynamics.",
-    "steps": [],
-    "result": "In a model implementation, eigendecomposition can be used to interpret decomposes a matrix into special directions, useful for covariance analysis and dynamics."
+    "title": "A stretch along a diagonal",
+    "setup": "Let A=[[2,1],[1,2]].",
+    "steps": [
+      "A(1,1)=(3,3), giving eigenvalue 3 along (1,1).",
+      "A(1,−1)=(1,−1), giving eigenvalue 1 along (1,−1).",
+      "For input (1,0), the output is (2,1), which is not parallel to the input."
+    ],
+    "result": "A generic vector changes direction; the two eigenvector lines do not."
   },
   "pitfalls": [
-    "Eigendecomposition failure 1: do not treat Eigendecomposition as a label without being able to compute or sketch a small example.",
-    "Eigendecomposition failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Eigendecomposition failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A defective matrix such as [[1,1],[0,1]] lacks a full eigenbasis.",
+    "Real nonsymmetric matrices can have complex eigenvalues and nonorthogonal eigenvectors."
   ],
   "implementation": [
-    "Represent the central state for Eigendecomposition explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Eigendecomposition, compare the quantity named in “Decomposes a matrix into special directions, useful for covariance analysis and dynamics.” across training, evaluation, and shifted inputs.",
-    "Ship Eigendecomposition with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use a symmetric/Hermitian eigensolver when its assumptions hold.",
+    "Compare residuals rather than exact eigenvector signs; both v and −v describe the same real eigenvector line."
   ],
   "takeaways": [
-    "Eigendecomposition matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Only eigenvector directions stay on the same line under this matrix. General vectors combine the independently scaled directions.",
+    "Check diagonalizability instead of assuming every square matrix has an eigenbasis."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A diagonalizable square matrix can be written A=VΛV⁻¹. Its eigenvectors form a coordinate system in which the transformation scales each coordinate independently.","Reconstruct a symmetric matrix from eigenvectors and eigenvalues.","Check diagonalizability instead of assuming every square matrix has an eigenbasis.","Turn into the eigenbasis, scale each axis, then turn back.","A=[[2,1],[1,2]]=V diag(3,1)Vᵀ; Av=λv for eigenvectors","The lab uses the real symmetric 2×2 matrix [[2,1],[1,2]] and a unit input vector. Its orthonormal eigenvectors point at 45° and 135°; lengths and coordinates are dimensionless.","Only eigenvector directions stay on the same line under this matrix. General vectors combine the independently scaled directions."]} />

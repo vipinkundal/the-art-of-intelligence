@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for PDDL: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "PDDL is a standard language for declaring planning domains and problem instances.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "PDDL step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "PDDL step 2: Apply the central rule: Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
-    "PDDL step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "PDDL step 4: Stop and interpret the result using this criterion: Standardized syntax enables planner comparison and reuse, but supported language features vary by planner."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Standardized syntax enables planner comparison and reuse, but supported language features vary by planner."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Any compatible PDDL planner can search the shared domain model for each problem."
   },
   "pitfalls": [
-    "PDDL failure 1: Validate the planner's supported PDDL requirement flags.",
-    "PDDL failure 2: A plan is only as reliable as its action model and observations.",
-    "PDDL failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Validate the planner's supported PDDL requirement flags.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for PDDL explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For PDDL, compare the quantity named in “PDDL is a standard language for declaring planning domains and problem instances.” across training, evaluation, and shifted inputs.",
-    "Ship PDDL with a counterexample test derived from “Validate the planner's supported PDDL requirement flags.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "PDDL is a standard language for declaring planning domains and problem instances.",
     "Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["PDDL is a standard language for declaring planning domains and problem instances.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This PDDL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

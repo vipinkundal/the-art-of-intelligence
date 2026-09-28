@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Depth-first search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Depth-first search follows one branch as far as possible before backtracking.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Depth-first search step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Depth-first search step 2: Apply the central rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
-    "Depth-first search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Depth-first search step 4: Stop and interpret the result using this criterion: It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "DFS may find a goal quickly on a lucky branch, but the returned route need not be shortest."
   },
   "pitfalls": [
-    "Depth-first search failure 1: Recursive DFS can also fail through call-stack exhaustion on deep problems.",
-    "Depth-first search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Depth-first search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Recursive DFS can also fail through call-stack exhaustion on deep problems.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Depth-first search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Depth-first search, compare the quantity named in “Depth-first search follows one branch as far as possible before backtracking.” across training, evaluation, and shifted inputs.",
-    "Ship Depth-first search with a counterexample test derived from “Recursive DFS can also fail through call-stack exhaustion on deep problems.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Depth-first search follows one branch as far as possible before backtracking.",
     "Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Depth-first search follows one branch as far as possible before backtracking.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Depth-first search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

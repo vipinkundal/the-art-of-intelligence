@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Hamiltonian Monte Carlo: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Hamiltonian Monte Carlo step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Hamiltonian Monte Carlo step 2: Apply the central computation: Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
-    "Hamiltonian Monte Carlo step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Hamiltonian Monte Carlo step 4: Interpret the result under this limitation: It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Gradient-guided trajectories travel along the posterior geometry while the correction removes integration bias."
   },
   "pitfalls": [
-    "Hamiltonian Monte Carlo failure 1: Divergent transitions often reveal poor scaling, extreme curvature, or an unsuitable step size.",
-    "Hamiltonian Monte Carlo failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Hamiltonian Monte Carlo failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Divergent transitions often reveal poor scaling, extreme curvature, or an unsuitable step size.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Hamiltonian Monte Carlo explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Hamiltonian Monte Carlo, compare the quantity named in “Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability di” across training, evaluation, and shifted inputs.",
-    "Ship Hamiltonian Monte Carlo with a counterexample test derived from “Divergent transitions often reveal poor scaling, extreme curvature, or an unsuitable step size.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
     "Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hamiltonian Monte Carlo illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

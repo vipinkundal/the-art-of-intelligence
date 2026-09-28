@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Change-of-variables formula: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "The change-of-variables formula tracks how probability density changes under an invertible transformation.",
   "concepts": [
     {
-      "title": "Change-of-variables formula definition",
-      "explanation": "Change-of-variables formula lens: Jacobian determinant"
+      "title": "Concept",
+      "explanation": "Jacobian determinant"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Change-of-variables formula lens: density transformation"
+      "title": "Concept",
+      "explanation": "density transformation"
     },
     {
-      "title": "AI connection",
-      "explanation": "Change-of-variables formula lens: invertibility"
+      "title": "Concept",
+      "explanation": "invertibility"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Change-of-variables formula lens: log-likelihood computation"
+      "title": "Concept",
+      "explanation": "log-likelihood computation"
     }
   ],
   "process": [
-    "Change-of-variables formula step 1: For an invertible function, the transformed density equals the base density plus the log absolute determinant of the Jacobian. Flows use transformations with tractable Jacobians."
+    "For an invertible function, the transformed density equals the base density plus the log absolute determinant of the Jacobian. Flows use transformations with tractable Jacobians."
   ],
-  "formulas": [
-    {
-      "label": "Change-of-variables formula field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A one-dimensional variable transformed by scaling has its density adjusted by the inverse scale factor.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A one-dimensional variable transformed by scaling has its density adjusted by the inverse scale factor."
   },
   "pitfalls": [
-    "Change-of-variables formula failure 1: Jacobian determinants are expensive for arbitrary transformations.",
-    "Change-of-variables formula failure 2: The formula requires invertibility and careful dimension handling."
+    "Jacobian determinants are expensive for arbitrary transformations.",
+    "The formula requires invertibility and careful dimension handling."
   ],
-  "implementation": [
-    "Represent the central state for Change-of-variables formula explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Change-of-variables formula, compare the quantity named in “The change-of-variables formula tracks how probability density changes under an invertible transformation.” across training, evaluation, and shifted inputs.",
-    "Ship Change-of-variables formula with a counterexample test derived from “Jacobian determinants are expensive for arbitrary transformations.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Change-of-variables formula matters because it shows how exact likelihood, reversible computation, and tractable sampling trade off against architectural constraints. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The change-of-variables formula tracks how probability density changes under an invertible transformation.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Change-of-variables formula illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,0 +1,52 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Reserve errors you did not train on, rank them, then use the required rank as a prediction radius.",
+  "overview": "Split conformal prediction uses held-out calibration errors to turn a fixed predictor into a prediction set with a finite-sample marginal coverage guarantee under exchangeability.",
+  "concepts": [
+    {
+      "title": "Calibration split",
+      "explanation": "Fit the model on training data, then calculate residuals on disjoint calibration data. Reusing those residuals to tune the predictor invalidates this simple split argument."
+    },
+    {
+      "title": "Prediction, not parameter estimation",
+      "explanation": "The interval targets a future response. It is not a confidence interval for a model parameter or for the conditional mean."
+    }
+  ],
+  "process": [
+    "Calculate absolute errors on calibration examples and sort them.",
+    "Choose rank ceil((n+1)(1−α)). If it exceeds n, use an infinite radius rather than silently capping the rank.",
+    "Add and subtract the selected residual from the fixed model's new prediction."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "k=ceil((n+1)(1−α)); C(x)=[f(x)−r₍ₖ₎, f(x)+r₍ₖ₎]",
+      "meaning": "A predictor fixed before calibration; n=9 absolute residuals [0.2,0.3,0.4,0.5,0.7,0.9,1.1,1.4,2.0]. Calibration and future examples are exchangeable. Units are target units; the displayed new prediction is f(x)=5."
+    }
+  ],
+  "example": {
+    "title": "Nine calibration errors",
+    "setup": "Use the nine residuals shown in the lab and α=0.1.",
+    "steps": [
+      "k=ceil(10×0.9)=9.",
+      "The ninth residual is 2.0.",
+      "For prediction 5, return [3,7]."
+    ],
+    "result": "This procedure has at least 90% marginal coverage under the stated assumptions; it does not assert a 90% conditional probability for this particular case."
+  },
+  "pitfalls": [
+    "Arbitrary time dependence or distribution shift can break exchangeability.",
+    "A tiny calibration sample produces coarse quantiles; interpolated sample quantiles do not automatically implement the required rank."
+  ],
+  "implementation": [
+    "Keep training, model selection, calibration, and final assessment roles explicit.",
+    "Monitor interval widths and empirical coverage on meaningful groups, while distinguishing those diagnostics from the marginal theorem."
+  ],
+  "takeaways": [
+    "The corrected rank uses n+1, not n. The guarantee averages over exchangeable calibration and test examples; it is not a guarantee for every subgroup or every x.",
+    "State the exchangeability assumption and distinguish marginal from conditional coverage."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["Split conformal prediction uses held-out calibration errors to turn a fixed predictor into a prediction set with a finite-sample marginal coverage guarantee under exchangeability.","Compute the finite-sample corrected rank and prediction interval.","State the exchangeability assumption and distinguish marginal from conditional coverage.","Reserve errors you did not train on, rank them, then use the required rank as a prediction radius.","k=ceil((n+1)(1−α)); C(x)=[f(x)−r₍ₖ₎, f(x)+r₍ₖ₎]","A predictor fixed before calibration; n=9 absolute residuals [0.2,0.3,0.4,0.5,0.7,0.9,1.1,1.4,2.0]. Calibration and future examples are exchangeable. Units are target units; the displayed new prediction is f(x)=5.","The corrected rank uses n+1, not n. The guarantee averages over exchangeable calibration and test examples; it is not a guarantee for every subgroup or every x."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Propositional logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Propositional logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Propositional logic step 2: Apply the central rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
-    "Propositional logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Propositional logic step 4: Stop and interpret the result using this criterion: It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Modus ponens derives that evacuation is required."
   },
   "pitfalls": [
-    "Propositional logic failure 1: Do not confuse implication P=>Q with causation or the converse Q=>P.",
-    "Propositional logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Propositional logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Do not confuse implication P=>Q with causation or the converse Q=>P.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Propositional logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Propositional logic, compare the quantity named in “Propositional logic represents atomic statements as true or false and combines them with logical connectives.” across training, evaluation, and shifted inputs.",
-    "Ship Propositional logic with a counterexample test derived from “Do not confuse implication P=>Q with causation or the converse Q=>P.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
     "Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Propositional logic represents atomic statements as true or false and combines them with logical connectives.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Propositional logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

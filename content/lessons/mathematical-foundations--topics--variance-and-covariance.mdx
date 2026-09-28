@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Variance and covariance: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Variance measures spread; covariance measures how two variables move together.",
+  "hook": "Shared movement contributes twice when two quantities are added.",
+  "overview": "Variance measures squared deviation from a mean. Covariance measures the expected product of centered variables and determines how uncertainty combines in sums. These finite-moment formulas assume finite second moments.",
   "concepts": [
     {
-      "title": "Variance and covariance definition",
-      "explanation": "Variance and covariance lens: The definition and notation for Variance and covariance."
+      "title": "Scaling and units",
+      "explanation": "Var(aX+b)=a²Var(X), while Cov(aX,bY)=abCov(X,Y). Covariance has the product of the two variables' units, so its magnitude is not a normalized association score."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Variance and covariance lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Variance and covariance lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Variance and covariance lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Covariance matrices",
+      "explanation": "For a finite-second-moment vector, every quadratic form vᵀΣv is Var(vᵀX)≥0. Thus a population covariance matrix is positive semidefinite."
     }
   ],
   "process": [
-    "Variance and covariance step 1: Variance and covariance belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Center both variables by their expectations.",
+    "Average centered squares and cross-products with their joint probabilities.",
+    "Retain covariance terms when adding dependent quantities."
   ],
   "formulas": [
     {
-      "label": "Variance and covariance field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y); Cov(X,Y)=E[XY]−E[X]E[Y]",
+      "meaning": "X and ε are independent fair ±1 variables; Y=aX+ε. Four plotted points have equal probability. These are population quantities computed from the full model, not sample covariance estimates."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, variance and covariance can be used to interpret variance measures spread; covariance measures how two variables move together.",
-    "steps": [],
-    "result": "In a probabilistic model, variance and covariance can be used to interpret variance measures spread; covariance measures how two variables move together."
+    "title": "Two copies of the signal plus noise",
+    "setup": "Set a=1, so Y=X+ε.",
+    "steps": [
+      "Var(X)=1, Var(Y)=2 and Cov(X,Y)=1.",
+      "X+Y=2X+ε has variance 4+1=5, also 1+2+2×1."
+    ],
+    "result": "Dropping covariance would incorrectly report variance 3."
   },
   "pitfalls": [
-    "Variance and covariance failure 1: do not treat Variance and covariance as a label without being able to compute or sketch a small example.",
-    "Variance and covariance failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Variance and covariance failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Zero covariance does not generally prove independence.",
+    "Changing units changes variance and covariance even when the underlying relationship is unchanged."
   ],
   "implementation": [
-    "Represent the central state for Variance and covariance explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Variance and covariance, compare the quantity named in “Variance measures spread; covariance measures how two variables move together.” across training, evaluation, and shifted inputs.",
-    "Ship Variance and covariance with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Distinguish a population expectation from an n−1 sample estimator.",
+    "Use stable centered or online covariance calculations instead of subtracting large nearly equal raw moments."
   ],
   "takeaways": [
-    "Variance and covariance matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Variances add without a covariance term when variables are uncorrelated; independence is sufficient but not necessary.",
+    "Check scaling, units and PSD constraints."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Variance measures squared deviation from a mean. Covariance measures the expected product of centered variables and determines how uncertainty combines in sums. These finite-moment formulas assume finite second moments.","Propagate variance with cross-covariance terms.","Check scaling, units and PSD constraints.","Shared movement contributes twice when two quantities are added.","Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y); Cov(X,Y)=E[XY]−E[X]E[Y]","X and ε are independent fair ±1 variables; Y=aX+ε. Four plotted points have equal probability. These are population quantities computed from the full model, not sample covariance estimates.","Variances add without a covariance term when variables are uncorrelated; independence is sufficient but not necessary."]} />

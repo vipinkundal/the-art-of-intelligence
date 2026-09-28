@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Depthwise and separable convolutions: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Depthwise separable convolution splits spatial filtering from channel mixing to reduce parameters and computation.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Depthwise and separable convolutions step 1: Apply a KxK spatial kernel to each channel separately.",
-    "Depthwise and separable convolutions step 2: Keep or expand the per-channel feature maps.",
-    "Depthwise and separable convolutions step 3: Apply 1x1 kernels across channels.",
-    "Depthwise and separable convolutions step 4: Compare cost and accuracy with a standard convolution."
+    "Apply a KxK spatial kernel to each channel separately.",
+    "Keep or expand the per-channel feature maps.",
+    "Apply 1x1 kernels across channels.",
+    "Compare cost and accuracy with a standard convolution."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The separable block uses 2,336 weights, far fewer than the standard layer."
   },
   "pitfalls": [
-    "Depthwise and separable convolutions failure 1: Reduced channel interaction in the depthwise stage can lower accuracy if the block is too narrow.",
-    "Depthwise and separable convolutions failure 2: Actual hardware speedup may lag theoretical FLOP reduction because memory access and kernel support matter.",
-    "Depthwise and separable convolutions failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Reduced channel interaction in the depthwise stage can lower accuracy if the block is too narrow.",
+    "Actual hardware speedup may lag theoretical FLOP reduction because memory access and kernel support matter.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Depthwise and separable convolutions explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Depthwise and separable convolutions, compare the quantity named in “A depthwise kernel filters each input channel independently, then a one-by-one pointwise convolution mixes channels.” across training, evaluation, and shifted inputs.",
-    "Ship Depthwise and separable convolutions with a counterexample test derived from “Reduced channel interaction in the depthwise stage can lower accuracy if the block is too narrow.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Depthwise separable convolution splits spatial filtering from channel mixing to reduce parameters and computation.",
     "A depthwise kernel filters each input channel independently, then a one-by-one pointwise convolution mixes channels.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Depthwise separable convolution splits spatial filtering from channel mixing to reduce parameters and computation.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Depthwise and separable convolutions illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for STRIPS: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "STRIPS represents actions with preconditions, add effects, and delete effects.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "STRIPS step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "STRIPS step 2: Apply the central rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
-    "STRIPS step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "STRIPS step 4: Stop and interpret the result using this criterion: The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Applying the action produces a state where the robot is at B and no longer at A."
   },
   "pitfalls": [
-    "STRIPS failure 1: Frame assumptions and interacting effects must be encoded explicitly.",
-    "STRIPS failure 2: A plan is only as reliable as its action model and observations.",
-    "STRIPS failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Frame assumptions and interacting effects must be encoded explicitly.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for STRIPS explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For STRIPS, compare the quantity named in “STRIPS represents actions with preconditions, add effects, and delete effects.” across training, evaluation, and shifted inputs.",
-    "Ship STRIPS with a counterexample test derived from “Frame assumptions and interacting effects must be encoded explicitly.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "STRIPS represents actions with preconditions, add effects, and delete effects.",
     "An applicable action removes facts in its delete list and inserts facts in its add list.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["STRIPS represents actions with preconditions, add effects, and delete effects.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This STRIPS illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

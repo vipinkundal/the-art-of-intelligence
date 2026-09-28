@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Agents And Tools as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "A model alone produces text or predictions. An agent wraps that model with tools, state, instructions, and checks so it can take useful actions."
   ],
-  "formulas": [
-    {
-      "label": "Agents And Tools field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the reinforcement lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Agents And Tools in operation",
+    "title": "Agents And Tools example",
     "setup": "A coding agent can inspect files, edit code, run tests, and summarize the result instead of only explaining what a human should do.",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Agents And Tools."
+    "result": ""
   },
-  "pitfalls": [
-    "Agents And Tools failure 1: A correct definition of Agents And Tools can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.",
     "Read Anthropic's Building effective agents for practical diagrams and patterns for workflows, tools, and autonomous agents."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["An agent is an AI system that can plan steps, use tools, inspect results, and continue toward a goal.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Agents And Tools illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

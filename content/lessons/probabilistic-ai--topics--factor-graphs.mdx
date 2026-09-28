@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Factor graphs: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Factor graphs step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Factor graphs step 2: Apply the central computation: Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
-    "Factor graphs step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Factor graphs step 4: Interpret the result under this limitation: The representation makes reusable inference rules clear, though cycles can make message passing approximate."
+    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Apply the central computation: Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: The representation makes reusable inference rules clear, though cycles can make message passing approximate."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Messages combine channel evidence with parity constraints to estimate each transmitted bit."
   },
   "pitfalls": [
-    "Factor graphs failure 1: A factor graph and a Bayesian network can represent related distributions but encode structure differently.",
-    "Factor graphs failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Factor graphs failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+    "A factor graph and a Bayesian network can represent related distributions but encode structure differently.",
+    "A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Check normalization, support, and conditioning events before interpreting a probability."
   ],
-  "implementation": [
-    "Represent the central state for Factor graphs explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Factor graphs, compare the quantity named in “A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization expli” across training, evaluation, and shifted inputs.",
-    "Ship Factor graphs with a counterexample test derived from “A factor graph and a Bayesian network can represent related distributions but encode structure differently.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
     "Connect each factor to exactly the variables in its scope, then perform local message passing along those edges.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Factor graphs illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

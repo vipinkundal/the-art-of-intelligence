@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Backtracking: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Backtracking builds a partial assignment and retreats when no legal extension remains.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Backtracking step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Backtracking step 2: Apply the central rule: Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
-    "Backtracking step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Backtracking step 4: Stop and interpret the result using this criterion: It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "When a row, column, or box becomes impossible, the solver reverses the most recent choice."
   },
   "pitfalls": [
-    "Backtracking failure 1: Mutable domains must be copied or trailed correctly to avoid leaking pruned values across branches.",
-    "Backtracking failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Backtracking failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Mutable domains must be copied or trailed correctly to avoid leaking pruned values across branches.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Backtracking explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Backtracking, compare the quantity named in “Backtracking builds a partial assignment and retreats when no legal extension remains.” across training, evaluation, and shifted inputs.",
-    "Ship Backtracking with a counterexample test derived from “Mutable domains must be copied or trailed correctly to avoid leaking pruned values across branches.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Backtracking builds a partial assignment and retreats when no legal extension remains.",
     "Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Backtracking builds a partial assignment and retreats when no legal extension remains.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Backtracking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Deduction: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Deduction derives a conclusion that must be true if its premises and inference rules are true.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Deduction step 1: Represent the task using observations or facts, a candidate rule or model, and a question.",
-    "Deduction step 2: Apply the central rule: Apply truth-preserving rules from general statements and facts to a specific conclusion.",
-    "Deduction step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Deduction step 4: Stop and interpret the result using this criterion: It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion."
+    "Represent the task using observations or facts, a candidate rule or model, and a question.",
+    "Apply the central rule: Apply truth-preserving rules from general statements and facts to a specific conclusion.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It offers necessity, not discovery beyond the premises, and an invalid premise can yield a soundly derived but false real-world conclusion."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Deduce that D has an owner."
   },
   "pitfalls": [
-    "Deduction failure 1: Validity and truth are different: a valid argument can start from a false premise.",
-    "Deduction failure 2: Do not present a plausible or statistical conclusion as a deductive certainty.",
-    "Deduction failure 3: Correlation, analogy, and counterfactual causation require different evidence."
+    "Validity and truth are different: a valid argument can start from a false premise.",
+    "Do not present a plausible or statistical conclusion as a deductive certainty.",
+    "Correlation, analogy, and counterfactual causation require different evidence."
   ],
-  "implementation": [
-    "Represent the central state for Deduction explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Deduction, compare the quantity named in “Deduction derives a conclusion that must be true if its premises and inference rules are true.” across training, evaluation, and shifted inputs.",
-    "Ship Deduction with a counterexample test derived from “Validity and truth are different: a valid argument can start from a false premise.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Deduction derives a conclusion that must be true if its premises and inference rules are true.",
     "Apply truth-preserving rules from general statements and facts to a specific conclusion.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Deduction derives a conclusion that must be true if its premises and inference rules are true.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Deduction illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Graphplan: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Graphplan step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Graphplan step 2: Apply the central rule: Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
-    "Graphplan step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Graphplan step 4: Stop and interpret the result using this criterion: The graph provides reachability and heuristic information; extraction can still require combinatorial search."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: The graph provides reachability and heuristic information; extraction can still require combinatorial search."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Backward extraction selects non-mutex actions whose preconditions are supported by earlier layers."
   },
   "pitfalls": [
-    "Graphplan failure 1: Presence of each goal separately is insufficient; they must also be pairwise non-mutex.",
-    "Graphplan failure 2: A plan is only as reliable as its action model and observations.",
-    "Graphplan failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Presence of each goal separately is insufficient; they must also be pairwise non-mutex.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for Graphplan explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Graphplan, compare the quantity named in “Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.” across training, evaluation, and shifted inputs.",
-    "Ship Graphplan with a counterexample test derived from “Presence of each goal separately is insufficient; they must also be pairwise non-mutex.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.",
     "Expand a planning graph until goals appear without mutex conflict, then search backward for a compatible action set.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Graphplan builds alternating proposition and action layers and tracks mutually exclusive choices.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Graphplan illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Uniform-cost search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Uniform-cost search step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Uniform-cost search step 2: Apply the central rule: Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
-    "Uniform-cost search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Uniform-cost search step 4: Stop and interpret the result using this criterion: With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Uniform-cost search returns the route with minimum total cost rather than minimum edge count."
   },
   "pitfalls": [
-    "Uniform-cost search failure 1: Stopping when the goal is generated is unsafe; stop when the goal is removed as the cheapest frontier path.",
-    "Uniform-cost search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Uniform-cost search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Stopping when the goal is generated is unsafe; stop when the goal is removed as the cheapest frontier path.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Uniform-cost search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Uniform-cost search, compare the quantity named in “Uniform-cost search expands the frontier path with the lowest accumulated cost.” across training, evaluation, and shifted inputs.",
-    "Ship Uniform-cost search with a counterexample test derived from “Stopping when the goal is generated is unsafe; stop when the goal is removed as the cheapest frontier path.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
     "Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Uniform-cost search expands the frontier path with the lowest accumulated cost.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Uniform-cost search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

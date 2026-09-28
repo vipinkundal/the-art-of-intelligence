@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Linear independence: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "A set of vectors is independent when none can be recreated from the others, which avoids redundant directions.",
+  "hook": "If a direction adds no new reach, its coefficient is redundant.",
+  "overview": "Vectors are linearly independent when their zero linear combination requires every coefficient to be zero. Equivalently, no vector in the set is a linear combination of the others.",
   "concepts": [
     {
-      "title": "Linear independence definition",
-      "explanation": "Linear independence lens: The definition and notation for Linear independence."
+      "title": "The homogeneous system",
+      "explanation": "Put the vectors in a matrix A as columns. A nonzero solution of Ac=0 is an explicit dependency among them."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Linear independence lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Linear independence lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Linear independence lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Exact and numerical questions",
+      "explanation": "Exact independence is binary. A tolerance-based numerical rank estimates which directions can be reliably resolved at the data's precision and noise level."
     }
   ],
   "process": [
-    "Linear independence step 1: Linear independence belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Arrange the proposed vectors as columns.",
+    "Solve the homogeneous system or inspect the singular values.",
+    "For numerical data, state the rank threshold and compare it with measurement uncertainty."
   ],
   "formulas": [
     {
-      "label": "Linear independence field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "Ac=0 ⇒ c=0; A=[[1,1],[1,1+ε]], det(A)=ε",
+      "meaning": "Two real columns u=(1,1) and v=(1,1+ε). Independence is evaluated in exact arithmetic; near-zero ε can be numerically difficult even when nonzero."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, linear independence can be used to interpret a set of vectors is independent when none can be recreated from the others, which avoids redundant directions.",
-    "steps": [],
-    "result": "In a model implementation, linear independence can be used to interpret a set of vectors is independent when none can be recreated from the others, which avoids redundant directions."
+    "title": "A collapsing pair",
+    "setup": "Take u=(1,1) and v=(1,1+ε).",
+    "steps": [
+      "At ε=0, u−v=0 uses nonzero coefficients (1,−1), proving dependence.",
+      "At ε=0.5 the determinant is 0.5, so only the zero coefficients map to zero."
+    ],
+    "result": "One changed entry creates a second independent direction, but tiny changes may be unreliable to recover."
   },
   "pitfalls": [
-    "Linear independence failure 1: do not treat Linear independence as a label without being able to compute or sketch a small example.",
-    "Linear independence failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Linear independence failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Testing a floating-point determinant for exact equality with zero is not a robust general rank test.",
+    "More than n vectors in Rⁿ cannot be independent, regardless of how different they look."
   ],
   "implementation": [
-    "Represent the central state for Linear independence explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Linear independence, compare the quantity named in “A set of vectors is independent when none can be recreated from the others, which avoids redundant directions.” across training, evaluation, and shifted inputs.",
-    "Ship Linear independence with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use singular values or a rank-revealing factorization for numerical rank.",
+    "Inspect feature scaling before applying one absolute tolerance across very different column magnitudes."
   ],
   "takeaways": [
-    "Linear independence matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "At ε=0 the parallelogram collapses to a line. At small nonzero ε the columns are independent but nearly redundant numerically.",
+    "Separate exact independence from numerical resolvability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Vectors are linearly independent when their zero linear combination requires every coefficient to be zero. Equivalently, no vector in the set is a linear combination of the others.","Exhibit a nontrivial zero combination to prove dependence.","Separate exact independence from numerical resolvability.","If a direction adds no new reach, its coefficient is redundant.","Ac=0 ⇒ c=0; A=[[1,1],[1,1+ε]], det(A)=ε","Two real columns u=(1,1) and v=(1,1+ε). Independence is evaluated in exact arithmetic; near-zero ε can be numerically difficult even when nonzero.","At ε=0 the parallelogram collapses to a line. At small nonzero ε the columns are independent but nearly redundant numerically."]} />

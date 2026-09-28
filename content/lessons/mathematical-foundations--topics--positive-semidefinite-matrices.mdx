@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Positive-semidefinite matrices: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "These matrices never produce negative quadratic forms and often represent covariance, kernels, or curvature.",
+  "hook": "Sweep every direction: a PSD matrix never dips below zero.",
+  "overview": "A real symmetric matrix is positive semidefinite when its quadratic form is nonnegative in every direction. Equivalently, all its eigenvalues are nonnegative. Covariance and Gram matrices have this structure.",
   "concepts": [
     {
-      "title": "Positive-semidefinite matrices definition",
-      "explanation": "Positive-semidefinite matrices lens: The definition and notation for Positive-semidefinite matrices."
+      "title": "Gram structure",
+      "explanation": "For any real B, xᵀBᵀBx=‖Bx‖²≥0. Thus BᵀB is PSD, and is positive definite precisely when B has independent columns."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Positive-semidefinite matrices lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Positive-semidefinite matrices lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Positive-semidefinite matrices lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Curvature and covariance",
+      "explanation": "Covariance is PSD because aᵀCov(X)a is a variance. A twice continuously differentiable convex function has a PSD Hessian on an open convex domain."
     }
   ],
   "process": [
-    "Positive-semidefinite matrices step 1: Positive-semidefinite matrices belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Verify symmetry before applying the eigenvalue characterization.",
+    "Inspect the smallest eigenvalue with a scale-aware tolerance.",
+    "Distinguish strictly positive curvature from flat zero-eigenvalue directions."
   ],
   "formulas": [
     {
-      "label": "Positive-semidefinite matrices field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "A⪰0 ⇔ xᵀAx≥0 for all x ⇔ λmin(A)≥0, for symmetric A",
+      "meaning": "A=diag(1,t). The graph evaluates the quadratic form on unit vectors (cosθ,sinθ); opposite directions give the same value."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, positive-semidefinite matrices can be used to interpret these matrices never produce negative quadratic forms and often represent covariance, kernels, or curvature.",
-    "steps": [],
-    "result": "In a model implementation, positive-semidefinite matrices can be used to interpret these matrices never produce negative quadratic forms and often represent covariance, kernels, or curvature."
+    "title": "A flat direction becomes a descent direction",
+    "setup": "Set t=0 in diag(1,t).",
+    "steps": [
+      "The form x₁² is nonnegative but vanishes along the second axis.",
+      "Changing t to −1 gives x₁²−x₂², which is −1 at (0,1)."
+    ],
+    "result": "The first matrix is singular PSD; the second is indefinite, not negative definite."
   },
   "pitfalls": [
-    "Positive-semidefinite matrices failure 1: do not treat Positive-semidefinite matrices as a label without being able to compute or sketch a small example.",
-    "Positive-semidefinite matrices failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Positive-semidefinite matrices failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Checking a few sampled vectors cannot certify PSD for a general matrix.",
+    "Standard Cholesky routines typically require positive definiteness, not merely semidefiniteness."
   ],
   "implementation": [
-    "Represent the central state for Positive-semidefinite matrices explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Positive-semidefinite matrices, compare the quantity named in “These matrices never produce negative quadratic forms and often represent covariance, kernels, or curvature.” across training, evaluation, and shifted inputs.",
-    "Ship Positive-semidefinite matrices with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "For a symmetric problem, use symmetric eigensolvers and inspect asymmetry separately.",
+    "Report any diagonal jitter added for factorization: it changes the model's covariance or curvature."
   ],
   "takeaways": [
-    "Positive-semidefinite matrices matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Positive entries are neither necessary nor sufficient for positive semidefiniteness. The condition concerns all directions, not individual cells.",
+    "Distinguish PSD, positive definite, and indefinite matrices."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A real symmetric matrix is positive semidefinite when its quadratic form is nonnegative in every direction. Equivalently, all its eigenvalues are nonnegative. Covariance and Gram matrices have this structure.","Relate quadratic forms, eigenvalues, and Gram matrices.","Distinguish PSD, positive definite, and indefinite matrices.","Sweep every direction: a PSD matrix never dips below zero.","A⪰0 ⇔ xᵀAx≥0 for all x ⇔ λmin(A)≥0, for symmetric A","A=diag(1,t). The graph evaluates the quadratic form on unit vectors (cosθ,sinθ); opposite directions give the same value.","Positive entries are neither necessary nor sufficient for positive semidefiniteness. The condition concerns all directions, not individual cells."]} />

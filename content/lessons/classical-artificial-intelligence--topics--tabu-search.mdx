@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Tabu search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Tabu search step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Tabu search step 2: Apply the central rule: Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
-    "Tabu search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Tabu search step 4: Stop and interpret the result using this criterion: Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The search is forced into new regions while still recording the best schedule seen."
   },
   "pitfalls": [
-    "Tabu search failure 1: An overly long tabu tenure blocks useful moves; an overly short one fails to prevent cycling.",
-    "Tabu search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Tabu search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "An overly long tabu tenure blocks useful moves; an overly short one fails to prevent cycling.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Tabu search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Tabu search, compare the quantity named in “Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.” across training, evaluation, and shifted inputs.",
-    "Ship Tabu search with a counterexample test derived from “An overly long tabu tenure blocks useful moves; an overly short one fails to prevent cycling.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
     "Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Tabu search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

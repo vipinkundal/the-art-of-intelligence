@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Ontologies: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Ontologies define shared concepts, properties, constraints, and relationships for a domain.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Ontologies step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Ontologies step 2: Apply the central rule: Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
-    "Ontologies step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Ontologies step 4: Stop and interpret the result using this criterion: They improve semantic interoperability but require governance, versioning, and careful commitment to meaning."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: They improve semantic interoperability but require governance, versioning, and careful commitment to meaning."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Different datasets can map their labels into one shared conceptual model."
   },
   "pitfalls": [
-    "Ontologies failure 1: Do not encode temporary database structure as timeless domain truth.",
-    "Ontologies failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Ontologies failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Do not encode temporary database structure as timeless domain truth.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Ontologies explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Ontologies, compare the quantity named in “Ontologies define shared concepts, properties, constraints, and relationships for a domain.” across training, evaluation, and shifted inputs.",
-    "Ship Ontologies with a counterexample test derived from “Do not encode temporary database structure as timeless domain truth.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Ontologies define shared concepts, properties, constraints, and relationships for a domain.",
     "Create a controlled vocabulary and axioms so systems can align data and infer classifications.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Ontologies define shared concepts, properties, constraints, and relationships for a domain.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Ontologies illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Stride: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Stride is the number of input positions a convolutional window moves between neighboring outputs.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Stride step 1: Choose stride from the desired resolution reduction.",
-    "Stride step 2: Place the first kernel window using the padding convention.",
-    "Stride step 3: Advance the origin by S positions for each next output.",
-    "Stride step 4: Check output size and whether important fine detail remains represented."
+    "Choose stride from the desired resolution reduction.",
+    "Place the first kernel window using the padding convention.",
+    "Advance the origin by S positions for each next output.",
+    "Check output size and whether important fine detail remains represented."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The output size is 4, approximately halving resolution."
   },
   "pitfalls": [
-    "Stride failure 1: Large stride can discard small objects or timing detail.",
-    "Stride failure 2: Combining stride with careless padding can shift feature alignment and break decoder skip connections.",
-    "Stride failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Large stride can discard small objects or timing detail.",
+    "Combining stride with careless padding can shift feature alignment and break decoder skip connections.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Stride explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Stride, compare the quantity named in “The convolution is evaluated only at window origins separated by S pixels or samples.” across training, evaluation, and shifted inputs.",
-    "Ship Stride with a counterexample test derived from “Large stride can discard small objects or timing detail.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Stride is the number of input positions a convolutional window moves between neighboring outputs.",
     "The convolution is evaluated only at window origins separated by S pixels or samples.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Stride is the number of input positions a convolutional window moves between neighboring outputs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Stride illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

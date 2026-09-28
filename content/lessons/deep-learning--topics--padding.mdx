@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Padding: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Padding adds values around an input boundary to control output size and what filters see near edges.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Padding step 1: Choose desired output size and boundary behavior.",
-    "Padding step 2: Compute left, right, top, and bottom pad widths.",
-    "Padding step 3: Construct the extended input using the selected rule.",
-    "Padding step 4: Apply the convolution and confirm the resulting spatial dimensions."
+    "Choose desired output size and boundary behavior.",
+    "Compute left, right, top, and bottom pad widths.",
+    "Construct the extended input using the selected rule.",
+    "Apply the convolution and confirm the resulting spatial dimensions."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The output size remains 5."
   },
   "pitfalls": [
-    "Padding failure 1: Zero padding introduces an artificial edge that may not match the domain.",
-    "Padding failure 2: Even kernels, dilation, and stride can require asymmetric padding for an intended alignment.",
-    "Padding failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Zero padding introduces an artificial edge that may not match the domain.",
+    "Even kernels, dilation, and stride can require asymmetric padding for an intended alignment.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Padding explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Padding, compare the quantity named in “Zero, reflection, replication, circular, or learned values extend the input before the kernel slides.” across training, evaluation, and shifted inputs.",
-    "Ship Padding with a counterexample test derived from “Zero padding introduces an artificial edge that may not match the domain.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Padding adds values around an input boundary to control output size and what filters see near edges.",
     "Zero, reflection, replication, circular, or learned values extend the input before the kernel slides.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Padding adds values around an input boundary to control output size and what filters see near edges.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Padding illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

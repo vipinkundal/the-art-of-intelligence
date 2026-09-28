@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for beta-VAE: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "beta-VAE increases the KL penalty in a VAE to encourage more disentangled latent factors.",
   "concepts": [
     {
-      "title": "beta-VAE definition",
-      "explanation": "beta-VAE lens: disentanglement"
+      "title": "Concept",
+      "explanation": "disentanglement"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "beta-VAE lens: rate-distortion tradeoff"
+      "title": "Concept",
+      "explanation": "rate-distortion tradeoff"
     },
     {
-      "title": "AI connection",
-      "explanation": "beta-VAE lens: KL weighting"
+      "title": "Concept",
+      "explanation": "KL weighting"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "beta-VAE lens: latent capacity"
+      "title": "Concept",
+      "explanation": "latent capacity"
     }
   ],
   "process": [
-    "beta-VAE step 1: The VAE objective is modified by multiplying the KL term by beta. Higher beta pressures the latent distribution toward the prior and can reduce capacity."
+    "The VAE objective is modified by multiplying the KL term by beta. Higher beta pressures the latent distribution toward the prior and can reduce capacity."
   ],
-  "formulas": [
-    {
-      "label": "beta-VAE field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the retrieval lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "On synthetic shapes, one latent dimension might track rotation while another tracks object size.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "On synthetic shapes, one latent dimension might track rotation while another tracks object size."
   },
   "pitfalls": [
-    "beta-VAE failure 1: Higher beta can reduce reconstruction quality.",
-    "beta-VAE failure 2: Disentanglement is not guaranteed without assumptions or supervision."
+    "Higher beta can reduce reconstruction quality.",
+    "Disentanglement is not guaranteed without assumptions or supervision."
   ],
-  "implementation": [
-    "Represent the central state for beta-VAE explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For beta-VAE, compare the quantity named in “beta-VAE increases the KL penalty in a VAE to encourage more disentangled latent factors.” across training, evaluation, and shifted inputs.",
-    "Ship beta-VAE with a counterexample test derived from “Higher beta can reduce reconstruction quality.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "beta-VAE matters because it connects representation learning, compression, latent-space editing, and sample generation. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["beta-VAE increases the KL penalty in a VAE to encourage more disentangled latent factors.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This beta-VAE illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

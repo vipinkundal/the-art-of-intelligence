@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Completeness: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Completeness step 1: Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Completeness step 2: Apply the central rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
-    "Completeness step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Completeness step 4: Stop and interpret the result using this criterion: Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+    "Represent the task using an algorithm, a problem class, and stated assumptions.",
+    "Apply the central rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "BFS is complete under the assumption; DFS can miss an existing goal forever."
   },
   "pitfalls": [
-    "Completeness failure 1: Always state the assumptions attached to a completeness claim.",
-    "Completeness failure 2: A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Completeness failure 3: Worst-case analysis and typical observed behavior answer different questions."
+    "Always state the assumptions attached to a completeness claim.",
+    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+    "Worst-case analysis and typical observed behavior answer different questions."
   ],
-  "implementation": [
-    "Represent the central state for Completeness explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Completeness, compare the quantity named in “Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.” across training, evaluation, and shifted inputs.",
-    "Ship Completeness with a counterexample test derived from “Always state the assumptions attached to a completeness claim.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
     "State the problem class and prove that the search cannot indefinitely avoid every solution.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Completeness illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

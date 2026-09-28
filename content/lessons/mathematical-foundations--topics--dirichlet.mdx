@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Dirichlet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Models uncertainty over a vector of probabilities that sum to one.",
+  "hook": "All shares fit in one pie, even as uncertainty changes.",
+  "overview": "A Dirichlet distribution models an entire probability vector on the simplex. Positive parameters αᵢ set mean proportions αᵢ/α₀, where α₀ is their sum; components are coupled by the requirement that they sum to one.",
   "concepts": [
     {
-      "title": "Dirichlet definition",
-      "explanation": "Dirichlet lens: The definition and notation for Dirichlet."
+      "title": "Negative component covariance",
+      "explanation": "For i≠j, Cov(pᵢ,pⱼ)=−αᵢαⱼ/(α₀²(α₀+1)). Increasing one share necessarily reduces the room available to the others."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Dirichlet lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Dirichlet lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Dirichlet lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Updating category probabilities",
+      "explanation": "With independent categorical observations, adding each observed category count to its corresponding α parameter gives the conjugate posterior."
     }
   ],
   "process": [
-    "Dirichlet step 1: Dirichlet belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Specify all positive concentration parameters.",
+    "Separate the mean vector from total concentration.",
+    "Label marginal plots explicitly so they are not mistaken for the joint simplex geometry."
   ],
   "formulas": [
     {
-      "label": "Dirichlet field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "E[pᵢ]=αᵢ/α₀; Var(pᵢ)=αᵢ(α₀−αᵢ)/(α₀²(α₀+1))",
+      "meaning": "The three-component model is Dirichlet(c,c,c). The graph shows only p₁'s Beta(c,2c) marginal—not the full simplex density. c ranges from 1 to 8; every mean stays 1/3."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, dirichlet can be used to interpret models uncertainty over a vector of probabilities that sum to one.",
-    "steps": [],
-    "result": "In a probabilistic model, dirichlet can be used to interpret models uncertainty over a vector of probabilities that sum to one."
+    "title": "Uniform simplex, nonuniform marginal",
+    "setup": "Take α=(1,1,1).",
+    "steps": [
+      "Each mean is 1/3 and each variance is 1/18.",
+      "The first component has density 2(1−p₁) on [0,1]."
+    ],
+    "result": "There is more simplex area at small p₁ than near p₁=1."
   },
   "pitfalls": [
-    "Dirichlet failure 1: do not treat Dirichlet as a label without being able to compute or sketch a small example.",
-    "Dirichlet failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Dirichlet failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Independent beta draws do not generally sum to one and are not a Dirichlet draw.",
+    "Higher total concentration narrows uncertainty only when mean proportions are held fixed."
   ],
   "implementation": [
-    "Represent the central state for Dirichlet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Dirichlet, compare the quantity named in “Models uncertainty over a vector of probabilities that sum to one.” across training, evaluation, and shifted inputs.",
-    "Ship Dirichlet with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Check sampled vectors sum to one within numerical tolerance.",
+    "Keep category order consistent between counts, parameters, and labels."
   ],
   "takeaways": [
-    "Dirichlet matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Uniform over a simplex does not make every component uniform on [0,1]; Dirichlet(1,1,1) has Beta(1,2) marginals.",
+    "Interpret beta marginals without losing the simplex constraint."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A Dirichlet distribution models an entire probability vector on the simplex. Positive parameters αᵢ set mean proportions αᵢ/α₀, where α₀ is their sum; components are coupled by the requirement that they sum to one.","Separate Dirichlet means from concentration.","Interpret beta marginals without losing the simplex constraint.","All shares fit in one pie, even as uncertainty changes.","E[pᵢ]=αᵢ/α₀; Var(pᵢ)=αᵢ(α₀−αᵢ)/(α₀²(α₀+1))","The three-component model is Dirichlet(c,c,c). The graph shows only p₁'s Beta(c,2c) marginal—not the full simplex density. c ranges from 1 to 8; every mean stays 1/3.","Uniform over a simplex does not make every component uniform on [0,1]; Dirichlet(1,1,1) has Beta(1,2) marginals."]} />

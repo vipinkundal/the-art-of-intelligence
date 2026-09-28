@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Weight initialization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Weight initialization step 1: Identify the layer shape and activation.",
-    "Weight initialization step 2: Select a variance-preserving initialization rule.",
-    "Weight initialization step 3: Sample independent weights and initialize biases deliberately.",
-    "Weight initialization step 4: Inspect activation and gradient statistics in early passes."
+    "Identify the layer shape and activation.",
+    "Select a variance-preserving initialization rule.",
+    "Sample independent weights and initialize biases deliberately.",
+    "Inspect activation and gradient statistics in early passes."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "Initial ReLU activations are less likely to vanish or explode across layers."
   },
   "pitfalls": [
-    "Weight initialization failure 1: Initializing all weights identically prevents units in the same layer from specializing.",
-    "Weight initialization failure 2: Variance rules are assumptions, not guarantees, and should be checked in the actual architecture.",
-    "Weight initialization failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "Initializing all weights identically prevents units in the same layer from specializing.",
+    "Variance rules are assumptions, not guarantees, and should be checked in the actual architecture.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Weight initialization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Weight initialization, compare the quantity named in “Variance is chosen from fan-in, fan-out, and the activation so repeated layers approximately preserve second moments.” across training, evaluation, and shifted inputs.",
-    "Ship Weight initialization with a counterexample test derived from “Initializing all weights identically prevents units in the same layer from specializing.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.",
     "Variance is chosen from fan-in, fan-out, and the activation so repeated layers approximately preserve second moments.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Weight initialization chooses starting parameter distributions that preserve useful signal and gradient scales.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Weight initialization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Transformers And Foundation Models as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "Rotary positional embeddings : Rotate query and key features so attention depends on relative positions.",
     "ALiBi : Adds linear attention biases that favor nearby tokens and can support length extrapolation."
   ],
-  "formulas": [
-    {
-      "label": "Transformers And Foundation Models field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Transformers And Foundation Models in operation",
-    "setup": "The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.",
+    "title": "Transformers And Foundation Models example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Transformers And Foundation Models."
+    "result": ""
   },
-  "pitfalls": [
-    "Transformers And Foundation Models failure 1: A correct definition of Transformers And Foundation Models can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.",
     "You should be able to explain transformer blocks, tokenization choices, attention variants, pretraining objectives, post-training methods, parameter-efficient adaptation, and decoding strategies used by modern foundation models."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The transformer remains the central architecture for language and many multimodal systems. The Wikipedia transformer article is useful for an introductory structural overview, while original papers and current courses should be used for implementation details.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Transformers And Foundation Models illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

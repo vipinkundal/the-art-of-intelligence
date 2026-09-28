@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Early stopping: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Stops training when validation behavior stops improving, reducing overfitting.",
+  "hook": "Keep the best checkpoint, not merely the checkpoint where patience runs out.",
+  "overview": "Early stopping selects a training checkpoint using a validation metric and stops after a defined run of insufficient improvements.",
   "concepts": [
     {
-      "title": "Early stopping definition",
-      "explanation": "Early stopping lens: The definition and notation for Early stopping."
+      "title": "Checkpoint selection",
+      "explanation": "Validation loss chooses a model within a run. The untouched test set is reserved for evaluating the selected procedure, including the stopping rule."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Early stopping lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Early stopping lens: how this affects loss minimization, parameter updates, training speed, regularization, or convergence"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Early stopping lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Patience and minimum improvement",
+      "explanation": "Patience counts unsuccessful validation checks. A minimum improvement filters tiny changes; both choices affect the stopping time."
     }
   ],
   "process": [
-    "Early stopping step 1: Early stopping belongs to objectives, constraints, gradients, update rules, and numerical stability. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Choose the monitored quantity, direction, frequency, and patience before the run.",
+    "Save a checkpoint on a qualifying improvement and reset the waiting count.",
+    "Otherwise increment the count; stop at the threshold and restore the saved checkpoint."
   ],
   "formulas": [
     {
-      "label": "Early stopping field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "improvement: lossₜ < best_loss − min_delta; stop when wait ≥ patience",
+      "meaning": "Illustrative fixed validation losses [0.90,0.70,0.55,0.50,0.51,0.52,0.49,0.53,0.54,0.55]. Lower is better, min_delta=0, one check per epoch, and the best observed checkpoint is restored."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a training loop, early stopping can be used to interpret stops training when validation behavior stops improving, reducing overfitting.",
-    "steps": [],
-    "result": "In a training loop, early stopping can be used to interpret stops training when validation behavior stops improving, reducing overfitting."
+    "title": "A delayed improvement",
+    "setup": "The lab's first six validation losses are 0.90, 0.70, 0.55, 0.50, 0.51, 0.52.",
+    "steps": [
+      "With patience 2, epochs 5 and 6 consume the waiting window.",
+      "Stop at epoch 6 and restore epoch 4, whose loss was 0.50.",
+      "With patience 3, epoch 7 is observed; its loss 0.49 becomes the new best."
+    ],
+    "result": "Changing patience can change the selected model, not just the amount of computation."
   },
   "pitfalls": [
-    "Early stopping failure 1: do not treat Early stopping as a label without being able to compute or sketch a small example.",
-    "Early stopping failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Early stopping failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Tuning stopping rules repeatedly against one small validation set can overfit that set.",
+    "A library may not restore best weights by default; stopping and restoration are separate options."
   ],
   "implementation": [
-    "Represent the central state for Early stopping explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Early stopping, compare the quantity named in “Stops training when validation behavior stops improving, reducing overfitting.” across training, evaluation, and shifted inputs.",
-    "Ship Early stopping with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Checkpoint the state needed by the intended next action: inference needs weights, resumed training also needs optimizer and scheduler state.",
+    "Log the best epoch, stop epoch, metric direction, minimum change, and evaluation frequency."
   ],
   "takeaways": [
-    "Early stopping matters for AI because turns model training into a disciplined search for better parameters under practical constraints. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Patience changes which later improvements the run gets a chance to observe; the best available checkpoint can occur before the stopping epoch.",
+    "Keep final test data outside checkpoint selection and stopping-rule tuning."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Early stopping selects a training checkpoint using a validation metric and stops after a defined run of insufficient improvements.","Simulate patience and identify the restored checkpoint.","Keep final test data outside checkpoint selection and stopping-rule tuning.","Keep the best checkpoint, not merely the checkpoint where patience runs out.","improvement: lossₜ < best_loss − min_delta; stop when wait ≥ patience","Illustrative fixed validation losses [0.90,0.70,0.55,0.50,0.51,0.52,0.49,0.53,0.54,0.55]. Lower is better, min_delta=0, one check per epoch, and the best observed checkpoint is restored.","Patience changes which later improvements the run gets a chance to observe; the best available checkpoint can occur before the stopping epoch."]} />

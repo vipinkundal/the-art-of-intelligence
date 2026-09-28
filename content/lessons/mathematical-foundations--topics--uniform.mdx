@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Uniform: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Gives equal probability to each value in a range or set.",
+  "hook": "Double the width and halve the height.",
+  "overview": "A continuous uniform distribution assigns constant density across a finite interval. Equal-length subintervals have equal probability; individual points still have probability zero. Discrete uniform distributions instead assign equal masses to a finite set.",
   "concepts": [
     {
-      "title": "Uniform definition",
-      "explanation": "Uniform lens: The definition and notation for Uniform."
+      "title": "Finite support",
+      "explanation": "Constant positive density over the whole real line cannot normalize. A continuous uniform model needs a finite interval with positive width."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Uniform lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Uniform lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Uniform lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Choosing a measure",
+      "explanation": "Uniform over angle, area, or radius are different sampling prescriptions. Equal parameter increments need not represent equal geometric area."
     }
   ],
   "process": [
-    "Uniform step 1: Uniform belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Specify the interval and units.",
+    "Divide overlap length by total interval length.",
+    "Check whether a later transformation changes the density."
   ],
   "formulas": [
     {
-      "label": "Uniform field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "X~U(a,b): f(x)=1/(b−a); E[X]=(a+b)/2; Var(X)=(b−a)²/12",
+      "meaning": "Here a=0 and b>0. Shading covers [0,min(1,b)] and measures P(X≤1). Endpoint values of the density do not affect probabilities."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, uniform can be used to interpret gives equal probability to each value in a range or set.",
-    "steps": [],
-    "result": "In a probabilistic model, uniform can be used to interpret gives equal probability to each value in a range or set."
+    "title": "A random delay",
+    "setup": "Let X be uniform on [0,4] seconds.",
+    "steps": [
+      "The density is 0.25 per second.",
+      "P(X≤1)=1/4, E[X]=2 seconds, and Var(X)=16/12 seconds²."
+    ],
+    "result": "Every one-second subinterval inside the support has probability 0.25."
   },
   "pitfalls": [
-    "Uniform failure 1: do not treat Uniform as a label without being able to compute or sketch a small example.",
-    "Uniform failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Uniform failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "An absence of prior knowledge does not uniquely justify a uniform law.",
+    "Uniform radius does not produce a uniform point in a disk."
   ],
   "implementation": [
-    "Represent the central state for Uniform explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Uniform, compare the quantity named in “Gives equal probability to each value in a range or set.” across training, evaluation, and shifted inputs.",
-    "Ship Uniform with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "State whether an API takes an upper endpoint or a scale equal to interval width.",
+    "Test transforms with their change-of-variables factor rather than assuming uniformity persists."
   ],
   "takeaways": [
-    "Uniform matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Uniformity depends on the coordinate system: a nonlinear transformation of a uniform variable is generally not uniform.",
+    "Recognize the coordinate dependence of uniform sampling."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A continuous uniform distribution assigns constant density across a finite interval. Equal-length subintervals have equal probability; individual points still have probability zero. Discrete uniform distributions instead assign equal masses to a finite set.","Calculate uniform interval probabilities and moments.","Recognize the coordinate dependence of uniform sampling.","Double the width and halve the height.","X~U(a,b): f(x)=1/(b−a); E[X]=(a+b)/2; Var(X)=(b−a)²/12","Here a=0 and b>0. Shading covers [0,min(1,b)] and measures P(X≤1). Endpoint values of the density do not affect probabilities.","Uniformity depends on the coordinate system: a nonlinear transformation of a uniform variable is generally not uniform."]} />

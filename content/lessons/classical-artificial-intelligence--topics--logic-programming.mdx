@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Logic programming: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Logic programming describes facts and rules while an inference engine searches for variable bindings that satisfy queries.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Logic programming step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Logic programming step 2: Apply the central rule: Use unification, backward chaining, and backtracking over clauses, as in Prolog-style execution.",
-    "Logic programming step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Logic programming step 4: Stop and interpret the result using this criterion: It provides concise relational programs but operational behavior depends on rule order and search strategy."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Use unification, backward chaining, and backtracking over clauses, as in Prolog-style execution.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It provides concise relational programs but operational behavior depends on rule order and search strategy."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The engine returns bindings for every x reachable through the parent relation."
   },
   "pitfalls": [
-    "Logic programming failure 1: A logically correct recursive rule can still loop under depth-first execution.",
-    "Logic programming failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Logic programming failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "A logically correct recursive rule can still loop under depth-first execution.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Logic programming explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Logic programming, compare the quantity named in “Logic programming describes facts and rules while an inference engine searches for variable bindings that satisfy querie” across training, evaluation, and shifted inputs.",
-    "Ship Logic programming with a counterexample test derived from “A logically correct recursive rule can still loop under depth-first execution.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Logic programming describes facts and rules while an inference engine searches for variable bindings that satisfy queries.",
     "Use unification, backward chaining, and backtracking over clauses, as in Prolog-style execution.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Logic programming describes facts and rules while an inference engine searches for variable bindings that satisfy queries.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Logic programming illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

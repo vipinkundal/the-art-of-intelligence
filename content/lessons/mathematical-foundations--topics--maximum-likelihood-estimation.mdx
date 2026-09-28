@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Maximum likelihood estimation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Chooses parameters that make the observed data most probable under the model.",
+  "hook": "Likelihood reverses which input is allowed to move.",
+  "overview": "Maximum likelihood chooses a parameter maximizing the likelihood of the observed data under a specified model. For continuous data the likelihood is a density evaluated at those data, not the probability of observing that exact point. It is not generally a probability distribution over parameters.",
   "concepts": [
     {
-      "title": "Maximum likelihood estimation definition",
-      "explanation": "Maximum likelihood estimation lens: The definition and notation for Maximum likelihood estimation."
+      "title": "Use the log objective",
+      "explanation": "Products of many small factors can underflow. Logs convert the product to a sum without changing its maximizer; parameter-independent terms may be omitted for optimization, but not arbitrarily when calculating normalized probabilities."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Maximum likelihood estimation lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Maximum likelihood estimation lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Maximum likelihood estimation lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Check boundaries and existence",
+      "explanation": "For 0<k<10 the score equation k/p−(10−k)/(1−p)=0 gives p=k/10. With no successes or no failures the maximum is on a boundary. Other models can have nonunique, unattained or unbounded likelihood maxima."
     }
   ],
   "process": [
-    "Maximum likelihood estimation step 1: Maximum likelihood estimation belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Write the joint data likelihood, including the dependence assumptions.",
+    "Optimize its log on the actual parameter space, checking boundaries.",
+    "Assess identifiability, numerical convergence, uncertainty and model fit separately."
   ],
   "formulas": [
     {
-      "label": "Maximum likelihood estimation field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "ℓ(p)=k log p+(10−k)log(1−p)+constant; p̂MLE=k/10",
+      "meaning": "Ten conditionally independent Bernoulli trials with a common probability p∈[0,1]. The curve is L(p)/L(p̂), using the continuous endpoint convention 0 log 0=0. A binomial coefficient independent of p cancels from this ratio."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, maximum likelihood estimation can be used to interpret chooses parameters that make the observed data most probable under the model.",
-    "steps": [],
-    "result": "When evaluating a model, maximum likelihood estimation can be used to interpret chooses parameters that make the observed data most probable under the model."
+    "title": "Seven successes",
+    "setup": "Observe k=7 of 10.",
+    "steps": [
+      "The interior score equation gives 7(1−p)=3p, hence p̂=0.7.",
+      "At p=0.5, relative likelihood is (0.5¹⁰)/(0.7⁷0.3³), approximately 0.439."
+    ],
+    "result": "This ratio compares fits to the same data. It does not assign probabilities 0.439 and 1 to the parameter values."
   },
   "pitfalls": [
-    "Maximum likelihood estimation failure 1: do not treat Maximum likelihood estimation as a label without being able to compute or sketch a small example.",
-    "Maximum likelihood estimation failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Maximum likelihood estimation failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Asymptotic normality and familiar standard errors require conditions; boundary estimates and unidentified parameters can violate them.",
+    "A likelihood optimizer can converge successfully to a poor local optimum or a misspecified model."
   ],
   "implementation": [
-    "Represent the central state for Maximum likelihood estimation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Maximum likelihood estimation, compare the quantity named in “Chooses parameters that make the observed data most probable under the model.” across training, evaluation, and shifted inputs.",
-    "Ship Maximum likelihood estimation with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use stable log-probability routines and test endpoint data explicitly.",
+    "Record objective values, constraint violations and convergence diagnostics rather than treating the optimizer's success flag as statistical validation."
   ],
   "takeaways": [
-    "Maximum likelihood estimation matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A likelihood peak identifies a best fit within the model; its height is not posterior probability or a goodness-of-fit certificate.",
+    "Distinguish likelihood, probability density and posterior probability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Maximum likelihood chooses a parameter maximizing the likelihood of the observed data under a specified model. For continuous data the likelihood is a density evaluated at those data, not the probability of observing that exact point. It is not generally a probability distribution over parameters.","Derive the Bernoulli maximum-likelihood estimate, including endpoints.","Distinguish likelihood, probability density and posterior probability.","Likelihood reverses which input is allowed to move.","ℓ(p)=k log p+(10−k)log(1−p)+constant; p̂MLE=k/10","Ten conditionally independent Bernoulli trials with a common probability p∈[0,1]. The curve is L(p)/L(p̂), using the continuous endpoint convention 0 log 0=0. A binomial coefficient independent of p cancels from this ratio.","A likelihood peak identifies a best fit within the model; its height is not posterior probability or a goodness-of-fit certificate."]} />

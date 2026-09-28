@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Neural Networks as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "A neural network is a model made of layers that transform input data into useful predictions or generated outputs.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "Each layer changes the data a little. Early layers may detect simple patterns, while later layers combine those patterns into more useful meaning."
   ],
-  "formulas": [
-    {
-      "label": "Neural Networks field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the timeline lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Neural Networks in operation",
+    "title": "Neural Networks example",
     "setup": "In image recognition, one layer might detect edges, another might detect shapes, and a later layer might help identify the object.",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Neural Networks."
+    "result": ""
   },
-  "pitfalls": [
-    "Neural Networks failure 1: A correct definition of Neural Networks can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "A neural network is a model made of layers that transform input data into useful predictions or generated outputs.",
     "Watch 3Blue1Brown's neural networks lesson to see layers, activations, and handwritten digit recognition animated."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A neural network is a model made of layers that transform input data into useful predictions or generated outputs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Neural Networks illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

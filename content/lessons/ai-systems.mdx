@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Agents And Tool-Using Systems as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "Planner-executor : Separates high-level planning from step execution, making long tasks easier to inspect and retry.",
     "Router-specialist : Sends tasks to specialized prompts, models, tools, or workflows based on task type."
   ],
-  "formulas": [
-    {
-      "label": "Agents And Tool-Using Systems field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the transport lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Agents And Tool-Using Systems in operation",
-    "setup": "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
+    "title": "Agents And Tool-Using Systems example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Agents And Tool-Using Systems."
+    "result": ""
   },
-  "pitfalls": [
-    "Agents And Tool-Using Systems failure 1: A correct definition of Agents And Tool-Using Systems can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.",
     "You should be able to design agent workflows with explicit state, tool contracts, validation, human approval points, retry behavior, and security boundaries."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Agent systems combine models with tools, memory, workflows, recovery policies, permissions, and validation so generated decisions can become reliable actions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Agents And Tool-Using Systems illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

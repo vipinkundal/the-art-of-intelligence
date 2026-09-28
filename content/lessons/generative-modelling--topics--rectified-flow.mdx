@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Rectified flow: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Rectified flow learns straighter paths from noise to data to reduce sampling steps.",
   "concepts": [
     {
-      "title": "Rectified flow definition",
-      "explanation": "Rectified flow lens: straight-line transport"
+      "title": "Concept",
+      "explanation": "straight-line transport"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Rectified flow lens: velocity fields"
+      "title": "Concept",
+      "explanation": "velocity fields"
     },
     {
-      "title": "AI connection",
-      "explanation": "Rectified flow lens: reflow"
+      "title": "Concept",
+      "explanation": "reflow"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Rectified flow lens: few-step ODE sampling"
+      "title": "Concept",
+      "explanation": "few-step ODE sampling"
     }
   ],
   "process": [
-    "Rectified flow step 1: The model learns a velocity field that maps interpolated noisy-data pairs along simple trajectories. Reflow procedures can iteratively straighten generated paths."
+    "The model learns a velocity field that maps interpolated noisy-data pairs along simple trajectories. Reflow procedures can iteratively straighten generated paths."
   ],
-  "formulas": [
-    {
-      "label": "Rectified flow field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A rectified-flow image model can sample by integrating a learned ODE from noise to image-like data.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A rectified-flow image model can sample by integrating a learned ODE from noise to image-like data."
   },
   "pitfalls": [
-    "Rectified flow failure 1: Straight paths may not be optimal for every dataset.",
-    "Rectified flow failure 2: Repeated reflow adds training complexity."
+    "Straight paths may not be optimal for every dataset.",
+    "Repeated reflow adds training complexity."
   ],
-  "implementation": [
-    "Represent the central state for Rectified flow explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Rectified flow, compare the quantity named in “Rectified flow learns straighter paths from noise to data to reduce sampling steps.” across training, evaluation, and shifted inputs.",
-    "Ship Rectified flow with a counterexample test derived from “Straight paths may not be optimal for every dataset.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Rectified flow matters because it connects diffusion-style generation with continuous flows, ODE solvers, and fast deterministic sampling. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Rectified flow learns straighter paths from noise to data to reduce sampling steps.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Rectified flow illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,61 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Markov chains: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "A Markov chain models a sequence whose next-state distribution depends only on the current state.",
+  "hook": "Move probability mass along outgoing transitions, then add the arrivals.",
+  "overview": "A discrete-time Markov chain describes a state sequence whose next-state distribution, conditional on the current state, does not depend on earlier states.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "State must retain relevant memory",
+      "explanation": "The Markov property is an assumption about a chosen state representation. Adding a missing state variable can change whether the assumption is reasonable."
     },
     {
-      "title": "Core computation",
-      "explanation": "Multiply an initial distribution by a transition matrix repeatedly or sample each next state from its current-state row."
-    },
-    {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The Markov property makes analysis tractable, but real histories may contain information that the selected state omits."
+      "title": "Stationary versus limiting",
+      "explanation": "A stationary distribution satisfies πP=π. A finite chain has a stationary distribution, but uniqueness and convergence from every start require further conditions."
     }
   ],
   "process": [
-    "Markov chains step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Markov chains step 2: Apply the central computation: Multiply an initial distribution by a transition matrix repeatedly or sample each next state from its current-state row.",
-    "Markov chains step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Markov chains step 4: Interpret the result under this limitation: The Markov property makes analysis tractable, but real histories may contain information that the selected state omits."
+    "Put transition probabilities from each current state in a row.",
+    "Multiply the current row distribution by P.",
+    "Repeat, checking that the entries stay nonnegative and sum to one."
   ],
   "formulas": [
     {
-      "label": "Markov chains rule",
-      "expression": "P(X_(t+1)=j | X_t=i, history)=T_ij",
-      "meaning": "The Markov property makes analysis tractable, but real histories may contain information that the selected state omits."
+      "label": "Definition and assumptions",
+      "expression": "πₜ₊₁=πₜP; P=[[0.8,0.2],[0.4,0.6]]",
+      "meaning": "Two states A and B; row distributions; a fixed transition matrix with nonnegative rows summing to 1. The initial distribution is π₀=(1,0)."
     }
   ],
   "example": {
-    "title": "Markov chains in a small case",
-    "setup": "Model daily weather as sunny, cloudy, or rainy with a three-by-three transition matrix.",
+    "title": "Two days of transitions",
+    "setup": "Start in A with probability 1.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Multiply an initial distribution by a transition matrix repeatedly or sample each next state from its current-state row.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "After one transition, π₁=(0.8,0.2).",
+      "After two: P(A)=0.8×0.8+0.2×0.4=0.72.",
+      "P(B)=0.8×0.2+0.2×0.6=0.28."
     ],
-    "result": "Matrix powers give future state probabilities and simulation produces possible weather sequences."
+    "result": "The distribution is (0.72,0.28); it describes many possible paths, not a single observed path."
   },
   "pitfalls": [
-    "Markov chains failure 1: A process can look non-Markovian when the state representation leaves out relevant memory.",
-    "Markov chains failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "Markov chains failure 3: State estimates become overconfident when process or observation noise is underestimated."
+    "A periodic chain can have a stationary distribution while its state probabilities oscillate.",
+    "An ordinary observed-state Markov chain does not need the emission model used by a hidden Markov model."
   ],
   "implementation": [
-    "Represent the central state for Markov chains explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Markov chains, compare the quantity named in “A Markov chain models a sequence whose next-state distribution depends only on the current state.” across training, evaluation, and shifted inputs.",
-    "Ship Markov chains with a counterexample test derived from “A process can look non-Markovian when the state representation leaves out relevant memory.”, not only a happy-path metric."
+    "Specify whether the implementation uses row or column probability vectors.",
+    "Use sparse matrix-vector products for large state spaces and check row sums after constructing P."
   ],
   "takeaways": [
-    "A Markov chain models a sequence whose next-state distribution depends only on the current state.",
-    "Multiply an initial distribution by a transition matrix repeatedly or sample each next state from its current-state row.",
-    "The Markov property makes analysis tractable, but real histories may contain information that the selected state omits.",
-    "Matrix powers give future state probabilities and simulation produces possible weather sequences."
+    "The row vector after t transitions is π₀Pᵗ. For this irreducible, aperiodic chain it approaches (2/3,1/3).",
+    "Separate stationarity, uniqueness, and convergence instead of assuming they are equivalent."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A discrete-time Markov chain describes a state sequence whose next-state distribution, conditional on the current state, does not depend on earlier states.","Propagate a distribution through a transition matrix.","Separate stationarity, uniqueness, and convergence instead of assuming they are equivalent.","Move probability mass along outgoing transitions, then add the arrivals.","πₜ₊₁=πₜP; P=[[0.8,0.2],[0.4,0.6]]","Two states A and B; row distributions; a fixed transition matrix with nonnegative rows summing to 1. The initial distribution is π₀=(1,0).","The row vector after t transitions is π₀Pᵗ. For this irreducible, aperiodic chain it approaches (2/3,1/3)."]} />

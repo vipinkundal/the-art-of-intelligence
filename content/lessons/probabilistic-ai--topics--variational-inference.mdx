@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Variational inference: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Variational inference step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Variational inference step 2: Apply the central computation: Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
-    "Variational inference step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Variational inference step 4: Interpret the result under this limitation: Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Maximizing the ELBO returns tractable factorized posterior parameters and a lower bound on log evidence."
   },
   "pitfalls": [
-    "Variational inference failure 1: A rising ELBO shows optimization progress, not that the variational family can represent the true posterior well.",
-    "Variational inference failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Variational inference failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "A rising ELBO shows optimization progress, not that the variational family can represent the true posterior well.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Variational inference explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Variational inference, compare the quantity named in “Variational inference approximates an intractable posterior with a distribution from a tractable family.” across training, evaluation, and shifted inputs.",
-    "Ship Variational inference with a counterexample test derived from “A rising ELBO shows optimization progress, not that the variational family can represent the true posterior well.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
     "Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Variational inference approximates an intractable posterior with a distribution from a tractable family.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Variational inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

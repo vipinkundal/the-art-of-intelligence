@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Projections: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Projections drop a vector onto a subspace, keeping the part that matches chosen directions.",
+  "hook": "Keep the component along the subspace; leave a perpendicular residual.",
+  "overview": "An orthogonal projection maps a vector to the closest point in a linear subspace under Euclidean distance. Its residual lies perpendicular to every direction in that subspace.",
   "concepts": [
     {
-      "title": "Projections definition",
-      "explanation": "Projections lens: The definition and notation for Projections."
+      "title": "More than one direction",
+      "explanation": "If Q has orthonormal columns, QQᵀ projects onto their span. For a full-column-rank basis B, the equivalent expression is B(BᵀB)⁻¹Bᵀ."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Projections lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Projections lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Projections lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Idempotence is not enough",
+      "explanation": "Any projection satisfies P²=P. An orthogonal projection additionally has Pᵀ=P; oblique projections need not minimize Euclidean distance."
     }
   ],
   "process": [
-    "Projections step 1: Projections belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Represent the target subspace using an orthonormal basis.",
+    "Calculate inner-product coordinates and reconstruct the projected vector.",
+    "Verify that the residual is orthogonal to the subspace and projecting again changes nothing."
   ],
   "formulas": [
     {
-      "label": "Projections field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "p=uuᵀx for ‖u‖₂=1; uᵀ(x−p)=0; P²=P=Pᵀ",
+      "meaning": "Project x=(2,1) onto the line spanned by the real unit vector u=(cosθ,sinθ). The displayed residual joins the projected endpoint to x."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, projections can be used to interpret projections drop a vector onto a subspace, keeping the part that matches chosen directions.",
-    "steps": [],
-    "result": "In a model implementation, projections can be used to interpret projections drop a vector onto a subspace, keeping the part that matches chosen directions."
+    "title": "Projection onto the diagonal",
+    "setup": "For u=(1,1)/√2 and x=(2,1):",
+    "steps": [
+      "The coefficient uᵀx=3/√2 gives p=(1.5,1.5).",
+      "The residual is (0.5,−0.5), whose dot product with u is zero.",
+      "‖p‖²=4.5 and ‖x−p‖²=0.5."
+    ],
+    "result": "The two squared lengths sum to five, and p is the closest point on the diagonal line."
   },
   "pitfalls": [
-    "Projections failure 1: do not treat Projections as a label without being able to compute or sketch a small example.",
-    "Projections failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Projections failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "An affine plane not through the origin requires subtracting and restoring an offset.",
+    "Forming BᵀB can square the condition number; the explicit inverse formula is a mathematical identity, not the preferred implementation."
   ],
   "implementation": [
-    "Represent the central state for Projections explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Projections, compare the quantity named in “Projections drop a vector onto a subspace, keeping the part that matches chosen directions.” across training, evaluation, and shifted inputs.",
-    "Ship Projections with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use QR or SVD-based least squares and obtain the fitted vector from the solution.",
+    "Test orthogonality of the residual as well as its norm."
   ],
   "takeaways": [
-    "Projections matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Projection length and residual length trade off, but their squared lengths add to ‖x‖²=5 because the components are orthogonal.",
+    "Connect projection geometry with least-squares fitting and numerical stability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["An orthogonal projection maps a vector to the closest point in a linear subspace under Euclidean distance. Its residual lies perpendicular to every direction in that subspace.","Compute a projection and its orthogonal residual.","Connect projection geometry with least-squares fitting and numerical stability.","Keep the component along the subspace; leave a perpendicular residual.","p=uuᵀx for ‖u‖₂=1; uᵀ(x−p)=0; P²=P=Pᵀ","Project x=(2,1) onto the line spanned by the real unit vector u=(cosθ,sinθ). The displayed residual joins the projected endpoint to x.","Projection length and residual length trade off, but their squared lengths add to ‖x‖²=5 because the components are orthogonal."]} />

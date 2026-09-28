@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Arc consistency: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Arc consistency step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Arc consistency step 2: Apply the central rule: For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
-    "Arc consistency step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Arc consistency step 4: Stop and interpret the result using this criterion: It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It removes unsupported values and can expose failure early, but pairwise support does not guarantee a global solution."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Value 3 is removed from X because no larger Y value supports it."
   },
   "pitfalls": [
-    "Arc consistency failure 1: Arc direction matters; enforce both directions for a binary constraint when required.",
-    "Arc consistency failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Arc consistency failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Arc direction matters; enforce both directions for a binary constraint when required.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Arc consistency explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Arc consistency, compare the quantity named in “An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.” across training, evaluation, and shifted inputs.",
-    "Ship Arc consistency with a counterexample test derived from “Arc direction matters; enforce both directions for a binary constraint when required.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
     "For each x in D(X), delete x if no y in D(Y) satisfies the binary constraint.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Arc consistency illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

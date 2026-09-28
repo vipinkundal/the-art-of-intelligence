@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Wasserstein GAN: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Wasserstein GANs use an earth-mover distance objective to improve GAN training behavior.",
   "concepts": [
     {
-      "title": "Wasserstein GAN definition",
-      "explanation": "Wasserstein GAN lens: Wasserstein distance"
+      "title": "Concept",
+      "explanation": "Wasserstein distance"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Wasserstein GAN lens: critic versus discriminator"
+      "title": "Concept",
+      "explanation": "critic versus discriminator"
     },
     {
-      "title": "AI connection",
-      "explanation": "Wasserstein GAN lens: Lipschitz constraints"
+      "title": "Concept",
+      "explanation": "Lipschitz constraints"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Wasserstein GAN lens: weight clipping and gradient penalty"
+      "title": "Concept",
+      "explanation": "weight clipping and gradient penalty"
     }
   ],
   "process": [
-    "Wasserstein GAN step 1: The discriminator becomes a critic that scores samples rather than classifying them. A Lipschitz constraint is required so the Wasserstein objective is valid."
+    "The discriminator becomes a critic that scores samples rather than classifying them. A Lipschitz constraint is required so the Wasserstein objective is valid."
   ],
-  "formulas": [
-    {
-      "label": "Wasserstein GAN field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A WGAN critic can provide smoother training signals even when generated and real image distributions do not overlap much.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A WGAN critic can provide smoother training signals even when generated and real image distributions do not overlap much."
   },
   "pitfalls": [
-    "Wasserstein GAN failure 1: Poor Lipschitz enforcement can break the objective.",
-    "Wasserstein GAN failure 2: WGANs can still be sensitive to architecture and optimization."
+    "Poor Lipschitz enforcement can break the objective.",
+    "WGANs can still be sensitive to architecture and optimization."
   ],
-  "implementation": [
-    "Represent the central state for Wasserstein GAN explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Wasserstein GAN, compare the quantity named in “Wasserstein GANs use an earth-mover distance objective to improve GAN training behavior.” across training, evaluation, and shifted inputs.",
-    "Ship Wasserstein GAN with a counterexample test derived from “Poor Lipschitz enforcement can break the objective.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Wasserstein GAN matters because it sharpens intuition about sample quality, adversarial objectives, and generator failure modes. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Wasserstein GANs use an earth-mover distance objective to improve GAN training behavior.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Wasserstein GAN illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

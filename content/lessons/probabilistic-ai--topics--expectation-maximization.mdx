@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Expectation-maximization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Expectation-maximization estimates parameters when data contain latent or missing variables.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Expectation-maximization step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Expectation-maximization step 2: Apply the central computation: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
-    "Expectation-maximization step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Expectation-maximization step 4: Interpret the result under this limitation: Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Responsibilities from the E-step become weights for updated means, variances, and mixture proportions in the M-step."
   },
   "pitfalls": [
-    "Expectation-maximization failure 1: Use multiple initializations and monitor likelihood rather than only parameter movement.",
-    "Expectation-maximization failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Expectation-maximization failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Use multiple initializations and monitor likelihood rather than only parameter movement.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Expectation-maximization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Expectation-maximization, compare the quantity named in “Expectation-maximization estimates parameters when data contain latent or missing variables.” across training, evaluation, and shifted inputs.",
-    "Ship Expectation-maximization with a counterexample test derived from “Use multiple initializations and monitor likelihood rather than only parameter movement.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Expectation-maximization estimates parameters when data contain latent or missing variables.",
     "The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Expectation-maximization estimates parameters when data contain latent or missing variables.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Expectation-maximization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

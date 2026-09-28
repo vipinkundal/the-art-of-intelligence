@@ -1,0 +1,51 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Two tight groups can still make one widely spread population.",
+  "overview": "For a random variable with finite second moment, total variance equals expected conditional variance plus the variance of the conditional mean. This identity separates residual variation within groups from variation attributable to differences between group means.",
+  "concepts": [
+    {
+      "title": "Within-group component",
+      "explanation": "E[Var(Y|Z)] weights each conditional variance by its group's probability. This is the remaining average spread after the group is known."
+    },
+    {
+      "title": "Between-group component",
+      "explanation": "Var(E[Y|Z]) measures spread of the group means around the overall mean. It vanishes when all supported groups share one conditional mean, even if their other properties differ."
+    }
+  ],
+  "process": [
+    "Check the second moment is finite.",
+    "Compute conditional means, conditional variances and group probabilities.",
+    "Add the weighted conditional variances to the variance of the conditional means."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Var(Y)=E[Var(Y|Z)]+Var(E[Y|Z])",
+      "meaning": "Two groups have probability 1/2 each. Their means are 0 and δ and both conditional variances are 1; a concrete construction is Y=δZ+ε with independent fair Z∈{0,1} and ε∈{−1,1}."
+    }
+  ],
+  "example": {
+    "title": "Separated means with equal internal noise",
+    "setup": "Let δ=4.",
+    "steps": [
+      "The within-group component is 1.",
+      "Group means 0 and 4 have overall mean 2 and variance ((0−2)²+(4−2)²)/2=4."
+    ],
+    "result": "The total variance is 5, not the average within-group variance 1."
+  },
+  "pitfalls": [
+    "Averaging group standard deviations is not this identity.",
+    "Finite-sample ANOVA estimators have weighting and degrees-of-freedom conventions that must not be confused with population expectations."
+  ],
+  "implementation": [
+    "Check decomposition against moments computed directly from a known joint distribution.",
+    "Label units squared and keep population quantities separate from their estimates."
+  ],
+  "takeaways": [
+    "The decomposition is descriptive. Calling the between-group term an explained variance does not establish a causal explanation.",
+    "Distinguish variance decomposition from causal explanation."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["For a random variable with finite second moment, total variance equals expected conditional variance plus the variance of the conditional mean. This identity separates residual variation within groups from variation attributable to differences between group means.","Calculate within- and between-group variance.","Distinguish variance decomposition from causal explanation.","Two tight groups can still make one widely spread population.","Var(Y)=E[Var(Y|Z)]+Var(E[Y|Z])","Two groups have probability 1/2 each. Their means are 0 and δ and both conditional variances are 1; a concrete construction is Y=δZ+ε with independent fair Z∈{0,1} and ε∈{−1,1}.","The decomposition is descriptive. Calling the between-group term an explained variance does not establish a causal explanation."]} />

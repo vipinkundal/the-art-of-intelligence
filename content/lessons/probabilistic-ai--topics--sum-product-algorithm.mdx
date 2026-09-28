@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Sum-product algorithm: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Sum-product algorithm step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Sum-product algorithm step 2: Apply the central computation: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
-    "Sum-product algorithm step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Sum-product algorithm step 4: Interpret the result under this limitation: It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Multiplying incoming messages at each bit yields its normalized posterior belief."
   },
   "pitfalls": [
-    "Sum-product algorithm failure 1: Normalize messages when useful for numerical stability, but retain their relative values.",
-    "Sum-product algorithm failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Sum-product algorithm failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Normalize messages when useful for numerical stability, but retain their relative values.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Sum-product algorithm explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Sum-product algorithm, compare the quantity named in “The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.” across training, evaluation, and shifted inputs.",
-    "Ship Sum-product algorithm with a counterexample test derived from “Normalize messages when useful for numerical stability, but retain their relative values.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
     "A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Sum-product algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

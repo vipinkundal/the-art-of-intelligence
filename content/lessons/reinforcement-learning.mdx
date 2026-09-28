@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Reinforcement Learning as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "Markov decision processes : Formalize sequential decisions with states, actions, transition probabilities, rewards, and discounting.",
     "Partially observable MDPs : Handle settings where the agent receives observations instead of the full hidden state."
   ],
-  "formulas": [
-    {
-      "label": "Reinforcement Learning field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Reinforcement Learning in operation",
-    "setup": "Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.",
+    "title": "Reinforcement Learning example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Reinforcement Learning."
+    "result": ""
   },
-  "pitfalls": [
-    "Reinforcement Learning failure 1: A correct definition of Reinforcement Learning can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.",
     "You should be able to formulate an RL problem, derive the core Bellman and policy-gradient updates, choose between value-based, policy-based, actor-critic, model-based, offline, imitation, and multi-agent methods, and explain their exploration and stability tradeoffs."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Reinforcement learning studies agents that learn from rewards through bandits, Markov decision processes, value learning, policy gradients, actor-critic methods, model-based RL, offline RL, and imitation.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Reinforcement Learning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

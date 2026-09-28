@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Automated theorem proving: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Automated theorem proving searches for a formal proof from axioms and inference rules.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Automated theorem proving step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Automated theorem proving step 2: Apply the central rule: Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
-    "Automated theorem proving step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Automated theorem proving step 4: Stop and interpret the result using this criterion: A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: A found proof certifies the theorem under the axioms; failure within a resource limit does not generally show falsehood."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The prover returns a sequence of substitutions and inference steps that an independent checker can verify."
   },
   "pitfalls": [
-    "Automated theorem proving failure 1: Unsound axioms or inconsistent libraries can prove meaningless conclusions.",
-    "Automated theorem proving failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Automated theorem proving failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Unsound axioms or inconsistent libraries can prove meaningless conclusions.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Automated theorem proving explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Automated theorem proving, compare the quantity named in “Automated theorem proving searches for a formal proof from axioms and inference rules.” across training, evaluation, and shifted inputs.",
-    "Ship Automated theorem proving with a counterexample test derived from “Unsound axioms or inconsistent libraries can prove meaningless conclusions.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Automated theorem proving searches for a formal proof from axioms and inference rules.",
     "Normalize formulas, apply sound proof rules, guide proof-state search, and return a checkable derivation or failure status.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Automated theorem proving searches for a formal proof from axioms and inference rules.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Automated theorem proving illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

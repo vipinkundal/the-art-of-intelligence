@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Hidden Markov models: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Hidden Markov models step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Hidden Markov models step 2: Apply the central computation: Combine a transition probability between hidden states with an emission likelihood for each observation.",
-    "Hidden Markov models step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Hidden Markov models step 4: Interpret the result under this limitation: HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Apply the central computation: Combine a transition probability between hidden states with an emission likelihood for each observation.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The posterior assigns a probability to each hidden condition at each time rather than trusting an observation directly."
   },
   "pitfalls": [
-    "Hidden Markov models failure 1: Label switching and weakly separated emissions can make learned hidden states hard to interpret.",
-    "Hidden Markov models failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "Hidden Markov models failure 3: State estimates become overconfident when process or observation noise is underestimated."
+    "Label switching and weakly separated emissions can make learned hidden states hard to interpret.",
+    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "State estimates become overconfident when process or observation noise is underestimated."
   ],
-  "implementation": [
-    "Represent the central state for Hidden Markov models explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Hidden Markov models, compare the quantity named in “A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.” across training, evaluation, and shifted inputs.",
-    "Ship Hidden Markov models with a counterexample test derived from “Label switching and weakly separated emissions can make learned hidden states hard to interpret.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
     "Combine a transition probability between hidden states with an emission likelihood for each observation.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hidden Markov models illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Graph Machine Learning as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "Random walks : Sample local graph neighborhoods and define transition processes used by ranking, embeddings, and diffusion methods.",
     "PageRank : Scores nodes by stationary importance under a random-surfer model with teleportation."
   ],
-  "formulas": [
-    {
-      "label": "Graph Machine Learning field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Graph Machine Learning in operation",
-    "setup": "Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.",
+    "title": "Graph Machine Learning example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Graph Machine Learning."
+    "result": ""
   },
-  "pitfalls": [
-    "Graph Machine Learning failure 1: A correct definition of Graph Machine Learning can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.",
     "You should be able to represent graph data with adjacency and Laplacian matrices, explain random-walk and spectral methods, compare PageRank, Node2vec, DeepWalk, GCN, GraphSAGE, GAT, GIN, R-GCN, graph transformers, and knowledge-graph embeddings, and choose graph-learning methods for node, edge, graph, link-prediction, retrieval, and knowledge-graph tasks."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Graph machine learning studies models that learn from nodes, edges, neighborhoods, paths, communities, and knowledge-graph relations instead of treating examples as independent rows.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Graph Machine Learning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

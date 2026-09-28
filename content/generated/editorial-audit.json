@@ -1,0 +1,5037 @@
+{
+  "scope": "All canonical lesson documents; checks describe editorial gaps, not independent factual certification.",
+  "total": 386,
+  "reviewed": 75,
+  "pending": 311,
+  "aliases": [
+    {
+      "slug": "mathematical-foundations/topics/early-stopping",
+      "canonicalSlug": "deep-learning/topics/early-stopping"
+    },
+    {
+      "slug": "mathematical-foundations/topics/markov-chains",
+      "canonicalSlug": "probabilistic-ai/topics/markov-chains"
+    },
+    {
+      "slug": "mathematical-foundations/topics/multiple-testing-correction",
+      "canonicalSlug": "mathematical-foundations/topics/multiple-testing"
+    }
+  ],
+  "repeatedPassages": [
+    {
+      "text": "represent the task using states, actions, a start condition, and a goal test.",
+      "routes": [
+        "classical-artificial-intelligence/topics/a-star",
+        "classical-artificial-intelligence/topics/beam-search",
+        "classical-artificial-intelligence/topics/bidirectional-search",
+        "classical-artificial-intelligence/topics/branch-and-bound",
+        "classical-artificial-intelligence/topics/breadth-first-search",
+        "classical-artificial-intelligence/topics/depth-first-search",
+        "classical-artificial-intelligence/topics/depth-limited-search",
+        "classical-artificial-intelligence/topics/dijkstras-algorithm",
+        "classical-artificial-intelligence/topics/greedy-best-first-search",
+        "classical-artificial-intelligence/topics/hill-climbing",
+        "classical-artificial-intelligence/topics/iterative-deepening",
+        "classical-artificial-intelligence/topics/iterative-deepening-a-star",
+        "classical-artificial-intelligence/topics/local-beam-search",
+        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
+        "classical-artificial-intelligence/topics/simulated-annealing",
+        "classical-artificial-intelligence/topics/tabu-search",
+        "classical-artificial-intelligence/topics/uniform-cost-search",
+        "classical-artificial-intelligence/topics/weighted-a-star"
+      ]
+    },
+    {
+      "text": "track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+      "routes": [
+        "classical-artificial-intelligence/topics/a-star",
+        "classical-artificial-intelligence/topics/abduction",
+        "classical-artificial-intelligence/topics/ac-3",
+        "classical-artificial-intelligence/topics/admissible-heuristics",
+        "classical-artificial-intelligence/topics/alpha-beta-pruning",
+        "classical-artificial-intelligence/topics/analogy",
+        "classical-artificial-intelligence/topics/arc-consistency",
+        "classical-artificial-intelligence/topics/automated-theorem-proving",
+        "classical-artificial-intelligence/topics/backtracking",
+        "classical-artificial-intelligence/topics/backward-chaining",
+        "classical-artificial-intelligence/topics/beam-search",
+        "classical-artificial-intelligence/topics/bidirectional-search",
+        "classical-artificial-intelligence/topics/boolean-satisfiability",
+        "classical-artificial-intelligence/topics/branch-and-bound",
+        "classical-artificial-intelligence/topics/breadth-first-search",
+        "classical-artificial-intelligence/topics/completeness",
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/consistent-heuristics",
+        "classical-artificial-intelligence/topics/constraint-propagation",
+        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
+        "classical-artificial-intelligence/topics/contingent-planning",
+        "classical-artificial-intelligence/topics/counterfactual-reasoning",
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/deduction",
+        "classical-artificial-intelligence/topics/default-logic",
+        "classical-artificial-intelligence/topics/degree-heuristic",
+        "classical-artificial-intelligence/topics/depth-first-search",
+        "classical-artificial-intelligence/topics/depth-limited-search",
+        "classical-artificial-intelligence/topics/description-logic",
+        "classical-artificial-intelligence/topics/dijkstras-algorithm",
+        "classical-artificial-intelligence/topics/dpll",
+        "classical-artificial-intelligence/topics/duplicate-state-detection",
+        "classical-artificial-intelligence/topics/expectimax",
+        "classical-artificial-intelligence/topics/first-order-predicate-logic",
+        "classical-artificial-intelligence/topics/forward-and-backward-planning",
+        "classical-artificial-intelligence/topics/forward-chaining",
+        "classical-artificial-intelligence/topics/forward-checking",
+        "classical-artificial-intelligence/topics/fuzzy-logic",
+        "classical-artificial-intelligence/topics/graphplan",
+        "classical-artificial-intelligence/topics/greedy-best-first-search",
+        "classical-artificial-intelligence/topics/hierarchical-task-networks",
+        "classical-artificial-intelligence/topics/hill-climbing",
+        "classical-artificial-intelligence/topics/horn-clauses",
+        "classical-artificial-intelligence/topics/induction",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/iterative-deepening",
+        "classical-artificial-intelligence/topics/iterative-deepening-a-star",
+        "classical-artificial-intelligence/topics/knowledge-bases",
+        "classical-artificial-intelligence/topics/least-constraining-value",
+        "classical-artificial-intelligence/topics/local-beam-search",
+        "classical-artificial-intelligence/topics/logic-programming",
+        "classical-artificial-intelligence/topics/min-conflicts",
+        "classical-artificial-intelligence/topics/minimax",
+        "classical-artificial-intelligence/topics/minimum-remaining-values",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/modal-logic",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/multi-agent-planning",
+        "classical-artificial-intelligence/topics/negamax",
+        "classical-artificial-intelligence/topics/non-monotonic-reasoning",
+        "classical-artificial-intelligence/topics/ontologies",
+        "classical-artificial-intelligence/topics/optimality",
+        "classical-artificial-intelligence/topics/partial-order-planning",
+        "classical-artificial-intelligence/topics/pddl",
+        "classical-artificial-intelligence/topics/planning-under-uncertainty",
+        "classical-artificial-intelligence/topics/propositional-logic",
+        "classical-artificial-intelligence/topics/quantifiers",
+        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
+        "classical-artificial-intelligence/topics/receding-horizon-planning",
+        "classical-artificial-intelligence/topics/resolution",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/simulated-annealing",
+        "classical-artificial-intelligence/topics/state-space-planning",
+        "classical-artificial-intelligence/topics/state-space-representation",
+        "classical-artificial-intelligence/topics/strips",
+        "classical-artificial-intelligence/topics/tabu-search",
+        "classical-artificial-intelligence/topics/temporal-logic",
+        "classical-artificial-intelligence/topics/temporal-planning",
+        "classical-artificial-intelligence/topics/time-and-memory-complexity",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct",
+        "classical-artificial-intelligence/topics/unification",
+        "classical-artificial-intelligence/topics/uniform-cost-search",
+        "classical-artificial-intelligence/topics/walksat",
+        "classical-artificial-intelligence/topics/weighted-a-star"
+      ]
+    },
+    {
+      "text": "state representation and duplicate handling can matter more than the headline algorithm.",
+      "routes": [
+        "classical-artificial-intelligence/topics/a-star",
+        "classical-artificial-intelligence/topics/beam-search",
+        "classical-artificial-intelligence/topics/bidirectional-search",
+        "classical-artificial-intelligence/topics/branch-and-bound",
+        "classical-artificial-intelligence/topics/breadth-first-search",
+        "classical-artificial-intelligence/topics/depth-first-search",
+        "classical-artificial-intelligence/topics/depth-limited-search",
+        "classical-artificial-intelligence/topics/dijkstras-algorithm",
+        "classical-artificial-intelligence/topics/greedy-best-first-search",
+        "classical-artificial-intelligence/topics/hill-climbing",
+        "classical-artificial-intelligence/topics/iterative-deepening",
+        "classical-artificial-intelligence/topics/iterative-deepening-a-star",
+        "classical-artificial-intelligence/topics/local-beam-search",
+        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
+        "classical-artificial-intelligence/topics/simulated-annealing",
+        "classical-artificial-intelligence/topics/tabu-search",
+        "classical-artificial-intelligence/topics/uniform-cost-search",
+        "classical-artificial-intelligence/topics/weighted-a-star"
+      ]
+    },
+    {
+      "text": "compare completeness, optimality, time, and memory under the actual problem assumptions.",
+      "routes": [
+        "classical-artificial-intelligence/topics/a-star",
+        "classical-artificial-intelligence/topics/beam-search",
+        "classical-artificial-intelligence/topics/bidirectional-search",
+        "classical-artificial-intelligence/topics/branch-and-bound",
+        "classical-artificial-intelligence/topics/breadth-first-search",
+        "classical-artificial-intelligence/topics/depth-first-search",
+        "classical-artificial-intelligence/topics/depth-limited-search",
+        "classical-artificial-intelligence/topics/dijkstras-algorithm",
+        "classical-artificial-intelligence/topics/greedy-best-first-search",
+        "classical-artificial-intelligence/topics/hill-climbing",
+        "classical-artificial-intelligence/topics/iterative-deepening",
+        "classical-artificial-intelligence/topics/iterative-deepening-a-star",
+        "classical-artificial-intelligence/topics/local-beam-search",
+        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
+        "classical-artificial-intelligence/topics/simulated-annealing",
+        "classical-artificial-intelligence/topics/tabu-search",
+        "classical-artificial-intelligence/topics/uniform-cost-search",
+        "classical-artificial-intelligence/topics/weighted-a-star"
+      ]
+    },
+    {
+      "text": "it operates on observations or facts, a candidate rule or model, and a question.",
+      "routes": [
+        "classical-artificial-intelligence/topics/abduction",
+        "classical-artificial-intelligence/topics/analogy",
+        "classical-artificial-intelligence/topics/counterfactual-reasoning",
+        "classical-artificial-intelligence/topics/deduction",
+        "classical-artificial-intelligence/topics/induction"
+      ]
+    },
+    {
+      "text": "represent the task using observations or facts, a candidate rule or model, and a question.",
+      "routes": [
+        "classical-artificial-intelligence/topics/abduction",
+        "classical-artificial-intelligence/topics/analogy",
+        "classical-artificial-intelligence/topics/counterfactual-reasoning",
+        "classical-artificial-intelligence/topics/deduction",
+        "classical-artificial-intelligence/topics/induction"
+      ]
+    },
+    {
+      "text": "do not present a plausible or statistical conclusion as a deductive certainty.",
+      "routes": [
+        "classical-artificial-intelligence/topics/abduction",
+        "classical-artificial-intelligence/topics/analogy",
+        "classical-artificial-intelligence/topics/counterfactual-reasoning",
+        "classical-artificial-intelligence/topics/deduction",
+        "classical-artificial-intelligence/topics/induction"
+      ]
+    },
+    {
+      "text": "correlation, analogy, and counterfactual causation require different evidence.",
+      "routes": [
+        "classical-artificial-intelligence/topics/abduction",
+        "classical-artificial-intelligence/topics/analogy",
+        "classical-artificial-intelligence/topics/counterfactual-reasoning",
+        "classical-artificial-intelligence/topics/deduction",
+        "classical-artificial-intelligence/topics/induction"
+      ]
+    },
+    {
+      "text": "it operates on variables, domains, constraints, and sometimes an objective.",
+      "routes": [
+        "classical-artificial-intelligence/topics/ac-3",
+        "classical-artificial-intelligence/topics/arc-consistency",
+        "classical-artificial-intelligence/topics/backtracking",
+        "classical-artificial-intelligence/topics/boolean-satisfiability",
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/constraint-propagation",
+        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
+        "classical-artificial-intelligence/topics/degree-heuristic",
+        "classical-artificial-intelligence/topics/dpll",
+        "classical-artificial-intelligence/topics/forward-checking",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/least-constraining-value",
+        "classical-artificial-intelligence/topics/min-conflicts",
+        "classical-artificial-intelligence/topics/minimum-remaining-values",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
+      ]
+    },
+    {
+      "text": "represent the task using variables, domains, constraints, and sometimes an objective.",
+      "routes": [
+        "classical-artificial-intelligence/topics/ac-3",
+        "classical-artificial-intelligence/topics/arc-consistency",
+        "classical-artificial-intelligence/topics/backtracking",
+        "classical-artificial-intelligence/topics/boolean-satisfiability",
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/constraint-propagation",
+        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
+        "classical-artificial-intelligence/topics/degree-heuristic",
+        "classical-artificial-intelligence/topics/dpll",
+        "classical-artificial-intelligence/topics/forward-checking",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/least-constraining-value",
+        "classical-artificial-intelligence/topics/min-conflicts",
+        "classical-artificial-intelligence/topics/minimum-remaining-values",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
+      ]
+    },
+    {
+      "text": "feasibility, optimality, and proof of infeasibility are distinct outcomes.",
+      "routes": [
+        "classical-artificial-intelligence/topics/ac-3",
+        "classical-artificial-intelligence/topics/arc-consistency",
+        "classical-artificial-intelligence/topics/backtracking",
+        "classical-artificial-intelligence/topics/boolean-satisfiability",
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/constraint-propagation",
+        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
+        "classical-artificial-intelligence/topics/degree-heuristic",
+        "classical-artificial-intelligence/topics/dpll",
+        "classical-artificial-intelligence/topics/forward-checking",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/least-constraining-value",
+        "classical-artificial-intelligence/topics/min-conflicts",
+        "classical-artificial-intelligence/topics/minimum-remaining-values",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
+      ]
+    },
+    {
+      "text": "represent the task using an algorithm, a problem class, and stated assumptions.",
+      "routes": [
+        "classical-artificial-intelligence/topics/admissible-heuristics",
+        "classical-artificial-intelligence/topics/completeness",
+        "classical-artificial-intelligence/topics/consistent-heuristics",
+        "classical-artificial-intelligence/topics/duplicate-state-detection",
+        "classical-artificial-intelligence/topics/optimality",
+        "classical-artificial-intelligence/topics/state-space-representation",
+        "classical-artificial-intelligence/topics/time-and-memory-complexity"
+      ]
+    },
+    {
+      "text": "a guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
+      "routes": [
+        "classical-artificial-intelligence/topics/admissible-heuristics",
+        "classical-artificial-intelligence/topics/completeness",
+        "classical-artificial-intelligence/topics/consistent-heuristics",
+        "classical-artificial-intelligence/topics/duplicate-state-detection",
+        "classical-artificial-intelligence/topics/optimality",
+        "classical-artificial-intelligence/topics/state-space-representation",
+        "classical-artificial-intelligence/topics/time-and-memory-complexity"
+      ]
+    },
+    {
+      "text": "worst-case analysis and typical observed behavior answer different questions.",
+      "routes": [
+        "classical-artificial-intelligence/topics/admissible-heuristics",
+        "classical-artificial-intelligence/topics/completeness",
+        "classical-artificial-intelligence/topics/consistent-heuristics",
+        "classical-artificial-intelligence/topics/duplicate-state-detection",
+        "classical-artificial-intelligence/topics/optimality",
+        "classical-artificial-intelligence/topics/state-space-representation",
+        "classical-artificial-intelligence/topics/time-and-memory-complexity"
+      ]
+    },
+    {
+      "text": "it operates on a position, legal actions, players or chance events, and a payoff model.",
+      "routes": [
+        "classical-artificial-intelligence/topics/alpha-beta-pruning",
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/expectimax",
+        "classical-artificial-intelligence/topics/minimax",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/negamax",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "represent the task using a position, legal actions, players or chance events, and a payoff model.",
+      "routes": [
+        "classical-artificial-intelligence/topics/alpha-beta-pruning",
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/expectimax",
+        "classical-artificial-intelligence/topics/minimax",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/negamax",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "evaluation quality and move ordering can dominate nominal search depth.",
+      "routes": [
+        "classical-artificial-intelligence/topics/alpha-beta-pruning",
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/expectimax",
+        "classical-artificial-intelligence/topics/minimax",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/negamax",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games.",
+      "routes": [
+        "classical-artificial-intelligence/topics/alpha-beta-pruning",
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/expectimax",
+        "classical-artificial-intelligence/topics/minimax",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/negamax",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "represent the task using symbols, facts, rules, a vocabulary, and a query.",
+      "routes": [
+        "classical-artificial-intelligence/topics/automated-theorem-proving",
+        "classical-artificial-intelligence/topics/backward-chaining",
+        "classical-artificial-intelligence/topics/default-logic",
+        "classical-artificial-intelligence/topics/description-logic",
+        "classical-artificial-intelligence/topics/first-order-predicate-logic",
+        "classical-artificial-intelligence/topics/forward-chaining",
+        "classical-artificial-intelligence/topics/fuzzy-logic",
+        "classical-artificial-intelligence/topics/horn-clauses",
+        "classical-artificial-intelligence/topics/knowledge-bases",
+        "classical-artificial-intelligence/topics/logic-programming",
+        "classical-artificial-intelligence/topics/modal-logic",
+        "classical-artificial-intelligence/topics/non-monotonic-reasoning",
+        "classical-artificial-intelligence/topics/ontologies",
+        "classical-artificial-intelligence/topics/propositional-logic",
+        "classical-artificial-intelligence/topics/quantifiers",
+        "classical-artificial-intelligence/topics/resolution",
+        "classical-artificial-intelligence/topics/temporal-logic",
+        "classical-artificial-intelligence/topics/unification"
+      ]
+    },
+    {
+      "text": "syntax alone does not guarantee that the representation matches the intended world semantics.",
+      "routes": [
+        "classical-artificial-intelligence/topics/automated-theorem-proving",
+        "classical-artificial-intelligence/topics/backward-chaining",
+        "classical-artificial-intelligence/topics/default-logic",
+        "classical-artificial-intelligence/topics/description-logic",
+        "classical-artificial-intelligence/topics/first-order-predicate-logic",
+        "classical-artificial-intelligence/topics/forward-chaining",
+        "classical-artificial-intelligence/topics/fuzzy-logic",
+        "classical-artificial-intelligence/topics/horn-clauses",
+        "classical-artificial-intelligence/topics/knowledge-bases",
+        "classical-artificial-intelligence/topics/logic-programming",
+        "classical-artificial-intelligence/topics/modal-logic",
+        "classical-artificial-intelligence/topics/non-monotonic-reasoning",
+        "classical-artificial-intelligence/topics/ontologies",
+        "classical-artificial-intelligence/topics/propositional-logic",
+        "classical-artificial-intelligence/topics/quantifiers",
+        "classical-artificial-intelligence/topics/resolution",
+        "classical-artificial-intelligence/topics/temporal-logic",
+        "classical-artificial-intelligence/topics/unification"
+      ]
+    },
+    {
+      "text": "open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded.",
+      "routes": [
+        "classical-artificial-intelligence/topics/automated-theorem-proving",
+        "classical-artificial-intelligence/topics/backward-chaining",
+        "classical-artificial-intelligence/topics/default-logic",
+        "classical-artificial-intelligence/topics/description-logic",
+        "classical-artificial-intelligence/topics/first-order-predicate-logic",
+        "classical-artificial-intelligence/topics/forward-chaining",
+        "classical-artificial-intelligence/topics/fuzzy-logic",
+        "classical-artificial-intelligence/topics/horn-clauses",
+        "classical-artificial-intelligence/topics/knowledge-bases",
+        "classical-artificial-intelligence/topics/logic-programming",
+        "classical-artificial-intelligence/topics/modal-logic",
+        "classical-artificial-intelligence/topics/non-monotonic-reasoning",
+        "classical-artificial-intelligence/topics/ontologies",
+        "classical-artificial-intelligence/topics/propositional-logic",
+        "classical-artificial-intelligence/topics/quantifiers",
+        "classical-artificial-intelligence/topics/resolution",
+        "classical-artificial-intelligence/topics/temporal-logic",
+        "classical-artificial-intelligence/topics/unification"
+      ]
+    },
+    {
+      "text": "it operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+      "routes": [
+        "classical-artificial-intelligence/topics/contingent-planning",
+        "classical-artificial-intelligence/topics/forward-and-backward-planning",
+        "classical-artificial-intelligence/topics/graphplan",
+        "classical-artificial-intelligence/topics/hierarchical-task-networks",
+        "classical-artificial-intelligence/topics/multi-agent-planning",
+        "classical-artificial-intelligence/topics/partial-order-planning",
+        "classical-artificial-intelligence/topics/pddl",
+        "classical-artificial-intelligence/topics/planning-under-uncertainty",
+        "classical-artificial-intelligence/topics/receding-horizon-planning",
+        "classical-artificial-intelligence/topics/state-space-planning",
+        "classical-artificial-intelligence/topics/strips",
+        "classical-artificial-intelligence/topics/temporal-planning"
+      ]
+    },
+    {
+      "text": "represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+      "routes": [
+        "classical-artificial-intelligence/topics/contingent-planning",
+        "classical-artificial-intelligence/topics/forward-and-backward-planning",
+        "classical-artificial-intelligence/topics/graphplan",
+        "classical-artificial-intelligence/topics/hierarchical-task-networks",
+        "classical-artificial-intelligence/topics/multi-agent-planning",
+        "classical-artificial-intelligence/topics/partial-order-planning",
+        "classical-artificial-intelligence/topics/pddl",
+        "classical-artificial-intelligence/topics/planning-under-uncertainty",
+        "classical-artificial-intelligence/topics/receding-horizon-planning",
+        "classical-artificial-intelligence/topics/state-space-planning",
+        "classical-artificial-intelligence/topics/strips",
+        "classical-artificial-intelligence/topics/temporal-planning"
+      ]
+    },
+    {
+      "text": "execution monitoring and replanning are essential when the world can change.",
+      "routes": [
+        "classical-artificial-intelligence/topics/contingent-planning",
+        "classical-artificial-intelligence/topics/forward-and-backward-planning",
+        "classical-artificial-intelligence/topics/graphplan",
+        "classical-artificial-intelligence/topics/hierarchical-task-networks",
+        "classical-artificial-intelligence/topics/multi-agent-planning",
+        "classical-artificial-intelligence/topics/partial-order-planning",
+        "classical-artificial-intelligence/topics/pddl",
+        "classical-artificial-intelligence/topics/planning-under-uncertainty",
+        "classical-artificial-intelligence/topics/receding-horizon-planning",
+        "classical-artificial-intelligence/topics/state-space-planning",
+        "classical-artificial-intelligence/topics/strips",
+        "classical-artificial-intelligence/topics/temporal-planning"
+      ]
+    },
+    {
+      "text": "always track tensor shapes and distinguish training-time behavior from inference-time behavior.",
+      "routes": [
+        "deep-learning/topics/activation-functions",
+        "deep-learning/topics/backpropagation",
+        "deep-learning/topics/computational-graphs",
+        "deep-learning/topics/multilayer-perceptrons",
+        "deep-learning/topics/normalization",
+        "deep-learning/topics/perceptrons",
+        "deep-learning/topics/regularization",
+        "deep-learning/topics/representation-learning",
+        "deep-learning/topics/residual-connections",
+        "deep-learning/topics/universal-approximation",
+        "deep-learning/topics/weight-initialization"
+      ]
+    },
+    {
+      "text": "compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone.",
+      "routes": [
+        "deep-learning/topics/alexnet",
+        "deep-learning/topics/densenet",
+        "deep-learning/topics/efficientnet",
+        "deep-learning/topics/inception",
+        "deep-learning/topics/lenet",
+        "deep-learning/topics/mobilenet",
+        "deep-learning/topics/resnet",
+        "deep-learning/topics/u-net",
+        "deep-learning/topics/vgg"
+      ]
+    },
+    {
+      "text": "judge the method on held-out data; a lower training loss alone does not show better generalization.",
+      "routes": [
+        "deep-learning/topics/batch-normalization",
+        "deep-learning/topics/data-augmentation",
+        "deep-learning/topics/dropout",
+        "deep-learning/topics/gradient-clipping",
+        "deep-learning/topics/knowledge-distillation",
+        "deep-learning/topics/label-smoothing",
+        "deep-learning/topics/layer-normalization",
+        "deep-learning/topics/rmsnorm",
+        "deep-learning/topics/weight-decay"
+      ]
+    },
+    {
+      "text": "verify spatial sizes, channel counts, and boundary behavior at every stage of the network.",
+      "routes": [
+        "deep-learning/topics/cross-correlation",
+        "deep-learning/topics/depthwise-and-separable-convolutions",
+        "deep-learning/topics/dilation",
+        "deep-learning/topics/discrete-convolution",
+        "deep-learning/topics/encoder-decoder-networks",
+        "deep-learning/topics/padding",
+        "deep-learning/topics/pooling",
+        "deep-learning/topics/receptive-fields",
+        "deep-learning/topics/residual-networks",
+        "deep-learning/topics/stride",
+        "deep-learning/topics/translation-equivariance",
+        "deep-learning/topics/u-net-architectures"
+      ]
+    },
+    {
+      "text": "it starts from random variables, their domains, graph structure, and local probability factors.",
+      "routes": [
+        "probabilistic-ai/topics/approximate-inference",
+        "probabilistic-ai/topics/bayesian-networks",
+        "probabilistic-ai/topics/conditional-independence",
+        "probabilistic-ai/topics/conditional-random-fields",
+        "probabilistic-ai/topics/d-separation",
+        "probabilistic-ai/topics/exact-inference",
+        "probabilistic-ai/topics/factor-graphs",
+        "probabilistic-ai/topics/markov-random-fields"
+      ]
+    },
+    {
+      "text": "write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+      "routes": [
+        "probabilistic-ai/topics/approximate-inference",
+        "probabilistic-ai/topics/bayesian-networks",
+        "probabilistic-ai/topics/conditional-independence",
+        "probabilistic-ai/topics/conditional-random-fields",
+        "probabilistic-ai/topics/d-separation",
+        "probabilistic-ai/topics/exact-inference",
+        "probabilistic-ai/topics/factor-graphs",
+        "probabilistic-ai/topics/markov-random-fields"
+      ]
+    },
+    {
+      "text": "track normalization, numerical stability, convergence, or approximation quality during the computation.",
+      "routes": [
+        "probabilistic-ai/topics/approximate-inference",
+        "probabilistic-ai/topics/bayesian-networks",
+        "probabilistic-ai/topics/belief-propagation",
+        "probabilistic-ai/topics/conditional-independence",
+        "probabilistic-ai/topics/conditional-random-fields",
+        "probabilistic-ai/topics/d-separation",
+        "probabilistic-ai/topics/dynamic-bayesian-networks",
+        "probabilistic-ai/topics/exact-inference",
+        "probabilistic-ai/topics/expectation-maximization",
+        "probabilistic-ai/topics/extended-kalman-filter",
+        "probabilistic-ai/topics/factor-graphs",
+        "probabilistic-ai/topics/forward-backward-algorithm",
+        "probabilistic-ai/topics/gibbs-sampling",
+        "probabilistic-ai/topics/hamiltonian-monte-carlo",
+        "probabilistic-ai/topics/hidden-markov-models",
+        "probabilistic-ai/topics/junction-tree-algorithm",
+        "probabilistic-ai/topics/kalman-filter",
+        "probabilistic-ai/topics/loopy-belief-propagation",
+        "probabilistic-ai/topics/markov-random-fields",
+        "probabilistic-ai/topics/max-product-algorithm",
+        "probabilistic-ai/topics/metropolis-hastings",
+        "probabilistic-ai/topics/particle-filter",
+        "probabilistic-ai/topics/sequential-monte-carlo",
+        "probabilistic-ai/topics/sum-product-algorithm",
+        "probabilistic-ai/topics/unscented-kalman-filter",
+        "probabilistic-ai/topics/variable-elimination",
+        "probabilistic-ai/topics/variational-inference",
+        "probabilistic-ai/topics/viterbi-decoding"
+      ]
+    },
+    {
+      "text": "a graph encodes particular independence assumptions; it is not merely a visualization.",
+      "routes": [
+        "probabilistic-ai/topics/approximate-inference",
+        "probabilistic-ai/topics/bayesian-networks",
+        "probabilistic-ai/topics/conditional-independence",
+        "probabilistic-ai/topics/conditional-random-fields",
+        "probabilistic-ai/topics/d-separation",
+        "probabilistic-ai/topics/exact-inference",
+        "probabilistic-ai/topics/factor-graphs",
+        "probabilistic-ai/topics/markov-random-fields"
+      ]
+    },
+    {
+      "text": "check normalization, support, and conditioning events before interpreting a probability.",
+      "routes": [
+        "probabilistic-ai/topics/approximate-inference",
+        "probabilistic-ai/topics/bayesian-networks",
+        "probabilistic-ai/topics/conditional-independence",
+        "probabilistic-ai/topics/conditional-random-fields",
+        "probabilistic-ai/topics/d-separation",
+        "probabilistic-ai/topics/exact-inference",
+        "probabilistic-ai/topics/factor-graphs",
+        "probabilistic-ai/topics/markov-random-fields"
+      ]
+    },
+    {
+      "text": "it starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+      "routes": [
+        "probabilistic-ai/topics/belief-propagation",
+        "probabilistic-ai/topics/expectation-maximization",
+        "probabilistic-ai/topics/gibbs-sampling",
+        "probabilistic-ai/topics/hamiltonian-monte-carlo",
+        "probabilistic-ai/topics/junction-tree-algorithm",
+        "probabilistic-ai/topics/loopy-belief-propagation",
+        "probabilistic-ai/topics/max-product-algorithm",
+        "probabilistic-ai/topics/metropolis-hastings",
+        "probabilistic-ai/topics/sequential-monte-carlo",
+        "probabilistic-ai/topics/sum-product-algorithm",
+        "probabilistic-ai/topics/variable-elimination",
+        "probabilistic-ai/topics/variational-inference"
+      ]
+    },
+    {
+      "text": "write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+      "routes": [
+        "probabilistic-ai/topics/belief-propagation",
+        "probabilistic-ai/topics/expectation-maximization",
+        "probabilistic-ai/topics/gibbs-sampling",
+        "probabilistic-ai/topics/hamiltonian-monte-carlo",
+        "probabilistic-ai/topics/junction-tree-algorithm",
+        "probabilistic-ai/topics/loopy-belief-propagation",
+        "probabilistic-ai/topics/max-product-algorithm",
+        "probabilistic-ai/topics/metropolis-hastings",
+        "probabilistic-ai/topics/sequential-monte-carlo",
+        "probabilistic-ai/topics/sum-product-algorithm",
+        "probabilistic-ai/topics/variable-elimination",
+        "probabilistic-ai/topics/variational-inference"
+      ]
+    },
+    {
+      "text": "convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+      "routes": [
+        "probabilistic-ai/topics/belief-propagation",
+        "probabilistic-ai/topics/expectation-maximization",
+        "probabilistic-ai/topics/gibbs-sampling",
+        "probabilistic-ai/topics/hamiltonian-monte-carlo",
+        "probabilistic-ai/topics/junction-tree-algorithm",
+        "probabilistic-ai/topics/loopy-belief-propagation",
+        "probabilistic-ai/topics/max-product-algorithm",
+        "probabilistic-ai/topics/metropolis-hastings",
+        "probabilistic-ai/topics/sequential-monte-carlo",
+        "probabilistic-ai/topics/sum-product-algorithm",
+        "probabilistic-ai/topics/variable-elimination",
+        "probabilistic-ai/topics/variational-inference"
+      ]
+    },
+    {
+      "text": "report approximation error, effective sample size, or another diagnostic appropriate to the method.",
+      "routes": [
+        "probabilistic-ai/topics/belief-propagation",
+        "probabilistic-ai/topics/expectation-maximization",
+        "probabilistic-ai/topics/gibbs-sampling",
+        "probabilistic-ai/topics/hamiltonian-monte-carlo",
+        "probabilistic-ai/topics/junction-tree-algorithm",
+        "probabilistic-ai/topics/loopy-belief-propagation",
+        "probabilistic-ai/topics/max-product-algorithm",
+        "probabilistic-ai/topics/metropolis-hastings",
+        "probabilistic-ai/topics/sequential-monte-carlo",
+        "probabilistic-ai/topics/sum-product-algorithm",
+        "probabilistic-ai/topics/variable-elimination",
+        "probabilistic-ai/topics/variational-inference"
+      ]
+    },
+    {
+      "text": "it starts from a transition model, observation model, prior state belief, and a sequence of observations.",
+      "routes": [
+        "probabilistic-ai/topics/dynamic-bayesian-networks",
+        "probabilistic-ai/topics/extended-kalman-filter",
+        "probabilistic-ai/topics/forward-backward-algorithm",
+        "probabilistic-ai/topics/hidden-markov-models",
+        "probabilistic-ai/topics/kalman-filter",
+        "probabilistic-ai/topics/particle-filter",
+        "probabilistic-ai/topics/unscented-kalman-filter",
+        "probabilistic-ai/topics/viterbi-decoding"
+      ]
+    },
+    {
+      "text": "write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+      "routes": [
+        "probabilistic-ai/topics/dynamic-bayesian-networks",
+        "probabilistic-ai/topics/extended-kalman-filter",
+        "probabilistic-ai/topics/forward-backward-algorithm",
+        "probabilistic-ai/topics/hidden-markov-models",
+        "probabilistic-ai/topics/kalman-filter",
+        "probabilistic-ai/topics/particle-filter",
+        "probabilistic-ai/topics/unscented-kalman-filter",
+        "probabilistic-ai/topics/viterbi-decoding"
+      ]
+    },
+    {
+      "text": "filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+      "routes": [
+        "probabilistic-ai/topics/dynamic-bayesian-networks",
+        "probabilistic-ai/topics/extended-kalman-filter",
+        "probabilistic-ai/topics/forward-backward-algorithm",
+        "probabilistic-ai/topics/hidden-markov-models",
+        "probabilistic-ai/topics/kalman-filter",
+        "probabilistic-ai/topics/particle-filter",
+        "probabilistic-ai/topics/unscented-kalman-filter",
+        "probabilistic-ai/topics/viterbi-decoding"
+      ]
+    },
+    {
+      "text": "state estimates become overconfident when process or observation noise is underestimated.",
+      "routes": [
+        "probabilistic-ai/topics/dynamic-bayesian-networks",
+        "probabilistic-ai/topics/extended-kalman-filter",
+        "probabilistic-ai/topics/forward-backward-algorithm",
+        "probabilistic-ai/topics/hidden-markov-models",
+        "probabilistic-ai/topics/kalman-filter",
+        "probabilistic-ai/topics/particle-filter",
+        "probabilistic-ai/topics/unscented-kalman-filter",
+        "probabilistic-ai/topics/viterbi-decoding"
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "slug": "ai-safety-security-privacy-and-governance",
+      "title": "AI Safety, Security, Privacy And Governance",
+      "phase": "ai-safety-security-privacy-and-governance",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "ai-systems",
+      "title": "Agents And Tool-Using Systems",
+      "phase": "ai-systems",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "ai-systems/agents-and-tools",
+      "title": "Agents And Tools",
+      "phase": "ai-systems",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "ai-systems-and-infrastructure",
+      "title": "AI Systems And Infrastructure",
+      "phase": "ai-systems-and-infrastructure",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "causal-inference",
+      "title": "Causal Inference",
+      "phase": "causal-inference",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/a-star",
+      "title": "A*",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/abduction",
+      "title": "Abduction",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/ac-3",
+      "title": "AC-3",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/admissible-heuristics",
+      "title": "Admissible heuristics",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/alpha-beta-pruning",
+      "title": "Alpha-beta pruning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/analogy",
+      "title": "Analogy",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/arc-consistency",
+      "title": "Arc consistency",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/automated-theorem-proving",
+      "title": "Automated theorem proving",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/backtracking",
+      "title": "Backtracking",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/backward-chaining",
+      "title": "Backward chaining",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/beam-search",
+      "title": "Beam search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/bidirectional-search",
+      "title": "Bidirectional search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/boolean-satisfiability",
+      "title": "Boolean satisfiability",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/branch-and-bound",
+      "title": "Branch and bound",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/breadth-first-search",
+      "title": "Breadth-first search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence",
+      "title": "Classical Artificial Intelligence",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/completeness",
+      "title": "Completeness",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+      "title": "Conflict-driven clause learning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/consistent-heuristics",
+      "title": "Consistent heuristics",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/constraint-propagation",
+      "title": "Constraint propagation",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
+      "title": "Constraint-satisfaction problems",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/contingent-planning",
+      "title": "Contingent planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/counterfactual-reasoning",
+      "title": "Counterfactual reasoning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+      "title": "Counterfactual regret minimization",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/deduction",
+      "title": "Deduction",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/default-logic",
+      "title": "Default logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/degree-heuristic",
+      "title": "Degree heuristic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/depth-first-search",
+      "title": "Depth-first search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/depth-limited-search",
+      "title": "Depth-limited search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/description-logic",
+      "title": "Description logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/dijkstras-algorithm",
+      "title": "Dijkstra's algorithm",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/dpll",
+      "title": "DPLL",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/duplicate-state-detection",
+      "title": "Duplicate-state detection",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/expectimax",
+      "title": "Expectimax",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/first-order-predicate-logic",
+      "title": "First-order predicate logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/forward-and-backward-planning",
+      "title": "Forward and backward planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/forward-chaining",
+      "title": "Forward chaining",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/forward-checking",
+      "title": "Forward checking",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/fuzzy-logic",
+      "title": "Fuzzy logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/graphplan",
+      "title": "Graphplan",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/greedy-best-first-search",
+      "title": "Greedy best-first search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/hierarchical-task-networks",
+      "title": "Hierarchical task networks",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/hill-climbing",
+      "title": "Hill climbing",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/horn-clauses",
+      "title": "Horn clauses",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/induction",
+      "title": "Induction",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/integer-programming",
+      "title": "Integer programming",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/iterative-deepening",
+      "title": "Iterative deepening",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/iterative-deepening-a-star",
+      "title": "Iterative Deepening A*",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/knowledge-bases",
+      "title": "Knowledge bases",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/least-constraining-value",
+      "title": "Least-constraining value",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/local-beam-search",
+      "title": "Local beam search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/logic-programming",
+      "title": "Logic programming",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/min-conflicts",
+      "title": "Min-conflicts",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/minimax",
+      "title": "Minimax",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/minimum-remaining-values",
+      "title": "Minimum remaining values",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/mixed-integer-programming",
+      "title": "Mixed-integer programming",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/modal-logic",
+      "title": "Modal logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+      "title": "Monte Carlo Tree Search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/multi-agent-planning",
+      "title": "Multi-agent planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/negamax",
+      "title": "Negamax",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/non-monotonic-reasoning",
+      "title": "Non-monotonic reasoning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/ontologies",
+      "title": "Ontologies",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/optimality",
+      "title": "Optimality",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/partial-order-planning",
+      "title": "Partial-order planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/pddl",
+      "title": "PDDL",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/planning-under-uncertainty",
+      "title": "Planning under uncertainty",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/propositional-logic",
+      "title": "Propositional logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/quantifiers",
+      "title": "Quantifiers",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/random-restart-hill-climbing",
+      "title": "Random-restart hill climbing",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/receding-horizon-planning",
+      "title": "Receding-horizon planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/resolution",
+      "title": "Resolution",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/self-play",
+      "title": "Self-play",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/simulated-annealing",
+      "title": "Simulated annealing",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/state-space-planning",
+      "title": "State-space planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/state-space-representation",
+      "title": "State-space representation",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/strips",
+      "title": "STRIPS",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/tabu-search",
+      "title": "Tabu search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/temporal-logic",
+      "title": "Temporal logic",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/temporal-planning",
+      "title": "Temporal planning",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/time-and-memory-complexity",
+      "title": "Time and memory complexity",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/transposition-tables",
+      "title": "Transposition tables",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/uct",
+      "title": "UCT",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/unification",
+      "title": "Unification",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/uniform-cost-search",
+      "title": "Uniform-cost search",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/walksat",
+      "title": "WalkSAT",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "classical-artificial-intelligence/topics/weighted-a-star",
+      "title": "Weighted A*",
+      "phase": "classical-artificial-intelligence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "computer-vision",
+      "title": "Computer Vision",
+      "phase": "computer-vision",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/activation-functions",
+      "title": "Activation functions",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/alexnet",
+      "title": "AlexNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/backpropagation",
+      "title": "Backpropagation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/batch-normalization",
+      "title": "Batch normalization",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/computational-graphs",
+      "title": "Computational graphs",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/cross-correlation",
+      "title": "Cross-correlation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/data-augmentation",
+      "title": "Data augmentation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning",
+      "title": "Deep Learning Foundations",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/densenet",
+      "title": "DenseNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/depthwise-and-separable-convolutions",
+      "title": "Depthwise and separable convolutions",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/dilation",
+      "title": "Dilation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/discrete-convolution",
+      "title": "Discrete convolution",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/dropout",
+      "title": "Dropout",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/early-stopping",
+      "title": "Early stopping",
+      "phase": "deep-learning",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "deep-learning/topics/efficientnet",
+      "title": "EfficientNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/encoder-decoder-networks",
+      "title": "Encoder-decoder networks",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/gradient-clipping",
+      "title": "Gradient clipping",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/inception",
+      "title": "Inception",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/knowledge-distillation",
+      "title": "Knowledge distillation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/label-smoothing",
+      "title": "Label smoothing",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/layer-normalization",
+      "title": "Layer normalization",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/lenet",
+      "title": "LeNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/mobilenet",
+      "title": "MobileNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/multilayer-perceptrons",
+      "title": "Multilayer perceptrons",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/neural-networks",
+      "title": "Neural Networks",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/normalization",
+      "title": "Normalization",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/padding",
+      "title": "Padding",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/perceptrons",
+      "title": "Perceptrons",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/pooling",
+      "title": "Pooling",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/receptive-fields",
+      "title": "Receptive fields",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/regularization",
+      "title": "Regularization",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/representation-learning",
+      "title": "Representation learning",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/residual-connections",
+      "title": "Residual connections",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/residual-networks",
+      "title": "Residual networks",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/resnet",
+      "title": "ResNet",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/rmsnorm",
+      "title": "RMSNorm",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/stride",
+      "title": "Stride",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/translation-equivariance",
+      "title": "Translation equivariance",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/u-net",
+      "title": "U-Net",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/u-net-architectures",
+      "title": "U-Net architectures",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/universal-approximation",
+      "title": "Universal approximation",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/vgg",
+      "title": "VGG",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/weight-decay",
+      "title": "Weight decay",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "deep-learning/topics/weight-initialization",
+      "title": "Weight initialization",
+      "phase": "deep-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "foundations",
+      "title": "Foundations",
+      "phase": "foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "foundations/what-is-ai",
+      "title": "What Is AI?",
+      "phase": "foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-ai/transformers",
+      "title": "Transformers",
+      "phase": "generative-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-ai",
+      "title": "Transformers And Foundation Models",
+      "phase": "generative-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/autoencoders",
+      "title": "Autoencoders",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/autoregressive-flows",
+      "title": "Autoregressive flows",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/autoregressive-language-models",
+      "title": "Autoregressive language models",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/beta-vae",
+      "title": "beta-VAE",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/causal-masking",
+      "title": "Causal masking",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/change-of-variables-formula",
+      "title": "Change-of-variables formula",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/classifier-guidance",
+      "title": "Classifier guidance",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/classifier-free-guidance",
+      "title": "Classifier-free guidance",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/conditional-flow-matching",
+      "title": "Conditional flow matching",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/conditional-gan",
+      "title": "Conditional GAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/consistency-models",
+      "title": "Consistency models",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/continuous-normalizing-flows",
+      "title": "Continuous normalizing flows",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/contractive-autoencoders",
+      "title": "Contractive autoencoders",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/coupling-layers",
+      "title": "Coupling layers",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/cyclegan",
+      "title": "CycleGAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/dcgan",
+      "title": "DCGAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/denoising-autoencoders",
+      "title": "Denoising autoencoders",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/denoising-diffusion-probabilistic-models",
+      "title": "Denoising diffusion probabilistic models",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/denoising-score-matching",
+      "title": "Denoising score matching",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/diffusion-language-models",
+      "title": "Diffusion language models",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/diffusion-transformers",
+      "title": "Diffusion transformers",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/distillation-and-fast-sampling",
+      "title": "Distillation and fast sampling",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/distillation-to-fewer-steps",
+      "title": "Distillation to fewer steps",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/exposure-bias",
+      "title": "Exposure bias",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/gan",
+      "title": "GAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling",
+      "title": "Generative Modelling",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/glow",
+      "title": "Glow",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/gradient-penalty",
+      "title": "Gradient penalty",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/latent-diffusion",
+      "title": "Latent diffusion",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/latent-variable-models",
+      "title": "Latent-variable models",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/mode-collapse",
+      "title": "Mode collapse",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/neural-ordinary-differential-equations",
+      "title": "Neural ordinary differential equations",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/nice",
+      "title": "NICE",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/noise-schedules",
+      "title": "Noise schedules",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/ode-solvers",
+      "title": "ODE solvers",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/optimal-transport-paths",
+      "title": "Optimal-transport paths",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/pixelrnn-and-pixelcnn",
+      "title": "PixelRNN and PixelCNN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/probability-paths",
+      "title": "Probability paths",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/realnvp",
+      "title": "RealNVP",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/rectified-flow",
+      "title": "Rectified flow",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/score-matching",
+      "title": "Score matching",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/score-based-sdes",
+      "title": "Score-based SDEs",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/sequence-likelihood",
+      "title": "Sequence likelihood",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/sparse-autoencoders",
+      "title": "Sparse autoencoders",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/stylegan",
+      "title": "StyleGAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/teacher-forcing",
+      "title": "Teacher forcing",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/training-instability",
+      "title": "Training instability",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/variance-preserving-and-variance-exploding-diffusion",
+      "title": "Variance-preserving and variance-exploding diffusion",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/variational-autoencoders",
+      "title": "Variational autoencoders",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/vector-quantized-vae",
+      "title": "Vector-quantized VAE",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/wasserstein-gan",
+      "title": "Wasserstein GAN",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "generative-modelling/topics/wavenet",
+      "title": "WaveNet",
+      "phase": "generative-modelling",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "graph-machine-learning",
+      "title": "Graph Machine Learning",
+      "phase": "graph-machine-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "interpretability-and-mechanistic-understanding",
+      "title": "Interpretability And Mechanistic Understanding",
+      "phase": "interpretability-and-mechanistic-understanding",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "learning-sequence",
+      "title": "Recommended Learning Sequence",
+      "phase": "learning-sequence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "logical-and-problem-solving-patterns",
+      "title": "Logical And Problem-Solving Patterns To Recognize",
+      "phase": "logical-and-problem-solving-patterns",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "machine-learning",
+      "title": "Classical Machine Learning",
+      "phase": "machine-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "machine-learning/training-a-model",
+      "title": "Training A Model",
+      "phase": "machine-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/adam-and-rmsprop",
+      "title": "Adam and RMSProp",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/approximation-algorithms",
+      "title": "Approximation algorithms",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/automata-and-formal-languages",
+      "title": "Automata and formal languages",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/automatic-differentiation",
+      "title": "Automatic differentiation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/bayes-theorem",
+      "title": "Bayes' theorem",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/bayesian-inference",
+      "title": "Bayesian inference",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/bernoulli",
+      "title": "Bernoulli",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/beta",
+      "title": "Beta",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/bias-and-variance",
+      "title": "Bias and variance",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/binomial",
+      "title": "Binomial",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/boolean-algebra",
+      "title": "Boolean algebra",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/bootstrap",
+      "title": "Bootstrap",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/brier-score",
+      "title": "Brier score",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/calculus-and-matrix-calculus",
+      "title": "Calculus And Matrix Calculus",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/calibration",
+      "title": "Calibration",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/categorical",
+      "title": "Categorical",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/central-limit-theorem",
+      "title": "Central limit theorem",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/change-of-variables",
+      "title": "Change of variables",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/coding-theory",
+      "title": "Coding theory",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/combinatorics",
+      "title": "Combinatorics",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/computability",
+      "title": "Computability",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/conditional-entropy",
+      "title": "Conditional entropy",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/conditional-expectation",
+      "title": "Conditional expectation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/conditional-probability",
+      "title": "Conditional probability",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/confidence-intervals",
+      "title": "Confidence intervals",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/conjugate-priors",
+      "title": "Conjugate priors",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/convex-and-non-convex-optimization",
+      "title": "Convex and non-convex optimization",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/correlation",
+      "title": "Correlation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/cross-entropy",
+      "title": "Cross-entropy",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/cumulative-distributions",
+      "title": "Cumulative distributions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/derivatives-and-partial-derivatives",
+      "title": "Derivatives and partial derivatives",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/directional-derivatives",
+      "title": "Directional derivatives",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/dirichlet",
+      "title": "Dirichlet",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/discrete-mathematics-theoretical-computer-science",
+      "title": "Discrete Mathematics And Theoretical Computer Science",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/distance-and-similarity-metrics",
+      "title": "Distance and similarity metrics",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/distribution-shift",
+      "title": "Distribution shift",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/dot-products-and-inner-product-spaces",
+      "title": "Dot products and inner-product spaces",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/effect-size",
+      "title": "Effect size",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/eigendecomposition",
+      "title": "Eigendecomposition",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/eigenvalues-and-eigenvectors",
+      "title": "Eigenvalues and eigenvectors",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/einstein-summation",
+      "title": "Einstein summation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/entropy",
+      "title": "Entropy",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/expectation",
+      "title": "Expectation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/experimental-design",
+      "title": "Experimental design",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/exponential",
+      "title": "Exponential",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/forward-mode-and-reverse-mode-autodiff",
+      "title": "Forward-mode and reverse-mode autodiff",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/gamma",
+      "title": "Gamma",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/gaussian",
+      "title": "Gaussian",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/geometric-distribution",
+      "title": "Geometric distribution",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/gradient-descent",
+      "title": "Gradient descent",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/gradients",
+      "title": "Gradients",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/graph-theory",
+      "title": "Graph theory",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/gumbel",
+      "title": "Gumbel",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/hessians",
+      "title": "Hessians",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/hypothesis-testing",
+      "title": "Hypothesis testing",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/importance-sampling",
+      "title": "Importance sampling",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/independence-and-conditional-independence",
+      "title": "Independence and conditional independence",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/information-bottleneck",
+      "title": "Information bottleneck",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/information-theory",
+      "title": "Information Theory",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/jacobians",
+      "title": "Jacobians",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/jacobians-and-hessians",
+      "title": "Jacobians and Hessians",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/jensen-shannon-divergence",
+      "title": "Jensen-Shannon divergence",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/joint-marginal-and-conditional-distributions",
+      "title": "Joint, marginal, and conditional distributions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/kkt-conditions",
+      "title": "KKT conditions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/kl-divergence",
+      "title": "KL divergence",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/kronecker-products",
+      "title": "Kronecker products",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/lagrange-multipliers",
+      "title": "Lagrange multipliers",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/law-of-large-numbers",
+      "title": "Law of large numbers",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/law-of-total-probability",
+      "title": "Law of total probability",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/law-of-total-variance",
+      "title": "Law of total variance",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/learning-rates-and-schedules",
+      "title": "Learning rates and schedules",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/limits-and-continuity",
+      "title": "Limits and continuity",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/line-search",
+      "title": "Line search",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/linear-algebra",
+      "title": "Linear Algebra",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/linear-independence",
+      "title": "Linear independence",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/local-minima-global-minima-and-saddle-points",
+      "title": "Local minima, global minima, and saddle points",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/log-normal",
+      "title": "Log-normal",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/low-rank-approximation",
+      "title": "Low-rank approximation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/markov-processes",
+      "title": "Markov processes",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations",
+      "title": "Mathematical Foundations",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/mathematical-induction",
+      "title": "Mathematical induction",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/matrix-calculus",
+      "title": "Matrix calculus",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/matrix-multiplication-and-tensor-contraction",
+      "title": "Matrix multiplication and tensor contraction",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/maximum-a-posteriori-estimation",
+      "title": "Maximum a posteriori estimation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/maximum-likelihood-estimation",
+      "title": "Maximum likelihood estimation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/mini-batch-optimization",
+      "title": "Mini-batch optimization",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/minimum-description-length",
+      "title": "Minimum description length",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/missing-data-mechanisms",
+      "title": "Missing-data mechanisms",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/momentum-and-adaptive-methods",
+      "title": "Momentum and adaptive methods",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/monte-carlo-estimation",
+      "title": "Monte Carlo estimation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/multinomial",
+      "title": "Multinomial",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/multiple-testing",
+      "title": "Multiple testing",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/multivariable-integration",
+      "title": "Multivariable integration",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/multivariate-gaussian",
+      "title": "Multivariate Gaussian",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/mutual-information",
+      "title": "Mutual information",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/newton-and-quasi-newton-methods",
+      "title": "Newton and quasi-Newton methods",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/norms",
+      "title": "Norms",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/numerical-conditioning",
+      "title": "Numerical conditioning",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/numerical-stability",
+      "title": "Numerical stability",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/objectives-losses-and-cost-functions",
+      "title": "Objectives, losses, and cost functions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/online-algorithms",
+      "title": "Online algorithms",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/optimization",
+      "title": "Optimization",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/ordinary-differential-equations",
+      "title": "Ordinary differential equations",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/orthogonality-and-orthonormal-bases",
+      "title": "Orthogonality and orthonormal bases",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/p-values-and-statistical-power",
+      "title": "p-values and statistical power",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/p-np-np-hard-and-np-complete",
+      "title": "P, NP, NP-hard, and NP-complete",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/parameters-and-decision-variables",
+      "title": "Parameters and decision variables",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/perplexity",
+      "title": "Perplexity",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/point-estimation",
+      "title": "Point estimation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/poisson",
+      "title": "Poisson",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/populations-and-samples",
+      "title": "Populations and samples",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/positive-semidefinite-matrices",
+      "title": "Positive-semidefinite matrices",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/posterior-predictive-distributions",
+      "title": "Posterior predictive distributions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/probability",
+      "title": "Probability",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/probability-mass-and-density-functions",
+      "title": "Probability mass and density functions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/product-quotient-and-chain-rules",
+      "title": "Product, quotient, and chain rules",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/projections",
+      "title": "Projections",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/proof-by-contradiction",
+      "title": "Proof by contradiction",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/random-variables",
+      "title": "Random variables",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/randomized-algorithms",
+      "title": "Randomized algorithms",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/rank-and-null-space",
+      "title": "Rank and null space",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/rate-distortion-theory",
+      "title": "Rate-distortion theory",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/recurrence-relations",
+      "title": "Recurrence relations",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/reductions",
+      "title": "Reductions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/regularization-and-penalties",
+      "title": "Regularization and penalties",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/rejection-sampling",
+      "title": "Rejection sampling",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/sample-spaces-and-events",
+      "title": "Sample spaces and events",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/scalars-vectors-matrices-and-tensors",
+      "title": "Scalars, vectors, matrices, and tensors",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/sets-relations-and-functions",
+      "title": "Sets, relations, and functions",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/singular-value-decomposition",
+      "title": "Singular value decomposition",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/sparse-matrices",
+      "title": "Sparse matrices",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/split-conformal-prediction",
+      "title": "Split conformal prediction",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/standard-error",
+      "title": "Standard error",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/statistics",
+      "title": "Statistics",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/stochastic-differential-equations",
+      "title": "Stochastic differential equations",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/stochastic-gradient-descent",
+      "title": "Stochastic gradient descent",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/student-s-t",
+      "title": "Student's t",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/taylor-approximation",
+      "title": "Taylor approximation",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/time-and-space-complexity",
+      "title": "Time and space complexity",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/trace-and-determinant",
+      "title": "Trace and determinant",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/trees-and-directed-acyclic-graphs",
+      "title": "Trees and directed acyclic graphs",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/unconstrained-and-constrained-optimization",
+      "title": "Unconstrained and constrained optimization",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Explanations needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "mathematical-foundations/topics/uniform",
+      "title": "Uniform",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/variance-and-covariance",
+      "title": "Variance and covariance",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mathematical-foundations/topics/vector-spaces-subspaces-span-basis-and-dimension",
+      "title": "Vector spaces, subspaces, span, basis, and dimension",
+      "phase": "mathematical-foundations",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "mixture-of-experts-models",
+      "title": "Mixture-Of-Experts Models",
+      "phase": "mixture-of-experts-models",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "multimodal-ai",
+      "title": "Multimodal AI",
+      "phase": "multimodal-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "portfolio/ai-projects",
+      "title": "AI Projects",
+      "phase": "portfolio",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "portfolio",
+      "title": "Portfolio",
+      "phase": "portfolio",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/approximate-inference",
+      "title": "Approximate inference",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/bayesian-networks",
+      "title": "Bayesian networks",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/belief-propagation",
+      "title": "Belief propagation",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/conditional-independence",
+      "title": "Conditional independence",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/conditional-random-fields",
+      "title": "Conditional random fields",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/d-separation",
+      "title": "D-separation",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/dynamic-bayesian-networks",
+      "title": "Dynamic Bayesian networks",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/exact-inference",
+      "title": "Exact inference",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/expectation-maximization",
+      "title": "Expectation-maximization",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/extended-kalman-filter",
+      "title": "Extended Kalman filter",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/factor-graphs",
+      "title": "Factor graphs",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/forward-backward-algorithm",
+      "title": "Forward-backward algorithm",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/gibbs-sampling",
+      "title": "Gibbs sampling",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/hamiltonian-monte-carlo",
+      "title": "Hamiltonian Monte Carlo",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/hidden-markov-models",
+      "title": "Hidden Markov models",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/junction-tree-algorithm",
+      "title": "Junction-tree algorithm",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/kalman-filter",
+      "title": "Kalman filter",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/loopy-belief-propagation",
+      "title": "Loopy belief propagation",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/markov-chains",
+      "title": "Markov chains",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "reviewed",
+      "issues": []
+    },
+    {
+      "slug": "probabilistic-ai/topics/markov-random-fields",
+      "title": "Markov random fields",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/max-product-algorithm",
+      "title": "Max-product algorithm",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/metropolis-hastings",
+      "title": "Metropolis-Hastings",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/particle-filter",
+      "title": "Particle filter",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai",
+      "title": "Probabilistic AI",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/sequential-monte-carlo",
+      "title": "Sequential Monte Carlo",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/sum-product-algorithm",
+      "title": "Sum-product algorithm",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/unscented-kalman-filter",
+      "title": "Unscented Kalman filter",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/variable-elimination",
+      "title": "Variable elimination",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/variational-inference",
+      "title": "Variational inference",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "probabilistic-ai/topics/viterbi-decoding",
+      "title": "Viterbi decoding",
+      "phase": "probabilistic-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "programming-and-systems-foundations",
+      "title": "Programming And Systems Foundations",
+      "phase": "programming-and-systems-foundations",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "reasoning-models-and-inference-time-computation",
+      "title": "Reasoning Models And Inference-Time Computation",
+      "phase": "reasoning-models-and-inference-time-computation",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "reinforcement-learning",
+      "title": "Reinforcement Learning",
+      "phase": "reinforcement-learning",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "representation-learning-and-self-supervision",
+      "title": "Representation Learning And Self-Supervision",
+      "phase": "representation-learning-and-self-supervision",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "representative-research-paper-sequence",
+      "title": "Representative Research-Paper Sequence",
+      "phase": "representative-research-paper-sequence",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "research-methodology",
+      "title": "Research Methodology",
+      "phase": "research-methodology",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "retrieval-search-and-rag",
+      "title": "Retrieval, Search And RAG",
+      "phase": "retrieval-search-and-rag",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "speech-audio-and-time-series-ai",
+      "title": "Speech, Audio And Time-Series AI",
+      "phase": "speech-audio-and-time-series-ai",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    },
+    {
+      "slug": "state-space-models-and-alternative-sequence-architectures",
+      "title": "State-Space Models And Alternative Sequence Architectures",
+      "phase": "state-space-models-and-alternative-sequence-architectures",
+      "reviewStatus": "pending",
+      "issues": [
+        "Factual and source review pending",
+        "Topic-specific calculated or explanatory visual needed",
+        "Worked example needed",
+        "Assumptions and failure modes needed",
+        "Implementation context needed"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Conditional random fields: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A conditional random field models a structured output directly conditional on observed input features.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Conditional random fields step 1: Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Conditional random fields step 2: Apply the central computation: Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
-    "Conditional random fields step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Conditional random fields step 4: Interpret the result under this limitation: CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs."
+    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
+    "Apply the central computation: Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The model combines word features and neighboring tag compatibility to return a coherent tag sequence."
   },
   "pitfalls": [
-    "Conditional random fields failure 1: Feature weights are not independent probabilities; the conditional partition function couples them.",
-    "Conditional random fields failure 2: A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Conditional random fields failure 3: Check normalization, support, and conditioning events before interpreting a probability."
+    "Feature weights are not independent probabilities; the conditional partition function couples them.",
+    "A graph encodes particular independence assumptions; it is not merely a visualization.",
+    "Check normalization, support, and conditioning events before interpreting a probability."
   ],
-  "implementation": [
-    "Represent the central state for Conditional random fields explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Conditional random fields, compare the quantity named in “A conditional random field models a structured output directly conditional on observed input features.” across training, evaluation, and shifted inputs.",
-    "Ship Conditional random fields with a counterexample test derived from “Feature weights are not independent probabilities; the conditional partition function couples them.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A conditional random field models a structured output directly conditional on observed input features.",
     "Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A conditional random field models a structured output directly conditional on observed input features.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Conditional random fields illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

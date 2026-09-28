@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Teacher forcing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Teacher forcing trains sequence models using the true previous token rather than the model's sampled previous token.",
   "concepts": [
     {
-      "title": "Teacher forcing definition",
-      "explanation": "Teacher forcing lens: shifted targets"
+      "title": "Concept",
+      "explanation": "shifted targets"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Teacher forcing lens: maximum-likelihood sequence training"
+      "title": "Concept",
+      "explanation": "maximum-likelihood sequence training"
     },
     {
-      "title": "AI connection",
-      "explanation": "Teacher forcing lens: training-generation mismatch"
+      "title": "Concept",
+      "explanation": "training-generation mismatch"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Teacher forcing lens: scheduled sampling as a mitigation"
+      "title": "Concept",
+      "explanation": "scheduled sampling as a mitigation"
     }
   ],
   "process": [
-    "Teacher forcing step 1: The target sequence is shifted and fed back into the model as input context. This makes training stable and parallelizable, but differs from generation where the model must condition on its own outputs."
+    "The target sequence is shifted and fed back into the model as input context. This makes training stable and parallelizable, but differs from generation where the model must condition on its own outputs."
   ],
-  "formulas": [
-    {
-      "label": "Teacher forcing field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the sequence lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A captioning model is trained with the true previous word, but at inference it must continue from the word it actually sampled.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A captioning model is trained with the true previous word, but at inference it must continue from the word it actually sampled."
   },
   "pitfalls": [
-    "Teacher forcing failure 1: The model may not learn to recover from its own mistakes.",
-    "Teacher forcing failure 2: Metrics can look strong during training while generation remains brittle."
+    "The model may not learn to recover from its own mistakes.",
+    "Metrics can look strong during training while generation remains brittle."
   ],
-  "implementation": [
-    "Represent the central state for Teacher forcing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Teacher forcing, compare the quantity named in “Teacher forcing trains sequence models using the true previous token rather than the model's sampled previous token.” across training, evaluation, and shifted inputs.",
-    "Ship Teacher forcing with a counterexample test derived from “The model may not learn to recover from its own mistakes.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Teacher forcing matters because it makes generation measurable with next-step likelihood and gives builders direct control over sampling order. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Teacher forcing trains sequence models using the true previous token rather than the model's sampled previous token.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Teacher forcing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

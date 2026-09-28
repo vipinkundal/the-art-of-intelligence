@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Representation learning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Representation learning lets a model discover internal features that make useful structure easier to predict or generate.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Representation learning step 1: Choose an encoder suited to the input modality.",
-    "Representation learning step 2: Train it with supervised, self-supervised, contrastive, or generative objectives.",
-    "Representation learning step 3: Inspect or evaluate the learned representation on held-out tasks.",
-    "Representation learning step 4: Fine-tune or freeze it for downstream use."
+    "Choose an encoder suited to the input modality.",
+    "Train it with supervised, self-supervised, contrastive, or generative objectives.",
+    "Inspect or evaluate the learned representation on held-out tasks.",
+    "Fine-tune or freeze it for downstream use."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The encoder learns features useful beyond the exact augmentation pair."
   },
   "pitfalls": [
-    "Representation learning failure 1: A representation can encode shortcuts, bias, or private information along with useful features.",
-    "Representation learning failure 2: Visualizing embeddings does not by itself prove semantic quality or causal structure.",
-    "Representation learning failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "A representation can encode shortcuts, bias, or private information along with useful features.",
+    "Visualizing embeddings does not by itself prove semantic quality or causal structure.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Representation learning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Representation learning, compare the quantity named in “An encoder transforms raw input into embeddings, and objectives reward representations that retain task-relevant informa” across training, evaluation, and shifted inputs.",
-    "Ship Representation learning with a counterexample test derived from “A representation can encode shortcuts, bias, or private information along with useful features.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Representation learning lets a model discover internal features that make useful structure easier to predict or generate.",
     "An encoder transforms raw input into embeddings, and objectives reward representations that retain task-relevant information while discarding nuisance variation.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Representation learning lets a model discover internal features that make useful structure easier to predict or generate.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Representation learning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

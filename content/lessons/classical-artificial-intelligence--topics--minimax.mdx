@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Minimax: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Minimax step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Minimax step 2: Apply the central rule: Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
-    "Minimax step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Minimax step 4: Stop and interpret the result using this criterion: It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The root move selected has the highest value after the opponent's best reply is backed up."
   },
   "pitfalls": [
-    "Minimax failure 1: A cutoff evaluation function is an estimate, not a terminal game-theoretic value.",
-    "Minimax failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Minimax failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "A cutoff evaluation function is an estimate, not a terminal game-theoretic value.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Minimax explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Minimax, compare the quantity named in “Minimax chooses the move with the best worst-case outcome against an optimal opponent.” across training, evaluation, and shifted inputs.",
-    "Ship Minimax with a counterexample test derived from “A cutoff evaluation function is an estimate, not a terminal game-theoretic value.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
     "Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Minimax chooses the move with the best worst-case outcome against an optimal opponent.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Minimax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

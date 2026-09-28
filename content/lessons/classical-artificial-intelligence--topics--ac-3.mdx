@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for AC-3: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "AC-3 step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "AC-3 step 2: Apply the central rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
-    "AC-3 step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "AC-3 step 4: Stop and interpret the result using this criterion: Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Domain reductions travel through neighboring arcs until the queue is empty."
   },
   "pitfalls": [
-    "AC-3 failure 1: Queue membership and domain restoration must be efficient inside backtracking search.",
-    "AC-3 failure 2: A weak model can make an easy real problem hard for the solver.",
-    "AC-3 failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Queue membership and domain restoration must be efficient inside backtracking search.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for AC-3 explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For AC-3, compare the quantity named in “AC-3 enforces arc consistency by revising a queue of directed binary arcs.” across training, evaluation, and shifted inputs.",
-    "Ship AC-3 with a counterexample test derived from “Queue membership and domain restoration must be efficient inside backtracking search.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
     "Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["AC-3 enforces arc consistency by revising a queue of directed binary arcs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This AC-3 illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

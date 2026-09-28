@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Correlation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "A normalized covariance that ranges from negative to positive association.",
+  "hook": "A curved pattern can cancel its linear score.",
+  "overview": "Pearson correlation is covariance divided by the product of standard deviations. For finite, strictly positive variances it lies in [−1,1] and measures linear association. It does not detect every dependence and does not identify a causal effect.",
   "concepts": [
     {
-      "title": "Correlation definition",
-      "explanation": "Correlation lens: The definition and notation for Correlation."
+      "title": "Affine invariance has a sign",
+      "explanation": "Adding constants or multiplying by positive scales leaves Pearson correlation unchanged. Multiplying just one variable by a negative scale reverses its sign."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Correlation lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Correlation lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Correlation lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "The edge cases matter",
+      "explanation": "A constant variable has zero standard deviation, making Pearson correlation undefined. Perfect ±1 correlation implies an almost-sure affine relationship when both finite variances are positive."
     }
   ],
   "process": [
-    "Correlation step 1: Correlation belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Inspect support, outliers and possible nonlinear patterns.",
+    "Check finite, nonzero variances.",
+    "Calculate the normalized covariance and qualify it as a linear-association measure."
   ],
   "formulas": [
     {
-      "label": "Correlation field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "ρ(X,Y)=Cov(X,Y)/(σXσY), 0<σX²,σY²<∞",
+      "meaning": "X is uniform over −2,−1,0,1,2 and Y=X²+aX. Every plotted point has probability 1/5. The graph shows the full discrete population, not a random sample."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, correlation can be used to interpret a normalized covariance that ranges from negative to positive association.",
-    "steps": [],
-    "result": "In a probabilistic model, correlation can be used to interpret a normalized covariance that ranges from negative to positive association."
+    "title": "A deterministic U shape",
+    "setup": "Let a=0.",
+    "steps": [
+      "E[X]=0 and E[Y]=E[X²]=2.",
+      "E[XY]=E[X³]=0 by symmetry, so covariance and correlation are zero."
+    ],
+    "result": "Dependence is explicit: P(Y=0|X=0)=1 while P(Y=0)=1/5."
   },
   "pitfalls": [
-    "Correlation failure 1: do not treat Correlation as a label without being able to compute or sketch a small example.",
-    "Correlation failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Correlation failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A reported zero sample correlation is not a proof of population independence.",
+    "Correlation can reflect confounding, selection, or shared causes rather than a direct causal effect."
   ],
   "implementation": [
-    "Represent the central state for Correlation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Correlation, compare the quantity named in “A normalized covariance that ranges from negative to positive association.” across training, evaluation, and shifted inputs.",
-    "Ship Correlation with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Return an undefined status for constant inputs rather than zero.",
+    "Pair the coefficient with a plot and distinguish Pearson from rank-based measures."
   ],
   "takeaways": [
-    "Correlation matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "At a=0, Y is determined by X and yet Pearson correlation is zero; inspect the relationship, not only the score.",
+    "Construct a zero-correlation counterexample to independence."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Pearson correlation is covariance divided by the product of standard deviations. For finite, strictly positive variances it lies in [−1,1] and measures linear association. It does not detect every dependence and does not identify a causal effect.","Identify the domain and meaning of Pearson correlation.","Construct a zero-correlation counterexample to independence.","A curved pattern can cancel its linear score.","ρ(X,Y)=Cov(X,Y)/(σXσY), 0<σX²,σY²<∞","X is uniform over −2,−1,0,1,2 and Y=X²+aX. Every plotted point has probability 1/5. The graph shows the full discrete population, not a random sample.","At a=0, Y is determined by X and yet Pearson correlation is zero; inspect the relationship, not only the score."]} />

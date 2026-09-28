@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Boolean satisfiability: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Boolean satisfiability step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Boolean satisfiability step 2: Apply the central rule: Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
-    "Boolean satisfiability step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Boolean satisfiability step 4: Stop and interpret the result using this criterion: SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A=true and C=true satisfies both clauses regardless of B."
   },
   "pitfalls": [
-    "Boolean satisfiability failure 1: Equisatisfiable CNF conversion preserves existence of a solution, not necessarily identical models.",
-    "Boolean satisfiability failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Boolean satisfiability failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Equisatisfiable CNF conversion preserves existence of a solution, not necessarily identical models.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Boolean satisfiability explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Boolean satisfiability, compare the quantity named in “Boolean satisfiability asks whether some truth assignment makes a propositional formula true.” across training, evaluation, and shifted inputs.",
-    "Ship Boolean satisfiability with a counterexample test derived from “Equisatisfiable CNF conversion preserves existence of a solution, not necessarily identical models.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
     "Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Boolean satisfiability asks whether some truth assignment makes a propositional formula true.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Boolean satisfiability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

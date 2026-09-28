@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Pooling: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Pooling step 1: Choose window size, stride, and padding.",
-    "Pooling step 2: Extract one local window per channel.",
-    "Pooling step 3: Apply max, mean, or another pooling statistic.",
-    "Pooling step 4: Repeat across the map and propagate gradients through the selected statistic."
+    "Choose window size, stride, and padding.",
+    "Extract one local window per channel.",
+    "Apply max, mean, or another pooling statistic.",
+    "Repeat across the map and propagate gradients through the selected statistic."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "Max output is 4 and average output is 2.5."
   },
   "pitfalls": [
-    "Pooling failure 1: Aggressive pooling discards precise position and small-object detail.",
-    "Pooling failure 2: Max pooling routes gradient only through selected maxima, which can make optimization sparse.",
-    "Pooling failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Aggressive pooling discards precise position and small-object detail.",
+    "Max pooling routes gradient only through selected maxima, which can make optimization sparse.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Pooling explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Pooling, compare the quantity named in “A window slides over each channel independently and replaces its covered values with one statistic.” across training, evaluation, and shifted inputs.",
-    "Ship Pooling with a counterexample test derived from “Aggressive pooling discards precise position and small-object detail.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.",
     "A window slides over each channel independently and replaces its covered values with one statistic.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Pooling summarizes local neighborhoods with a fixed operation such as a maximum or average.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Pooling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

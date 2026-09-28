@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for WaveNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "WaveNet generates raw audio samples autoregressively with dilated causal convolutions.",
   "concepts": [
     {
-      "title": "WaveNet definition",
-      "explanation": "WaveNet lens: causal convolution"
+      "title": "Concept",
+      "explanation": "causal convolution"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "WaveNet lens: dilated convolution"
+      "title": "Concept",
+      "explanation": "dilated convolution"
     },
     {
-      "title": "AI connection",
-      "explanation": "WaveNet lens: sample-level audio likelihood"
+      "title": "Concept",
+      "explanation": "sample-level audio likelihood"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "WaveNet lens: conditioning for speech synthesis"
+      "title": "Concept",
+      "explanation": "conditioning for speech synthesis"
     }
   ],
   "process": [
-    "WaveNet step 1: Causal convolutions preserve time order, and dilation lets each prediction use a wider audio history without a deep recurrent loop. Conditioning can steer speech identity, text, or acoustic features."
+    "Causal convolutions preserve time order, and dilation lets each prediction use a wider audio history without a deep recurrent loop. Conditioning can steer speech identity, text, or acoustic features."
   ],
-  "formulas": [
-    {
-      "label": "WaveNet field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the transport lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A speech system can condition WaveNet on linguistic features and generate a natural-sounding waveform sample by sample.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A speech system can condition WaveNet on linguistic features and generate a natural-sounding waveform sample by sample."
   },
   "pitfalls": [
-    "WaveNet failure 1: Raw sample generation can be computationally expensive.",
-    "WaveNet failure 2: Small timing errors can become audible artifacts."
+    "Raw sample generation can be computationally expensive.",
+    "Small timing errors can become audible artifacts."
   ],
-  "implementation": [
-    "Represent the central state for WaveNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For WaveNet, compare the quantity named in “WaveNet generates raw audio samples autoregressively with dilated causal convolutions.” across training, evaluation, and shifted inputs.",
-    "Ship WaveNet with a counterexample test derived from “Raw sample generation can be computationally expensive.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "WaveNet matters because it makes generation measurable with next-step likelihood and gives builders direct control over sampling order. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["WaveNet generates raw audio samples autoregressively with dilated causal convolutions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This WaveNet illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

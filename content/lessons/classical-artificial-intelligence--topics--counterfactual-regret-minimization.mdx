@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Counterfactual regret minimization: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Counterfactual regret minimization learns imperfect-information strategies by minimizing regret at information sets.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Counterfactual regret minimization step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Counterfactual regret minimization step 2: Apply the central rule: Compare each action's counterfactual value with the value of the chosen mixed strategy and accumulate positive regret.",
-    "Counterfactual regret minimization step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Counterfactual regret minimization step 4: Stop and interpret the result using this criterion: Average strategies converge toward equilibrium in important zero-sum settings, but large games require abstraction or sampling."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Compare each action's counterfactual value with the value of the chosen mixed strategy and accumulate positive regret.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Average strategies converge toward equilibrium in important zero-sum settings, but large games require abstraction or sampling."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Regret matching increases probability on actions that would have performed better in comparable hidden-information situations."
   },
   "pitfalls": [
-    "Counterfactual regret minimization failure 1: Do not merge states that require different legal actions or strategic information.",
-    "Counterfactual regret minimization failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Counterfactual regret minimization failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Do not merge states that require different legal actions or strategic information.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Counterfactual regret minimization explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Counterfactual regret minimization, compare the quantity named in “Counterfactual regret minimization learns imperfect-information strategies by minimizing regret at information sets.” across training, evaluation, and shifted inputs.",
-    "Ship Counterfactual regret minimization with a counterexample test derived from “Do not merge states that require different legal actions or strategic information.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Counterfactual regret minimization learns imperfect-information strategies by minimizing regret at information sets.",
     "Compare each action's counterfactual value with the value of the chosen mixed strategy and accumulate positive regret.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Counterfactual regret minimization learns imperfect-information strategies by minimizing regret at information sets.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Counterfactual regret minimization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

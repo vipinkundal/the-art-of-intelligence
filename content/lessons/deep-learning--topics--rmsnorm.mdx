@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for RMSNorm: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "RMSNorm step 1: Square every hidden coordinate.",
-    "RMSNorm step 2: Average the squares and add epsilon.",
-    "RMSNorm step 3: Divide the vector by the resulting root mean square.",
-    "RMSNorm step 4: Multiply by the learned gain vector."
+    "Square every hidden coordinate.",
+    "Average the squares and add epsilon.",
+    "Divide the vector by the resulting root mean square.",
+    "Multiply by the learned gain vector."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The normalized state is approximately (0.849,1.131)."
   },
   "pitfalls": [
-    "RMSNorm failure 1: RMSNorm does not remove a large shared feature offset.",
-    "RMSNorm failure 2: Implementation details such as epsilon placement and precision can affect numerical behavior.",
-    "RMSNorm failure 3: Judge the method on held-out data; a lower training loss alone does not show better generalization."
+    "RMSNorm does not remove a large shared feature offset.",
+    "Implementation details such as epsilon placement and precision can affect numerical behavior.",
+    "Judge the method on held-out data; a lower training loss alone does not show better generalization."
   ],
-  "implementation": [
-    "Represent the central state for RMSNorm explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For RMSNorm, compare the quantity named in “Compute the mean squared coordinate value, take its stabilized square root, divide, and apply a learned gain.” across training, evaluation, and shifted inputs.",
-    "Ship RMSNorm with a counterexample test derived from “RMSNorm does not remove a large shared feature offset.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.",
     "Compute the mean squared coordinate value, take its stabilized square root, divide, and apply a learned gain.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["RMSNorm rescales a hidden vector by its root mean square without subtracting its mean.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This RMSNorm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

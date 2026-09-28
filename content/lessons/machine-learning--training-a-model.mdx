@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Training A Model as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Training is the process of showing a model examples so it can adjust itself and get better at a task.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "A model starts with weak guesses. During training, it compares its guesses with the correct answers, measures the error, and updates itself to reduce that error."
   ],
-  "formulas": [
-    {
-      "label": "Training A Model field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Training A Model in operation",
+    "title": "Training A Model example",
     "setup": "To train a model that predicts house prices, you show it many houses with size, location, room count, and final sale price.",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Training A Model."
+    "result": ""
   },
-  "pitfalls": [
-    "Training A Model failure 1: A correct definition of Training A Model can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Training is the process of showing a model examples so it can adjust itself and get better at a task.",
     "Use Stanford CS229 as a deeper reference for supervised learning, loss functions, optimization, and model evaluation."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Training is the process of showing a model examples so it can adjust itself and get better at a task.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Training A Model illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

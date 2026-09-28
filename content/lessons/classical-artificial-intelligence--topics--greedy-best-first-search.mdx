@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Greedy best-first search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Greedy best-first search expands the state estimated closest to the goal.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Greedy best-first search step 1: Represent the task using states, actions, a start condition, and a goal test.",
-    "Greedy best-first search step 2: Apply the central rule: Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
-    "Greedy best-first search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Greedy best-first search step 4: Stop and interpret the result using this criterion: It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics."
+    "Represent the task using states, actions, a start condition, and a goal test.",
+    "Apply the central rule: Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The search may be fast, but an obstacle can make the apparently closest route expensive."
   },
   "pitfalls": [
-    "Greedy best-first search failure 1: Use duplicate detection; a heuristic alone does not prevent cycling through the state graph.",
-    "Greedy best-first search failure 2: State representation and duplicate handling can matter more than the headline algorithm.",
-    "Greedy best-first search failure 3: Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Use duplicate detection; a heuristic alone does not prevent cycling through the state graph.",
+    "State representation and duplicate handling can matter more than the headline algorithm.",
+    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
   ],
-  "implementation": [
-    "Represent the central state for Greedy best-first search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Greedy best-first search, compare the quantity named in “Greedy best-first search expands the state estimated closest to the goal.” across training, evaluation, and shifted inputs.",
-    "Ship Greedy best-first search with a counterexample test derived from “Use duplicate detection; a heuristic alone does not prevent cycling through the state graph.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Greedy best-first search expands the state estimated closest to the goal.",
     "Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Greedy best-first search expands the state estimated closest to the goal.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Greedy best-first search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

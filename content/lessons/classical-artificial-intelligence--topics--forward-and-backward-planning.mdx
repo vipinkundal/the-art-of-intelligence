@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Forward and backward planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Forward and backward planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Forward and backward planning step 2: Apply the central rule: Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
-    "Forward and backward planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Forward and backward planning step 4: Stop and interpret the result using this criterion: Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The regressed subgoals guide search toward actions relevant to delivery."
   },
   "pitfalls": [
-    "Forward and backward planning failure 1: An action that deletes a required goal is not a valid regressor unless the conflict is resolved.",
-    "Forward and backward planning failure 2: A plan is only as reliable as its action model and observations.",
-    "Forward and backward planning failure 3: Execution monitoring and replanning are essential when the world can change."
+    "An action that deletes a required goal is not a valid regressor unless the conflict is resolved.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for Forward and backward planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Forward and backward planning, compare the quantity named in “Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.” across training, evaluation, and shifted inputs.",
-    "Ship Forward and backward planning with a counterexample test derived from “An action that deletes a required goal is not a valid regressor unless the conflict is resolved.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
     "Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward and backward planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

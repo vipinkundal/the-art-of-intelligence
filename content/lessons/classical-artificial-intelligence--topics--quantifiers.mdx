@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Quantifiers: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Quantifiers state whether a predicate holds for every object or for at least one object.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Quantifiers step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Quantifiers step 2: Apply the central rule: Universal quantification ranges over all domain members; existential quantification requires one witness.",
-    "Quantifiers step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Quantifiers step 4: Stop and interpret the result using this criterion: Quantifier order changes meaning, and negation swaps forall with exists."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Universal quantification ranges over all domain members; existential quantification requires one witness.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Quantifier order changes meaning, and negation swaps forall with exists."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The formulas use different quantifier order and need not describe the same world."
   },
   "pitfalls": [
-    "Quantifiers failure 1: Always state the domain over which a quantifier ranges.",
-    "Quantifiers failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Quantifiers failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Always state the domain over which a quantifier ranges.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Quantifiers explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Quantifiers, compare the quantity named in “Quantifiers state whether a predicate holds for every object or for at least one object.” across training, evaluation, and shifted inputs.",
-    "Ship Quantifiers with a counterexample test derived from “Always state the domain over which a quantifier ranges.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Quantifiers state whether a predicate holds for every object or for at least one object.",
     "Universal quantification ranges over all domain members; existential quantification requires one witness.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Quantifiers state whether a predicate holds for every object or for at least one object.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Quantifiers illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

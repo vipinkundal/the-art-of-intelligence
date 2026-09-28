@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Dilation: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Dilation spaces kernel taps apart so a small kernel covers a larger input region.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Dilation step 1: Select the base kernel size.",
-    "Dilation step 2: Choose a dilation rate for the desired context span.",
-    "Dilation step 3: Sample the input at dilated offsets for each kernel tap.",
-    "Dilation step 4: Use padding that preserves the intended alignment and output size."
+    "Select the base kernel size.",
+    "Choose a dilation rate for the desired context span.",
+    "Sample the input at dilated offsets for each kernel tap.",
+    "Use padding that preserves the intended alignment and output size."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The effective kernel size is 5 without adding parameters."
   },
   "pitfalls": [
-    "Dilation failure 1: Large repeated dilation can create gridding artifacts and miss intermediate positions.",
-    "Dilation failure 2: Effective receptive field grows only if surrounding layers and padding preserve the information.",
-    "Dilation failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Large repeated dilation can create gridding artifacts and miss intermediate positions.",
+    "Effective receptive field grows only if surrounding layers and padding preserve the information.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Dilation explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Dilation, compare the quantity named in “A dilation factor D samples input positions D steps apart along each kernel axis.” across training, evaluation, and shifted inputs.",
-    "Ship Dilation with a counterexample test derived from “Large repeated dilation can create gridding artifacts and miss intermediate positions.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Dilation spaces kernel taps apart so a small kernel covers a larger input region.",
     "A dilation factor D samples input positions D steps apart along each kernel axis.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Dilation spaces kernel taps apart so a small kernel covers a larger input region.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Dilation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

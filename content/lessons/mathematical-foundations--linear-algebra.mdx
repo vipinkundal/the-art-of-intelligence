@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat 1 Linear Algebra as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "Linear algebra gives AI systems a way to store information as numbers and transform those numbers while preserving useful structure such as direction, distance, similarity, and rank."
   ],
-  "formulas": [
-    {
-      "label": "1 Linear Algebra field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "1 Linear Algebra in operation",
-    "setup": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+    "title": "Linear Algebra example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term 1 Linear Algebra."
+    "result": ""
   },
-  "pitfalls": [
-    "1 Linear Algebra failure 1: A correct definition of 1 Linear Algebra can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
     "Follow MIT OpenCourseWare's Linear Algebra course for lectures, problem sets, and worked examples."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Linear Algebra illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

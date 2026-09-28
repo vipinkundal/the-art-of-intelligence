@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Degree heuristic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Degree heuristic step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Degree heuristic step 2: Apply the central rule: Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
-    "Degree heuristic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Degree heuristic step 4: Stop and interpret the result using this criterion: It can trigger broad propagation, but raw degree may not reflect constraint tightness."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It can trigger broad propagation, but raw degree may not reflect constraint tightness."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Choose the five-neighbor region to reduce more future choices."
   },
   "pitfalls": [
-    "Degree heuristic failure 1: Count only relevant unassigned neighbors during search.",
-    "Degree heuristic failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Degree heuristic failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Count only relevant unassigned neighbors during search.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Degree heuristic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Degree heuristic, compare the quantity named in “The degree heuristic selects a variable constraining the largest number of unassigned neighbors.” across training, evaluation, and shifted inputs.",
-    "Ship Degree heuristic with a counterexample test derived from “Count only relevant unassigned neighbors during search.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
     "Count active constraint connections and choose the highest-degree variable, often as an MRV tie-breaker.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The degree heuristic selects a variable constraining the largest number of unassigned neighbors.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Degree heuristic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

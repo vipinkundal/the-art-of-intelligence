@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Causal Inference as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "A model can predict an outcome from variables that are only associated with it. Causal inference asks what would happen if an intervention changed one variable while the rest of the system followed the causal structure."
   ],
-  "formulas": [
-    {
-      "label": "Causal Inference field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Causal Inference in operation",
-    "setup": "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
+    "title": "Causal Inference example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Causal Inference."
+    "result": ""
   },
-  "pitfalls": [
-    "Causal Inference failure 1: A correct definition of Causal Inference can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.",
     "You should be able to distinguish prediction from causal effect estimation, read simple DAGs, identify confounders, colliders, mediators, back-door and front-door conditions, explain interventions and counterfactuals, estimate average treatment effects with weighting or doubly robust methods, and recognize when IV, regression discontinuity, difference-in-differences, or causal discovery methods are appropriate."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Causal inference studies how to reason about cause and effect, separating predictive correlation from interventions, counterfactuals, and decisions that change outcomes.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Causal Inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

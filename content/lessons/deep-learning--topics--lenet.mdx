@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for LeNet: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "LeNet step 1: Input a normalized grayscale character image.",
-    "LeNet step 2: Alternate convolution and subsampling stages.",
-    "LeNet step 3: Flatten the final feature maps.",
-    "LeNet step 4: Use dense layers to predict the character class."
+    "Input a normalized grayscale character image.",
+    "Alternate convolution and subsampling stages.",
+    "Flatten the final feature maps.",
+    "Use dense layers to predict the character class."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The highest output score selects the predicted digit."
   },
   "pitfalls": [
-    "LeNet failure 1: LeNet's capacity and recipe are not competitive for modern high-resolution tasks.",
-    "LeNet failure 2: Historical implementations used activations and pooling conventions that differ from contemporary defaults.",
-    "LeNet failure 3: Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
+    "LeNet's capacity and recipe are not competitive for modern high-resolution tasks.",
+    "Historical implementations used activations and pooling conventions that differ from contemporary defaults.",
+    "Compare an architecture in the context of its training recipe, compute budget, and target task—not by name alone."
   ],
-  "implementation": [
-    "Represent the central state for LeNet explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For LeNet, compare the quantity named in “Small convolutions extract local patterns, pooling reduces resolution, and dense layers combine the final features into ” across training, evaluation, and shifted inputs.",
-    "Ship LeNet with a counterexample test derived from “LeNet's capacity and recipe are not competitive for modern high-resolution tasks.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.",
     "Small convolutions extract local patterns, pooling reduces resolution, and dense layers combine the final features into class scores.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["LeNet is an early convolutional network that demonstrated learned local filters for handwritten-character recognition.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This LeNet illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

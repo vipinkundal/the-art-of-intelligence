@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat AI Systems And Infrastructure as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "Fully sharded data parallel : Shards parameters, gradients, and optimizer states across workers to reduce per-device memory.",
     "ZeRO : Partitions optimizer states, gradients, and parameters across data-parallel ranks."
   ],
-  "formulas": [
-    {
-      "label": "AI Systems And Infrastructure field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the systems lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "AI Systems And Infrastructure in operation",
-    "setup": "A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.",
+    "title": "AI Systems And Infrastructure example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term AI Systems And Infrastructure."
+    "result": ""
   },
-  "pitfalls": [
-    "AI Systems And Infrastructure failure 1: A correct definition of AI Systems And Infrastructure can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.",
     "You should be able to explain major training parallelism strategies, key collective communication patterns, inference caching and batching methods, quantization and compilation concepts, performance metrics, deployment strategies, versioning needs, monitoring workflows, and incident-management practices for AI systems."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A modern AI practitioner must understand the system around the model: distributed training, efficient inference, deployment pipelines, monitoring, rollback, data and prompt versioning, and operational reliability.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This AI Systems And Infrastructure illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

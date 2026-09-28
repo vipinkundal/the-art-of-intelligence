@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat 3 Probability as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
   "concepts": [
     {
@@ -40,31 +40,19 @@ export const narrative = {
   "process": [
     "Probability assigns numbers to uncertain events. In AI, those numbers help models express how likely an output is, how much evidence supports a prediction, and how uncertain a decision remains."
   ],
-  "formulas": [
-    {
-      "label": "3 Probability field relation",
-      "expression": "p(z|x) ∝ p(x|z)p(z)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "3 Probability in operation",
-    "setup": "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
+    "title": "Probability example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term 3 Probability."
+    "result": ""
   },
-  "pitfalls": [
-    "3 Probability failure 1: A correct definition of 3 Probability can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
     "Explore Brown's Seeing Theory for interactive visualizations of probability, distributions, inference, and regression."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Probability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

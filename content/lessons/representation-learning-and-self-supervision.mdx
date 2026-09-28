@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Representation Learning And Self-Supervision as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
   "concepts": [
     {
@@ -36,31 +36,19 @@ export const narrative = {
     "Continuous bag of words : Predicts a center word from surrounding context words.",
     "Negative sampling : Makes contrastive word training efficient by comparing positives against sampled negatives."
   ],
-  "formulas": [
-    {
-      "label": "Representation Learning And Self-Supervision field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the retrieval lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Representation Learning And Self-Supervision in operation",
-    "setup": "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
+    "title": "Representation Learning And Self-Supervision example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Representation Learning And Self-Supervision."
+    "result": ""
   },
-  "pitfalls": [
-    "Representation Learning And Self-Supervision failure 1: A correct definition of Representation Learning And Self-Supervision can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.",
     "You should be able to explain why good embeddings preserve task-relevant similarity, how contrastive objectives separate positives from negatives, and how masked or predictive tasks create labels without manual annotation."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Representation learning studies how models turn raw inputs into useful embeddings, while self-supervision creates training signals from the data itself.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Representation Learning And Self-Supervision illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

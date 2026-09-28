@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Forward checking: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Forward checking removes neighbor values made impossible by a new assignment.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Forward checking step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Forward checking step 2: Apply the central rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
-    "Forward checking step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Forward checking step 4: Stop and interpret the result using this criterion: It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Red is removed from every unassigned adjacent region's domain."
   },
   "pitfalls": [
-    "Forward checking failure 1: All removed values must be restored when the assignment is undone.",
-    "Forward checking failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Forward checking failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "All removed values must be restored when the assignment is undone.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Forward checking explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Forward checking, compare the quantity named in “Forward checking removes neighbor values made impossible by a new assignment.” across training, evaluation, and shifted inputs.",
-    "Ship Forward checking with a counterexample test derived from “All removed values must be restored when the assignment is undone.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Forward checking removes neighbor values made impossible by a new assignment.",
     "After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Forward checking removes neighbor values made impossible by a new assignment.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward checking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

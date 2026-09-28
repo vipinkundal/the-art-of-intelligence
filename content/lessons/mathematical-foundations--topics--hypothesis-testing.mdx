@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Hypothesis testing: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Uses data to evaluate whether an observed effect is surprising under a baseline assumption.",
+  "hook": "A boundary trades false alarms against missed signals.",
+  "overview": "A hypothesis test specifies a statistic and a rejection rule whose false-rejection probability is controlled under a null model. Type I error concerns true nulls; power is the rejection probability at a specified alternative. Failing to reject does not establish that the null is true.",
   "concepts": [
     {
-      "title": "Hypothesis testing definition",
-      "explanation": "Hypothesis testing lens: The definition and notation for Hypothesis testing."
+      "title": "Size can be below the nominal level",
+      "explanation": "For a discrete statistic, available tail probabilities jump. A nonrandomized level-0.05 test need only have null rejection probability at most 0.05, not exactly 0.05."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Hypothesis testing lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Hypothesis testing lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Hypothesis testing lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Prespecify the rule",
+      "explanation": "Choosing a tail, sample size or subset after seeing which result looks strongest alters the procedure being calibrated. Optional stopping requires an analysis designed for that monitoring rule."
     }
   ],
   "process": [
-    "Hypothesis testing step 1: Hypothesis testing belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "State the null, alternative, statistic and sampling design before inspecting outcomes.",
+    "Choose a rejection region with the desired null error bound.",
+    "Report the estimate, uncertainty, test result and practical effect size together."
   ],
   "formulas": [
     {
-      "label": "Hypothesis testing field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the evaluation lab."
+      "label": "Definition and assumptions",
+      "expression": "Reject H₀ if K≥c; αactual=P₀.₅(K≥c); power(p)=Pₚ(K≥c)",
+      "meaning": "Ten independent Bernoulli trials, upper-tail null p=0.5 and comparison alternative p=0.8. Grouped bars show the two full sampling distributions. Cutoff c=0 rejects everything; c=11 rejects nothing. The vertical line marks the count threshold."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, hypothesis testing can be used to interpret uses data to evaluate whether an observed effect is surprising under a baseline assumption.",
-    "steps": [],
-    "result": "When evaluating a model, hypothesis testing can be used to interpret uses data to evaluate whether an observed effect is surprising under a baseline assumption."
+    "title": "A discrete five-percent test",
+    "setup": "Use n=10 and an upper-tail null p=0.5.",
+    "steps": [
+      "At cutoff 8 the null tail is (45+10+1)/1024=0.0546875, too large for a 5% level.",
+      "At cutoff 9 the null tail is 11/1024≈0.010742; power at p=0.8 is 10×0.8⁹×0.2+0.8¹⁰≈0.375810."
+    ],
+    "result": "A valid 5% test can be conservative and have low power with only ten trials."
   },
   "pitfalls": [
-    "Hypothesis testing failure 1: do not treat Hypothesis testing as a label without being able to compute or sketch a small example.",
-    "Hypothesis testing failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Hypothesis testing failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A significant result does not establish a large or useful effect, and a nonsignificant result does not prove equivalence.",
+    "The advertised error guarantee applies to the specified model and procedure, not arbitrary post-hoc selections."
   ],
   "implementation": [
-    "Represent the central state for Hypothesis testing explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Hypothesis testing, compare the quantity named in “Uses data to evaluate whether an observed effect is surprising under a baseline assumption.” across training, evaluation, and shifted inputs.",
-    "Ship Hypothesis testing with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use an exact binomial tail for this small discrete example rather than an unchecked normal approximation.",
+    "Store the planned direction, cutoff and stopping rule with the analysis results."
   ],
   "takeaways": [
-    "Hypothesis testing matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Calibrate a decision rule under the null, then inspect its power where scientifically relevant alternatives lie.",
+    "Explain Type I error, Type II error and the effect of discreteness."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A hypothesis test specifies a statistic and a rejection rule whose false-rejection probability is controlled under a null model. Type I error concerns true nulls; power is the rejection probability at a specified alternative. Failing to reject does not establish that the null is true.","Construct a rejection region with a controlled null error rate.","Explain Type I error, Type II error and the effect of discreteness.","A boundary trades false alarms against missed signals.","Reject H₀ if K≥c; αactual=P₀.₅(K≥c); power(p)=Pₚ(K≥c)","Ten independent Bernoulli trials, upper-tail null p=0.5 and comparison alternative p=0.8. Grouped bars show the two full sampling distributions. Cutoff c=0 rejects everything; c=11 rejects nothing. The vertical line marks the count threshold.","Calibrate a decision rule under the null, then inspect its power where scientifically relevant alternatives lie."]} />

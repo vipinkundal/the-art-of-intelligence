@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Matrix multiplication and tensor contraction: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "These combine dimensions to transform data, compose layers, and aggregate features.",
+  "hook": "Match the shared index, multiply, sum it away.",
+  "overview": "Matrix multiplication sums products over a shared inner axis. Tensor contraction extends this idea to specified axes of higher-order arrays while preserving the remaining axes.",
   "concepts": [
     {
-      "title": "Matrix multiplication and tensor contraction definition",
-      "explanation": "Matrix multiplication and tensor contraction lens: The definition and notation for Matrix multiplication and tensor contraction."
+      "title": "Composition",
+      "explanation": "With column vectors, ABx applies B first and A second. The columns of AB are A applied to the columns of B."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Matrix multiplication and tensor contraction lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Matrix multiplication and tensor contraction lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Matrix multiplication and tensor contraction lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Batch axes are not contraction axes",
+      "explanation": "Batched multiplication keeps batch indices and contracts feature indices. Broadcasting compatible batches does not justify summing across different examples."
     }
   ],
   "process": [
-    "Matrix multiplication and tensor contraction step 1: Matrix multiplication and tensor contraction belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Label the input and output axes before writing a product.",
+    "Match the inner dimensions and calculate one output entry as a row-column dot product.",
+    "Check output shape and operation order against the intended composition."
   ],
   "formulas": [
     {
-      "label": "Matrix multiplication and tensor contraction field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "Cᵢⱼ=Σₖ AᵢₖBₖⱼ; (m×k)(k×n)→m×n",
+      "meaning": "Real 2×2 examples A=[[1,2],[0,1]] and B=[[t,0],[1,2]]. The live tables show ordinary matrix products, not elementwise multiplication."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, matrix multiplication and tensor contraction can be used to interpret these combine dimensions to transform data, compose layers, and aggregate features.",
-    "steps": [],
-    "result": "In a model implementation, matrix multiplication and tensor contraction can be used to interpret these combine dimensions to transform data, compose layers, and aggregate features."
+    "title": "Order changes the answer",
+    "setup": "Set t=1, so B=[[1,0],[1,2]].",
+    "steps": [
+      "AB=[[1×1+2×1,1×0+2×2],[0×1+1×1,0×0+1×2]]=[[3,4],[1,2]].",
+      "BA=[[1,2],[1,4]]."
+    ],
+    "result": "AB and BA are both defined here, but they are different matrices."
   },
   "pitfalls": [
-    "Matrix multiplication and tensor contraction failure 1: do not treat Matrix multiplication and tensor contraction as a label without being able to compute or sketch a small example.",
-    "Matrix multiplication and tensor contraction failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Matrix multiplication and tensor contraction failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Elementwise multiplication does not compose linear maps.",
+    "A one-dimensional array may be treated differently from an explicit row or column matrix; inspect shapes at API boundaries."
   ],
   "implementation": [
-    "Represent the central state for Matrix multiplication and tensor contraction explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Matrix multiplication and tensor contraction, compare the quantity named in “These combine dimensions to transform data, compose layers, and aggregate features.” across training, evaluation, and shifted inputs.",
-    "Ship Matrix multiplication and tensor contraction with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use matrix-product operators and explicit axis notation for contractions.",
+    "Check one small entry by hand before optimizing a large batched contraction."
   ],
   "takeaways": [
-    "Matrix multiplication and tensor contraction matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "The contracted index disappears from the output. Changing multiplication order generally changes both the transformation and the result.",
+    "Distinguish contraction, broadcasting, and elementwise multiplication."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Matrix multiplication sums products over a shared inner axis. Tensor contraction extends this idea to specified axes of higher-order arrays while preserving the remaining axes.","Derive output shape and one matrix-product entry.","Distinguish contraction, broadcasting, and elementwise multiplication.","Match the shared index, multiply, sum it away.","Cᵢⱼ=Σₖ AᵢₖBₖⱼ; (m×k)(k×n)→m×n","Real 2×2 examples A=[[1,2],[0,1]] and B=[[t,0],[1,2]]. The live tables show ordinary matrix products, not elementwise multiplication.","The contracted index disappears from the output. Changing multiplication order generally changes both the transformation and the result."]} />

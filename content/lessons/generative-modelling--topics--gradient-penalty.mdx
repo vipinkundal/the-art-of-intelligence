@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Gradient penalty: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Gradient penalty regularizes discriminator or critic gradients to support stable Wasserstein training.",
   "concepts": [
     {
-      "title": "Gradient penalty definition",
-      "explanation": "Gradient penalty lens: critic regularization"
+      "title": "Concept",
+      "explanation": "critic regularization"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Gradient penalty lens: gradient norm penalty"
+      "title": "Concept",
+      "explanation": "gradient norm penalty"
     },
     {
-      "title": "AI connection",
-      "explanation": "Gradient penalty lens: interpolated samples"
+      "title": "Concept",
+      "explanation": "interpolated samples"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Gradient penalty lens: WGAN-GP"
+      "title": "Concept",
+      "explanation": "WGAN-GP"
     }
   ],
   "process": [
-    "Gradient penalty step 1: The loss penalizes gradient norms away from the desired value, usually on interpolations between real and generated samples. This is a practical way to enforce a Lipschitz-like constraint."
+    "The loss penalizes gradient norms away from the desired value, usually on interpolations between real and generated samples. This is a practical way to enforce a Lipschitz-like constraint."
   ],
-  "formulas": [
-    {
-      "label": "Gradient penalty field relation",
-      "expression": "θₜ₊₁ = θₜ − η∇L(θₜ)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "WGAN-GP samples points between real and fake images and penalizes critic gradients whose norm differs from one.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "WGAN-GP samples points between real and fake images and penalizes critic gradients whose norm differs from one."
   },
   "pitfalls": [
-    "Gradient penalty failure 1: The penalty strength needs tuning.",
-    "Gradient penalty failure 2: It improves stability but does not guarantee good coverage."
+    "The penalty strength needs tuning.",
+    "It improves stability but does not guarantee good coverage."
   ],
-  "implementation": [
-    "Represent the central state for Gradient penalty explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Gradient penalty, compare the quantity named in “Gradient penalty regularizes discriminator or critic gradients to support stable Wasserstein training.” across training, evaluation, and shifted inputs.",
-    "Ship Gradient penalty with a counterexample test derived from “The penalty strength needs tuning.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Gradient penalty matters because it sharpens intuition about sample quality, adversarial objectives, and generator failure modes. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Gradient penalty regularizes discriminator or critic gradients to support stable Wasserstein training.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Gradient penalty illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

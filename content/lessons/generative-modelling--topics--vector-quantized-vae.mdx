@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Vector-quantized VAE: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Vector-quantized VAEs use discrete latent codes selected from a learned codebook.",
   "concepts": [
     {
-      "title": "Vector-quantized VAE definition",
-      "explanation": "Vector-quantized VAE lens: codebooks"
+      "title": "Concept",
+      "explanation": "codebooks"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Vector-quantized VAE lens: nearest-neighbor quantization"
+      "title": "Concept",
+      "explanation": "nearest-neighbor quantization"
     },
     {
-      "title": "AI connection",
-      "explanation": "Vector-quantized VAE lens: commitment loss"
+      "title": "Concept",
+      "explanation": "commitment loss"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Vector-quantized VAE lens: discrete latent modelling"
+      "title": "Concept",
+      "explanation": "discrete latent modelling"
     }
   ],
   "process": [
-    "Vector-quantized VAE step 1: The encoder output is replaced by the nearest codebook vector. The decoder reconstructs from these discrete codes, while commitment and codebook losses keep the dictionary useful."
+    "The encoder output is replaced by the nearest codebook vector. The decoder reconstructs from these discrete codes, while commitment and codebook losses keep the dictionary useful."
   ],
-  "formulas": [
-    {
-      "label": "Vector-quantized VAE field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A VQ-VAE can compress images into discrete tokens that a transformer later models autoregressively.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A VQ-VAE can compress images into discrete tokens that a transformer later models autoregressively."
   },
   "pitfalls": [
-    "Vector-quantized VAE failure 1: Codes can collapse or go unused.",
-    "Vector-quantized VAE failure 2: Quantization introduces optimization challenges."
+    "Codes can collapse or go unused.",
+    "Quantization introduces optimization challenges."
   ],
-  "implementation": [
-    "Represent the central state for Vector-quantized VAE explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Vector-quantized VAE, compare the quantity named in “Vector-quantized VAEs use discrete latent codes selected from a learned codebook.” across training, evaluation, and shifted inputs.",
-    "Ship Vector-quantized VAE with a counterexample test derived from “Codes can collapse or go unused.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Vector-quantized VAE matters because it connects representation learning, compression, latent-space editing, and sample generation. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Vector-quantized VAEs use discrete latent codes selected from a learned codebook.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Vector-quantized VAE illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

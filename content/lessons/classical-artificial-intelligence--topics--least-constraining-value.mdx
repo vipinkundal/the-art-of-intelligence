@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Least-constraining value: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "The least-constraining value orders choices by how many options they leave for neighboring variables.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Least-constraining value step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Least-constraining value step 2: Apply the central rule: Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
-    "Least-constraining value step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Least-constraining value step 4: Stop and interpret the result using this criterion: It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Try blue first because it preserves more flexibility."
   },
   "pitfalls": [
-    "Least-constraining value failure 1: Computing exact future impact can cost more than the savings on small problems.",
-    "Least-constraining value failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Least-constraining value failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Computing exact future impact can cost more than the savings on small problems.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Least-constraining value explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Least-constraining value, compare the quantity named in “The least-constraining value orders choices by how many options they leave for neighboring variables.” across training, evaluation, and shifted inputs.",
-    "Ship Least-constraining value with a counterexample test derived from “Computing exact future impact can cost more than the savings on small problems.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "The least-constraining value orders choices by how many options they leave for neighboring variables.",
     "Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The least-constraining value orders choices by how many options they leave for neighboring variables.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Least-constraining value illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Perceptrons: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A perceptron is a linear binary classifier that thresholds a weighted sum of input features.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Perceptrons step 1: Represent an example as a feature vector x.",
-    "Perceptrons step 2: Compute the score z = w dot x + b.",
-    "Perceptrons step 3: Predict from the sign of z.",
-    "Perceptrons step 4: If the prediction is wrong, update w and b using the labelled example."
+    "Represent an example as a feature vector x.",
+    "Compute the score z = w dot x + b.",
+    "Predict from the sign of z.",
+    "If the prediction is wrong, update w and b using the labelled example."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The point is classified positive because its first coordinate exceeds its second."
   },
   "pitfalls": [
-    "Perceptrons failure 1: A single perceptron cannot solve non-linearly separable problems such as XOR.",
-    "Perceptrons failure 2: The step function is not suitable for ordinary gradient-based training.",
-    "Perceptrons failure 3: Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
+    "A single perceptron cannot solve non-linearly separable problems such as XOR.",
+    "The step function is not suitable for ordinary gradient-based training.",
+    "Always track tensor shapes and distinguish training-time behavior from inference-time behavior."
   ],
-  "implementation": [
-    "Represent the central state for Perceptrons explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Perceptrons, compare the quantity named in “The model computes a score, applies a step decision, and updates weights only when an example is misclassified.” across training, evaluation, and shifted inputs.",
-    "Ship Perceptrons with a counterexample test derived from “A single perceptron cannot solve non-linearly separable problems such as XOR.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A perceptron is a linear binary classifier that thresholds a weighted sum of input features.",
     "The model computes a score, applies a step decision, and updates weights only when an example is misclassified.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A perceptron is a linear binary classifier that thresholds a weighted sum of input features.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Perceptrons illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

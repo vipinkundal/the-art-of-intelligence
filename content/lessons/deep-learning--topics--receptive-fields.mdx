@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Receptive fields: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A unit's receptive field is the region of the original input that can influence that unit.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Receptive fields step 1: Start at an output unit with receptive field one and jump one.",
-    "Receptive fields step 2: For each earlier layer, add (K-1) times the current jump to the field size.",
-    "Receptive fields step 3: Multiply the jump by the layer stride.",
-    "Receptive fields step 4: Include dilation through the effective kernel size."
+    "Start at an output unit with receptive field one and jump one.",
+    "For each earlier layer, add (K-1) times the current jump to the field size.",
+    "Multiply the jump by the layer stride.",
+    "Include dilation through the effective kernel size."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "A second-layer unit has a 5-by-5 theoretical receptive field."
   },
   "pitfalls": [
-    "Receptive fields failure 1: Theoretical connectivity does not mean every input position has equal influence.",
-    "Receptive fields failure 2: Ignoring stride and dilation gives incorrect receptive-field calculations.",
-    "Receptive fields failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Theoretical connectivity does not mean every input position has equal influence.",
+    "Ignoring stride and dilation gives incorrect receptive-field calculations.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Receptive fields explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Receptive fields, compare the quantity named in “Track each layer's receptive-field span and jump between adjacent units back through the stack.” across training, evaluation, and shifted inputs.",
-    "Ship Receptive fields with a counterexample test derived from “Theoretical connectivity does not mean every input position has equal influence.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A unit's receptive field is the region of the original input that can influence that unit.",
     "Track each layer's receptive-field span and jump between adjacent units back through the stack.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A unit's receptive field is the region of the original input that can influence that unit.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Receptive fields illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

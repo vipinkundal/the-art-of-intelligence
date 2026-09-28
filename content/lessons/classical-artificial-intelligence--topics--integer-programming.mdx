@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Integer programming: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Integer programming optimizes a linear objective with decision variables restricted to integers.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Integer programming step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Integer programming step 2: Apply the central rule: Use linear constraints and branch-and-bound or cutting planes to exclude fractional relaxations.",
-    "Integer programming step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Integer programming step 4: Stop and interpret the result using this criterion: It models discrete choices exactly and can prove optimality, but worst-case complexity is high."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Use linear constraints and branch-and-bound or cutting planes to exclude fractional relaxations.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It models discrete choices exactly and can prove optimality, but worst-case complexity is high."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The solver returns a feasible fleet count and an optimality gap or proof."
   },
   "pitfalls": [
-    "Integer programming failure 1: Scale coefficients carefully; poor numerical conditioning weakens solver reliability.",
-    "Integer programming failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Integer programming failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Scale coefficients carefully; poor numerical conditioning weakens solver reliability.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Integer programming explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Integer programming, compare the quantity named in “Integer programming optimizes a linear objective with decision variables restricted to integers.” across training, evaluation, and shifted inputs.",
-    "Ship Integer programming with a counterexample test derived from “Scale coefficients carefully; poor numerical conditioning weakens solver reliability.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Integer programming optimizes a linear objective with decision variables restricted to integers.",
     "Use linear constraints and branch-and-bound or cutting planes to exclude fractional relaxations.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Integer programming optimizes a linear objective with decision variables restricted to integers.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Integer programming illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

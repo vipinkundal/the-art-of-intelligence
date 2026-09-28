@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Discrete convolution: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Discrete convolution combines a signal with a shifted, flipped kernel to produce a local weighted response.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Discrete convolution step 1: Choose the kernel and boundary convention.",
-    "Discrete convolution step 2: Flip the kernel along its spatial axes for true convolution.",
-    "Discrete convolution step 3: Align it with one input neighborhood and take an elementwise weighted sum.",
-    "Discrete convolution step 4: Repeat at all valid output positions and for every output channel."
+    "Choose the kernel and boundary convention.",
+    "Flip the kernel along its spatial axes for true convolution.",
+    "Align it with one input neighborhood and take an elementwise weighted sum.",
+    "Repeat at all valid output positions and for every output channel."
   ],
   "formulas": [
     {
@@ -46,15 +46,11 @@ export const narrative = {
     "result": "The operation highlights transitions rather than absolute signal level."
   },
   "pitfalls": [
-    "Discrete convolution failure 1: Deep-learning libraries usually implement cross-correlation while naming it convolution.",
-    "Discrete convolution failure 2: Kernel orientation, padding, stride, and channel layout must be stated to reproduce a result.",
-    "Discrete convolution failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Deep-learning libraries usually implement cross-correlation while naming it convolution.",
+    "Kernel orientation, padding, stride, and channel layout must be stated to reproduce a result.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Discrete convolution explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Discrete convolution, compare the quantity named in “At each output position, multiply overlapping input and kernel values and sum them; mathematical convolution flips the k” across training, evaluation, and shifted inputs.",
-    "Ship Discrete convolution with a counterexample test derived from “Deep-learning libraries usually implement cross-correlation while naming it convolution.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Discrete convolution combines a signal with a shifted, flipped kernel to produce a local weighted response.",
     "At each output position, multiply overlapping input and kernel values and sum them; mathematical convolution flips the kernel before sliding.",
@@ -63,4 +59,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Discrete convolution combines a signal with a shifted, flipped kernel to produce a local weighted response.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Discrete convolution illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

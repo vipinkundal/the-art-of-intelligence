@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Kalman filter: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Kalman filter step 1: Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Kalman filter step 2: Apply the central computation: Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
-    "Kalman filter step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Kalman filter step 4: Interpret the result under this limitation: It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods."
+    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
+    "Apply the central computation: Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Each update balances the predicted trajectory against measurement uncertainty to produce a posterior state and covariance."
   },
   "pitfalls": [
-    "Kalman filter failure 1: A covariance update bug can make the filter appear confident while diverging from reality.",
-    "Kalman filter failure 2: Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "Kalman filter failure 3: State estimates become overconfident when process or observation noise is underestimated."
+    "A covariance update bug can make the filter appear confident while diverging from reality.",
+    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
+    "State estimates become overconfident when process or observation noise is underestimated."
   ],
-  "implementation": [
-    "Represent the central state for Kalman filter explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Kalman filter, compare the quantity named in “The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.” across training, evaluation, and shifted inputs.",
-    "Ship Kalman filter with a counterexample test derived from “A covariance update bug can make the filter appear confident while diverging from reality.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
     "Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Kalman filter illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

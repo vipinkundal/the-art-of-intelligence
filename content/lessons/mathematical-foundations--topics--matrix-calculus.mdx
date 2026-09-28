@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Matrix calculus: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Extends derivatives to vectors and matrices so model parameters can be optimized.",
+  "hook": "Every weight gets a sensitivity; collect them in a matrix of the same shape.",
+  "overview": "Matrix calculus organizes derivatives with respect to array-valued parameters. For a scalar loss, the gradient has the parameter's shape and converts a small parameter perturbation into a first-order change in loss.",
   "concepts": [
     {
-      "title": "Matrix calculus definition",
-      "explanation": "Matrix calculus lens: The definition and notation for Matrix calculus."
+      "title": "Differentials first",
+      "explanation": "Write r=Wx−y and dL=rᵀ(dW)x. Reordering this scalar as a trace identifies the gradient r xᵀ without differentiating each index separately."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Matrix calculus lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Matrix calculus lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Matrix calculus lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Batches and reduction",
+      "explanation": "For columns of examples X and targets Y, a summed squared-error objective has gradient (WX−Y)Xᵀ. Averaging adds the corresponding normalization factor."
     }
   ],
   "process": [
-    "Matrix calculus step 1: Matrix calculus belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Record parameter, input, output, and gradient dimensions.",
+    "Differentiate the scalar loss using a differential or chain rule.",
+    "Compare a directional derivative to a small finite-difference perturbation."
   ],
   "formulas": [
     {
-      "label": "Matrix calculus field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "L=½‖Wx−y‖₂²; ∇WL=(Wx−y)xᵀ; dL=tr((∇WL)ᵀdW)",
+      "meaning": "W=[[t,1],[0,1]], x=(1,2), y=(1,1). Only W₀₀ varies in the plot, but the table shows the full gradient at that W. All variables are real."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, matrix calculus can be used to interpret extends derivatives to vectors and matrices so model parameters can be optimized.",
-    "steps": [],
-    "result": "In a model implementation, matrix calculus can be used to interpret extends derivatives to vectors and matrices so model parameters can be optimized."
+    "title": "One weight slice",
+    "setup": "Set t=1: W=[[1,1],[0,1]].",
+    "steps": [
+      "Wx=(3,2), so residual=(2,1) and loss=(4+1)/2=2.5.",
+      "The outer product (2,1)(1,2) gives gradient [[2,4],[1,2]]."
+    ],
+    "result": "The slope when moving W₀₀ alone is 2; updating all weights follows all four entries."
   },
   "pitfalls": [
-    "Matrix calculus failure 1: do not treat Matrix calculus as a label without being able to compute or sketch a small example.",
-    "Matrix calculus failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Matrix calculus failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A mean loss and a sum loss produce gradients with different scale.",
+    "Broadcasting can yield a plausible array with the wrong intended derivative."
   ],
   "implementation": [
-    "Represent the central state for Matrix calculus explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Matrix calculus, compare the quantity named in “Extends derivatives to vectors and matrices so model parameters can be optimized.” across training, evaluation, and shifted inputs.",
-    "Ship Matrix calculus with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Check automatic derivatives against a directional finite difference on a small smooth example.",
+    "Use double precision and several perturbation sizes for derivative checks; very small differences suffer cancellation."
   ],
   "takeaways": [
-    "Matrix calculus matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "The plotted slope is one gradient entry, not the entire gradient. Shapes expose many transpose and broadcasting mistakes.",
+    "Separate a one-parameter slice from the full gradient."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Matrix calculus organizes derivatives with respect to array-valued parameters. For a scalar loss, the gradient has the parameter's shape and converts a small parameter perturbation into a first-order change in loss.","Derive the squared-error matrix gradient.","Separate a one-parameter slice from the full gradient.","Every weight gets a sensitivity; collect them in a matrix of the same shape.","L=½‖Wx−y‖₂²; ∇WL=(Wx−y)xᵀ; dL=tr((∇WL)ᵀdW)","W=[[t,1],[0,1]], x=(1,2), y=(1,1). Only W₀₀ varies in the plot, but the table shows the full gradient at that W. All variables are real.","The plotted slope is one gradient entry, not the entire gradient. Shapes expose many transpose and broadcasting mistakes."]} />

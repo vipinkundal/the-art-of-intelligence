@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Jacobians and Hessians: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Jacobians describe first-order vector sensitivity; Hessians describe curvature and second-order change.",
+  "hook": "The Jacobian predicts output movement; the Hessian predicts how the slope changes.",
+  "overview": "A Jacobian describes the first-order response of a vector-valued function. A Hessian describes second-order curvature of a scalar-valued function. Their dimensions and derivative order come from different questions.",
   "concepts": [
     {
-      "title": "Jacobians and Hessians definition",
-      "explanation": "Jacobians and Hessians lens: The definition and notation for Jacobians and Hessians."
+      "title": "Shape of sensitivity",
+      "explanation": "For f:Rⁿ→Rᵐ, J has m rows and n columns: Jᵢⱼ=∂fᵢ/∂xⱼ. Multiplying J by a direction produces a directional output derivative."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Jacobians and Hessians lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Jacobians and Hessians lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Jacobians and Hessians lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Symmetry needs regularity",
+      "explanation": "A scalar function with continuous second partial derivatives has a symmetric Hessian. Positive definite curvature at a stationary point certifies a strict local minimum."
     }
   ],
   "process": [
-    "Jacobians and Hessians step 1: Jacobians and Hessians belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Identify whether the function is scalar- or vector-valued.",
+    "Differentiate by input coordinate with an explicit row/column convention.",
+    "Evaluate at the requested point and test the local prediction with a small perturbation."
   ],
   "formulas": [
     {
-      "label": "Jacobians and Hessians field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "f(x+δ)≈f(x)+Jf(x)δ; g(x+δ)≈g(x)+∇gᵀδ+½δᵀHgδ",
+      "meaning": "J belongs to f(x,y)=(x²+y,xy) at (t,1). H belongs to the different scalar function g(x,y)=x²+xy+2y². Both are smooth real functions."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, jacobians and hessians can be used to interpret jacobians describe first-order vector sensitivity; Hessians describe curvature and second-order change.",
-    "steps": [],
-    "result": "In a model implementation, jacobians and hessians can be used to interpret jacobians describe first-order vector sensitivity; Hessians describe curvature and second-order change."
+    "title": "Predict a small move",
+    "setup": "For f at (1,1), J=[[2,1],[1,1]]. Move by δ=(0.01,0).",
+    "steps": [
+      "Jδ=(0.02,0.01).",
+      "The actual change is (0.0201,0.01), leaving a first-coordinate error of 0.0001."
+    ],
+    "result": "The Jacobian captures first-order movement; the remaining error here is quadratic in the step."
   },
   "pitfalls": [
-    "Jacobians and Hessians failure 1: do not treat Jacobians and Hessians as a label without being able to compute or sketch a small example.",
-    "Jacobians and Hessians failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Jacobians and Hessians failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A PSD Hessian at a stationary point is not sufficient by itself to prove a local minimum.",
+    "At nondifferentiable points, a classical Jacobian or Hessian may not exist."
   ],
   "implementation": [
-    "Represent the central state for Jacobians and Hessians explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Jacobians and Hessians, compare the quantity named in “Jacobians describe first-order vector sensitivity; Hessians describe curvature and second-order change.” across training, evaluation, and shifted inputs.",
-    "Ship Jacobians and Hessians with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Use Jacobian-vector or vector-Jacobian products when a full matrix is too large.",
+    "Use Hessian-vector products for curvature methods rather than allocating a parameter-count-squared matrix."
   ],
   "takeaways": [
-    "Jacobians and Hessians matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A vector-valued function has one Hessian per scalar output, not generally one Hessian matrix for the whole vector.",
+    "Validate a first-order prediction against a nonlinear example."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A Jacobian describes the first-order response of a vector-valued function. A Hessian describes second-order curvature of a scalar-valued function. Their dimensions and derivative order come from different questions.","Choose the derivative object and its correct dimensions.","Validate a first-order prediction against a nonlinear example.","The Jacobian predicts output movement; the Hessian predicts how the slope changes.","f(x+δ)≈f(x)+Jf(x)δ; g(x+δ)≈g(x)+∇gᵀδ+½δᵀHgδ","J belongs to f(x,y)=(x²+y,xy) at (t,1). H belongs to the different scalar function g(x,y)=x²+xy+2y². Both are smooth real functions.","A vector-valued function has one Hessian per scalar output, not generally one Hessian matrix for the whole vector."]} />

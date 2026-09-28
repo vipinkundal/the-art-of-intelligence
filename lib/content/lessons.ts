@@ -2,7 +2,8 @@ import rawLessons from "@/content/generated/lessons.json";
 import rawGlossary from "@/content/generated/glossary.json";
 import { lessonCollectionSchema, type LessonDocument } from "./schema";
 
-export const lessons: LessonDocument[] = lessonCollectionSchema.parse(rawLessons);
+export const routeDocuments: LessonDocument[] = lessonCollectionSchema.parse(rawLessons);
+export const lessons = routeDocuments.filter((lesson) => lesson.canonicalSlug === lesson.slug);
 export const lessonBySlug = new Map(lessons.map((lesson) => [lesson.slug, lesson]));
 export const lessonById = new Map(lessons.map((lesson) => [lesson.id, lesson]));
 

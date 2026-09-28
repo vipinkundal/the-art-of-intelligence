@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Variable elimination: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Variable elimination step 1: Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Variable elimination step 2: Apply the central computation: Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
-    "Variable elimination step 3: Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Variable elimination step 4: Interpret the result under this limitation: It is exact, but a poor elimination order can create very large intermediate factors."
+    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
+    "Apply the central computation: Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
+    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
+    "Interpret the result under this limitation: It is exact, but a poor elimination order can create very large intermediate factors."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Eliminating unrelated hidden variables produces a small final factor over Burglary that is normalized into the posterior."
   },
   "pitfalls": [
-    "Variable elimination failure 1: Do not sum out the query variables or observed evidence.",
-    "Variable elimination failure 2: Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Variable elimination failure 3: Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Do not sum out the query variables or observed evidence.",
+    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
+    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
   ],
-  "implementation": [
-    "Represent the central state for Variable elimination explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Variable elimination, compare the quantity named in “Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently m” across training, evaluation, and shifted inputs.",
-    "Ship Variable elimination with a counterexample test derived from “Do not sum out the query variables or observed evidence.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
     "Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Variable elimination illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

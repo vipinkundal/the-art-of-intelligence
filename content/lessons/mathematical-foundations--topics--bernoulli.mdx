@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Bernoulli: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Models one yes-or-no trial, such as click or no click.",
+  "hook": "One trial, two bars, total probability one.",
+  "overview": "A Bernoulli variable records one binary outcome: 1 with probability p and 0 with probability 1 − p.",
   "concepts": [
     {
-      "title": "Bernoulli definition",
-      "explanation": "Bernoulli lens: The definition and notation for Bernoulli."
+      "title": "Outcome versus probability",
+      "explanation": "A realized outcome is 0 or 1. A probability such as 0.3 describes uncertainty before the trial; it is not a fractional outcome."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Bernoulli lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Bernoulli lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Bernoulli lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Indicator variables",
+      "explanation": "An indicator turns an event into a number. Its expected value equals the probability of the event, which connects event counts to averages."
     }
   ],
   "process": [
-    "Bernoulli step 1: Bernoulli belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Specify the event that counts as success.",
+    "Assign p to outcome 1 and 1 − p to outcome 0.",
+    "Check both masses are nonnegative and their sum is one."
   ],
   "formulas": [
     {
-      "label": "Bernoulli field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "P(X=1)=p; P(X=0)=1−p; E[X]=p; Var(X)=p(1−p)",
+      "meaning": "One binary trial, with outcomes coded as 0 and 1 and 0 ≤ p ≤ 1. Heights are probability masses, not densities."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, bernoulli can be used to interpret models one yes-or-no trial, such as click or no click.",
-    "steps": [],
-    "result": "In a probabilistic model, bernoulli can be used to interpret models one yes-or-no trial, such as click or no click."
+    "title": "A binary request outcome",
+    "setup": "A request fails with probability 0.3. Set X=1 for failure.",
+    "steps": [
+      "The two masses are P(X=0)=0.7 and P(X=1)=0.3.",
+      "E[X]=0.3 and Var(X)=0.3 × 0.7=0.21."
+    ],
+    "result": "The expected indicator is 0.3 even though no individual request has outcome 0.3."
   },
   "pitfalls": [
-    "Bernoulli failure 1: do not treat Bernoulli as a label without being able to compute or sketch a small example.",
-    "Bernoulli failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Bernoulli failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Repeated requests need not be independent. A Bernoulli model for each request alone does not justify a binomial model for their sum.",
+    "The meaning of 1 is a modelling choice: success need not mean a desirable outcome."
   ],
   "implementation": [
-    "Represent the central state for Bernoulli explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Bernoulli, compare the quantity named in “Models one yes-or-no trial, such as click or no click.” across training, evaluation, and shifted inputs.",
-    "Ship Bernoulli with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Represent observed outcomes as binary values and model probabilities separately.",
+    "Handle p=0 and p=1 explicitly when evaluating log probabilities; impossible outcomes have log probability −∞."
   ],
   "takeaways": [
-    "Bernoulli matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Increasing p moves mass from 0 to 1; uncertainty is largest halfway between the two certain outcomes.",
+    "Separate one binary trial from assumptions about repeated trials."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A Bernoulli variable records one binary outcome: 1 with probability p and 0 with probability 1 − p.","Calculate both masses, the mean, and the variance of a binary indicator.","Separate one binary trial from assumptions about repeated trials.","One trial, two bars, total probability one.","P(X=1)=p; P(X=0)=1−p; E[X]=p; Var(X)=p(1−p)","One binary trial, with outcomes coded as 0 and 1 and 0 ≤ p ≤ 1. Heights are probability masses, not densities.","Increasing p moves mass from 0 to 1; uncertainty is largest halfway between the two certain outcomes."]} />

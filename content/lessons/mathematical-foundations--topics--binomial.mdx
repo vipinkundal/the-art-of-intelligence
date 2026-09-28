@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Binomial: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Counts successes across a fixed number of Bernoulli trials.",
+  "hook": "A Bernoulli variable is one switch; a binomial variable counts how many switches turn on.",
+  "overview": "The binomial distribution counts successes in a fixed number of independent Bernoulli trials with a shared success probability.",
   "concepts": [
     {
-      "title": "Binomial definition",
-      "explanation": "Binomial lens: The definition and notation for Binomial."
+      "title": "The combinatorial factor",
+      "explanation": "C(n,k) counts which k positions are successes. Each particular arrangement has probability pᵏ(1−p)ⁿ⁻ᵏ."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Binomial lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Binomial lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Binomial lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Fixed versus varying probabilities",
+      "explanation": "The binomial model needs one common p. Independent trials with different probabilities instead give a Poisson-binomial count."
     }
   ],
   "process": [
-    "Binomial step 1: Binomial belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Fix n and define success before collecting the trials.",
+    "For each k from 0 through n, multiply the arrangement count by the probability of one arrangement.",
+    "Sum the masses to check normalization; compare the mean with np."
   ],
   "formulas": [
     {
-      "label": "Binomial field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "P(K=k)=C(n,k)pᵏ(1−p)ⁿ⁻ᵏ; E[K]=np; Var(K)=np(1−p)",
+      "meaning": "The lab fixes n=10 independent trials with the same p. The horizontal axis counts successes; bar heights are exact probabilities."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, binomial can be used to interpret counts successes across a fixed number of Bernoulli trials.",
-    "steps": [],
-    "result": "In a probabilistic model, binomial can be used to interpret counts successes across a fixed number of Bernoulli trials."
+    "title": "Exactly three successes",
+    "setup": "Use n=10 and p=0.3.",
+    "steps": [
+      "There are C(10,3)=120 arrangements with three successes.",
+      "P(K=3)=120 × 0.3³ × 0.7⁷ ≈ 0.2668.",
+      "The mean is 3 and the variance is 2.1."
+    ],
+    "result": "The expected count is three, but the probability of exactly three is only about 26.68%."
   },
   "pitfalls": [
-    "Binomial failure 1: do not treat Binomial as a label without being able to compute or sketch a small example.",
-    "Binomial failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Binomial failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Shared outages make request failures dependent and can substantially change tail probabilities.",
+    "Sampling without replacement from a small finite population generally calls for a hypergeometric model."
   ],
   "implementation": [
-    "Represent the central state for Binomial explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Binomial, compare the quantity named in “Counts successes across a fixed number of Bernoulli trials.” across training, evaluation, and shifted inputs.",
-    "Ship Binomial with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "For large n, evaluate log combinations with log-gamma functions or use a library probability-mass function.",
+    "For upper tails, prefer a survival-function routine to subtracting a nearly-one cumulative probability."
   ],
   "takeaways": [
-    "Binomial matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Changing p shifts the count distribution; with n=10, its mean is 10p and its variance is 10p(1−p).",
+    "Check independence, a fixed trial count, and a shared p before applying a binomial model."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The binomial distribution counts successes in a fixed number of independent Bernoulli trials with a shared success probability.","Calculate a count probability with the combinatorial factor.","Check independence, a fixed trial count, and a shared p before applying a binomial model.","A Bernoulli variable is one switch; a binomial variable counts how many switches turn on.","P(K=k)=C(n,k)pᵏ(1−p)ⁿ⁻ᵏ; E[K]=np; Var(K)=np(1−p)","The lab fixes n=10 independent trials with the same p. The horizontal axis counts successes; bar heights are exact probabilities.","Changing p shifts the count distribution; with n=10, its mean is 10p and its variance is 10p(1−p)."]} />

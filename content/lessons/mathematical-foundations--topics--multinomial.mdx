@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Multinomial: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Counts how many times each class appears across repeated categorical trials.",
+  "hook": "A count gained by one category leaves fewer trials for the others.",
+  "overview": "The multinomial distribution models category counts from n independent categorical trials with a shared probability vector. The counts sum to n and are dependent even though the trials are independent.",
   "concepts": [
     {
-      "title": "Multinomial definition",
-      "explanation": "Multinomial lens: The definition and notation for Multinomial."
+      "title": "The combinatorial factor",
+      "explanation": "The factorial coefficient counts distinct trial sequences that yield the same counts. The count vector discards ordering, so all those sequences contribute probability."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Multinomial lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Multinomial lens: how this supports probabilistic predictions, generative models, uncertainty estimates, sampling, or Bayesian reasoning"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Multinomial lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "A constrained covariance",
+      "explanation": "Var(Nᵢ)=npᵢ(1−pᵢ). Negative off-diagonal covariance reflects the fixed total, and the covariance matrix is singular because its row sums are zero."
     }
   ],
   "process": [
-    "Multinomial step 1: Multinomial belongs to uncertainty, sampling, distributions, and evidence. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Fix the trial count and shared category probabilities.",
+    "Check the proposed nonnegative integer counts sum to n.",
+    "Include the sequence-count factor when calculating the joint probability."
   ],
   "formulas": [
     {
-      "label": "Multinomial field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the graph lab."
+      "label": "Definition and assumptions",
+      "expression": "P(N=k)=n!∏ᵢ(pᵢᵏⁱ/kᵢ!); Σᵢkᵢ=n; Cov(Nᵢ,Nⱼ)=−npᵢpⱼ for i≠j",
+      "meaning": "The probability vector is (0.2,0.3,0.5). The graph is the marginal distribution of NA only; the covariance table covers all three counts. It is not a plot of the joint PMF."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a probabilistic model, multinomial can be used to interpret counts how many times each class appears across repeated categorical trials.",
-    "steps": [],
-    "result": "In a probabilistic model, multinomial can be used to interpret counts how many times each class appears across repeated categorical trials."
+    "title": "One of each label",
+    "setup": "For n=3 and counts (1,1,1):",
+    "steps": [
+      "There are 3!=6 possible orderings.",
+      "Each has probability 0.2×0.3×0.5=0.03."
+    ],
+    "result": "The count vector has probability 6×0.03=0.18."
   },
   "pitfalls": [
-    "Multinomial failure 1: do not treat Multinomial as a label without being able to compute or sketch a small example.",
-    "Multinomial failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Multinomial failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Independent trials do not imply independent counts.",
+    "Changing probabilities across trials breaks the ordinary multinomial model."
   ],
   "implementation": [
-    "Represent the central state for Multinomial explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Multinomial, compare the quantity named in “Counts how many times each class appears across repeated categorical trials.” across training, evaluation, and shifted inputs.",
-    "Ship Multinomial with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Evaluate large factorial products with log-gamma functions.",
+    "Check both the fixed-total constraint and covariance row sums in simulations."
   ],
   "takeaways": [
-    "Multinomial matters for AI because lets AI systems represent uncertainty, update beliefs, and reason about likely outcomes. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Each individual count is binomial, but multiplying those binomial marginals does not give the joint count distribution.",
+    "Explain binomial marginals and dependent category counts."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["The multinomial distribution models category counts from n independent categorical trials with a shared probability vector. The counts sum to n and are dependent even though the trials are independent.","Compute a multinomial joint probability.","Explain binomial marginals and dependent category counts.","A count gained by one category leaves fewer trials for the others.","P(N=k)=n!∏ᵢ(pᵢᵏⁱ/kᵢ!); Σᵢkᵢ=n; Cov(Nᵢ,Nⱼ)=−npᵢpⱼ for i≠j","The probability vector is (0.2,0.3,0.5). The graph is the marginal distribution of NA only; the covariance table covers all three counts. It is not a plot of the joint PMF.","Each individual count is binomial, but multiplying those binomial marginals does not give the joint count distribution."]} />

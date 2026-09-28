@@ -1,55 +1,20 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Calibration: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Checks whether predicted probabilities match real-world frequencies.",
-  "concepts": [
-    {
-      "title": "Calibration definition",
-      "explanation": "Calibration lens: The definition and notation for Calibration."
-    },
-    {
-      "title": "Worked boundary",
-      "explanation": "Calibration lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Calibration lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Calibration lens: The assumptions that make the concept valid and the situations where those assumptions break."
-    }
-  ],
-  "process": [
-    "Calibration step 1: Calibration belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
-  ],
-  "formulas": [
-    {
-      "label": "Calibration field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
-    }
-  ],
+  "concepts": [],
+  "process": [],
+  "formulas": [],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, calibration can be used to interpret checks whether predicted probabilities match real-world frequencies.",
+    "title": "",
+    "setup": "",
     "steps": [],
-    "result": "When evaluating a model, calibration can be used to interpret checks whether predicted probabilities match real-world frequencies."
+    "result": ""
   },
-  "pitfalls": [
-    "Calibration failure 1: do not treat Calibration as a label without being able to compute or sketch a small example.",
-    "Calibration failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Calibration failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
-  ],
-  "implementation": [
-    "Represent the central state for Calibration explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Calibration, compare the quantity named in “Checks whether predicted probabilities match real-world frequencies.” across training, evaluation, and shifted inputs.",
-    "Ship Calibration with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
-  ],
-  "takeaways": [
-    "Calibration matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
-  ]
+  "pitfalls": [],
+  "implementation": [],
+  "takeaways": []
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Checks whether predicted probabilities match real-world frequencies.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Calibration illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

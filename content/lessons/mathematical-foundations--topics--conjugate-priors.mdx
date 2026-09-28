@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Conjugate priors: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Priors that keep posterior calculations in the same distribution family.",
+  "hook": "The data change two numbers, not the family name.",
+  "overview": "A prior family is conjugate to a likelihood when updating with that likelihood keeps the posterior in the same family. Conjugacy makes exact updates convenient; it is not a statement that the chosen prior or data model is realistic.",
   "concepts": [
     {
-      "title": "Conjugate priors definition",
-      "explanation": "Conjugate priors lens: The definition and notation for Conjugate priors."
+      "title": "Match the exponents",
+      "explanation": "The prior contributes p^(α−1)(1−p)^(β−1); the likelihood adds k and n−k to those exponents. Recognizing the beta kernel gives posterior shapes α+k and β+n−k."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Conjugate priors lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Conjugate priors lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Conjugate priors lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Sequential and pooled updates agree",
+      "explanation": "If batches share the same p and are conditionally independent, update the previous posterior with each new batch exactly once. Adding their success and failure counts gives the same posterior as pooling all observations."
     }
   ],
   "process": [
-    "Conjugate priors step 1: Conjugate priors belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Check that the sampling model matches a conjugate family.",
+    "Add sufficient statistics to the appropriate prior hyperparameters.",
+    "Normalize the posterior and inspect its predictive implications, not only the closed form."
   ],
   "formulas": [
     {
-      "label": "Conjugate priors field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "Beta(α,β) × pᵏ(1−p)ⁿ⁻ᵏ → Beta(α+k,β+n−k)",
+      "meaning": "Proper Beta(2,3) prior and ten Bernoulli observations conditionally independent given one stable p. Plotted curves are normalized prior and posterior densities; their areas, not their peak heights, equal 1."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, conjugate priors can be used to interpret priors that keep posterior calculations in the same distribution family.",
-    "steps": [],
-    "result": "When evaluating a model, conjugate priors can be used to interpret priors that keep posterior calculations in the same distribution family."
+    "title": "Prior and data disagree modestly",
+    "setup": "Start with Beta(2,3), then observe seven successes among ten.",
+    "steps": [
+      "The posterior is Beta(9,6), with mean 9/15=0.6.",
+      "The mean also equals (5/15)×0.4+(10/15)×0.7; variance=9×6/(15²×16)=0.015."
+    ],
+    "result": "The posterior mean balances the prior mean 0.4 and sample proportion 0.7 under this model."
   },
   "pitfalls": [
-    "Conjugate priors failure 1: do not treat Conjugate priors as a label without being able to compute or sketch a small example.",
-    "Conjugate priors failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Conjugate priors failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "Calling α and β literal prior success and failure counts can confuse mean-based α+β weighting with the α−1,β−1 exponents used for a mode.",
+    "Drifting probabilities, dependent trials or selective reporting can invalidate the simple count update even though the algebra still runs."
   ],
   "implementation": [
-    "Represent the central state for Conjugate priors explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Conjugate priors, compare the quantity named in “Priors that keep posterior calculations in the same distribution family.” across training, evaluation, and shifted inputs.",
-    "Ship Conjugate priors with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Maintain cumulative sufficient statistics with clear batch identifiers to avoid double counting.",
+    "Compare several scientifically plausible prior strengths and check predictions against held-out observations."
   ],
   "takeaways": [
-    "Conjugate priors matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Conjugacy supplies an exact calculation inside a model; prior predictive checks and sensitivity analysis still determine whether that model is useful.",
+    "Separate computational convenience from model and prior adequacy."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A prior family is conjugate to a likelihood when updating with that likelihood keeps the posterior in the same family. Conjugacy makes exact updates convenient; it is not a statement that the chosen prior or data model is realistic.","Derive the beta–Bernoulli conjugate update.","Separate computational convenience from model and prior adequacy.","The data change two numbers, not the family name.","Beta(α,β) × pᵏ(1−p)ⁿ⁻ᵏ → Beta(α+k,β+n−k)","Proper Beta(2,3) prior and ten Bernoulli observations conditionally independent given one stable p. Plotted curves are normalized prior and posterior densities; their areas, not their peak heights, equal 1.","Conjugacy supplies an exact calculation inside a model; prior predictive checks and sensitivity analysis still determine whether that model is useful."]} />

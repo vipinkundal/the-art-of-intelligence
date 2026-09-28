@@ -17,7 +17,7 @@ export default function HomePage() {
       <section className="home-hero">
         <div className="hero-grid-glow" aria-hidden />
         <div className="hero-copy">
-          <span className="hero-label"><Flask size={15} weight="duotone" /> Visual learning lab · 382 experiments</span>
+          <span className="hero-label"><Flask size={15} weight="duotone" /> Visual learning library · {lessons.length} lessons</span>
           <h1>Stop memorizing AI.<br/><em>Interrogate it.</em></h1>
           <p>Advanced concepts become durable when you can move the parameter, watch the geometry change, and name the invariant that survives.</p>
           <div className="hero-actions"><Link className="primary-action" href="/lessons/">Enter the lab <ArrowRight size={16}/></Link><Link className="text-action" href="#knowledge-map">Explore the knowledge map</Link></div>

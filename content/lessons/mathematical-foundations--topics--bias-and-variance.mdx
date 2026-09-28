@@ -1,55 +1,51 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Bias and variance: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Bias is systematic error; variance is sensitivity to the particular sample or training data.",
+  "hook": "A tighter cloud can beat a perfectly centered but wider cloud.",
+  "overview": "For a scalar estimator with finite second moment, mean squared error equals squared bias plus variance. Bias is its expected displacement from the target; variance measures its spread across repeated samples. Neither is the realized error in a single fit.",
   "concepts": [
     {
-      "title": "Bias and variance definition",
-      "explanation": "Bias and variance lens: The definition and notation for Bias and variance."
+      "title": "Derive the two terms",
+      "explanation": "E[Tₐ]=0.5+0.3a, so bias is 0.3(a−1). Since adding a constant does not change variance, Var(Tₐ)=a²×0.8×0.2/10=0.016a²."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Bias and variance lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Bias and variance lens: how this supports dataset design, model comparison, calibration, uncertainty estimates, or deployment monitoring"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Bias and variance lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Prediction adds another quantity",
+      "explanation": "When predicting a fresh noisy response under squared loss, a suitable decomposition also includes irreducible response noise. That term is absent when the target is a fixed parameter as in this lab."
     }
   ],
   "process": [
-    "Bias and variance step 1: Bias and variance belongs to evidence, estimation, uncertainty, experiments, and model evaluation. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Name the target and expectation over repeated datasets.",
+    "Compute the estimator's mean displacement and variance separately.",
+    "Compare their sum over the parameter values and sample sizes relevant to the application."
   ],
   "formulas": [
     {
-      "label": "Bias and variance field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the probability lab."
+      "label": "Definition and assumptions",
+      "expression": "MSEθ(T)=Varθ(T)+(Eθ[T]−θ)²; Tₐ=a(K/10)+(1−a)0.5",
+      "meaning": "K~Binomial(10,0.8). The estimator shrinks K/10 toward 0.5 with a fixed weight a chosen independently of K. These are parameter-estimation risks, not test-set losses or a simulation."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "When evaluating a model, bias and variance can be used to interpret bias is systematic error; variance is sensitivity to the particular sample or training data.",
-    "steps": [],
-    "result": "When evaluating a model, bias and variance can be used to interpret bias is systematic error; variance is sensitivity to the particular sample or training data."
+    "title": "Moderate shrinkage",
+    "setup": "Set a=0.8.",
+    "steps": [
+      "Bias=0.3(0.8−1)=−0.06, so squared bias=0.0036.",
+      "Variance=0.016×0.8²=0.01024; MSE=0.01384."
+    ],
+    "result": "Here the shrunk rule beats K/10's MSE of 0.016, despite no longer being unbiased."
   },
   "pitfalls": [
-    "Bias and variance failure 1: do not treat Bias and variance as a label without being able to compute or sketch a small example.",
-    "Bias and variance failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Bias and variance failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "The favorable weight at p=0.8 need not be favorable at another truth. The lab is not an oracle tuning recipe.",
+    "A weight selected using the same data is random; the fixed-a derivation cannot be reused without accounting for that selection."
   ],
   "implementation": [
-    "Represent the central state for Bias and variance explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Bias and variance, compare the quantity named in “Bias is systematic error; variance is sensitivity to the particular sample or training data.” across training, evaluation, and shifted inputs.",
-    "Ship Bias and variance with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Estimate predictive performance on data outside the fitting and tuning loop.",
+    "When using repeated resamples to study estimator variability, repeat the entire fitting procedure, including learned preprocessing."
   ],
   "takeaways": [
-    "Bias and variance matters for AI because helps decide whether model behavior is supported by data or is an artifact of sampling noise. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "A useful bias–variance comparison states the target, data-generating model and loss; there is no universal best shrinkage weight.",
+    "Distinguish parameter risk from prediction error and from one realized residual."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["For a scalar estimator with finite second moment, mean squared error equals squared bias plus variance. Bias is its expected displacement from the target; variance measures its spread across repeated samples. Neither is the realized error in a single fit.","Derive a bias–variance decomposition for a shrinkage estimator.","Distinguish parameter risk from prediction error and from one realized residual.","A tighter cloud can beat a perfectly centered but wider cloud.","MSEθ(T)=Varθ(T)+(Eθ[T]−θ)²; Tₐ=a(K/10)+(1−a)0.5","K~Binomial(10,0.8). The estimator shrinks K/10 toward 0.5 with a fixed weight a chosen independently of K. These are parameter-estimation risks, not test-set losses or a simulation.","A useful bias–variance comparison states the target, data-generating model and loss; there is no universal best shrinkage weight."]} />

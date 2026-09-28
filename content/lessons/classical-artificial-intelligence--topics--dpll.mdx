@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for DPLL: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "DPLL step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "DPLL step 2: Apply the central rule: Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
-    "DPLL step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "DPLL step 4: Stop and interpret the result using this criterion: It is complete but exponential in the worst case; propagation and branching choices determine practical performance."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is complete but exponential in the worst case; propagation and branching choices determine practical performance."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Unit propagation forces A, then B, then C without branching."
   },
   "pitfalls": [
-    "DPLL failure 1: Every propagated implication needs a reason if the solver will later analyze conflicts.",
-    "DPLL failure 2: A weak model can make an easy real problem hard for the solver.",
-    "DPLL failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Every propagated implication needs a reason if the solver will later analyze conflicts.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for DPLL explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For DPLL, compare the quantity named in “DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.” across training, evaluation, and shifted inputs.",
-    "Ship DPLL with a counterexample test derived from “Every propagated implication needs a reason if the solver will later analyze conflicts.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
     "Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This DPLL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,0 +1,51 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "Keep trying: count the trial that finally succeeds.",
+  "overview": "The geometric distribution models the trial number of the first success in independent Bernoulli trials with a fixed success probability. It supplies the discrete waiting-time counterpart to the exponential distribution.",
+  "concepts": [
+    {
+      "title": "Memoryless survival",
+      "explanation": "P(K>m+n | K>m)=(1−p)^n for nonnegative integers m,n whenever the conditioning event has positive probability. Failed attempts do not improve the next attempt's success chance."
+    },
+    {
+      "title": "Not a binomial count",
+      "explanation": "A binomial experiment fixes the number of trials and counts successes. A geometric experiment stops at the first success and counts how many trials were needed."
+    }
+  ],
+  "process": [
+    "Choose the trials or failures convention explicitly.",
+    "Verify constant success probability and independent attempts.",
+    "Multiply the preceding failure probabilities by the final success probability."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "P(K=k)=(1−p)^(k−1)p, k≥1; E[K]=1/p; Var(K)=(1−p)/p²",
+      "meaning": "K counts trials including the successful trial, not failures before it. The plotted range is 1…40; omitted tail mass is (1−p)^40. Trials are independent with the same p."
+    }
+  ],
+  "example": {
+    "title": "The first success on trial three",
+    "setup": "Use p=0.25.",
+    "steps": [
+      "The required sequence is failure, failure, success.",
+      "Its probability is 0.75²×0.25=0.140625; the expected first-success trial is 4."
+    ],
+    "result": "After two failures, the next trial still succeeds with probability 0.25."
+  },
+  "pitfalls": [
+    "Increasing skill, changing conditions, or dependence breaks the fixed-p model.",
+    "Mixing the two support conventions shifts means and probabilities by one trial."
+  ],
+  "implementation": [
+    "Check a library's support before matching formulas to outputs.",
+    "Calculate long survival tails in log space with log1p(−p)."
+  ],
+  "takeaways": [
+    "Two common conventions differ by one: trials-to-success starts at 1, failures-before-success starts at 0.",
+    "Apply the correct support convention and memoryless property."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["The geometric distribution models the trial number of the first success in independent Bernoulli trials with a fixed success probability. It supplies the discrete waiting-time counterpart to the exponential distribution.","Distinguish geometric waiting time from binomial counts.","Apply the correct support convention and memoryless property.","Keep trying: count the trial that finally succeeds.","P(K=k)=(1−p)^(k−1)p, k≥1; E[K]=1/p; Var(K)=(1−p)/p²","K counts trials including the successful trial, not failures before it. The plotted range is 1…40; omitted tail mass is (1−p)^40. Trials are independent with the same p.","Two common conventions differ by one: trials-to-success starts at 1, failures-before-success starts at 0."]} />

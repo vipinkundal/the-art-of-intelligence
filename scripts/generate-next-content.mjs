@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
+import { reviewedLessons, lessonAliases } from "../content/editorial/reviewed-lessons.mjs";
 
 const root = process.cwd();
 const lessonsRoot = path.join(root, "lessons");
@@ -99,6 +100,17 @@ function asStrings(value) {
 
 function unique(values, limit = 8) {
   return [...new Set(values.map((item) => sentence(item, "")).filter((item) => item.length > 12))].slice(0, limit);
+}
+
+function substantive(value) {
+  return !/learn the definition|the definition and notation for|a small worked example you can compute|where this shows up|the assumptions that make the concept|do not memorize the term|watch for hidden assumptions|check whether the concept is being used|can be used to interpret|^how this (supports|affects|appears in)\b|matters for AI because|it also gives you language for debugging models/i.test(value);
+}
+
+function cleanNarrative(narrative) {
+  narrative.concepts = narrative.concepts.filter((item) => substantive(item.explanation));
+  for (const key of ["process", "pitfalls", "implementation", "takeaways"]) narrative[key] = narrative[key].filter(substantive);
+  if (!substantive(narrative.example.setup)) narrative.example = { title: "", setup: "", steps: [], result: "" };
+  return narrative;
 }
 
 function sourcesFor(phaseKey, resources = []) {
@@ -209,14 +221,14 @@ function staticNarrative(html, title, summary) {
   }).filter(Boolean);
 
   return {
-    hook: `Treat ${title} as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.`,
+    hook: "",
     overview: summary,
     concepts: sections.flatMap((section) => section.points.map((point) => ({ title: section.heading, explanation: point }))).slice(0, 8),
     process: sections.find((section) => /work|process|idea|understand|flow/i.test(section.heading))?.points || sections[0]?.points || [],
     formulas: [],
-    example: { title: `${title} in operation`, setup: sections.find((section) => /example/i.test(section.heading))?.points[0] || summary, steps: sections.find((section) => /example/i.test(section.heading))?.points.slice(1) || [], result: `The useful result is a measurable change in the system, not recognition of the term ${title}.` },
-    pitfalls: sections.find((section) => /pitfall|mistake|limit|risk/i.test(section.heading))?.points || [`A correct definition of ${title} can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition.`],
-    implementation: [`Write down the input and output contract before selecting an implementation.`, `Log the intermediate quantity visualized in the lab so failures remain inspectable.`, `Test the boundary case where the lab control is near zero and near its maximum.`],
+    example: { title: `${title} example`, setup: sections.find((section) => /example/i.test(section.heading))?.points[0] || "", steps: sections.find((section) => /example/i.test(section.heading))?.points.slice(1) || [], result: "" },
+    pitfalls: sections.find((section) => /pitfall|mistake|limit|risk/i.test(section.heading))?.points || [],
+    implementation: [],
     takeaways: unique([summary, ...(sections.at(-1)?.points || [])], 4),
   };
 }
@@ -224,18 +236,14 @@ function staticNarrative(html, title, summary) {
 function topicNarrative(topic) {
   const example = topic.example && typeof topic.example === "object" ? topic.example : { title: "Worked example", setup: sentence(topic.example, topic.summary), steps: [], result: sentence(topic.example, topic.summary) };
   return {
-    hook: `The mnemonic for ${topic.title}: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.`,
+    hook: "",
     overview: sentence(topic.summary, topic.title),
-    concepts: (topic.concepts || topic.whatToLearn || []).map((item, index) => typeof item === "string" ? ({ title: [`${topic.title} definition`, "Worked boundary", "AI connection", "Assumption audit"][index % 4], explanation: `${topic.title} lens: ${sentence(item, "")}` }) : ({ title: sentence(item.title || item.label, `${topic.title} concept`), explanation: sentence(item.explanation || item.meaning || item.description, "") })).slice(0, 8),
-    process: unique(asStrings(topic.process || topic.howItWorks || topic.simpleIdea), 7).map((step, index) => `${topic.title} step ${index + 1}: ${step}`),
+    concepts: (topic.concepts || topic.whatToLearn || []).map((item) => typeof item === "string" ? ({ title: "Concept", explanation: sentence(item, "") }) : ({ title: sentence(item.title || item.label, `${topic.title} concept`), explanation: sentence(item.explanation || item.meaning || item.description, "") })).slice(0, 8),
+    process: unique(asStrings(topic.process || topic.howItWorks), 7),
     formulas: (topic.formulas || []).map((formula) => ({ label: sentence(formula.label, "Working equation"), expression: sentence(formula.expression, ""), meaning: sentence(formula.meaning, "") })).filter((formula) => formula.expression).slice(0, 4),
-    example: { title: sentence(example.title, `${topic.title} worked example`), setup: sentence(example.setup, topic.summary), steps: unique(asStrings(example.steps), 6), result: sentence(example.result, `The calculation exposes the operating constraint behind ${topic.title}.`) },
+    example: { title: sentence(example.title, `${topic.title} worked example`), setup: sentence(example.setup, ""), steps: unique(asStrings(example.steps), 6), result: sentence(example.result, "") },
     pitfalls: unique(asStrings(topic.pitfalls), 6),
-    implementation: [
-      `Represent the central state for ${topic.title} explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.`,
-      `For ${topic.title}, compare the quantity named in “${sentence(topic.mechanism || topic.summary, topic.title).slice(0, 120)}” across training, evaluation, and shifted inputs.`,
-      `Ship ${topic.title} with a counterexample test derived from “${sentence(asStrings(topic.pitfalls)[0], "the first invalid assumption").slice(0, 120)}”, not only a happy-path metric.`,
-    ],
+    implementation: [],
     takeaways: unique(asStrings(topic.takeaways || topic.whyItMatters || topic.simpleIdea), 4),
   };
 }
@@ -249,7 +257,7 @@ const legacyFiles = walk(lessonsRoot)
   .map((file) => path.relative(root, file).split(path.sep).join("/"))
   .filter((legacyPath) => legacyPath !== "lessons/index.html" && !legacyPath.includes("/_template/"));
 
-const routes = new Set([...legacyFiles, ...topicByRoute.keys()]);
+const routes = new Set([...legacyFiles, ...topicByRoute.keys(), ...Object.keys(reviewedLessons).map((slug) => `lessons/${slug}/index.html`)]);
 const documents = [];
 
 for (const legacyPath of [...routes].sort()) {
@@ -259,34 +267,35 @@ for (const legacyPath of [...routes].sort()) {
   const phaseKey = dynamic?.phaseKey || legacyPath.split("/")[1] || "foundations";
   const fallbackTitle = legacyPath.split("/").at(-2).replaceAll("-", " ");
   const rawTitle = dynamic?.topic.title || titleFromHtml(html, fallbackTitle);
-  const title = rawTitle.replace(/^\d+(?:\.\d+)?\.\s*/, "");
+  const title = rawTitle.replace(/^\d+(?:\.\d+)?[.\s]+/, "");
   const summary = sentence(dynamic?.topic.summary || capture(html, /data-summary="([^"]+)"/i) || capture(html, /<meta[^>]+name="description"[^>]+content="([^"]+)"/i), `A field guide to the mechanisms, assumptions, and operating limits of ${title}.`);
-  const narrative = dynamic ? topicNarrative(dynamic.topic) : staticNarrative(html, title, summary);
-  if (!narrative.concepts.length) narrative.concepts = [{ title: "State", explanation: `Identify what changes, what remains fixed, and which observation would falsify the current explanation of ${title}.` }];
-  if (!narrative.process.length) narrative.process = [`Define the state and units.`, `Apply the mechanism.`, `Inspect invariants and boundary behavior.`, `Validate on a counterexample.`];
-  if (!narrative.pitfalls.length) narrative.pitfalls = [`Do not treat a familiar diagram of ${title} as evidence that its assumptions hold in your implementation.`];
-  if (!narrative.takeaways.length) narrative.takeaways = [summary, `The lab exposes the invariant that makes ${title} memorable.`];
+  const narrative = cleanNarrative(dynamic ? topicNarrative(dynamic.topic) : staticNarrative(html, title, summary));
 
   const phase = phaseNames[phaseKey] || phaseFromPath(legacyPath, html).replace(/^Phase\s+\d+(?:\.\d+)?$/i, title);
   const sources = sourcesFor(phaseKey, [...(dynamic?.topic.resources || []), ...externalSourcesFromHtml(html)]);
   const slug = legacyPath.replace(/^lessons\//, "").replace(/\/index\.html$/, "");
   const id = slug.replaceAll("/", "--");
   const lab = labFor(title, summary, legacyPath);
-  if (!narrative.formulas.length) narrative.formulas = [{ label: `${title} field relation`, expression: lab.equation, meaning: `Use this as the instrument readout: verify every symbol against the concrete state visualized in the ${lab.engine} lab.` }];
-  narrative.pitfalls = narrative.pitfalls.map((pitfall, index) => `${title} failure ${index + 1}: ${pitfall.replace(/^Do not memorize the term/i, `do not treat ${title} as a label`).replace(/^Watch for/i, `audit`).replace(/^Check whether/i, `determine whether`)}`);
+  // A keyword-selected illustration does not establish a mathematical relation.
+  // Only source-provided or editorially reviewed equations belong in the lesson.
+  lab.equation = "";
+  lab.summary = "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.";
+  lab.takeaway = `This ${title} illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.`;
   const headings = ["Field lab", "Operational model", "Worked example", "Failure modes", "Implementation notes", "Sources"];
   const tags = unique([phase, phaseKey.replaceAll("-", " "), ...title.toLowerCase().split(/[^a-z0-9]+/).filter((word) => word.length > 3)], 6);
 
   documents.push({
     id,
     slug,
+    canonicalSlug: lessonAliases[slug] || slug,
+    reviewStatus: "pending",
     legacyPath: `/${legacyPath}`,
     phase,
     phaseKey,
     title,
     summary,
     prerequisites: [],
-    outcomes: [`Explain ${title} using the invariant shown in the lab.`, `Recognize an implementation failure before it contaminates downstream evaluation.`],
+    outcomes: [],
     tags,
     updatedAt,
     sources,
@@ -294,15 +303,22 @@ for (const legacyPath of [...routes].sort()) {
     labs: [lab],
     narrative,
   });
+  const document = documents.at(-1);
+  const reviewed = reviewedLessons[document.canonicalSlug];
+  if (reviewed) {
+    Object.assign(document, reviewed, { reviewStatus: "reviewed", updatedAt: "2026-09-28" });
+  }
+  document.headings = ["Field lab", "Operational model", ...(document.narrative.process.length ? ["Mechanism"] : []), ...(document.narrative.formulas.length ? ["Formulas"] : []), ...(document.narrative.example.setup ? ["Worked example"] : []), ...(document.narrative.pitfalls.length ? ["Failure modes"] : []), ...(document.narrative.implementation.length ? ["Implementation notes"] : []), "Sources"];
 }
 
 documents.sort((a, b) => a.phaseKey.localeCompare(b.phaseKey) || a.title.localeCompare(b.title));
 for (let index = 0; index < documents.length; index += 1) {
   const document = documents[index];
-  const previousInPhase = [...documents].slice(0, index).reverse().find((candidate) => candidate.phaseKey === document.phaseKey);
-  if (previousInPhase) document.prerequisites = [previousInPhase.id];
-  document.previous = documents[index - 1]?.slug || null;
-  document.next = documents[index + 1]?.slug || null;
+  const siblings = documents.filter((candidate) => candidate.phaseKey === document.phaseKey && candidate.canonicalSlug === candidate.slug);
+  const position = siblings.findIndex((candidate) => candidate.slug === document.canonicalSlug);
+  // Browse order is not a prerequisite relation. Dependencies are authored explicitly.
+  document.previous = siblings[position - 1]?.slug || null;
+  document.next = siblings[position + 1]?.slug || null;
 }
 
 fs.rmSync(outputRoot, { recursive: true, force: true });
@@ -310,7 +326,11 @@ fs.mkdirSync(outputRoot, { recursive: true });
 fs.mkdirSync(generatedRoot, { recursive: true });
 
 for (const document of documents) {
-  const mdx = `import { LessonBody } from "@/components/lesson/LessonBody";\n\nexport const narrative = ${JSON.stringify(document.narrative, null, 2)};\n\n<LessonBody narrative={narrative} />\n`;
+  // Omit exact repetitions already visible in the hero or first lab, without
+  // discarding the authored content or legacy fragment targets.
+  const firstLab = document.labs[0];
+  const presentedText = [document.summary, ...document.outcomes, firstLab.summary, firstLab.equation, firstLab.assumptions, firstLab.takeaway].filter(Boolean);
+  const mdx = `import { LessonBody } from "@/components/lesson/LessonBody";\n\nexport const narrative = ${JSON.stringify(document.narrative, null, 2)};\n\n<LessonBody narrative={narrative} presentedText={${JSON.stringify(presentedText)}} />\n`;
   fs.writeFileSync(path.join(outputRoot, `${document.id}.mdx`), mdx);
 }
 
@@ -321,7 +341,10 @@ fs.writeFileSync(path.join(generatedRoot, "legacy-routes.json"), `${JSON.stringi
 const loaderLines = documents.map((document) => `  ${JSON.stringify(document.slug)}: () => import(${JSON.stringify(`../lessons/${document.id}.mdx`)}),`).join("\n");
 fs.writeFileSync(path.join(generatedRoot, "lesson-loaders.ts"), `import type { ComponentType } from "react";\n\ntype LessonModule = { default: ComponentType };\n\nexport const lessonLoaders: Record<string, () => Promise<LessonModule>> = {\n${loaderLines}\n};\n`);
 
-const glossary = documents.map((document) => ({ term: document.title, definition: document.summary, phase: document.phase, href: `/lessons/${document.slug}/`, tags: document.tags })).sort((a, b) => a.term.localeCompare(b.term));
+const titlesById = new Map(documents.map((document) => [document.id, document.title]));
+// A relationship map must contain authored concepts, not engine IDs, title
+// fragments, phase labels or editorial-status tags from the search metadata.
+const glossary = documents.filter((document) => document.slug === document.canonicalSlug).map((document) => ({ term: document.title, definition: document.summary, phase: document.phase, href: `/lessons/${document.slug}/`, tags: document.prerequisites.map((id) => titlesById.get(id)).filter(Boolean) })).sort((a, b) => a.term.localeCompare(b.term));
 fs.writeFileSync(path.join(generatedRoot, "glossary.json"), `${JSON.stringify(glossary, null, 2)}\n`);
 
-console.log(`Generated ${documents.length} validated lesson documents (${legacyFiles.length} legacy lesson routes).`);
+console.log(`Generated ${documents.length} lesson documents (${legacyFiles.length} legacy lesson routes). Run content:validate and audit:editorial to check structure and review coverage.`);

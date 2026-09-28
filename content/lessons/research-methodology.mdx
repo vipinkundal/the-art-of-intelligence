@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "Treat Research Methodology as an instrument panel: the definition names the controls, but the invariants tell you when the system is behaving correctly.",
+  "hook": "",
   "overview": "Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.",
   "concepts": [
     {
@@ -44,31 +44,19 @@ export const narrative = {
     "How to reconstruct missing assumptions : Identify what must be true about data, labels, compute, optimization, and evaluation for the claim to hold.",
     "How to identify the actual contribution : Separate a new objective, architecture, dataset, training recipe, evaluation protocol, system trick, or analysis result."
   ],
-  "formulas": [
-    {
-      "label": "Research Methodology field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the evaluation lab."
-    }
-  ],
+  "formulas": [],
   "example": {
-    "title": "Research Methodology in operation",
-    "setup": "Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.",
+    "title": "Research Methodology example",
+    "setup": "",
     "steps": [],
-    "result": "The useful result is a measurable change in the system, not recognition of the term Research Methodology."
+    "result": ""
   },
-  "pitfalls": [
-    "Research Methodology failure 1: A correct definition of Research Methodology can still conceal a wrong assumption, invalid unit, or mismatched evaluation condition."
-  ],
-  "implementation": [
-    "Write down the input and output contract before selecting an implementation.",
-    "Log the intermediate quantity visualized in the lab so failures remain inspectable.",
-    "Test the boundary case where the lab control is near zero and near its maximum."
-  ],
+  "pitfalls": [],
+  "implementation": [],
   "takeaways": [
     "Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.",
     "You should be able to read an AI paper, identify its real contribution, reconstruct assumptions, evaluate baselines and compute controls, design ablations, report uncertainty, detect contamination risks, document negative results, and propose an experiment that could falsify the main claim."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Research methodology teaches you how to understand AI research rather than merely consume it: read papers critically, reconstruct assumptions, reproduce baselines, and design experiments that can actually test a claim.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Research Methodology illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Translation equivariance: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Translation equivariance means shifting an input shifts the resulting feature map in the corresponding way.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Translation equivariance step 1: Shift an input by a known number of positions.",
-    "Translation equivariance step 2: Apply the same shared convolutional kernel.",
-    "Translation equivariance step 3: Compare the shifted feature map with the original response shifted by the same amount.",
-    "Translation equivariance step 4: Identify discrepancies caused by boundaries or subsampling."
+    "Shift an input by a known number of positions.",
+    "Apply the same shared convolutional kernel.",
+    "Compare the shifted feature map with the original response shifted by the same amount.",
+    "Identify discrepancies caused by boundaries or subsampling."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The detector response shifts from column 5 to column 7."
   },
   "pitfalls": [
-    "Translation equivariance failure 1: Stride, pooling, padding, interpolation, and finite boundaries can break exact equivariance.",
-    "Translation equivariance failure 2: Translation is not always a valid symmetry for tasks with absolute spatial meaning.",
-    "Translation equivariance failure 3: Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
+    "Stride, pooling, padding, interpolation, and finite boundaries can break exact equivariance.",
+    "Translation is not always a valid symmetry for tasks with absolute spatial meaning.",
+    "Verify spatial sizes, channel counts, and boundary behavior at every stage of the network."
   ],
-  "implementation": [
-    "Represent the central state for Translation equivariance explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Translation equivariance, compare the quantity named in “Convolution with shared weights commutes with integer translation away from boundary and sampling effects.” across training, evaluation, and shifted inputs.",
-    "Ship Translation equivariance with a counterexample test derived from “Stride, pooling, padding, interpolation, and finite boundaries can break exact equivariance.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Translation equivariance means shifting an input shifts the resulting feature map in the corresponding way.",
     "Convolution with shared weights commutes with integer translation away from boundary and sampling effects.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Translation equivariance means shifting an input shifts the resulting feature map in the corresponding way.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Translation equivariance illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

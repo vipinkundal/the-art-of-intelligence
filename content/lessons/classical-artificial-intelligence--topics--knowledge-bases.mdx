@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Knowledge bases: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A knowledge base stores structured facts, entities, relations, and sometimes rules for query and inference.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Knowledge bases step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Knowledge bases step 2: Apply the central rule: Separate an explicit schema from instance assertions, validate identifiers, and run retrieval or reasoning over the combined model.",
-    "Knowledge bases step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Knowledge bases step 4: Stop and interpret the result using this criterion: Knowledge bases improve consistency and provenance, but stale, conflicting, or incomplete facts limit conclusions."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Separate an explicit schema from instance assertions, validate identifiers, and run retrieval or reasoning over the combined model.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: Knowledge bases improve consistency and provenance, but stale, conflicting, or incomplete facts limit conclusions."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A query can return suppliers satisfying both relationship and rule constraints with traceable evidence."
   },
   "pitfalls": [
-    "Knowledge bases failure 1: Track provenance and time; a fact without scope or source can be misleading.",
-    "Knowledge bases failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Knowledge bases failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Track provenance and time; a fact without scope or source can be misleading.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Knowledge bases explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Knowledge bases, compare the quantity named in “A knowledge base stores structured facts, entities, relations, and sometimes rules for query and inference.” across training, evaluation, and shifted inputs.",
-    "Ship Knowledge bases with a counterexample test derived from “Track provenance and time; a fact without scope or source can be misleading.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A knowledge base stores structured facts, entities, relations, and sometimes rules for query and inference.",
     "Separate an explicit schema from instance assertions, validate identifiers, and run retrieval or reasoning over the combined model.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A knowledge base stores structured facts, entities, relations, and sometimes rules for query and inference.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Knowledge bases illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

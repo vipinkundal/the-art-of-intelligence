@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for State-space planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "State-space planning searches through world states produced by applicable actions.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "State-space planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "State-space planning step 2: Apply the central rule: From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
-    "State-space planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "State-space planning step 4: Stop and interpret the result using this criterion: It reuses general search methods, but plan quality and feasibility depend on a correct transition model."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It reuses general search methods, but plan quality and feasibility depend on a correct transition model."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "The returned action sequence reaches a state satisfying the delivery goal."
   },
   "pitfalls": [
-    "State-space planning failure 1: Represent only facts needed for action applicability and goals, while retaining every causally relevant condition.",
-    "State-space planning failure 2: A plan is only as reliable as its action model and observations.",
-    "State-space planning failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Represent only facts needed for action applicability and goals, while retaining every causally relevant condition.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for State-space planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For State-space planning, compare the quantity named in “State-space planning searches through world states produced by applicable actions.” across training, evaluation, and shifted inputs.",
-    "Ship State-space planning with a counterexample test derived from “Represent only facts needed for action applicability and goals, while retaining every causally relevant condition.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "State-space planning searches through world states produced by applicable actions.",
     "From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["State-space planning searches through world states produced by applicable actions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This State-space planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Receding-horizon planning: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Receding-horizon planning repeatedly optimizes a limited future window, executes the first action, and replans.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Receding-horizon planning step 1: Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Receding-horizon planning step 2: Apply the central rule: At each step, estimate the current state, solve an H-step plan, apply the first control, and shift the horizon forward.",
-    "Receding-horizon planning step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Receding-horizon planning step 4: Stop and interpret the result using this criterion: It adapts to change and limits computation, but short horizons can ignore delayed consequences without a terminal model."
+    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
+    "Apply the central rule: At each step, estimate the current state, solve an H-step plan, apply the first control, and shift the horizon forward.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It adapts to change and limits computation, but short horizons can ignore delayed consequences without a terminal model."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Only the immediate action is committed, so later choices incorporate updated conditions."
   },
   "pitfalls": [
-    "Receding-horizon planning failure 1: Replanning speed must be fast enough for the environment's dynamics.",
-    "Receding-horizon planning failure 2: A plan is only as reliable as its action model and observations.",
-    "Receding-horizon planning failure 3: Execution monitoring and replanning are essential when the world can change."
+    "Replanning speed must be fast enough for the environment's dynamics.",
+    "A plan is only as reliable as its action model and observations.",
+    "Execution monitoring and replanning are essential when the world can change."
   ],
-  "implementation": [
-    "Represent the central state for Receding-horizon planning explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Receding-horizon planning, compare the quantity named in “Receding-horizon planning repeatedly optimizes a limited future window, executes the first action, and replans.” across training, evaluation, and shifted inputs.",
-    "Ship Receding-horizon planning with a counterexample test derived from “Replanning speed must be fast enough for the environment's dynamics.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Receding-horizon planning repeatedly optimizes a limited future window, executes the first action, and replans.",
     "At each step, estimate the current state, solve an H-step plan, apply the first control, and shift the horizon forward.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Receding-horizon planning repeatedly optimizes a limited future window, executes the first action, and replans.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Receding-horizon planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

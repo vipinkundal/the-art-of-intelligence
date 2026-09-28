@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Monte Carlo Tree Search: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Monte Carlo Tree Search step 1: Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Monte Carlo Tree Search step 2: Apply the central rule: Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
-    "Monte Carlo Tree Search step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Monte Carlo Tree Search step 4: Stop and interpret the result using this criterion: It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget."
+    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
+    "Apply the central rule: Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Visit counts and backed-up rewards identify the most promising root move."
   },
   "pitfalls": [
-    "Monte Carlo Tree Search failure 1: Raw random rollouts can be biased or extremely noisy in long-horizon games.",
-    "Monte Carlo Tree Search failure 2: Evaluation quality and move ordering can dominate nominal search depth.",
-    "Monte Carlo Tree Search failure 3: Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Raw random rollouts can be biased or extremely noisy in long-horizon games.",
+    "Evaluation quality and move ordering can dominate nominal search depth.",
+    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
   ],
-  "implementation": [
-    "Represent the central state for Monte Carlo Tree Search explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Monte Carlo Tree Search, compare the quantity named in “Monte Carlo Tree Search grows a partial game tree from repeated simulated play.” across training, evaluation, and shifted inputs.",
-    "Ship Monte Carlo Tree Search with a counterexample test derived from “Raw random rollouts can be biased or extremely noisy in long-horizon games.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
     "Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Monte Carlo Tree Search grows a partial game tree from repeated simulated play.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Monte Carlo Tree Search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

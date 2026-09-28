@@ -15,6 +15,7 @@ venv/
 dist/
 build/
 .cache/
+.playwright-mcp/
 .next/
 out/
 *.tsbuildinfo

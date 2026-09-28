@@ -1,55 +1,52 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Scalars, vectors, matrices, and tensors: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
-  "overview": "Scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays.",
+  "hook": "Name each axis before you multiply its sizes.",
+  "overview": "Scalars, vectors, and matrices have zero, one, and two indexed axes in array notation. Machine-learning libraries use tensor for a numerical array with any number of axes; axis meaning and shape determine valid operations.",
   "concepts": [
     {
-      "title": "Scalars, vectors, matrices, and tensors definition",
-      "explanation": "Scalars, vectors, matrices, and tensors lens: The definition and notation for Scalars, vectors, matrices, and tensors."
+      "title": "Coordinates and meaning",
+      "explanation": "An axis can represent examples, time, channels, or features. Two arrays with the same shape can still have incompatible meanings if their axes are ordered differently."
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Scalars, vectors, matrices, and tensors lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Scalars, vectors, matrices, and tensors lens: where this shows up in embeddings, neural network layers, PCA, attention, kernels, or numerical computation"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Scalars, vectors, matrices, and tensors lens: The assumptions that make the concept valid and the situations where those assumptions break."
+      "title": "Mathematical versus library tensors",
+      "explanation": "In multilinear algebra, a tensor is a coordinate-independent object with a specified transformation law. Calling every array a tensor in code is a useful convention, not that entire mathematical definition."
     }
   ],
   "process": [
-    "Scalars, vectors, matrices, and tensors step 1: Scalars, vectors, matrices, and tensors belongs to numeric representations, geometry, transformations, and high-dimensional structure. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
+    "Write the shape and semantic name of every axis.",
+    "Check whether the next operation preserves, sums, or reorders each axis.",
+    "Multiply dimensions for the element count, then apply the dtype's storage size."
   ],
   "formulas": [
     {
-      "label": "Scalars, vectors, matrices, and tensors field relation",
-      "expression": "A v = λ v",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the geometry lab."
+      "label": "Definition and assumptions",
+      "expression": "entries=∏ᵢ shapeᵢ; payload bytes=entries × bytes per entry",
+      "meaning": "A contiguous float32 array has shape (batch,2,3). Each table is one 2×3 slice. Memory counts include only numerical payload, not object metadata, gradients, or copies."
     }
   ],
   "example": {
-    "title": "Worked example",
-    "setup": "In a model implementation, scalars, vectors, matrices, and tensors can be used to interpret scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays.",
-    "steps": [],
-    "result": "In a model implementation, scalars, vectors, matrices, and tensors can be used to interpret scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays."
+    "title": "A small batched feature array",
+    "setup": "Two examples each have two rows and three features, stored as float32.",
+    "steps": [
+      "The shape is (2,2,3), so the array has three axes.",
+      "It contains 2×2×3=12 scalars.",
+      "At four bytes per scalar, the contiguous data payload is 48 bytes."
+    ],
+    "result": "Changing the batch size changes payload linearly; it does not change the number of axes."
   },
   "pitfalls": [
-    "Scalars, vectors, matrices, and tensors failure 1: do not treat Scalars, vectors, matrices, and tensors as a label without being able to compute or sketch a small example.",
-    "Scalars, vectors, matrices, and tensors failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Scalars, vectors, matrices, and tensors failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
+    "A reshape can preserve element count while mixing semantic axes incorrectly; a transpose reorders axes instead.",
+    "Broadcasting can silently expand an operation and produce an unintended result even when no shape error is raised."
   ],
   "implementation": [
-    "Represent the central state for Scalars, vectors, matrices, and tensors explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Scalars, vectors, matrices, and tensors, compare the quantity named in “Scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher” across training, evaluation, and shifted inputs.",
-    "Ship Scalars, vectors, matrices, and tensors with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
+    "Annotate boundaries with named shape contracts, such as (batch,time,features).",
+    "Check dtype and strides when estimating memory; views may share storage while materialized copies do not."
   ],
   "takeaways": [
-    "Scalars, vectors, matrices, and tensors matters for AI because makes AI data and model parameters manipulable as vectors, matrices, tensors, and transformations. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
+    "Array order counts axes; matrix rank counts independent columns. They are different meanings of rank, and neither is the number of entries.",
+    "Estimate payload memory while keeping axis semantics explicit."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Scalars, vectors, and matrices have zero, one, and two indexed axes in array notation. Machine-learning libraries use tensor for a numerical array with any number of axes; axis meaning and shape determine valid operations.","Distinguish shape, order, element count, and matrix rank.","Estimate payload memory while keeping axis semantics explicit.","Name each axis before you multiply its sizes.","entries=∏ᵢ shapeᵢ; payload bytes=entries × bytes per entry","A contiguous float32 array has shape (batch,2,3). Each table is one 2×3 slice. Memory counts include only numerical payload, not object metadata, gradients, or copies.","Array order counts axes; matrix rank counts independent columns. They are different meanings of rank, and neither is the number of entries."]} />

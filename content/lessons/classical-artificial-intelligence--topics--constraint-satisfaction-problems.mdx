@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Constraint-satisfaction problems: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Constraint-satisfaction problems step 1: Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Constraint-satisfaction problems step 2: Apply the central rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
-    "Constraint-satisfaction problems step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Constraint-satisfaction problems step 4: Stop and interpret the result using this criterion: CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+    "Represent the task using variables, domains, constraints, and sometimes an objective.",
+    "Apply the central rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "A complete assignment with no equal-colored neighbors is a solution."
   },
   "pitfalls": [
-    "Constraint-satisfaction problems failure 1: Distinguish hard constraints from preferences or optimization objectives.",
-    "Constraint-satisfaction problems failure 2: A weak model can make an easy real problem hard for the solver.",
-    "Constraint-satisfaction problems failure 3: Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Distinguish hard constraints from preferences or optimization objectives.",
+    "A weak model can make an easy real problem hard for the solver.",
+    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
   ],
-  "implementation": [
-    "Represent the central state for Constraint-satisfaction problems explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Constraint-satisfaction problems, compare the quantity named in “A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.” across training, evaluation, and shifted inputs.",
-    "Ship Constraint-satisfaction problems with a counterexample test derived from “Distinguish hard constraints from preferences or optimization objectives.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
     "Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Constraint-satisfaction problems illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

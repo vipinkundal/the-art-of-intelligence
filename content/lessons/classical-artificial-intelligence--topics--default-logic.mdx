@@ -1,7 +1,7 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Default logic: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Default logic formalizes typical assumptions that apply when their justifications remain consistent.",
   "concepts": [
     {
@@ -18,10 +18,10 @@ export const narrative = {
     }
   ],
   "process": [
-    "Default logic step 1: Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Default logic step 2: Apply the central rule: Apply defaults of the form prerequisite : justification / conclusion and compute stable extensions.",
-    "Default logic step 3: Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Default logic step 4: Stop and interpret the result using this criterion: It captures exceptions and incomplete knowledge, but multiple extensions can represent competing belief sets."
+    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
+    "Apply the central rule: Apply defaults of the form prerequisite : justification / conclusion and compute stable extensions.",
+    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
+    "Stop and interpret the result using this criterion: It captures exceptions and incomplete knowledge, but multiple extensions can represent competing belief sets."
   ],
   "formulas": [
     {
@@ -41,15 +41,11 @@ export const narrative = {
     "result": "Adding Penguin(Tweety) with an exception rule blocks or defeats the default."
   },
   "pitfalls": [
-    "Default logic failure 1: Different extensions may require skeptical versus credulous query semantics.",
-    "Default logic failure 2: Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Default logic failure 3: Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Different extensions may require skeptical versus credulous query semantics.",
+    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
+    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
   ],
-  "implementation": [
-    "Represent the central state for Default logic explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Default logic, compare the quantity named in “Default logic formalizes typical assumptions that apply when their justifications remain consistent.” across training, evaluation, and shifted inputs.",
-    "Ship Default logic with a counterexample test derived from “Different extensions may require skeptical versus credulous query semantics.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Default logic formalizes typical assumptions that apply when their justifications remain consistent.",
     "Apply defaults of the form prerequisite : justification / conclusion and compute stable extensions.",
@@ -58,4 +54,4 @@ export const narrative = {
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Default logic formalizes typical assumptions that apply when their justifications remain consistent.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Default logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

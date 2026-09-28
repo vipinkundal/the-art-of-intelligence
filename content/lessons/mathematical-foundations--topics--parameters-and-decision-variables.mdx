@@ -1,55 +1,20 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Parameters and decision variables: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Parameters are the adjustable values the optimizer changes.",
-  "concepts": [
-    {
-      "title": "Parameters and decision variables definition",
-      "explanation": "Parameters and decision variables lens: The definition and notation for Parameters and decision variables."
-    },
-    {
-      "title": "Worked boundary",
-      "explanation": "Parameters and decision variables lens: A small worked example you can compute by hand."
-    },
-    {
-      "title": "AI connection",
-      "explanation": "Parameters and decision variables lens: how this affects loss minimization, parameter updates, training speed, regularization, or convergence"
-    },
-    {
-      "title": "Assumption audit",
-      "explanation": "Parameters and decision variables lens: The assumptions that make the concept valid and the situations where those assumptions break."
-    }
-  ],
-  "process": [
-    "Parameters and decision variables step 1: Parameters and decision variables belongs to objectives, constraints, gradients, update rules, and numerical stability. Learn the definition, write down the notation, work a small numerical or symbolic example, and then connect the result to a concrete AI workflow."
-  ],
-  "formulas": [
-    {
-      "label": "Parameters and decision variables field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the optimization lab."
-    }
-  ],
+  "concepts": [],
+  "process": [],
+  "formulas": [],
   "example": {
-    "title": "Worked example",
-    "setup": "In a training loop, parameters and decision variables can be used to interpret parameters are the adjustable values the optimizer changes.",
+    "title": "",
+    "setup": "",
     "steps": [],
-    "result": "In a training loop, parameters and decision variables can be used to interpret parameters are the adjustable values the optimizer changes."
+    "result": ""
   },
-  "pitfalls": [
-    "Parameters and decision variables failure 1: do not treat Parameters and decision variables as a label without being able to compute or sketch a small example.",
-    "Parameters and decision variables failure 2: audit hidden assumptions such as independence, linearity, differentiability, convexity, finite precision, or representative data.",
-    "Parameters and decision variables failure 3: determine whether the concept is being used as an exact theorem, an approximation, or a modelling heuristic."
-  ],
-  "implementation": [
-    "Represent the central state for Parameters and decision variables explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Parameters and decision variables, compare the quantity named in “Parameters are the adjustable values the optimizer changes.” across training, evaluation, and shifted inputs.",
-    "Ship Parameters and decision variables with a counterexample test derived from “Do not memorize the term without being able to compute or sketch a small example.”, not only a happy-path metric."
-  ],
-  "takeaways": [
-    "Parameters and decision variables matters for AI because turns model training into a disciplined search for better parameters under practical constraints. It also gives you language for debugging models when numbers, uncertainty, objectives, or algorithms behave unexpectedly."
-  ]
+  "pitfalls": [],
+  "implementation": [],
+  "takeaways": []
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Parameters are the adjustable values the optimizer changes.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Parameters and decision variables illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

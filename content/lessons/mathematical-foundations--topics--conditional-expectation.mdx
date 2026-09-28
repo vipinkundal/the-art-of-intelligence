@@ -1,0 +1,51 @@
+import { LessonBody } from "@/components/lesson/LessonBody";
+
+export const narrative = {
+  "hook": "The group mean is a prediction before you learn the group.",
+  "overview": "Conditional expectation E[Y|Z] is a function of the information in Z and is itself a random variable. For integrable Y, averaging that conditional expectation returns E[Y]. For square-integrable Y, it is the minimum-mean-squared-error predictor among functions of Z.",
+  "concepts": [
+    {
+      "title": "Tower property",
+      "explanation": "Taking the unconditional expectation of a conditional expectation recovers the original mean. More generally, conditioning again on a smaller information set returns the conditional mean for that smaller set."
+    },
+    {
+      "title": "Prediction, not causation",
+      "explanation": "A conditional mean describes an observational distribution. It does not equal an intervention effect without additional causal assumptions."
+    }
+  ],
+  "process": [
+    "Identify the information available to the predictor.",
+    "Average Y using the conditional distribution in each group.",
+    "Weight those group means by group probabilities to recover the overall mean."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "E[E[Y|Z]]=E[Y]; E[Y|Z=z]=Σy y p(y|z) in the discrete case",
+      "meaning": "Given Z=0, Y is equally likely 0 or 2. Given Z=1, Y is equally likely 4 or 6. The slider changes the group weights; conditional means stay 1 and 5."
+    }
+  ],
+  "example": {
+    "title": "Unequal group sizes",
+    "setup": "Let P(Z=1)=0.25.",
+    "steps": [
+      "E[Y|Z=0]=1 and E[Y|Z=1]=5.",
+      "The overall mean is 0.75×1+0.25×5=2."
+    ],
+    "result": "Averaging 1 and 5 equally would give the wrong answer because the group probabilities differ."
+  },
+  "pitfalls": [
+    "The mean of conditional means requires probability weights.",
+    "Conditioning on a probability-zero point in a continuous model needs a conditional distribution, not the elementary event ratio."
+  ],
+  "implementation": [
+    "Track group weights and conditional moments as separate quantities.",
+    "Validate a fitted conditional mean out of sample; a formal identity does not guarantee an estimator is accurate."
+  ],
+  "takeaways": [
+    "E[Y|Z] is a random variable; E[Y|Z=z] is its value at a specified supported group.",
+    "Apply the tower property with the correct weights."
+  ]
+};
+
+<LessonBody narrative={narrative} presentedText={["Conditional expectation E[Y|Z] is a function of the information in Z and is itself a random variable. For integrable Y, averaging that conditional expectation returns E[Y]. For square-integrable Y, it is the minimum-mean-squared-error predictor among functions of Z.","Interpret a conditional mean as a random variable.","Apply the tower property with the correct weights.","The group mean is a prediction before you learn the group.","E[E[Y|Z]]=E[Y]; E[Y|Z=z]=Σy y p(y|z) in the discrete case","Given Z=0, Y is equally likely 0 or 2. Given Z=1, Y is equally likely 4 or 6. The slider changes the group weights; conditional means stay 1 and 5.","E[Y|Z] is a random variable; E[Y|Z=z] is its value at a specified supported group."]} />

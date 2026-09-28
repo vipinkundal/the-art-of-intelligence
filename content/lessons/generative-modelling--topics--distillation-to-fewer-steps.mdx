@@ -1,36 +1,30 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "The mnemonic for Distillation to fewer steps: follow the quantity that survives the transformation, then inspect the boundary where it stops surviving.",
+  "hook": "",
   "overview": "Distillation to fewer steps trains a faster generator to match a slower multi-step process.",
   "concepts": [
     {
-      "title": "Distillation to fewer steps definition",
-      "explanation": "Distillation to fewer steps lens: teacher-student generation"
+      "title": "Concept",
+      "explanation": "teacher-student generation"
     },
     {
-      "title": "Worked boundary",
-      "explanation": "Distillation to fewer steps lens: trajectory distillation"
+      "title": "Concept",
+      "explanation": "trajectory distillation"
     },
     {
-      "title": "AI connection",
-      "explanation": "Distillation to fewer steps lens: one-step models"
+      "title": "Concept",
+      "explanation": "one-step models"
     },
     {
-      "title": "Assumption audit",
-      "explanation": "Distillation to fewer steps lens: speed-quality tradeoff"
+      "title": "Concept",
+      "explanation": "speed-quality tradeoff"
     }
   ],
   "process": [
-    "Distillation to fewer steps step 1: The teacher defines high-quality trajectories or samples. The student is trained to reproduce comparable outputs with fewer function evaluations or larger steps."
+    "The teacher defines high-quality trajectories or samples. The student is trained to reproduce comparable outputs with fewer function evaluations or larger steps."
   ],
-  "formulas": [
-    {
-      "label": "Distillation to fewer steps field relation",
-      "expression": "output = mechanism(input, context)",
-      "meaning": "Use this as the instrument readout: verify every symbol against the concrete state visualized in the transport lab."
-    }
-  ],
+  "formulas": [],
   "example": {
     "title": "Worked example",
     "setup": "A distilled flow model can approximate a many-step sampler with only a few solver steps for interactive generation.",
@@ -38,17 +32,13 @@ export const narrative = {
     "result": "A distilled flow model can approximate a many-step sampler with only a few solver steps for interactive generation."
   },
   "pitfalls": [
-    "Distillation to fewer steps failure 1: The student may lose diversity or fine detail.",
-    "Distillation to fewer steps failure 2: A weak teacher limits the best possible student."
+    "The student may lose diversity or fine detail.",
+    "A weak teacher limits the best possible student."
   ],
-  "implementation": [
-    "Represent the central state for Distillation to fewer steps explicitly; log its shape, dtype, unit, and valid range before calling a convenience API.",
-    "For Distillation to fewer steps, compare the quantity named in “Distillation to fewer steps trains a faster generator to match a slower multi-step process.” across training, evaluation, and shifted inputs.",
-    "Ship Distillation to fewer steps with a counterexample test derived from “The student may lose diversity or fine detail.”, not only a happy-path metric."
-  ],
+  "implementation": [],
   "takeaways": [
     "Distillation to fewer steps matters because it connects diffusion-style generation with continuous flows, ODE solvers, and fast deterministic sampling. It also gives you vocabulary for comparing generative model families by objective, sample quality, speed, and controllability."
   ]
 };
 
-<LessonBody narrative={narrative} />
+<LessonBody narrative={narrative} presentedText={["Distillation to fewer steps trains a faster generator to match a slower multi-step process.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Distillation to fewer steps illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />

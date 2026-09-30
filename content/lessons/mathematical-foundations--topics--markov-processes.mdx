@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Generalize memoryless state transitions over time.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The state forgets how it arrived, but the clock still matters.",
+  "overview": "A Markov process makes its future conditionally independent of its past given the present state. Time and state can be discrete or continuous. This lesson studies a two-state continuous-time chain, where transition rates and exponential holding times replace the fixed-step transition probabilities used in the discrete-time Markov-chain lesson.",
+  "concepts": [
+    {
+      "title": "A rate is not a probability",
+      "explanation": "For a short time h, a working machine fails with probability αh+o(h). Over a finite interval it may fail and repair repeatedly, so αt is not an exact finite-time probability. The finite-time transition matrix is exp(tQ)."
+    },
+    {
+      "title": "Probability balance gives an ODE",
+      "explanation": "Writing z(t) for failed probability gives z′=α(1−z)−βz. With z(0)=0, solving yields α[1−exp(−(α+β)t)]/(α+β). Increasing repair speed lowers the equilibrium failure fraction and shortens the relaxation time."
+    },
+    {
+      "title": "Long-run occupancy differs from jump counts",
+      "explanation": "The embedded jump chain alternates working and failed, but the holding times have means 1/α and 1/β. Consequently the long-run failed-time fraction is α/(α+β), not automatically 1/2. Both positive rates make this finite chain irreducible and give a unique limiting distribution."
+    }
+  ],
+  "process": [
+    "Choose a state that contains the information needed for the Markov assumption.",
+    "Define transition rates with units and put minus the total outgoing rate on each generator diagonal.",
+    "Evolve state probabilities or simulate exponential holding times; distinguish a trajectory from its distribution."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Q=[[-α,α],[β,−β]], α=0.5/h; p′=pQ; P(failed at t|working at 0)=α(1−e⁻⁽α⁺β⁾ᵗ)/(α+β)",
+      "meaning": "A time-homogeneous continuous-time chain with states working and failed, failure rate α=0.5 per hour and repair rate β>0 per hour. It starts working with probability one. Curves show exact state probabilities, not a single machine's jump path. Row-vector probabilities multiply the generator Q on the right."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two hours working, one hour failed on average",
+    "setup": "Use α=0.5/h and β=1/h.",
+    "steps": [
+      "Mean working holding time is 2 hours; mean failed holding time is 1 hour.",
+      "The stationary failed fraction is 0.5/1.5=1/3.",
+      "Starting working, P(failed at 6h)=(1−e⁻⁹)/3≈0.333292, slightly below the stationary value."
+    ],
+    "result": "Alternating state visits do not imply equal time spent in both states."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Memorylessness concerns the future given a sufficient present state; it does not mean consecutive observations are independent.",
+    "If a failure rate depends on machine age, a working/failed label alone may not be Markov. Add the relevant state or use another process model."
+  ],
+  "implementation": [
+    "Check off-diagonal rates are nonnegative and generator row sums vanish within tolerance.",
+    "Avoid treating I+hQ as an exact transition matrix for arbitrary h; large steps can produce negative diagonal entries."
+  ],
+  "takeaways": [
+    "A generator contains rates with units and rows summing to zero. A finite-time transition matrix contains probabilities and rows summing to one.",
+    "Distinguish jump frequencies, holding times and stationary occupancy."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Generalize memoryless state transitions over time.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Markov processes illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Markov process makes its future conditionally independent of its past given the present state. Time and state can be discrete or continuous. This lesson studies a two-state continuous-time chain, where transition rates and exponential holding times replace the fixed-step transition probabilities used in the discrete-time Markov-chain lesson.","Translate continuous-time rates into probability dynamics.","Distinguish jump frequencies, holding times and stationary occupancy.","The state forgets how it arrived, but the clock still matters.","Q=[[-α,α],[β,−β]], α=0.5/h; p′=pQ; P(failed at t|working at 0)=α(1−e⁻⁽α⁺β⁾ᵗ)/(α+β)","A time-homogeneous continuous-time chain with states working and failed, failure rate α=0.5 per hour and repair rate β>0 per hour. It starts working with probability one. Curves show exact state probabilities, not a single machine's jump path. Row-vector probabilities multiply the generator Q on the right.","A generator contains rates with units and rows summing to zero. A finite-time transition matrix contains probabilities and rows summing to one."]} />

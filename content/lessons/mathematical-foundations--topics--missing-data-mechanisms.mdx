@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Describe why values are absent, which determines whether simple fixes are safe.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A blank cell has a selection story; its absence is not automatically neutral.",
+  "overview": "A missing-data mechanism describes how observation indicators depend on observed and unobserved values. MCAR removes dependence on data values; MAR allows dependence on observed information but not on the missing values after conditioning on that information. MNAR retains dependence on unobserved values. These are assumptions about the observation process, not labels determined by the percentage missing.",
+  "concepts": [
+    {
+      "title": "Missing at random does not mean unconditional randomness",
+      "explanation": "In the MAR scenario, X=1 records are less likely to reveal Y. Since X predicts Y, the observed records have a distorted overall positive rate. MAR means that within an observed X group, response no longer depends on Y; it does not justify discarding X and averaging all complete cases."
+    },
+    {
+      "title": "Standardization puts the groups back in their target proportions",
+      "explanation": "Compute the positive rate among observed records separately for X=0 and X=1, then average those two rates using the known full-data 50/50 mix. Under this MAR model and positive response probabilities, the observed conditional means equal the full conditional means. The adjustment therefore returns 0.5 at the population level."
+    },
+    {
+      "title": "Within-group selection breaks that recovery",
+      "explanation": "In the MNAR scenario, positive Y values are less likely to be observed even after X is fixed. The observed positive rates become 1/13 and 4/7 rather than 0.2 and 0.8. Reweighting only the X groups still leaves a downward bias, because each group's remaining records are themselves selective."
+    },
+    {
+      "title": "Mechanism assumptions need domain evidence",
+      "explanation": "The lab knows how every blank was generated; a real analyst does not. Reasons for missingness, follow-up measurement, auxiliary variables and sensitivity analyses can support a strategy. A test that rejects MCAR does not establish MAR, and failing to reject MCAR is not proof that missingness is harmless."
+    }
+  ],
+  "process": [
+    "Record an explicit observation indicator and distinguish a missing value from zero, a structural not-applicable value and a censored measurement.",
+    "Identify information observed for everyone that could explain response, and state the conditional assumptions and positivity required by the proposed analysis.",
+    "Compare complete-case and adjusted results, quantify estimation uncertainty, and vary unidentifiable assumptions in sensitivity analyses instead of claiming MAR has been verified from the observed values alone."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "MAR: R ⟂ Y | X; μcc=E[Y|R=1]; μadj=Σx P(X=x)E[Y|X=x,R=1]",
+      "meaning": "Binary X is observed for every unit and has equal 0/1 shares. P(Y=1|X=0)=0.2 and P(Y=1|X=1)=0.8, so E[Y]=0.5. R=1 means Y is observed. Scenario 0 observes each Y with probability 0.6; scenario 1 uses probabilities 0.9 for X=0 and 0.3 for X=1; scenario 2 uses 0.9 for Y=0 and 0.3 for Y=1. All have 60% observed. Tables expose the known generating mechanism, including values normally hidden in a real dataset. Counts per 1,000 are expectations, not a simulated sample."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Correct the mix, but only when that is enough",
+    "setup": "Select the MAR scenario with 1,000 expected full-data units.",
+    "steps": [
+      "Full counts in cells (X,Y)=(0,0),(0,1),(1,0),(1,1) are 400,100,100,400. Applying X-based response rates gives observed counts 360,90,30,120.",
+      "Only 210 of the 600 observed records are positive, so the complete-case mean is 0.35. Within groups, however, the rates are 90/450=0.2 and 120/150=0.8.",
+      "Restoring the 50/50 group mix gives 0.5×0.2+0.5×0.8=0.5. In the MNAR scenario the same operation instead gives (1/13+4/7)/2=59/182≈0.324176."
+    ],
+    "result": "Every scenario loses 40% of Y values. Missingness percentage alone cannot tell you whether complete-case analysis or this X-based adjustment recovers the target."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "MCAR and MAR depend on the variables and missingness pattern under discussion. Adding genuinely informative observed variables can change which assumptions are plausible.",
+    "MAR is not sufficient by itself for every implementation to work: the outcome or response model, overlap, estimand and uncertainty procedure still matter.",
+    "Single mean imputation hides missing-value uncertainty and distorts distributions. Multiple imputation is not an automatic cure for MNAR; it still requires assumptions about unseen values and an appropriate analysis model."
+  ],
+  "implementation": [
+    "Preserve missingness indicators and collection reasons instead of overwriting them. Fit imputation and response models without leakage across evaluation splits, and retain the design information needed by the estimand.",
+    "Use domain-supported auxiliary predictors and inspect response probabilities. Report sensitivity to plausible departures from MAR. This lab computes known population quantities and does not supply finite-sample confidence intervals or a fitted imputation system."
+  ],
+  "takeaways": [
+    "Adjustment works because of a justified missingness model, not because a table has been filled. Observed data alone generally cannot distinguish MAR from MNAR without additional assumptions.",
+    "Explain why equal missingness rates can give different biases and why adjustment can fail within observed groups."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Describe why values are absent, which determines whether simple fixes are safe.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Missing-data mechanisms illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A missing-data mechanism describes how observation indicators depend on observed and unobserved values. MCAR removes dependence on data values; MAR allows dependence on observed information but not on the missing values after conditioning on that information. MNAR retains dependence on unobserved values. These are assumptions about the observation process, not labels determined by the percentage missing.","State MCAR, MAR and MNAR relative to explicitly observed variables.","Explain why equal missingness rates can give different biases and why adjustment can fail within observed groups.","A blank cell has a selection story; its absence is not automatically neutral.","MAR: R ⟂ Y | X; μcc=E[Y|R=1]; μadj=Σx P(X=x)E[Y|X=x,R=1]","Binary X is observed for every unit and has equal 0/1 shares. P(Y=1|X=0)=0.2 and P(Y=1|X=1)=0.8, so E[Y]=0.5. R=1 means Y is observed. Scenario 0 observes each Y with probability 0.6; scenario 1 uses probabilities 0.9 for X=0 and 0.3 for X=1; scenario 2 uses 0.9 for Y=0 and 0.3 for Y=1. All have 60% observed. Tables expose the known generating mechanism, including values normally hidden in a real dataset. Counts per 1,000 are expectations, not a simulated sample.","Adjustment works because of a justified missingness model, not because a table has been filled. Observed data alone generally cannot distinguish MAR from MNAR without additional assumptions."]} />

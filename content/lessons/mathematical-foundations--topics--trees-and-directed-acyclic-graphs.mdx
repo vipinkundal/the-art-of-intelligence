@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Structured graphs that model hierarchies, computation graphs, parse trees, and pipelines.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A merge waits for every incoming dependency, not just the first parent to finish.",
+  "overview": "A finite undirected tree is connected and has no cycle; it has one simple path between each pair of vertices. A directed acyclic graph has no directed cycle, but may have shared descendants and cycles after arrow directions are forgotten. A rooted outward tree is a special DAG, not a synonym for every DAG.",
+  "concepts": [
+    {
+      "title": "A tree has stronger structure than a DAG",
+      "explanation": "For a nonempty finite simple undirected tree, m=n−1 and there is a unique simple path between vertices. Connectivity plus m=n−1 is a tree criterion; the edge count by itself is insufficient. Choosing a root and orienting tree edges away from it gives each non-root node one parent."
+    },
+    {
+      "title": "Shared dependencies make a diamond",
+      "explanation": "The lab has A→B→D and A→C→D. There is no route following arrows back to A, so the diamond is directed-acyclic. Ignoring directions gives the cycle A—B—D—C—A. D has two parents, so this is not a rooted outward tree. A DAG can also have multiple sources or disconnected parts."
+    },
+    {
+      "title": "Readiness changes only when predecessors are removed",
+      "explanation": "Initially only A is ready. After A, B and C can appear in either order. After B alone, D still has C as an unmet prerequisite. Once both are done, D becomes ready; completing it releases E and F. An indegree of zero in the remaining graph is the condition that matters."
+    },
+    {
+      "title": "Topological order is a constraint, not a unique answer",
+      "explanation": "The lab chooses A,B,C,D,E,F because it uses alphabetical ties. Swapping B with C, E with F, or both gives four valid orders. Different libraries may choose different valid orders. A deterministic tie rule improves reproducibility without changing the dependency relation."
+    },
+    {
+      "title": "Stalling diagnoses a directed cycle",
+      "explanation": "Every nonempty finite DAG has a source: otherwise following predecessors indefinitely in a finite vertex set must revisit a vertex and form a directed cycle. Repeatedly removing sources therefore emits every DAG vertex. If unprocessed vertices remain but none has zero remaining indegree, the remaining graph contains a directed cycle; downstream blocked nodes need not themselves lie on that cycle."
+    }
+  ],
+  "process": [
+    "Count incoming prerequisites and initialize the ready set with all zero-indegree vertices.",
+    "Emit a ready vertex, remove its outgoing dependencies and add any newly ready successors.",
+    "Stop successfully after all vertices are emitted; otherwise report a cycle when the ready set is empty with vertices remaining."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "u→v ⇒ position(u)<position(v); ready(v) ⇔ remaining indegree(v)=0",
+      "meaning": "Six tasks A–F with edges A→B, A→C, B→D, C→D, D→E and D→F. An edge means its source must finish before its target. Each step immediately completes one ready task, choosing alphabetically among ties. No durations, worker limits, failures or asynchronous execution are modeled. The diagram retains original edges; the table counts prerequisites not yet emitted. A node marked done is an algorithm state, not an observed random variable."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The premature merge",
+    "setup": "Use the default state after two emissions, A then B.",
+    "steps": [
+      "C has no remaining prerequisites and is ready.",
+      "D has received B but still depends on C, so its remaining indegree is one.",
+      "Emit C to release D; emit D to release both E and F."
+    ],
+    "result": "Treating one completed parent as sufficient would violate C→D. The table makes the outstanding prerequisite count visible."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "No directed cycle does not mean the underlying undirected graph is a tree. Converging paths are legal in a DAG.",
+    "In asynchronous execution, taking a ready task is not the same as completing it. Dependents must wait for successful completion under the scheduler's policy.",
+    "A topological order does not optimize duration, resource use or the critical path. The lab intentionally assigns no timing model."
+  ],
+  "implementation": [
+    "With adjacency lists and maintained indegrees, topological sorting can run in O(n+m) time, excluding extra ordering policy costs. This tiny lab recomputes counts to expose the state clearly; it is not a performance benchmark.",
+    "Python graphlib accepts predecessor sets for each node, whereas many graph libraries store successor lists. Confirm edge orientation at the API boundary, and distinguish ready tasks from tasks reported done."
+  ],
+  "takeaways": [
+    "A topological order respects every directed edge. It can be nonunique, and it does not by itself specify a parallel execution schedule.",
+    "Trace dependency readiness and explain why topological orders can be nonunique."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Structured graphs that model hierarchies, computation graphs, parse trees, and pipelines.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Trees and directed acyclic graphs illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A finite undirected tree is connected and has no cycle; it has one simple path between each pair of vertices. A directed acyclic graph has no directed cycle, but may have shared descendants and cycles after arrow directions are forgotten. A rooted outward tree is a special DAG, not a synonym for every DAG.","Distinguish undirected trees, rooted outward trees and general DAGs.","Trace dependency readiness and explain why topological orders can be nonunique.","A merge waits for every incoming dependency, not just the first parent to finish.","u→v ⇒ position(u)<position(v); ready(v) ⇔ remaining indegree(v)=0","Six tasks A–F with edges A→B, A→C, B→D, C→D, D→E and D→F. An edge means its source must finish before its target. Each step immediately completes one ready task, choosing alphabetically among ties. No durations, worker limits, failures or asynchronous execution are modeled. The diagram retains original edges; the table counts prerequisites not yet emitted. A node marked done is an algorithm state, not an observed random variable.","A topological order respects every directed edge. It can be nonunique, and it does not by itself specify a parallel execution schedule."]} />

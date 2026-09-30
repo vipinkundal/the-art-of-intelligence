@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
+  "hook": "A proposal is an invitation, not a vote for the target distribution.",
+  "overview": "Metropolis–Hastings constructs a transition kernel that preserves a target distribution by correcting proposed moves with an acceptance probability. The correction depends on both target density and forward/reverse proposal probabilities. Preserving the target is not the same as having reached it from an arbitrary initial state.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Balance probability flow, not acceptance percentages",
+      "explanation": "For distinct states, P(x,y)=q(y|x)α(x,y). Multiplying by π(x) gives the smaller of the forward proposed flow π(x)q(y|x) and its reverse. Both directions therefore agree. The diagonal includes rejected proposals and proposals that select the current state."
     },
     {
-      "title": "Core computation",
-      "explanation": "Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x."
+      "title": "An independence proposal still needs correction",
+      "explanation": "Here q(y|x)=q(y), but q(x|y)=q(x). Unless q(x)=q(y), independence from the current state does not make the proposal symmetric. Removing the proposal ratio produces a different invariant law: π̃(i)=π(i)q(i)/Σⱼπ(j)q(j). The third bar in each group shows that exact wrong law."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+      "title": "Invariant is not independent",
+      "explanation": "For this positive finite-state example, all states communicate and self-transitions remove periodicity, so the distribution converges to its invariant law. Consecutive states are nevertheless dependent. A short run initialized at one state is not an IID sample, even with a mathematically valid kernel."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+    "Evaluate the target up to a shared normalizing constant and specify a proposal with adequate reachability.",
+    "Draw a proposal, compute the forward/reverse correction and accept with that probability.",
+    "If rejected, record the current state again; inspect exploration and Monte Carlo uncertainty across the resulting chain."
   ],
   "formulas": [
     {
-      "label": "Metropolis-Hastings rule",
-      "expression": "alpha(x,y)=min(1, [pi(y)q(x|y)]/[pi(x)q(y|x)])",
-      "meaning": "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance."
+      "label": "Definition and assumptions",
+      "expression": "α(x,y)=min(1, π(y)q(x|y)/(π(x)q(y|x))); π(x)P(x,y)=π(y)P(y,x)",
+      "meaning": "Three states have target masses π=(0.2,0.3,0.5). The independent proposal has q=(r,(1−r)/2,(1−r)/2), identical from every current state. All masses are positive. Bars compare exact invariant laws of the corrected and deliberately incorrect transition rules, not simulated histograms or convergence rates. Matrix rows are current states; columns are next states."
     }
   ],
   "example": {
-    "title": "Metropolis-Hastings in a small case",
-    "setup": "Estimate a one-dimensional posterior with a Gaussian random-walk proposal.",
+    "title": "An asymmetric invitation from state 2",
+    "setup": "Set r=0.6, so q=(0.6,0.2,0.2).",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "For 2→0, the ratio is (0.2·0.2)/(0.5·0.6)=2/15; P₂₀=0.6·2/15=0.08.",
+      "For 0→2, acceptance is 1, so P₀₂=0.2. Both stationary flows equal 0.04.",
+      "Without proposal correction, the invariant weights are (0.12,0.06,0.10), normalized by 0.28: approximately (0.428571,0.214286,0.357143)."
     ],
-    "result": "Accepted and repeated states form a chain whose stationary distribution is the desired posterior."
+    "result": "The incorrect chain can appear stable while sampling the wrong distribution."
   },
   "pitfalls": [
-    "A high acceptance rate can still indicate tiny moves and poor exploration.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Keeping only accepted moves generally changes the sampled distribution; repeated states carry information and must not simply be discarded.",
+    "High acceptance does not establish good exploration: tiny local proposals may be accepted frequently while barely moving."
   ],
-  "implementation": [],
+  "implementation": [
+    "Compare log U with min(0, log π(y)−log π(x)+log q(x|y)−log q(y|x)) to avoid unnecessary exponentiation.",
+    "Check the actual proposal near boundaries; clipping or truncation can destroy a symmetry assumed by the acceptance rule."
+  ],
   "takeaways": [
-    "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
-    "Draw y from q(y|x), accept with the target-and-proposal density ratio capped at one, otherwise repeat x.",
-    "It needs only an unnormalized target density, but proposal scale strongly affects mixing and acceptance.",
-    "Accepted and repeated states form a chain whose stationary distribution is the desired posterior."
+    "A state-independent proposal is not necessarily symmetric. The reverse/forward proposal ratio cancels only when those probabilities agree.",
+    "Distinguish proposal independence, proposal symmetry and independent output draws."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Metropolis-Hastings illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Metropolis–Hastings constructs a transition kernel that preserves a target distribution by correcting proposed moves with an acceptance probability. The correction depends on both target density and forward/reverse proposal probabilities. Preserving the target is not the same as having reached it from an arbitrary initial state.","Calculate a corrected transition and verify detailed balance.","Distinguish proposal independence, proposal symmetry and independent output draws.","A proposal is an invitation, not a vote for the target distribution.","α(x,y)=min(1, π(y)q(x|y)/(π(x)q(y|x))); π(x)P(x,y)=π(y)P(y,x)","Three states have target masses π=(0.2,0.3,0.5). The independent proposal has q=(r,(1−r)/2,(1−r)/2), identical from every current state. All masses are positive. Bars compare exact invariant laws of the corrected and deliberately incorrect transition rules, not simulated histograms or convergence rates. Matrix rows are current states; columns are next states.","A state-independent proposal is not necessarily symmetric. The reverse/forward proposal ratio cancels only when those probabilities agree."]} />

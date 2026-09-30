@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Derivatives measure change; partial derivatives isolate one variable while holding others fixed.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A partial derivative answers a question with an explicit hold-everything-else-fixed clause.",
+  "overview": "A derivative describes a first-order change in a function as its input changes. A partial derivative varies one coordinate while fixing the others. For a multivariable function, this coordinate-wise slope differs from the derivative along a path where several inputs change together.",
+  "concepts": [
+    {
+      "title": "A limit becomes a local linear model",
+      "explanation": "For a scalar function g, differentiability at a means g(a+h)=g(a)+g′(a)h+o(h). The derivative is not the finite difference itself. In this quadratic slice the omitted term is exactly h², so its sign and scale can be checked directly."
+    },
+    {
+      "title": "Hold the independent coordinates fixed",
+      "explanation": "To differentiate x²y with respect to x, y is a constant multiplier. To differentiate with respect to y, x² is constant. For this smooth function the two resulting partial derivatives coexist and answer different questions about change."
+    },
+    {
+      "title": "A path changes the question",
+      "explanation": "If x=x(t) and y=y(t), the total derivative is fₓx′(t)+fᵧy′(t). For the path x=t,y=t evaluated at t=1, it is 2+1+cos(1), not just the x-partial 2. Existence of partial derivatives alone is not enough to guarantee differentiability for an arbitrary function."
+    }
+  ],
+  "process": [
+    "Name the variable being differentiated and which independent quantities are held fixed.",
+    "Compute the local derivative at the point of interest.",
+    "Use the tangent approximation for sufficiently small changes and account for the remainder or other varying inputs."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x,y)=x²y+sin y; ∂f/∂x=2xy; ∂f/∂y=x²+cos y; f(a+h,1)≈f(a,1)+2ah",
+      "meaning": "Smooth real function with the coordinate y fixed at 1 radian. The graph is the one-dimensional slice f(x,1), not a surface rendering. The tangent segment is centered at the selected a and the numeric table reports both partial derivatives there. Coordinates and values are dimensionless."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The missing hundredth",
+    "setup": "Take a=1, y=1 and Δx=0.1.",
+    "steps": [
+      "The x-partial is 2, so the first-order predicted change is 0.2.",
+      "The exact change is 1.1²−1²=0.21; sin(1) cancels.",
+      "The difference is (0.1)²=0.01, the quadratic remainder."
+    ],
+    "result": "A correct derivative does not promise an exact finite-step prediction."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Differentiating along a relationship y=y(x) while pretending y is fixed drops a chain-rule contribution.",
+    "Near a nonsmooth point, a classical derivative may not exist; a framework's chosen subgradient convention is a separate computational choice."
+  ],
+  "implementation": [
+    "State tensor shapes and which inputs require gradients; unintended broadcasting can differentiate a different scalar objective.",
+    "Use automatic differentiation for an implemented smooth composition while remembering that it follows the operations and branches actually executed."
+  ],
+  "takeaways": [
+    "A partial derivative is a local slope under a specified restriction. A finite change has a remainder, and changing the other coordinate requires additional derivative terms.",
+    "Distinguish a derivative, a finite change and a derivative along a coupled path."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Derivatives measure change; partial derivatives isolate one variable while holding others fixed.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Derivatives and partial derivatives illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A derivative describes a first-order change in a function as its input changes. A partial derivative varies one coordinate while fixing the others. For a multivariable function, this coordinate-wise slope differs from the derivative along a path where several inputs change together.","Interpret a partial derivative as the slope of a fixed-coordinate slice.","Distinguish a derivative, a finite change and a derivative along a coupled path.","A partial derivative answers a question with an explicit hold-everything-else-fixed clause.","f(x,y)=x²y+sin y; ∂f/∂x=2xy; ∂f/∂y=x²+cos y; f(a+h,1)≈f(a,1)+2ah","Smooth real function with the coordinate y fixed at 1 radian. The graph is the one-dimensional slice f(x,1), not a surface rendering. The tangent segment is centered at the selected a and the numeric table reports both partial derivatives there. Coordinates and values are dimensionless.","A partial derivative is a local slope under a specified restriction. A finite change has a remainder, and changing the other coordinate requires additional derivative terms."]} />

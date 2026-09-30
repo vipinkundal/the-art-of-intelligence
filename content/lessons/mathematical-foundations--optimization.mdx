@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+  "hook": "Changing the penalty moves the target; changing a step size changes how you approach it.",
+  "overview": "Optimization selects decision variables to minimize or maximize a specified objective over a feasible set. The model defines what counts as a good answer; the algorithm attempts to find it. Smoothness, convexity, constraints and numerical conditioning determine which guarantees and computational methods apply.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints."
+      "title": "Name what can move",
+      "explanation": "w is optimized; the target 3 and λ are held fixed during a solve. Moving the slider defines a new member of the problem family. An optimizer's learning rate would instead change its trajectory on the same fixed objective."
     },
     {
-      "title": "Learn",
-      "explanation": "Objectives, losses, and cost functions : These define what the system is trying to minimize, maximize, or balance."
+      "title": "Read the terms separately",
+      "explanation": "The fit term alone prefers w=3. The penalty alone prefers w=0. Their sum expresses the chosen tradeoff. At λ=1 the minimizer is w=2, even though the fit is worse than at w=3. Comparing only the unpenalized loss would evaluate the wrong objective."
     },
     {
-      "title": "Learn",
-      "explanation": "Parameters and decision variables : Parameters are the adjustable values the optimizer changes."
+      "title": "Check the kink rather than ignoring it",
+      "explanation": "For w>0, the derivative is w−3+λ, giving candidate 3−λ when λ<3. For w<0 it is w−3−λ, which has no negative root. At zero the subgradient interval is [−3−λ,−3+λ]. It contains zero exactly when λ≥3, establishing the soft-threshold solution."
     },
     {
-      "title": "Learn",
-      "explanation": "Unconstrained and constrained optimization : Unconstrained problems move freely; constrained problems must satisfy rules or limits."
+      "title": "Know what makes the certificate global",
+      "explanation": "The squared term is strictly convex and the absolute-value term is convex for λ≥0. Their sum is strictly convex, so the stated minimizer is unique. In a nonconvex objective, a local first-order condition alone would not establish a global optimum."
     },
     {
-      "title": "Learn",
-      "explanation": "Convex and non-convex optimization : Convex problems have simpler global structure; non-convex problems can contain many local traps."
-    },
-    {
-      "title": "Learn",
-      "explanation": "Local minima, global minima, and saddle points : These describe places where progress can stop or become ambiguous."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Training a model is usually an optimization problem: choose parameters that reduce prediction error, improve likelihood, satisfy constraints, or maximize expected reward."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Optimization choices affect speed, stability, generalization, and cost. Learning rates, batch size, regularization, and optimizer choice can decide whether a model trains well or fails."
+      "title": "Choose the next lesson by structure",
+      "explanation": "Start with variables, objectives and constraints. Then study convexity, gradients and learning rates. Momentum and adaptive methods address iterative dynamics; line search and numerical stability address step acceptance and arithmetic. Lagrange multipliers and KKT conditions handle constrained optimality under explicit assumptions."
     }
   ],
   "process": [
-    "A model starts with parameters that produce weak outputs. Optimization changes those parameters step by step so the loss gets smaller, the reward gets larger, or the system better satisfies its constraints."
+    "Specify variables, data, objective terms, constraints and the intended evaluation metric.",
+    "Use smoothness and convexity to choose valid optimality conditions and an appropriate solver family.",
+    "Report feasibility, objective values and stopping evidence separately from performance on unseen data."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "min_w Fλ(w)=½(w−3)²+λ|w|; w*=max(3−λ,0), λ≥0",
+      "meaning": "One real decision variable w, fixed target value 3, squared-error fit with coefficient one half, and a nonnegative absolute-value penalty weight λ. There are no explicit constraints. The exact minimizer is calculated analytically, not obtained by an iterative optimizer. At λ>0 the objective has a kink at zero. This scalar model illustrates objective structure; it does not measure predictive generalization or choose λ from data."
+    }
+  ],
   "example": {
-    "title": "Optimization example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Pay a little fit error to save penalty",
+    "setup": "Set λ=1.",
+    "steps": [
+      "At w=3, fit is zero and penalty is three, giving total three.",
+      "At w*=2, fit is ½ and penalty is two, giving total 2.5.",
+      "At λ=3, the solution reaches zero with total 4.5. Increasing λ further leaves the minimizer at zero in this model."
+    ],
+    "result": "The optimal fit term can increase when the chosen objective changes; that is not necessarily an optimizer failure."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "A lower training objective does not establish better generalization. Selecting λ is a separate statistical/model-selection problem.",
+    "Do not apply a smooth zero-gradient equation at a kink. One-sided derivatives or subgradients can provide the correct condition.",
+    "Scaling a loss from a sum to a mean changes its balance with a fixed penalty coefficient unless that coefficient is adjusted consistently."
+  ],
+  "implementation": [
+    "The exact solution is also the proximal operator of λ|·| evaluated at 3. This gives a small reference calculation for understanding sparse optimization updates, not a general iterative training demonstration.",
+    "Display data fit, penalty and total independently when tuning a regularized model so users can see which quantity improved."
+  ],
   "takeaways": [
-    "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
-    "Read Boyd and Vandenberghe's Convex Optimization materials for a rigorous foundation in objectives, constraints, and optimization geometry."
+    "Separate problem specification, optimality conditions and algorithm behavior. A penalty can make zero optimal at a nondifferentiable point; ordinary zero-gradient reasoning is then insufficient.",
+    "Certify a nonsmooth convex optimum and interpret its fit–penalty tradeoff."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Optimization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Optimization selects decision variables to minimize or maximize a specified objective over a feasible set. The model defines what counts as a good answer; the algorithm attempts to find it. Smoothness, convexity, constraints and numerical conditioning determine which guarantees and computational methods apply.","Separate optimization variables and hyperparameters from solver controls.","Certify a nonsmooth convex optimum and interpret its fit–penalty tradeoff.","Changing the penalty moves the target; changing a step size changes how you approach it.","min_w Fλ(w)=½(w−3)²+λ|w|; w*=max(3−λ,0), λ≥0","One real decision variable w, fixed target value 3, squared-error fit with coefficient one half, and a nonnegative absolute-value penalty weight λ. There are no explicit constraints. The exact minimizer is calculated analytically, not obtained by an iterative optimizer. At λ>0 the objective has a kink at zero. This scalar model illustrates objective structure; it does not measure predictive generalization or choose λ from data.","Separate problem specification, optimality conditions and algorithm behavior. A penalty can make zero optimal at a nondifferentiable point; ordinary zero-gradient reasoning is then insufficient."]} />

@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+  "hook": "A completely noisy bit is surprising—but tells you nothing about the source.",
+  "overview": "Information theory quantifies uncertainty, dependence and limits on representation or communication under a probability model. Entropy concerns a variable's uncertainty; conditional entropy concerns what remains after observing another variable; mutual information measures their dependence. These quantities do not directly measure truth, semantic meaning or usefulness for a task.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations."
+      "title": "Start from a joint distribution",
+      "explanation": "The four joint cells combine input mass with either a flip or a no-flip probability. Summing the Y=1 column gives ¼(1−ε)+¾ε=¼+ε/2. Entropies and mutual information should be derived from this same joint law, not from unrelated curves."
     },
     {
-      "title": "Learn",
-      "explanation": "Entropy : Measures the uncertainty or average surprise in a probability distribution."
+      "title": "Separate signal uncertainty from noise uncertainty",
+      "explanation": "Given X, the only remaining uncertainty in Y is whether the channel flipped it, so H(Y|X)=h₂(ε). Without X, the output has entropy h₂(¼+ε/2). Their difference is I(X;Y), the reduction in average uncertainty supplied by knowing X."
     },
     {
-      "title": "Learn",
-      "explanation": "Cross-entropy : Measures how costly it is to encode true outcomes using a model's predicted distribution."
+      "title": "Inspect the endpoints",
+      "explanation": "With no noise, Y=X and mutual information equals H(X)≈0.811278 bits. At ε=1/2, Y is a fair bit regardless of X. H(Y) becomes one bit, H(Y|X) also becomes one, and mutual information falls to zero. Maximum output entropy is not maximum retained information."
     },
     {
-      "title": "Learn",
-      "explanation": "KL divergence : Measures how much one distribution differs from another, with direction-dependent penalties."
+      "title": "Capacity changes a different choice",
+      "explanation": "For a binary symmetric channel, capacity is 1−h₂(ε) bits per use, attained by a fair input. This lab fixes a biased input, so its mutual information can be smaller. Capacity is an asymptotic achievable-rate limit under a channel model, not the payload of this single uncoded bit."
     },
     {
-      "title": "Learn",
-      "explanation": "Mutual information : Measures how much knowing one variable reduces uncertainty about another."
-    },
-    {
-      "title": "Learn",
-      "explanation": "Conditional entropy : Measures remaining uncertainty in one variable after another variable is known."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Classification and language models often train with cross-entropy. Generative models compare distributions, compress information, and learn representations that preserve useful signals while discarding noise."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Perplexity summarizes how uncertain a language model is, KL divergence compares probability distributions, and mutual information helps reason about dependence between variables."
+      "title": "Navigate by the question",
+      "explanation": "Use entropy and conditional entropy for uncertainty; cross-entropy, KL divergence and perplexity for model mismatch. Use mutual information for dependence, coding theory for representation/transmission, rate-distortion for lossy tradeoffs, and the information bottleneck for task-relevant representations."
     }
   ],
   "process": [
-    "Information theory asks how much uncertainty remains, how surprising an outcome is, and how much one variable tells us about another. AI uses those ideas in losses, model evaluation, compression, and learned representations."
+    "Write the joint or conditional probability model and identify the variables being compared.",
+    "Calculate the appropriate uncertainty or dependence quantity with a stated logarithm base.",
+    "Interpret it under the task's operational constraints: compression, prediction, transmission or relevance."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "X~Bernoulli(¼); Y=X⊕N, N~Bernoulli(ε), N⊥X; I(X;Y)=h₂(¼+ε/2)−h₂(ε)",
+      "meaning": "A memoryless binary symmetric channel: each use flips the input with probability ε independently of the input and other uses. The input probability P(X=1)=1/4 is fixed. h₂(p)=−p log₂p−(1−p)log₂(1−p), with 0 log₂0=0. All plotted quantities are discrete population entropies in bits. Capacity is shown only as a separate numeric comparison because it optimizes over the input distribution, unlike this fixed-input experiment."
+    }
+  ],
   "example": {
-    "title": "Information Theory example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "One bit at the output, zero bits about the input",
+    "setup": "Set ε=0.5.",
+    "steps": [
+      "The joint table is [[0.375,0.375],[0.125,0.125]]. Each row splits equally across the outputs.",
+      "P(Y=1)=0.5, so H(Y)=1 bit. Knowing either input value still leaves Y fair, so H(Y|X)=1 bit.",
+      "The difference is I(X;Y)=0. The channel has made the output more uncertain while erasing dependence on the source."
+    ],
+    "result": "A larger entropy number alone is not evidence that a representation contains more useful information."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Mutual information is symmetric and does not identify a causal direction from observational data alone.",
+    "Differential entropy for continuous variables is not a direct substitute for discrete entropy; units and coordinate changes matter.",
+    "Empirical information estimates can be biased or unstable in high dimensions. This exact four-cell model does not validate a general estimator."
+  ],
+  "implementation": [
+    "The UI keeps output entropy, noise entropy and shared information in one chart with the same bit units and an inspectable joint table.",
+    "For a learned representation, state which source or target the claimed information concerns and whether reported numbers are exact, estimated or bounded."
+  ],
   "takeaways": [
-    "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
-    "Read David MacKay's Information Theory, Inference, and Learning Algorithms for a deeper connection between coding, inference, and machine learning."
+    "Output entropy and information about an input can move in opposite directions. Always name the variables, conditioning, logarithm base and probability model before interpreting a bit count.",
+    "Relate a fixed-input mutual information to an optimized channel capacity without conflating them."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Information Theory illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Information theory quantifies uncertainty, dependence and limits on representation or communication under a probability model. Entropy concerns a variable's uncertainty; conditional entropy concerns what remains after observing another variable; mutual information measures their dependence. These quantities do not directly measure truth, semantic meaning or usefulness for a task.","Distinguish output uncertainty from information about a source.","Relate a fixed-input mutual information to an optimized channel capacity without conflating them.","A completely noisy bit is surprising—but tells you nothing about the source.","X~Bernoulli(¼); Y=X⊕N, N~Bernoulli(ε), N⊥X; I(X;Y)=h₂(¼+ε/2)−h₂(ε)","A memoryless binary symmetric channel: each use flips the input with probability ε independently of the input and other uses. The input probability P(X=1)=1/4 is fixed. h₂(p)=−p log₂p−(1−p)log₂(1−p), with 0 log₂0=0. All plotted quantities are discrete population entropies in bits. Capacity is shown only as a separate numeric comparison because it optimizes over the input distribution, unlike this fixed-input experiment.","Output entropy and information about an input can move in opposite directions. Always name the variables, conditioning, logarithm base and probability model before interpreting a bit count."]} />

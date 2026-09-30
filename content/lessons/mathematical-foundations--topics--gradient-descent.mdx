@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Moves parameters opposite the gradient to reduce the objective locally.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The gradient chooses a direction; the step size decides whether you overshoot.",
+  "overview": "Gradient descent takes a step opposite the gradient, then evaluates the gradient again at the new point. Its behavior depends on both the step size and objective curvature. Even a smooth convex bowl can produce divergent iterates if the step is too large.",
+  "concepts": [
+    {
+      "title": "Read the error multiplier",
+      "explanation": "The minimizer is zero, so the parameter is also the optimization error. Each update multiplies it by 1−4η. A factor between 0 and 1 approaches from one side; a factor between −1 and 0 alternates sides while shrinking. Magnitude above 1 amplifies error."
+    },
+    {
+      "title": "Separate a local direction from a finite step",
+      "explanation": "For a differentiable objective with nonzero gradient, sufficiently small movement along the negative gradient reduces the objective. A finite step can leave that local neighborhood. With an L-Lipschitz gradient, the descent lemma bounds the loss change by −η(1−Lη/2) times the squared gradient norm."
+    },
+    {
+      "title": "Curvature has multiple directions",
+      "explanation": "For a positive-definite quadratic with Hessian H, each eigen-direction has multiplier 1−ηλᵢ. One fixed rate must accommodate the largest eigenvalue, while small eigenvalues can slow progress. This is an optimization conditioning issue, not evidence of model generalization."
+    }
+  ],
+  "process": [
+    "Specify the objective and its gradient, including whether the loss is summed or averaged.",
+    "Choose a rate compatible with the local scale, or use a line search when exact objective evaluations are practical.",
+    "Inspect objective values and gradient norms alongside parameter changes; stop with a stated criterion."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "xₜ₊₁=xₜ−η∇f(xₜ); f(x)=2x² ⇒ xₜ₊₁=(1−4η)xₜ",
+      "meaning": "Exact full gradients of a one-dimensional quadratic, initial x₀=1, and a fixed step size for 12 updates. The plot shows signed parameter values, not loss. All quantities are dimensionless; the vertical scale expands to show divergence rather than clipping it."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Same bowl, three regimes",
+    "setup": "Start from x₀=1 on f(x)=2x².",
+    "steps": [
+      "At η=0.2, x₁=0.2 and x₂=0.04; loss falls from 2 to 0.08 to 0.0032.",
+      "At η=0.5, the multiplier is −1: x alternates between 1 and −1 without improving the loss.",
+      "At η=0.6, the multiplier is −1.4: after 12 updates x≈56.6939 and the loss is about 6428.4."
+    ],
+    "result": "The objective has not changed; the update rule determines whether the iterates converge."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A near-zero gradient can indicate a saddle or local maximum for a nonconvex objective; it is not a universal certificate of a good minimum.",
+    "Rescaling a loss rescales its gradient. Keeping the same numerical learning rate need not preserve the trajectory."
+  ],
+  "implementation": [
+    "Record the loss normalization, parameter scaling, rate, and stopping rule with the run.",
+    "Use finite-value checks and inspect the actual objective when a step fails; gradient clipping changes the algorithm and does not repair an incorrectly defined loss."
+  ],
+  "takeaways": [
+    "For this bowl, convergence requires 0<η<0.5. More generally, step-size limits depend on curvature; convexity alone does not make an arbitrary update safe.",
+    "Distinguish signed parameter oscillation from changes in objective value."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Moves parameters opposite the gradient to reduce the objective locally.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Gradient descent illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Gradient descent takes a step opposite the gradient, then evaluates the gradient again at the new point. Its behavior depends on both the step size and objective curvature. Even a smooth convex bowl can produce divergent iterates if the step is too large.","Derive the exact stability interval of a quadratic update.","Distinguish signed parameter oscillation from changes in objective value.","The gradient chooses a direction; the step size decides whether you overshoot.","xₜ₊₁=xₜ−η∇f(xₜ); f(x)=2x² ⇒ xₜ₊₁=(1−4η)xₜ","Exact full gradients of a one-dimensional quadratic, initial x₀=1, and a fixed step size for 12 updates. The plot shows signed parameter values, not loss. All quantities are dimensionless; the vertical scale expands to show divergence rather than clipping it.","For this bowl, convergence requires 0<η<0.5. More generally, step-size limits depend on curvature; convexity alone does not make an arbitrary update safe."]} />

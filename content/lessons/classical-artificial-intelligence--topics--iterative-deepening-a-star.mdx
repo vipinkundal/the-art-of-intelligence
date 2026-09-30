@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
+  "hook": "The next contour comes from the cheapest rejected possibility.",
+  "overview": "Iterative deepening A* (IDA*) runs depth-first passes bounded by f=g+h. It starts at h(start) and, after an unsuccessful pass, raises the threshold to the smallest f that exceeded the old bound. It preserves an admissible heuristic's cost guarantee under suitable termination conditions while trading A*'s stored frontier for repeated depth-first work.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Depth and cost contours are different",
+      "explanation": "Along the cheap route, f values are 2,2.5,3,3.5,4 at depths zero through four. B is only one edge away but has f=5.5. A cost contour can therefore admit a deeper cheap prefix while rejecting a shallower expensive one."
     },
     {
-      "title": "Core rule",
-      "explanation": "Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value."
+      "title": "Remember the smallest exceeded value",
+      "explanation": "At threshold two, S is allowed, while A at 2.5 and B at 5.5 are rejected. The next useful threshold is 2.5. Raising by an arbitrary integer would skip that contour; raising by a tiny epsilon could waste passes that admit no new work."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds."
+      "title": "Check the f bound before returning a goal",
+      "explanation": "For a goal, h=0 and f equals its actual path cost. A goal whose f exceeds the current threshold must be rejected, or the depth-first pass could return an expensive solution before the optimal contour is explored. This ordering differs from goal-before-depth-cutoff in ordinary DLS because the current bound is a cost certificate."
+    },
+    {
+      "title": "Why an optimal contour cannot be skipped",
+      "explanation": "Admissibility keeps every prefix f of an optimal route at most C*. If the current threshold is below C*, the first blocked optimal prefix is one of the exceeded candidates, so the minimum exceeded f cannot exceed C*. Once the threshold reaches C*, a pass can find an optimal goal without accepting a more expensive one."
+    },
+    {
+      "title": "Working memory is not total work",
+      "explanation": "A depth-first pass can retain only its active path and pending successor iterators. This lab's five passes require 23 node visits, including repeated prefixes, to return the cost-four route. Graph transpositions and many distinct f values can make repetition costly. The original exponential-tree analysis is not a blanket guarantee of practical speed."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds."
+    "Initialize the threshold to h(start) and start a fresh depth-first pass.",
+    "Prune entries with f greater than the threshold, recording the minimum exceeded f; otherwise check the goal and recurse.",
+    "Return success immediately. If no exceeded value exists and no goal was found, return exhausted failure; otherwise repeat at the recorded next threshold."
   ],
   "formulas": [
     {
-      "label": "Iterative Deepening A* rule",
-      "expression": "threshold_next = min{f(n) : f(n) > threshold}",
-      "meaning": "It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds."
+      "label": "Definition and assumptions",
+      "expression": "T₀=h(S); T_next=min{g(n)+h(n) : f(n)>T in this pass}",
+      "meaning": "The graph is S→A→C→D→G with four unit-cost edges, S→B cost 1 and B→G cost 9. h equals half the exact remaining distance: S:2,A:1.5,B:4.5,C:1,D:0.5,G:0. Use alphabetical DFS, current-path cycle checking, and prune f>T before accepting a goal. Count all entered nodes, including cutoff and goal checks. Each pass restarts from S."
     }
   ],
   "example": {
-    "title": "Iterative Deepening A* in a small case",
-    "setup": "Solve a sliding-tile puzzle when a full A* frontier would exceed memory.",
+    "title": "Half-credit contours",
+    "setup": "Advance through all five passes.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
-      "Check the outcome against the goal and stated assumptions."
+      "Thresholds are 2,2.5,3,3.5,4, determined by actual rejected f values.",
+      "Pass visits are 3,4,5,6,5, totaling 23. The first four passes each reject two entries; the final pass finds G on the first branch.",
+      "The returned path S→A→C→D→G costs four. The side branch B at f=5.5 is never expanded."
     ],
-    "result": "IDA* finds an optimal solution with an admissible heuristic while storing mainly the current path."
+    "result": "The integer depth grows one edge at a time here, but the bound being raised is measured in credits, not edges."
   },
   "pitfalls": [
-    "Path-cycle checking is essential, and weak heuristics cause many repeated passes.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Do not reuse a global Boolean visited set across passes; an entry rejected under a smaller bound may become necessary later.",
+    "Current-path cycle checks avoid revisiting an ancestor, but do not remove all repeated paths to the same state.",
+    "Completeness requires finite work below relevant thresholds, for example finite branching and positive costs bounded away from zero with nonnegative h. An arbitrary infinite zero-cost region can prevent a pass from finishing."
   ],
-  "implementation": [],
+  "implementation": [
+    "Return either a found path or the minimum exceeded f from recursion, using infinity only for genuine exhaustion. Keep cutoff accounting separate from expanded-node counts.",
+    "For low-memory production use, do not retain every pass trace. This tiny browser lab stores them for teaching and should not be benchmarked as a memory-optimal IDA* implementation."
+  ],
   "takeaways": [
-    "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
-    "Prune any node whose g+h exceeds the current threshold, then raise the threshold to the smallest exceeded value.",
-    "It retains A*-style heuristic guidance with linear path memory, but can repeat substantial work across thresholds.",
-    "IDA* finds an optimal solution with an admissible heuristic while storing mainly the current path."
+    "IDA* deepens an f-cost bound, not an edge-depth bound. Taking the smallest exceeded score avoids skipping a potentially optimal cost contour; memory savings can come with substantial repeated work.",
+    "Explain cost optimality and repeated-work tradeoffs without confusing IDA* with depth-only iteration."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Iterative Deepening A* illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Iterative deepening A* (IDA*) runs depth-first passes bounded by f=g+h. It starts at h(start) and, after an unsuccessful pass, raises the threshold to the smallest f that exceeded the old bound. It preserves an admissible heuristic's cost guarantee under suitable termination conditions while trading A*'s stored frontier for repeated depth-first work.","Compute the next IDA* threshold from exceeded f values.","Explain cost optimality and repeated-work tradeoffs without confusing IDA* with depth-only iteration.","The next contour comes from the cheapest rejected possibility.","T₀=h(S); T_next=min{g(n)+h(n) : f(n)>T in this pass}","The graph is S→A→C→D→G with four unit-cost edges, S→B cost 1 and B→G cost 9. h equals half the exact remaining distance: S:2,A:1.5,B:4.5,C:1,D:0.5,G:0. Use alphabetical DFS, current-path cycle checking, and prune f>T before accepting a goal. Count all entered nodes, including cutoff and goal checks. Each pass restarts from S.","IDA* deepens an f-cost bound, not an edge-depth bound. Taking the smallest exceeded score avoids skipping a potentially optimal cost contour; memory savings can come with substantial repeated work."]} />

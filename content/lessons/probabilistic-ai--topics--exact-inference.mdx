@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Exact inference computes a posterior, marginal, likelihood, or most-probable assignment without approximation error.",
+  "hook": "Sum to ask about a part; maximize to choose a whole assignment.",
+  "overview": "Exact inference evaluates a specified probabilistic query without algorithmic approximation, subject to numerical precision and the model itself. Marginal probabilities, conditional probabilities and the most probable joint assignment are different queries; exact answers to one do not automatically solve another.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "Marginalization accumulates alternatives",
+      "explanation": "P(Y=1) adds the mass of 01 and 11. It does not select the larger of those two cells. Conditional probability further divides by the mass of the conditioning event, such as P(X=1|Y=1)=t/(34+t)."
     },
     {
-      "title": "Core computation",
-      "explanation": "Rearrange sums and products using graph structure, eliminating hidden variables while preserving the exact query."
+      "title": "Joint MAP chooses one compatible configuration",
+      "explanation": "Compare the four cells together. At t=30 the largest is 00, while the separately most likely X and Y values combine to 01. Each individual choice is reasonable for a per-variable prediction objective, but it is not the joint MAP solution."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The answer is exact up to numeric precision, but time and memory often grow exponentially with graph treewidth."
+      "title": "A mixed query requires care",
+      "explanation": "If only a subset of variables is to be optimized and the rest marginalized, sum out the hidden variables before maximizing over the query. In general, interchanging max and sum changes the answer."
+    },
+    {
+      "title": "Exactness is conditional on the model",
+      "explanation": "The arithmetic may be exact while priors, likelihoods or modelling assumptions are wrong for the application. Conversely, an exact algorithm implemented in floating point still needs stable arithmetic. Exact is not synonymous with certain, cheap or empirically calibrated."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Rearrange sums and products using graph structure, eliminating hidden variables while preserving the exact query.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: The answer is exact up to numeric precision, but time and memory often grow exponentially with graph treewidth."
+    "Specify whether the output is a marginal, a conditional, a joint MAP assignment or a mixed marginal-MAP query.",
+    "Apply sums, conditioning and maxima in the order required by that query.",
+    "Check normalization and ties, then interpret the answer under the model assumptions and numerical precision."
   ],
   "formulas": [
     {
-      "label": "Exact inference rule",
-      "expression": "P(Q|e) = alpha sum_h product_a f_a(Q,h,e)",
-      "meaning": "The answer is exact up to numeric precision, but time and memory often grow exponentially with graph treewidth."
+      "label": "Definition and assumptions",
+      "expression": "p(x,y)=wxy/Σw; p(x)=Σy p(x,y); joint MAP=argmax(x,y) p(x,y)",
+      "meaning": "Two binary variables have weights (35,34,1,t) in assignment order (00,01,10,11). The slider changes t. The normalizer is 70+t, and all four assignments are enumerated. The horizontal axis labels the four binary assignments. Joint ties are reported; a separate marginal tie chooses state 0 for display."
     }
   ],
   "example": {
-    "title": "Exact inference in a small case",
-    "setup": "Compute a disease posterior in a small Bayesian network after observing two symptoms.",
+    "title": "A four-cell counterexample",
+    "setup": "At t=30 the normalizer is 100, so P(00)=0.35, P(01)=0.34, P(10)=0.01 and P(11)=0.30.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Rearrange sums and products using graph structure, eliminating hidden variables while preserving the exact query.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "P(X=0)=0.35+0.34=0.69, so the marginal mode of X is 0.",
+      "P(Y=1)=0.34+0.30=0.64, so the marginal mode of Y is 1.",
+      "Those choices form 01, with joint probability 0.34. But the joint MAP assignment is 00, with probability 0.35. Also P(X=1|Y=1)=0.30/0.64=0.46875."
     ],
-    "result": "Summing all compatible hidden assignments yields the normalized posterior exactly."
+    "result": "At t=35, 00 and 11 tie for joint MAP while separate marginal modes still give 01."
   },
   "pitfalls": [
-    "Exact does not mean cheap, and floating-point underflow still needs stable implementation.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "Normalizing a joint table is not the same operation as normalizing each row independently; the latter produces conditional distributions.",
+    "Returning a maximum value is not enough when the user needs the maximizing assignment. Structured optimization often requires backpointers.",
+    "A finite model can still be too large to enumerate. Graph structure, variable cardinalities, query and elimination order determine whether an exact algorithm is practical."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log-sum-exp for sums of very small probabilities, and record tie-breaking separately from the probability calculation.",
+    "Keep the query type in the interface or API contract. A single label named 'prediction' can hide a marginal-versus-joint mismatch."
+  ],
   "takeaways": [
-    "Exact inference computes a posterior, marginal, likelihood, or most-probable assignment without approximation error.",
-    "Rearrange sums and products using graph structure, eliminating hidden variables while preserving the exact query.",
-    "The answer is exact up to numeric precision, but time and memory often grow exponentially with graph treewidth.",
-    "Summing all compatible hidden assignments yields the normalized posterior exactly."
+    "Exact computation cannot repair a mismatched query: independent choices of marginal modes need not maximize joint probability.",
+    "Explain why combining marginal modes can differ from a most-probable joint assignment."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Exact inference computes a posterior, marginal, likelihood, or most-probable assignment without approximation error.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Exact inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Exact inference evaluates a specified probabilistic query without algorithmic approximation, subject to numerical precision and the model itself. Marginal probabilities, conditional probabilities and the most probable joint assignment are different queries; exact answers to one do not automatically solve another.","Compute and distinguish marginal, conditional and joint-MAP queries.","Explain why combining marginal modes can differ from a most-probable joint assignment.","Sum to ask about a part; maximize to choose a whole assignment.","p(x,y)=wxy/Σw; p(x)=Σy p(x,y); joint MAP=argmax(x,y) p(x,y)","Two binary variables have weights (35,34,1,t) in assignment order (00,01,10,11). The slider changes t. The normalizer is 70+t, and all four assignments are enumerated. The horizontal axis labels the four binary assignments. Joint ties are reported; a separate marginal tie chooses state 0 for display.","Exact computation cannot repair a mismatched query: independent choices of marginal modes need not maximize joint probability."]} />

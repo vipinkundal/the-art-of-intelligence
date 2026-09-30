@@ -1,57 +1,57 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
+  "hook": "The best fit inside a narrow family can prefer one explanation over a balanced view of both.",
+  "overview": "Variational inference turns distribution approximation into optimization over a chosen family. In the common KL(q||p) formulation, maximizing an evidence lower bound avoids evaluating an intractable normalizing constant, but cannot remove limitations of the family.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Optimize a distribution, not a single latent point",
+      "explanation": "The parameter a specifies four probabilities. Mean-field independence forces covariance to zero, whereas the target covariance is 0.49−0.5×0.5=0.24. No setting of a can reproduce that dependence."
     },
     {
-      "title": "Core computation",
-      "explanation": "Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations."
+      "title": "The lower-bound identity",
+      "explanation": "Substitute log p=log w−log Z into KL(q||p)=E_q[log q−log p]. Rearranging gives log Z=E_q[log w]+H(q)+KL(q||p). Nonnegative KL makes the first two terms a lower bound. For Bayesian inference with w(z)=p(x,z), Z=p(x)."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias."
+      "title": "A direction-sensitive compromise",
+      "explanation": "At a=0.5 the product family preserves both target means but allocates half its mass to rare unequal states. Moving near a=0 or a=1 avoids those states while neglecting one of the two high-mass target modes. This illustrates a possible behavior, not a theorem that every variational approximation drops modes."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias."
+    "Specify a tractable family q and identify dependence or support it cannot represent.",
+    "Derive the bound from the unnormalized target and choose an optimization procedure.",
+    "Check optimization from multiple initializations and compare task-relevant statistics, not only the final bound."
   ],
   "formulas": [
     {
-      "label": "Variational inference rule",
-      "expression": "ELBO(q)=E_q[log p(x,z)]-E_q[log q(z)] = log p(x)-KL(q||p)",
-      "meaning": "Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias."
+      "label": "Definition and assumptions",
+      "expression": "L(q)=E_q[log w]+H(q); log Z=L(q)+KL(q||p); p=w/Z",
+      "meaning": "Unnormalized weights w=(49,1,1,49) have Z=100. The restricted family ties both independent Bernoulli marginals to a: q=((1−a)²,a(1−a),a(1−a),a²). Logs are natural. The slider evaluates an objective; it does not run an optimizer. Here log Z is a generic log normalizer, not a data evidence unless w is specified as a joint data–latent density."
     }
   ],
   "example": {
-    "title": "Variational inference in a small case",
-    "setup": "Approximate a hierarchical model posterior with a mean-field Gaussian family.",
+    "title": "A smaller objective, a worse marginal mean",
+    "setup": "Compare a=0.5 with a=0.02 in the tied product family.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "At a=0.5, q=(0.25,0.25,0.25,0.25), KL=1.272966 nats and L=3.332205.",
+      "At a=0.02, q=(0.9604,0.0196,0.0196,0.0004), KL=0.669831 and L=3.935339.",
+      "Agreement improves from 0.5 to 0.9608, close to target 0.98, but both marginal means move from the correct 0.5 to 0.02."
     ],
-    "result": "Maximizing the ELBO returns tractable factorized posterior parameters and a lower bound on log evidence."
+    "result": "In each case L+KL=log(100)≈4.605170. The second setting has lower KL, but is not asserted to be the exact optimizer."
   },
   "pitfalls": [
-    "A rising ELBO shows optimization progress, not that the variational family can represent the true posterior well.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "An ELBO can improve because optimization improved, without the approximation becoming adequate for every downstream decision.",
+    "Changing KL direction changes the optimization problem. Moment-matching marginals is not generally the solution to minimizing KL(q||p).",
+    "The bound is not an unbiased log-evidence estimate. Stochastic estimates of its components introduce additional numerical uncertainty."
   ],
-  "implementation": [],
+  "implementation": [
+    "Compute log weights stably and distinguish the objective from a noisy estimator used by the optimizer.",
+    "Use richer dependent families when correlation matters, and compare several starting points when the objective is non-convex. Report the family alongside the result."
+  ],
   "takeaways": [
-    "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
-    "Choose q(z), optimize its parameters to maximize the evidence lower bound, and use q for posterior expectations.",
-    "Optimization is often faster than sampling but the chosen family can introduce systematic approximation bias.",
-    "Maximizing the ELBO returns tractable factorized posterior parameters and a lower bound on log evidence."
+    "Lower KL(q||p) can improve agreement probability while worsening marginal means. The chosen objective and family determine which compromises are attractive.",
+    "Explain how family restrictions and divergence direction change approximation behavior."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Variational inference approximates an intractable posterior with a distribution from a tractable family.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Variational inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Variational inference turns distribution approximation into optimization over a chosen family. In the common KL(q||p) formulation, maximizing an evidence lower bound avoids evaluating an intractable normalizing constant, but cannot remove limitations of the family.","Derive the ELBO identity from an unnormalized target.","Explain how family restrictions and divergence direction change approximation behavior.","The best fit inside a narrow family can prefer one explanation over a balanced view of both.","L(q)=E_q[log w]+H(q); log Z=L(q)+KL(q||p); p=w/Z","Unnormalized weights w=(49,1,1,49) have Z=100. The restricted family ties both independent Bernoulli marginals to a: q=((1−a)²,a(1−a),a(1−a),a²). Logs are natural. The slider evaluates an objective; it does not run an optimizer. Here log Z is a generic log normalizer, not a data evidence unless w is specified as a joint data–latent density.","Lower KL(q||p) can improve agreement probability while worsening marginal means. The chosen objective and family determine which compromises are attractive."]} />

@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Find near-good solutions when exact optimization is too expensive.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A disjoint edge demands one endpoint. Taking both spends at most twice that unavoidable bill.",
+  "overview": "An approximation algorithm returns a feasible solution with a proved bound relative to the optimum. For a minimization problem, a factor ρ≥1 means the returned cost is at most ρ times optimal on every valid instance. A useful proof pairs the constructed solution with a lower bound that is cheaper to obtain than the optimum itself.",
+  "concepts": [
+    {
+      "title": "Feasibility comes first",
+      "explanation": "The objective is to minimize the number of selected vertices while touching every edge. A smaller set that misses an edge is not an approximation to this constrained problem: it is infeasible. The table checks coverage separately from solution size."
+    },
+    {
+      "title": "Maximal is enough",
+      "explanation": "After the greedy scan, no additional edge can join M without sharing an endpoint. If an edge were uncovered by C, both of its endpoints would be unmatched, contradicting that property. Thus the endpoints cover the graph. Maximal means no edge can be added; maximum means no matching anywhere is larger. The algorithm only needs the former."
+    },
+    {
+      "title": "Count disjoint obligations",
+      "explanation": "Each matching edge needs an endpoint in any cover. Because matching edges share no endpoints, these obligations require at least |M| distinct vertices. Taking both endpoints uses exactly 2|M| vertices. This proves the factor-two bound without knowing which cover is optimal."
+    },
+    {
+      "title": "Order affects the gap",
+      "explanation": "On this path, starting with AB permits CD too: the answer is all four vertices. Starting with BC blocks both other edges and returns only B and C. Both matchings are maximal; only the two-edge matching is maximum. Counterintuitively, the smaller matching gives the better cover in this particular construction."
+    },
+    {
+      "title": "Do not silently change the objective",
+      "explanation": "The endpoint-count argument is for unit vertex costs. On a single edge with costs 1 and 100, taking both costs 101 while the optimum costs 1. Weighted vertex cover needs a different algorithm and proof, such as rounding a linear-programming relaxation; the unweighted guarantee does not transfer unchanged."
+    }
+  ],
+  "process": [
+    "Specify the feasible set, objective, approximation convention and input assumptions.",
+    "Construct a feasible solution and a computable lower bound on the unknown optimum.",
+    "Relate the two symbolically for every instance, then use small examples to inspect tightness and implementation choices."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "|M| ≤ OPT ≤ |C| = 2|M| ≤ 2 OPT",
+      "meaning": "The undirected, unweighted graph is the four-vertex path A—B—C—D. Scan the selected edge first, then the remaining edges in AB, BC, CD order. Add an edge to M only when neither endpoint is already matched. Return all endpoints as C. Dashed coral edges belong to M. Exact OPT=2 is computed by enumerating this tiny graph only; the approximation algorithm does not need that enumeration."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The same path, two valid answers",
+    "setup": "Switch the first-edge control from AB to BC.",
+    "steps": [
+      "AB first gives M={AB,CD}, so C={A,B,C,D} and |C|=4. The disjoint-edge lower bound is 2.",
+      "BC first gives M={BC}, so C={B,C} and |C|=2. This cover meets all three edges, although its matching lower bound is only 1.",
+      "The graph has no one-vertex cover and has the two-vertex cover {B,C}; hence OPT=2. The observed ratios are 2 and 1."
+    ],
+    "result": "A worst-case guarantee is not a promise that every run attains that worst case."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A heuristic's strong benchmark results are not a worst-case approximation proof.",
+    "Do not confuse approximation of solution quality with numerical rounding error, probabilistic failure or asymptotic running-time bounds.",
+    "This path is easy to solve exactly. Its role is to expose the certificate argument, not to demonstrate that paths are NP-hard."
+  ],
+  "implementation": [
+    "An edge scan with a matched flag per vertex implements this construction in O(|V|+|E|) time using an adjacency/edge-list representation.",
+    "Expose feasibility checks and lower bounds next to the objective value in an optimizer's UI. Report a measured ratio only when the true optimum is known; otherwise distinguish a certified bound from an empirical gap."
+  ],
+  "takeaways": [
+    "A feasible answer plus a lower-bound certificate gives a guarantee without solving the original optimization problem exactly. Edge order can change quality while preserving the bound.",
+    "Separate feasibility, observed quality, and a guarantee over all valid instances."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Find near-good solutions when exact optimization is too expensive.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Approximation algorithms illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An approximation algorithm returns a feasible solution with a proved bound relative to the optimum. For a minimization problem, a factor ρ≥1 means the returned cost is at most ρ times optimal on every valid instance. A useful proof pairs the constructed solution with a lower bound that is cheaper to obtain than the optimum itself.","Prove a factor-two bound using a maximal matching.","Separate feasibility, observed quality, and a guarantee over all valid instances.","A disjoint edge demands one endpoint. Taking both spends at most twice that unavoidable bill.","|M| ≤ OPT ≤ |C| = 2|M| ≤ 2 OPT","The undirected, unweighted graph is the four-vertex path A—B—C—D. Scan the selected edge first, then the remaining edges in AB, BC, CD order. Add an edge to M only when neither endpoint is already matched. Return all endpoints as C. Dashed coral edges belong to M. Exact OPT=2 is computed by enumerating this tiny graph only; the approximation algorithm does not need that enumeration.","A feasible answer plus a lower-bound certificate gives a guarantee without solving the original optimization problem exactly. Edge order can change quality while preserving the bound."]} />

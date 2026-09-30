@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Proves a claim by showing the opposite assumption leads to an impossibility.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "If four buckets each held at most one item, where could a fifth item go?",
+  "overview": "In classical logic, proof by contradiction establishes a proposition by assuming its negation and deriving an impossibility from that assumption plus the premises. The contradiction must be a logical conflict, not merely an unexpected result. Tracking exactly which assumption is rejected is part of the proof.",
+  "concepts": [
+    {
+      "title": "Negate the claim precisely",
+      "explanation": "The target says that every assignment of five items to four buckets has some bucket containing at least two items. Its negation says there exists an assignment with every bucket holding at most one. Assume that collision-free assignment exists; do not instead assume that every bucket is empty or every assignment is collision-free."
+    },
+    {
+      "title": "Turn the assumption into an incompatible bound",
+      "explanation": "Under the assumed arrangement, each of four nonnegative integer loads is at most one, so their sum is at most four. Yet assigning all five items exactly once makes that same sum five. The contradiction is 5≤4. Therefore no such arrangement exists, and at least one collision is unavoidable."
+    },
+    {
+      "title": "The boundary is part of the argument",
+      "explanation": "With four items, loads (1,1,1,1) are possible, so a collision is not forced. With two or three items, collisions can still occur under a different assignment, but the count alone does not require them. A single item cannot collide with another item. The slider crosses this boundary instead of treating every occupied bucket as evidence of a collision."
+    },
+    {
+      "title": "A stronger bound uses the same capacity reasoning",
+      "explanation": "For n items in m>0 buckets, at least one load is at least ceil(n/m). Otherwise every load is at most ceil(n/m)−1, and their total is strictly below n. In the four-bucket lab, nine items force some load to be at least three; round-robin placement attains that bound with loads (3,2,2,2)."
+    },
+    {
+      "title": "Keep conclusions within their premises",
+      "explanation": "The counting argument gives existence of a collision, not which items collide, how likely a collision is, or how expensive it is to find. A hash function mapping a domain larger than its finite output range cannot be injective over that whole domain, even if collisions are difficult to discover in practice."
+    }
+  ],
+  "process": [
+    "Write the proposition and its exact negation, including quantifiers and the premises kept fixed.",
+    "Assume that negation and derive an explicit conflict using valid deductions.",
+    "Reject the temporary assumption and state only the conclusion it justifies; do not reuse hypothetical intermediate facts as unconditional truths."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "no collision ⇒ Σⱼ₌₁⁴ loadⱼ≤4; n>4 contradicts this; maxⱼ loadⱼ≥⌈n/4⌉",
+      "meaning": "Every one of n distinct items is assigned to exactly one of four buckets. Buckets have no physical capacity limit. The displayed assignment is deterministic round-robin, not random sampling: item i goes to bucket 1+((i−1) mod 4). Numbered cells identify items; stripes mark additional items in an already used bucket. Twelve display slots cover the slider's maximum and are not a constraint in the theorem. The universal bound follows from counting, not from this one assignment."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A collision is necessary, not necessarily predictable",
+    "setup": "The default five items are assigned cyclically to buckets A,B,C,D.",
+    "steps": [
+      "The displayed loads are (2,1,1,1); items 1 and 5 share A.",
+      "To prove more than this example, assume some assignment has no shared bucket. Every load is then at most one, forcing total load ≤4.",
+      "All five items must be assigned exactly once, forcing total load =5. These requirements cannot both hold."
+    ],
+    "result": "The contradiction rules out every collision-free assignment of five items to four buckets, not merely the displayed arrangement."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "An implausible or surprising outcome is not a contradiction. Name the mutually incompatible statements or the violated established result.",
+    "If several unsupported assumptions were added, a contradiction only shows they cannot all hold together. It does not identify your preferred assumption as the sole cause.",
+    "A universal mathematical guarantee is not a probability estimate. No randomness is assumed by the pigeonhole argument or this lab."
+  ],
+  "implementation": [
+    "Capacity and injectivity arguments help identify impossible specifications before choosing an algorithm. State the counting universe carefully: dropping items, duplicating assignments or expanding the bucket set changes the premises.",
+    "For finite logical problems, assuming the negated requirement and establishing unsatisfiability can support a contradiction argument. Solver output depends on a faithful encoding and the solver's guarantees; a few unsuccessful searches are not an unsatisfiability proof."
+  ],
+  "takeaways": [
+    "An impossible capacity bound rejects the no-collision assumption for every assignment. A single crowded picture illustrates the result but does not prove its universality.",
+    "Separate a universal counting guarantee from one example or a probabilistic claim."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Proves a claim by showing the opposite assumption leads to an impossibility.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Proof by contradiction illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["In classical logic, proof by contradiction establishes a proposition by assuming its negation and deriving an impossibility from that assumption plus the premises. The contradiction must be a logical conflict, not merely an unexpected result. Tracking exactly which assumption is rejected is part of the proof.","Identify the negated assumption and the precise contradiction.","Separate a universal counting guarantee from one example or a probabilistic claim.","If four buckets each held at most one item, where could a fifth item go?","no collision ⇒ Σⱼ₌₁⁴ loadⱼ≤4; n>4 contradicts this; maxⱼ loadⱼ≥⌈n/4⌉","Every one of n distinct items is assigned to exactly one of four buckets. Buckets have no physical capacity limit. The displayed assignment is deterministic round-robin, not random sampling: item i goes to bucket 1+((i−1) mod 4). Numbered cells identify items; stripes mark additional items in an already used bucket. Twelve display slots cover the slider's maximum and are not a constraint in the theorem. The universal bound follows from counting, not from this one assignment.","An impossible capacity bound rejects the no-collision assumption for every assignment. A single crowded picture illustrates the result but does not prove its universality."]} />

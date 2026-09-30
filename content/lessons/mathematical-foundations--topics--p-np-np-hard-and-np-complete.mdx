@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Complexity classes that describe which problems are efficiently solvable or likely hard.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A failed assignment rejects that witness, not the existence of every witness.",
+  "overview": "P and NP classify decision problems by polynomial-time solving and verification. NP-hardness describes reduction-based difficulty, while NP-completeness combines hardness with membership in NP. These are properties of problem families and encodings, not labels inferred from one slow instance or a small interactive example.",
+  "concepts": [
+    {
+      "title": "P concerns a complete decision procedure",
+      "explanation": "A language is in P when a deterministic algorithm returns the correct yes/no answer on every input within a polynomial in input length. The bound applies to the entire algorithm, including parsing and constructing any intermediate representation, not just the final check."
+    },
+    {
+      "title": "NP concerns bounded certificates",
+      "explanation": "A language is in NP when yes-instances have witnesses of polynomial length that a deterministic polynomial-time verifier accepts, and no-instances have no accepted witness. P is contained in NP: the verifier can ignore its witness and run the P algorithm. NP means nondeterministic polynomial time, not non-polynomial."
+    },
+    {
+      "title": "Read the certificate in the lab",
+      "explanation": "At 010, a is false, b true and c false. The three clauses evaluate to true, true, true. Six literal reads establish this assignment's validity. At 000, the first clause fails: that particular assignment is invalid, but 010 and 101 still establish satisfiability. Rejecting one witness is not a certificate that none exist."
+    },
+    {
+      "title": "Hard and complete are different obligations",
+      "explanation": "Under polynomial-time many-one reductions, B is NP-hard if every language in NP reduces to B. B is NP-complete when it is also in NP. NP-hard targets need not themselves be in NP or even be decidable. An optimization problem is usually called NP-hard; use its appropriately encoded decision version when asserting NP-completeness."
+    },
+    {
+      "title": "What the open question does—and does not—say",
+      "explanation": "Whether P=NP remains unresolved in the cited Clay problem listing. General SAT is NP-complete, but an exponential enumeration is only one available algorithm, not an exponential lower bound. The lab's 2-CNF formula admits special-purpose polynomial algorithms. Easy examples and useful practical solvers do not settle worst-case complexity for unrestricted SAT."
+    }
+  ],
+  "process": [
+    "Define the family of decision instances and count their encoded input length.",
+    "For NP membership, specify a polynomial-size witness and a sound polynomial-time verifier.",
+    "For NP-hardness, reduce a known NP-hard problem to the target and prove the mapping. Keep this separate from verification."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "φ=(a∨b)∧(¬a∨c)∧(¬b∨¬c); x∈L ⇔ ∃w, |w|≤p(|x|): V(x,w)=1",
+      "meaning": "The three bits represent a,b,c in that order. The fixed formula has three clauses and six literal occurrences. The lab always evaluates every literal, without short-circuiting, and displays all eight assignments. Stripes mark satisfying assignments; a thick border marks the selected certificate. This formula is 2-CNF, a tractable SAT subclass. The finite gallery illustrates certificate verification, not a proof that the illustrated subclass is NP-complete or that exhaustive search is necessary."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two valid witnesses among eight possibilities",
+    "setup": "Inspect the default assignment 010, then change the control to 000.",
+    "steps": [
+      "For 010, a∨b=1, ¬a∨c=1, and ¬b∨¬c=1. This is a valid yes-certificate.",
+      "For 000, the first clause is false while the other two are true. Only the selected certificate fails.",
+      "The complete table finds exactly two witnesses. Eight full checks require 8×6=48 literal reads in this deliberately simple enumeration, versus six for a supplied witness."
+    ],
+    "result": "The measured difference belongs to these specified procedures on this example. It is not evidence that every solver must enumerate eight assignments."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A plot that draws P strictly inside NP would assume an unproved separation. State the known inclusion without presenting the open boundary as settled.",
+    "Do not omit the polynomial bound on witness length. Efficient verification of an arbitrarily huge object does not give NP membership relative to the original input.",
+    "A failed timeout, failed heuristic or failed certificate is not a mathematical no-answer. The verification definition primarily provides evidence for yes-instances."
+  ],
+  "implementation": [
+    "The visual, truth table and readout share the same clause evaluator. The display labels its 2-CNF restriction so it cannot be mistaken for a hardness demonstration.",
+    "When turning a solver task into a complexity claim, document encoding, numeric precision and decision threshold. A practical benchmark and a worst-case theorem answer different questions."
+  ],
+  "takeaways": [
+    "Efficiently checking a proposed yes-certificate does not supply one. NP-complete means both in NP and NP-hard; it does not mean proven exponential time.",
+    "Separate witness verification, instance solving and a hardness proof."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Complexity classes that describe which problems are efficiently solvable or likely hard.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This P, NP, NP-hard, and NP-complete illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["P and NP classify decision problems by polynomial-time solving and verification. NP-hardness describes reduction-based difficulty, while NP-completeness combines hardness with membership in NP. These are properties of problem families and encodings, not labels inferred from one slow instance or a small interactive example.","Distinguish P, NP, NP-hard and NP-complete without assuming P≠NP.","Separate witness verification, instance solving and a hardness proof.","A failed assignment rejects that witness, not the existence of every witness.","φ=(a∨b)∧(¬a∨c)∧(¬b∨¬c); x∈L ⇔ ∃w, |w|≤p(|x|): V(x,w)=1","The three bits represent a,b,c in that order. The fixed formula has three clauses and six literal occurrences. The lab always evaluates every literal, without short-circuiting, and displays all eight assignments. Stripes mark satisfying assignments; a thick border marks the selected certificate. This formula is 2-CNF, a tractable SAT subclass. The finite gallery illustrates certificate verification, not a proof that the illustrated subclass is NP-complete or that exhaustive search is necessary.","Efficiently checking a proposed yes-certificate does not supply one. NP-complete means both in NP and NP-hard; it does not mean proven exponential time."]} />

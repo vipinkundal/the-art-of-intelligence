@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Breadth-first search expands the shallowest states before any deeper states.",
+  "hook": "A two-stop route can cost more than four cheap steps.",
+  "overview": "Breadth-first search explores paths in nondecreasing edge count using a FIFO frontier. In a graph implementation, recording a state when it is first enqueued prevents duplicate work and preserves a shortest unweighted path to it. This is a guarantee about depth; minimum monetary, energy or travel cost requires equal positive edge costs or a different search policy.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "The queue is a depth invariant",
+      "explanation": "Start with S at depth zero. Removing a depth-d entry can append only depth-(d+1) successors. Those entries go behind all queued depth-d entries. Induction therefore keeps removals in nondecreasing depth. The first discovered route to a state has minimum edge count."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use a FIFO queue, enqueuing each newly discovered successor after the current frontier."
+      "title": "Discovered is not expanded",
+      "explanation": "After removing S, the frontier contains A and B. A removal generates C; B removal generates G. At that moment G is discovered but has not been goal-tested in this implementation. The next removal is C, which was queued earlier. A UI should distinguish generating an entry from processing it."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+      "title": "One state can have several candidate paths",
+      "explanation": "G can be reached through B in two edges or through D in four. A discovered set retains the former because this is BFS's objective. Replacing the stored parent merely because another path is cheaper would mix a cost objective into a depth-ordered algorithm without the right scheduling invariant."
+    },
+    {
+      "title": "State your search space before quoting complexity",
+      "explanation": "For a finite explicit graph with adjacency lists, queue operations and expected constant-time membership give O(V+E) traversal time and O(V) auxiliary storage. In an implicit tree, frontier width grows exponentially with solution depth. Goal testing on removal can generate part of the next level, so an O(b^(d+1)) bound differs from variants that stop at goal generation."
+    },
+    {
+      "title": "Completeness has conditions",
+      "explanation": "With finite branching and a goal at finite depth, BFS reaches that depth after finitely many operations, assuming each successor computation terminates. A finite graph with duplicate suppression also terminates when no goal is reachable. An infinite goal-free state space need not terminate with failure."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+    "Define a state key that retains all information affecting future actions and the goal.",
+    "Enqueue the start, mark it discovered, then remove FIFO entries and enqueue newly discovered successors with parent pointers.",
+    "On goal removal, reconstruct the parent chain and report edge count separately from its accumulated cost."
   ],
   "formulas": [
     {
-      "label": "Breadth-first search rule",
-      "expression": "frontier = FIFO; time and memory = O(b^d)",
-      "meaning": "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier."
+      "label": "Definition and assumptions",
+      "expression": "depth(child)=depth(parent)+1; enqueue at the back, remove from the front",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Successors are ordered alphabetically. A state is enqueued only on first discovery. The goal test occurs on removal, before generating successors. The slider counts removals, including the goal. Dashed coral follows the last removed node's path."
     }
   ],
   "example": {
-    "title": "Breadth-first search in a small case",
-    "setup": "In an unweighted maze, place the start cell in a queue and expand cells layer by layer.",
+    "title": "Trace the expensive shortcut",
+    "setup": "Move the control to five removals.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
-      "Check the outcome against the goal and stated assumptions."
+      "The removal sequence is S,A,B,C,G. Immediately before G is removed, the queue is [G,D].",
+      "The parent chain returns S→B→G: two edges and cost 1+9=10.",
+      "S→A→C→D→G costs 4 but has four edges. BFS's answer is depth-optimal and cost-suboptimal on this weighted graph."
     ],
-    "result": "The first time the goal is dequeued, its path uses the fewest moves."
+    "result": "There is no contradiction: the algorithm solved the unweighted objective it was designed for."
   },
   "pitfalls": [
-    "Mark states when discovered to prevent cycles and repeated queue entries.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Do not use geometric arrow length as an edge weight; this drawing is only a layout.",
+    "Marking visited only after expansion can enqueue many duplicate entries. If using that variant, explain the extra work and duplicate-removal policy.",
+    "A breadth-first frontier may exceed memory well before computation becomes slow."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use a deque or an array with a head index, rather than repeatedly shifting a large JavaScript array. This six-state teaching trace uses small arrays for readability.",
+    "Store stable state keys and parent links. Keep instrumentation for discovered count, processed count, frontier peak and returned depth separate."
+  ],
   "takeaways": [
-    "Breadth-first search expands the shallowest states before any deeper states.",
-    "Use a FIFO queue, enqueuing each newly discovered successor after the current frontier.",
-    "It is complete for finite branching and finds a minimum-step path when every action has equal cost, but stores an entire frontier.",
-    "The first time the goal is dequeued, its path uses the fewest moves."
+    "BFS certifies fewest edges, not lowest arbitrary cost. Its frontier order is the proof: no deeper path can jump ahead of a shallower one.",
+    "Recognize when a weighted objective requires uniform-cost search instead."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Breadth-first search expands the shallowest states before any deeper states.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Breadth-first search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Breadth-first search explores paths in nondecreasing edge count using a FIFO frontier. In a graph implementation, recording a state when it is first enqueued prevents duplicate work and preserves a shortest unweighted path to it. This is a guarantee about depth; minimum monetary, energy or travel cost requires equal positive edge costs or a different search policy.","Derive the shortest-edge guarantee from FIFO order.","Recognize when a weighted objective requires uniform-cost search instead.","A two-stop route can cost more than four cheap steps.","depth(child)=depth(parent)+1; enqueue at the back, remove from the front","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Successors are ordered alphabetically. A state is enqueued only on first discovery. The goal test occurs on removal, before generating successors. The slider counts removals, including the goal. Dashed coral follows the last removed node's path.","BFS certifies fewest edges, not lowest arbitrary cost. Its frontier order is the proof: no deeper path can jump ahead of a shallower one."]} />

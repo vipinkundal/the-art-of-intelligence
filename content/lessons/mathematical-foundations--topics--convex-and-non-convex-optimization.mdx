@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Convex problems have simpler global structure; non-convex problems can contain many local traps.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A stationary point can change from the bottom of a bowl to the crest between two wells.",
+  "overview": "Convex optimization minimizes a convex objective over a convex feasible set. Every local minimum is then global, although a minimum may not exist or be unique. Nonconvexity removes that guarantee; it does not mean every problem is impossible or every stationary point is a useful minimum.",
+  "concepts": [
+    {
+      "title": "Every chord matters",
+      "explanation": "A function is convex on a convex domain when its value at each mixture of two points is no greater than the same mixture of their function values. A plotted chord can disprove this condition when the curve rises above it, but one successful comparison cannot establish it."
+    },
+    {
+      "title": "Curvature classifies this family",
+      "explanation": "For a≥0 the second derivative is nonnegative everywhere. At a=0, x⁴/4 is strictly convex with a unique minimum, but has no positive uniform curvature lower bound. For a>0 it is strongly convex. For a<0, negative curvature at zero certifies nonconvexity."
+    },
+    {
+      "title": "Stationarity is not optimality",
+      "explanation": "With a<0, the stationary points are zero and ±√(−a). Zero is a local maximum, whereas the other two points share the global minimum −a²/4. This symmetric example has two global minima, not one good and one bad local minimum."
+    }
+  ],
+  "process": [
+    "Check both the objective and feasible set; a convex objective over a disconnected set is not a convex optimization problem.",
+    "Use an analytic condition such as a positive-semidefinite Hessian over the full domain when applicable.",
+    "Classify stationary points and compare feasible objective values without inferring global optimality from a solver's stop flag."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "fₐ(x)=x⁴/4+ax²/2; f′ₐ(x)=x(x²+a); f″ₐ(x)=3x²+a",
+      "meaning": "Unconstrained real-valued quartic family. The graph displays x∈[−1.8,1.8] with an adaptive vertical scale, but convexity is classified on the whole real line using the second derivative. Dots mark the global minimizers. The comparison chord uses endpoints −1 and 1; passing one chord comparison does not prove convexity."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A chord exposes the hill",
+    "setup": "Set a=−1.",
+    "steps": [
+      "f(−1)=f(1)=−1/4, while f(0)=0.",
+      "The midpoint of the endpoint heights is −1/4, below the function at their midpoint.",
+      "The gradient vanishes at all three points, but curvature is −1 at zero and 2 at ±1."
+    ],
+    "result": "The chord violates convexity, and the zero-gradient point at the center is a maximum."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Convex does not imply strongly convex, and unique minimizers do not imply a positive curvature bound.",
+    "A nonconvex landscape may contain saddles and flat regions; repeatedly restarting one solver does not certify the global optimum."
+  ],
+  "implementation": [
+    "Keep analytical guarantees separate from empirical diagnostics such as multiple initializations.",
+    "Report constraint feasibility and stationarity residuals along with the final objective, and state when no global certificate is available."
+  ],
+  "takeaways": [
+    "Use a global convexity condition or a valid counterexample. A zero gradient alone cannot distinguish the maximum at zero from the minima of the double-well case.",
+    "Distinguish convexity, strict convexity, strong convexity and stationary points."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Convex problems have simpler global structure; non-convex problems can contain many local traps.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Convex and non-convex optimization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Convex optimization minimizes a convex objective over a convex feasible set. Every local minimum is then global, although a minimum may not exist or be unique. Nonconvexity removes that guarantee; it does not mean every problem is impossible or every stationary point is a useful minimum.","Use a chord violation and curvature to classify a function.","Distinguish convexity, strict convexity, strong convexity and stationary points.","A stationary point can change from the bottom of a bowl to the crest between two wells.","fₐ(x)=x⁴/4+ax²/2; f′ₐ(x)=x(x²+a); f″ₐ(x)=3x²+a","Unconstrained real-valued quartic family. The graph displays x∈[−1.8,1.8] with an adaptive vertical scale, but convexity is classified on the whole real line using the second derivative. Dots mark the global minimizers. The comparison chord uses endpoints −1 and 1; passing one chord comparison does not prove convexity.","Use a global convexity condition or a valid counterexample. A zero gradient alone cannot distinguish the maximum at zero from the minima of the double-well case."]} />

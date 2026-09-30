@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Updates prior beliefs into posterior beliefs using observed evidence.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "One uncertain coin creates dependent predictions, even when its flips are conditionally independent.",
+  "overview": "Bayesian inference conditions a joint model on observed data to obtain a distribution over unknown quantities. Prediction then averages over that posterior rather than silently replacing every unknown with one fitted value. The result is conditional on the prior, likelihood and data-collection assumptions—not a guarantee that the model is true.",
+  "concepts": [
+    {
+      "title": "Likelihood reweights, evidence normalizes",
+      "explanation": "Each candidate θ assigns probability θˢ(1−θ)ᶠ to the observed ordered sequence. Multiply by its prior mass and divide by the sum across candidates. The likelihood is a function of θ, not a probability distribution over θ; summing likelihoods without priors changes the model."
+    },
+    {
+      "title": "The support is part of the claim",
+      "explanation": "The bars are masses on three discrete hypotheses. No amount of data can create posterior mass at θ=0.65 in this model because that value was excluded. A continuous prior would be a different model with densities and integration. A density's height is not the probability of its exact parameter value."
+    },
+    {
+      "title": "Predictive averaging carries uncertainty forward",
+      "explanation": "For one next trial, success probability equals E[θ|D]. For three successes it is E[θ³|D], not E[θ|D]³. Conditional independence given θ becomes positive dependence after averaging over an uncertain shared θ. The predictive count variance is 3μ(1−μ)+6 Var(θ|D), exceeding the plug-in binomial variance when parameter uncertainty remains."
+    },
+    {
+      "title": "Inference is not model checking",
+      "explanation": "A posterior can concentrate on the least wrong of three inadequate candidates. Inspect prior and posterior predictive behavior, data dependence and sensitivity to the prior. Neither an exact normalization nor a confident posterior repairs a missing regime, a biased observation process or a likelihood that ignores correlated trials."
+    }
+  ],
+  "process": [
+    "Specify the hypothesis support, prior masses and conditional observation model before examining the outcomes.",
+    "Compute each likelihood on the observed data, multiply by prior mass and normalize; inspect numerical stability and support.",
+    "Answer the query by summing over the posterior. For future data, retain both parameter uncertainty and observation randomness."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "P(θj|D)=πjθjˢ(1−θj)ᶠ / Σk πkθkˢ(1−θk)ᶠ; P(K=k|D)=Σj P(θj|D) Binomial(k;3,θj)",
+      "meaning": "The success probability is exactly one of θ=(0.2,0.5,0.8), with prior masses (0.2,0.6,0.2). Trials are independent conditional on the same θ. Reveal only the chosen prefix of (1,1,0,1,1,1,0,1,1,0,1,1); do not use later observations. This is an exact finite-hypothesis model, not a discretization claimed to represent all possible probabilities. The second table predicts the success count in three new trials that share θ. Likelihood and evidence refer to the ordered observed prefix."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Predict three flips before observing any",
+    "setup": "Set the prefix to zero, so the posterior remains (0.2,0.6,0.2).",
+    "steps": [
+      "The predictive probability of one success is 0.2×0.2+0.6×0.5+0.2×0.8=0.5.",
+      "Three successes have probability 0.2×0.2³+0.6×0.5³+0.2×0.8³=0.179. Plugging in θ=0.5 would instead give 0.125.",
+      "The variance of θ is 0.036. Thus Var(K)=3×0.5×0.5+6×0.036=0.966, versus the plug-in variance 0.75."
+    ],
+    "result": "Both predictors have mean 1.5 successes, but the integrated predictive distribution assigns more mass to the extremes. Reveal observations to see the posterior and the discrepancy change."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The binomial coefficient belongs in the likelihood of an unordered success count. It cancels from the posterior here because it is the same for every θ, but changes the numerical evidence. Do not confuse count evidence with ordered-sequence evidence.",
+    "A posterior mean, a maximum-posterior estimate and a credible set answer different questions. A credible probability is conditional on the model, not automatically a frequentist coverage guarantee.",
+    "Using the same data to choose an empirical prior and then treating that prior as fixed can conceal additional estimation uncertainty. State how the prior was obtained."
+  ],
+  "implementation": [
+    "Use log prior plus log likelihood and log-sum-exp normalization for long sequences. With a common conditional model, sequential and batch updates agree when each observation is incorporated exactly once.",
+    "For this small model the sums are exact up to floating-point arithmetic. For larger models, separately assess approximation error and model adequacy. Do not call a posterior-predictive draw just a draw of θ: also generate the new outcome conditional on it."
+  ],
+  "takeaways": [
+    "A posterior is a distribution over the stated hypotheses. Integrating predictions over it is generally different from plugging in its mean.",
+    "Distinguish a parameter posterior, its point summaries and a posterior predictive distribution."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Updates prior beliefs into posterior beliefs using observed evidence.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Bayesian inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Bayesian inference conditions a joint model on observed data to obtain a distribution over unknown quantities. Prediction then averages over that posterior rather than silently replacing every unknown with one fitted value. The result is conditional on the prior, likelihood and data-collection assumptions—not a guarantee that the model is true.","Compute and interpret a finite posterior without confusing likelihood with posterior mass.","Distinguish a parameter posterior, its point summaries and a posterior predictive distribution.","One uncertain coin creates dependent predictions, even when its flips are conditionally independent.","P(θj|D)=πjθjˢ(1−θj)ᶠ / Σk πkθkˢ(1−θk)ᶠ; P(K=k|D)=Σj P(θj|D) Binomial(k;3,θj)","The success probability is exactly one of θ=(0.2,0.5,0.8), with prior masses (0.2,0.6,0.2). Trials are independent conditional on the same θ. Reveal only the chosen prefix of (1,1,0,1,1,1,0,1,1,0,1,1); do not use later observations. This is an exact finite-hypothesis model, not a discretization claimed to represent all possible probabilities. The second table predicts the success count in three new trials that share θ. Likelihood and evidence refer to the ordered observed prefix.","A posterior is a distribution over the stated hypotheses. Integrating predictions over it is generally different from plugging in its mean."]} />

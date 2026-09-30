@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Computes exact derivatives of programs by applying calculus rules to the computation graph.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Carry a value and its sensitivity through every operation.",
+  "overview": "Automatic differentiation augments a numerical computation with local derivative rules and composes them along the executed operations. It avoids the truncation error introduced by finite-difference step sizes, but still inherits floating-point error, program semantics and the limits of differentiability.",
+  "concepts": [
+    {
+      "title": "Dual propagation is local",
+      "explanation": "A multiplication combines two primal values and two tangents by the product rule. A sine uses the cosine of its primal input times the incoming tangent. Addition adds both fields. Seeding the input tangent with 1 makes the final tangent the scalar derivative."
+    },
+    {
+      "title": "Numerical differences ask a different question",
+      "explanation": "A central difference uses [f(x+h)−f(x−h)]/(2h). For sufficiently smooth functions its truncation error decreases like h² in exact arithmetic, but very small h can amplify rounding and cancellation. Our coarse h makes the distinction visible rather than providing a recommended numerical setting."
+    },
+    {
+      "title": "The program can have derivative traps",
+      "explanation": "Stopping a gradient, converting to a discrete index, or selecting a branch changes the derivative computation. At nonsmooth points a library may choose a convention that is useful for optimization but is not a classical derivative. AD also does not automatically differentiate through an opaque operation without a derivative rule."
+    }
+  ],
+  "process": [
+    "Express the scalar computation as supported differentiable primitives.",
+    "Propagate values and derivatives using the selected mode and seed.",
+    "Inspect intermediate sensitivities and ensure the differentiated program matches the quantity whose derivative is needed."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x)=sin(x²)+x³; (ab)̇=ȧb+aḃ; (sin a)̇=cos(a)ȧ; ẋ=1",
+      "meaning": "A small forward-mode implementation propagates primal values and tangents through multiply, sine and addition. The comparison is a central difference with a deliberately coarse fixed h=0.5. The operation trace lists x, x², sin(x²), x³ and the sum, with value and tangent columns. Neither curve is symbolic differentiation performed at runtime."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A five-row forward trace",
+    "setup": "At x=1, seed the tangent with 1.",
+    "steps": [
+      "x² has value 1 and tangent 2.",
+      "sin(x²) has value sin(1) and tangent 2cos(1); x³ has value 1 and tangent 3.",
+      "Adding gives value 1+sin(1)≈1.841471 and derivative 3+2cos(1)≈4.080605."
+    ],
+    "result": "The final derivative is assembled from local rules without perturbing the input."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Calling AD exact without qualification hides floating-point effects and the fact that a selected nonsmooth rule may not be a mathematical derivative.",
+    "A detached or excluded computation can silently remove a dependency even while the remaining derivative calculation is internally consistent."
+  ],
+  "implementation": [
+    "Use the trace to inspect where sensitivities first become unexpectedly zero, large or nonfinite.",
+    "For derivatives through iterative solvers, distinguish differentiating the executed finite iterations from differentiating the converged solution implicitly."
+  ],
+  "takeaways": [
+    "Autodiff differentiates the implemented composition, not the intended scientific model. It removes finite-difference truncation from this calculation, not every source of numerical or modeling error.",
+    "Distinguish autodiff from finite differences, symbolic algebra and model correctness."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Computes exact derivatives of programs by applying calculus rules to the computation graph.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Automatic differentiation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Automatic differentiation augments a numerical computation with local derivative rules and composes them along the executed operations. It avoids the truncation error introduced by finite-difference step sizes, but still inherits floating-point error, program semantics and the limits of differentiability.","Trace primal values and tangents through an actual forward-mode computation.","Distinguish autodiff from finite differences, symbolic algebra and model correctness.","Carry a value and its sensitivity through every operation.","f(x)=sin(x²)+x³; (ab)̇=ȧb+aḃ; (sin a)̇=cos(a)ȧ; ẋ=1","A small forward-mode implementation propagates primal values and tangents through multiply, sine and addition. The comparison is a central difference with a deliberately coarse fixed h=0.5. The operation trace lists x, x², sin(x²), x³ and the sum, with value and tangent columns. Neither curve is symbolic differentiation performed at runtime.","Autodiff differentiates the implemented composition, not the intended scientific model. It removes finite-difference truncation from this calculation, not every source of numerical or modeling error."]} />

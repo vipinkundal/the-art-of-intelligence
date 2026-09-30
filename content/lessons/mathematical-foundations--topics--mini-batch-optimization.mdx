@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Uses batches large enough for stable estimates but small enough for efficient training.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A full batch knows this dataset exactly; a smaller batch sees one of several possible averages.",
+  "overview": "A minibatch gradient averages several per-example gradients evaluated at the same parameter state. It changes estimator variance, hardware utilization and the number of updates per data pass. Its statistical behavior depends on how examples are sampled, not just on the numerical batch size.",
+  "concepts": [
+    {
+      "title": "Sampling rules change the variance",
+      "explanation": "With replacement, independent draws give variance σ²/B. Sampling a uniformly chosen subset without replacement adds the factor (N−B)/(N−1) when σ² uses denominator N. Repeated examples do not provide the same variance reduction as distinct examples."
+    },
+    {
+      "title": "Averages can coincide",
+      "explanation": "For B=2 there are six equally likely subsets, but only five distinct means: −2, −1, 0, 1 and 2. Two subsets give zero, so its bar carries probability 2/6 rather than 1/6. Enumerating unique means without their multiplicities would give the wrong distribution."
+    },
+    {
+      "title": "Statistical and systems costs must both be counted",
+      "explanation": "Larger batches can improve device utilization while reducing updates per epoch and increasing memory use. Fewer noisy gradients need not mean less wall-clock time to a target quality. Batch-dependent layers and randomness can also complicate equivalence with accumulated microbatches."
+    }
+  ],
+  "process": [
+    "State whether sampling is with replacement, without replacement, or an epoch shuffle.",
+    "Average the individual contributions using the intended loss normalization.",
+    "Compare time and quality at a declared update, example or token budget—not batch size in isolation."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "ḡB=B⁻¹Σᵢ∈B gᵢ; Var(ḡB)=(σ²/B)(N−B)/(N−1), with σ²=N⁻¹Σ(gᵢ−ḡ)²",
+      "meaning": "Four scalar per-example gradients {−3,−1,1,3} at one fixed parameter state. Every size-B subset is equally likely, with no replacement within a batch. The graph exactly enumerates all subsets; it does not simulate a whole training trajectory. The population variance uses denominator N=4."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "All six pairs",
+    "setup": "For B=2, enumerate the gradients {−3,−1,1,3} in pairs.",
+    "steps": [
+      "Their means are {−2,−1,0,0,1,2} with equal subset probability 1/6.",
+      "The mean is zero and variance is (4+1+0+0+1+4)/6=5/3.",
+      "The formula gives (5/2)×(2/3)=5/3; sampling with replacement would give 5/2."
+    ],
+    "result": "Increasing B to four collapses the without-replacement distribution to one bar at zero."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Summing microbatch mean losses without correcting their weights can produce the wrong effective batch average when microbatch sizes differ.",
+    "The batch variance formula assumes a fixed collection of gradients; they change when the parameters change between updates."
+  ],
+  "implementation": [
+    "For gradient accumulation, hold parameters fixed during the microbatches and normalize the combined gradient consistently.",
+    "Measure memory, update throughput and held-out performance; do not infer generalization from the width of this four-example distribution."
+  ],
+  "takeaways": [
+    "Averaging reduces sampling variability, but the finite-population correction matters: drawing all four distinct examples has zero variance, unlike four independent draws with replacement.",
+    "Distinguish independent-sampling variance from finite-population variance."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Uses batches large enough for stable estimates but small enough for efficient training.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Mini-batch optimization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A minibatch gradient averages several per-example gradients evaluated at the same parameter state. It changes estimator variance, hardware utilization and the number of updates per data pass. Its statistical behavior depends on how examples are sampled, not just on the numerical batch size.","Compute an exact minibatch-gradient distribution.","Distinguish independent-sampling variance from finite-population variance.","A full batch knows this dataset exactly; a smaller batch sees one of several possible averages.","ḡB=B⁻¹Σᵢ∈B gᵢ; Var(ḡB)=(σ²/B)(N−B)/(N−1), with σ²=N⁻¹Σ(gᵢ−ḡ)²","Four scalar per-example gradients {−3,−1,1,3} at one fixed parameter state. Every size-B subset is equally likely, with no replacement within a batch. The graph exactly enumerates all subsets; it does not simulate a whole training trajectory. The population variance uses denominator N=4.","Averaging reduces sampling variability, but the finite-population correction matters: drawing all four distinct examples has zero variance, unlike four independent draws with replacement."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Taylor formulas approximate a function near a point using value, slope, and sometimes curvature.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Matching the derivatives at one point is a promise about the neighborhood, not a blank cheque everywhere.",
+  "overview": "A Taylor polynomial matches a function's value and successive derivatives at an expansion point. Taylor's theorem adds a remainder under suitable smoothness assumptions. A finite polynomial is a local approximation; an infinite Taylor series represents its function only where the remainder tends to zero.",
+  "concepts": [
+    {
+      "title": "Each derivative adds a coefficient",
+      "explanation": "At zero every derivative of exp is 1, so the constant, linear, quadratic and cubic terms are 1, x, x²/2 and x³/6. These coefficients come from local derivatives, not a least-squares fit over the displayed interval."
+    },
+    {
+      "title": "Bound the missing tail",
+      "explanation": "The Lagrange remainder is exp(ξ)xⁿ⁺¹/(n+1)! for a point ξ between zero and x. On |x|≤2, replacing exp(ξ) by e² and |x| by 2 gives a uniform upper bound. A loose valid bound can exceed the actual error by a large factor."
+    },
+    {
+      "title": "Smooth does not always mean analytic",
+      "explanation": "The exponential's Taylor series converges to exp(x) for every real x. That is a property of this function, not a universal consequence of having derivatives of all orders. For instance, a smooth function can have all derivatives zero at a point without vanishing throughout a neighborhood."
+    }
+  ],
+  "process": [
+    "Choose an expansion point near the inputs of interest.",
+    "Compute coefficients through the desired derivative order.",
+    "Estimate or bound the remainder over the actual evaluation region before using the approximation in a solver or argument."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Pₙ(x)=Σₖ₌₀ⁿxᵏ/k! for exp(x) about 0; |Rₙ(x)|≤e²·2ⁿ⁺¹/(n+1)! on |x|≤2",
+      "meaning": "Maclaurin expansion of exp(x), plotted on [−2,2]. Dots compare the exact value and the polynomial at x=1. The uniform remainder bound uses exp(ξ)≤e² throughout this interval; it is intentionally conservative. These curves are not fitted to sampled data."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Second order at one",
+    "setup": "Use n=2 and x=1.",
+    "steps": [
+      "P₂(1)=1+1+1/2=2.5.",
+      "exp(1)≈2.718282, so the absolute error is about 0.218282.",
+      "At x=2 the same polynomial is 5, while exp(2)≈7.389056: distance from the expansion point matters."
+    ],
+    "result": "Correct local coefficients do not imply uniform accuracy over the whole plot."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A high polynomial order can still be a poor numerical representation on a large interval; cancellation and coefficient scaling matter.",
+    "A Taylor approximation to an objective is not automatically a safe objective to optimize with an unrestricted step."
+  ],
+  "implementation": [
+    "Use local expansions within a stated neighborhood, as in a trust-region model.",
+    "For numerical evaluation, recurrence or Horner-like evaluation can avoid unnecessary powers and factorials, while a remainder estimate remains a separate concern."
+  ],
+  "takeaways": [
+    "State the expansion point, order and domain of use together with an error statement. A polynomial can match several derivatives perfectly at its center and still be inaccurate farther away.",
+    "Separate observed approximation error from a valid conservative bound."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Taylor formulas approximate a function near a point using value, slope, and sometimes curvature.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Taylor approximation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Taylor polynomial matches a function's value and successive derivatives at an expansion point. Taylor's theorem adds a remainder under suitable smoothness assumptions. A finite polynomial is a local approximation; an infinite Taylor series represents its function only where the remainder tends to zero.","Construct successive Maclaurin polynomials for exp(x).","Separate observed approximation error from a valid conservative bound.","Matching the derivatives at one point is a promise about the neighborhood, not a blank cheque everywhere.","Pₙ(x)=Σₖ₌₀ⁿxᵏ/k! for exp(x) about 0; |Rₙ(x)|≤e²·2ⁿ⁺¹/(n+1)! on |x|≤2","Maclaurin expansion of exp(x), plotted on [−2,2]. Dots compare the exact value and the polynomial at x=1. The uniform remainder bound uses exp(ξ)≤e² throughout this interval; it is intentionally conservative. These curves are not fitted to sampled data.","State the expansion point, order and domain of use together with an error statement. A polynomial can match several derivatives perfectly at its center and still be inaccurate farther away."]} />

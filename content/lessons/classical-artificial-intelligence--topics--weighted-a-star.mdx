@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Weighted A* gives the heuristic more influence to find good solutions faster.",
+  "hook": "The quality allowance is a ceiling, not the bill you must pay.",
+  "overview": "Weighted A* prioritizes g+w·h for w≥1, deliberately emphasizing estimated remaining cost. With a nonnegative admissible base heuristic, zero goal estimate and suitable repeated-state handling, its returned goal cost is at most w times optimal. The weight is a worst-case quality allowance, not a prediction of the actual error or a guaranteed speedup.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Inflate priority, not the real cost",
+      "explanation": "The algorithm still accumulates actual edge costs in g. Only the priority's heuristic term is multiplied by w. An output cost of ten remains ten credits; dividing it by the weight does not change the plan's price."
     },
     {
-      "title": "Core rule",
-      "explanation": "Expand nodes by g(n)+w h(n) for a weight w greater than one."
+      "title": "A short bound argument",
+      "explanation": "With correct handling of improved paths, some frontier prefix p of an optimal path retains its optimal g. At the returned goal G, minimum priority gives C=f_w(G)≤f_w(p). Since g(p)≥0 and w≥1, g(p)+w h(p)≤w(g(p)+h(p))≤w C*. The second inequality uses base-h admissibility. Preserve the assumptions that keep that frontier prefix available."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+      "title": "Find the switch in this instance",
+      "explanation": "B has base estimate zero and quickly generates G with cost ten. A's weighted priority is 1+3w. When w≤3, A beats or ties the expensive goal; alphabetical A wins equality. When w>3, the goal is selected first. The displayed quarter-step control crosses the boundary from three to 3.25."
+    },
+    {
+      "title": "Distinguish guarantee from observation",
+      "explanation": "At w=4 the returned cost is ten and C*=4, so the observed ratio is 2.5, below the guaranteed upper factor four. At w=2 the answer is still optimal with ratio one. The quality bound can be loose, and increasing weight within a region can leave both path and work unchanged."
+    },
+    {
+      "title": "Reopening and anytime behavior are separate design choices",
+      "explanation": "This lab retains improved paths and permits reopening. Suppressing reopenings requires checking an appropriate theorem for that variant and base heuristic. A single weighted run stops at its first goal; an anytime method continues improving an incumbent and a quality certificate, which is additional algorithmic behavior."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Expand nodes by g(n)+w h(n) for a weight w greater than one.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+    "Choose an acceptable worst-case multiplicative factor and an admissible base h.",
+    "Prioritize g+w·h while retaining true g costs and a duplicate policy supported by the guarantee.",
+    "On goal removal, report actual cost, allowed factor, work and any tighter independently justified bound."
   ],
   "formulas": [
     {
-      "label": "Weighted A* rule",
-      "expression": "f_w(n) = g(n) + w h(n), w > 1",
-      "meaning": "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight."
+      "label": "Definition and assumptions",
+      "expression": "f_w=g+w h; C_returned ≤ w C* (under the stated assumptions)",
+      "meaning": "S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. Base h is S:0,A:3,B:0,C:2,D:1,G:0, which is admissible and consistent. A* orders by g+w·h, permits reopening on strict g improvements and stops on current-best goal removal. Equal priorities use alphabetical labels. Costs are nonnegative; this graph is finite."
     }
   ],
   "example": {
-    "title": "Weighted A* in a small case",
-    "setup": "Plan a robot route under a tight latency budget with w=1.5.",
+    "title": "Cross the weight-three boundary",
+    "setup": "Compare w=3 with w=3.25.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Expand nodes by g(n)+w h(n) for a weight w greater than one.",
-      "Check the outcome against the goal and stated assumptions."
+      "At three, A has priority ten, tying the expensive G. Alphabetical A wins, and the cost-four route is returned after six removals.",
+      "At 3.25, A has priority 10.75. G at ten is selected first, producing S→B→G after three removals.",
+      "The latter ratio is 10/4=2.5, below 3.25; the allowed upper cost is 3.25×4=13 credits."
     ],
-    "result": "The planner often explores fewer states and returns a near-optimal route sooner."
+    "result": "Half as many removals in this toy graph does not establish half the runtime on a real workload."
   },
   "pitfalls": [
-    "A very large weight approaches greedy search and can produce poor solutions.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "w·h is generally no longer admissible as an ordinary A* heuristic when w>1; do not claim exact optimality from the base heuristic alone.",
+    "An arbitrary learned h without a lower-bound guarantee does not inherit the w factor.",
+    "The returned cost ratio cannot be measured exactly unless the optimum is known; a certified bound and an empirical ratio are different quantities."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep weight, cost units, base-heuristic version and reopen policy in experiment metadata. Compare elapsed time, expansions, peak memory and solution cost across workloads.",
+    "If w changes during a live run, existing priorities and stopping proofs need updating. This lab reruns from scratch at every setting, so it does not silently reuse a stale heap."
+  ],
   "takeaways": [
-    "Weighted A* gives the heuristic more influence to find good solutions faster.",
-    "Expand nodes by g(n)+w h(n) for a weight w greater than one.",
-    "It trades exact optimality for speed; with suitable assumptions the solution cost can be bounded relative to optimal by the weight.",
-    "The planner often explores fewer states and returns a near-optimal route sooner."
+    "A larger weight can reduce search work by accepting a worse route, but observed error need not equal w and speed need not improve monotonically. Report the guarantee and measured ratio separately.",
+    "Distinguish worst-case allowance from observed suboptimality and search effort."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Weighted A* gives the heuristic more influence to find good solutions faster.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Weighted A* illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Weighted A* prioritizes g+w·h for w≥1, deliberately emphasizing estimated remaining cost. With a nonnegative admissible base heuristic, zero goal estimate and suitable repeated-state handling, its returned goal cost is at most w times optimal. The weight is a worst-case quality allowance, not a prediction of the actual error or a guaranteed speedup.","Derive the weighted-A* quality bound under explicit assumptions.","Distinguish worst-case allowance from observed suboptimality and search effort.","The quality allowance is a ceiling, not the bill you must pay.","f_w=g+w h; C_returned ≤ w C* (under the stated assumptions)","S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. Base h is S:0,A:3,B:0,C:2,D:1,G:0, which is admissible and consistent. A* orders by g+w·h, permits reopening on strict g improvements and stops on current-best goal removal. Equal priorities use alphabetical labels. Costs are nonnegative; this graph is finite.","A larger weight can reduce search work by accepting a worse route, but observed error need not equal w and speed need not improve monotonically. Report the guarantee and measured ratio separately."]} />

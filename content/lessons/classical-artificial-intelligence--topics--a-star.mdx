@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A* balances cost already paid with an estimate of cost remaining.",
+  "hook": "Compare the bill so far plus the cheapest plausible finish.",
+  "overview": "A* orders frontier paths by f=g+h: cost already paid plus a lower estimate of remaining cost. An admissible h never exceeds the true cheapest remaining cost. With appropriate repeated-state handling, this lower bound prevents a more expensive goal from beating every frontier path that could lead to an optimal one. Consistency is the stronger edge-local condition that permits finalizing a state on its first minimum-f removal.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Read f as a bound for this path",
+      "explanation": "After expanding S, A has g=1,h=3,f=4. B has g=1,h=9,f=10. UCS sees equal g values; A* sees that the B route cannot complete for fewer than ten credits under this valid h. It can postpone B while following the promising path through A."
     },
     {
-      "title": "Core rule",
-      "explanation": "Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered."
+      "title": "Admissibility protects an optimal route",
+      "explanation": "For a frontier node on an optimal path, g+h cannot exceed that path's final cost if g corresponds to its optimal prefix and h is a lower bound. A strictly more expensive goal has f equal to its larger g, so it cannot outrank every such frontier prefix. Correct graph handling must preserve or recover those prefixes."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+      "title": "Consistency turns priorities into monotone path values",
+      "explanation": "The edge inequality h(u)≤c(u,v)+h(v) implies g(u)+h(u)≤g(u)+c(u,v)+h(v). Thus f cannot decrease along a path. In the example, every edge on the cheap route has equality; S→B gives 4≤10. This supports finalization on removal with nonnegative costs."
+    },
+    {
+      "title": "Admissible but inconsistent requires reopening",
+      "explanation": "An admissible heuristic can still violate the edge inequality. Then a state's first removal may use a suboptimal g; a later cheaper route must be allowed to reopen it. A closed Boolean set that forbids all future updates can destroy the optimality guarantee. The lab's h is consistent, so that complication never occurs here."
+    },
+    {
+      "title": "Heuristic strength is not wall-clock performance",
+      "explanation": "Exact remaining distance is an ideal heuristic but often as hard to obtain as the original answer. Useful estimates can come from relaxed problems, abstractions or precomputed pattern databases. A larger valid estimate may reduce some expansions while costing more to evaluate; tie-breaking among equal-f nodes also affects measured work."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+    "Construct h with an explicit lower-bound argument and verify h(goal)=0.",
+    "Order the frontier by g+h, update improved g values and parent links, and apply a reopening policy compatible with the heuristic.",
+    "Stop when a current-best goal is removed, then report cost, work, heuristic time and memory separately."
   ],
   "formulas": [
     {
-      "label": "A* rule",
-      "expression": "f(n) = g(n) + h(n)",
-      "meaning": "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions."
+      "label": "Definition and assumptions",
+      "expression": "f(n)=g(n)+h(n); h(u)≤c(u,v)+h(v), h(G)=0",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. The fixed heuristic is h(S)=4, h(A)=3, h(B)=9, h(C)=2, h(D)=1, h(G)=0. It happens to equal exact remaining costs in this tiny demonstration; obtaining it is not free in a real problem. Strict g improvements update frontier paths. Equal f values use alphabetical labels."
     }
   ],
   "example": {
-    "title": "A* in a small case",
-    "setup": "Route through a road map using distance traveled plus straight-line distance to the destination.",
+    "title": "Leave the expensive branch unexpanded",
+    "setup": "Advance to five removals.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
-      "Check the outcome against the goal and stated assumptions."
+      "The removal order is S,A,C,D,G. Along the returned path, g rises 0,1,2,3,4 while h falls 4,3,2,1,0.",
+      "Every selected path prefix has f=4. B remains on the frontier at g=1,h=9,f=10.",
+      "The returned path costs four. A* expands four non-goal states here; UCS expands five, including B."
     ],
-    "result": "A* returns the lowest-cost route while using the heuristic to avoid irrelevant regions."
+    "result": "The one-node saving is an observed result for this graph and tie policy, not a universal speedup factor."
   },
   "pitfalls": [
-    "An overestimating or inconsistent heuristic can break simple optimality assumptions or require state reopening.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Greedy best-first search uses h alone; A* also accounts for g.",
+    "Multiplying h by a weight greater than one can remove admissibility and changes the algorithm's guarantee.",
+    "Never justify a heuristic from how close nodes look in a schematic. The graph's numeric cost model is authoritative."
   ],
-  "implementation": [],
+  "implementation": [
+    "Cache h only when it is a pure function of the state and fixed goal. If the goal or costs change, stale heuristic values may no longer be valid bounds.",
+    "Use best-g bookkeeping and reject stale queue entries before accepting a goal. Instrument reopenings when evaluating inconsistent heuristics; a larger closed set is not by itself evidence of correct pruning."
+  ],
   "takeaways": [
-    "A* balances cost already paid with an estimate of cost remaining.",
-    "Expand the frontier node minimizing f(n)=g(n)+h(n), relaxing cheaper paths as they are discovered.",
-    "With an admissible heuristic and appropriate graph-search handling it finds an optimal solution; stronger valid heuristics usually reduce expansions.",
-    "A* returns the lowest-cost route while using the heuristic to avoid irrelevant regions."
+    "A valid heuristic prioritizes lower bounds on complete solutions. This example avoids expanding B, but a useful real heuristic must balance accuracy, evaluation cost and memory.",
+    "Trace why g+h leaves an expensive completion on the frontier."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A* balances cost already paid with an estimate of cost remaining.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This A* illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A* orders frontier paths by f=g+h: cost already paid plus a lower estimate of remaining cost. An admissible h never exceeds the true cheapest remaining cost. With appropriate repeated-state handling, this lower bound prevents a more expensive goal from beating every frontier path that could lead to an optimal one. Consistency is the stronger edge-local condition that permits finalizing a state on its first minimum-f removal.","Explain admissibility, consistency and the role of reopening.","Trace why g+h leaves an expensive completion on the frontier.","Compare the bill so far plus the cheapest plausible finish.","f(n)=g(n)+h(n); h(u)≤c(u,v)+h(v), h(G)=0","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. The fixed heuristic is h(S)=4, h(A)=3, h(B)=9, h(C)=2, h(D)=1, h(G)=0. It happens to equal exact remaining costs in this tiny demonstration; obtaining it is not free in a real problem. Strict g improvements update frontier paths. Equal f values use alphabetical labels.","A valid heuristic prioritizes lower bounds on complete solutions. This example avoids expanding B, but a useful real heuristic must balance accuracy, evaluation cost and memory."]} />

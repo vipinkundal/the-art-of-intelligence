@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
+  "hook": "A tangent sees local slope; it can miss curvature across the uncertainty cloud.",
+  "overview": "The extended Kalman filter uses local Jacobians to propagate covariance and form approximate corrections in nonlinear state-space models. It evaluates nonlinear functions at the current estimate but replaces their uncertainty propagation with a first-order approximation. The resulting Gaussian summary is generally not the exact nonlinear posterior.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "The local sensor model is affine",
+      "explanation": "Around μ, x²≈μ²+2μ(x−μ). With prior variance one, this predicts measurement mean μ² and sensor-induced variance 4μ². Adding measurement noise gives innovation variance 4μ²+1. In contrast, Gaussian moments give exact predicted mean μ²+1 and measurement variance 4μ²+3."
     },
     {
-      "title": "Core computation",
-      "explanation": "Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction."
+      "title": "At zero, slope misses magnitude information",
+      "explanation": "When μ=0, H=0, so K=0 and the EKF keeps mean 0 and variance 1 regardless of z. But z=4 favours magnitudes near two over magnitudes near zero. The true posterior density is proportional to exp(−x²/2−(4−x²)²/2), which has two modes at ±√3.5. Its symmetry keeps the exact posterior mean zero, yet its distribution is not unchanged."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+      "title": "The approximation can become overconfident",
+      "explanation": "At μ=1, H=2 and K=2/5, producing updated mean 2.2 and variance 0.2. These numbers follow the tangent model, not exact conditioning through x². A small approximate covariance does not certify that the nonlinear posterior is narrow or unimodal."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+    "Evaluate the nonlinear predicted state or observation at the current mean.",
+    "Calculate the appropriate Jacobian there and use it for covariance propagation and gain calculation.",
+    "Inspect whether the local linear model is credible over the current uncertainty region, especially near stationary points or ambiguities."
   ],
   "formulas": [
     {
-      "label": "Extended Kalman filter rule",
-      "expression": "F_t = partial f/partial x at m_(t-1); H_t = partial h/partial x at m^-_t",
-      "meaning": "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence."
+      "label": "Definition and assumptions",
+      "expression": "h(x)=x²; H=h′(μ)=2μ; K=H/(H²+1); μ⁺=μ+K(4−μ²); P⁺=1−KH",
+      "meaning": "One measurement correction, not a full time-series simulation. The normalized prior is X∼N(μ,1), the sensor is Y=X²+V with independent V∼N(0,1), and the observed value is z=4. The control moves the linearization point μ. Curves show the actual sensor function, its tangent and the observation level; they are functions, not densities. The readout labels EKF updates as approximations."
     }
   ],
   "example": {
-    "title": "Extended Kalman filter in a small case",
-    "setup": "Track a robot whose sensor reports nonlinear range and bearing to a landmark.",
+    "title": "One omitted curvature term changes two moments",
+    "setup": "Use μ=1, prior variance one and measurement-noise variance one.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "EKF predicts E[Y]≈h(1)=1, but the exact predicted E[Y]=E[X²]=1²+1=2.",
+      "The EKF innovation variance is 2²·1+1=5; the exact predicted measurement variance is 4·1²+2+1=7.",
+      "For z=4, the EKF uses innovation 3, gain 0.4 and updated mean 2.2."
     ],
-    "result": "Jacobian-based updates approximate the posterior with a Gaussian around the current trajectory estimate."
+    "result": "Linearization errors enter both the innovation and the confidence assigned to it."
   },
   "pitfalls": [
-    "Verify analytic Jacobians numerically and keep angle residuals properly wrapped.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "An unchanged mean at a symmetric operating point need not be wrong; an unchanged distribution or covariance can still be wrong.",
+    "Iterating an EKF update is not a universal cure for multiple modes or a poor initial linearization."
   ],
-  "implementation": [],
+  "implementation": [
+    "Check analytic or automatic Jacobians against local changes of the actual model, and evaluate them at the correct predicted or corrected state for each step.",
+    "Distinguish additive from non-additive noise: nonlinear noise injection may require its own Jacobian and covariance treatment."
+  ],
   "takeaways": [
-    "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
-    "Evaluate Jacobians of the transition and observation functions, then use them in the covariance prediction and correction.",
-    "It is efficient for mild nonlinearity, but a poor local linearization can produce bias, inconsistency, or divergence.",
-    "Jacobian-based updates approximate the posterior with a Gaussian around the current trajectory estimate."
+    "A correct derivative is not enough when a first-order model discards important curvature. Check the uncertainty region, not only the linearization point.",
+    "Identify curvature and symmetry failures without mistaking approximate covariance for exact uncertainty."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Extended Kalman filter illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["The extended Kalman filter uses local Jacobians to propagate covariance and form approximate corrections in nonlinear state-space models. It evaluates nonlinear functions at the current estimate but replaces their uncertainty propagation with a first-order approximation. The resulting Gaussian summary is generally not the exact nonlinear posterior.","Derive a nonlinear sensor's EKF correction from its tangent.","Identify curvature and symmetry failures without mistaking approximate covariance for exact uncertainty.","A tangent sees local slope; it can miss curvature across the uncertainty cloud.","h(x)=x²; H=h′(μ)=2μ; K=H/(H²+1); μ⁺=μ+K(4−μ²); P⁺=1−KH","One measurement correction, not a full time-series simulation. The normalized prior is X∼N(μ,1), the sensor is Y=X²+V with independent V∼N(0,1), and the observed value is z=4. The control moves the linearization point μ. Curves show the actual sensor function, its tangent and the observation level; they are functions, not densities. The readout labels EKF updates as approximations.","A correct derivative is not enough when a first-order model discards important curvature. Check the uncertainty region, not only the linearization point."]} />

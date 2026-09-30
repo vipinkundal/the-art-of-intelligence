@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Parameters are the adjustable values the optimizer changes.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Before asking for the best answer, say which knobs the solver may turn.",
+  "overview": "Decision variables are the quantities an optimization problem is allowed to choose. In model fitting these often include weights and intercepts, while inputs and observed labels are held fixed. A model parameter can also be frozen; being stored in a model does not automatically make it trainable.",
+  "concepts": [
+    {
+      "title": "Data, parameters and hyperparameters play different roles",
+      "explanation": "In this fit x and y are observed data, w is the decision variable, and b is a frozen model parameter. A learning rate controls the numerical algorithm rather than the line's prediction rule. A penalty strength would define a family of objectives and can be tuned in a separate outer problem."
+    },
+    {
+      "title": "Constraints narrow what can be represented",
+      "explanation": "Freezing b restricts all lines to pass through (0,1). A nonnegativity bound on w would further restrict the family. Poor fit can result from these restrictions even if the solver correctly finds the best permitted parameter."
+    },
+    {
+      "title": "Identifiability depends on the observations",
+      "explanation": "The three distinct inputs here determine w uniquely when b=1. If every observed input were zero, predictions would not depend on w and no amount of optimizing this loss could identify it. More parameters are not necessarily more information."
+    }
+  ],
+  "process": [
+    "Declare the prediction rule, observed data and variables to be chosen.",
+    "Mark each model quantity as trainable, frozen or constrained before computing updates.",
+    "Check whether the observations contain enough information to distinguish candidate parameter settings."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "ŷ=wx+b; b=1 fixed; J(w)=⅓Σᵢ(wxᵢ+1−yᵢ)²=⅔(w−2)²",
+      "meaning": "Three fixed observations (−1,−1), (0,1), and (1,3). Only w is optimized; b is deliberately frozen at 1. Dots show observations, the adjustable line shows predictions, and the comparison line uses the exact optimum w=2. Feature and target values are dimensionless."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "One slope is wrong by one",
+    "setup": "At w=1 and b=1, evaluate the three observations.",
+    "steps": [
+      "Predictions are {0,1,2}, while labels are {−1,1,3}.",
+      "Residuals are {1,0,−1}, giving MSE=2/3.",
+      "At w=2 all residuals vanish; the derivative dJ/dw=(4/3)(w−2) also vanishes."
+    ],
+    "result": "The optimizer can fix the slope because the prediction actually depends on it at the observed inputs."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A hyperparameter is not inherently unoptimizable; it is simply outside the particular inner optimization being described.",
+    "Reusing the same data to fit and select model settings can overstate performance; changing the decision space also changes the validation problem."
+  ],
+  "implementation": [
+    "Inspect the actual parameter collection supplied to the optimizer, including accidentally frozen or omitted tensors.",
+    "Treat learned preprocessing as part of fitting and record any transformations applied to both training and future inputs."
+  ],
+  "takeaways": [
+    "The set of trainable variables defines the feasible family of models. A loss gradient for one parameter says nothing about a frozen quantity unless it is explicitly included in the optimization problem.",
+    "Separate trainability, parameter identifiability and numerical optimization."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Parameters are the adjustable values the optimizer changes.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Parameters and decision variables illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Decision variables are the quantities an optimization problem is allowed to choose. In model fitting these often include weights and intercepts, while inputs and observed labels are held fixed. A model parameter can also be frozen; being stored in a model does not automatically make it trainable.","Identify which quantities a stated fitting problem may change.","Separate trainability, parameter identifiability and numerical optimization.","Before asking for the best answer, say which knobs the solver may turn.","ŷ=wx+b; b=1 fixed; J(w)=⅓Σᵢ(wxᵢ+1−yᵢ)²=⅔(w−2)²","Three fixed observations (−1,−1), (0,1), and (1,3). Only w is optimized; b is deliberately frozen at 1. Dots show observations, the adjustable line shows predictions, and the comparison line uses the exact optimum w=2. Feature and target values are dimensionless.","The set of trainable variables defines the feasible family of models. A loss gradient for one parameter says nothing about a frozen quantity unless it is explicitly included in the optimization problem."]} />

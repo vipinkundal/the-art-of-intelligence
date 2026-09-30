@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
+  "hook": "Four equal tickets can all point to only two places.",
+  "overview": "Sequential Monte Carlo maintains weighted particles across a sequence of target distributions using importance weighting, resampling and suitable propagation or mutation. The sequence may follow real observations, as in particle filtering, or artificial intermediate targets for a static problem. This lab isolates one tempered weighting and resampling stage.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Sequential can mean an artificial bridge",
+      "explanation": "Here β increases from an easy uniform target toward a likelihood-weighted target on the same four hypotheses. In a full sampler, smaller temperature increments and target-preserving mutation can help the population adapt. The present control shows one isolated stage so every weight and copy can be inspected."
     },
     {
-      "title": "Core computation",
-      "explanation": "Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate."
+      "title": "Weight correction depends on the construction",
+      "explanation": "The displayed likelihood-power ratio is valid for reweighting unchanged particles between these tempered targets. General SMC proposals, path extensions or backward kernels lead to different importance ratios; the simple expression is not a universal update for every mutation."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights."
+      "title": "Copies get equal weights, not independent identities",
+      "explanation": "At β=1, the CDF thresholds select B,D,D,D. Each child receives weight 1/4, but three children share the same hypothesis. The grouped bars contrast mass represented before and after that specific resampling realization."
+    },
+    {
+      "title": "Mutation has a different job",
+      "explanation": "Resampling can only select states already present. A properly constructed mutation or proposal can explore elsewhere. A random jitter added without a valid invariant kernel or importance correction is not automatically a legitimate SMC move."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights."
+    "Choose intermediate targets and an initial proposal with adequate support; derive the corresponding incremental importance ratio.",
+    "Normalize weights and inspect concentration before optionally resampling. Keep the distinction between particle weights and empirical mass at each state.",
+    "Apply valid propagation or mutation, retain required normalization bookkeeping, and diagnose repeated runs using the actual quantities of interest."
   ],
   "formulas": [
     {
-      "label": "Sequential Monte Carlo rule",
-      "expression": "w_t^i proportional w_{t-1}^i p(y_t|x_t^i)p(x_t^i|x_{t-1}^i)/q(x_t^i|x_{t-1}^i,y_t)",
-      "meaning": "It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights."
+      "label": "Definition and assumptions",
+      "expression": "πβ(θ)∝π₀(θ)L(θ)^β; wnewⁱ∝woldⁱL(θⁱ)^(βnew−βold); ESSw=1/Σi(wⁱ)²",
+      "meaning": "Four static hypotheses A,B,C,D have uniform prior and relative likelihood scores (1,2,4,16). Start with one equal-weight particle at each hypothesis. Each slider setting independently restarts a bridge from β=0 to the chosen β; it does not evolve the previous slider state. The exhaustive four-point starting population makes the pre-resampling weights exact for this toy target. Systematic resampling uses fixed offset 1/8 and thresholds (1/8,3/8,5/8,7/8), with no mutation. A randomized implementation draws its offset uniformly in [0,1/4)."
     }
   ],
   "example": {
-    "title": "Sequential Monte Carlo in a small case",
-    "setup": "Track multiple possible robot locations as sensor readings arrive.",
+    "title": "ESS rises while diversity falls",
+    "setup": "Set β=1 for scores (1,2,4,16).",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Normalized weights are (1,2,4,16)/23, so ESSw=23²/(1²+2²+4²+16²)=529/277≈1.909747.",
+      "Cumulative weights are (1,3,7,23)/23. Threshold 1/8 selects B; the other three thresholds select D. The child population is B,D,D,D.",
+      "All four child weights are 1/4 and ESSw becomes 4. Yet only two hypotheses survive, with empirical masses (0,1/4,0,3/4). Their total variation distance from the exact target is 5/23≈0.217391."
     ],
-    "result": "The weighted particle cloud approximates the filtering distribution at each time step."
+    "result": "The diagnostic improved by construction, not because the resampled empirical distribution became exact. At β=0 all four hypotheses survive and both bar series agree."
   },
   "pitfalls": [
-    "Resampling too often can destroy diversity; resampling too late wastes computation on dead particles.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "An ESS of N after resampling does not mean N independent draws from the target.",
+    "Randomized systematic resampling preserves weighted empirical expectations conditionally on the input population; one fixed-offset realization need not preserve every estimate.",
+    "Too large a target change can collapse weights before resampling can help. Tempering and mutation still need adequate support and a correctly derived target."
   ],
-  "implementation": [],
+  "implementation": [
+    "Record the temperature schedule, incremental log weights, resampling rule and mutation kernel. The normalizing-constant estimator needs additional bookkeeping beyond normalized weights.",
+    "Monitor distinct ancestors, support and query stability alongside ESS. Do not use this four-hypothesis example's exact pre-resampling weights as a claim about general finite-particle SMC."
+  ],
   "takeaways": [
-    "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
-    "Sample particles from a proposal, multiply weights by the target-to-proposal increment, normalize, and resample when weights degenerate.",
-    "It handles nonlinear and non-Gaussian sequences, but particle requirements grow with dimension and unlikely observations can collapse weights.",
-    "The weighted particle cloud approximates the filtering distribution at each time step."
+    "Weight ESS measures concentration among particle weights, not the count of distinct states or correctness of their empirical distribution. Resampling can raise ESS while removing hypotheses.",
+    "Explain why uniform particle weights can coexist with lost support and approximation error."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Sequential Monte Carlo illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Sequential Monte Carlo maintains weighted particles across a sequence of target distributions using importance weighting, resampling and suitable propagation or mutation. The sequence may follow real observations, as in particle filtering, or artificial intermediate targets for a static problem. This lab isolates one tempered weighting and resampling stage.","Calculate a tempered importance update and systematic resampling choices.","Explain why uniform particle weights can coexist with lost support and approximation error.","Four equal tickets can all point to only two places.","πβ(θ)∝π₀(θ)L(θ)^β; wnewⁱ∝woldⁱL(θⁱ)^(βnew−βold); ESSw=1/Σi(wⁱ)²","Four static hypotheses A,B,C,D have uniform prior and relative likelihood scores (1,2,4,16). Start with one equal-weight particle at each hypothesis. Each slider setting independently restarts a bridge from β=0 to the chosen β; it does not evolve the previous slider state. The exhaustive four-point starting population makes the pre-resampling weights exact for this toy target. Systematic resampling uses fixed offset 1/8 and thresholds (1/8,3/8,5/8,7/8), with no mutation. A randomized implementation draws its offset uniformly in [0,1/4).","Weight ESS measures concentration among particle weights, not the count of distinct states or correctness of their empirical distribution. Resampling can raise ESS while removing hypotheses."]} />

@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
+  "hook": "Knowing each coin is fair does not tell you how often they agree.",
+  "overview": "Probability starts with a sample space, events and a consistent assignment of mass. Random variables map outcomes to quantities. A joint model specifies how several quantities vary together; marginals describe them separately. Conditioning, expectations and distributions are operations on that model—not permission to assume independence.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "Probability assigns numbers to uncertain events. In AI, those numbers help models express how likely an output is, how much evidence supports a prediction, and how uncertain a decision remains."
+      "title": "One sample space, several questions",
+      "explanation": "The four outcomes are 00, 01, 10 and 11. X reads the first bit, Y the second and S their total. An event such as S=1 collects two outcomes. Its probability is the sum of their masses, not a separate arbitrary setting."
     },
     {
-      "title": "Understand",
-      "explanation": "Sample spaces and events : The sample space lists possible outcomes; an event is a subset of outcomes you care about."
+      "title": "Marginalization discards a relationship",
+      "explanation": "Each row and column totals one half for every q. A dashboard displaying only separate success rates would therefore look unchanged while simultaneous successes and failures vary sharply. The joint table retains that missing relationship."
     },
     {
-      "title": "Understand",
-      "explanation": "Conditional probability : Updates the chance of an event after you know another event has occurred."
+      "title": "Independence is a factorization",
+      "explanation": "At q=1/4, all four masses equal 1/4=P(X=x)P(Y=y). At every other setting that factorization fails. In this particular binary family, P(Y=1|X=1)=2q, directly exposing the dependence while P(Y=1) stays fixed."
     },
     {
-      "title": "Understand",
-      "explanation": "Independence and conditional independence : Independence means one event gives no information about another; conditional independence means that after controlling for a third variable."
+      "title": "Expectation can survive a dependence change",
+      "explanation": "Linearity gives E[X+Y]=E[X]+E[Y]=1 without requiring independence. Variance does require the covariance term: Var(S)=1/4+1/4+2(q−1/4)=2q. Equal means can conceal a deterministic sum at q=0 or an extreme-only sum at q=1/2."
     },
     {
-      "title": "Understand",
-      "explanation": "Random variables : Functions that assign numeric or categorical values to uncertain outcomes."
-    },
-    {
-      "title": "Understand",
-      "explanation": "Probability mass and density functions : PMFs handle discrete outcomes; densities describe continuous outcomes through areas under a curve."
-    },
-    {
-      "title": "Important distributions",
-      "explanation": "Bernoulli : Models one yes-or-no trial, such as click or no click."
-    },
-    {
-      "title": "Important distributions",
-      "explanation": "Binomial : Counts successes across a fixed number of Bernoulli trials."
+      "title": "Build the section in layers",
+      "explanation": "Begin with events, random variables and mass versus density. Then learn joint models, conditioning and Bayes' rule; follow with expectation, variance and distribution families. Limit theorems, stochastic processes and Monte Carlo methods add repeated-observation assumptions that must be stated separately."
     }
   ],
   "process": [
-    "Probability assigns numbers to uncertain events. In AI, those numbers help models express how likely an output is, how much evidence supports a prediction, and how uncertain a decision remains."
+    "Define outcomes and variables, then check that the probability model is valid.",
+    "Obtain the event, marginal, conditional or transformed distribution required by the question.",
+    "Check dependence and sampling assumptions before using a simplified formula or an asymptotic approximation."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "P(X,Y)=[[q,½−q],[½−q,q]]; P(S=0,1,2)=(q,1−2q,q); Var(S)=2q",
+      "meaning": "X and Y each take values zero or one. Rows of the joint table index X and columns index Y. q lies in [0,1/2], making all four masses nonnegative and summing to one. Every marginal is Bernoulli(1/2), but the pair is independent only at q=1/4. S=X+Y. These are exact probabilities, not finite sample frequencies; no physical coin-toss independence is assumed."
+    }
+  ],
   "example": {
-    "title": "Probability example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A total that never fluctuates",
+    "setup": "Set q=0, then compare q=1/2.",
+    "steps": [
+      "At q=0 the only possible outcomes are 01 and 10, each with probability one half. S is always one and its variance is zero.",
+      "At q=1/2 the only outcomes are 00 and 11. S is zero or two with equal probabilities and variance one.",
+      "Both settings have E[S]=1 and identical fair marginals. The independent middle case q=1/4 has sum masses (1/4,1/2,1/4) and variance one half."
+    ],
+    "result": "A statement about each component alone cannot determine the reliability of their combined result."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Identically distributed does not mean independent. The two endpoint examples have identical marginals and maximal dependence.",
+    "A density value is not an event probability; this four-cell example uses discrete masses.",
+    "A theoretical probability model and an estimated frequency from a finite, possibly biased sample are different objects."
+  ],
+  "implementation": [
+    "The reference bars remain fixed at the independent model while the actual joint table and sum distribution change together.",
+    "For paired failures or correlated measurements, retain joint information rather than reconstructing it from separate averages without justification."
+  ],
   "takeaways": [
-    "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
-    "Explore Brown's Seeing Theory for interactive visualizations of probability, distributions, inference, and regression."
+    "Marginals do not determine a joint distribution. Before multiplying probabilities or using an independent-sum formula, inspect the dependence assumptions.",
+    "Identify which expectation and variance identities require independence."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Probability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Probability starts with a sample space, events and a consistent assignment of mass. Random variables map outcomes to quantities. A joint model specifies how several quantities vary together; marginals describe them separately. Conditioning, expectations and distributions are operations on that model—not permission to assume independence.","Derive a sum distribution from a joint probability table.","Identify which expectation and variance identities require independence.","Knowing each coin is fair does not tell you how often they agree.","P(X,Y)=[[q,½−q],[½−q,q]]; P(S=0,1,2)=(q,1−2q,q); Var(S)=2q","X and Y each take values zero or one. Rows of the joint table index X and columns index Y. q lies in [0,1/2], making all four masses nonnegative and summing to one. Every marginal is Bernoulli(1/2), but the pair is independent only at q=1/4. S=X+Y. These are exact probabilities, not finite sample frequencies; no physical coin-toss independence is assumed.","Marginals do not determine a joint distribution. Before multiplying probabilities or using an independent-sum formula, inspect the dependence assumptions."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Generalize optimality conditions for constrained optimization problems.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A boundary can touch the solution without exerting a positive shadow price.",
+  "overview": "The Karush–Kuhn–Tucker conditions combine stationarity, primal feasibility, dual feasibility and complementary slackness. They are necessary at many regular constrained optima and sufficient for global optimality in differentiable convex problems with affine equalities. A constraint can be active even when its multiplier is zero.",
+  "concepts": [
+    {
+      "title": "Three constraints, three multipliers",
+      "explanation": "The Lagrangian adds λ(x+y−b)−μx x−μy y to the objective. Feasibility requires the triangle's inequalities, dual feasibility requires λ,μx,μy≥0, and complementary slackness requires λ(b−x−y)=μx x=μy y=0. Stationarity supplies two additional equations."
+    },
+    {
+      "title": "The active set changes in stages",
+      "explanation": "For 0<b<1, the solution is (b,0), λ=2−b and μy=1−b. For 1≤b<3 it is ((b+1)/2,(b−1)/2), λ=(3−b)/2 and both floor multipliers are zero. At b≥3 the target (2,1) is feasible and every multiplier is zero."
+    },
+    {
+      "title": "Necessity and sufficiency are different statements",
+      "explanation": "Constraint qualifications govern whether multipliers must exist at an optimum. For this convex example, strict feasibility gives Slater's condition and the KKT system certifies the unique optimum. In a general nonconvex problem, satisfying KKT can still leave a saddle or a local maximum."
+    }
+  ],
+  "process": [
+    "Choose a consistent ≤0 convention and give every inequality its own nonnegative multiplier.",
+    "Solve a candidate active set, then check inactive inequalities and multiplier signs rather than assuming them.",
+    "Report feasibility, stationarity and complementary-slackness residuals along with the objective and relevant optimality assumptions."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "min ½[(x−2)²+(y−1)²]; x+y≤b, x≥0, y≥0; ∇L=(x−2+λ−μx, y−1+λ−μy)=0",
+      "meaning": "Three inequalities are written x+y−b≤0, −x≤0 and −y≤0, with nonnegative multipliers λ, μx and μy. The feasible triangle is shaded; the target is (2,1). The objective is strictly convex and b>0 permits strict feasibility. Closed-form candidates are used; this is not an iterative solver. Tiny residual roundoff may appear numerically."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two binding boundaries",
+    "setup": "Set b=0.5.",
+    "steps": [
+      "The candidate is (0.5,0), with λ=1.5, μx=0 and μy=0.5.",
+      "Stationarity is 0.5−2+1.5=0 and 0−1+1.5−0.5=0.",
+      "Budget and y-floor slacks are zero; the x-floor slack is 0.5 but its multiplier is zero. Every complementary product vanishes."
+    ],
+    "result": "At b=1 the y-floor remains active while μy drops to zero; at b=3 the budget is active while λ is zero."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Checking only the objective gradient misses the constraint terms in stationarity.",
+    "A small solver-reported residual does not by itself prove a global minimum for a nonconvex problem or justify ignoring badly scaled constraint violations."
+  ],
+  "implementation": [
+    "Use separate scaled tolerances for primal feasibility, dual feasibility, stationarity and complementarity.",
+    "Near active-set transitions, do not equate a numerically tiny multiplier with a definitively inactive constraint; inspect slack and tolerance as well."
+  ],
+  "takeaways": [
+    "Check all four KKT conditions. Activity means zero slack; it does not require a positive multiplier.",
+    "Distinguish zero slack from a strictly positive multiplier."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Generalize optimality conditions for constrained optimization problems.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This KKT conditions illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["The Karush–Kuhn–Tucker conditions combine stationarity, primal feasibility, dual feasibility and complementary slackness. They are necessary at many regular constrained optima and sufficient for global optimality in differentiable convex problems with affine equalities. A constraint can be active even when its multiplier is zero.","Verify a full KKT certificate for a multi-constraint problem.","Distinguish zero slack from a strictly positive multiplier.","A boundary can touch the solution without exerting a positive shadow price.","min ½[(x−2)²+(y−1)²]; x+y≤b, x≥0, y≥0; ∇L=(x−2+λ−μx, y−1+λ−μy)=0","Three inequalities are written x+y−b≤0, −x≤0 and −y≤0, with nonnegative multipliers λ, μx and μy. The feasible triangle is shaded; the target is (2,1). The objective is strictly convex and b>0 permits strict feasibility. Closed-form candidates are used; this is not an iterative solver. Tiny residual roundoff may appear numerically.","Check all four KKT conditions. Activity means zero slack; it does not require a positive multiplier."]} />

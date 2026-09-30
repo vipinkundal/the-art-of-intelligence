@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Proves a claim for all cases by proving a base case and a step from one case to the next.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The border changes with n; the reason it completes a square does not.",
+  "overview": "Mathematical induction proves a statement across a well-founded sequence by establishing a base case and a step that carries truth to the next case. It is a deductive argument, not extrapolation from many successful examples. The statement being carried forward must be precise enough to support that step.",
+  "concepts": [
+    {
+      "title": "Name the proposition and its domain",
+      "explanation": "Let P(n) assert that the sum of the first n positive odd integers equals n², for integer n≥1. This statement includes an exact range and identity. Saying the pattern keeps working does not identify what may be assumed or what must be proved next."
+    },
+    {
+      "title": "The first square is the base case",
+      "explanation": "At n=1, the sum is 1 and the square has one cell. The previous 0×0 square contains no cells; the new border has one. This begins the chain. A correct implication with no true starting case can prove nothing about the intended range."
+    },
+    {
+      "title": "Use the hypothesis only for the smaller case",
+      "explanation": "For an arbitrary integer k≥1, assume the first k odd numbers sum to k². The next sum is k²+(2(k+1)−1)=k²+2k+1=(k+1)². The only substitution using the induction hypothesis is the old sum becoming k²; the claim for k+1 is the conclusion, not an allowed premise."
+    },
+    {
+      "title": "The picture explains the algebra",
+      "explanation": "Going from side four to side five adds a five-cell column and a four-cell row. That L-shaped border has nine cells, turning sixteen into twenty-five. The lab labels the newly added cells with a stripe pattern as well as a distinct border, so recognizing the step does not depend on color alone."
+    },
+    {
+      "title": "Choose an induction shape that matches the dependency",
+      "explanation": "Strong induction permits the previously established smaller cases together. Structural induction follows constructors of a recursively defined object. For a recursive algorithm, the corresponding proof also needs the recursive calls to reach smaller, well-founded cases; a recurrence with a cycle does not become valid just because it looks inductive."
+    }
+  ],
+  "process": [
+    "State P(n), the integer range and every needed base case.",
+    "Fix an arbitrary admissible k, assume only the permitted smaller cases, and derive P(k+1).",
+    "Invoke induction to cover the entire range; keep illustrative numerical checks separate from that deduction."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "P(n): Σᵢ₌₁ⁿ(2i−1)=n²; (n−1)²+(2n−1)=n²",
+      "meaning": "The claim concerns positive integers n. Each cell represents one unit. Solid cells form the previous (n−1)×(n−1) square; the striped right column and bottom row add 2n−1 cells, counting their shared corner once. The slider only renders n=1,…,10; the general proof is symbolic and does not depend on exhausting that finite display range. No empirical inference or probabilistic claim is made."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The fifth border",
+    "setup": "Select n=5 in the lab.",
+    "steps": [
+      "The previous square has (5−1)²=16 cells, matching 1+3+5+7.",
+      "The next odd number is 2×5−1=9: five cells on the right plus four along the bottom.",
+      "The new total is 16+9=25=5². In the general step, replace four by an arbitrary k and use k²+(2k+1)=(k+1)²."
+    ],
+    "result": "The five-by-five picture is a witness to the mechanism. The arbitrary-k argument, together with n=1, proves the identity for every positive integer."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Checking P(1) through P(10) does not prove P(11) or every larger case. A counterexample may lie beyond the displayed range.",
+    "Do not assume P(k+1) while proving it, or silently use a stronger hypothesis than the statement provides.",
+    "Check the first transition as carefully as the general one. Missing overlap, a missing predecessor or an unhandled boundary can break an otherwise plausible induction."
+  ],
+  "implementation": [
+    "When reasoning about a loop, formulate an invariant at a precise program point, show initialization and preservation, and combine it with the exit condition. Termination is a separate obligation from partial correctness.",
+    "The lab explicitly sums its odd terms and counts grid cells. Its exact small integers make the illustration easy to inspect, but the code's finite range is not the theorem's domain."
+  ],
+  "takeaways": [
+    "A base case starts the argument; an arbitrary-step implication extends it. A finite gallery of correct examples cannot replace either obligation.",
+    "Translate a concrete growth picture into a general algebraic proof."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Proves a claim for all cases by proving a base case and a step from one case to the next.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Mathematical induction illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Mathematical induction proves a statement across a well-founded sequence by establishing a base case and a step that carries truth to the next case. It is a deductive argument, not extrapolation from many successful examples. The statement being carried forward must be precise enough to support that step.","Separate a base case, induction hypothesis and arbitrary inductive step.","Translate a concrete growth picture into a general algebraic proof.","The border changes with n; the reason it completes a square does not.","P(n): Σᵢ₌₁ⁿ(2i−1)=n²; (n−1)²+(2n−1)=n²","The claim concerns positive integers n. Each cell represents one unit. Solid cells form the previous (n−1)×(n−1) square; the striped right column and bottom row add 2n−1 cells, counting their shared corner once. The slider only renders n=1,…,10; the general proof is symbolic and does not depend on exhausting that finite display range. No empirical inference or probabilistic claim is made.","A base case starts the argument; an arbitrary-step implication extends it. A finite gallery of correct examples cannot replace either obligation."]} />

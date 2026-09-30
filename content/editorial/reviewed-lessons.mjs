@@ -4,6 +4,38 @@ import { linearAlgebraLessons } from "./linear-algebra.mjs";
 import { distributionLessons } from "./distributions.mjs";
 import { probabilityFoundationLessons } from "./probability-foundations.mjs";
 import { inferenceLessons } from "./statistical-inference.mjs";
+import { optimizationLessons } from "./optimization.mjs";
+import { trainingLessons } from "./training-foundations.mjs";
+import { calculusLessons } from "./calculus.mjs";
+import { calculusApplicationLessons } from "./calculus-applications.mjs";
+import { informationLessons } from "./information-theory.mjs";
+import { samplingLessons } from "./sampling-processes.mjs";
+import { mcmcLessons } from "./mcmc.mjs";
+import { hiddenSequenceLessons } from "./hidden-sequences.mjs";
+import { kalmanLessons } from "./kalman-models.mjs";
+import { latentInferenceLessons } from "./latent-inference.mjs";
+import { graphicalFoundationLessons } from "./graphical-foundations.mjs";
+import { factorInferenceLessons } from "./factor-inference.mjs";
+import { messagePassingLessons } from "./message-passing.mjs";
+import { structuredLessons } from "./structured-models.mjs";
+import { particleLessons } from "./particle-methods.mjs";
+import { predictiveReliabilityLessons } from "./predictive-reliability.mjs";
+import { dataQualityLessons } from "./data-quality.mjs";
+import { optimizationDiagnosticLessons } from "./optimization-diagnostics.mjs";
+import { discreteFoundationLessons } from "./discrete-foundations.mjs";
+import { graphStructureLessons } from "./graph-structures.mjs";
+import { proofTechniqueLessons } from "./proof-techniques.mjs";
+import { complexityFoundationLessons } from "./complexity-foundations.mjs";
+import { computationLessons } from "./computation-models.mjs";
+import { algorithmStrategyLessons } from "./algorithm-strategies.mjs";
+import { sectionOverviewLessons } from "./section-overviews.mjs";
+import { foundationOverviewLessons } from "./foundation-overviews.mjs";
+import { searchStrategyLessons } from "./search-strategies.mjs";
+import { searchHeuristicLessons } from "./search-heuristics.mjs";
+import { searchStateLessons } from "./search-state-memory.mjs";
+import { searchRefinementLessons } from "./search-refinements.mjs";
+import { classicalOverviewLessons } from "./classical-overview.mjs";
+import { searchGuaranteeLessons } from "./search-guarantees.mjs";
 const probabilityBook = source("Pishro-Nik: Introduction to Probability", "https://www.probabilitycourse.com/");
 const informationBook = source("MacKay: Information Theory, Inference, and Learning Algorithms", "https://www.inference.org.uk/itila/book.html");
 const scipy = (name) => source(`SciPy: ${name}`, `https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.${name}.html`);
@@ -15,10 +47,42 @@ export const lessonAliases = {
 };
 
 export const reviewedLessons = {
+  ...searchStrategyLessons,
+  ...searchHeuristicLessons,
+  ...searchStateLessons,
+  ...searchRefinementLessons,
+  ...classicalOverviewLessons,
+  ...searchGuaranteeLessons,
   ...linearAlgebraLessons,
   ...distributionLessons,
   ...probabilityFoundationLessons,
   ...inferenceLessons,
+  ...optimizationLessons,
+  ...trainingLessons,
+  ...calculusLessons,
+  ...calculusApplicationLessons,
+  ...informationLessons,
+  ...samplingLessons,
+  ...mcmcLessons,
+  ...hiddenSequenceLessons,
+  ...kalmanLessons,
+  ...latentInferenceLessons,
+  ...graphicalFoundationLessons,
+  ...factorInferenceLessons,
+  ...messagePassingLessons,
+  ...structuredLessons,
+  ...particleLessons,
+  ...predictiveReliabilityLessons,
+  ...dataQualityLessons,
+  ...optimizationDiagnosticLessons,
+  ...discreteFoundationLessons,
+  ...graphStructureLessons,
+  ...proofTechniqueLessons,
+  ...complexityFoundationLessons,
+  ...computationLessons,
+  ...algorithmStrategyLessons,
+  ...sectionOverviewLessons,
+  ...foundationOverviewLessons,
   [math("conditional-probability")]: reviewed({
     title: "Conditional probability", summary: "Conditional probability measures an event within a restricted population: P(A|B)=P(A∩B)/P(B), provided P(B)>0.",
     hook: "The event after the bar chooses the denominator.", model: "conditional", control: ["Cases in both A and B", 0, 40, 1, 20],

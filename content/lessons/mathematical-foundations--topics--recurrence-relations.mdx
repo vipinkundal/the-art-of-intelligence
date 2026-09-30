@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Define values in terms of previous values, common in algorithms and dynamic programming.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Halving each job does not halve the level's work when the number of jobs doubles.",
+  "overview": "A recurrence specifies a quantity through smaller instances and boundary values. It can define a sequence or model an algorithm's work; those are different quantities. The model must say what n measures, which calls occur, and what work remains outside those calls.",
+  "concepts": [
+    {
+      "title": "Specify the quantity before solving",
+      "explanation": "Here T(n) is total sequential work, not elapsed parallel time. The coefficient two counts both child calls; the +n term counts local work only. The leaf rule stops expansion and fixes the solution. Changing that rule changes the exact formula even when the large-n growth class stays the same."
+    },
+    {
+      "title": "Read a level as a product",
+      "explanation": "At depth d there are 2ᵈ calls of size n/2ᵈ. Before the leaves, their local work adds to 2ᵈ×n/2ᵈ=n. The bars stay equal because multiplicity and per-call cost cancel, not because all subproblems have equal size across depths."
+    },
+    {
+      "title": "Do not lose the leaves",
+      "explanation": "There are k internal levels for n=2ᵏ, followed by n leaves costing one unit each. Thus total work is nk+n. At k=0 the root is already a leaf: T(1)=1, not zero. An n log₂ n estimate omits this lower-order term and is not an exact equality."
+    },
+    {
+      "title": "Certify the candidate formula",
+      "explanation": "Write S(k)=T(2ᵏ). The base is S(0)=1. If S(k−1)=2ᵏ⁻¹k, then S(k)=2S(k−1)+2ᵏ=2ᵏ(k+1). This induction proves the formula for the stated domain; matching a handful of plotted values alone does not."
+    },
+    {
+      "title": "The recurrence is not the implementation",
+      "explanation": "For a sequence such as Fibonacci, the recurrence defines values. A naive recursive evaluator repeats subproblems; memoization or an iterative evaluator changes computation cost without changing those values. Likewise, a work recurrence does not by itself determine stack space, allocation traffic or parallel latency."
+    }
+  ],
+  "process": [
+    "Define the input size, boundary cases, child sizes and non-recursive work.",
+    "Expand into levels or another suitable dependency structure and account for every contribution.",
+    "Derive a candidate, verify it algebraically, and only then simplify to an asymptotic bound."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "T(1)=1; T(n)=2T(n/2)+n; n=2ᵏ ⇒ T(n)=n(k+1)",
+      "meaning": "This is an exact toy work model on positive powers of two, not a benchmark or an exact merge-sort comparison count. Each non-leaf call makes two half-size calls and incurs its own size in additional work units. A size-one call costs one unit. Depth zero is the root; depth k contains the leaves. Bars aggregate work at a depth, not the number of calls. The table lists calls, subproblem size, per-call work and total work."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Sixteen items, five equal bills",
+    "setup": "Use k=4, so n=16.",
+    "steps": [
+      "Depths 0 through 3 have 1,2,4,8 calls, with local costs 16,8,4,2. Every product is 16.",
+      "Depth 4 has sixteen size-one leaves, adding another 16 units.",
+      "Total work is 4×16+16=80. Bottom-up recurrence values are T(1)=1, T(2)=4, T(4)=12, T(8)=32 and T(16)=80."
+    ],
+    "result": "The full tree has 31 calls, but 80 work units. Counting calls and counting work are not interchangeable."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "For arbitrary integer n, halves require floor/ceiling rules and suitable base cases. Do not silently apply this exact power-of-two formula to every input.",
+    "Do not count a parent's full T(n) and its children's T values as separate level costs: that double-counts descendant work. Sum local contributions instead.",
+    "A recurrence using an upper bound only establishes an upper bound unless a matching lower argument is supplied. Big-O is not an exact equality or an automatic tight bound."
+  ],
+  "implementation": [
+    "The lab computes the level products and independently evaluates the recurrence bottom-up using small exact integers. Neither calculation runs merge sort or measures a device.",
+    "An algorithm's split cost, copying, comparator cost and concurrency affect the appropriate model. Derive the recurrence from the actual operations before using a theorem to solve it."
+  ],
+  "takeaways": [
+    "Count work within a level, then count the levels—including the base cases. Verify a proposed formula against both the recurrence and its boundary values.",
+    "Reconcile recursion-level totals, base cases and a proved closed form."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Define values in terms of previous values, common in algorithms and dynamic programming.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Recurrence relations illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A recurrence specifies a quantity through smaller instances and boundary values. It can define a sequence or model an algorithm's work; those are different quantities. The model must say what n measures, which calls occur, and what work remains outside those calls.","Translate a recursive decomposition into a well-specified work recurrence.","Reconcile recursion-level totals, base cases and a proved closed form.","Halving each job does not halve the level's work when the number of jobs doubles.","T(1)=1; T(n)=2T(n/2)+n; n=2ᵏ ⇒ T(n)=n(k+1)","This is an exact toy work model on positive powers of two, not a benchmark or an exact merge-sort comparison count. Each non-leaf call makes two half-size calls and incurs its own size in additional work units. A size-one call costs one unit. Depth zero is the root; depth k contains the leaves. Bars aggregate work at a depth, not the number of calls. The table lists calls, subproblem size, per-call work and total work.","Count work within a level, then count the levels—including the base cases. Verify a proposed formula against both the recurrence and its boundary values."]} />

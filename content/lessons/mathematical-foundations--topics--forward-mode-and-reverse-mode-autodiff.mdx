@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Forward asks what this input movement changes; reverse asks which inputs affect this weighted output.",
+  "overview": "Forward mode propagates an input direction to compute a Jacobian-vector product. Reverse mode propagates output weights backward to compute a vector-Jacobian product. Choosing a mode depends on the derivative product required, not simply whether the program runs forward in time.",
+  "concepts": [
+    {
+      "title": "Push a tangent through the Jacobian",
+      "explanation": "For F:R²→R³, a forward seed v has two components and Jv has three. The result describes the first-order output change along one input direction. Recovering the full Jacobian by forward mode needs the input basis directions, not just one arbitrary seed."
+    },
+    {
+      "title": "Pull a cotangent back",
+      "explanation": "A reverse seed w has one weight per output. Jᵀw is the gradient of the scalar weighted sum wᵀF when w is fixed. Here the weighted sum is xy−x−y+x²/2, whose gradient at (1,2) is (2,0)."
+    },
+    {
+      "title": "Count the products and the stored state",
+      "explanation": "A scalar loss with many inputs is a natural reverse-mode use case because one reverse sweep yields its input gradient. A few input directions can favor forward products. Computing every Jacobian entry still has output-size costs, and reverse mode usually trades stored intermediates or recomputation for its efficiency."
+    }
+  ],
+  "process": [
+    "Write the function's input and output dimensions and the specific derivative product requested.",
+    "Choose an input tangent for a JVP or output cotangent for a VJP.",
+    "Check the resulting shape and interpret the product before using it in an optimizer, sensitivity analysis or higher-order calculation."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "F(x,y)=(xy,x+y,x²); J(1,2)=[[2,1],[1,1],[2,0]]; forward: Jv; reverse: Jᵀw",
+      "meaning": "The input point is fixed at (1,2). A unit forward seed v rotates with θ; the reverse seed remains w=(1,−1,0.5). Matrices show exact small Jacobian products using column-vector notation, with output rows and input columns. Real AD implementations can obtain these products without materializing the full Jacobian shown for explanation."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A column and a weighted row combination",
+    "setup": "Use v=(1,0) and w=(1,−1,0.5) at (1,2).",
+    "steps": [
+      "Jv=(2,1,2), the first column of J.",
+      "Jᵀw=(2,0), combining the three output sensitivities with the supplied weights.",
+      "Both wᵀ(Jv) and (Jᵀw)ᵀv equal 2."
+    ],
+    "result": "The two products are consistent without being the same vector or having the same dimension."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A VJP with an all-ones seed differentiates a sum of outputs; it does not return the full Jacobian.",
+    "Vectorized or batched seeds can reduce overhead but do not remove the arithmetic and storage needed for all requested derivative entries."
+  ],
+  "implementation": [
+    "Prefer product APIs when only Jv, Jᵀw or a Hessian-vector product is required.",
+    "Treat reverse-mode activation storage, checkpointing and recomputation as explicit memory/compute choices."
+  ],
+  "takeaways": [
+    "Specify the seed and output shape before choosing a mode. A JVP and a VJP answer different questions but obey the same adjoint identity wᵀ(Jv)=(Jᵀw)ᵀv.",
+    "Select differentiation mode based on the requested sensitivity and resource tradeoffs."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward-mode and reverse-mode autodiff illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Forward mode propagates an input direction to compute a Jacobian-vector product. Reverse mode propagates output weights backward to compute a vector-Jacobian product. Choosing a mode depends on the derivative product required, not simply whether the program runs forward in time.","Compute forward and reverse products with their correct shapes.","Select differentiation mode based on the requested sensitivity and resource tradeoffs.","Forward asks what this input movement changes; reverse asks which inputs affect this weighted output.","F(x,y)=(xy,x+y,x²); J(1,2)=[[2,1],[1,1],[2,0]]; forward: Jv; reverse: Jᵀw","The input point is fixed at (1,2). A unit forward seed v rotates with θ; the reverse seed remains w=(1,−1,0.5). Matrices show exact small Jacobian products using column-vector notation, with output rows and input columns. Real AD implementations can obtain these products without materializing the full Jacobian shown for explanation.","Specify the seed and output shape before choosing a mode. A JVP and a VJP answer different questions but obey the same adjoint identity wᵀ(Jv)=(Jᵀw)ᵀv."]} />

@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
+  "hook": "The alarm raises suspicion; confirming one explanation reduces the need for the other.",
+  "overview": "A Bayesian network combines a directed acyclic graph with one conditional probability distribution per node. Their product defines a normalized joint distribution. The graph expresses factorization assumptions; its arrows alone do not establish causal effects.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "Structure plus numbers",
+      "explanation": "The roots supply P(A) and P(B); the alarm supplies four rows for P(C|A,B). Every row sums to one across the two C outcomes. Arrows determine which variables enter a local table, not its numerical values."
     },
     {
-      "title": "Core computation",
-      "explanation": "Multiply one conditional probability for each node given its parents."
+      "title": "Reverse inference uses the same joint",
+      "explanation": "The model is written from faults to alarm, yet can answer P(A|C=1). Sum P(A,B,C=1) over B, then divide by P(C=1). Reversing the direction of a question does not require drawing the arrows backward."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+      "title": "Explaining away is conditional",
+      "explanation": "A and B are independent before the alarm is observed. After observing C=1, evidence for B makes A less necessary as an explanation in this particular noisy-OR model. This changes beliefs; it is not an intervention that repairs either fault."
+    },
+    {
+      "title": "Representation is not an inference-cost guarantee",
+      "explanation": "A sparse graph can save conditional-table parameters, but exact inference may still form large intermediate factors. Node count or apparent sparsity alone does not determine inference difficulty."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Multiply one conditional probability for each node given its parents.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+    "Choose variable domains, an acyclic parent structure, and normalized local distributions.",
+    "Multiply the relevant local factors, fix evidence and sum over hidden variables for the desired query.",
+    "Normalize by the probability of the observed evidence, then assess sensitivity to uncertain table entries or root probabilities."
   ],
   "formulas": [
     {
-      "label": "Bayesian networks rule",
-      "expression": "P(x_1,...,x_n) = product_i P(x_i | parents(x_i))",
-      "meaning": "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified."
+      "label": "Definition and assumptions",
+      "expression": "P(A,B,C)=P(A)P(B)P(C|A,B); P(C=1|a,b)=1−0.99·0.1ᵃ·0.2ᵇ",
+      "meaning": "Binary independent roots A and B describe possible faults, and C is an alarm. P(A=1)=0.1; the slider changes P(B=1). The specified noisy-OR alarm has 0.01 baseline activation, 0.9 activation by A and 0.8 by B, combined through the displayed failure-product formula. Curves condition on C=1, with one also conditioning on B=1."
     }
   ],
   "example": {
-    "title": "Bayesian networks in a small case",
-    "setup": "Model rain, a sprinkler, wet grass, and slippery pavement with directed dependencies.",
+    "title": "The default alarm calculation",
+    "setup": "Use P(A=1)=0.1 and P(B=1)=0.2. Alarm probabilities for (A,B)=(00,01,10,11) are (0.01,0.802,0.901,0.9802).",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Multiply one conditional probability for each node given its parents.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "The four root-pair masses are (0.72,0.18,0.08,0.02). Multiplying by alarm probabilities and summing gives P(C=1)=0.243244.",
+      "The A=1 alarm mass is 0.08×0.901+0.02×0.9802=0.091684, giving P(A=1|C=1)=0.091684/0.243244≈0.376922.",
+      "After B=1 is known, P(A=1|C=1,B=1)=0.1×0.9802/(0.1×0.9802+0.9×0.802)≈0.119563."
     ],
-    "result": "Evidence that the grass is wet updates the posterior probabilities of rain and sprinkler use."
+    "result": "The alarm alone raises the prior 0.1 substantially. Confirming B lowers that posterior, but does not make A impossible."
   },
   "pitfalls": [
-    "An arrow may encode dependence without proving real-world causation.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "A directed edge can encode a conditional distribution without supporting a causal interpretation. Intervention claims need additional causal assumptions.",
+    "Normalizing each local table in a directed cycle does not in general make their product a normalized joint. A Bayesian network requires acyclicity.",
+    "An absent direct edge does not imply marginal independence. Other paths and the conditioning set matter."
   ],
-  "implementation": [],
+  "implementation": [
+    "Validate state ordering, every conditional row sum and the DAG structure before inference. Parent-axis swaps can produce plausible but incorrect posteriors.",
+    "Represent evidence explicitly and distinguish probability of evidence from posterior normalization. Zero-probability evidence requires a model/data diagnosis, not division by zero."
+  ],
   "takeaways": [
-    "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
-    "Multiply one conditional probability for each node given its parents.",
-    "The factorization is compact and supports causal interpretations only when the arrows and assumptions are causally justified.",
-    "Evidence that the grass is wet updates the posterior probabilities of rain and sprinkler use."
+    "Local conditional tables specify a joint model, but answering a posterior query still requires marginalizing unknown variables and normalizing the evidence.",
+    "Distinguish a graph's factorization assumptions from causal claims and inference complexity."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Bayesian networks illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Bayesian network combines a directed acyclic graph with one conditional probability distribution per node. Their product defines a normalized joint distribution. The graph expresses factorization assumptions; its arrows alone do not establish causal effects.","Construct and query a joint distribution from local conditional tables.","Distinguish a graph's factorization assumptions from causal claims and inference complexity.","The alarm raises suspicion; confirming one explanation reduces the need for the other.","P(A,B,C)=P(A)P(B)P(C|A,B); P(C=1|a,b)=1−0.99·0.1ᵃ·0.2ᵇ","Binary independent roots A and B describe possible faults, and C is an alarm. P(A=1)=0.1; the slider changes P(B=1). The specified noisy-OR alarm has 0.01 baseline activation, 0.9 activation by A and 0.8 by B, combined through the displayed failure-product formula. Curves condition on C=1, with one also conditioning on B=1.","Local conditional tables specify a joint model, but answering a posterior query still requires marginalizing unknown variables and normalizing the evidence."]} />

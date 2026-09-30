@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
+  "hook": "Choose a coherent route through the sequence, not a winner in every column.",
+  "overview": "Viterbi decoding uses dynamic programming to find a most probable complete hidden-state path for fixed HMM parameters and observations. It keeps the best prefix ending in each state, then traces predecessor choices backward. Maximizing a whole-path probability is a different decision problem from maximizing each posterior state marginal separately.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "Store a best prefix for every possible ending",
+      "explanation": "A globally best path ending in j must use a best predecessor prefix for some i. Multiplying by A(i,j) and the current emission extends that prefix. In log space this becomes addition and a maximum. Retaining one predecessor index for each cell permits reconstruction of the selected path after the last state is chosen."
     },
     {
-      "title": "Core computation",
-      "explanation": "For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state."
+      "title": "Sum and max answer different questions",
+      "explanation": "Forward inference adds all prefixes that reach a state; Viterbi keeps only the best. The observation likelihood is therefore not a Viterbi score. The lab divides the best joint mass by the forward likelihood to report the posterior probability of that complete path."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+      "title": "A worked disagreement, including non-uniqueness",
+      "explanation": "At e=0.6, the smoothed probabilities are approximately (0.603734,0.566390,0.433610,0.396266), so separate decisions form 1100. However 0000 and 1111 tie for the most probable whole path. The deterministic tie rule displays 0000 rather than claiming a unique optimum. Strong transition persistence can make a constant path win even when each half's marginal preference differs."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+    "Initialize log scores with the initial distribution and first emission.",
+    "For each state at each time, maximize over predecessor scores and store the maximizing predecessor.",
+    "Choose a highest-scoring final state and backtrack; report ties and distinguish path probability from marginal confidence."
   ],
   "formulas": [
     {
-      "label": "Viterbi decoding rule",
-      "expression": "delta_t(j)=P(x_t|j) max_i [delta_(t-1)(i) T_ij]",
-      "meaning": "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state."
+      "label": "Definition and assumptions",
+      "expression": "δ₁(j)=log π(j)+log B(j,y₁); δₜ(j)=log B(j,yₜ)+maxᵢ[δₜ₋₁(i)+log A(i,j)]",
+      "meaning": "Observed string 1100, uniform initial state probabilities, hidden persistence 0.8. The control changes the probability that an observation matches its state. Viterbi uses log scores and backpointers; smoothing uses sums over paths. Ties within 1e−12 in log score prefer the lower predecessor or final-state index. Binary path labels and marginal probabilities share the vertical scale but are explicitly different quantities; connecting lines do not interpolate hidden states."
     }
   ],
   "example": {
-    "title": "Viterbi decoding in a small case",
-    "setup": "Decode the most likely part-of-speech tag sequence for a sentence.",
+    "title": "Two uncertain halves, one constant MAP path",
+    "setup": "Set emission reliability e=0.6.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "For path 0000, P(path,1100)=0.5·0.8³·0.4²·0.6²=0.0147456. Path 1111 has the same mass.",
+      "For path 1100, P(path,1100)=0.5·0.8²·0.2·0.6⁴=0.0082944.",
+      "P(observed 1100)=0.061696. Each constant MAP path has posterior probability about 0.239004, higher than the marginal-decision path's approximately 0.134440."
     ],
-    "result": "Backtracking returns one globally coherent tag path that respects transition and emission probabilities."
+    "result": "A best path can have a posterior probability far below one; decoding is not certainty."
   },
   "pitfalls": [
-    "Use log probabilities so long products become stable sums.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "Greedily choosing the current best state discards alternative prefixes needed for future transitions. Viterbi keeps a best prefix per ending state instead.",
+    "With forbidden transitions, marginal-by-marginal decisions can even form an impossible path. All transitions in this lab are positive, so its disagreement is about probability, not validity."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log probabilities, with impossible transitions represented by −∞. Distinguish impossible evidence from a valid path with a small score.",
+    "Dense decoding takes O(TK²) work; ordinary traceback stores O(TK) predecessor indices. Make tie handling deterministic without presenting tied optima as unique."
+  ],
   "takeaways": [
-    "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
-    "For each state and time retain the best predecessor score and backpointer, then trace backward from the best final state.",
-    "Dynamic programming avoids enumerating all paths, but the MAP path is not the same as choosing each time's marginally most probable state.",
-    "Backtracking returns one globally coherent tag path that respects transition and emission probabilities."
+    "Joint MAP minimizes whole-sequence zero–one loss. Independent marginal decisions minimize the expected number of state-label errors; neither objective universally dominates the other.",
+    "Explain a concrete disagreement between joint-path decoding and marginal decisions."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Viterbi decoding finds the single most probable hidden-state sequence in an HMM.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Viterbi decoding illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Viterbi decoding uses dynamic programming to find a most probable complete hidden-state path for fixed HMM parameters and observations. It keeps the best prefix ending in each state, then traces predecessor choices backward. Maximizing a whole-path probability is a different decision problem from maximizing each posterior state marginal separately.","Recover a joint MAP sequence using max scores and backpointers.","Explain a concrete disagreement between joint-path decoding and marginal decisions.","Choose a coherent route through the sequence, not a winner in every column.","δ₁(j)=log π(j)+log B(j,y₁); δₜ(j)=log B(j,yₜ)+maxᵢ[δₜ₋₁(i)+log A(i,j)]","Observed string 1100, uniform initial state probabilities, hidden persistence 0.8. The control changes the probability that an observation matches its state. Viterbi uses log scores and backpointers; smoothing uses sums over paths. Ties within 1e−12 in log score prefer the lower predecessor or final-state index. Binary path labels and marginal probabilities share the vertical scale but are explicitly different quantities; connecting lines do not interpolate hidden states.","Joint MAP minimizes whole-sequence zero–one loss. Independent marginal decisions minimize the expected number of state-label errors; neither objective universally dominates the other."]} />

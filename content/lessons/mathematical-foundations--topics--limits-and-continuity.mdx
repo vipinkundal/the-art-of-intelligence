@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Limits describe behavior near a point, and continuity means small input changes do not cause jumps.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The neighbors determine the limit; the filled dot determines the value.",
+  "overview": "A limit describes a function's behavior arbitrarily near an input, excluding the input itself. Continuity at that input additionally requires the assigned function value to agree with the limit. A function can have a perfectly well-defined limit while its value is missing or different.",
+  "concepts": [
+    {
+      "title": "A neighborhood is not the point",
+      "explanation": "For this family, inputs just below 1 have values just below 2, and inputs just above 1 have values just above 2. Neither approach consults the special value c at exactly 1. A two-sided finite limit requires agreement from both sides when both sides are in the domain."
+    },
+    {
+      "title": "Make the closeness statement precise",
+      "explanation": "The limit L at a means that for every ε>0, there is a δ>0 such that 0<|x−a|<δ implies |g(x)−L|<ε. Here δ=ε works for L=2 and a=1. The strict exclusion of x=a explains why c can be changed without changing the limit."
+    },
+    {
+      "title": "Continuity adds a matching condition",
+      "explanation": "With c=2 the function is the line everywhere and is continuous at 1. For every other c it has a removable discontinuity. A genuine jump with unequal one-sided limits would not be repaired simply by reassigning one point."
+    }
+  ],
+  "process": [
+    "Separate nearby behavior from the function's definition at the point itself.",
+    "Compare the one-sided limits when a two-sided limit is required.",
+    "If the limit exists and the point is in the domain, compare the limit with the assigned value to determine continuity."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "g(x)=x+1 for x≠1; g(1)=c; limₓ→₁ g(x)=2; continuity at 1 ⇔ c=2",
+      "meaning": "A real piecewise function defined for every real x. An open circle marks the excluded point on the line when c≠2; a filled circle marks the actual value g(1). At c=2 the hole is filled. The graph shows a finite window, while the limit follows analytically from |g(x)−2|=|x−1| for x≠1."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A limit of two, a value of zero",
+    "setup": "Set c=0.",
+    "steps": [
+      "g(0.99)=1.99 and g(1.01)=2.01.",
+      "For every nonzero h, g(1+h)=2+h, so the limit is 2 as h tends to zero.",
+      "But g(1)=0; moving the slider to c=2 repairs continuity without changing the neighboring formula."
+    ],
+    "result": "Substitution at the special point alone would give the wrong answer to the limit question."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A finite table or smooth-looking plot suggests behavior but is not a proof of a limit; oscillations can occur between sampled points.",
+    "Continuity does not imply differentiability. For example, an absolute-value cusp is continuous even though its two one-sided slopes disagree."
+  ],
+  "implementation": [
+    "Keep domain restrictions and exceptional branches explicit rather than simplifying them away accidentally.",
+    "When evaluating near singular expressions, use an algebraically stable form where valid; numerical cancellation should not be mistaken for mathematical nonexistence of a limit."
+  ],
+  "takeaways": [
+    "Changing only the value at a point leaves its limit unchanged. Continuity asks whether those two independently specified quantities match.",
+    "Use a matching condition to diagnose a removable discontinuity."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Limits describe behavior near a point, and continuity means small input changes do not cause jumps.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Limits and continuity illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A limit describes a function's behavior arbitrarily near an input, excluding the input itself. Continuity at that input additionally requires the assigned function value to agree with the limit. A function can have a perfectly well-defined limit while its value is missing or different.","Distinguish a function value from a two-sided limit.","Use a matching condition to diagnose a removable discontinuity.","The neighbors determine the limit; the filled dot determines the value.","g(x)=x+1 for x≠1; g(1)=c; limₓ→₁ g(x)=2; continuity at 1 ⇔ c=2","A real piecewise function defined for every real x. An open circle marks the excluded point on the line when c≠2; a filled circle marks the actual value g(1). At c=2 the hole is filled. The graph shows a finite window, while the limit follows analytically from |g(x)−2|=|x−1| for x≠1.","Changing only the value at a point leaves its limit unchanged. Continuity asks whether those two independently specified quantities match."]} />

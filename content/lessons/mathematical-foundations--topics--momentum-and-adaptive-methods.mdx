@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Smooth or rescale updates so optimization handles noisy or uneven gradients better.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A small current gradient does not erase the velocity already accumulated.",
+  "overview": "Momentum carries information from earlier gradients into the next update. Adaptive methods instead also change coordinate-wise step scales using gradient statistics. These mechanisms can be combined, but they are not interchangeable and neither guarantees faster convergence on every objective.",
+  "concepts": [
+    {
+      "title": "Two states replace one",
+      "explanation": "The next parameter depends on both the current parameter and stored velocity. On a scalar quadratic with curvature λ, eliminating velocity gives xₜ₊₁=(1+β−ηλ)xₜ−βxₜ₋₁. The roots of this second-order recurrence determine damping and oscillation."
+    },
+    {
+      "title": "Momentum and adaptive scaling answer different questions",
+      "explanation": "Momentum aggregates directions over time. RMSProp tracks squared gradients to rescale coordinates; Adam combines first- and second-moment estimates with bias correction. A coordinate's larger average squared gradient can reduce its effective step without changing the global learning-rate setting."
+    },
+    {
+      "title": "An equal nominal rate is not equal movement",
+      "explanation": "For a nearly constant gradient g, this velocity convention approaches g/(1−β). Comparing β values at a fixed η therefore changes accumulated movement. The lab is an illustration of dynamics, not an optimizer benchmark with matched budgets or tuned rates."
+    }
+  ],
+  "process": [
+    "State the exact velocity convention and initialize its state.",
+    "Apply the gradient update and parameter update in the declared order.",
+    "Compare absolute optimization error and loss over a common horizon, while separately accounting for computation and tuning."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "vₜ₊₁=βvₜ+∇f(xₜ); xₜ₊₁=xₜ−ηvₜ₊₁",
+      "meaning": "Heavy-ball momentum on f(x)=x²/2, x₀=1, v₀=0, η=0.1, and 30 updates. The comparison uses ordinary gradient descent at the same rate. This is the unnormalized gradient-accumulation convention, not the (1−β)-normalized moving average; no adaptive optimizer is simulated."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Memory survives a shrinking gradient",
+    "setup": "Use β=0.8, η=0.1, x₀=1 and v₀=0.",
+    "steps": [
+      "First gradient is 1: v₁=1, x₁=0.9.",
+      "Second gradient is 0.9: v₂=0.8×1+0.9=1.7, x₂=0.73.",
+      "Plain gradient descent gives x₂=0.81 instead."
+    ],
+    "result": "The second momentum update is larger even though its current gradient is smaller."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A lower signed x is not necessarily a smaller error: −0.3 is farther from the optimum than 0.1.",
+    "Copying η and β between normalized and unnormalized momentum formulas changes the effective algorithm; adaptive methods also differ in epsilon placement and state initialization."
+  ],
+  "implementation": [
+    "Save optimizer buffers as well as parameters when resuming a run; restarting velocity changes the trajectory.",
+    "Keep the Adam/RMSProp lesson separate for the adaptive equations, and disclose which algorithm a visual actually computes."
+  ],
+  "takeaways": [
+    "Momentum changes the dynamics, not just the current step length. Crossing the optimum can be compatible with convergence, and larger β can also leave more residual oscillation.",
+    "Separate temporal momentum from coordinate-wise adaptive scaling."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Smooth or rescale updates so optimization handles noisy or uneven gradients better.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Momentum and adaptive methods illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Momentum carries information from earlier gradients into the next update. Adaptive methods instead also change coordinate-wise step scales using gradient statistics. These mechanisms can be combined, but they are not interchangeable and neither guarantees faster convergence on every objective.","Compute a heavy-ball update and explain an overshoot.","Separate temporal momentum from coordinate-wise adaptive scaling.","A small current gradient does not erase the velocity already accumulated.","vₜ₊₁=βvₜ+∇f(xₜ); xₜ₊₁=xₜ−ηvₜ₊₁","Heavy-ball momentum on f(x)=x²/2, x₀=1, v₀=0, η=0.1, and 30 updates. The comparison uses ordinary gradient descent at the same rate. This is the unnormalized gradient-accumulation convention, not the (1−β)-normalized moving average; no adaptive optimizer is simulated.","Momentum changes the dynamics, not just the current step length. Crossing the optimum can be compatible with convergence, and larger β can also leave more residual oscillation."]} />

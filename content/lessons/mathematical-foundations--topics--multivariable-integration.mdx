@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Integrates quantities over areas, volumes, or higher-dimensional spaces.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A slice has both a shape and a weight.",
+  "overview": "A multiple integral accumulates a quantity over a region using an area or volume element. The integration bounds encode the geometry, while the integrand specifies what is accumulated. Area, mass and probability are different integrals unless their density and normalization make them coincide.",
+  "concepts": [
+    {
+      "title": "The inner bound follows the sloping edge",
+      "explanation": "At fixed x, y runs from 0 to 1−x, not to 1. Integrating the density along that slice gives x(1−x)+(1−x)²/2=(1−x²)/2. The outer integral accumulates these slice contributions."
+    },
+    {
+      "title": "Area and mass disagree",
+      "explanation": "The swept area is t−t²/2, whereas the mass is t/2−t³/6. At t=1 they are 1/2 and 1/3. A uniform density of 1 would make the numeric totals agree, but the chosen density is larger near the edge x+y=1."
+    },
+    {
+      "title": "Changing order preserves the same domain",
+      "explanation": "For the full triangle, the reverse order is ∫₀¹∫₀¹⁻ʸ(x+y)dx dy and also gives 1/3. More generally, exchanging integration order needs conditions such as absolute integrability; nonnegative integrands have the Tonelli guarantee even when the integral is infinite."
+    }
+  ],
+  "process": [
+    "Draw or characterize the integration region, including nonrectangular boundaries.",
+    "Integrate along a slice using bounds consistent with that region.",
+    "Accumulate slices, track units and confirm the result with symmetry, reversed order or another independent derivation."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "D={x≥0,y≥0,x+y≤1}; ρ=x+y; M(t)=∫₀ᵗ∫₀¹⁻ˣ(x+y)dy dx=t/2−t³/6",
+      "meaning": "Coordinates use a chosen length unit, and the numerical density x+y uses the corresponding mass-per-area unit. The shaded region is D∩{x≤t}. The graph is a plan view, not a surface-height plot. Integrals are evaluated analytically, not estimated from the screen pixels. The integrand is continuous on the compact triangle."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Half the horizontal range, not half the mass",
+    "setup": "Set t=0.5.",
+    "steps": [
+      "The included area is 0.5−0.5²/2=3/8.",
+      "Its mass is 0.5/2−0.5³/6=11/48≈0.229167.",
+      "Relative to total mass 1/3, the included fraction is 11/16=0.6875."
+    ],
+    "result": "A geometric fraction, a coordinate fraction and a mass fraction need not match."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Using rectangular bounds [0,1]×[0,1] includes points outside the triangle and produces a different integral.",
+    "The density x+y integrates to 1/3, so it is not a normalized probability density; 3(x+y) on this triangle would be."
+  ],
+  "implementation": [
+    "For numerical integration, split complicated domains into pieces with explicit bounds and check convergence as resolution changes.",
+    "A coordinate transform can simplify a domain, but its Jacobian factor belongs in the integration measure."
+  ],
+  "takeaways": [
+    "Draw the domain before choosing bounds. Integrating 1 measures area; integrating a density measures its accumulated quantity.",
+    "Distinguish geometric area from density-weighted mass."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Integrates quantities over areas, volumes, or higher-dimensional spaces.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Multivariable integration illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A multiple integral accumulates a quantity over a region using an area or volume element. The integration bounds encode the geometry, while the integrand specifies what is accumulated. Area, mass and probability are different integrals unless their density and normalization make them coincide.","Convert a nonrectangular region into valid iterated-integral bounds.","Distinguish geometric area from density-weighted mass.","A slice has both a shape and a weight.","D={x≥0,y≥0,x+y≤1}; ρ=x+y; M(t)=∫₀ᵗ∫₀¹⁻ˣ(x+y)dy dx=t/2−t³/6","Coordinates use a chosen length unit, and the numerical density x+y uses the corresponding mass-per-area unit. The shaded region is D∩{x≤t}. The graph is a plan view, not a surface-height plot. Integrals are evaluated analytically, not estimated from the screen pixels. The integrand is continuous on the compact triangle.","Draw the domain before choosing bounds. Integrating 1 measures area; integrating a density measures its accumulated quantity."]} />

@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
+  "hook": "The factor sums the possibilities you are not asking about.",
+  "overview": "Sum-product computes marginal information by multiplying compatible factors and summing over unwanted states. On a factor tree, completed messages give exact marginals. On a cyclic factor graph, ordinary loopy updates lose that guarantee; exact inference may still be possible through elimination or junction-tree methods.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Variable-to-factor messages multiply",
+      "explanation": "A variable collects incoming factor messages except the one from the destination factor. A unary factor supplies local information. In this star-shaped example, the incoming X and Y messages are just their unary probability vectors."
     },
     {
-      "title": "Core computation",
-      "explanation": "A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages."
+      "title": "Factor-to-variable messages sum",
+      "explanation": "For target Z=0, allowed (X,Y) pairs are 00 and 11; for Z=1, they are 01 and 10. Their weighted sums become the two entries of f→Z. Invalid assignments contribute zero because the parity factor vanishes there."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+      "title": "A message is not yet the posterior",
+      "explanation": "The factor message describes the constraint's contribution as a function of Z. Its entries happen to sum to one in this example, but that is not a general requirement. The Z unary preference still has to be multiplied in."
+    },
+    {
+      "title": "Evidence normalization has a meaning here",
+      "explanation": "The sum of the weighted Z vector is the probability that parity is even under the original independent unary model. Dividing by that quantity conditions on the check being satisfied. Contradictory hard constraints could instead make the normalizer zero."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+    "For each recipient state, enumerate compatible states of the factor's other variables.",
+    "Multiply the factor value and incoming messages, excluding information from the recipient, then sum those products.",
+    "Multiply all incoming factor messages at the recipient with its local information and normalize if the total mass is positive."
   ],
   "formulas": [
     {
-      "label": "Sum-product algorithm rule",
-      "expression": "m_{f->x}(x)=sum_{x_f\\x} f(x_f) product_{y in N(f)\\x} m_{y->f}(y)",
-      "meaning": "It is exact on trees and often efficient, while cyclic graphs require loopy approximations."
+      "label": "Definition and assumptions",
+      "expression": "m_f→Z(z)=Σx,y 1{x⊕y⊕z=0}uX(x)uY(y); bZ(z)∝uZ(z)m_f→Z(z)",
+      "meaning": "Three independent binary unary distributions precede an even-parity constraint: P(X=1)=0.2, P(Y=1)=p and P(Z=1)=0.6. The factor is 1 when X⊕Y⊕Z=0 and 0 otherwise. The posterior is the independent unary model conditioned on satisfying parity. Only the central factor's scope is drawn; the three unary factors are shown in the table."
     }
   ],
   "example": {
-    "title": "Sum-product algorithm in a small case",
-    "setup": "Infer bit marginals in a tree-shaped parity-check factor graph.",
+    "title": "Even and odd alternatives",
+    "setup": "Set P(Y=1)=0.3.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "For Z=0, m(0)=0.8×0.7+0.2×0.3=0.62. For Z=1, m(1)=0.8×0.3+0.2×0.7=0.38.",
+      "Multiply by uZ=(0.4,0.6) to obtain (0.248,0.228). Their sum is 0.476.",
+      "The constrained posterior is P(Z=1|even parity)=0.228/0.476≈0.478992, rather than the unary 0.6 or the message entry 0.38."
     ],
-    "result": "Multiplying incoming messages at each bit yields its normalized posterior belief."
+    "result": "At p=0.5 the factor message is (0.5,0.5), so this constraint supplies no preference for Z and its posterior remains 0.6."
   },
   "pitfalls": [
-    "Normalize messages when useful for numerical stability, but retain their relative values.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Using a maximum instead of a sum answers an optimization question rather than the marginal question.",
+    "Including Z's own unary message inside f→Z and multiplying it again at Z counts that information twice.",
+    "Cycles do not make exact inference impossible. They invalidate the ordinary factor-tree guarantee; another exact representation may be feasible at additional cost."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use named variable axes and an explicit recipient axis when contracting factor tables. Sum over every other variable in that factor's scope.",
+    "Normalize messages for stability or use log-sum-exp, handling zero-mass constraints explicitly. Preserve scale factors when the evidence probability is required."
+  ],
   "takeaways": [
-    "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
-    "A variable sends products of incoming messages; a factor sends a sum over its other variables of the factor times their messages.",
-    "It is exact on trees and often efficient, while cyclic graphs require loopy approximations.",
-    "Multiplying incoming messages at each bit yields its normalized posterior belief."
+    "The outgoing factor message excludes the recipient's own unary information. Multiply that unary weight afterward, then normalize the belief.",
+    "Separate incoming messages, a local unary weight and the final normalized marginal."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Sum-product algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Sum-product computes marginal information by multiplying compatible factors and summing over unwanted states. On a factor tree, completed messages give exact marginals. On a cyclic factor graph, ordinary loopy updates lose that guarantee; exact inference may still be possible through elimination or junction-tree methods.","Calculate a factor-to-variable message by summing compatible assignments.","Separate incoming messages, a local unary weight and the final normalized marginal.","The factor sums the possibilities you are not asking about.","m_f→Z(z)=Σx,y 1{x⊕y⊕z=0}uX(x)uY(y); bZ(z)∝uZ(z)m_f→Z(z)","Three independent binary unary distributions precede an even-parity constraint: P(X=1)=0.2, P(Y=1)=p and P(Z=1)=0.6. The factor is 1 when X⊕Y⊕Z=0 and 0 otherwise. The posterior is the independent unary model conditioned on satisfying parity. Only the central factor's scope is drawn; the three unary factors are shown in the table.","The outgoing factor message excludes the recipient's own unary information. Multiply that unary weight afterward, then normalize the belief."]} />

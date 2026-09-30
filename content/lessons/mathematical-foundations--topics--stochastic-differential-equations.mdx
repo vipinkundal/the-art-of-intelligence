@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The average can relax smoothly while every noisy realization keeps wandering.",
+  "overview": "An SDE describes state evolution with both drift and stochastic forcing. In an Itô diffusion, Brownian increments scale with the square root of elapsed time. A solution is a random process: its mean, marginal spread and individual realizations answer different questions.",
+  "concepts": [
+    {
+      "title": "Brownian noise has a time scale",
+      "explanation": "An increment ΔW over h has mean zero and variance h, so it is generated as √h Z for a standard normal Z. Multiplying by h instead would give variance h² and suppress the intended diffusion as the step shrinks."
+    },
+    {
+      "title": "The mean and variance obey different dynamics",
+      "explanation": "For this linear model, m′=−m and v′=−2v+σ², with m(0)=1 and v(0)=0. Thus the mean decays to zero while the variance tends to σ²/2. A nonzero long-run spread is compatible with a zero long-run mean."
+    },
+    {
+      "title": "An exact transition is available here",
+      "explanation": "Over h, Xₜ₊ₕ=e⁻ʰXₜ+σ√[(1−e⁻²ʰ)/2]Z with fresh independent Z. This Gaussian conditional law gives exact grid sampling under ideal random inputs. General SDEs may need a numerical scheme; Euler–Maruyama would instead use Xₖ₊₁=Xₖ−hXₖ+σ√h Zₖ."
+    }
+  ],
+  "process": [
+    "Specify drift, diffusion, initial state and stochastic-integral convention.",
+    "Use an exact transition when available, otherwise a method with appropriate convergence and stability properties.",
+    "Inspect both individual paths and distributional summaries, with units and uncertainty interpretation made explicit."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "dXₜ=−Xₜdt+σdWₜ, X₀=1; E[Xₜ]=e⁻ᵗ; Var(Xₜ)=σ²(1−e⁻²ᵗ)/2",
+      "meaning": "A scalar Ornstein–Uhlenbeck Itô process with mean-reversion rate 1 per second and normalized state. Grid spacing is 0.05 seconds. The realization uses the exact Gaussian transition, not Euler–Maruyama, with Box–Muller normal draws from fixed pseudorandom seed 31415. The same innovations are reused across σ. Joining grid values does not reconstruct the continuous path between them."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Mean reversion does not remove noise",
+    "setup": "Use σ=1 and t=1 second.",
+    "steps": [
+      "The exact mean is e⁻¹≈0.367879.",
+      "The variance is (1−e⁻²)/2≈0.432332, giving SD≈0.657520.",
+      "At long times the mean tends to zero but variance tends to 1/2; an individual path need not settle at zero."
+    ],
+    "result": "Setting σ=0 collapses the spread and recovers deterministic exponential decay."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The plotted ±1 SD curves are marginal spread at each time, not a confidence interval for the mean or a band guaranteed to contain a whole path.",
+    "Itô and Stratonovich conventions generally produce different drift terms with state-dependent diffusion. This constant-diffusion example does not expose that difference."
+  ],
+  "implementation": [
+    "For numerical schemes, distinguish strong pathwise error from weak error in expectations and verify the assumptions behind stated convergence rates.",
+    "Use common noise for controlled path comparisons, but independent streams for independent replicates. A fixed seed supports reproducibility, not proof of statistical accuracy."
+  ],
+  "takeaways": [
+    "Distinguish path randomness, distributional uncertainty and numerical time-step error. Here exact grid transitions remove discretization error at the grid points, not randomness or pseudorandom approximation.",
+    "Use Brownian scaling and distinguish exact grid transitions from numerical approximations."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Stochastic differential equations illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An SDE describes state evolution with both drift and stochastic forcing. In an Itô diffusion, Brownian increments scale with the square root of elapsed time. A solution is a random process: its mean, marginal spread and individual realizations answer different questions.","Separate an SDE's mean, variance and a sample path.","Use Brownian scaling and distinguish exact grid transitions from numerical approximations.","The average can relax smoothly while every noisy realization keeps wandering.","dXₜ=−Xₜdt+σdWₜ, X₀=1; E[Xₜ]=e⁻ᵗ; Var(Xₜ)=σ²(1−e⁻²ᵗ)/2","A scalar Ornstein–Uhlenbeck Itô process with mean-reversion rate 1 per second and normalized state. Grid spacing is 0.05 seconds. The realization uses the exact Gaussian transition, not Euler–Maruyama, with Box–Muller normal draws from fixed pseudorandom seed 31415. The same innovations are reused across σ. Joining grid values does not reconstruct the continuous path between them.","Distinguish path randomness, distributional uncertainty and numerical time-step error. Here exact grid transitions remove discretization error at the grid points, not randomness or pseudorandom approximation."]} />

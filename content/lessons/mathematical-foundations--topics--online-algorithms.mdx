@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Make decisions as data arrives without knowing the future.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The worst time for the season to end is often the day you finally buy.",
+  "overview": "An online algorithm commits to actions as requests arrive, without knowing future requests. Competitive analysis compares its total cost with an offline optimum that knows the entire sequence. The comparison is over all allowed sequences, not merely the typical future in a training dataset.",
+  "concepts": [
+    {
+      "title": "The information constraint is the point",
+      "explanation": "A policy can use the fact that today's request has arrived, its past actions and known prices. It cannot inspect the season's eventual length. Moving the slider chooses a rule for all possible futures; it does not let the simulated algorithm predict where the horizontal axis will stop."
+    },
+    {
+      "title": "Give the benchmark its advantage explicitly",
+      "explanation": "Knowing T, the offline optimum either rents throughout for T credits or buys immediately for eight. Delaying a purchase only adds rental costs, so OPT(T)=min(T,8). The online policy pays T before its threshold and d−1+8 after purchase."
+    },
+    {
+      "title": "Find the adversarial horizon",
+      "explanation": "For T<d, the ratio is T/min(T,8). For T≥d, the online numerator is constant and the offline denominator never decreases. Consequently the largest ratio is attained at T=d and equals (d−1+8)/min(d,8). The finite plot is illustrative; this argument also covers horizons beyond day 24."
+    },
+    {
+      "title": "Balance early purchase against late purchase",
+      "explanation": "If d<8, the worst ratio is 1+7/d, decreasing with d. If d≥8, it is (d+7)/8, increasing with d. The best integer threshold is therefore d=8 with ratio 15/8. A deterministic policy in this fixed-price, identical-request model amounts to choosing a purchase day; never buying has unbounded ratio as T grows."
+    },
+    {
+      "title": "Keep benchmarks separate",
+      "explanation": "Competitive ratio compares with a clairvoyant sequence-specific optimum. Regret usually measures an additive gap against a specified comparator class, such as a fixed action in hindsight. Expected cost under a forecast is yet another objective. A method can perform well on one benchmark and poorly on another."
+    }
+  ],
+  "process": [
+    "List what the algorithm knows at each decision and whether actions can be reversed.",
+    "Define costs and the offline comparator on the same request sequence.",
+    "Derive the worst-case ratio, including short sequences and the exact purchase-day convention."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "ALG_d(T)=T if T<d, else d−1+8; OPT(T)=min(T,8)",
+      "meaning": "Time is discrete, T is a positive integer, rental costs one credit per day and purchase costs eight credits. On the purchase day you buy instead of renting. A deterministic threshold policy rents on days 1 through d−1 and buys if day d arrives. No resale, interest, discounts or forecasts are included. The chart shows T=1…24, while the worst-case ratio is derived over all positive integer horizons. Future T is not an input available to the policy."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Why the eighth day costs fifteen",
+    "setup": "Set the threshold to day eight.",
+    "steps": [
+      "A seven-day season costs seven rentals, exactly matching offline cost seven.",
+      "An eight-day season costs seven rentals plus a purchase: 15 credits. Offline buys immediately for eight, giving ratio 15/8.",
+      "A 24-day season still costs 15 online and eight offline. Buying later on day 16 would instead cost 23, with worst ratio 23/8."
+    ],
+    "result": "Waiting reduces the chance of an unnecessary early purchase but can accumulate rent that cannot be recovered."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Online means sequential information, not network connectivity or simply running in a browser.",
+    "Renting on day eight and then buying would cost 16, a different convention from buying instead of renting on that day.",
+    "Randomized competitive guarantees require stating which information an adversary can see. This lab establishes a deterministic result only, with no additive constant."
+  ],
+  "implementation": [
+    "The chart uses discrete points because a 7.5-day request sequence is outside this model. Exact integer costs and ratios are available in the table.",
+    "For a caching, capacity or subscription decision, first check whether switching costs, time-varying prices or predictions alter the ski-rental assumptions before reusing its guarantee."
+  ],
+  "takeaways": [
+    "Choose a rule before seeing the future, name the offline benchmark, and evaluate the worst allowed stopping point. For this discrete model, buying on day eight guarantees 15/8, not exactly two.",
+    "Distinguish competitive analysis, regret and forecast-based expected performance."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Make decisions as data arrives without knowing the future.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Online algorithms illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An online algorithm commits to actions as requests arrive, without knowing future requests. Competitive analysis compares its total cost with an offline optimum that knows the entire sequence. The comparison is over all allowed sequences, not merely the typical future in a training dataset.","Analyze a threshold policy against a clairvoyant offline optimum.","Distinguish competitive analysis, regret and forecast-based expected performance.","The worst time for the season to end is often the day you finally buy.","ALG_d(T)=T if T<d, else d−1+8; OPT(T)=min(T,8)","Time is discrete, T is a positive integer, rental costs one credit per day and purchase costs eight credits. On the purchase day you buy instead of renting. A deterministic threshold policy rents on days 1 through d−1 and buys if day d arrives. No resale, interest, discounts or forecasts are included. The chart shows T=1…24, while the worst-case ratio is derived over all positive integer horizons. Future T is not an input available to the policy.","Choose a rule before seeing the future, name the offline benchmark, and evaluate the worst allowed stopping point. For this discrete model, buying on day eight guarantees 15/8, not exactly two."]} />

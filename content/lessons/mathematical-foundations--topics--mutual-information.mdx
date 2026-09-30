@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Measures how much knowing one variable reduces uncertainty about another.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A variable can reveal magnitude while saying nothing about sign.",
+  "overview": "Mutual information measures how far a joint distribution is from the product of its marginals. For discrete variables it equals the average reduction in uncertainty from observing the other variable. It is symmetric and detects dependence that a linear correlation coefficient can miss; it does not establish causation.",
+  "concepts": [
+    {
+      "title": "Measure a whole joint distribution",
+      "explanation": "MI sums p(x,y)log₂[p(x,y)/(p(x)p(y))] over positive joint masses. It vanishes exactly at independence. Unlike a correlation coefficient it has no sign and no universal one-bit upper bound; for finite alphabets it is bounded by the smaller marginal entropy."
+    },
+    {
+      "title": "Symmetry cancels covariance",
+      "explanation": "The two nonzero X values have equal probability and the same conditional law of Y. Their contributions to E[XY] cancel, and E[X]=0, so covariance and correlation are zero for every slider setting. At ε=0, however, Y tells us perfectly whether X is zero."
+    },
+    {
+      "title": "Noise removes the useful distinction",
+      "explanation": "Y has success probability (2−ε)/3 and H(Y|X)=h₂(ε). At ε=0 the information is h₂(2/3)≈0.918296 bits. At ε=0.5 each conditional output is a fair bit, the joint factors and the information is zero. Deterministic post-processing cannot create extra information about X."
+    }
+  ],
+  "process": [
+    "Choose variables, their supports and the joint distribution of interest.",
+    "Compare the joint law with independent marginals, or use a conditional-entropy identity.",
+    "Interpret the information units and distinguish population dependence from estimator bias or causal claims."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "I(X;Y)=Dₖₗ(PXY‖PX PY)=H(Y)−H(Y|X); Y=X² XOR E; I=h₂((2−ε)/3)−h₂(ε)",
+      "meaning": "X is uniform on {−1,0,1}. E is an independent Bernoulli(ε) bit, and XOR flips the binary value X² when E=1. Logs use base 2. Curves compare MI in bits with dimensionless Pearson correlation, explicitly not the same measurement unit. The exact joint table is expandable."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Knowing zero versus nonzero",
+    "setup": "Set ε=0.",
+    "steps": [
+      "H(X)=log₂3≈1.584963 bits.",
+      "When Y=0, X=0 is certain; when Y=1, X is equally likely −1 or 1, leaving one bit.",
+      "H(X|Y)=2/3 bits, so I(X;Y)=log₂3−2/3≈0.918296 bits even though correlation is zero."
+    ],
+    "result": "The sign is unresolved, but the zero/nonzero distinction is informative."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Discrete plug-in MI estimates can be biased upward with small counts or too many bins; a positive estimate alone does not establish a meaningful relationship.",
+    "Differential entropies can be negative, and deterministic relationships between continuous variables can yield infinite MI. Discrete intuition needs care in continuous settings."
+  ],
+  "implementation": [
+    "Record whether the estimator uses exact counts, discretization, nearest neighbors or a variational bound.",
+    "Separate estimator uncertainty from the population quantity, and do not label a variational bound as an exact MI value."
+  ],
+  "takeaways": [
+    "Zero correlation does not mean independence. MI detects this nonlinear relationship, but still cannot determine a causal direction.",
+    "Separate statistical dependence, information units and causal interpretation."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Measures how much knowing one variable reduces uncertainty about another.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Mutual information illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Mutual information measures how far a joint distribution is from the product of its marginals. For discrete variables it equals the average reduction in uncertainty from observing the other variable. It is symmetric and detects dependence that a linear correlation coefficient can miss; it does not establish causation.","Calculate MI for a nonlinear relationship with zero correlation.","Separate statistical dependence, information units and causal interpretation.","A variable can reveal magnitude while saying nothing about sign.","I(X;Y)=Dₖₗ(PXY‖PX PY)=H(Y)−H(Y|X); Y=X² XOR E; I=h₂((2−ε)/3)−h₂(ε)","X is uniform on {−1,0,1}. E is an independent Bernoulli(ε) bit, and XOR flips the binary value X² when E=1. Logs use base 2. Curves compare MI in bits with dimensionless Pearson correlation, explicitly not the same measurement unit. The exact joint table is expandable.","Zero correlation does not mean independence. MI detects this nonlinear relationship, but still cannot determine a causal direction."]} />

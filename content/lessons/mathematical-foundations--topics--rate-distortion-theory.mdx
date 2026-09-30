@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Studies the trade-off between compression rate and acceptable reconstruction error.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Once a constant answer meets the error budget, sending more is optional.",
+  "overview": "Rate-distortion theory asks for the minimum asymptotic communication rate needed to reconstruct a source within a specified distortion budget. Its answer depends on the source distribution, the distortion function and the coding setting—not just on a desired file size or an informal notion of perceptual quality.",
+  "concepts": [
+    {
+      "title": "Information is minimized subject to an error constraint",
+      "explanation": "The single-letter optimization searches conditional reconstruction distributions satisfying the expected-distortion limit. The coding theorem connects this information expression to achievable long-block rates under its source and coding assumptions; an arbitrary conditional sampler is not itself a compression code."
+    },
+    {
+      "title": "The fair-bit curve has a zero-rate plateau",
+      "explanation": "For D≤0.5 the answer is 1−h₂(D). For D≥0.5 a decoder that always outputs zero already meets the budget without a message. Extending 1−h₂(D) beyond 0.5 would turn the curve upward and contradict the relaxation of the constraint."
+    },
+    {
+      "title": "Distortion defines what matters",
+      "explanation": "Hamming loss counts each wrong bit equally. Squared error, weighted errors and perceptual losses define different problems and different rate-distortion functions. A mathematically small distortion need not preserve the aspects of a signal important to a human or downstream task."
+    }
+  ],
+  "process": [
+    "Specify the source law, reconstruction alphabet and distortion measure.",
+    "Solve or bound the information minimization for the allowed average distortion.",
+    "Separate the asymptotic limit from finite-block overhead, latency and practical codec constraints."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "R(D)=minₚ(x̂|x): E[d(X,X̂)]≤D I(X;X̂); fair binary/Hamming: R(D)=1−h₂(D) for D≤½, else 0",
+      "meaning": "IID fair binary source, binary reconstructions, Hamming distortion 1 when a reconstructed bit is wrong and 0 otherwise. Rate is bits per source symbol under asymptotically long block coding. The slider is an upper bound on average error, not an instruction to introduce exactly that much error."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Ten percent average errors",
+    "setup": "Use D=0.1.",
+    "steps": [
+      "h₂(0.1)≈0.468996 bits.",
+      "R(0.1)=1−h₂(0.1)≈0.531004 bits per source symbol.",
+      "At D=0.5 the rate drops to zero, and it remains zero at D=0.8 because the same constant reconstruction is still allowed."
+    ],
+    "result": "The minimum required rate does not rise when more distortion is permitted."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The formula is not a universal codec benchmark: a biased, dependent or nonbinary source gives a different curve.",
+    "A finite sample's realized error can differ from a theoretical average; specify the operational distortion criterion and block length."
+  ],
+  "implementation": [
+    "Evaluate actual rate and actual distortion together, including headers and side information.",
+    "Use theoretical curves as limits under matching assumptions, not as evidence that a deployed codec achieves them."
+  ],
+  "takeaways": [
+    "A distortion budget enlarges the feasible coding set, so the minimum rate cannot increase as the budget grows.",
+    "Explain the zero-rate plateau and the role of coding assumptions."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Studies the trade-off between compression rate and acceptable reconstruction error.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Rate-distortion theory illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Rate-distortion theory asks for the minimum asymptotic communication rate needed to reconstruct a source within a specified distortion budget. Its answer depends on the source distribution, the distortion function and the coding setting—not just on a desired file size or an informal notion of perceptual quality.","Calculate the fair-binary Hamming rate-distortion curve.","Explain the zero-rate plateau and the role of coding assumptions.","Once a constant answer meets the error budget, sending more is optional.","R(D)=minₚ(x̂|x): E[d(X,X̂)]≤D I(X;X̂); fair binary/Hamming: R(D)=1−h₂(D) for D≤½, else 0","IID fair binary source, binary reconstructions, Hamming distortion 1 when a reconstructed bit is wrong and 0 otherwise. Rate is bits per source symbol under asymptotically long block coding. The slider is an upper bound on average error, not an instruction to introduce exactly that much error.","A distortion budget enlarges the feasible coding set, so the minimum rate cannot increase as the budget grows."]} />

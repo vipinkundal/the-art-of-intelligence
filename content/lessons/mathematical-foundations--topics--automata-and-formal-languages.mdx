@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Model machines and grammars that recognize structured symbol sequences.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "To remember whether the number of ones is even, you do not need to remember how many there were.",
+  "overview": "A formal language is a set of finite strings over an alphabet. An automaton recognizes a language by consuming a string according to transition rules. A deterministic finite automaton has a finite state set and exactly one next state for each state-symbol pair; its final state decides membership.",
+  "concepts": [
+    {
+      "title": "Specify the language before the machine",
+      "explanation": "Here L consists of all binary strings with an even number of ones. The empty string belongs to L because it has zero ones. Membership depends on the whole string, not on whether some intermediate prefix once visited an accepting state. The alphabet is {0,1}; other characters are outside this input specification."
+    },
+    {
+      "title": "The five components form a contract",
+      "explanation": "A DFA is (Q,Σ,δ,q₀,F): states, alphabet, transition function, start state and accepting states. δ is total on Q×Σ. The two states in this lab have a transition on both symbols, including the self-loop on zero. A missing transition requires a convention or an explicit rejecting sink, not a guessed next state."
+    },
+    {
+      "title": "The parity invariant proves correctness",
+      "explanation": "After the empty prefix, the machine is in E and the count is even. Assume the state correctly describes a prefix. Appending zero leaves both the count's parity and state unchanged; appending one flips both. Induction on prefix length establishes that the final state accepts exactly the intended language, for every finite binary string—not only the displayed six symbols."
+    },
+    {
+      "title": "Two states are necessary here",
+      "explanation": "Prefixes ε and 1 cannot lead to the same state in any correct deterministic machine for this language: ending the input immediately must accept the first and reject the second. Two states suffice by the displayed construction, so this machine is minimal. It compresses infinitely many possible prefixes into two future-relevant classes."
+    },
+    {
+      "title": "Finite memory has an expressive boundary",
+      "explanation": "Languages recognized by finite automata are regular. Nondeterministic finite automata allow multiple possible paths but recognize the same class, not arbitrary computations. A fixed finite state set cannot remember an unbounded exact count; the parity machine succeeds because it remembers only a remainder modulo two. Do not treat every sequence model as a finite automaton with this guarantee."
+    }
+  ],
+  "process": [
+    "Define the accepted strings, alphabet and treatment of the empty string.",
+    "Choose state meanings and specify a total transition for every state-symbol pair.",
+    "Prove the state invariant and relate accepting states to the language after the input ends."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Q={E,O}; Σ={0,1}; δ(q,0)=q; δ(E,1)=O; δ(O,1)=E; F={E}",
+      "meaning": "The start state is E. E means an even number of ones has been read and is accepting; O means odd and is non-accepting. Reading zero stays in the current state, reading one switches states. The fixed word is 101101. The slider consumes prefixes, including the empty prefix ε. A double circle denotes an accepting state, while the thick highlighted outline and text identify the current state. Acceptance of the complete word is checked only after all its symbols are consumed."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A zero changes the position, not the parity",
+    "setup": "Start at the empty prefix and consume 101101 one symbol at a time.",
+    "steps": [
+      "State trace: E → O → O → E → O → O → E.",
+      "After prefix 10, two symbols have been read but only one is a one; the state remains O.",
+      "After all six symbols, four ones have been read. The final E state accepts the word."
+    ],
+    "result": "The machine stores parity, not the entire prefix, its length, or its exact count of ones."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Being in E halfway through the word only says that prefix would be accepted if input ended there. A later one can change the answer.",
+    "ε is a string of length zero, not a third input symbol in this DFA. It requires no transition.",
+    "A finite test set can find mistakes but cannot alone prove recognition of an infinite language. The invariant supplies the general argument."
+  ],
+  "implementation": [
+    "The lab recomputes the prefix state from the transition rule; the trace table independently exposes each prefix and its count. No timer or motion is needed to step through the run.",
+    "Use state-machine designs for lexical constraints, protocol phases and small streaming summaries. If the requirement needs richer memory, change the model instead of silently overloading a state's meaning."
+  ],
+  "takeaways": [
+    "A useful state summarizes exactly the history needed for future decisions. An accepting state does not mean execution stops before the input ends.",
+    "Prove that a state invariant recognizes the intended language."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Model machines and grammars that recognize structured symbol sequences.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Automata and formal languages illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A formal language is a set of finite strings over an alphabet. An automaton recognizes a language by consuming a string according to transition rules. A deterministic finite automaton has a finite state set and exactly one next state for each state-symbol pair; its final state decides membership.","Define and trace a deterministic finite automaton, including ε.","Prove that a state invariant recognizes the intended language.","To remember whether the number of ones is even, you do not need to remember how many there were.","Q={E,O}; Σ={0,1}; δ(q,0)=q; δ(E,1)=O; δ(O,1)=E; F={E}","The start state is E. E means an even number of ones has been read and is accepting; O means odd and is non-accepting. Reading zero stays in the current state, reading one switches states. The fixed word is 101101. The slider consumes prefixes, including the empty prefix ε. A double circle denotes an accepting state, while the thick highlighted outline and text identify the current state. Acceptance of the complete word is checked only after all its symbols are consumed.","A useful state summarizes exactly the history needed for future decisions. An accepting state does not mean execution stops before the input ends."]} />

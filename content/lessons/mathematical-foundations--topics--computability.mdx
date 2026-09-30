@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Studies what can or cannot be solved by algorithms at all.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A stopwatch can witness a halt. Reaching its limit cannot witness eternity.",
+  "overview": "Computability asks whether an algorithm can solve every instance of a specified problem at all, not whether it can do so quickly. A decider must halt with a correct yes/no answer on every input. A recognizer must accept every yes-instance but may run forever on a no-instance. The distinction matters whenever a simulation has not yet returned.",
+  "concepts": [
+    {
+      "title": "Slow is different from impossible",
+      "explanation": "A finite exhaustive search may be prohibitively expensive yet still decide its problem. For a finite Boolean formula, enumerating every assignment eventually returns yes or no. Undecidability is stronger: no algorithm meets the specified correctness-and-termination requirement on every allowed input."
+    },
+    {
+      "title": "A recognizer can keep waiting",
+      "explanation": "To recognize HALT, simulate the supplied program on its input and accept when it stops. If it never stops, this recognizer never returns. Running it for a finite budget adds a third observational outcome: not yet determined. Replacing that outcome with a definitive no-answer would not make a correct general decider."
+    },
+    {
+      "title": "The two countdowns expose a timeout mistake",
+      "explanation": "At budget five, A has halted after three transitions while B is still running with counter four. A timeout rule that calls B nonterminating is wrong: increasing the budget to nine observes its halt. The budget limits the observer, not the underlying program's possible future."
+    },
+    {
+      "title": "A particular loop can still be proved infinite",
+      "explanation": "Program C has exactly two complete states, zero and one, and its only rule toggles between them. Neither is halting; every transition has a successor. Its invariant and repeated full configuration prove nontermination. Seeing only a repeated output would not suffice for an arbitrary program whose hidden memory could differ."
+    },
+    {
+      "title": "Why a universal halting predictor contradicts itself",
+      "explanation": "Suppose a total correct predictor H(p,x) existed. Define D(p) to loop if H(p,p) says halt, and otherwise halt. On D's own encoding d, either prediction for H(d,d) disagrees with D(d)'s constructed behavior. Thus the assumed universal predictor cannot exist. The proof quantifies over every program/input pair; the three traces merely illustrate why a timeout is weaker evidence."
+    }
+  ],
+  "process": [
+    "Specify the allowed program model, inputs and required answers.",
+    "Separate observed execution, an instance-specific proof, and a claim about all possible programs.",
+    "For an impossibility claim, supply a valid general argument or a reduction from a known undecidable problem; a long unsuccessful run is insufficient."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "HALT={⟨M,x⟩ : M(x) halts}; not halted by B ⇏ never halts",
+      "meaning": "These are three explicitly specified discrete toy programs, not arbitrary source code. A and B start with counters 3 and 9; each transition decrements a positive counter by one, and reaching zero halts. C starts at bit zero and repeatedly replaces its bit with 1−bit, with no halting branch. Budget B bounds the number of observed transitions for each run. Squares mark observed halts; open circles mark observation cutoffs. The dashed vertical marker is the budget, not a predicted halting time. C's nontermination follows separately from its known rule, not its timeout."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The same timeout, different futures",
+    "setup": "Use budget five, then budget nine.",
+    "steps": [
+      "At five, A has halted and B's counter is four. C's bit is one. The bounded observer has only one witnessed halt.",
+      "At nine, B reaches zero and halts. The earlier open endpoint becomes a square at transition nine.",
+      "C continues toggling. Its nontermination is established from its transition rule, not by extending the plotted line farther."
+    ],
+    "result": "Two unfinished runs need not have the same future. A finite observation can miss a later halt."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A general impossibility theorem does not say every individual program is hard to analyze. The countdowns and two-state loop have straightforward proofs.",
+    "Distinguish repeated full machine configurations from repeated screen output, repeated instruction locations or a loop counter alone.",
+    "A real machine may crash or exhaust memory; that is not the same model as an ideal unbounded computation. State the semantics before applying a theorem."
+  ],
+  "implementation": [
+    "The page evaluates only bounded counters and toggles. It never executes a literal infinite loop in the browser. The chart labels observations rather than fabricating a universal classifier.",
+    "Static analyzers can use restrictions, sufficient conditions or an unknown result. State which guarantee is sacrificed when a practical tool cannot provide both universal termination and exact answers."
+  ],
+  "takeaways": [
+    "A bounded run answers a bounded question. Proving that no general halting decider exists does not prevent proving termination or nontermination for particular programs.",
+    "Explain why timeout evidence cannot decide arbitrary nontermination."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Studies what can or cannot be solved by algorithms at all.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Computability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Computability asks whether an algorithm can solve every instance of a specified problem at all, not whether it can do so quickly. A decider must halt with a correct yes/no answer on every input. A recognizer must accept every yes-instance but may run forever on a no-instance. The distinction matters whenever a simulation has not yet returned.","Distinguish decidability, recognizability and practical running time.","Explain why timeout evidence cannot decide arbitrary nontermination.","A stopwatch can witness a halt. Reaching its limit cannot witness eternity.","HALT={⟨M,x⟩ : M(x) halts}; not halted by B ⇏ never halts","These are three explicitly specified discrete toy programs, not arbitrary source code. A and B start with counters 3 and 9; each transition decrements a positive counter by one, and reaching zero halts. C starts at bit zero and repeatedly replaces its bit with 1−bit, with no halting branch. Budget B bounds the number of observed transitions for each run. Squares mark observed halts; open circles mark observation cutoffs. The dashed vertical marker is the budget, not a predicted halting time. C's nontermination follows separately from its known rule, not its timeout.","A bounded run answers a bounded question. Proving that no general halting decider exists does not prevent proving termination or nontermination for particular programs."]} />

@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A state-space representation defines what a solver treats as a state and which transitions are possible.",
+  "hook": "Same room is not the same state when one arrival carries a key.",
+  "overview": "A search state summarizes the past well enough to determine legal future actions, their outcomes and costs, and whether the goal is satisfied. It need not store the entire world or action history. But dropping a variable that changes the future can merge genuinely different situations and make an otherwise correct search algorithm return an invalid answer or miss a solution.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "Turn a story into an explicit problem",
+      "explanation": "Specify the state set, initial state, actions, transition rule, goal predicate and edge cost. Here the initial state is H0 or H1; the goal is G1. H0 cannot take the door action, whereas H1 can. Search must distinguish those two states even though the room coordinate is identical."
     },
     {
-      "title": "Core rule",
-      "explanation": "Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions."
+      "title": "Represent what affects the future",
+      "explanation": "The route already traveled does not need to remain in the state here: key possession summarizes its relevant effect. A parent pointer can separately reconstruct the plan. If keys were consumable, doors time-dependent or fuel limited, those additional variables could become necessary."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+      "title": "An invalid merge can erase the only solution",
+      "explanation": "Starting at H0, full-state BFS reaches K1 and then H1 before entering G1. A room-only discovered set records H immediately. It later rejects H1 as already seen, even though its newly legal door action is the essential continuation. The search implementation is not the source of this failure; the representation is."
+    },
+    {
+      "title": "Possible combinations are not all reachable states",
+      "explanation": "Three room values and two Boolean key values produce six syntactic combinations. Automatic pickup makes K0 unreachable, and the locked door makes G0 unreachable. Exactly H0,K1,H1,G1 are reachable from H0. Count products as an upper bound until constraints and transitions have been considered."
+    },
+    {
+      "title": "Abstraction can still help as a relaxation",
+      "explanation": "Ignoring a key requirement may yield a cheaper relaxed problem that supplies a heuristic lower bound. That does not make the relaxed solution an executable plan in the original world. An abstraction suitable for a heuristic need not be a lossless replacement for the planning state."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+    "List each fact that can change action availability, successor state, cost or goal truth.",
+    "Choose a canonical state representation and define transitions on it, separate from search-node metadata such as parent and accumulated cost.",
+    "Challenge proposed merges with two histories reaching the same key: can one do something relevant the other cannot?"
   ],
   "formulas": [
     {
-      "label": "State-space representation rule",
-      "expression": "problem = (S, A, T, s0, Goal)",
-      "meaning": "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states."
+      "label": "Definition and assumptions",
+      "expression": "state=(room, hasKey); legal(H→G) ⇔ hasKey=1",
+      "meaning": "Three rooms: hall H, key room K and goal room G. H↔K is traversable; entering K automatically acquires a key that is never consumed. H→G requires the key; G is terminal. Every move costs one. Start in H with the selected key flag. Compare BFS using the full (room,key) state against the incorrect room-only duplicate key. K1↔H1 in the diagram is a two-way transition."
     }
   ],
   "example": {
-    "title": "State-space representation in a small case",
-    "setup": "Represent a sliding puzzle by tile positions rather than by the physical motion history used to reach them.",
+    "title": "Why the return to H is not a redundant loop",
+    "setup": "Start without the key.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
-      "Check the outcome against the goal and stated assumptions."
+      "H0→K1 picks up the key; K1→H1 returns to the hall with different inventory.",
+      "H1→G1 opens the legal route. The full plan has three moves.",
+      "The room-only variant processes H0 and K1, then suppresses H1. It reports no route despite the valid three-move plan."
     ],
-    "result": "Equivalent histories collapse to one state while every legal next move remains determined."
+    "result": "Revisiting a coordinate is not necessarily revisiting a state."
   },
   "pitfalls": [
-    "Test whether two apparently equal states can have different legal futures; if so, the representation is missing information.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "Object identity is usually not semantic state equality: two separately allocated objects can represent the same situation.",
+    "Including the entire history can avoid unsafe merges but destroys useful duplicate detection and may make a finite physical problem look infinite.",
+    "A state abstraction that preserves reachability might still fail to preserve optimal cost."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use immutable canonical keys, such as a tuple of room index and inventory bitmask. Ensure equality and hashing include exactly the planning-relevant variables.",
+    "Keep g, parent and frontier status outside the state key when they describe the search rather than the world. Resource values that constrain future actions belong inside the state or in an explicitly proved dominance relation."
+  ],
   "takeaways": [
-    "A state-space representation defines what a solver treats as a state and which transitions are possible.",
-    "Choose variables sufficient for future decisions, define legal actions and transition results, and specify start and goal conditions.",
-    "A compact representation reduces search; omitting relevant history makes the model incorrect, while including irrelevant detail creates needless states.",
-    "Equivalent histories collapse to one state while every legal next move remains determined."
+    "A valid state key must preserve relevant futures. Compactness is useful only after preserving legal transitions, goal tests and costs.",
+    "Distinguish world state, search node, abstraction and reachable-state count."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A state-space representation defines what a solver treats as a state and which transitions are possible.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This State-space representation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A search state summarizes the past well enough to determine legal future actions, their outcomes and costs, and whether the goal is satisfied. It need not store the entire world or action history. But dropping a variable that changes the future can merge genuinely different situations and make an otherwise correct search algorithm return an invalid answer or miss a solution.","Choose a state representation that preserves relevant future behavior.","Distinguish world state, search node, abstraction and reachable-state count.","Same room is not the same state when one arrival carries a key.","state=(room, hasKey); legal(H→G) ⇔ hasKey=1","Three rooms: hall H, key room K and goal room G. H↔K is traversable; entering K automatically acquires a key that is never consumed. H→G requires the key; G is terminal. Every move costs one. Start in H with the selected key flag. Compare BFS using the full (room,key) state against the incorrect room-only duplicate key. K1↔H1 in the diagram is a two-way transition.","A valid state key must preserve relevant futures. Compactness is useful only after preserving legal transitions, goal tests and costs."]} />

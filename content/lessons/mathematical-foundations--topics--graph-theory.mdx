@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Represents entities as nodes and relationships as edges, useful for networks, dependencies, and knowledge graphs.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "An edge inside a loop provides redundancy; a bridge is the only connection across a cut.",
+  "overview": "A graph represents a chosen relationship through vertices and edges. The graph type determines what an edge means: an unordered pair for a simple undirected graph, an ordered pair for a directed graph, and possibly a weight or multiplicity in richer models. A drawing is one representation of that structure, not the structure itself.",
+  "concepts": [
+    {
+      "title": "Choose the relationship before the representation",
+      "explanation": "For a service network, an undirected edge might mean bidirectional communication; a directed edge could mean one-way dependency. Those models answer different reachability questions. Self-loops, parallel edges and weights must be declared rather than silently dropped when converting data into a simple adjacency matrix."
+    },
+    {
+      "title": "Local degree does not determine global reachability",
+      "explanation": "In the original network, degrees are (2,2,3,2,1). Their sum is ten because every undirected edge touches two endpoints. A node's degree is local information; reaching E from A requires the entire route A—C—D—E. Cutting C—D leaves two components even though no vertex disappears."
+    },
+    {
+      "title": "A cycle offers an alternate route",
+      "explanation": "Removing A—B leaves A and B connected through C. In contrast, removing C—D disconnects {A,B,C} from {D,E}. Adding C—E creates a second route into the tail, so neither C—D nor D—E remains a bridge. The diagram and membership table make those changes explicit."
+    },
+    {
+      "title": "Independent cycles are not all cycles",
+      "explanation": "For this undirected graph, m−n+c measures the cycle-space dimension. The original network has rank 5−5+1=1; adding C—E raises it to 2. In more complex graphs, combinations of independent cycles can form additional simple cycles, so rank is not an enumeration of every cycle."
+    },
+    {
+      "title": "Data layout affects cost, not graph identity",
+      "explanation": "An adjacency matrix uses n² entries and permits direct pair lookup. Adjacency lists store neighbors and can use space proportional to n+m for a simple graph. Breadth-first search obtains minimum edge-count distances in an unweighted graph; weighted shortest paths require an algorithm appropriate to their weight assumptions."
+    }
+  ],
+  "process": [
+    "Declare the vertex set and edge semantics, including direction, weights and multiplicity.",
+    "Build a consistent representation, then compute the property needed: degrees, components, distances, cycles or cuts.",
+    "Interpret the result under that model. A visually short edge is not automatically cheap, fast or reliable."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "G=(V,E); deg(v)=Σᵤ Aᵥᵤ; Σᵥ deg(v)=2|E|; cycle rank=|E|−|V|+c",
+      "meaning": "A fixed five-vertex, simple, undirected, unweighted graph. Original edges are A—B, B—C, C—A, C—D and D—E. Each scenario removes or adds a specified edge; no node is removed. Distances count edges, not drawn lengths. A breadth-first traversal calculates distances and components; deleting each edge in turn identifies bridges. Component numbers are arbitrary identifiers. The table uses −1 only as an unreachable-distance sentinel."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two deletions with different consequences",
+    "setup": "Start with the triangle A—B—C—A and tail C—D—E.",
+    "steps": [
+      "There are five vertices, five edges and one component; A reaches E in three hops.",
+      "Delete C—D: the groups become {A,B,C} and {D,E}. E is unreachable from A; C—D was a bridge.",
+      "Reset and delete A—B instead: all vertices stay connected because A—C—B replaces the removed link."
+    ],
+    "result": "The same number of deleted edges can have different connectivity effects. Degree loss alone does not describe that effect."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A crossing in the drawing is not a vertex unless explicitly represented. Moving a node on screen must not change adjacency.",
+    "An isolated vertex is still part of V and forms its own component. Do not construct V only from edge endpoints if isolated units matter.",
+    "A shortest hop-count route need not minimize weighted cost. Directed and undirected connectivity must not be interchanged."
+  ],
+  "implementation": [
+    "The lab recomputes connectivity after each candidate edge deletion because the graph is tiny and the method is transparent. It is not a claim of an optimal bridge-finding implementation; scalable algorithms avoid a fresh traversal per edge.",
+    "Keep stable vertex identifiers and a declared node ordering for matrices. Use an explicit unreachable representation rather than confusing no path with a zero-length path."
+  ],
+  "takeaways": [
+    "Read connectivity from edges, not proximity. Redundancy is structural: an edge is a bridge exactly when deleting it increases the number of components.",
+    "Explain why changing one edge can preserve or destroy network connectivity."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Represents entities as nodes and relationships as edges, useful for networks, dependencies, and knowledge graphs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Graph theory illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A graph represents a chosen relationship through vertices and edges. The graph type determines what an edge means: an unordered pair for a simple undirected graph, an ordered pair for a directed graph, and possibly a weight or multiplicity in richer models. A drawing is one representation of that structure, not the structure itself.","Distinguish adjacency, degree, reachability and bridge structure.","Explain why changing one edge can preserve or destroy network connectivity.","An edge inside a loop provides redundancy; a bridge is the only connection across a cut.","G=(V,E); deg(v)=Σᵤ Aᵥᵤ; Σᵥ deg(v)=2|E|; cycle rank=|E|−|V|+c","A fixed five-vertex, simple, undirected, unweighted graph. Original edges are A—B, B—C, C—A, C—D and D—E. Each scenario removes or adds a specified edge; no node is removed. Distances count edges, not drawn lengths. A breadth-first traversal calculates distances and components; deleting each edge in turn identifies bridges. Component numbers are arbitrary identifiers. The table uses −1 only as an unreachable-distance sentinel.","Read connectivity from edges, not proximity. Redundancy is structural: an edge is a bridge exactly when deleting it increases the number of components."]} />

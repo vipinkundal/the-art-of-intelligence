@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+  "hook": "A shear keeps the area while tipping the ruler.",
+  "overview": "Linear algebra studies vector spaces and maps that preserve linear combinations. Matrices represent those maps after bases are chosen. Shapes, subspaces, inner products and factorizations answer different questions: a linear map need not preserve distance, angle, rank or even information about its input.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "Linear algebra gives AI systems a way to store information as numbers and transform those numbers while preserving useful structure such as direction, distance, similarity, and rank."
+      "title": "Start with spaces and shapes",
+      "explanation": "A map from n input coordinates to m output coordinates has an m×n matrix under the column-vector convention. Matrix multiplication composes compatible maps. Before calculating, name what the axes represent and distinguish a batch dimension from a vector-space dimension."
     },
     {
-      "title": "You should understand",
-      "explanation": "Scalars, vectors, matrices, and tensors : Scalars are single numbers, vectors are ordered lists, matrices are tables, and tensors generalize these ideas to higher-dimensional arrays."
+      "title": "Separate reach from geometry",
+      "explanation": "Span and rank describe which outputs can be reached. Inner products, norms and orthogonality describe geometry after a metric is chosen. The shear has full rank, so every point remains reachable, yet its mapped basis vectors need not remain perpendicular or equally long."
     },
     {
-      "title": "You should understand",
-      "explanation": "Vector spaces, subspaces, span, basis, and dimension : These describe which vectors can be combined, which directions are independent, and how many coordinates are needed."
+      "title": "Read the columns as transformed basis vectors",
+      "explanation": "The columns of S are (1,0) and (s,1). Every input (x,y) maps to x times the first column plus y times the second. This is the geometric content of matrix-vector multiplication, not merely an index-manipulation recipe."
     },
     {
-      "title": "You should understand",
-      "explanation": "Linear independence : A set of vectors is independent when none can be recreated from the others, which avoids redundant directions."
+      "title": "Use the right certificate",
+      "explanation": "The determinant is one, so signed area is unchanged. The inverse is [[1,−s],[0,1]], so no coordinates are lost. But SᵀS differs from the identity when s≠0; lengths and angles are therefore not generally preserved. Both eigenvalues are one, which also does not imply that the map is the identity or has unit singular values."
     },
     {
-      "title": "You should understand",
-      "explanation": "Dot products and inner-product spaces : Dot products measure alignment and support similarity, projection, and geometric reasoning."
-    },
-    {
-      "title": "You should understand",
-      "explanation": "Matrix multiplication and tensor contraction : These combine dimensions to transform data, compose layers, and aggregate features."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Data is often represented as vectors or matrices. Models transform those vectors using matrix multiplication, compare them with similarity metrics, and learn useful directions in high-dimensional space."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "PCA uses the eigenvectors of the covariance matrix, or equivalently the right singular vectors of the centered data matrix, to find high-variance directions."
+      "title": "Choose a route through the section",
+      "explanation": "Begin with spaces, independence and inner products. Continue through multiplication, rank and projections to solve systems and least squares. Study eigenstructure, SVD and positive-definite matrices for spectral reasoning, then conditioning and numerical stability before trusting floating-point answers."
     }
   ],
   "process": [
-    "Linear algebra gives AI systems a way to store information as numbers and transform those numbers while preserving useful structure such as direction, distance, similarity, and rank."
+    "Write the input/output spaces, coordinate conventions and inner product.",
+    "Inspect the map's columns, rank and null space to understand what it can represent or discard.",
+    "Use metric or spectral quantities for the specific question: lengths, projections, volume, repeated application or sensitivity."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "S=[[1,s],[0,1]]; S(x,y)=(x+sy,y); det(S)=1; SᵀS=[[1,s],[s,1+s²]]",
+      "meaning": "Real two-dimensional column vectors in the standard orthonormal basis; Euclidean lengths and angles. The unit square is mapped vertex by vertex by S. Both graph axes use the same scale. The shear coefficient varies while the second coordinate is unchanged. This family is invertible with determinant one for every real s; it illustrates a particular linear map, not a property of all matrices."
+    }
+  ],
   "example": {
-    "title": "Linear Algebra example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A unit square with a 45-degree corner",
+    "setup": "Set s=1.",
+    "steps": [
+      "The basis vectors become (1,0) and (1,1); the square's four corners become (0,0), (1,0), (2,1), (1,1).",
+      "The second edge has length √2 and its inner product with the first is one, so the angle between them is 45 degrees.",
+      "The parallelogram still has base one and height one. Applying the inverse shear restores every original point."
+    ],
+    "result": "Area and recoverability survive even though the familiar right angle does not."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Linearity preserves combinations, not arbitrary geometric measurements. A singular matrix can collapse dimensions; an invertible one can distort distances.",
+    "A determinant near zero is not a scale-invariant numerical conditioning diagnostic. Use appropriate singular-value or condition estimates.",
+    "Changing coordinates and actively transforming data are related matrix operations but different interpretations; state which is being performed."
+  ],
+  "implementation": [
+    "The plotted vertices are obtained from the same formula as the matrix table; there is no independent animation standing in for a calculation.",
+    "In an embedding or feature pipeline, check whether normalization, projection or a learned map changes the similarity measure your downstream component assumes."
+  ],
   "takeaways": [
-    "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
-    "Follow MIT OpenCourseWare's Linear Algebra course for lectures, problem sets, and worked examples."
+    "Ask what the map preserves. Linearity, invertibility, volume preservation and orthogonality are different properties, with different mathematical checks.",
+    "Navigate from vector-space structure to geometry and numerical computation."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Linear Algebra illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Linear algebra studies vector spaces and maps that preserve linear combinations. Matrices represent those maps after bases are chosen. Shapes, subspaces, inner products and factorizations answer different questions: a linear map need not preserve distance, angle, rank or even information about its input.","Distinguish linearity, invertibility, area preservation and orthogonality.","Navigate from vector-space structure to geometry and numerical computation.","A shear keeps the area while tipping the ruler.","S=[[1,s],[0,1]]; S(x,y)=(x+sy,y); det(S)=1; SᵀS=[[1,s],[s,1+s²]]","Real two-dimensional column vectors in the standard orthonormal basis; Euclidean lengths and angles. The unit square is mapped vertex by vertex by S. Both graph axes use the same scale. The shear coefficient varies while the second coordinate is unchanged. This family is invertible with determinant one for every real s; it illustrates a particular linear map, not a property of all matrices.","Ask what the map preserves. Linearity, invertibility, volume preservation and orthogonality are different properties, with different mathematical checks."]} />

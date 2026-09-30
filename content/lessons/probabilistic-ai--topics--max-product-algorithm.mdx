@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The max-product algorithm replaces summation in message passing with maximization to seek a maximum a posteriori configuration.",
+  "hook": "A best score tells you how good; a backpointer tells you which choice.",
+  "overview": "Max-product replaces summation with maximization in nonnegative-factor message passing to find a highest-weight joint assignment. On a tree, exact scores plus stored backpointers recover a joint MAP configuration. The resulting max scores are not marginal probabilities.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Change the reduction, change the question",
+      "explanation": "For a fixed recipient state, sum-product accumulates every source-side explanation. Max-product retains only the strongest. Distributivity over nonnegative products supports the tree dynamic program, but the meanings of the resulting vectors differ."
     },
     {
-      "title": "Core computation",
-      "explanation": "Send factor messages by maximizing the factor-weighted incoming product over neighboring variables not receiving the message."
+      "title": "Store choices as well as values",
+      "explanation": "A max message needs a backpointer for each recipient state. After selecting a maximizing root state, recover neighboring states using the pointers conditional on that selected value, then continue outward."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is exact for tree-structured MAP problems, but backpointers are needed to reconstruct a joint assignment."
+      "title": "Ties need consistent reconstruction",
+      "explanation": "At a=2 this model has two joint MAP assignments, 000 and 111. Independently breaking ties at individual nodes can construct an incompatible mixture. Rooted traceback uses one consistent set of conditional choices."
+    },
+    {
+      "title": "Log-domain equivalent",
+      "explanation": "For positive weights, log turns products into sums, so the same optimization is often implemented as max-sum. Zero factors correspond to forbidden configurations with log weight −∞. A score is only converted to a joint probability by dividing by the true sum-based partition function."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Send factor messages by maximizing the factor-weighted incoming product over neighboring variables not receiving the message.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is exact for tree-structured MAP problems, but backpointers are needed to reconstruct a joint assignment."
+    "Send max-product messages toward a chosen root and store source-state argmax choices for every recipient state.",
+    "Combine the root's incoming scores and choose a maximizing root state using a declared tie rule.",
+    "Trace back through the stored choices. If probabilities are needed, compute the relevant normalization using sums, not maxima."
   ],
   "formulas": [
     {
-      "label": "Max-product algorithm rule",
-      "expression": "m_{f->x}(x)=max_{x_f\\x} f(x_f) product m_{y->f}(y)",
-      "meaning": "It is exact for tree-structured MAP problems, but backpointers are needed to reconstruct a joint assignment."
+      "label": "Definition and assumptions",
+      "expression": "mᵢ→ⱼ(xⱼ)=maxxᵢ[φᵢ(xᵢ)ψᵢⱼ(xᵢ,xⱼ)∏k∈N(i)∖j mₖ→ᵢ(xᵢ)]",
+      "meaning": "Binary chain X—Y—Z with unaries X=(1,a), Y=(1,1), Z=(2,1) and pair factors [[3,1],[1,3]]. Root at Y. Store a maximizing source state for each recipient state, then choose the root and trace back. State 0 wins displayed ties; all globally maximizing assignments are also enumerated and listed. Exact sum-based marginals are a separate reference."
     }
   ],
   "example": {
-    "title": "Max-product algorithm in a small case",
-    "setup": "Choose the most probable hidden label sequence in a tree-structured model.",
+    "title": "The winning path at a=3",
+    "setup": "Use X unary (1,3), Z unary (2,1), and root Y.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Send factor messages by maximizing the factor-weighted incoming product over neighboring variables not receiving the message.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "X→Y=(max(3,3),max(1,9))=(3,9). Z→Y=(max(6,1),max(2,3))=(6,3).",
+      "Root scores are (3×6,9×3)=(18,27), so choose Y=1. Its backpointers choose X=1 and Z=1: assignment 111, weight 27.",
+      "The exact partition function is 92, so P(111)=27/92≈0.293478. Normalized root max score for Y=1 is 27/45=0.6, whereas its true marginal is 50/92≈0.543478."
     ],
-    "result": "Backtracking through stored maximizing states returns the coherent MAP assignment rather than separate marginal modes."
+    "result": "The winning configuration, its probability and the marginal probability of one component are three different outputs."
   },
   "pitfalls": [
-    "Use log space to replace unstable products with sums and retain argmax backpointers.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Normalized max-marginal scores are not ordinary marginal probabilities.",
+    "A max value without backpointers does not identify a complete maximizing assignment, particularly when several branches tie.",
+    "The tree guarantee does not transfer unchanged to loopy max-product. Maximizing a subset after marginalizing hidden variables is also a different problem, where sums and maxima cannot generally be interchanged."
   ],
-  "implementation": [],
+  "implementation": [
+    "Store deterministic tie choices along with message values, and verify the reconstructed configuration's original joint weight.",
+    "Prefer log-domain max-sum for long products. Keep score computation, traceback and probabilistic normalization as separate operations."
+  ],
   "takeaways": [
-    "The max-product algorithm replaces summation in message passing with maximization to seek a maximum a posteriori configuration.",
-    "Send factor messages by maximizing the factor-weighted incoming product over neighboring variables not receiving the message.",
-    "It is exact for tree-structured MAP problems, but backpointers are needed to reconstruct a joint assignment.",
-    "Backtracking through stored maximizing states returns the coherent MAP assignment rather than separate marginal modes."
+    "Use compatible backpointers to recover a joint assignment. Dividing max scores by their sum does not turn them into posterior marginals.",
+    "Explain why normalized max scores do not equal posterior marginals."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The max-product algorithm replaces summation in message passing with maximization to seek a maximum a posteriori configuration.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Max-product algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Max-product replaces summation with maximization in nonnegative-factor message passing to find a highest-weight joint assignment. On a tree, exact scores plus stored backpointers recover a joint MAP configuration. The resulting max scores are not marginal probabilities.","Compute max messages and reconstruct one compatible joint MAP assignment.","Explain why normalized max scores do not equal posterior marginals.","A best score tells you how good; a backpointer tells you which choice.","mᵢ→ⱼ(xⱼ)=maxxᵢ[φᵢ(xᵢ)ψᵢⱼ(xᵢ,xⱼ)∏k∈N(i)∖j mₖ→ᵢ(xᵢ)]","Binary chain X—Y—Z with unaries X=(1,a), Y=(1,1), Z=(2,1) and pair factors [[3,1],[1,3]]. Root at Y. Store a maximizing source state for each recipient state, then choose the root and trace back. State 0 wins displayed ties; all globally maximizing assignments are also enumerated and listed. Exact sum-based marginals are a separate reference.","Use compatible backpointers to recover a joint assignment. Dividing max scores by their sum does not turn them into posterior marginals."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A symmetric, smoothed way to compare probability distributions.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A shared middle distribution gives both sides somewhere safe to compare.",
+  "overview": "Equal-weight Jensen–Shannon divergence averages two KL divergences to the common mixture M=(P+Q)/2. It is symmetric and finite even when the two inputs have disjoint supports. Its square root is a distance metric; the divergence itself should not be substituted for that distance without checking the intended definition.",
+  "concepts": [
+    {
+      "title": "The mixture covers both supports",
+      "explanation": "If P has positive mass somewhere, M has at least half that mass there; the same holds for Q. Neither KL-to-mixture term faces a positive numerator over a zero denominator. This is different from KL(P‖Q), which can be infinite."
+    },
+    {
+      "title": "The upper bound depends on conventions",
+      "explanation": "With two equal mixture weights and base-2 logs, JS lies between 0 and 1 bit. Identical inputs give 0; disjoint supports give 1. Natural logarithms replace that upper bound with ln 2. Unequal mixture weights change the bound and generally lose symmetry under swapping inputs while keeping the weights fixed."
+    },
+    {
+      "title": "Distance and divergence differ numerically",
+      "explanation": "At q=0.5, M=(0.75,0.25). H(M)≈0.811278 bits and H(Q)=1 bit, so JS≈0.311278 bits. Its square root is approximately 0.557923. An API returning the distance therefore does not return the same number as the defining divergence formula."
+    }
+  ],
+  "process": [
+    "Align categories and normalize both input distributions intentionally.",
+    "Form the declared mixture and compute both KL contributions with safe zero handling.",
+    "Report the logarithm base and apply the square root only if a distance is requested."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "JS(P,Q)=½KL(P‖M)+½KL(Q‖M)=H(M)−½H(P)−½H(Q); M=(P+Q)/2",
+      "meaning": "Two normalized distributions on outcomes {0,1}: P=(1,0), Q=(1−q,q). Mixing weights are equal and logarithms are base 2. Bars show P, Q and M probabilities; the readout distinguishes divergence in bits from its square-root distance. Zero-mass terms use the limiting value 0 log 0=0."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Disjoint but finite",
+    "setup": "Move q to 1: P=(1,0), Q=(0,1).",
+    "steps": [
+      "Their mixture is (0.5,0.5).",
+      "Each KL-to-mixture term is log₂2=1 bit.",
+      "The average is JS=1 bit; the square-root distance is 1 in the corresponding square-root-bit scale."
+    ],
+    "result": "Direct KL between the two point masses is infinite, while JS reaches its finite upper bound."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Comparing arrays with different category ordering measures a different discrepancy, even if both sum to one.",
+    "Calling a square-root distance a divergence confuses downstream thresholds and reported values."
+  ],
+  "implementation": [
+    "SciPy's jensenshannon returns the square root and can normalize inputs automatically; set the base explicitly and validate category alignment yourself.",
+    "Use a stable x-log-ratio implementation and distinguish sampling noise in estimated histograms from true distribution differences."
+  ],
+  "takeaways": [
+    "Specify the log base, mixture weights and whether the output is JS divergence or its square root.",
+    "Distinguish JS divergence, square-root distance and log-base conventions."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A symmetric, smoothed way to compare probability distributions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Jensen-Shannon divergence illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Equal-weight Jensen–Shannon divergence averages two KL divergences to the common mixture M=(P+Q)/2. It is symmetric and finite even when the two inputs have disjoint supports. Its square root is a distance metric; the divergence itself should not be substituted for that distance without checking the intended definition.","Construct the shared mixture and calculate finite JS values.","Distinguish JS divergence, square-root distance and log-base conventions.","A shared middle distribution gives both sides somewhere safe to compare.","JS(P,Q)=½KL(P‖M)+½KL(Q‖M)=H(M)−½H(P)−½H(Q); M=(P+Q)/2","Two normalized distributions on outcomes {0,1}: P=(1,0), Q=(1−q,q). Mixing weights are equal and logarithms are base 2. Bars show P, Q and M probabilities; the readout distinguishes divergence in bits from its square-root distance. Zero-mass terms use the limiting value 0 log 0=0.","Specify the log base, mixture weights and whether the output is JS divergence or its square root."]} />

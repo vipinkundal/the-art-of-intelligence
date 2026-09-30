@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A conditional random field models a structured output directly conditional on observed input features.",
+  "hook": "Choose a whole labeling, not three isolated winners.",
+  "overview": "A conditional random field defines a distribution over structured labels y for a fixed observed input x. It combines input-dependent potentials and output compatibility, then normalizes over complete label structures. A linear chain supports efficient exact inference; a general output graph need not.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "The input is conditioned on",
+      "explanation": "Unary scores may come from hand-designed features or a learned encoder. This lab fixes those scores while changing compatibility. The CRF specifies P(y|x); it does not by itself provide a distribution for generating x."
     },
     {
-      "title": "Core computation",
-      "explanation": "Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input."
+      "title": "Normalization couples complete outputs",
+      "explanation": "For each fixed input, Z(x) sums the weights of all allowed label sequences. Dividing each transition row by its own sum would define a different, locally normalized model. The numbers in the unary table are weights, not calibrated class probabilities."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs."
+      "title": "Agreement can reverse the unary decision",
+      "explanation": "Ignoring neighbors selects 101 because each position takes its strongest unary score. That sequence earns no agreement multiplier. The alternative 111 has weaker unary score but two agreements, so its total weight can overtake 101."
+    },
+    {
+      "title": "Inference and learning need different outputs",
+      "explanation": "For a chain of length T with K labels, forward-backward obtains the normalizer and marginals in O(TK²) for dense pair factors; max-sum with backpointers decodes a best sequence. Conditional log-likelihood training compares observed feature counts with model expectations. Neural parameterization need not preserve the convexity of a fixed-feature linear model."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs."
+    "Declare the allowed labels, graph and score functions for a fixed input.",
+    "Compute the conditional normalizer and marginals with sum-product; decode a whole sequence with max-sum and traceback.",
+    "Evaluate sequence predictions and probability quality separately; tune compatibility on held-out data rather than assuming smoother labels are always better."
   ],
   "formulas": [
     {
-      "label": "Conditional random fields rule",
-      "expression": "P(y|x) = exp(w dot F(x,y)) / Z(x)",
-      "meaning": "CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs."
+      "label": "Definition and assumptions",
+      "expression": "P(y|x)=u₁(y₁)u₂(y₂)u₃(y₃)r^[1{y₁=y₂}+1{y₂=y₃}]/Z(x)",
+      "meaning": "Fixed input x gives binary-label unary weights (1,4), (3,1), (1,2). Each adjacent equal-label pair contributes multiplier r≥1. There are no boundary factors. The lab enumerates all eight sequences, sums their weights for Z(x), and obtains exact sequence probabilities and marginals. These are illustrative scores, not learned parameters or an accuracy benchmark."
     }
   ],
   "example": {
-    "title": "Conditional random fields in a small case",
-    "setup": "Label every word in a sentence as a person, organization, location, or other category.",
+    "title": "The second label flips in the winning sequence",
+    "setup": "Set r=3.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Sequence 101 has unary weight 4×3×2=24 and no matches. Sequence 111 has unary weight 4×1×2=8 and two matches, giving 8×3²=72.",
+      "In binary order 000 through 111, all weights are (27,18,1,6,36,24,12,72), summing to Z(x)=196.",
+      "The joint winner is 111 with probability 72/196≈0.367347. Yet P(y₂=1|x)=(1+6+12+72)/196≈0.464286, below one half."
     ],
-    "result": "The model combines word features and neighboring tag compatibility to return a coherent tag sequence."
+    "result": "The middle component of the most probable complete sequence need not be that component's marginally most probable label."
   },
   "pitfalls": [
-    "Feature weights are not independent probabilities; the conditional partition function couples them.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "A larger compatibility weight need not improve accuracy; it can suppress real boundaries.",
+    "A CRF probability is not automatically calibrated just because it is normalized.",
+    "Efficient linear-chain inference does not imply tractable inference for arbitrary CRF graphs. Adding long-range label interactions can destroy the chain structure."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log-sum-exp for the forward normalizer and preserve forbidden transitions as −∞ log scores. Keep forward marginal inference separate from Viterbi traceback.",
+    "For training, compute the normalizer for every input and use the same masks and transition constraints during training and decoding."
+  ],
   "takeaways": [
-    "A conditional random field models a structured output directly conditional on observed input features.",
-    "Score compatible output configurations with feature-weighted factors and normalize over possible output structures for the given input.",
-    "CRFs avoid modelling the input distribution, but training and decoding can be expensive for complex output graphs.",
-    "The model combines word features and neighboring tag compatibility to return a coherent tag sequence."
+    "Normalize over complete labelings for this input. A sequence MAP decision, an individual label marginal, and independent unary predictions answer different questions.",
+    "Explain why unary decisions, marginal decisions and joint decoding can disagree."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A conditional random field models a structured output directly conditional on observed input features.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Conditional random fields illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A conditional random field defines a distribution over structured labels y for a fixed observed input x. It combines input-dependent potentials and output compatibility, then normalizes over complete label structures. A linear chain supports efficient exact inference; a general output graph need not.","Calculate globally normalized probabilities for a tiny structured-label model.","Explain why unary decisions, marginal decisions and joint decoding can disagree.","Choose a whole labeling, not three isolated winners.","P(y|x)=u₁(y₁)u₂(y₂)u₃(y₃)r^[1{y₁=y₂}+1{y₂=y₃}]/Z(x)","Fixed input x gives binary-label unary weights (1,4), (3,1), (1,2). Each adjacent equal-label pair contributes multiplier r≥1. There are no boundary factors. The lab enumerates all eight sequences, sums their weights for Z(x), and obtains exact sequence probabilities and marginals. These are illustrative scores, not learned parameters or an accuracy benchmark.","Normalize over complete labelings for this input. A sequence MAP decision, an individual label marginal, and independent unary predictions answer different questions."]} />

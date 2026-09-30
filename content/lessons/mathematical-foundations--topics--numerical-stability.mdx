@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Keeps calculations reliable despite finite precision, overflow, underflow, or bad scaling.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Algebraically equal does not mean computationally interchangeable.",
+  "overview": "Numerical stability concerns how an algorithm handles rounding and other small computational errors. Conditioning concerns how the mathematical answer changes when its input changes. Equivalent exact formulas can behave very differently in finite precision, even for a well-conditioned problem.",
+  "concepts": [
+    {
+      "title": "Track where information disappears",
+      "explanation": "For a small positive x, √(1+x) is very close to 1. Rounding during addition and square-root evaluation can remove the increment before the final subtraction. Subtracting the rounded values then exposes the earlier error relative to a much smaller desired result. At x=10⁻¹⁶, binary64 evaluation of 1+x rounds to 1 in this example."
+    },
+    {
+      "title": "Change the computation, not the function",
+      "explanation": "Multiply by the conjugate to obtain x/(√(1+x)+1). Its denominator stays near 2, while the numerator retains the small input. Dividing both forms by x gives the plotted ratios. The stable ratio tends to 0.5; the directly subtracted ratio eventually becomes zero even though x itself is nonzero."
+    },
+    {
+      "title": "Conditioning does not excuse this failure",
+      "explanation": "For the exact positive-input function, κrel=(s+1)/(2s) with s=√(1+x). It approaches 1 as x approaches zero, so a small relative input perturbation produces a comparably small relative output perturbation locally. The large discrepancy therefore comes from this evaluation path, not from an enormous condition number."
+    },
+    {
+      "title": "Use the error notion that matches the question",
+      "explanation": "Forward error measures the discrepancy in the answer. Backward error asks whether that computed answer solves a nearby input problem. A backward-stable method can still have large forward error for an ill-conditioned problem. Here the lab reports relative discrepancy between two evaluations rather than claiming a rigorously bounded error against exact real arithmetic."
+    }
+  ],
+  "process": [
+    "Define the input scale and desired absolute or relative accuracy; inspect mathematical conditioning separately from the evaluation algorithm.",
+    "Identify cancellation, overflow, underflow and accumulation paths. Seek a reformulation or a dedicated numerical primitive suited to that region.",
+    "Check representative magnitudes and limiting behavior, and compare with a justified reference rather than trusting a rounded display or one successful input."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "√(1+x)−1 = x/(√(1+x)+1); κrel(x) = |xf′(x)/f(x)| = (√(1+x)+1)/(2√(1+x))",
+      "meaning": "Positive inputs x=10⁻ᵏ for integer k from 0 to 18 are evaluated with JavaScript binary64 numbers. The graph divides both computed results by x so their small magnitude does not hide their disagreement. Connected points join only the 19 evaluated inputs; they do not describe every floating-point transition. The rationalized expression is a numerically reliable comparison here, not an arbitrary-precision oracle. No underflow occurs in the displayed input range."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A representable input, a vanished answer",
+    "setup": "Use x=10⁻¹⁶ with the direct and rationalized formulas.",
+    "steps": [
+      "The binary64 addition 1+x rounds to 1. Its square root is 1, so direct subtraction returns zero.",
+      "The rationalized numerator remains x and the denominator is approximately 2, giving about 5×10⁻¹⁷.",
+      "After scaling by x, the two plotted answers are 0 and 0.5. The exact function's relative condition number is approximately 1."
+    ],
+    "result": "The mathematical target is not exceptionally sensitive here. Changing the algebra removes the damaging cancellation path."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Not every subtraction of nearby numbers is harmful: exact or sufficiently accurate operands can yield an accurate difference. The trouble is loss of meaningful digits relative to errors already present.",
+    "Switching to a wider type postpones some failures but does not automatically fix a poor algorithm or an ill-conditioned problem.",
+    "An absolute error that looks tiny can be a 100% relative error in a tiny quantity. At an exact zero target, relative error itself is undefined and needs a different diagnostic."
+  ],
+  "implementation": [
+    "Use specialized primitives such as log1p and expm1 near zero and stable log-sum-exp formulations for exponentials. Their applicability follows the expression and domain, not a blanket rule to rescale every value.",
+    "Keep dtype, input scale and error tolerance visible in numerical diagnostics. For this demonstration, rounded graph coordinates affect drawing only; calculations and numeric readouts use the underlying binary64 values."
+  ],
+  "takeaways": [
+    "Separate input sensitivity from algorithmic error, and preserve the small quantity instead of subtracting it out of nearly equal rounded values.",
+    "Separate mathematical conditioning, algorithm stability and displayed precision."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Keeps calculations reliable despite finite precision, overflow, underflow, or bad scaling.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Numerical stability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Numerical stability concerns how an algorithm handles rounding and other small computational errors. Conditioning concerns how the mathematical answer changes when its input changes. Equivalent exact formulas can behave very differently in finite precision, even for a well-conditioned problem.","Identify cancellation in a well-conditioned calculation.","Separate mathematical conditioning, algorithm stability and displayed precision.","Algebraically equal does not mean computationally interchangeable.","√(1+x)−1 = x/(√(1+x)+1); κrel(x) = |xf′(x)/f(x)| = (√(1+x)+1)/(2√(1+x))","Positive inputs x=10⁻ᵏ for integer k from 0 to 18 are evaluated with JavaScript binary64 numbers. The graph divides both computed results by x so their small magnitude does not hide their disagreement. Connected points join only the 19 evaluated inputs; they do not describe every floating-point transition. The rationalized expression is a numerically reliable comparison here, not an arbitrary-precision oracle. No underflow occurs in the displayed input range.","Separate input sensitivity from algorithmic error, and preserve the small quantity instead of subtracting it out of nearly equal rounded values."]} />

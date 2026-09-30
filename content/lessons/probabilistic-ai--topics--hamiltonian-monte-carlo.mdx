@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
+  "hook": "Momentum travels along the landscape instead of taking a blind local step.",
+  "overview": "Hamiltonian Monte Carlo augments continuous parameters with momentum and uses gradients to propose moves through phase space. Numerical integration approximately preserves a Hamiltonian; a Metropolis correction accounts for integration error. Useful movement depends on geometry, step size and trajectory length, not acceptance probability alone.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "A solvable orbit supplies a reference",
+      "explanation": "For this Gaussian example, Hamilton's equations are q̇=p and ṗ=−q. Starting at (1,0.5), the exact solution is q(t)=cos(t)+0.5sin(t) and p(t)=0.5cos(t)−sin(t). Hence q²+p² stays at 1.25 and H=0.625. The cyan circle is this energy contour, not a probability-density contour for q alone."
     },
     {
-      "title": "Core computation",
-      "explanation": "Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction."
+      "title": "Leapfrog is a composition of three shears",
+      "explanation": "Each step performs a half momentum update, a full position update and a final half momentum update. Plotting only completed steps produces the polygonal trace. Intermediate half-step momenta are not plotted. Exact dynamics stays on the circle; the numerical endpoints generally deviate from it."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning."
+      "title": "Correct a numerical proposal without pretending it is exact",
+      "explanation": "For a reversible, volume-preserving leapfrog proposal with momentum reversal, the acceptance probability is min(1,exp(−ΔH)). A negative ΔH gives acceptance one, not proof of perfect integration. An exact trajectory can also return near its start, giving little movement despite zero energy error. This is why the table shows position displacement separately."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning."
+    "Define potential energy from minus the log target and choose a momentum distribution and mass matrix.",
+    "Refresh momentum and integrate the coupled position/momentum equations using a reversible, volume-preserving scheme.",
+    "Apply the appropriate proposal correction and inspect both numerical behavior and posterior exploration."
   ],
   "formulas": [
     {
-      "label": "Hamiltonian Monte Carlo rule",
-      "expression": "H(q,p)=-log pi(q) + (1/2)p^T M^(-1)p",
-      "meaning": "It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning."
+      "label": "Definition and assumptions",
+      "expression": "H(q,p)=(q²+p²)/2; p½=p−εq/2; q′=q+εp½; p′=p½−εq′/2; α=min(1,exp(−ΔH))",
+      "meaning": "Standard-normal position target, unit momentum mass, initial position q=1 and illustrative momentum p=0.5. Ten leapfrog steps are shown in equally scaled position/momentum coordinates, before the final momentum flip. The hollow reference endpoint uses exact harmonic dynamics at time 10ε. Changing ε changes both integration error and trajectory duration. This is a single proposal, not a complete HMC chain; a real chain refreshes momentum with Gaussian draws."
     }
   ],
   "example": {
-    "title": "Hamiltonian Monte Carlo in a small case",
-    "setup": "Sample correlated coefficients from a Bayesian logistic-regression posterior.",
+    "title": "One leapfrog step by hand",
+    "setup": "Start q=1, p=0.5 and use ε=0.5. This arithmetic covers one step; the interactive lab performs ten.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "The half momentum is 0.5−0.25·1=0.25; the new position is 1+0.5·0.25=1.125.",
+      "The completed momentum is 0.25−0.25·1.125=−0.03125.",
+      "Final H=(1.125²+0.03125²)/2=0.63330078125. Therefore ΔH=0.00830078125 and α≈0.991734."
     ],
-    "result": "Gradient-guided trajectories travel along the posterior geometry while the correction removes integration bias."
+    "result": "The Metropolis correction addresses a small but nonzero integration error."
   },
   "pitfalls": [
-    "Divergent transitions often reveal poor scaling, extreme curvature, or an unsuitable step size.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "The harmonic oscillator's leapfrog stability range is 0<ε<2; this special threshold is not a universal tuning rule for arbitrary targets.",
+    "A smooth-looking trajectory or high acceptance does not rule out missed modes, poor geometry or strongly correlated output."
   ],
-  "implementation": [],
+  "implementation": [
+    "Compute potential energies and gradients consistently, including Jacobian adjustments when transforming constrained variables.",
+    "The displayed fixed-length algorithm is not NUTS. Production samplers may adapt a mass matrix and step size during warmup and use different trajectory-selection schemes."
+  ],
   "takeaways": [
-    "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
-    "Add momentum, integrate approximate Hamiltonian dynamics with leapfrog steps, then apply a Metropolis correction.",
-    "It reduces random-walk behavior in smooth high-dimensional targets but requires gradients and careful step-size and trajectory tuning.",
-    "Gradient-guided trajectories travel along the posterior geometry while the correction removes integration bias."
+    "Small energy error supports acceptance, but does not ensure a useful displacement or representative posterior exploration.",
+    "Separate numerical accuracy, acceptance and movement through the target."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hamiltonian Monte Carlo illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Hamiltonian Monte Carlo augments continuous parameters with momentum and uses gradients to propose moves through phase space. Numerical integration approximately preserves a Hamiltonian; a Metropolis correction accounts for integration error. Useful movement depends on geometry, step size and trajectory length, not acceptance probability alone.","Calculate a leapfrog step and its Hamiltonian error.","Separate numerical accuracy, acceptance and movement through the target.","Momentum travels along the landscape instead of taking a blind local step.","H(q,p)=(q²+p²)/2; p½=p−εq/2; q′=q+εp½; p′=p½−εq′/2; α=min(1,exp(−ΔH))","Standard-normal position target, unit momentum mass, initial position q=1 and illustrative momentum p=0.5. Ten leapfrog steps are shown in equally scaled position/momentum coordinates, before the final momentum flip. The hollow reference endpoint uses exact harmonic dynamics at time 10ε. Changing ε changes both integration error and trajectory duration. This is a single proposal, not a complete HMC chain; a real chain refreshes momentum with Gaussian draws.","Small energy error supports acceptance, but does not ensure a useful displacement or representative posterior exploration."]} />

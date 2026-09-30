@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "These describe places where progress can stop or become ambiguous.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Flat at your feet does not tell you whether every direction goes uphill.",
+  "overview": "A local minimizer has no worse objective value than nearby feasible points; a global minimizer has no worse value than any feasible point. A saddle has both higher and lower values arbitrarily nearby. For a smooth unconstrained problem, zero gradient identifies a stationary candidate—not which of these roles it plays.",
+  "concepts": [
+    {
+      "title": "Find every stationary candidate in this example",
+      "explanation": "The y derivative requires y=0. Factoring the x derivative gives x(x+1)(x−2)=0, so the only candidates are x=−1,0,2. Their objective values are −5/12, 0 and −8/3. A root finder that stops at any one of them has solved stationarity, not necessarily minimization."
+    },
+    {
+      "title": "Opposite curvature signs reveal a saddle",
+      "explanation": "At the origin the Hessian eigenvalues are −2 and +2. Small x displacements lower the objective, while y displacements raise it. Looking only at the upward y slice would therefore be misleading. The negative-curvature direction is information the zero gradient does not supply."
+    },
+    {
+      "title": "Positive curvature is local evidence",
+      "explanation": "At (−1,0), Hessian eigenvalues are 3 and 2; at (2,0), they are 6 and 2. Both points are strict local minima, but their values differ by 9/4. The quartic x term and y² force F to grow without bound at infinity, so a global minimum exists and must be among these stationary points. Comparing them identifies (2,0) as the unique global minimizer."
+    },
+    {
+      "title": "A singular Hessian needs more analysis",
+      "explanation": "A positive-definite Hessian at a stationary point is sufficient for a strict local minimum. Positive semidefiniteness alone is not sufficient: x⁴+y⁴ and x⁴−y⁴ both have zero Hessian at the origin but different local behavior. Boundary constraints and nonsmooth objectives require conditions beyond this unconstrained smooth test."
+    }
+  ],
+  "process": [
+    "Specify the feasible domain and find stationary candidates where differentiability permits.",
+    "Inspect curvature in all directions, using Hessian eigenvalues or appropriate curvature calculations rather than one plotted slice.",
+    "Separate a local conclusion from a global certificate; check boundaries, behavior at infinity and special structure where relevant."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "F(x,y)=x⁴/4−x³/3−x²+y²; ∇F=(x(x+1)(x−2),2y); H=diag(3x²−2x−2,2)",
+      "meaning": "The domain is all of R² and the polynomial is smooth. The selector chooses one of its three exact stationary points (−1,0), (0,0), (2,0). Curves show objective changes along the coordinate directions for displacements −0.6≤t≤0.6, not a full surface or a descent trajectory. The global classification uses all stationary points and growth at infinity, not just the plotted neighborhood. All coordinates and objective values are dimensionless."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Compare two valleys and the pass between them",
+    "setup": "Use the three stationary points of F(x,y)=x⁴/4−x³/3−x²+y².",
+    "steps": [
+      "At (0,0), ∇F=0 and H=diag(−2,2). For t=0.1, moving along x changes F by about −0.010308; moving along y changes it by +0.01.",
+      "At (−1,0), H=diag(3,2) certifies a strict local minimum with value −5/12.",
+      "At (2,0), H=diag(6,2) also certifies a strict local minimum, with lower value −8/3. Its advantage over the left valley is 9/4."
+    ],
+    "result": "The origin is a saddle; the left valley is local but not global; the right valley is globally best for this polynomial."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A small gradient norm alone does not identify a minimum or prove proximity to the best objective value.",
+    "Two uphill coordinate slices do not certify a minimum for a general function with cross terms. Here the Hessian is explicitly diagonal, and the classification uses it—not the picture alone.",
+    "Multiple random starts can discover better candidates but do not generally prove that no better point exists. Convexity can provide stronger guarantees when its assumptions actually hold."
+  ],
+  "implementation": [
+    "Report the stopping reason, gradient norm and any available curvature information. Distinguish a returned stationary point from a certified local or global solution.",
+    "Use Hessian-vector products when a full Hessian is too expensive, while stating what a limited curvature search can and cannot rule out. The lab enumerates a small known polynomial, not a guarantee for a high-dimensional learned loss."
+  ],
+  "takeaways": [
+    "Use stationarity to find candidates, curvature to classify local behavior, and a separate argument for global optimality.",
+    "Explain why a global-optimality conclusion needs more than a small gradient or a local plot."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["These describe places where progress can stop or become ambiguous.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Local minima, global minima, and saddle points illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A local minimizer has no worse objective value than nearby feasible points; a global minimizer has no worse value than any feasible point. A saddle has both higher and lower values arbitrarily nearby. For a smooth unconstrained problem, zero gradient identifies a stationary candidate—not which of these roles it plays.","Classify stationary points using local curvature.","Explain why a global-optimality conclusion needs more than a small gradient or a local plot.","Flat at your feet does not tell you whether every direction goes uphill.","F(x,y)=x⁴/4−x³/3−x²+y²; ∇F=(x(x+1)(x−2),2y); H=diag(3x²−2x−2,2)","The domain is all of R² and the polynomial is smooth. The selector chooses one of its three exact stationary points (−1,0), (0,0), (2,0). Curves show objective changes along the coordinate directions for displacements −0.6≤t≤0.6, not a full surface or a descent trajectory. The global classification uses all stationary points and growth at infinity, not just the plotted neighborhood. All coordinates and objective values are dimensionless.","Use stationarity to find candidates, curvature to classify local behavior, and a separate argument for global optimality."]} />

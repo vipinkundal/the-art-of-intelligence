@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Occurs when deployment data differs from training or validation data.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Reweighting changes who counts; it cannot repair a changed relationship between inputs and outcomes.",
+  "overview": "Distribution shift means the deployment joint distribution differs from the reference distribution. Covariate shift assumes the input mix changes while P(Y|X) stays fixed; label shift assumes class proportions change while P(X|Y) stays fixed. Conditional drift changes P(Y|X). These assumptions justify different corrections and cannot generally be inferred from unlabeled inputs alone.",
+  "concepts": [
+    {
+      "title": "Name the joint distribution that changed",
+      "explanation": "The relevant risk is the expectation of the chosen loss under deployment data. A changed feature histogram is one symptom, not a complete description. A change in sampling mix can alter aggregate error even when every group's conditional error remains unchanged."
+    },
+    {
+      "title": "The density ratio repairs a particular mismatch",
+      "explanation": "Under covariate shift, multiply source cases from group A by (1−q)/0.8 and group B by q/0.2. This changes their aggregate contributions to the target mix. The conditional error inside each group is still borrowed from the source; that is the assumption doing the work."
+    },
+    {
+      "title": "Unlabeled monitoring cannot distinguish these worlds",
+      "explanation": "The two target scenarios have identical group proportions. Their input-only drift statistics and density ratios are therefore identical. When B's label probability changes from 0.4 to 0.8, the reweighted old error misses 0.4q of target risk. Representative target labels or defensible additional structure are needed to distinguish them."
+    },
+    {
+      "title": "Label shift is a different factorization",
+      "explanation": "Under label shift the stable object is P(X|Y), not P(Y|X). Corrections then involve class-prior ratios, and estimating them from predictions requires additional identifiability conditions. A change in class prevalence alone does not prove label shift: changing the feature mix can also change prevalence."
+    }
+  ],
+  "process": [
+    "Specify source and target populations, the fixed model and the loss; compare appropriate time, location or acquisition slices.",
+    "State which conditional distribution is assumed stable and check overlap before choosing a reweighting or adaptation method.",
+    "Estimate target performance using representative labels where possible; monitor conditional behavior and weight variability as well as input drift."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Rtarget=Esource[w(X)ℓ(f(X),Y)], w(x)=ptarget(x)/psource(x), if Ptarget(Y|X)=Psource(Y|X)",
+      "meaning": "The observed feature X is group A or B. Source shares are (0.8,0.2). A fixed classifier always predicts label 0; source positive-label probabilities, hence error rates, are (0.05,0.4). The slider sets target B share q. In one target world the conditional label probabilities stay fixed. In a second world only B's positive-label probability changes to 0.8. Both target worlds have the same X distribution. Plotted risks are exact population expectations with known shares, not noisy finite-sample estimates or a learned correction."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A minority group becomes the majority",
+    "setup": "Set target B share q=0.7.",
+    "steps": [
+      "Source error is 0.8×0.05+0.2×0.4=0.12. With unchanged conditional errors, target error is 0.3×0.05+0.7×0.4=0.295.",
+      "Weights are w(A)=0.3/0.8=0.375 and w(B)=0.7/0.2=3.5. The weighted source risk is 0.8×0.375×0.05+0.2×3.5×0.4=0.295.",
+      "If B's conditional error is actually 0.8, target risk is 0.3×0.05+0.7×0.8=0.575. Input-only weights are unchanged and underestimate this by 0.28."
+    ],
+    "result": "The two target populations look identical when labels are hidden. A covariate correction can be exactly calculated and still answer the wrong deployment question."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Target mass outside source support cannot be recovered by a finite source density ratio. In this toy, both source groups have positive mass, so the endpoints q=0 and q=1 remain well-defined.",
+    "Estimated large weights can create high-variance finite-sample estimates. Clipping and self-normalizing weights change the estimator and its bias properties; they do not remove the need for assumptions.",
+    "Not every detected input shift harms performance, and no detected input shift does not guarantee stable performance. Conditional changes can occur while the entire input distribution stays the same."
+  ],
+  "implementation": [
+    "Keep source-versus-target membership, acquisition time, labels and model version available for evaluation. Use representative labeled slices to check the behavior that feature-only monitoring cannot see.",
+    "Compare weighted and unweighted metrics, document ratio estimation and overlap, and report effective sample size as a weight diagnostic rather than proof of correctness. Do not tune on a final target test set and then present it as untouched evaluation."
+  ],
+  "takeaways": [
+    "Importance weighting identifies target risk only under its distributional assumptions and support conditions. Identical observed input drift can accompany very different label behavior.",
+    "Calculate when importance-weighted source risk equals target risk and construct a counterexample when it does not."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Occurs when deployment data differs from training or validation data.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Distribution shift illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Distribution shift means the deployment joint distribution differs from the reference distribution. Covariate shift assumes the input mix changes while P(Y|X) stays fixed; label shift assumes class proportions change while P(X|Y) stays fixed. Conditional drift changes P(Y|X). These assumptions justify different corrections and cannot generally be inferred from unlabeled inputs alone.","Distinguish covariate, label and conditional shift by the distributions they hold fixed.","Calculate when importance-weighted source risk equals target risk and construct a counterexample when it does not.","Reweighting changes who counts; it cannot repair a changed relationship between inputs and outcomes.","Rtarget=Esource[w(X)ℓ(f(X),Y)], w(x)=ptarget(x)/psource(x), if Ptarget(Y|X)=Psource(Y|X)","The observed feature X is group A or B. Source shares are (0.8,0.2). A fixed classifier always predicts label 0; source positive-label probabilities, hence error rates, are (0.05,0.4). The slider sets target B share q. In one target world the conditional label probabilities stay fixed. In a second world only B's positive-label probability changes to 0.8. Both target worlds have the same X distribution. Plotted risks are exact population expectations with known shares, not noisy finite-sample estimates or a learned correction.","Importance weighting identifies target risk only under its distributional assumptions and support conditions. Identical observed input drift can accompany very different label behavior."]} />

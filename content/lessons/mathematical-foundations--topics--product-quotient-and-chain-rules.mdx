@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "These rules break complex derivatives into manageable pieces, especially through nested functions.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Every path by which x changes the output must contribute to the derivative.",
+  "overview": "Differentiation rules combine local derivatives while preserving how expressions depend on an input. Products have two first-order contributions, quotients must account for denominator change, and compositions multiply sensitivities along their dependency path.",
+  "concepts": [
+    {
+      "title": "Products change in two places",
+      "explanation": "The increment of uv contains vΔu+uΔv+ΔuΔv. After division by the input increment and taking the derivative limit, the last term vanishes under differentiability and the first two give u′v+uv′. Multiplying u′ by v′ would discard both first-order contributions."
+    },
+    {
+      "title": "A quotient is a product with a reciprocal",
+      "explanation": "Write u/v=u·v⁻¹. The reciprocal contributes derivative −v′/v² through the chain rule. Combining this with the product rule gives u′/v−uv′/v², which exposes why the denominator contribution carries a minus sign."
+    },
+    {
+      "title": "Composition follows the inner argument",
+      "explanation": "For exp(x²), the outer derivative is exp evaluated at x² and the inner derivative is 2x, yielding 2x exp(x²). In multivariable compositions these local derivatives become Jacobians whose multiplication order and dimensions matter."
+    }
+  ],
+  "process": [
+    "Name intermediate expressions and identify every dependency on the input.",
+    "Apply the product or chain rule locally, including the derivative of reciprocal terms.",
+    "Check the domain and combine all contributions before simplifying."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "(uv)′=u′v+uv′; (u/v)′=u′/v−uv′/v²; (f∘g)′=f′(g(x))g′(x)",
+      "meaning": "The plotted quotient is r(x)=(x²+1)/(x+2). Its numerator and denominator are differentiable and the denominator is nonzero throughout the displayed interval [−1,2]. Curves show the two derivative contributions and their sum, not the quotient's value. The singular point x=−2 is outside the lab domain."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The denominator removes a third of the naive answer",
+    "setup": "At x=1, use u=x²+1 and v=x+2.",
+    "steps": [
+      "u=2, u′=2, v=3 and v′=1.",
+      "Numerator contribution is 2/3; denominator contribution is −2/9.",
+      "Their sum is 4/9≈0.444444, not the numerator-only result 2/3."
+    ],
+    "result": "The graph separates the omitted contribution so the error is visible."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The quotient rule does not define a derivative at a zero denominator; algebraic cancellations require checking the original domain.",
+    "If an intermediate is used along multiple paths, its contributions must add. Replacing accumulation with assignment loses paths in a computational graph."
+  ],
+  "implementation": [
+    "Use intermediate values to make derivative dependencies inspectable in a small worked trace.",
+    "For batched tensor operations, distinguish elementwise multiplication from matrix contraction; their derivative shapes are not interchangeable."
+  ],
+  "takeaways": [
+    "Differentiate the dependency structure, not the expression's appearance. A missing denominator or inner-function contribution can give a plausible-looking but incorrect slope.",
+    "Account for every path by which an input affects the output."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["These rules break complex derivatives into manageable pieces, especially through nested functions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Product, quotient, and chain rules illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Differentiation rules combine local derivatives while preserving how expressions depend on an input. Products have two first-order contributions, quotients must account for denominator change, and compositions multiply sensitivities along their dependency path.","Derive a quotient derivative by combining product and chain rules.","Account for every path by which an input affects the output.","Every path by which x changes the output must contribute to the derivative.","(uv)′=u′v+uv′; (u/v)′=u′/v−uv′/v²; (f∘g)′=f′(g(x))g′(x)","The plotted quotient is r(x)=(x²+1)/(x+2). Its numerator and denominator are differentiable and the denominator is nonzero throughout the displayed interval [−1,2]. Curves show the two derivative contributions and their sum, not the quotient's value. The singular point x=−2 is outside the lab domain.","Differentiate the dependency structure, not the expression's appearance. A missing denominator or inner-function contribution can give a plausible-looking but incorrect slope."]} />

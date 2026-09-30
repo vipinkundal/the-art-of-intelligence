@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Popular adaptive optimizers that track gradient statistics to scale updates.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The gradient is the input; optimizer memory decides the update.",
+  "overview": "RMSProp rescales gradients using a moving average of their squares. Adam also maintains a first-moment estimate and normally corrects both moment estimates for zero initialization. Their state can make updates differ sharply even when they receive the same current gradient and global learning rate.",
+  "concepts": [
+    {
+      "title": "Track the square, not the centered variance",
+      "explanation": "The uncentered accumulator v averages g². It is not generally Var(g), because it does not subtract the squared mean. RMSProp here uses −ηg/(√v+ε); a centered variant would maintain extra information and compute a different denominator."
+    },
+    {
+      "title": "Correct initialization without erasing history",
+      "explanation": "Adam divides m and v by 1−β₁ᵗ and 1−β₂ᵗ. For a constant gradient and zero initial state, this removes the initial shrinkage of those moving averages. It does not make them perfect estimates of a nonstationary gradient distribution."
+    },
+    {
+      "title": "A sign change does not instantly reverse momentum",
+      "explanation": "The first four positive gradients build a positive m. At the first negative gradient, that history can still produce a negative parameter update. When gradients later become zero, RMSProp without momentum stops immediately, while Adam can continue moving because its first moment is nonzero."
+    }
+  ],
+  "process": [
+    "Record each variant, decay coefficient, epsilon convention and initial optimizer state.",
+    "Update moment accumulators, apply the specified corrections, then compute the parameter change.",
+    "Compare learning behavior on a real objective separately from this controlled response to a supplied gradient stream."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "mₜ=β₁mₜ₋₁+(1−β₁)gₜ; vₜ=β₂vₜ₋₁+(1−β₂)gₜ²; ΔθAdam=−η[mₜ/(1−β₁ᵗ)]/[√(vₜ/(1−β₂ᵗ))+ε]",
+      "meaning": "Fixed gradient stream {1,1,1,1,−1,−1,−1,−1,0,0,0,0}; η=0.1, Adam β₁=0.9, zero-initialized state and ε=10⁻⁸ outside the square root. RMSProp is uncentered, has no momentum and no bias correction, with α equal to Adam's selected β₂. Curves show signed updates, not losses from training a model. The vertical scale adapts."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The first update is already different",
+    "setup": "Use g₁=1, η=0.1 and both second-moment decays equal to 0.9.",
+    "steps": [
+      "Both squared-gradient accumulators are 0.1 after one input.",
+      "Adam corrects its first and second moments to 1, giving Δθ≈−0.1.",
+      "Uncorrected RMSProp divides by √0.1+ε, giving Δθ≈−0.316228."
+    ],
+    "result": "A shared nominal learning rate is not a matched effective first-step size."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The fixed gradient stream is not a fair optimizer performance benchmark: in a real run, different parameters produce different later gradients.",
+    "A bias-corrected Adam update still has failure modes and does not guarantee global convergence for arbitrary nonconvex objectives."
+  ],
+  "implementation": [
+    "Persist optimizer state, including the update counter, when resuming from a checkpoint.",
+    "Specify whether regularization enters the gradient or is applied as decoupled weight decay; these are not equivalent for an adaptive denominator."
+  ],
+  "takeaways": [
+    "Bias correction, moment memory and epsilon placement are part of an optimizer's definition. Identical gradient inputs and identical η do not imply identical parameter updates.",
+    "Explain why a zero or reversed gradient need not immediately erase optimizer motion."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Popular adaptive optimizers that track gradient statistics to scale updates.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Adam and RMSProp illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["RMSProp rescales gradients using a moving average of their squares. Adam also maintains a first-moment estimate and normally corrects both moment estimates for zero initialization. Their state can make updates differ sharply even when they receive the same current gradient and global learning rate.","Calculate the first Adam and RMSProp updates under explicit conventions.","Explain why a zero or reversed gradient need not immediately erase optimizer motion.","The gradient is the input; optimizer memory decides the update.","mₜ=β₁mₜ₋₁+(1−β₁)gₜ; vₜ=β₂vₜ₋₁+(1−β₂)gₜ²; ΔθAdam=−η[mₜ/(1−β₁ᵗ)]/[√(vₜ/(1−β₂ᵗ))+ε]","Fixed gradient stream {1,1,1,1,−1,−1,−1,−1,0,0,0,0}; η=0.1, Adam β₁=0.9, zero-initialized state and ε=10⁻⁸ outside the square root. RMSProp is uncentered, has no momentum and no bias correction, with α equal to Adam's selected β₂. Curves show signed updates, not losses from training a model. The vertical scale adapts.","Bias correction, moment memory and epsilon placement are part of an optimizer's definition. Identical gradient inputs and identical η do not imply identical parameter updates."]} />

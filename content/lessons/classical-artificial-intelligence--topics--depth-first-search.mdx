@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Depth-first search follows one branch as far as possible before backtracking.",
+  "hook": "The road explored first determines the story you hear first.",
+  "overview": "Depth-first search prioritizes continuing the current branch before returning to alternatives. A stack or recursive call chain encodes this policy. It is useful for reachability and structural graph algorithms, but the first goal found does not in general minimize either depth or cost. Termination and memory claims depend on how repeated states are handled.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "A stack holds unfinished alternatives",
+      "explanation": "Removing S makes A the next entry and leaves B behind it. Each new continuation from A is placed ahead of B. The lab's frontier is written next-entry first, so [C,B] means continue through C before trying B."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use a LIFO stack or recursion so the most recently generated successor is expanded next."
+      "title": "Successor order is part of a reproducible trace",
+      "explanation": "Alphabetical exploration visits S,A,C,D,G and leaves B unused. Reversing the initial choice would visit S,B,G and return the cost-ten route. Neither alphabetical order nor visual position has mathematical privilege; specify the tie/order policy in examples and benchmarks."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+      "title": "A visited set solves one problem, not all problems",
+      "explanation": "For finite graph reachability, suppressing repeated states ensures each state is processed at most once and handles cycles. It does not make the first path cheapest. For tasks that require different histories to remain distinguishable, the state key must include the relevant history or resource information."
+    },
+    {
+      "title": "Separate frontier memory from total memory",
+      "explanation": "A depth-first tree traversal can store O(bm) pending successors at depth m, or O(m) frames with lazy successor iterators. A graph traversal that retains every discovered state uses O(V) auxiliary memory in the worst case. Calling both implementations linear-space without naming the variable hides a real tradeoff."
+    },
+    {
+      "title": "An infinite branch can starve a reachable goal",
+      "explanation": "Without a depth bound, an implicit infinite branch can keep DFS away from a shallow alternative forever. On a finite reachable graph with duplicate suppression and terminating successor generation, DFS does terminate and is complete for reachability. These are different settings, not inconsistent claims."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+    "Choose recursive or explicit-stack traversal and define successor order.",
+    "Keep the appropriate duplicate policy: a global set for finite reachability, or a current-path set when revisiting a state via different paths is necessary.",
+    "Return the first goal only if any feasible solution is acceptable; use another method when an optimality guarantee is required."
   ],
   "formulas": [
     {
-      "label": "Depth-first search rule",
-      "expression": "frontier = LIFO; memory = O(bm)",
-      "meaning": "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards."
+      "label": "Definition and assumptions",
+      "expression": "LIFO frontier; successor order determines the first returned goal",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. A is explored before B. Newly discovered successors are placed at the front in alphabetical order, equivalent to pushing them in reverse order onto a conventional stack. States are marked on discovery. Goal testing is on removal."
     }
   ],
   "example": {
-    "title": "Depth-first search in a small case",
-    "setup": "In a maze, always take the first unexplored corridor and backtrack at a dead end.",
+    "title": "The unvisited shortcut",
+    "setup": "Advance from two to five removals.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
-      "Check the outcome against the goal and stated assumptions."
+      "After S,A, the next-first stack is [C,B]. B is still a live alternative.",
+      "C then D extend the current route. G is finally removed at depth four with accumulated cost four.",
+      "The two-edge path S→B→G was never explored. DFS happened to find the cheaper path while missing the shallower one."
     ],
-    "result": "DFS may find a goal quickly on a lucky branch, but the returned route need not be shortest."
+    "result": "Cheap in this instance does not mean cost-optimal in general."
   },
   "pitfalls": [
-    "Recursive DFS can also fail through call-stack exhaustion on deep problems.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Recursive implementations can exceed the language runtime's call-stack limit even when the search's abstract memory bound looks acceptable.",
+    "Do not claim DFS is incomplete on every finite graph; duplicate handling and finite reachability matter.",
+    "Recording a state's first parent does not support later shortest-path improvements."
   ],
-  "implementation": [],
+  "implementation": [
+    "For deep production graphs, use explicit frames that hold the current node and next-successor iterator. This reproduces recursive backtracking without depending on the runtime stack.",
+    "Keep traversal metadata separate from application state so cancellation and reruns do not leave stale visited flags in the graph."
+  ],
   "takeaways": [
-    "Depth-first search follows one branch as far as possible before backtracking.",
-    "Use a LIFO stack or recursion so the most recently generated successor is expanded next.",
-    "It uses little frontier memory but is not shortest-path optimal and can follow an infinite or cyclic branch without safeguards.",
-    "DFS may find a goal quickly on a lucky branch, but the returned route need not be shortest."
+    "DFS's cheap answer in this graph is an ordering accident, not an optimality theorem. Its memory advantage must be qualified if a global visited set is retained.",
+    "Qualify DFS completeness and memory bounds for the actual implementation."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Depth-first search follows one branch as far as possible before backtracking.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Depth-first search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Depth-first search prioritizes continuing the current branch before returning to alternatives. A stack or recursive call chain encodes this policy. It is useful for reachability and structural graph algorithms, but the first goal found does not in general minimize either depth or cost. Termination and memory claims depend on how repeated states are handled.","Explain the stack trace and the effect of successor order.","Qualify DFS completeness and memory bounds for the actual implementation.","The road explored first determines the story you hear first.","LIFO frontier; successor order determines the first returned goal","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. A is explored before B. Newly discovered successors are placed at the front in alphabetical order, equivalent to pushing them in reverse order onto a conventional stack. States are marked on discovery. Goal testing is on removal.","DFS's cheap answer in this graph is an ordering accident, not an optimality theorem. Its memory advantage must be qualified if a global visited set is retained."]} />

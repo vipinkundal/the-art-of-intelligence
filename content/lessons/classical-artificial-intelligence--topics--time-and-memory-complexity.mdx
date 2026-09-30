@@ -1,57 +1,69 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
+  "hook": "A small working stack can traverse a very large tree.",
+  "overview": "Search resource analysis must name what is counted: generated nodes, removed entries, expanded states, frontier records, parent histories or duplicate tables. Branching and depth describe an implicit search tree; V and E describe an explicit finite graph. Different representations, cutoff rules and storage policies can change both the formula and what it means in practice.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "Sum levels to count total visits",
+      "explanation": "Level k contains 3^k nodes. Summing levels zero through d gives (3^(d+1)−1)/2 visits for either complete traversal. The leaves count as visits but do not generate children; internal expansions total (3^d−1)/2. A benchmark that counts only expansions would report a different number without necessarily doing different work."
     },
     {
-      "title": "Core rule",
-      "explanation": "Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory."
+      "title": "A breadth frontier becomes a whole last level",
+      "explanation": "Each internal-node removal subtracts one pending record and adds three, increasing queue length by two. After all depth-(d−1) nodes are processed, every depth-d leaf is waiting: exactly 3^d records. Removing leaves only shrinks the queue. This proves the peak for the specified bounded traversal."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+      "title": "Depth-first retention depends on successor handling",
+      "explanation": "An eager stack grows by two at each first descent and reaches 1+2d entries before a leaf is removed. A lazy recursive implementation can instead retain d+1 active frames with iterators, generating siblings only when needed. Both are linear in d for fixed branching, but they count different retained objects."
+    },
+    {
+      "title": "A logarithmic plot changes distances, not counts",
+      "explanation": "The vertical coordinate is log10 of each positive count. A one-unit rise means a tenfold increase. At d=6 there are 1,093 visits, a 729-entry BFS peak and a 13-entry eager DFS peak. Read the raw table for arithmetic; do not subtract plotted heights and interpret the result as saved nodes."
+    },
+    {
+      "title": "Do not mix a bounded tree with an unrestricted goal search",
+      "explanation": "Here leaves are genuine boundaries, so no depth-(d+1) nodes are generated. A BFS implementation that tests goals on removal in an unrestricted tree can generate the next layer before removing the last goal at depth d. This is one reason textbook formulas can differ by a branching factor. An explicit graph traversal with duplicate detection instead often uses O(V+E) work, subject to its representation and per-operation assumptions."
+    },
+    {
+      "title": "Frontier bytes are not process memory",
+      "explanation": "At d=10 the frontier has 59,049 records. Multiplying by an assumed 256 bytes gives about 14.4163 MiB. Parent objects, the visited table, queues, hash capacity and the input representation can add substantially more. Storing the entire educational trace also defeats the low-memory claim of an otherwise depth-first solver."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+    "Define the instance family and the stopping rule before choosing b, d, V or E.",
+    "Count visits, expansions and peak retained structures separately.",
+    "Translate counts to time or bytes only with explicit operation-cost and record-size assumptions; measure real implementations independently."
   ],
   "formulas": [
     {
-      "label": "Time and memory complexity rule",
-      "expression": "BFS time,memory = O(b^d); DFS memory = O(bm)",
-      "meaning": "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance."
+      "label": "Definition and assumptions",
+      "expression": "N=(3^(d+1)−1)/2; BFS frontier=3^d; eager DFS stack=1+2d",
+      "meaning": "A complete ternary tree has root depth zero, three children per internal node, and leaves exactly at depth d. Traverse the entire bounded tree with no early goal stop and no duplicate states. BFS stores pending nodes in a FIFO queue. Eager DFS pops a node before pushing all three children; lazy DFS stores a successor iterator per active frame. Counts exclude parent histories, closed sets and the input graph. The illustrative byte conversion assumes 256 bytes per pending record, not measured JavaScript memory."
     }
   ],
   "example": {
-    "title": "Time and memory complexity in a small case",
-    "setup": "Estimate a tree with branching factor 10 and solution depth 6.",
+    "title": "Depth six on a ternary tree",
+    "setup": "Keep the default d=6.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
-      "Check the outcome against the goal and stated assumptions."
+      "Levels contain 1,3,9,27,81,243,729 nodes, totaling 1,093 visits.",
+      "The 364 internal nodes generate children. The BFS frontier peaks at 729 pending leaves.",
+      "The eager DFS stack peaks at 1+2×6=13 entries; a lazy recursive traversal reaches seven frames. Both still visit all 1,093 nodes."
     ],
-    "result": "A full breadth frontier can approach one million nodes, while DFS stores a small number of paths."
+    "result": "Low working memory does not mean little total work."
   },
   "pitfalls": [
-    "Do not quote tree-search bounds for a graph without explaining duplicate detection.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "Solution depth d and maximum search depth m can differ or be unbounded; swapping them can conceal nontermination.",
+    "A global visited set may dominate DFS's path memory on a graph, even if the frontier stays small.",
+    "An asymptotic count is not a measured latency forecast, and a synthetic record size is not a heap profile."
   ],
-  "implementation": [],
+  "implementation": [
+    "Instrument generated, removed, expanded, duplicate-rejected and maximum-frontier counts with separate counters. Sample actual retained bytes when comparing implementations.",
+    "The lab evaluates closed-form counts rather than allocating an exponential tree. Its rendering cost is not the runtime of BFS or DFS on that tree."
+  ],
   "takeaways": [
-    "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
-    "Count generated or expanded nodes for time and frontier, closed-set, or path storage for memory.",
-    "Asymptotic bounds expose scaling limits but constants, duplicate density, heuristic strength, and data structures affect real performance.",
-    "A full breadth frontier can approach one million nodes, while DFS stores a small number of paths."
+    "Traversal work and retained state are different quantities. Quote a search bound together with the tree or graph model, stopping policy and memory accounting.",
+    "Explain why tree bounds, graph bounds and measured memory answer different questions."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Time and memory complexity illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Search resource analysis must name what is counted: generated nodes, removed entries, expanded states, frontier records, parent histories or duplicate tables. Branching and depth describe an implicit search tree; V and E describe an explicit finite graph. Different representations, cutoff rules and storage policies can change both the formula and what it means in practice.","Derive exact work and frontier counts for a specified bounded tree.","Explain why tree bounds, graph bounds and measured memory answer different questions.","A small working stack can traverse a very large tree.","N=(3^(d+1)−1)/2; BFS frontier=3^d; eager DFS stack=1+2d","A complete ternary tree has root depth zero, three children per internal node, and leaves exactly at depth d. Traverse the entire bounded tree with no early goal stop and no duplicate states. BFS stores pending nodes in a FIFO queue. Eager DFS pops a node before pushing all three children; lazy DFS stores a successor iterator per active frame. Counts exclude parent histories, closed sets and the input graph. The illustrative byte conversion assumes 256 bytes per pending record, not measured JavaScript memory.","Traversal work and retained state are different quantities. Quote a search bound together with the tree or graph model, stopping policy and memory accounting."]} />

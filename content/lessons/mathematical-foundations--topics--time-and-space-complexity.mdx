@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Measures how computation and memory grow as input size increases.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The answer is 55 either way. The bill can be nine additions or eighty-eight.",
+  "overview": "Complexity describes how an algorithm's resource requirements grow with a specified input size under a specified cost model. Time counts work; auxiliary space counts peak extra live storage. A mathematical recurrence defines an answer, but the evaluator chosen for it determines how much work is repeated.",
+  "concepts": [
+    {
+      "title": "Choose the independent variable",
+      "explanation": "For an array, n often means its element count; for a graph, both vertices and edges matter. This lab uses the numeric Fibonacci index n. An integer n encoded in binary has only Θ(log n) input bits, so polynomial in n is not necessarily polynomial in its encoded input length. State that distinction before classifying a numerical algorithm."
+    },
+    {
+      "title": "Repeated subproblems create repeated work",
+      "explanation": "The naive evaluator expands the same lower indices many times. Its addition count obeys A(n)=A(n−1)+A(n−2)+1, with two zero-cost bases. The exact solution F(n+1)−1 follows from those boundary conditions and recurrence. The rolling evaluator uses max(0,n−1) additions. Under unit-cost addition, these counts grow as Θ(φⁿ) versus Θ(n), where φ=(1+√5)/2. Neither evaluator changes the sequence."
+    },
+    {
+      "title": "A bound needs a case and a resource",
+      "explanation": "Big-O is an asymptotic upper bound, Ω a lower bound, and Θ a matching growth classification. They do not by themselves mean worst, best, expected or amortized. Specify the case separately. This example has no family of arrangements of a fixed n; its operation counts are deterministic functions of n."
+    },
+    {
+      "title": "Peak storage is not accumulated work",
+      "explanation": "Depth-first naive recursion reaches n active calls for n≥1, not the total call count. Completed branches no longer occupy the stack. A rolling implementation keeps a constant number of numeric slots. Memoization removes repeated computation but retains more values than a rolling pair; storage depends on which outputs must remain available."
+    },
+    {
+      "title": "Word models have boundaries",
+      "explanation": "F(n) needs Θ(n) bits for large n. Two arbitrary-precision values therefore do not use constant bits, and adding them is not constant bit work. O(1) slots is a statement about a word-style model, not unlimited exact numbers fitting into fixed hardware words. This lab stops at n=20 and makes no asymptotic claim about actual JavaScript runtimes."
+    }
+  ],
+  "process": [
+    "Specify the representation, input-size parameters, resource and cost model.",
+    "Count local operations and maximum simultaneously live state from the actual evaluator.",
+    "Derive a bound, identify its tightness and case, then validate practical constants separately with measurements."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "F₀=0, F₁=1; A₀=A₁=0, Aₙ=Aₙ₋₁+Aₙ₋₂+1; Aₙ=Fₙ₊₁−1",
+      "meaning": "The naive evaluator returns n for n≤1, otherwise evaluates F(n−1) and F(n−2) recursively and adds them. The rolling evaluator initializes the pair (0,1), handles n≤1 directly, then adds once per index from 2 to n. Each sequence addition is one counted operation. The plot uses log₂(1+additions), not raw work or seconds, and shows integer inputs only. Memory is described in active frames and value slots, not measured bytes. The displayed small integers are exact; unbounded integer arithmetic requires a separate bit-cost analysis."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "F(10) does not require the same work twice",
+    "setup": "Select n=10 and compare the two exact evaluators.",
+    "steps": [
+      "Both return 55. The rolling pair adds at indices 2 through 10, for nine additions.",
+      "The naive recurrence gives A(10)=F(11)−1=89−1=88 additions. Its binary call tree has 177 total calls.",
+      "Only ten calls are active on its deepest branch. The plot heights are log₂(89)≈6.48 and log₂(10)≈3.32, not 88 and 9."
+    ],
+    "result": "Output equality does not imply equal cost, and total call count does not equal peak stack depth."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "An O(n²) upper bound may be true but loose for a linear algorithm. Do not label it the growth rate without a matching argument.",
+    "Counting a high-level operation as constant can hide copying, comparison or big-integer work. Make the primitive model explicit.",
+    "The two-slot count excludes a fixed amount of loop/temporary bookkeeping. It is not a literal two-word allocation measurement or a constant-bit guarantee."
+  ],
+  "implementation": [
+    "The browser computes the counts by a short bottom-up recurrence, not by executing the exponentially redundant algorithm. The interactive page therefore stays responsive.",
+    "Use the neighboring recurrence lesson for derivation and the classical-search complexity lesson for frontier growth. That search lesson's branching-factor/depth model is a different analysis, not a duplicate definition of this lab."
+  ],
+  "takeaways": [
+    "Compare algorithms for the same output, name the counted operation, and distinguish total work from peak storage. Log-scaled plots must not hide the raw counts.",
+    "State complexity bounds with their input encoding, resource, case and cost model."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Measures how computation and memory grow as input size increases.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Time and space complexity illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Complexity describes how an algorithm's resource requirements grow with a specified input size under a specified cost model. Time counts work; auxiliary space counts peak extra live storage. A mathematical recurrence defines an answer, but the evaluator chosen for it determines how much work is repeated.","Explain why equivalent outputs can have different operation counts.","State complexity bounds with their input encoding, resource, case and cost model.","The answer is 55 either way. The bill can be nine additions or eighty-eight.","F₀=0, F₁=1; A₀=A₁=0, Aₙ=Aₙ₋₁+Aₙ₋₂+1; Aₙ=Fₙ₊₁−1","The naive evaluator returns n for n≤1, otherwise evaluates F(n−1) and F(n−2) recursively and adds them. The rolling evaluator initializes the pair (0,1), handles n≤1 directly, then adds once per index from 2 to n. Each sequence addition is one counted operation. The plot uses log₂(1+additions), not raw work or seconds, and shows integer inputs only. Memory is described in active frames and value slots, not measured bytes. The displayed small integers are exact; unbounded integer arithmetic requires a separate bit-cost analysis.","Compare algorithms for the same output, name the counted operation, and distinguish total work from peak storage. Log-scaled plots must not hide the raw counts."]} />

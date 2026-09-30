@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Describe systems whose state changes over continuous time according to deterministic rules.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The model can decay while the numerical method explodes.",
+  "overview": "An ordinary differential equation specifies how a state changes with one independent variable, often time. An initial condition selects a trajectory when appropriate existence and uniqueness conditions hold. A numerical solver approximates that trajectory; its discrete dynamics can behave differently from the continuous equation.",
+  "concepts": [
+    {
+      "title": "A rule plus an initial state",
+      "explanation": "The family Ce⁻²ᵗ solves this equation; y(0)=1 fixes C=1. The right-hand side is globally Lipschitz in y, so the initial-value problem has a unique solution. General ODEs can fail existence or uniqueness if their hypotheses are not met."
+    },
+    {
+      "title": "Euler takes a tangent step",
+      "explanation": "At time tₖ, the slope is −2yₖ, so yₖ₊₁=yₖ+h(−2yₖ). This is a first-order method: over a fixed finite interval and under suitable smoothness assumptions, its global error is O(h). Decreasing h does not repair a wrong equation or initial state."
+    },
+    {
+      "title": "Stability, positivity and accuracy differ",
+      "explanation": "Here the numerical amplification factor is 1−2h. Decay of the discrete mode requires |1−2h|<1, or 0<h<1. Preserving nonnegative values requires h≤1/2. Even a stable nonnegative trajectory can be inaccurate: h=1/2 sends the state immediately to zero although the true exponential never reaches zero at finite time."
+    }
+  ],
+  "process": [
+    "State the differential equation, initial condition, units and time interval.",
+    "Choose a numerical method and a step size appropriate for the problem's time scales.",
+    "Compare invariants, positivity and convergence as the step shrinks; separate solver error from model error."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "y′=−2y, y(0)=1; y(t)=e⁻²ᵗ; h=3/N; Euler: yₖ₊₁=(1−2h)yₖ",
+      "meaning": "Time is measured in seconds and the decay rate is 2 per second. State is normalized. Explicit Euler uses N equal steps on [0,3]; straight segments join grid values and are not an exact continuous solution. The exact curve is shown for comparison. The vertical axis adapts to include unstable numerical values."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Three steps that never decay",
+    "setup": "Choose N=3 on [0,3], giving h=1.",
+    "steps": [
+      "Euler's factor is −1, so its grid values are 1, −1, 1, −1.",
+      "The exact endpoint is e⁻⁶≈0.002479; Euler's endpoint is −1.",
+      "With N=6, h=1/2 and Euler becomes zero after one step—nonnegative, but still not exact."
+    ],
+    "result": "A solver can violate a model's qualitative behavior before a numerical value looks obviously huge."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Joining discrete samples with a line does not establish accuracy between the samples.",
+    "For stiff systems, explicit methods can require very small steps for stability even when the solution changes slowly; a suitable implicit method may help."
+  ],
+  "implementation": [
+    "Use solver tolerances and reported diagnostics for production systems rather than copying the demonstration's fixed step.",
+    "Check how endpoint and trajectory error change under refinement, and track conservation or positivity only when the underlying model actually has those properties."
+  ],
+  "takeaways": [
+    "Choose a numerical step with accuracy, stability and physical constraints in mind. A correct differential equation does not make every discretization reliable.",
+    "Explain why stability, positivity and accuracy impose different conditions."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Describe systems whose state changes over continuous time according to deterministic rules.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Ordinary differential equations illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An ordinary differential equation specifies how a state changes with one independent variable, often time. An initial condition selects a trajectory when appropriate existence and uniqueness conditions hold. A numerical solver approximates that trajectory; its discrete dynamics can behave differently from the continuous equation.","Separate the continuous initial-value problem from a numerical update rule.","Explain why stability, positivity and accuracy impose different conditions.","The model can decay while the numerical method explodes.","y′=−2y, y(0)=1; y(t)=e⁻²ᵗ; h=3/N; Euler: yₖ₊₁=(1−2h)yₖ","Time is measured in seconds and the decay rate is 2 per second. State is normalized. Explicit Euler uses N equal steps on [0,3]; straight segments join grid values and are not an exact continuous solution. The exact curve is shown for comparison. The vertical axis adapts to include unstable numerical values.","Choose a numerical step with accuracy, stability and physical constraints in mind. A correct differential equation does not make every discretization reliable."]} />

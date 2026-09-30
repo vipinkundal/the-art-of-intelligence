@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
+  "hook": "The shortest-looking route is only best after you name the cost.",
+  "overview": "A feasible result is optimal when its objective value is no worse than every other feasible result. An algorithmic optimality guarantee must hold over its stated problem class, not merely for one successful example. In path search, minimum edge count and minimum accumulated cost coincide only under suitable cost assumptions. A bound can quantify the gap when exact optimality has not been established.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "Compare complete feasible candidates",
+      "explanation": "There are exactly two routes. Their costs are 1+w and four, so direct enumeration gives the optimal envelope min(1+w,4). That independent reference lets the lab evaluate the returned paths without assuming any algorithm is correct merely because it produced an answer."
     },
     {
-      "title": "Core rule",
-      "explanation": "Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer."
+      "title": "The crossing is an objective boundary",
+      "explanation": "At w=3 both routes cost four, despite having different depths. Below three the two-edge route is strictly cheaper; above three the four-edge route is strictly cheaper. The topology and successor order never change. Only one edge's price changes the optimal decision."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+      "title": "An algorithm can be right for the wrong general reason",
+      "explanation": "A-first DFS returns the cost-four route for every setting. It is optimal at w=9 but suboptimal at w=1. BFS does the reverse at those settings. Neither observed success proves a cost-optimality guarantee over arbitrary nonnegative edge costs."
+    },
+    {
+      "title": "A cost-ordering proof needs its assumptions",
+      "explanation": "UCS removes the cheapest current prefix, so under the finite graph's nonnegative costs and correct relaxation, it cannot return a more expensive goal before all potentially cheaper routes are resolved. Discovery is not enough: a goal can be generated with an expensive prefix and improved before removal. Negative edges invalidate this particular proof."
+    },
+    {
+      "title": "Quantify suboptimality in meaningful units",
+      "explanation": "The additive gap is measured in credits; a cost ratio is dimensionless and requires a positive optimum. This lab always has C*≥1, making ratios well-defined. At w=9 BFS costs ten versus optimum four: gap six and ratio 2.5. Neither number is a runtime ratio or probability of success."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+    "Write the feasible set and objective precisely; decide how ties are handled.",
+    "Compare a returned feasible value with an exact optimum or a valid lower bound for minimization.",
+    "State whether the conclusion is about this instance, a bounded-quality algorithm, or an exact guarantee over a problem class."
   ],
   "formulas": [
     {
-      "label": "Optimality rule",
-      "expression": "cost(returned) = min_(feasible x) cost(x)",
-      "meaning": "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules."
+      "label": "Definition and assumptions",
+      "expression": "C*(w)=min(1+w,4); additive gap=C_returned−C*",
+      "meaning": "Directed routes are S→B→G with edge costs 1,w and S→A→C→D→G with four unit costs. No other edges exist. w is nonnegative. BFS favors the two-edge route; DFS explores A before B; finite-graph UCS uses strict best-g updates and tests the goal on removal. The chart compares these fixed policies; it is not a benchmark over random graphs."
     }
   ],
   "example": {
-    "title": "Optimality in a small case",
-    "setup": "Compare BFS and uniform-cost search when one path has fewer edges but higher total cost.",
+    "title": "Same graph, a different winner",
+    "setup": "Compare w=1, w=3 and w=9.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
-      "Check the outcome against the goal and stated assumptions."
+      "At w=1, all edges have unit cost. The two-edge route costs two, beating the four-edge route.",
+      "At w=3, both cost four. An optimum need not be unique.",
+      "At w=9, the two-edge route costs ten; the longer route costs four. BFS is still shallowest, but no longer cheapest."
     ],
-    "result": "Only the algorithm matched to the stated objective carries the relevant optimality guarantee."
+    "result": "Minimum depth and minimum cost are different objectives unless the model connects them."
   },
   "pitfalls": [
-    "An objective must be explicit before the word optimal has meaning.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "An objective value is not a proof of optimality without a comparison argument or certificate.",
+    "Adding penalties or changing edge weights changes the optimization problem, so do not compare the new answer as though the objective stayed fixed.",
+    "Multiple optimal witnesses may have different paths. Returning a different witness is not itself a correctness failure."
   ],
-  "implementation": [],
+  "implementation": [
+    "Report feasibility, returned cost, best bound and termination status separately. A solver that stops with a positive gap has not certified exact optimality.",
+    "When testing a search policy manually, include boundary ties and counterexamples outside the conditions of its guarantee. This chart uses an independently enumerable two-route family."
+  ],
   "takeaways": [
-    "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
-    "Define the cost or utility ordering, then show no omitted or later candidate can improve the returned answer.",
-    "Optimality can require more time and memory than satisficing; it depends on costs, bounds, heuristics, and stopping rules.",
-    "Only the algorithm matched to the stated objective carries the relevant optimality guarantee."
+    "Optimality is relative to an objective and a feasible set. One counterexample defeats a universal claim, while one optimal run does not establish it.",
+    "Compute an additive gap and cost ratio without confusing cost with depth."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Optimality illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A feasible result is optimal when its objective value is no worse than every other feasible result. An algorithmic optimality guarantee must hold over its stated problem class, not merely for one successful example. In path search, minimum edge count and minimum accumulated cost coincide only under suitable cost assumptions. A bound can quantify the gap when exact optimality has not been established.","Distinguish instance optimality from an algorithm's universal guarantee.","Compute an additive gap and cost ratio without confusing cost with depth.","The shortest-looking route is only best after you name the cost.","C*(w)=min(1+w,4); additive gap=C_returned−C*","Directed routes are S→B→G with edge costs 1,w and S→A→C→D→G with four unit costs. No other edges exist. w is nonnegative. BFS favors the two-edge route; DFS explores A before B; finite-graph UCS uses strict best-g updates and tests the goal on removal. The chart compares these fixed policies; it is not a benchmark over random graphs.","Optimality is relative to an objective and a feasible set. One counterexample defeats a universal claim, while one optimal run does not establish it."]} />

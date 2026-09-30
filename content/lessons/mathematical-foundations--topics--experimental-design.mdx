@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Plans data collection so comparisons are fair, powered, and interpretable.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Randomization balances in expectation, not by making every possible result identical.",
+  "overview": "Experimental design specifies the units, interventions, allocation rule, measurements and analysis needed to answer a question. Random treatment assignment supports causal comparisons under explicit assumptions; random sampling concerns generalization to a population. Replication, blocking and measurement safeguards address different sources of uncertainty and bias.",
+  "concepts": [
+    {
+      "title": "Only one potential outcome is revealed",
+      "explanation": "For each unit, the observed value is Y=T Y(1)+(1−T)Y(0). The unit-level effect requires both potential outcomes, which an ordinary parallel experiment does not jointly reveal. Here the oracle table deliberately exposes them so the actual average effect can be compared with every assignment's observed contrast."
+    },
+    {
+      "title": "Chance imbalance can reverse a realized comparison",
+      "explanation": "Treating units 1 and 2 yields observed treatment mean 7 and control mean 9, a contrast of −2. Yet their effects are +4 each and the four-unit average effect is +2. Baseline imbalance explains the apparent reversal. Random assignment makes this allocation one possible chance outcome, not proof of a negative true effect."
+    },
+    {
+      "title": "Blocking changes the allowed assignments",
+      "explanation": "A known pre-treatment characteristic separates low-baseline units {1,2} from high-baseline units {3,4}. Treating one per block rules out putting both low or both high units into treatment. In this toy, the contrast variance drops from 20/3 to 2. The gain depends on the population and block choice; it is not a universal numerical reduction."
+    },
+    {
+      "title": "Replication follows the assignment unit",
+      "explanation": "If a whole machine receives a treatment, taking many repeated readings from it does not create many independently randomized machines. Blinding, stable measurement, predeclared outcomes and suitable handling of interference address problems that randomization alone does not solve. Generalizing beyond these four units requires a further sampling or transport argument."
+    }
+  ],
+  "process": [
+    "Specify the causal contrast, experimental unit, treatment versions and measurement window; identify potential interference and noncompliance.",
+    "Choose replication and a randomization scheme, using only pre-treatment information for planned blocks. Record the allocation process and analyze according to that design.",
+    "Predeclare outcomes and analysis choices, preserve assignment and follow-up records, and report uncertainty without conflating study-sample effects with effects in a wider population."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "τ=N⁻¹Σi[Yi(1)−Yi(0)]; τ̂=Ȳtreated−Ȳcontrol; Erandomization[τ̂]=τ",
+      "meaning": "Four fixed experimental units have control potential outcomes Y(0)=(2,4,8,10) and treatment potential outcomes Y(1)=(6,8,8,10), in score units. Treatment has one well-defined version, no interference, full compliance and no missing outcomes. Complete randomization assigns exactly two units to treatment, giving six equally likely assignments. A second design defines two baseline blocks {1,2} and {3,4} before assignment and randomly treats one unit per block, giving four equally likely assignments. The slider inspects an assignment; it does not implement a real random allocation. Both potential outcomes are exposed only because this is a known toy world."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Enumerate every allocation before trusting one result",
+    "setup": "The four individual effects are (4,4,0,0), so the finite-population average is 2.",
+    "steps": [
+      "Treat pairs {1,2},{1,3},{1,4},{2,3},{2,4},{3,4}. Their observed mean contrasts are −2,0,2,2,4,6.",
+      "The average of these six contrasts is 2. Their design variance around 2 is (16+4+0+0+4+16)/6=20/3.",
+      "With one treated unit in each baseline block, only contrasts 0,2,2,4 remain. Their mean is still 2 and their variance is (4+0+0+4)/4=2."
+    ],
+    "result": "The design removes two extreme imbalance patterns; it does not change the units' potential outcomes or make the true effect observable in an actual single assignment."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Selecting the assignment that gives the most attractive result is not randomization. Nor is dropping inconvenient units after assignment a neutral change to the original design.",
+    "Blocking on a post-treatment variable can change or bias the causal question. Planned blocking uses information available before treatment allocation.",
+    "Randomization cannot guarantee perfect realized balance, eliminate measurement bias, prevent interference or automatically establish external validity. Four units are enough to illustrate enumeration, not a recommendation for study size."
+  ],
+  "implementation": [
+    "Keep the randomization unit and analysis unit aligned. Preserve the seed or allocation record, block identifiers, treatment received and outcome availability; report departures from the intended design.",
+    "Use an uncertainty analysis that respects blocking, clustering or repeated measurements. The displayed variances enumerate a known potential-outcome table; in a real experiment the unobserved potential outcomes prevent simply computing that oracle variance."
+  ],
+  "takeaways": [
+    "The assignment design determines the comparison's reference distribution. A valid causal design, precise estimation and generalization to other units are separate achievements.",
+    "Calculate how blocking changes an assignment distribution without changing the target causal effect."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Plans data collection so comparisons are fair, powered, and interpretable.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Experimental design illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Experimental design specifies the units, interventions, allocation rule, measurements and analysis needed to answer a question. Random treatment assignment supports causal comparisons under explicit assumptions; random sampling concerns generalization to a population. Replication, blocking and measurement safeguards address different sources of uncertainty and bias.","Separate random assignment, random sampling and experimental replication.","Calculate how blocking changes an assignment distribution without changing the target causal effect.","Randomization balances in expectation, not by making every possible result identical.","τ=N⁻¹Σi[Yi(1)−Yi(0)]; τ̂=Ȳtreated−Ȳcontrol; Erandomization[τ̂]=τ","Four fixed experimental units have control potential outcomes Y(0)=(2,4,8,10) and treatment potential outcomes Y(1)=(6,8,8,10), in score units. Treatment has one well-defined version, no interference, full compliance and no missing outcomes. Complete randomization assigns exactly two units to treatment, giving six equally likely assignments. A second design defines two baseline blocks {1,2} and {3,4} before assignment and randomly treats one unit per block, giving four equally likely assignments. The slider inspects an assignment; it does not implement a real random allocation. Both potential outcomes are exposed only because this is a known toy world.","The assignment design determines the comparison's reference distribution. A valid causal design, precise estimation and generalization to other units are separate achievements."]} />

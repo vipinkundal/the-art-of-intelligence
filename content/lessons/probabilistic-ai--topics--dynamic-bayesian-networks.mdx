@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
+  "hook": "A compact transition diagram does not guarantee a factored posterior.",
+  "overview": "A dynamic Bayesian network represents a stochastic process through an initial distribution and directed dependencies within and between time slices. Factoring a state into variables can compactly describe transitions, but the filtering posterior over those variables can still be dependent.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "Specify the initial slice separately",
+      "explanation": "The initial R and H distribution is part of the model, not an output of the recurring transition. Here it is (0.4,0.1,0.4,0.1) in state order 00,01,10,11. An accidental transition before reading O₁ would answer a different question."
     },
     {
-      "title": "Core computation",
-      "explanation": "Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning."
+      "title": "Within-slice and temporal edges differ",
+      "explanation": "Rₜ₋₁→Rₜ carries regime persistence; Hₜ₋₁→Hₜ carries fault persistence. Rₜ→Hₜ is a current-slice dependency, and Hₜ→Oₜ emits an alarm. The unrolled directed graph must be acyclic even when the process exhibits feedback across time."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+      "title": "Conditional factorization is not posterior independence",
+      "explanation": "The transition factors into P(Rₜ|Rₜ₋₁)P(Hₜ|Hₜ₋₁,Rₜ). This is not a product of independent R and H transitions: H explicitly depends on the new R. After two readings the joint posterior differs from the product of its marginals, which the lab measures directly."
+    },
+    {
+      "title": "A representation, not one inference algorithm",
+      "explanation": "A DBN can describe an HMM, a linear-Gaussian state-space model, or several interacting processes. Filtering uses observations through the current time; smoothing also uses later observations. Exact discrete inference can require large joint interface tables; Gaussian or approximate methods exploit different assumptions."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+    "Write the initial distribution, each conditional probability table, and the within- and between-slice edges.",
+    "Predict the next joint hidden-state distribution using the transition factors, then multiply by the current observation likelihood.",
+    "Normalize and carry the joint posterior forward. Use only the selected observation prefix when reporting filtering results."
   ],
   "formulas": [
     {
-      "label": "Dynamic Bayesian networks rule",
-      "expression": "P(X_1:T)=P(X_1) product_{t=2}^T product_i P(X_t^i | parents(X_t^i))",
-      "meaning": "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width."
+      "label": "Definition and assumptions",
+      "expression": "P(Rₜ,Hₜ|O₁:ₜ) ∝ P(Oₜ|Hₜ) Σr,h P(Rₜ|r)P(Hₜ|h,Rₜ)P(r,h|O₁:ₜ₋₁)",
+      "meaning": "Binary regime R and fault state H start independently with P(R₁=1)=0.5 and P(H₁=1)=0.2. For t≥2, R stays unchanged with probability 0.9. P(Hₜ=1|Hₜ₋₁,Rₜ) is [[0.05,0.6],[0.7,0.95]], rows previous H and columns current R. P(Oₜ=1|Hₜ=0)=0.1 and P(Oₜ=1|Hₜ=1)=0.9. Readings are (1,1,0,1,0,0). The first reading updates the initial distribution without an extra transition. Parameters are fixed across later slices."
     }
   ],
   "example": {
-    "title": "Dynamic Bayesian networks in a small case",
-    "setup": "Model a patient's latent disease stage, medication, symptoms, and lab measurements across visits.",
+    "title": "Two consecutive alarms",
+    "setup": "Start with joint prior (0.4,0.1,0.4,0.1).",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "O₁=1 multiplies that prior by (0.1,0.9,0.1,0.9), giving (0.04,0.09,0.04,0.09). Divide by 0.26: P(H₁=1|O₁)=9/13≈0.692308 and R remains 0.5.",
+      "Predict time 2 to obtain joint probabilities (0.25,0.25,0.078846,0.421154), rounded here only for display.",
+      "O₂=1 gives evidence normalizer 0.636923 and posterior (0.039251,0.353261,0.012379,0.595109). Hence P(R₂=1|O₁:₂)=0.607488 and P(H₂=1|O₁:₂)=0.948370."
     ],
-    "result": "The unrolled network supports posterior beliefs over several interacting hidden and observed processes through time."
+    "result": "The joint probability of R₂=H₂=1 exceeds the product of its marginals by about 0.018986. Keeping only independent marginal summaries would discard that dependence."
   },
   "pitfalls": [
-    "Make stationarity assumptions explicit when reusing the same transition template at every time step.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "A time-invariant transition does not imply the state distribution is stationary; the initial distribution and observations matter.",
+    "Dynamic describes a temporal process, not a requirement that graph structure changes at every time step.",
+    "Do not interpret these dependency arrows as identified causal effects without additional causal assumptions. Do not use future alarms in a filtering result."
   ],
-  "implementation": [],
+  "implementation": [
+    "Name each conditional table's child and ordered parent axes. Check row normalization and distinguish the initial update from recurring predict-update steps.",
+    "Monitor observation normalizers and handle impossible evidence. If approximating the joint state by factors or particles, report that approximation rather than inheriting exactness from the DBN notation."
+  ],
   "takeaways": [
-    "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
-    "Specify within-slice and between-slice dependencies, unroll the template for the sequence, and apply filtering, smoothing, or learning.",
-    "DBNs express richer temporal structure than a basic HMM, but inference cost grows with the slice graph's coupled state width.",
-    "The unrolled network supports posterior beliefs over several interacting hidden and observed processes through time."
+    "Use the graph to factor the transition, then retain the dependencies required by inference. Four joint states are small here; a larger coupled interface can be expensive.",
+    "Distinguish compact transition factorization from independence of posterior state variables."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A dynamic Bayesian network repeats a directed graphical-model template across time slices.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Dynamic Bayesian networks illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A dynamic Bayesian network represents a stochastic process through an initial distribution and directed dependencies within and between time slices. Factoring a state into variables can compactly describe transitions, but the filtering posterior over those variables can still be dependent.","Unroll a two-slice template and compute joint-state filtering updates.","Distinguish compact transition factorization from independence of posterior state variables.","A compact transition diagram does not guarantee a factored posterior.","P(Rₜ,Hₜ|O₁:ₜ) ∝ P(Oₜ|Hₜ) Σr,h P(Rₜ|r)P(Hₜ|h,Rₜ)P(r,h|O₁:ₜ₋₁)","Binary regime R and fault state H start independently with P(R₁=1)=0.5 and P(H₁=1)=0.2. For t≥2, R stays unchanged with probability 0.9. P(Hₜ=1|Hₜ₋₁,Rₜ) is [[0.05,0.6],[0.7,0.95]], rows previous H and columns current R. P(Oₜ=1|Hₜ=0)=0.1 and P(Oₜ=1|Hₜ=1)=0.9. Readings are (1,1,0,1,0,0). The first reading updates the initial distribution without an extra transition. Parameters are fixed across later slices.","Use the graph to factor the transition, then retain the dependencies required by inference. Four joint states are small here; a larger coupled interface can be expensive."]} />

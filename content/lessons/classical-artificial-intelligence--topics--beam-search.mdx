@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Beam search retains only a fixed number of best candidates at each layer.",
+  "hook": "A beam is a shortlist, not a proof that everything outside it is worse.",
+  "overview": "Beam search keeps only a limited number of promising candidates. This lesson uses a level-synchronous variant: generate the next layer, merge duplicate states, rank candidates and retain at most k. The width controls retained alternatives, but permanently discarded paths can contain the only solution or the optimum. A valid heuristic alone cannot recover an erased branch.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Specify which beam algorithm you mean",
+      "explanation": "A layer beam, a globally capped best-first queue and local beam search over complete candidate states are different procedures. Ranking by h also differs from ranking by g+h or a sequence log score. The lab exposes its exact policy so its outcomes are reproducible rather than properties attributed to every algorithm called beam search."
     },
     {
-      "title": "Core rule",
-      "explanation": "Generate successors for the current beam, score them, and keep the top k while discarding the rest."
+      "title": "Width one removes both useful branches",
+      "explanation": "At the first layer, A and B tie at h=0 and C has h=1. Alphabetical order retains A alone. The next layer retains D, whose successors are empty. The algorithm fails although the original graph contains two routes to G. No amount of exploring D can restore the discarded B and C."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+      "title": "Width two finds a goal but loses the optimum",
+      "explanation": "Keeping A and B produces D and G at the second layer. Both fit, and the goal's stored path is S→B→G at cost nine. The cost-two path via C was removed one layer earlier. The heuristic is admissible and consistent: the failure of optimality comes from truncation, not overestimation."
+    },
+    {
+      "title": "Width three exposes the role of duplicate merging",
+      "explanation": "All first-layer candidates survive. B proposes G with g=9 and C proposes the same G with g=2. The lower-g merge retains the C parent, so the result is S→C→G at cost two. Counting raw generated proposals and distinct candidates would give different second-layer counts."
+    },
+    {
+      "title": "A wider beam is not a universal monotonic guarantee",
+      "explanation": "The three widths improve this particular example. In general, new candidates admitted by a larger beam can displace candidates at later layers, and stopping policies matter. Research on monotonic beam variants addresses that separate guarantee; it is not supplied automatically by increasing k."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+    "Define candidate identity, score, tie-breaking, duplicate merge and goal timing.",
+    "Generate the next layer and retain only the permitted shortlist, recording which alternatives are irreversibly lost.",
+    "Report a found path as a feasible result; report empty-beam failure as failure of this run unless an independent completeness argument exists."
   ],
   "formulas": [
     {
-      "label": "Beam search rule",
-      "expression": "beam_(t+1) = top_k(successors(beam_t), score)",
-      "meaning": "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution."
+      "label": "Definition and assumptions",
+      "expression": "B_next = first k candidates ranked by (h, alphabetical state)",
+      "meaning": "S→A,B,C each costs 1; A→D costs 1 and D is a dead end; B→G costs 8; C→G costs 1. h(C)=1 and all other h=0. Generate a complete next layer; merge the same state by lowest g; rank by h then alphabetically; retain k; accept a retained goal. Discarded candidates are never revisited. This h-ranked layer beam is not the f-ranked variant in every reference."
     }
   ],
   "example": {
-    "title": "Beam search in a small case",
-    "setup": "Decode a sentence while keeping five partial token sequences per time step.",
+    "title": "One graph, three outcomes",
+    "setup": "Compare widths one, two and three.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
-      "Check the outcome against the goal and stated assumptions."
+      "k=1 keeps A, then D, then nothing: no solution returned.",
+      "k=2 keeps A,B, then D,G: returned cost nine.",
+      "k=3 keeps A,B,C; the two G proposals merge to the cheaper parent: returned cost two."
     ],
-    "result": "The final output is the highest-scoring completed sequence that survived pruning."
+    "result": "The graph, costs and heuristic stay fixed. Only the retained width changes."
   },
   "pitfalls": [
-    "Normalize or otherwise handle sequence length when raw scores systematically favor short candidates.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Admissible and consistent h do not restore A* guarantees after arbitrary width pruning.",
+    "A beam of k records does not imply total memory k: generated candidates, parent histories and duplicate tables also occupy space.",
+    "A lower model score need not mean a better real-world output; search objectives and evaluation objectives may differ."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep deterministic tie-breaking for reproducible comparisons. Partial selection can avoid sorting every candidate, but duplicate merging and parent retention still need explicit rules.",
+    "Measure failure frequency, solution cost, expanded candidates and peak storage across widths. This six-state demonstration stores full traces for explanation and is not a throughput benchmark."
+  ],
   "takeaways": [
-    "Beam search retains only a fixed number of best candidates at each layer.",
-    "Generate successors for the current beam, score them, and keep the top k while discarding the rest.",
-    "Memory and compute are bounded by beam width, but pruning can permanently remove the globally best solution.",
-    "The final output is the highest-scoring completed sequence that survived pruning."
+    "Beam width limits alternatives, not solution quality. Failure after pruning does not prove the original problem infeasible, and a surviving goal need not be cheapest.",
+    "Reproduce a beam run from its score, merge, truncation and goal policies."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Beam search retains only a fixed number of best candidates at each layer.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Beam search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Beam search keeps only a limited number of promising candidates. This lesson uses a level-synchronous variant: generate the next layer, merge duplicate states, rank candidates and retain at most k. The width controls retained alternatives, but permanently discarded paths can contain the only solution or the optimum. A valid heuristic alone cannot recover an erased branch.","Explain why width pruning can lose completeness and optimality.","Reproduce a beam run from its score, merge, truncation and goal policies.","A beam is a shortlist, not a proof that everything outside it is worse.","B_next = first k candidates ranked by (h, alphabetical state)","S→A,B,C each costs 1; A→D costs 1 and D is a dead end; B→G costs 8; C→G costs 1. h(C)=1 and all other h=0. Generate a complete next layer; merge the same state by lowest g; rank by h then alphabetically; retain k; accept a retained goal. Discarded candidates are never revisited. This h-ranked layer beam is not the f-ranked variant in every reference.","Beam width limits alternatives, not solution quality. Failure after pruning does not prove the original problem infeasible, and a surviving goal need not be cheapest."]} />

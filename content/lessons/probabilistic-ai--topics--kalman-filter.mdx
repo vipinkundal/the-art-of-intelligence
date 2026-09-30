@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
+  "hook": "Trust is a ratio of uncertainties, not a fixed preference for the sensor.",
+  "overview": "The Kalman filter recursively predicts a state distribution and conditions it on a new measurement. With a Gaussian initial state, linear dynamics and observations, and the specified independent Gaussian noises, the filtering distribution remains Gaussian and its mean and covariance are exact. Incorrect noise or dynamics assumptions can still make the estimate unreliable.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "Prediction moves both mean and uncertainty",
+      "explanation": "In this scalar model F=1 and b=1. The previous mean 1 becomes 2, while independent process noise adds variance Q=3 to the previous variance 1. A deterministic motion offset changes the mean but does not itself add variance."
     },
     {
-      "title": "Core computation",
-      "explanation": "Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain."
+      "title": "The residual is weighted by relative precision",
+      "explanation": "Here H=1, so the innovation is z−μ⁻=3 and K=4/(4+R). Small R moves the estimate close to the reading; large R gives more weight to the predicted position. Posterior variance is 4R/(4+R), equivalently the inverse of total precision 1/4+1/R."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods."
+      "title": "A likelihood curve is not another posterior",
+      "explanation": "The likelihood p(z=5|x) evaluates how compatible each possible x is with the fixed reading. In this particular identity-sensor model it happens to integrate to one over x; that is not a general property of likelihoods. The posterior comes from multiplying likelihood and prior, then normalizing."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods."
+    "Propagate the previous estimate through the motion model and add process noise covariance.",
+    "Compute the predicted observation, innovation covariance and Kalman gain.",
+    "Correct the mean and covariance, then carry the posterior into the next prediction."
   ],
   "formulas": [
     {
-      "label": "Kalman filter rule",
-      "expression": "K_t=P^-_t H^T(H P^-_t H^T+R)^(-1); m_t=m^-_t+K_t(y_t-Hm^-_t)",
-      "meaning": "It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods."
+      "label": "Definition and assumptions",
+      "expression": "μ⁻=Fμ+b; P⁻=FPFᵀ+Q; K=P⁻Hᵀ(HP⁻Hᵀ+R)⁻¹; μ⁺=μ⁻+K(z−Hμ⁻)",
+      "meaning": "One scalar predict–correct cycle. Previous position is N(1,1), with mean in metres and variance in m². Motion adds 1 m plus independent N(0,3) process noise, giving predicted N(2,4). The sensor observes z=x+v with independent v∼N(0,R), and reports z=5 m. Curves show the predicted prior, measurement likelihood as a function of x, and posterior; N(μ,P) uses variance as its second argument."
     }
   ],
   "example": {
-    "title": "Kalman filter in a small case",
-    "setup": "Track a vehicle's position and velocity from noisy GPS measurements.",
+    "title": "A precise sensor corrects a broad prediction",
+    "setup": "Use R=1 m² after predicting N(2,4).",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Innovation variance is 4+1=5 m²; gain is 4/5=0.8.",
+      "The corrected mean is 2+0.8·(5−2)=4.4 m.",
+      "The corrected variance is (1−0.8)·4=0.8 m², with standard deviation √0.8≈0.894427 m."
     ],
-    "result": "Each update balances the predicted trajectory against measurement uncertainty to produce a posterior state and covariance."
+    "result": "The estimate is closer to the reading than the prediction because the sensor is more precise."
   },
   "pitfalls": [
-    "A covariance update bug can make the filter appear confident while diverging from reality.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "Putting a standard deviation where the equations require variance changes the gain and uncertainty calibration.",
+    "Reusing correlated measurements as if their noise were independent double-counts information. Bias is not repaired merely by shrinking covariance."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use linear solves rather than explicit matrix inverses. The Joseph covariance update (I−KH)P⁻(I−KH)ᵀ+KRKᵀ helps preserve symmetry and positive semidefiniteness in finite precision.",
+    "Monitor innovations and their covariance for model mismatch. Exact linear-Gaussian filtering does not imply correct parameters, accurate timestamps or unbiased sensors."
+  ],
   "takeaways": [
-    "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
-    "Predict mean and covariance through the dynamics, compute the innovation, then correct them with the Kalman gain.",
-    "It is fast and optimal under its assumptions, but nonlinear dynamics or non-Gaussian uncertainty require other methods.",
-    "Each update balances the predicted trajectory against measurement uncertainty to produce a posterior state and covariance."
+    "Prediction adds process uncertainty; correction combines prior and measurement precision. A smaller posterior covariance is meaningful only relative to a credible model.",
+    "Separate exact conditional inference from the credibility of its modelling assumptions."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Kalman filter illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["The Kalman filter recursively predicts a state distribution and conditions it on a new measurement. With a Gaussian initial state, linear dynamics and observations, and the specified independent Gaussian noises, the filtering distribution remains Gaussian and its mean and covariance are exact. Incorrect noise or dynamics assumptions can still make the estimate unreliable.","Compute a scalar prediction, innovation, gain and correction with units.","Separate exact conditional inference from the credibility of its modelling assumptions.","Trust is a ratio of uncertainties, not a fixed preference for the sensor.","μ⁻=Fμ+b; P⁻=FPFᵀ+Q; K=P⁻Hᵀ(HP⁻Hᵀ+R)⁻¹; μ⁺=μ⁻+K(z−Hμ⁻)","One scalar predict–correct cycle. Previous position is N(1,1), with mean in metres and variance in m². Motion adds 1 m plus independent N(0,3) process noise, giving predicted N(2,4). The sensor observes z=x+v with independent v∼N(0,R), and reports z=5 m. Curves show the predicted prior, measurement likelihood as a function of x, and posterior; N(μ,P) uses variance as its second argument.","Prediction adds process uncertainty; correction combines prior and measurement precision. A smaller posterior covariance is meaningful only relative to a credible model."]} />

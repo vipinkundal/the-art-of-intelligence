@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A consistent heuristic obeys a triangle-inequality rule across every transition.",
+  "hook": "A local drop in the estimate can make yesterday's closed state worth opening again.",
+  "overview": "A consistent heuristic satisfies h(u)≤c(u,v)+h(v) on every directed edge and has zero value at goals. The estimate cannot drop by more than the actual edge cost. This makes A*'s f values nondecreasing along each path and supports finalizing a state at its first minimum-f removal. Admissibility alone does not supply that stronger guarantee.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "An edge-local inequality telescopes",
+      "explanation": "Along u→v→…→G, repeatedly applying h(u)≤c(u,v)+h(v) yields h(u)≤total path cost+h(G). With h(G)=0, this bounds h by every goal-reaching path and therefore by the cheapest one. Consistency implies admissibility under these assumptions."
     },
     {
-      "title": "Core rule",
-      "explanation": "Require h(n) <= c(n,n') + h(n') and h(goal)=0."
+      "title": "Use slack as an inspectable certificate",
+      "explanation": "The lab lists c+h(v)−h(u) for each edge. Only B→A can become negative: its slack is 1−h(B). Thus h(B)≤1 is consistent; values two through four are inconsistent but still admissible because the true B-to-G cost is four."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+      "title": "The wrong first path to A",
+      "explanation": "At h(B)=4, frontier priorities after S are A:3 and B:5. A closes with g=3 and generates G at six. B later reveals the route S→B→A with g=2. If A is permanently closed, that improvement cannot reach its child G."
+    },
+    {
+      "title": "Reopening repairs downstream costs",
+      "explanation": "With reopening, A is inserted again at g=2 and f=2, then improves G from six to five. The decreasing removal priorities expose the inconsistency. Reopening is not merely changing A's display value: its outgoing edges must be processed again so descendants receive the better prefix."
+    },
+    {
+      "title": "Reduced costs explain the structure",
+      "explanation": "Define c'(u,v)=c(u,v)+h(v)−h(u). Consistency means every reduced edge cost is nonnegative. Along a path from S to n, reduced cost equals g(n)+h(n)−h(S), differing from A*'s f only by a fixed constant. This connects the consistency condition directly to Dijkstra's nonnegative-edge invariant."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+    "Check h(goal)=0 and inspect edge slack where the graph is explicitly available.",
+    "Choose a duplicate policy that matches the proof: permanent closure for consistent h, or propagation/reopening for admissible inconsistent h.",
+    "When g improves, update the parent and ensure downstream work can be reconsidered."
   ],
   "formulas": [
     {
-      "label": "Consistent heuristics rule",
-      "expression": "h(n) <= c(n,n') + h(n')",
-      "meaning": "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states."
+      "label": "Definition and assumptions",
+      "expression": "slack(u,v)=c(u,v)+h(v)−h(u) ≥ 0",
+      "meaning": "Directed costs: S→A=3, S→B=1, B→A=1, A→G=3, B→G=8. h(S)=h(A)=h(G)=0; h(B) varies from 0 to its exact remaining cost 4. Compare two A* graph searches with alphabetical f ties: one reopens improved closed states; one discards such improvements. Dashed coral shows the reopening policy's returned path."
     }
   ],
   "example": {
-    "title": "Consistent heuristics in a small case",
-    "setup": "Straight-line distance remains consistent when each road cost is at least the direct distance between its endpoints.",
+    "title": "One repeated expansion saves one credit",
+    "setup": "Set h(B)=4.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
-      "Check the outcome against the goal and stated assumptions."
+      "A* first removes S,A,B. A was closed at g=3, but B proposes g(A)=1+1=2.",
+      "The no-reopen variant discards that proposal and returns S→A→G at cost six.",
+      "The reopening variant removes A again, then G, returning S→B→A→G at cost five. One state is reopened."
     ],
-    "result": "A* can safely finalize an expanded state's best g-value under the standard assumptions."
+    "result": "The heuristic never overestimated a remaining cost; the failure came from combining inconsistency with an incompatible closure policy."
   },
   "pitfalls": [
-    "Admissibility alone does not necessarily imply consistency.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "Updating a closed state's g field without reprocessing successors is not sufficient.",
+    "A consistency violation invalidates a guarantee; it does not mean every search on that heuristic must fail.",
+    "A bound on average edge slack is not the all-edge nonnegative condition."
   ],
-  "implementation": [],
+  "implementation": [
+    "For an implicit space, derive consistency from the heuristic construction; checking only explored edges cannot establish it globally.",
+    "Log strict g improvements to closed states during debugging. In a lazy heap, retain best-g values and skip obsolete entries so a stale goal cannot terminate the search."
+  ],
   "takeaways": [
-    "A consistent heuristic obeys a triangle-inequality rule across every transition.",
-    "Require h(n) <= c(n,n') + h(n') and h(goal)=0.",
-    "Consistency implies admissibility and makes f-values nondecreasing along paths, so standard A* graph search need not reopen closed states.",
-    "A* can safely finalize an expanded state's best g-value under the standard assumptions."
+    "An admissible but inconsistent heuristic can need reopening. The edge-slack table shows the broken condition; the two search traces show its practical consequence.",
+    "Explain and trace reopening under an admissible inconsistent heuristic."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A consistent heuristic obeys a triangle-inequality rule across every transition.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Consistent heuristics illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A consistent heuristic satisfies h(u)≤c(u,v)+h(v) on every directed edge and has zero value at goals. The estimate cannot drop by more than the actual edge cost. This makes A*'s f values nondecreasing along each path and supports finalizing a state at its first minimum-f removal. Admissibility alone does not supply that stronger guarantee.","Relate edge consistency to nonnegative reduced costs.","Explain and trace reopening under an admissible inconsistent heuristic.","A local drop in the estimate can make yesterday's closed state worth opening again.","slack(u,v)=c(u,v)+h(v)−h(u) ≥ 0","Directed costs: S→A=3, S→B=1, B→A=1, A→G=3, B→G=8. h(S)=h(A)=h(G)=0; h(B) varies from 0 to its exact remaining cost 4. Compare two A* graph searches with alphabetical f ties: one reopens improved closed states; one discards such improvements. Dashed coral shows the reopening policy's returned path.","An admissible but inconsistent heuristic can need reopening. The edge-slack table shows the broken condition; the two search traces show its practical consequence."]} />

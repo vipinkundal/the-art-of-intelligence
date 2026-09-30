@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Samples from a more convenient distribution and reweights samples to estimate the target distribution.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Visit the important region more often without pretending it became more likely.",
+  "overview": "Importance sampling estimates a target expectation using draws from another distribution and likelihood-ratio weights. The proposal must cover the contributing target support. A well-chosen proposal can reduce variance for a specific integrand; a poorly chosen one can create extreme weights or infinite variance.",
+  "concepts": [
+    {
+      "title": "Only event draws contribute to this integrand",
+      "explanation": "For h(X)=1{X=1}, a proposal success contributes p/q and a proposal failure contributes zero. Thus the sample mean depends on K, the number of proposal successes. Its expectation is (p/q)q=p, independently of the selected q."
+    },
+    {
+      "title": "The variance can be computed exactly",
+      "explanation": "Since Var(K)=100q(1−q), multiplying K by p/(100q) gives variance p²(1−q)/(100q). At q=p this equals direct Monte Carlo variance p(1−p)/100. Raising q spends more draws on the event and reduces the variance of this particular estimator."
+    },
+    {
+      "title": "A convenient proposal for one question may be poor for another",
+      "explanation": "The non-event likelihood ratio is (1−p)/(1−q), which becomes large as q approaches one. It does not contribute to our indicator integrand, but it matters for other target expectations. A generic weight diagnostic does not replace analysis of the actual weighted integrand."
+    }
+  ],
+  "process": [
+    "Write the target expectation and identify where its integrand contributes.",
+    "Choose a proposal with adequate support and calculate target/proposal weights.",
+    "Estimate the weighted expectation and assess the variance of weighted contributions, not only the unweighted samples."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "p=0.01; K∼Binomial(100,q); p̂=(p/q)K/100; E[p̂]=p; Var(p̂)=p²(1−q)/(100q)",
+      "meaning": "The target is Bernoulli(p=0.01); the estimand is its success probability. The proposal is Bernoulli(q), with 0<q<1 so both target outcomes are covered. The plot uses exact repeated-sampling variance, normalized by direct target-sampling variance; it is not a simulated error curve. This is ordinary, not self-normalized, importance sampling."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Twenty expected event draws instead of one",
+    "setup": "Choose q=0.2 and n=100.",
+    "steps": [
+      "A proposal success gets weight 0.01/0.2=0.05; E[K]=20.",
+      "The estimate's mean is 0.05·20/100=0.01 and variance is 0.000004.",
+      "Its standard error is 0.002, versus √0.000099≈0.009950 for direct target sampling."
+    ],
+    "result": "The event is sampled more frequently, but its target probability stays 0.01."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Missing proposal support where the target integrand contributes creates an invalid estimate, not merely a noisy one.",
+    "Self-normalized importance sampling divides by the sum of weights and is generally biased at finite n; its variance is not the ordinary-estimator formula shown here."
+  ],
+  "implementation": [
+    "Use log weights for extreme ratios and check tail behavior of the weighted integrand.",
+    "Report the proposal, whether normalization is known and whether weight clipping or normalization changes the estimator."
+  ],
+  "takeaways": [
+    "Proposal quality is integrand-specific. Reweighting restores the expectation, but does not automatically guarantee low variance.",
+    "Explain why variance reduction depends on the specific target quantity."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Samples from a more convenient distribution and reweights samples to estimate the target distribution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Importance sampling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Importance sampling estimates a target expectation using draws from another distribution and likelihood-ratio weights. The proposal must cover the contributing target support. A well-chosen proposal can reduce variance for a specific integrand; a poorly chosen one can create extreme weights or infinite variance.","Derive an unbiased importance estimator for a rare event.","Explain why variance reduction depends on the specific target quantity.","Visit the important region more often without pretending it became more likely.","p=0.01; K∼Binomial(100,q); p̂=(p/q)K/100; E[p̂]=p; Var(p̂)=p²(1−q)/(100q)","The target is Bernoulli(p=0.01); the estimand is its success probability. The proposal is Bernoulli(q), with 0<q<1 so both target outcomes are covered. The plot uses exact repeated-sampling variance, normalized by direct target-sampling variance; it is not a simulated error curve. This is ordinary, not self-normalized, importance sampling.","Proposal quality is integrand-specific. Reweighting restores the expectation, but does not automatically guarantee low variance."]} />

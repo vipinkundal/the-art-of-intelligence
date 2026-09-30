@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Basic objects for describing collections, mappings, and relationships between entities.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Check the arrows leaving inputs before judging the arrows arriving at outputs.",
+  "overview": "Sets identify distinct elements; relations specify which ordered pairs belong together; functions impose an output rule on those pairs. Here a function A→B means a total function: every element of A has exactly one output in B. This contract is separate from whether outputs are shared or every codomain element is reached.",
+  "concepts": [
+    {
+      "title": "A set forgets order and multiplicity",
+      "explanation": "The sets {a,b,a} and {b,a} have the same two elements. A sequence or multiset retains information a set discards. Set union collects membership from either operand; intersection requires both. An ordered pair (a,1), unlike a set of its two entries, preserves which component is the input."
+    },
+    {
+      "title": "Any selected pairs form a relation",
+      "explanation": "With three elements on each side, A×B contains nine pairs. Each can independently be included or omitted, producing 2⁹=512 possible relations. Most do not satisfy the exactly-one-output requirement. The incidence table exposes pair membership without relying on arrow crossings or visual proximity."
+    },
+    {
+      "title": "Sharing an output does not break a function",
+      "explanation": "In the shared-output scenario, a and b both map to 1, while c maps to 2. Every input has one output, so the mapping is a total function. It is not injective, and it is not surjective onto the declared B because 3 is unused. Its image is {1,2}, which is not the same object as the codomain."
+    },
+    {
+      "title": "Missing and ambiguous outputs are different failures",
+      "explanation": "The partial scenario omits an output for c; the multivalued scenario assigns both 1 and 2 to a. Restricting a partial function's domain can make it total. Choosing one output from a multivalued relation requires an additional rule; neither repair should be hidden in an implementation."
+    },
+    {
+      "title": "Composition needs compatible types",
+      "explanation": "If f:A→B and g:B→C, then (g∘f)(a)=g(f(a)). An inverse function B→A exists for a bijection; otherwise reversing all arrows can yield missing or multiple outputs. For relations on one set, reflexivity, symmetry and transitivity describe other contracts, such as equivalence relations, not synonyms for being a function."
+    }
+  ],
+  "process": [
+    "Declare the domain, codomain and whether ordering or repeated elements are meaningful.",
+    "Write the allowed pairs and count outputs per input. Require exactly one when specifying a total function.",
+    "Only then inspect collisions, unused codomain elements, composition requirements and whether an inverse is well defined."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "R⊆A×B; total function: ∀a∈A, ∃!b∈B with (a,b)∈R; |A×B|=|A||B|",
+      "meaning": "A={a,b,c} and B={1,2,3} are fixed finite sets. Each arrow is one relation pair, and the tables enumerate the entire relation. The selector chooses four different relations, not stages of one algorithm. Partial functions are named explicitly; some sources use the unqualified word function for an at-most-one-output relation. Injective and surjective in the readout refer to total functions A→B under this lesson's convention."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Same three inputs, four different contracts",
+    "setup": "Use A={a,b,c} and B={1,2,3}.",
+    "steps": [
+      "Pairs (a,1),(b,1),(c,2) give outgoing counts (1,1,1): a total function with a collision at 1.",
+      "Removing (c,2) gives outgoing counts (1,1,0), a partial function on A, not a total one.",
+      "Using (a,1),(a,2),(b,2),(c,3) instead gives counts (2,1,1): a multivalued relation, despite reaching all three codomain elements."
+    ],
+    "result": "Exactly one output per input is the function condition. Distinct outputs and complete codomain coverage are separate requirements."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Calling the codomain the set of actual outputs hides unused elements and can silently change a surjectivity claim.",
+    "For finite sets of equal size, a total function is injective exactly when it is surjective. This finite-cardinality shortcut does not hold for every infinite-set mapping.",
+    "A database row count alone does not establish a function: duplicate keys, missing eligible keys and multiple values require separate checks."
+  ],
+  "implementation": [
+    "Represent a finite relation with explicit pairs or an incidence table. A dictionary enforces at most one stored value per key, but may overwrite conflicts and does not prove every required key exists.",
+    "Keep input and output schemas with transformation code. Validate totality and collision policies when those are part of the contract; do not infer them from a few successful examples."
+  ],
+  "takeaways": [
+    "Domain, codomain and the pair set are all part of the specification. A picture without those choices cannot establish totality or surjectivity.",
+    "Use explicit domain and codomain choices to reason about mappings."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Basic objects for describing collections, mappings, and relationships between entities.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Sets, relations, and functions illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Sets identify distinct elements; relations specify which ordered pairs belong together; functions impose an output rule on those pairs. Here a function A→B means a total function: every element of A has exactly one output in B. This contract is separate from whether outputs are shared or every codomain element is reached.","Distinguish relations, partial functions, total functions and bijections.","Use explicit domain and codomain choices to reason about mappings.","Check the arrows leaving inputs before judging the arrows arriving at outputs.","R⊆A×B; total function: ∀a∈A, ∃!b∈B with (a,b)∈R; |A×B|=|A||B|","A={a,b,c} and B={1,2,3} are fixed finite sets. Each arrow is one relation pair, and the tables enumerate the entire relation. The selector chooses four different relations, not stages of one algorithm. Partial functions are named explicitly; some sources use the unqualified word function for an at-most-one-output relation. Injective and surjective in the readout refer to total functions A→B under this lesson's convention.","Domain, codomain and the pair set are all part of the specification. A picture without those choices cannot establish totality or surjectivity."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Estimates the gradient from small random batches, trading exactness for speed.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A noisy compass can point correctly on average without tracing a straight route.",
+  "overview": "SGD updates parameters using a sampled estimate of the objective gradient. Under uniform sampling of a finite mean loss, one example's gradient is unbiased conditional on the current parameters. Individual updates can still increase the full-data loss, and a fixed learning rate can leave persistent sampling noise.",
+  "concepts": [
+    {
+      "title": "The sampled gradient is a conditional estimate",
+      "explanation": "Here a sample gradient is θ−Z and E[Z]=2, so E[θ−Z|θ]=θ−2, the full-data gradient. This argument uses the declared sampling distribution. Sampling examples unequally without reweighting generally targets a different weighted objective."
+    },
+    {
+      "title": "Track the distribution, not only one line",
+      "explanation": "Since Var(Z)=5, independent fresh samples give Var(θₜ₊₁)=(1−η)²Var(θₜ)+5η². The recurrence has limiting variance 5η/(2−η) for 0<η<2. The plot uses a stable subset of that range and computes its moment curves exactly."
+    },
+    {
+      "title": "Optimization error and irreducible fit error differ",
+      "explanation": "The mean sample loss is ½[(θ−2)²+5]. Its optimum value is 2.5, not zero, because one constant cannot match all four targets. Noise in θ adds expected excess loss beyond that baseline; it is not the same as observation variability."
+    }
+  ],
+  "process": [
+    "Specify a per-example loss and a sampling rule that estimates the intended objective.",
+    "Compute a sample or batch gradient at the current parameters and apply the update.",
+    "Monitor full-data or validation summaries at a stated cadence, rather than expecting each sampled loss to decrease."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "θₜ₊₁=(1−η)θₜ+ηZₜ; Eθₜ=2[1−(1−η)ᵗ]; Var(θₜ)=5η[1−(1−η)²ᵗ]/(2−η)",
+      "meaning": "Loss for target z is ½(θ−z)², with targets {−1,1,3,5}, θ₀=0 and 30 updates. The moment curves assume fresh IID uniform sampling with replacement. The displayed path uses one disclosed fixed index sequence for reproducible comparison as η changes; its target sequence is in the numeric table. One-standard-deviation curves do not claim a coverage probability."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A correct mean with residual spread",
+    "setup": "Set η=0.2 and θ₀=0.",
+    "steps": [
+      "If the first selected target is 5, θ₁=1; if it is −1, θ₁=−0.2.",
+      "Averaging over all four first draws gives Eθ₁=0.4 and Var(θ₁)=0.04×5=0.2.",
+      "The long-run variance is 5×0.2/1.8=5/9, even though the mean tends to 2."
+    ],
+    "result": "A visibly wandering trajectory can be an expected consequence of the sampling rule, not broken gradient code."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "The IID-with-replacement moment formula does not directly describe a shuffled epoch, correlated stream, or parameter-dependent sampler.",
+    "A one-standard-deviation band is not automatically a 68% interval: that interpretation would need an appropriate distributional statement."
+  ],
+  "implementation": [
+    "Save sampling state or the data order when reproducibility matters, and compare optimizer settings using the same declared stream.",
+    "Separate optimizer steps from data passes, and log validation performance independently of the sampled training loss."
+  ],
+  "takeaways": [
+    "Convergence of the mean is not convergence of every run. In this example a constant rate produces a nonzero long-run parameter variance, even though the mean reaches the minimizer.",
+    "Explain a constant-rate noise floor using exact mean and variance recurrences."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Estimates the gradient from small random batches, trading exactness for speed.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Stochastic gradient descent illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["SGD updates parameters using a sampled estimate of the objective gradient. Under uniform sampling of a finite mean loss, one example's gradient is unbiased conditional on the current parameters. Individual updates can still increase the full-data loss, and a fixed learning rate can leave persistent sampling noise.","Derive an unbiased sample gradient for a finite mean objective.","Explain a constant-rate noise floor using exact mean and variance recurrences.","A noisy compass can point correctly on average without tracing a straight route.","θₜ₊₁=(1−η)θₜ+ηZₜ; Eθₜ=2[1−(1−η)ᵗ]; Var(θₜ)=5η[1−(1−η)²ᵗ]/(2−η)","Loss for target z is ½(θ−z)², with targets {−1,1,3,5}, θ₀=0 and 30 updates. The moment curves assume fresh IID uniform sampling with replacement. The displayed path uses one disclosed fixed index sequence for reproducible comparison as η changes; its target sequence is in the numeric table. One-standard-deviation curves do not claim a coverage probability.","Convergence of the mean is not convergence of every run. In this example a constant rate produces a nonzero long-run parameter variance, even though the mean reaches the minimizer."]} />

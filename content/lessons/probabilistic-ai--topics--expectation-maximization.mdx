@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Expectation-maximization estimates parameters when data contain latent or missing variables.",
+  "hook": "Assign softly, refit with fractions, then assign again.",
+  "overview": "Expectation–maximization fits parameters in a latent-variable model by alternating posterior latent assignments under the current parameters with maximization of the expected complete-data log likelihood. Exact E and M steps do not decrease observed-data likelihood, but need not find a global maximum.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "What is hidden?",
+      "explanation": "The bag's coin identity is latent; its head count is observed. Coin success probabilities are unknown parameters. A mixture over entire bags differs from independently choosing a fresh coin at every toss."
     },
     {
-      "title": "Core computation",
-      "explanation": "The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation."
+      "title": "The E-step calculates responsibilities",
+      "explanation": "Bayes' rule gives rᵢ=Bin(kᵢ;10,pA)/[Bin(kᵢ;10,pA)+Bin(kᵢ;10,pB)] because the two prior mixture weights are equal. These probabilities weight the complete-data log likelihood; they are not rounded into labels."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+      "title": "The M-step uses weighted sufficient statistics",
+      "explanation": "The expected number of heads attributed to A is Σrᵢkᵢ and the expected number of A tosses is 10Σrᵢ. Their ratio maximizes the A part of the expected log likelihood. Use 1−rᵢ for B. If mixture weights were learned, they would require their own update; this lab deliberately fixes them."
+    },
+    {
+      "title": "Monotonicity is not global optimality",
+      "explanation": "An exact E-step makes the standard latent-variable lower bound tight at the old parameters. Maximizing that bound cannot decrease observed likelihood. Approximate E-steps or inaccurate M-steps need not preserve this guarantee. Different initializations may reach different stationary fits."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+    "Choose valid starting parameters and state which quantities are fixed versus fitted.",
+    "Compute each bag's posterior coin probabilities using the old parameters.",
+    "Update both coin probabilities from the same responsibility array, then evaluate observed likelihood and repeat until the chosen stopping criterion holds."
   ],
   "formulas": [
     {
-      "label": "Expectation-maximization rule",
-      "expression": "Q(theta|theta_old)=E_{Z|X,theta_old}[log p(X,Z|theta)]; theta_new=argmax Q",
-      "meaning": "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization."
+      "label": "Definition and assumptions",
+      "expression": "rᵢ=P(zᵢ=A|kᵢ,θold); pAnew=Σᵢrᵢkᵢ/(10Σᵢrᵢ); ℓ(θ)=Σᵢlog[½Bin(kᵢ;10,pA)+½Bin(kᵢ;10,pB)]",
+      "meaning": "Six independent bags contain 10 conditionally independent tosses each, with counts (0,1,2,8,9,10). Each bag uses one hidden coin for all ten tosses. Mixture weights stay fixed at 1/2. Only coin success probabilities are fitted, initialized at (0.4,0.6). The table is the next E-step under the currently displayed parameters."
     }
   ],
   "example": {
-    "title": "Expectation-maximization in a small case",
-    "setup": "Fit a two-component Gaussian mixture without observed component labels.",
+    "title": "The first refit separates the coins",
+    "setup": "Start from pA=0.4 and pB=0.6, with fixed equal mixture weights.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Symmetric counts give Σrᵢ=3 effective bags for A. For zero heads, r=0.6¹⁰/(0.4¹⁰+0.6¹⁰)≈0.982954.",
+      "Weighted head and toss counts give the first update pA≈0.131837 and pB≈0.868163.",
+      "Observed count-data log likelihood rises from −24.743478 to −11.731796 nats. By iteration 12 the probabilities are approximately 0.1 and 0.9, with log likelihood −11.445363."
     ],
-    "result": "Responsibilities from the E-step become weights for updated means, variances, and mixture proportions in the M-step."
+    "result": "The probability of each observed count includes its binomial coefficient. Those constants cancel in responsibilities but remain in the displayed count-data likelihood."
   },
   "pitfalls": [
-    "Use multiple initializations and monitor likelihood rather than only parameter movement.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Starting both coins at 0.5 keeps all responsibilities at 0.5 and leaves this example at a symmetric stationary fit; monotonicity alone cannot escape it.",
+    "Interchanging labels A and B leaves the mixture distribution unchanged. Label names are not uniquely identified by the data.",
+    "Hard assignments describe a different procedure. In general, evaluating a log likelihood at an expected latent value is not the same as taking its expectation."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log probabilities and log-sum-exp for large bags or extreme parameters. The bounded toy uses small counts so direct masses remain representable.",
+    "Track observed likelihood, convergence tolerance and initialization. Guard empty effective components in general mixtures, and use multiple starts when fitting non-convex models."
+  ],
   "takeaways": [
-    "Expectation-maximization estimates parameters when data contain latent or missing variables.",
-    "The E-step computes an expected complete-data log likelihood under current parameters; the M-step maximizes that expectation.",
-    "Each exact iteration does not decrease likelihood, but EM can settle at a local optimum and is sensitive to initialization.",
-    "Responsibilities from the E-step become weights for updated means, variances, and mixture proportions in the M-step."
+    "EM uses fractional latent assignments to improve a parameter fit. Posterior assignments of the bags are not a posterior distribution over the fitted coin probabilities.",
+    "Distinguish latent posterior inference, parameter fitting and a global-optimality guarantee."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Expectation-maximization estimates parameters when data contain latent or missing variables.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Expectation-maximization illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Expectation–maximization fits parameters in a latent-variable model by alternating posterior latent assignments under the current parameters with maximization of the expected complete-data log likelihood. Exact E and M steps do not decrease observed-data likelihood, but need not find a global maximum.","Compute responsibilities and a weighted maximum-likelihood update.","Distinguish latent posterior inference, parameter fitting and a global-optimality guarantee.","Assign softly, refit with fractions, then assign again.","rᵢ=P(zᵢ=A|kᵢ,θold); pAnew=Σᵢrᵢkᵢ/(10Σᵢrᵢ); ℓ(θ)=Σᵢlog[½Bin(kᵢ;10,pA)+½Bin(kᵢ;10,pB)]","Six independent bags contain 10 conditionally independent tosses each, with counts (0,1,2,8,9,10). Each bag uses one hidden coin for all ten tosses. Mixture weights stay fixed at 1/2. Only coin success probabilities are fitted, initialized at (0.4,0.6). The table is the next E-step under the currently displayed parameters.","EM uses fractional latent assignments to improve a parameter fit. Posterior assignments of the bags are not a posterior distribution over the fitted coin probabilities."]} />

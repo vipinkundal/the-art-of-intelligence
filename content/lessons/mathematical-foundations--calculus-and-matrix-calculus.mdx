@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+  "hook": "No first-order change along this arrow does not mean no way downhill.",
+  "overview": "Calculus describes local change, accumulated quantities and evolution. Matrix calculus organizes derivatives of vector-valued computations by their input and output spaces. A Jacobian maps input perturbations to first-order output changes; a gradient represents a scalar derivative under an inner product; a Hessian captures local curvature.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models."
+      "title": "Derivatives are local linear maps",
+      "explanation": "For differentiable f:ℝⁿ→ℝᵐ, J_f(w) has shape m×n and predicts f(w+Δw)−f(w) to first order. Jv propagates a chosen perturbation forward. For a scalar objective, the derivative can be represented by a gradient, whose inner product with v gives the change per unit h along w+hv."
     },
     {
-      "title": "Learn",
-      "explanation": "Limits and continuity : Limits describe behavior near a point, and continuity means small input changes do not cause jumps."
+      "title": "Compose the sensitivities",
+      "explanation": "The residual r(w)=Aw−b has Jacobian A. The outer loss ½rᵀr has gradient r with respect to its residual input. Pulling that sensitivity back yields Aᵀr. The transpose is forced by the spaces: residual sensitivities become parameter sensitivities."
     },
     {
-      "title": "Learn",
-      "explanation": "Derivatives and partial derivatives : Derivatives measure change; partial derivatives isolate one variable while holding others fixed."
+      "title": "A slice hides directions",
+      "explanation": "At the base point, r=(1,−1) and ∇L=(1,−1). Its inner product with (1,1) vanishes. But the direction −∇L=(−1,1) has first derivative −2. The plotted slice has a local minimum at h=0 even though the full two-dimensional objective is not stationary there."
     },
     {
-      "title": "Learn",
-      "explanation": "Product, quotient, and chain rules : These rules break complex derivatives into manageable pieces, especially through nested functions."
+      "title": "Curvature supplies the missing term",
+      "explanation": "H=AᵀA=[[1,1],[1,5]] and vᵀHv=8. Therefore L(w₀+hv)=L(w₀)+h∇Lᵀv+½h²vᵀHv=1+4h². The vertical gap is quadratic in h: halving the displacement quarters this remainder."
     },
     {
-      "title": "Learn",
-      "explanation": "Gradients : A gradient collects partial derivatives and points in the direction of steepest local increase."
-    },
-    {
-      "title": "Learn",
-      "explanation": "Directional derivatives : These measure how a function changes along one chosen direction instead of all directions."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Training models means changing parameters to reduce a loss. Gradients tell us the direction of change, Jacobians describe vector-valued sensitivity, and Hessians describe curvature."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Backpropagation is mostly the repeated application of the chain rule over a computational graph."
+      "title": "Follow the section by task",
+      "explanation": "Study limits and derivative rules before multivariable gradients and Jacobians. Use Taylor models and Hessians for local approximations; use autodiff to compute derivative products. Integration, changes of variables and differential equations address accumulation and evolution. Optimization adds an objective, feasible set and algorithm—it is not synonymous with differentiation."
     }
   ],
   "process": [
-    "Calculus gives AI a way to ask: if we change an input, parameter, or weight a little, how does the output or loss change? Optimization uses that answer to improve models."
+    "Write the computation as a composition and annotate every intermediate shape.",
+    "Propagate a perturbation forward or an output sensitivity backward, depending on the question.",
+    "Compare the local model with finite changes and state what controls the omitted remainder."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "L(w)=½‖Aw−b‖²; ∇L=Aᵀ(Aw−b); H=AᵀA; L(w₀+hv)=1+4h²",
+      "meaning": "A=[[1,1],[0,2]], b=(0,1), base point w₀=(1,0), direction v=(1,1). All vectors are real columns and the loss uses the Euclidean norm. The plot changes h, not w₀ or the expansion point. v is not normalized: derivatives are with respect to h, whose displacement has length √2|h|. The quadratic Taylor expansion is exact for this loss; that is not true for arbitrary nonlinear models."
+    }
+  ],
   "example": {
-    "title": "Calculus And Matrix Calculus example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Zero tangent, one unit of extra loss",
+    "setup": "Select h=0.5.",
+    "steps": [
+      "The new point is w=(1.5,0.5). Its residual is Aw−b=(2,0), so the loss is ½·4=2.",
+      "The first-order prediction is 1+0.5·0=1.",
+      "The missing second-order term is ½·0.5²·8=1. At h=0.25 it falls to 0.25."
+    ],
+    "result": "The calculation is consistent: a derivative describes the infinitesimal rate, not the entire displacement."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Do not conclude stationarity from a single direction with zero derivative; the gradient must vanish in every coordinate for an unconstrained differentiable interior stationary point.",
+    "A direction vector's scale changes derivatives with respect to its step parameter. Normalize only when the intended quantity is change per unit distance.",
+    "Automatic differentiation differentiates the executed operations under their derivative rules; it does not certify the statistical model, numerical conditioning or global optimality."
+  ],
+  "implementation": [
+    "The matrices, local prediction and exact loss share the stated A, b, w₀ and v. The control never silently moves the expansion point.",
+    "For large models, choose Jacobian-vector or transpose-Jacobian products instead of materializing a dense Jacobian when only a directional quantity is needed."
+  ],
   "takeaways": [
-    "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
-    "Read The Matrix Calculus You Need For Deep Learning for a focused bridge from derivatives to neural-network training."
+    "Track the derivative's shape, direction and expansion point. One zero directional derivative is weaker than a zero gradient, and a tangent prediction is not a finite-step guarantee.",
+    "Explain why first-order flatness in a slice can coexist with a nonzero gradient."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Calculus And Matrix Calculus illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Calculus describes local change, accumulated quantities and evolution. Matrix calculus organizes derivatives of vector-valued computations by their input and output spaces. A Jacobian maps input perturbations to first-order output changes; a gradient represents a scalar derivative under an inner product; a Hessian captures local curvature.","Connect the chain rule to shaped Jacobian products.","Explain why first-order flatness in a slice can coexist with a nonzero gradient.","No first-order change along this arrow does not mean no way downhill.","L(w)=½‖Aw−b‖²; ∇L=Aᵀ(Aw−b); H=AᵀA; L(w₀+hv)=1+4h²","A=[[1,1],[0,2]], b=(0,1), base point w₀=(1,0), direction v=(1,1). All vectors are real columns and the loss uses the Euclidean norm. The plot changes h, not w₀ or the expansion point. v is not normalized: derivatives are with respect to h, whose displacement has length √2|h|. The quadratic Taylor expansion is exact for this loss; that is not true for arbitrary nonlinear models.","Track the derivative's shape, direction and expansion point. One zero directional derivative is weaker than a zero gradient, and a tangent prediction is not a finite-step guarantee."]} />

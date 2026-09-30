@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The math of true/false logic, used in conditions, circuits, constraints, and symbolic reasoning.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Moving a parenthesis can turn a required condition into an optional one.",
+  "overview": "Boolean algebra describes how truth-valued expressions combine through AND, OR and NOT. Equivalent expressions agree for every assignment of their inputs, not merely the examples seen during execution. This makes truth tables a small, exact tool for checking a rewrite before relying on it.",
+  "concepts": [
+    {
+      "title": "Name what the inputs mean",
+      "explanation": "Treat A as a mandatory enabling flag. B or C may qualify the request, but neither replaces A. Then F=A∧(B∨C) expresses a concrete requirement. A formula can be internally consistent and still encode the wrong requirement, so truth-table correctness does not substitute for agreeing on input meanings."
+    },
+    {
+      "title": "Distribute A into both alternatives",
+      "explanation": "The distributed rule is (A∧B)∨(A∧C), not (A∧B)∨C. The latter leaves C outside A's scope. On input 011, the original rule returns 0 while that incorrect rewrite returns 1. The same discrepancy occurs at 001; on the other six assignments the mistake is hidden."
+    },
+    {
+      "title": "Equality of truth tables is exhaustive here",
+      "explanation": "There are three binary variables, so 2³=8 assignments cover the entire input domain. F and G match in every row, while H fails in two. The fraction two out of eight is a fraction of logical assignments, not an observed production error rate unless a probability model over inputs is supplied."
+    },
+    {
+      "title": "Use the laws with their intended semantics",
+      "explanation": "Idempotence gives A∨A=A and A∧A=A; complements give A∨¬A=1 and A∧¬A=0. De Morgan's laws exchange AND and OR under negation. Ordinary arithmetic plus is not Boolean OR: 1+1=2 in arithmetic but 1∨1=1. A truth-value expression is also not automatically equivalent to a program with side effects."
+    }
+  ],
+  "process": [
+    "Translate each input and desired condition into a Boolean proposition; make grouping and inclusive versus exclusive OR explicit.",
+    "Apply an identity to the full grouped expression, or enumerate all assignments for a small finite input set.",
+    "Check the target language's value, evaluation-order and missing-value semantics before transferring the rewrite into code."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "F=A∧(B∨C) ≡ G=(A∧B)∨(A∧C); H=(A∧B)∨C is not equivalent",
+      "meaning": "A, B and C are pure two-valued inputs: 0 is false and 1 is true. A means enabled; B and C are alternative qualifying conditions. OR is inclusive. All eight assignments are enumerated, with row index 4A+2B+C. F is the specified rule, G a valid distributed rewrite, and H a deliberately incorrect rewrite. The diagram shows F's calculation only. No null values, side effects or short-circuit execution costs are modeled."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "The bypass hidden by a missing factor",
+    "setup": "Choose the default input ABC=011: disabled A, true B and true C.",
+    "steps": [
+      "The inner OR gives B∨C=1, but F=A∧1=0.",
+      "Both distributed terms contain A: G=(0∧1)∨(0∧1)=0.",
+      "The incorrect H=(0∧1)∨1=1. Its C branch bypasses the mandatory enabling flag."
+    ],
+    "result": "The wrong rewrite grants a result the original rule forbids. Inspect 001 to find the second counterexample."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Several matching examples cannot prove equivalence when unexamined assignments remain. Conversely, one genuine differing assignment disproves it.",
+    "Do not interpret OR as XOR unless exclusivity is part of the definition. When B and C are both true, inclusive OR remains true.",
+    "Two-valued algebra does not directly model SQL NULL's three-valued logic or impure predicates whose evaluation changes state."
+  ],
+  "implementation": [
+    "In JavaScript, logical AND and OR can return operand values instead of booleans, and they short-circuit. This lab explicitly converts intermediate results to 0/1.",
+    "Use clear grouping and pure predicates when applying equivalence laws. A rewrite that evaluates an input twice may preserve Boolean values yet change runtime behavior for an impure computation."
+  ],
+  "takeaways": [
+    "An algebraic rewrite preserves every Boolean outcome or it is not equivalent. One counterexample is enough to reject it.",
+    "Find a counterexample and separate Boolean semantics from programming-language evaluation."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The math of true/false logic, used in conditions, circuits, constraints, and symbolic reasoning.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Boolean algebra illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Boolean algebra describes how truth-valued expressions combine through AND, OR and NOT. Equivalent expressions agree for every assignment of their inputs, not merely the examples seen during execution. This makes truth tables a small, exact tool for checking a rewrite before relying on it.","Verify distributivity with an exhaustive truth table.","Find a counterexample and separate Boolean semantics from programming-language evaluation.","Moving a parenthesis can turn a required condition into an optional one.","F=A∧(B∨C) ≡ G=(A∧B)∨(A∧C); H=(A∧B)∨C is not equivalent","A, B and C are pure two-valued inputs: 0 is false and 1 is true. A means enabled; B and C are alternative qualifying conditions. OR is inclusive. All eight assignments are enumerated, with row index 4A+2B+C. F is the specified rule, G a valid distributed rewrite, and H a deliberately incorrect rewrite. The diagram shows F's calculation only. No null values, side effects or short-circuit execution costs are modeled.","An algebraic rewrite preserves every Boolean outcome or it is not equivalent. One counterexample is enough to reject it."]} />

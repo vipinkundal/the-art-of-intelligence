@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Use curvature information to choose more informed update steps.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A steep slope on a steep bowl should not be treated like the same slope on a flat bowl.",
+  "overview": "Newton's method uses a local Hessian to turn a gradient into a curvature-aware direction. Quasi-Newton methods such as BFGS learn a curvature approximation from successive parameter and gradient differences. Their extra information can reduce iterations, but each iteration has costs and may require safeguards.",
+  "concepts": [
+    {
+      "title": "The quadratic model proposes a direction",
+      "explanation": "At the current point, approximate the objective by f+gᵀp+½pᵀHp. If H is positive definite, minimizing that model gives Hp=−g and a descent direction. Solve this linear system rather than explicitly forming the inverse."
+    },
+    {
+      "title": "Global behavior needs safeguards",
+      "explanation": "Close to a nondegenerate minimizer, standard smoothness conditions permit fast local Newton convergence. Far away, a full step can be poor; line searches, damping and trust regions control reliance on the local model. An indefinite Hessian can even propose a non-descent direction."
+    },
+    {
+      "title": "Quasi-Newton uses gradient differences",
+      "explanation": "BFGS updates a symmetric Hessian approximation B to satisfy the secant relation Bₜ₊₁sₜ=yₜ, where sₜ=xₜ₊₁−xₜ and yₜ=gₜ₊₁−gₜ. With a positive-definite initial approximation and positive curvature product yₜᵀsₜ, its usual update preserves positive definiteness. L-BFGS stores a limited history of these pairs rather than a dense matrix."
+    }
+  ],
+  "process": [
+    "Compute the gradient and obtain either a Hessian action or a maintained curvature approximation.",
+    "Solve for a direction, checking curvature and numerical conditioning.",
+    "Choose an acceptable step with the method's globalization rule, then update curvature state and stopping diagnostics."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Hₜpₜ=−gₜ; xₜ₊₁=xₜ+pₜ; here pₜ=−(xₜ³+xₜ)/(3xₜ²+1)",
+      "meaning": "Eight full Newton updates on f(x)=x⁴/4+x²/2, compared with gradient descent at η=0.1 from the same positive starting point. Its Hessian 3x²+1 is always positive. The graph shows iterates, not wall-clock time. BFGS is explained below but is not the algorithm plotted."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "One Newton correction",
+    "setup": "Start at x₀=2 for f(x)=x⁴/4+x²/2.",
+    "steps": [
+      "Gradient is 2³+2=10 and Hessian is 3×2²+1=13.",
+      "Newton proposes p=−10/13, so x₁=16/13≈1.230769.",
+      "Ordinary descent at η=0.1 instead gives x₁=1. Both move toward zero; later updates expose their different behavior."
+    ],
+    "result": "A first-step winner need not be the eventual winner, and iteration count alone omits the cost of curvature."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Newton applied to the gradient is a root-finding method; without curvature safeguards it can target stationary points that are not minima.",
+    "Noisy gradients can spoil quasi-Newton curvature pairs. Dense Hessians also require quadratic storage, so a method practical for a small fit may be unsuitable for a very large model."
+  ],
+  "implementation": [
+    "Use factorizations or Hessian-vector products instead of an explicit matrix inverse.",
+    "Monitor objective reduction, gradient norm, step norm and any line-search failure; a small step may signal numerical difficulty rather than successful optimization."
+  ],
+  "takeaways": [
+    "Newton solves a local quadratic model. A trustworthy implementation solves for the direction and controls the step; it does not assume every Hessian is invertible or every full step is safe.",
+    "Distinguish exact Newton curvature, BFGS updates and limited-memory storage."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Use curvature information to choose more informed update steps.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Newton and quasi-Newton methods illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Newton's method uses a local Hessian to turn a gradient into a curvature-aware direction. Quasi-Newton methods such as BFGS learn a curvature approximation from successive parameter and gradient differences. Their extra information can reduce iterations, but each iteration has costs and may require safeguards.","Derive a Newton direction from a local quadratic model.","Distinguish exact Newton curvature, BFGS updates and limited-memory storage.","A steep slope on a steep bowl should not be treated like the same slope on a flat bowl.","Hₜpₜ=−gₜ; xₜ₊₁=xₜ+pₜ; here pₜ=−(xₜ³+xₜ)/(3xₜ²+1)","Eight full Newton updates on f(x)=x⁴/4+x²/2, compared with gradient descent at η=0.1 from the same positive starting point. Its Hessian 3x²+1 is always positive. The graph shows iterates, not wall-clock time. BFGS is explained below but is not the algorithm plotted.","Newton solves a local quadratic model. A trustworthy implementation solves for the direction and controls the step; it does not assume every Hessian is invertible or every full step is safe."]} />

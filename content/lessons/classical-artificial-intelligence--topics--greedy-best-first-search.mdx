@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Greedy best-first search expands the state estimated closest to the goal.",
+  "hook": "Looking only at the finish line forgets the price of getting there.",
+  "overview": "Greedy best-first search prioritizes the smallest heuristic estimate h and ignores the cost g already paid. It can reach a plausible goal quickly, but even an admissible, consistent heuristic does not make its first solution cost-optimal. Its correctness and termination claims must be separated from the quality of the estimate.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "The priority function defines the behavior",
+      "explanation": "At h(B)=1, B beats A's estimate three even though the B branch will cost ten in total. Once B generates G, the goal's h=0 beats everything else. The large accumulated cost never enters either comparison."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid."
+      "title": "Underestimation can be valid and misleading",
+      "explanation": "B's true remaining cost is nine. Estimating it as one is an admissible underestimate and respects B→G's cost-nine consistency inequality. Lower bounds constrain optimism; they do not promise equal tightness across branches. Greedy selection can favor the loosest underestimate."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics."
+      "title": "Observe the tie boundary",
+      "explanation": "For h(B)<3, the returned path is S→B→G at cost ten. At h(B)=3, alphabetical A wins; then C's two and D's one keep the left route ahead of B. Values above three also yield the cost-four route. That boundary depends on the declared tie rule."
+    },
+    {
+      "title": "Finite graph completeness is a separate question",
+      "explanation": "On a finite reachable graph with duplicate handling and terminating expansions, greedy search eventually finds a reachable goal if it continues processing the frontier. On an infinite space, infinitely many low-h distractions may prevent exploration of a necessary high-h branch. Neither statement gives a minimum-cost guarantee."
+    },
+    {
+      "title": "Best-first does not mean locally walking downhill",
+      "explanation": "The frontier can retain alternatives generated on earlier branches. Greedy best-first selects globally among those entries; hill climbing typically keeps only a current state and chooses a local neighbor. These methods have different backtracking, storage and failure behavior."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics."
+    "Specify what h estimates and whether any cost-quality guarantee is required.",
+    "Maintain a frontier ordered by h, an explicit duplicate policy and parent links.",
+    "Return and evaluate actual path cost separately from heuristic values and search work."
   ],
   "formulas": [
     {
-      "label": "Greedy best-first search rule",
-      "expression": "f(n) = h(n)",
-      "meaning": "It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics."
+      "label": "Definition and assumptions",
+      "expression": "priority(n)=h(n), not g(n)+h(n)",
+      "meaning": "S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. h(S)=0,h(A)=3,h(C)=2,h(D)=1,h(G)=0; h(B) varies from 0 to 9. All displayed heuristics are admissible and consistent. Alphabetical ties are used. Best-g improvements are retained, but priority remains h and the algorithm returns on goal removal."
     }
   ],
   "example": {
-    "title": "Greedy best-first search in a small case",
-    "setup": "On a map, always expand the frontier city with the smallest straight-line distance to the destination.",
+    "title": "Consistent yet suboptimal",
+    "setup": "Set h(B)=1, then three.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
-      "Check the outcome against the goal and stated assumptions."
+      "At one, removals are S,B,G. The result has cost ten and only two non-goal expansions.",
+      "At three, removals are S,A,C,D,G. The result costs four and requires four non-goal expansions.",
+      "Both heuristic settings satisfy the lower-bound and edge-consistency conditions. The different objective used for priority explains the tradeoff."
     ],
-    "result": "The search may be fast, but an obstacle can make the apparently closest route expensive."
+    "result": "A faster first answer can be a worse plan even when the heuristic is mathematically valid."
   },
   "pitfalls": [
-    "Use duplicate detection; a heuristic alone does not prevent cycling through the state graph.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Do not transfer A*'s optimality theorem to a method that drops g.",
+    "Finding a goal in fewer expansions is not necessarily lower elapsed time; heuristic evaluation costs can dominate.",
+    "A near-goal-looking dead end is still a dead end. Schematic proximity is not evidence of reachability."
   ],
-  "implementation": [],
+  "implementation": [
+    "Expose actual returned cost and any known quality bound rather than labeling a heuristic score as solution quality.",
+    "Use resource caps and an unresolved status for large spaces. If bounded suboptimality is required, consider a search policy with a proved bound instead of assuming greedy search provides one."
+  ],
   "takeaways": [
-    "Greedy best-first search expands the state estimated closest to the goal.",
-    "Use a priority queue ordered only by heuristic value h(n), ignoring the cost already paid.",
-    "It can reach a plausible goal quickly but is neither generally optimal nor protected from misleading heuristics.",
-    "The search may be fast, but an obstacle can make the apparently closest route expensive."
+    "A valid lower bound is not enough if the selection rule ignores accumulated cost. Greedy best-first can trade solution quality for earlier termination even with a well-behaved heuristic.",
+    "Separate frontier policy, completeness, work and returned-plan quality."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Greedy best-first search expands the state estimated closest to the goal.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Greedy best-first search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Greedy best-first search prioritizes the smallest heuristic estimate h and ignores the cost g already paid. It can reach a plausible goal quickly, but even an admissible, consistent heuristic does not make its first solution cost-optimal. Its correctness and termination claims must be separated from the quality of the estimate.","Trace a suboptimal greedy result with a consistent heuristic.","Separate frontier policy, completeness, work and returned-plan quality.","Looking only at the finish line forgets the price of getting there.","priority(n)=h(n), not g(n)+h(n)","S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. h(S)=0,h(A)=3,h(C)=2,h(D)=1,h(G)=0; h(B) varies from 0 to 9. All displayed heuristics are admissible and consistent. Alphabetical ties are used. Best-g improvements are retained, but priority remains h and the algorithm returns on goal removal.","A valid lower bound is not enough if the selection rule ignores accumulated cost. Greedy best-first can trade solution quality for earlier termination even with a well-behaved heuristic."]} />

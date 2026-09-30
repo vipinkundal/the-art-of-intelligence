@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "These define what the system is trying to minimize, maximize, or balance.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The optimizer answers the question encoded by the loss—not the question you meant to ask.",
+  "overview": "A loss scores a prediction against an outcome. A training objective aggregates those losses and may add penalties or constraints. Terminology varies, so an implementation should state the complete expression, its reduction, and the variables being optimized rather than rely on the word cost.",
+  "concepts": [
+    {
+      "title": "Separate the per-example score from the objective",
+      "explanation": "For a dataset of n examples, an empirical objective might be n⁻¹Σℓᵢ(θ)+λR(θ). Changing the reduction from mean to sum multiplies the data gradient by n; unless the penalty and step size are handled consistently, it also changes the optimization problem or trajectory."
+    },
+    {
+      "title": "Different losses elicit different summaries",
+      "explanation": "For a constant prediction, squared error is minimized by the sample mean, while absolute error is minimized by a median. Here the mean is 1.25 and every value in [0,1] is a median. The large observation 5 pulls the mean farther than the median interval."
+    },
+    {
+      "title": "Huber limits the pull of a large residual",
+      "explanation": "This Huber derivative equals r inside [−1,1] and the sign of r outside. It is smooth at the transition but caps the magnitude of one residual's contribution to the derivative. Robustness to large residuals does not automatically protect a regression model from extreme feature values."
+    }
+  ],
+  "process": [
+    "Write the complete objective, including data weights, reduction, penalties and domains.",
+    "Derive what prediction minimizes that criterion in a simple case before using a large model.",
+    "Evaluate the fitted model against the actual deployment metric on appropriate held-out data."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "J(c)=¼Σᵢℓ(c−yᵢ); ℓ₂(r)=r²/2; ℓ₁(r)=|r|; Huber₁(r)=r²/2 if |r|≤1, else |r|−½",
+      "meaning": "Four equally weighted, dimensionless observations y={−1,0,1,5}; every observation receives the same constant prediction. The three curves use different losses, all averaged over four examples. Their heights are not interchangeable quality scores. This lab fixes Huber's threshold at 1 and does not estimate a scale parameter."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A mean and a robust center disagree",
+    "setup": "Use y={−1,0,1,5}.",
+    "steps": [
+      "The average is 5/4=1.25, which minimizes half squared error.",
+      "Absolute error is 7/4=1.75 for every c in [0,1], so its minimizer is not unique.",
+      "At c=0.5, Huber's clipped residuals are {1,0.5,−0.5,−1}; their sum is zero."
+    ],
+    "result": "The Huber optimum is 0.5, the squared-loss optimum is 1.25, and neither discrepancy is an optimizer bug."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A small loss under one definition cannot be compared directly with a smaller number from another loss, reduction, or target scale.",
+    "Optimizing a differentiable surrogate does not guarantee the business metric improves; check the relationship instead of silently treating them as identical."
+  ],
+  "implementation": [
+    "Expose data loss and regularization separately in training logs.",
+    "Keep masking and sample weights explicit; dividing by all tokens instead of valid tokens can change gradient scale when sequence lengths vary."
+  ],
+  "takeaways": [
+    "Loss choice changes which prediction is optimal. Averaging, weighting, clipping and regularization are part of the mathematical specification, not implementation trivia.",
+    "Explain why squared, absolute and Huber losses choose different constant predictions."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["These define what the system is trying to minimize, maximize, or balance.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Objectives, losses, and cost functions illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A loss scores a prediction against an outcome. A training objective aggregates those losses and may add penalties or constraints. Terminology varies, so an implementation should state the complete expression, its reduction, and the variables being optimized rather than rely on the word cost.","Distinguish an individual loss from the full training objective.","Explain why squared, absolute and Huber losses choose different constant predictions.","The optimizer answers the question encoded by the loss—not the question you meant to ask.","J(c)=¼Σᵢℓ(c−yᵢ); ℓ₂(r)=r²/2; ℓ₁(r)=|r|; Huber₁(r)=r²/2 if |r|≤1, else |r|−½","Four equally weighted, dimensionless observations y={−1,0,1,5}; every observation receives the same constant prediction. The three curves use different losses, all averaged over four examples. Their heights are not interchangeable quality scores. This lab fixes Huber's threshold at 1 and does not estimate a scale parameter.","Loss choice changes which prediction is optimal. Averaging, weighting, clipping and regularization are part of the mathematical specification, not implementation trivia."]} />

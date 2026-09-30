@@ -1,57 +1,57 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
+  "hook": "Two correct marginals can still make the wrong joint prediction.",
+  "overview": "Approximate inference estimates a distribution or a quantity derived from it when exact computation is impractical. Sampling error and error from a restricted approximation family are distinct, and must be evaluated for the actual question being asked.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "Specify the query first",
+      "explanation": "Posterior means, tail probabilities, joint events and predictive decisions can have different approximation errors. Matching E[X] and E[Y] says little about P(X=Y). Here both models have Bernoulli(0.5) marginals, but only the target puts 98% of its mass on agreement."
     },
     {
-      "title": "Core computation",
-      "explanation": "Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality."
+      "title": "Random error versus structural error",
+      "explanation": "An IID event-frequency estimate is unbiased and varies across repeated datasets. A deterministic estimate under a fixed product distribution has no Monte Carlo variation, yet can remain far from the target. Practical methods can have both errors, plus incomplete optimization or transient sampling bias."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It scales to larger models but introduces bias, variance, convergence questions, or all three."
+      "title": "A controlled example, not a race",
+      "explanation": "This target is small enough to enumerate and sample exactly. It deliberately makes the reference answer available. Difficult real models may not permit IID target sampling, so the plotted curve is not a promised runtime or accuracy bound for an arbitrary inference algorithm."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It scales to larger models but introduces bias, variance, convergence questions, or all three."
+    "Write the target distribution and the expectation or decision you need.",
+    "Identify which errors come from the approximation family, finite samples and incomplete computation.",
+    "Compare against an exact small case or a trusted reference, checking joint and tail queries as well as marginal means."
   ],
   "formulas": [
     {
-      "label": "Approximate inference rule",
-      "expression": "E_p[f(X)] approximately (1/N) sum_i f(x_i)",
-      "meaning": "It scales to larger models but introduces bias, variance, convergence questions, or all three."
+      "label": "Definition and assumptions",
+      "expression": "θ=Eₚ[1{X=Y}]=0.98; θq=0.50; RMSE(θ̂n)=√(0.98·0.02/n)",
+      "meaning": "A four-state target has masses (0.49,0.01,0.01,0.49) in order (00,01,10,11). The fixed independent approximation has mass 0.25 in every cell. The sampling curve is an exact repeated-sampling RMSE for IID target draws, not a realized trajectory or an MCMC guarantee."
     }
   ],
   "example": {
-    "title": "Approximate inference in a small case",
-    "setup": "Estimate a posterior risk probability in a dense network using Monte Carlo samples.",
+    "title": "Agreement between two binary indicators",
+    "setup": "The target puts 0.49 on each equal pair and 0.01 on each unequal pair. Use n=100 independent target draws.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Target agreement is 0.49+0.49=0.98; the product of its marginals predicts 0.25+0.25=0.5.",
+      "The fixed approximation error is |0.5−0.98|=0.48.",
+      "The event indicator has variance 0.98×0.02=0.0196. Its sample average has variance 0.000196 and RMSE 0.014."
     ],
-    "result": "The sample fraction converges toward the desired probability while retaining measurable uncertainty."
+    "result": "At n=1000 the IID RMSE falls to about 0.004427; the fixed product approximation still misses by 0.48."
   },
   "pitfalls": [
-    "A precise-looking decimal is not evidence of accuracy without convergence or error diagnostics.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "Do not interpret the RMSE curve as an error bar around every individual estimate: it averages squared error over repeated samples.",
+    "Correlated MCMC draws cannot generally use the IID variance formula with the raw iteration count. Effective sample size is query-dependent.",
+    "The product of target marginals in this lab is not claimed to minimize KL(q||p); the variational lesson explores that different objective."
   ],
-  "implementation": [],
+  "implementation": [
+    "Maintain tiny enumerable versions of important models as reference cases for the quantities users actually consume.",
+    "Record the approximation family, stopping rule and sampling assumptions with reported estimates. A stable answer across iterations need not be a correct answer."
+  ],
   "takeaways": [
-    "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
-    "Use sampling, optimization, or approximate message passing to construct a tractable estimate and quantify its quality.",
-    "It scales to larger models but introduces bias, variance, convergence questions, or all three.",
-    "The sample fraction converges toward the desired probability while retaining measurable uncertainty."
+    "More independent target samples reduce sampling error, but more computation of the same fixed approximation cannot remove its missing dependence.",
+    "Choose diagnostic queries that expose missing dependence instead of only checking marginal means."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Approximate inference illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Approximate inference estimates a distribution or a quantity derived from it when exact computation is impractical. Sampling error and error from a restricted approximation family are distinct, and must be evaluated for the actual question being asked.","Separate finite-sample uncertainty from error caused by a restrictive family.","Choose diagnostic queries that expose missing dependence instead of only checking marginal means.","Two correct marginals can still make the wrong joint prediction.","θ=Eₚ[1{X=Y}]=0.98; θq=0.50; RMSE(θ̂n)=√(0.98·0.02/n)","A four-state target has masses (0.49,0.01,0.01,0.49) in order (00,01,10,11). The fixed independent approximation has mass 0.25 in every cell. The sampling curve is an exact repeated-sampling RMSE for IID target draws, not a realized trajectory or an MCMC guarantee.","More independent target samples reduce sampling error, but more computation of the same fixed approximation cannot remove its missing dependence."]} />

@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The forward-backward algorithm computes every HMM state's smoothed probability using evidence before and after that time.",
+  "hook": "Filtering knows the prefix; smoothing can look back with hindsight.",
+  "overview": "Forward–backward computes posterior state marginals in a finite-state HMM. Forward messages summarize evidence up to a time; backward messages summarize the remaining evidence conditional on that time's state. Their normalized product gives a smoothed marginal. This is different from filtering, which cannot use observations that have not yet arrived.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "Forward is joint mass before normalization",
+      "explanation": "Define αₜ(j)=P(y₁:ₜ,Sₜ=j). Initialize α₁(j)=π(j)B(j,y₁); then sum over possible predecessor states and multiply by the new emission. Dividing by Σⱼαₜ(j) gives the filtered marginal. The sum at the final time is the observed-prefix likelihood."
     },
     {
-      "title": "Core computation",
-      "explanation": "Pass forward messages from the start, backward messages from the end, multiply them at each time, and normalize."
+      "title": "Backward is a likelihood, not a posterior",
+      "explanation": "Define βₜ(j)=P(yₜ₊₁:ₙ|Sₜ=j). Set βₙ(j)=1 because an empty suffix supplies no evidence. Moving backward sums the next-state transition, next emission and next backward message. Normalize αₜ(j)βₜ(j) across j to obtain P(Sₜ=j|y₁:ₙ)."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It gives exact HMM marginals in linear sequence length, while requiring the complete observation sequence for smoothing."
+      "title": "Smoothing is information, not a causal intervention",
+      "explanation": "Changing n reveals more of the fixed record; it does not change the sensor or alter the past state. At n=1 both methods give 0.85 for S₁=1. Revealing the next one strengthens that belief. The subsequent zeros then revise the early state again, with their influence moderated by the transition model."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Pass forward messages from the start, backward messages from the end, multiply them at each time, and normalize.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It gives exact HMM marginals in linear sequence length, while requiring the complete observation sequence for smoothing."
+    "Pass forward through the available observations, storing state messages and normalization information.",
+    "Initialize the final backward message to one and pass backward through the same prefix.",
+    "Combine and normalize messages at each time; report which observations each result conditions on."
   ],
   "formulas": [
     {
-      "label": "Forward-backward algorithm rule",
-      "expression": "P(z_t|x_1:T) proportional alpha_t(z_t) beta_t(z_t)",
-      "meaning": "It gives exact HMM marginals in linear sequence length, while requiring the complete observation sequence for smoothing."
+      "label": "Definition and assumptions",
+      "expression": "αₜ(j)=B(j,yₜ)Σᵢαₜ₋₁(i)A(i,j); βₜ(i)=ΣⱼA(i,j)B(j,yₜ₊₁)βₜ₊₁(j); γₜ(j)∝αₜ(j)βₜ(j)",
+      "meaning": "Binary HMM with initial probabilities (0.5,0.5), hidden persistence 0.8 and emission reliability 0.85. The fixed observations are 1100, but only the first n are revealed to inference. Both lines show P(Sₜ=1); purple points are the revealed binary observations, not probabilities. No points after n are inferred or plotted. Messages are unscaled for this short sequence."
     }
   ],
   "example": {
-    "title": "Forward-backward algorithm in a small case",
-    "setup": "Re-estimate a machine's condition on day three after observing its full seven-day sensor record.",
+    "title": "A second positive reading changes yesterday's estimate",
+    "setup": "Reveal only the prefix 11.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Pass forward messages from the start, backward messages from the end, multiply them at each time, and normalize.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "At t=1 the unnormalized forward vector is (0.075,0.425), giving filtered P(S₁=1)=0.85.",
+      "At t=2 it is (0.02175,0.30175), whose sum is P(11)=0.3235.",
+      "The backward vector at t=1 is (0.29,0.71). Thus the smoothed probability is 0.425·0.71/0.3235≈0.932767."
     ],
-    "result": "Future observations correct the day-three belief that a forward-only filter produced."
+    "result": "Later evidence increases the earlier posterior without changing its earlier filtering value."
   },
   "pitfalls": [
-    "Scale or normalize messages at each step to prevent numeric underflow on long sequences.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "A backward message does not sum to one across states in general. Treating it as a posterior leads to incorrect combinations.",
+    "Taking the most probable state from each smoothed marginal does not in general recover the most probable joint state sequence."
   ],
-  "implementation": [],
+  "implementation": [
+    "A dense K-state HMM requires O(TK²) arithmetic. Reuse messages instead of enumerating Kᵀ paths; sparse transitions can reduce work.",
+    "For long sequences, use consistent scaling or log-sum-exp and track the log likelihood. If evidence has zero likelihood under the model, do not normalize a zero vector into invented probabilities."
+  ],
   "takeaways": [
-    "The forward-backward algorithm computes every HMM state's smoothed probability using evidence before and after that time.",
-    "Pass forward messages from the start, backward messages from the end, multiply them at each time, and normalize.",
-    "It gives exact HMM marginals in linear sequence length, while requiring the complete observation sequence for smoothing.",
-    "Future observations correct the day-three belief that a forward-only filter produced."
+    "Smoothing can revise past beliefs using later data. At the last revealed time it equals filtering, because there is no future evidence to add.",
+    "Distinguish filtering, smoothing, observation likelihood and joint-path decoding."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The forward-backward algorithm computes every HMM state's smoothed probability using evidence before and after that time.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward-backward algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Forward–backward computes posterior state marginals in a finite-state HMM. Forward messages summarize evidence up to a time; backward messages summarize the remaining evidence conditional on that time's state. Their normalized product gives a smoothed marginal. This is different from filtering, which cannot use observations that have not yet arrived.","Compute forward and backward messages with explicit conditioning.","Distinguish filtering, smoothing, observation likelihood and joint-path decoding.","Filtering knows the prefix; smoothing can look back with hindsight.","αₜ(j)=B(j,yₜ)Σᵢαₜ₋₁(i)A(i,j); βₜ(i)=ΣⱼA(i,j)B(j,yₜ₊₁)βₜ₊₁(j); γₜ(j)∝αₜ(j)βₜ(j)","Binary HMM with initial probabilities (0.5,0.5), hidden persistence 0.8 and emission reliability 0.85. The fixed observations are 1100, but only the first n are revealed to inference. Both lines show P(Sₜ=1); purple points are the revealed binary observations, not probabilities. No points after n are inferred or plotted. Messages are unscaled for this short sequence.","Smoothing can revise past beliefs using later data. At the last revealed time it equals filtering, because there is no future evidence to add."]} />

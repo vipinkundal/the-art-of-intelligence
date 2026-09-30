@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Chooses a step size by testing how the objective changes along a direction.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A direction is a heading, not permission to take an arbitrarily large step.",
+  "overview": "A line search chooses how far to move along an already chosen direction. It evaluates the one-dimensional restriction φ(α)=f(x+αp), looking for a useful step rather than necessarily solving that subproblem exactly. Direction selection, step acceptance and the outer optimizer's stopping rule are different decisions.",
+  "concepts": [
+    {
+      "title": "Freeze the direction while searching",
+      "explanation": "Here ∇f(1)=4 and p=−4, so xnew=1−4α and the initial directional derivative is −16. Halving α shortens the same proposed movement; recomputing p after every trial would define a different procedure. Once a trial is accepted, the outer optimizer can evaluate a new gradient at the new parameter."
+    },
+    {
+      "title": "Compare with a decrease budget",
+      "explanation": "The Armijo bound is the straight line 2−1.6α. A trial must lie on or below it, not merely below the initial loss of 2. In this quadratic, expanding the inequality gives α(32α−14.4)≤0, so the positive acceptable interval is 0<α≤0.45. Small enough steps pass, but not all improving steps pass."
+    },
+    {
+      "title": "The first acceptable point need not be the best point",
+      "explanation": "Starting from 1.5 gives trials 1.5, 0.75 and 0.375. The last is acceptable although exact minimization along this direction would use 0.25. This is intentional: repeated expensive searches for the exact best step may cost more than taking a useful step and updating the model."
+    },
+    {
+      "title": "Different rules give different promises",
+      "explanation": "A strong-Wolfe search adds a bound on the magnitude of the new directional derivative, using 0<c₁<c₂<1. It can use bracketing and interpolation; it is not this halving-only lab. A library routine may return failure instead of a usable step, so its result must be checked before updating parameters."
+    }
+  ],
+  "process": [
+    "Compute a candidate direction and verify that its inner product with the gradient is negative; handle stationary or non-descent cases separately.",
+    "Keep x and p fixed, evaluate the candidate step, and shrink it while the stated acceptance rule fails.",
+    "Apply the accepted update once, record the objective-evaluation cost, and let the outer method decide whether to continue."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x+αp) ≤ f(x)+c₁α∇f(x)ᵀp; here φ(α)=2(1−4α)² ≤ 2−1.6α",
+      "meaning": "One line search on f(x)=2x² starts at x=1 with fixed direction p=−4. Use Armijo c₁=0.1 and halve rejected steps (ρ=0.5). Each slider setting restarts the search from its chosen initial trial; it is not an outer optimization iteration. Objective evaluations are deterministic, the direction is a descent direction, and all quantities are dimensionless. A small floating-point comparison tolerance handles equality at the acceptance boundary. Plot axes expand to include rejected trials."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Three trials, one update",
+    "setup": "At x=1 on f(x)=2x², use p=−4, c₁=0.1, ρ=0.5 and α₀=1.5.",
+    "steps": [
+      "At α=1.5, xnew=−5 and f=50; the bound is −0.4, so reject.",
+      "At α=0.75, xnew=−2 and f=8; the bound is 0.8, so reject again.",
+      "At α=0.375, xnew=−0.5 and f=0.5≤1.4. Accept after two halvings and three trial evaluations."
+    ],
+    "result": "The loss falls by 75%, but the accepted point is not the minimizer x=0. An exact line search would use α=0.25."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A direction with nonnegative ∇fᵀp does not inherit the usual small-step descent guarantee. Shrinking indefinitely is not a repair for an invalid direction.",
+    "Comparing different random minibatches or changing a dropout mask across trial evaluations can obscure whether the same objective decreased.",
+    "A tiny accepted step can reflect poor scaling or numerical trouble. It is not, by itself, proof of stationarity or global optimality."
+  ],
+  "implementation": [
+    "Cache the initial objective and directional derivative; reuse the same objective definition for every trial. Bound the number of attempts and check non-finite evaluations and domain restrictions.",
+    "State whether the routine enforces Armijo, Wolfe or another rule, and log failed searches explicitly. This lab counts trial evaluations only, excluding the already known initial loss and gradient."
+  ],
+  "takeaways": [
+    "Sufficient decrease is an acceptance rule, not exact minimization or a certificate that the whole optimization problem is solved.",
+    "Distinguish step acceptance from direction choice and optimization termination."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Chooses a step size by testing how the objective changes along a direction.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Line search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A line search chooses how far to move along an already chosen direction. It evaluates the one-dimensional restriction φ(α)=f(x+αp), looking for a useful step rather than necessarily solving that subproblem exactly. Direction selection, step acceptance and the outer optimizer's stopping rule are different decisions.","Calculate an Armijo backtracking trace and its evaluation cost.","Distinguish step acceptance from direction choice and optimization termination.","A direction is a heading, not permission to take an arbitrarily large step.","f(x+αp) ≤ f(x)+c₁α∇f(x)ᵀp; here φ(α)=2(1−4α)² ≤ 2−1.6α","One line search on f(x)=2x² starts at x=1 with fixed direction p=−4. Use Armijo c₁=0.1 and halve rejected steps (ρ=0.5). Each slider setting restarts the search from its chosen initial trial; it is not an outer optimization iteration. Objective evaluations are deterministic, the direction is a descent direction, and all quantities are dimensionless. A small floating-point comparison tolerance handles equality at the acceptance boundary. Plot axes expand to include rejected trials.","Sufficient decrease is an acceptance rule, not exact minimization or a certificate that the whole optimization problem is solved."]} />

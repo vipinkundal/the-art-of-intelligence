@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
+  "hook": "Conditioning closes a chain or fork, but can open a collider.",
+  "overview": "D-separation checks whether a conditioning set blocks every path between variable sets in a DAG. If a distribution factorizes over that DAG, d-separation guarantees conditional independence. This implication does not require faithfulness; extra parameter-specific independencies may exist.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "Inspect paths without following the arrows",
+      "explanation": "A path can be traversed in either direction, but arrowheads determine each interior node's role. A collider has two arrowheads meeting on the path. The same node may be a collider on one path and a non-collider on another."
     },
     {
-      "title": "Core computation",
-      "explanation": "Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants."
+      "title": "Two blocking rules",
+      "explanation": "A path is active exactly when every non-collider on it is outside the conditioning set and every collider has itself or a descendant in that set. The collider in this three-node lab has no descendants; larger graphs require the descendant check too."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+      "title": "Every path must be blocked",
+      "explanation": "Blocking one route is not enough when another remains active. D-separation between sets requires the criterion for every path between their members, with query sets and conditioning set disjoint."
+    },
+    {
+      "title": "Separate structural guarantees from numerical accidents",
+      "explanation": "If a child conditional table does not actually vary with its parent, the variables may be independent despite an edge. Faithfulness rules out such extra independencies and is needed for certain reverse inferences from data, not for d-separation's forward guarantee."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+    "Name the two disjoint query sets and a disjoint conditioning set.",
+    "Classify interior nodes on each candidate path as colliders or non-colliders, checking observed descendants for colliders.",
+    "Declare d-separation only if every path is blocked. For a particular distribution, compute a conditional table when you also need numerical dependence strength."
   ],
   "formulas": [
     {
-      "label": "D-separation rule",
-      "expression": "X d-separated from Y by Z => X independent of Y given Z",
-      "meaning": "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength."
+      "label": "Definition and assumptions",
+      "expression": "d-sepG(X,Y|S) ⇒ X ⟂ Y | S, for P factorizing over G",
+      "meaning": "Six cases alternate unobserved Z and observed Z=1 for chain X→Z→Y, fork X←Z→Y and collider X→Z←Y. Chain/fork roots have probability 0.5 and each child matches its parent with probability 0.9. Collider roots are independent Bernoulli(0.5), with P(Z=1|X,Y)=(0.05,0.9,0.9,0.99) in order (00,01,10,11). Tables are calculated by enumerating the eight states."
     }
   ],
   "example": {
-    "title": "D-separation in a small case",
-    "setup": "Analyze the collider Rain -> WetGrass <- Sprinkler.",
+    "title": "Observation opens the collider",
+    "setup": "Choose case 5, collider with Z unobserved, then case 6, collider with Z=1 observed.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Before conditioning, X and Y are independent with all four joint cells 0.25.",
+      "The four masses for Z=1 are 0.25×(0.05,0.9,0.9,0.99), totaling 0.71. Normalize to get approximately (0.017606,0.316901,0.316901,0.348592).",
+      "Both conditional success marginals are about 0.665493. Their product is 0.442881, not the joint 0.348592; covariance is about −0.094289."
     ],
-    "result": "Rain and Sprinkler are independent through this path until WetGrass or its descendant is conditioned on."
+    "result": "Observation creates dependence for these parameters. By contrast, the chain and fork cases become independent when Z is observed."
   },
   "pitfalls": [
-    "Path rules differ for colliders versus chains and forks; applying one blocking rule to all three is incorrect.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "Faithfulness is not needed for d-separation to imply independence in a factorizing distribution. It concerns whether there are any additional independencies beyond those implied by the graph.",
+    "A d-connected pair can still be independent for special parameter choices. Do not replace 'can be dependent' with 'must be dependent'.",
+    "Conditioning on a descendant of a collider can open a path even if the collider itself is not observed. Merely deleting observed nodes from the original directed graph misses this rule."
   ],
-  "implementation": [],
+  "implementation": [
+    "For large DAGs, use an established active-trail or Bayes-ball implementation that tracks arrival direction and ancestors of evidence. Simple undirected reachability on the original graph is insufficient.",
+    "Validate acyclicity and disjoint query/evidence sets. Keep a numerical dependency measure separate from the structural d-separation result."
+  ],
   "takeaways": [
-    "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
-    "Inspect every path between variable sets and determine whether conditioning blocks chains and forks or opens colliders and their descendants.",
-    "A blocked set of paths implies independence for every distribution faithful to the graph factorization; it does not measure dependence strength.",
-    "Rain and Sprinkler are independent through this path until WetGrass or its descendant is conditioned on."
+    "A blocked path guarantees no dependence through that route. An active path permits dependence; it does not prove dependence for every numerical parameterization.",
+    "Explain why d-separation is a distribution-wide guarantee but d-connection only permits dependence."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This D-separation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["D-separation checks whether a conditioning set blocks every path between variable sets in a DAG. If a distribution factorizes over that DAG, d-separation guarantees conditional independence. This implication does not require faithfulness; extra parameter-specific independencies may exist.","Apply the distinct blocking rules to chains, forks and colliders.","Explain why d-separation is a distribution-wide guarantee but d-connection only permits dependence.","Conditioning closes a chain or fork, but can open a collider.","d-sepG(X,Y|S) ⇒ X ⟂ Y | S, for P factorizing over G","Six cases alternate unobserved Z and observed Z=1 for chain X→Z→Y, fork X←Z→Y and collider X→Z←Y. Chain/fork roots have probability 0.5 and each child matches its parent with probability 0.9. Collider roots are independent Bernoulli(0.5), with P(Z=1|X,Y)=(0.05,0.9,0.9,0.99) in order (00,01,10,11). Tables are calculated by enumerating the eight states.","A blocked path guarantees no dependence through that route. An active path permits dependence; it does not prove dependence for every numerical parameterization."]} />

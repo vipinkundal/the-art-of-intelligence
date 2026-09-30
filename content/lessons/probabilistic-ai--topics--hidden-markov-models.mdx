@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
+  "hook": "A histogram can hide the memory that a sequence reveals.",
+  "overview": "A hidden Markov model separates a latent state sequence from the observations it emits. In a first-order HMM, the next hidden state depends on the current hidden state, and each observation depends on its own state. Marginalizing the hidden sequence can produce temporal dependence in the observations; the observed process need not itself be first-order Markov.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "Two layers do different jobs",
+      "explanation": "A describes hidden-state motion; B describes noisy measurement of a state. The transition rows and emission rows are separate probability distributions. A sensor can report a different symbol even when the hidden state stays fixed, so an observed change is not automatically a state transition."
     },
     {
-      "title": "Core computation",
-      "explanation": "Combine a transition probability between hidden states with an emission likelihood for each observation."
+      "title": "Symmetry preserves the one-time marginal",
+      "explanation": "The symmetric transition leaves (0.5,0.5) unchanged. Symmetric measurement noise then gives P(Yₜ=1)=0.5 at every time for every a in the control. Nonetheless the adjacent observation correlation equals (2a−1)·0.7². Persistence affects order information that a one-time histogram discards."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+      "title": "Add hidden explanations rather than selecting one",
+      "explanation": "There are 16 hidden paths for a four-observation sequence. Its probability is the sum of all 16 joint masses, not the score of the most plausible path. The forward algorithm computes the same sum without enumerating exponentially many paths. This model lesson defines the distribution; inference and decoding lessons answer different questions about it."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Combine a transition probability between hidden states with an emission likelihood for each observation.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+    "Specify what the latent state represents, its initial distribution and its transition law.",
+    "Specify the observation likelihood conditional on each state, including measurement noise.",
+    "Sum over hidden paths to score observed sequences; compare sequence-level predictions with the data."
   ],
   "formulas": [
     {
-      "label": "Hidden Markov models rule",
-      "expression": "P(z_1:T,x_1:T)=P(z_1) product_t P(x_t|z_t) product_{t=2}^T P(z_t|z_(t-1))",
-      "meaning": "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive."
+      "label": "Definition and assumptions",
+      "expression": "p(s₁:T,y₁:T)=π(s₁)·∏ₜ₌₂ᵀA(sₜ₋₁,sₜ)·∏ₜ₌₁ᵀB(sₜ,yₜ); p(y)=Σₛp(s,y)",
+      "meaning": "Two binary hidden states and binary observations. Initial state probabilities are (0.5,0.5). The hidden state stays unchanged with probability a; an observation matches its state with probability 0.85. Parameters are fixed, not fitted. Curves give probabilities of three exact four-symbol strings, summing over all hidden paths. They are not probabilities of a number of ones, nor an exhaustive partition of outcomes."
     }
   ],
   "example": {
-    "title": "Hidden Markov models in a small case",
-    "setup": "Infer whether a machine is healthy or failing from a sequence of noisy vibration categories.",
+    "title": "Two pairs versus alternating symbols",
+    "setup": "Set a=0.8 and observation reliability to 0.85.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Combine a transition probability between hidden states with an emission likelihood for each observation.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "The observed string 1100 has probability 0.05761225; 1010 has probability 0.02821225.",
+      "The constant string 1111 has probability 0.15169225, although every position separately still has a 50% chance of being one.",
+      "At a=0.5 the hidden states are independent and every one of the 16 observed strings has probability 1/16."
     ],
-    "result": "The posterior assigns a probability to each hidden condition at each time rather than trusting an observation directly."
+    "result": "Identical one-time marginals can coexist with very different sequence probabilities."
   },
   "pitfalls": [
-    "Label switching and weakly separated emissions can make learned hidden states hard to interpret.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "An HMM's conditional-independence assumptions concern latent states and emissions, not unconditional independence of observations.",
+    "A state name is a modelling interpretation, not automatically an identified real-world cause; state labels can be permuted without changing the observable law."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep matrix orientation explicit: rows are the current state for A, and the emitting state for B. Validate each row sums to one.",
+    "Evaluate longer sequences with scaled messages or log-space sums. Fitting parameters and inferring states are separate operations."
+  ],
   "takeaways": [
-    "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
-    "Combine a transition probability between hidden states with an emission likelihood for each observation.",
-    "HMM algorithms are efficient, but the discrete state and conditional-independence assumptions may be too restrictive.",
-    "The posterior assigns a probability to each hidden condition at each time rather than trusting an observation directly."
+    "The initial distribution, transition matrix and emission model jointly determine sequence probabilities. A marginal histogram alone cannot identify temporal structure.",
+    "Explain why an observation histogram cannot describe all temporal dependence."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hidden Markov models illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A hidden Markov model separates a latent state sequence from the observations it emits. In a first-order HMM, the next hidden state depends on the current hidden state, and each observation depends on its own state. Marginalizing the hidden sequence can produce temporal dependence in the observations; the observed process need not itself be first-order Markov.","Factor a hidden-state sequence model into initial, transition and emission terms.","Explain why an observation histogram cannot describe all temporal dependence.","A histogram can hide the memory that a sequence reveals.","p(s₁:T,y₁:T)=π(s₁)·∏ₜ₌₂ᵀA(sₜ₋₁,sₜ)·∏ₜ₌₁ᵀB(sₜ,yₜ); p(y)=Σₛp(s,y)","Two binary hidden states and binary observations. Initial state probabilities are (0.5,0.5). The hidden state stays unchanged with probability a; an observation matches its state with probability 0.85. Parameters are fixed, not fitted. Curves give probabilities of three exact four-symbol strings, summing over all hidden paths. They are not probabilities of a number of ones, nor an exhaustive partition of outcomes.","The initial distribution, transition matrix and emission model jointly determine sequence probabilities. A marginal histogram alone cannot identify temporal structure."]} />

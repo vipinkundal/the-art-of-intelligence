@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
+  "hook": "Never revisiting a state does not guarantee that every branch gets a turn.",
+  "overview": "A search procedure is complete for a stated problem class if it eventually finds a solution whenever one exists, assuming the required operations terminate and sufficient resources are available. This is not a deadline guarantee. Nor does it automatically require termination on every unsolvable infinite instance. A single solvable instance on which a procedure runs forever refutes completeness for a class containing that instance.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "State the domain of the guarantee",
+      "explanation": "An algorithm may be complete on finite reachable graphs with correct duplicate detection and terminating successor enumeration, yet incomplete on a broader class of infinite graphs. Say which instances the claim covers. A finite machine's memory limit is a practical constraint distinct from the idealized eventual-success property."
     },
     {
-      "title": "Core rule",
-      "explanation": "State the problem class and prove that the search cannot indefinitely avoid every solution."
+      "title": "The counterexample contains no cycle",
+      "explanation": "After removing S, DFS removes A0, then A1, then A2, and so on. Every state is new. A global visited set therefore does not force the algorithm back to G. The obstruction is an infinite branch explored unfairly, not a repeated-state loop."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+      "title": "BFS makes each finite depth reachable in finite work",
+      "explanation": "The queue removes S, then A0, then G. A1 is placed behind G. More generally, with finite branching and terminating expansion, there are finitely many nodes through any finite depth. A shallowest solution at finite depth cannot be postponed forever by deeper nodes."
+    },
+    {
+      "title": "A budget cutoff is not a failure certificate",
+      "explanation": "At budget two, both displayed procedures have removed S and A0 and neither has returned the goal. Increasing to three lets BFS succeed. No finite cutoff proves an arbitrary unbounded search will never succeed. For DFS here, the separate transition invariant—every Ai always has a fresh preferred successor—establishes the infinite behavior."
+    },
+    {
+      "title": "Eventual success differs from deciding every instance",
+      "explanation": "A complete search can keep exploring an unsolvable infinite space forever. To require a procedure to terminate with either a witness or a correct no-solution answer is a stronger total-decision requirement. On a finite reachable graph with exhaustive traversal, frontier exhaustion can certify failure; an externally imposed timeout cannot."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+    "Specify the problem class, transition-generation assumptions and resource idealization.",
+    "For a positive guarantee, show that some solution cannot remain postponed forever.",
+    "For a counterexample, construct a solvable instance and prove the algorithm's invariant prevents it from reaching the solution."
   ],
   "formulas": [
     {
-      "label": "Completeness rule",
-      "expression": "solution exists => algorithm eventually returns a solution",
-      "meaning": "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds."
+      "label": "Definition and assumptions",
+      "expression": "solution exists ⇒ search eventually returns a solution (under the stated assumptions)",
+      "meaning": "S has successors A0 then G. For every nonnegative integer i, Ai has exactly one successor A(i+1). Only G is a goal. This is an infinite acyclic graph with finite branching and unit costs. Compare A-first DFS and FIFO BFS, both testing the goal on removal. The slider limits the displayed run; it does not truncate the mathematical graph or prove nontermination from a finite prefix."
     }
   ],
   "example": {
-    "title": "Completeness in a small case",
-    "setup": "Compare BFS on a finite-branching tree with unrestricted DFS on a tree containing an infinite first branch.",
+    "title": "Three removals separate the policies",
+    "setup": "Set the budget to two and then three.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: State the problem class and prove that the search cannot indefinitely avoid every solution.",
-      "Check the outcome against the goal and stated assumptions."
+      "At two removals, both traces are S,A0, with G still waiting.",
+      "BFS then removes G and returns S→G. DFS instead removes A1.",
+      "For every later DFS step, removing Ai exposes A(i+1) before G. Induction on the step proves indefinite postponement, separately from the finite visual trace."
     ],
-    "result": "BFS is complete under the assumption; DFS can miss an existing goal forever."
+    "result": "A one-edge solution exists, but depth-first order need never reach it."
   },
   "pitfalls": [
-    "Always state the assumptions attached to a completeness claim.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "Do not call an algorithm incomplete merely because one finite run timed out; incompleteness needs a counterexample or an invalidated guarantee.",
+    "Finite branching matters. Attempting to enumerate infinitely many children can prevent even a breadth-first implementation from finishing one expansion.",
+    "Nonnegative costs alone do not ensure UCS completeness on every infinite graph; infinitely many cheap prefixes can precede a goal. Positive costs bounded away from zero are one useful sufficient condition with finite branching."
   ],
-  "implementation": [],
+  "implementation": [
+    "Return distinct statuses for found, exhausted and budget cutoff. Preserve enough frontier state to resume when a time budget is only an operational limit.",
+    "Use a fair enumeration or iterative deepening when its assumptions fit. Correct duplicate detection solves revisitation, not every form of starvation."
+  ],
   "takeaways": [
-    "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
-    "State the problem class and prove that the search cannot indefinitely avoid every solution.",
-    "Completeness says nothing about solution quality or practical runtime; guarantees often require finite branching or positive step-cost bounds.",
-    "BFS is complete under the assumption; DFS can miss an existing goal forever."
+    "Completeness is a quantified guarantee with assumptions, not a success rate on examples. Distinct-state infinite branches can defeat DFS even when a goal is shallow.",
+    "Distinguish exhaustion, timeout and a proved infinite counterexample."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Completeness illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A search procedure is complete for a stated problem class if it eventually finds a solution whenever one exists, assuming the required operations terminate and sufficient resources are available. This is not a deadline guarantee. Nor does it automatically require termination on every unsolvable infinite instance. A single solvable instance on which a procedure runs forever refutes completeness for a class containing that instance.","State a completeness guarantee with its domain and termination assumptions.","Distinguish exhaustion, timeout and a proved infinite counterexample.","Never revisiting a state does not guarantee that every branch gets a turn.","solution exists ⇒ search eventually returns a solution (under the stated assumptions)","S has successors A0 then G. For every nonnegative integer i, Ai has exactly one successor A(i+1). Only G is a goal. This is an infinite acyclic graph with finite branching and unit costs. Compare A-first DFS and FIFO BFS, both testing the goal on removal. The slider limits the displayed run; it does not truncate the mathematical graph or prove nontermination from a finite prefix.","Completeness is a quantified guarantee with assumptions, not a success rate on examples. Distinct-state infinite branches can defeat DFS even when a goal is shallow."]} />

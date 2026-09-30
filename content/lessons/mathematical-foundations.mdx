@@ -1,30 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A field guide to the mechanisms, assumptions, and operating limits of Mathematical Foundations.",
+  "hook": "Correct shapes, correct loss, correct derivative—and still a step can be too large.",
+  "overview": "Mathematics makes a learning system's assumptions inspectable. Linear algebra defines representations, calculus describes sensitivity, probability models uncertainty, statistics connects observations to claims, optimization searches for decisions, information theory studies representation limits, and discrete mathematics supports proofs and computational analysis. Use the branch that answers your current question, then connect it to its prerequisites.",
   "concepts": [
     {
-      "title": "Operating note",
-      "explanation": "The math layer behind vectors, graphs, proofs, optimization, and many AI model operations."
+      "title": "Representation: what do the numbers mean?",
+      "explanation": "The two feature values form a 2×1 design matrix. Multiplying it by the scalar coefficient gives two predictions. Targets and predictions must align observation by observation; a shape-compatible broadcast is not necessarily the intended statistical model."
+    },
+    {
+      "title": "Objective: what is being improved?",
+      "explanation": "The stated loss is half the mean squared error, so the denominator is four for two observations. Changing from a mean to a sum would rescale both the loss and gradient. The learning-rate calculation must use the same normalization as the displayed objective."
+    },
+    {
+      "title": "Sensitivity and action: where should the coefficient move?",
+      "explanation": "Differentiate the stated expression to obtain (5w−7)/2. At zero, the derivative is −3.5, so gradient descent moves w positively. Direction is only local advice: the chosen step length determines whether the finite update actually improves the objective."
+    },
+    {
+      "title": "Evidence: which conclusion is supported?",
+      "explanation": "This tiny calculation can establish the training loss and its exact minimizer. It cannot establish that the examples represent a population, that future observations obey the same relation or that a model is reliable under shift. Those questions require probability, statistics and evaluation assumptions."
+    },
+    {
+      "title": "Choose a route, not a wall of prerequisites",
+      "explanation": "For tensor or embedding work, enter through linear algebra. For training dynamics, continue into calculus and optimization. For uncertain observations, take probability before statistics and information theory. For algorithms and guarantees, take the discrete-math route. The suggested routes are orientation, not a claim that every topic must be learned in one total order."
     }
   ],
   "process": [
-    "The math layer behind vectors, graphs, proofs, optimization, and many AI model operations."
+    "Write the quantities, dimensions and assumptions before manipulating the equation.",
+    "Derive the relevant relationship and make its numerical consequences visible.",
+    "Separate what the calculation proves from the empirical claims that still require data and evaluation."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "L(w)=¼[(w−1)²+(2w−3)²]; L′(w)=(5w−7)/2; w₁=0−η(−3.5)",
+      "meaning": "Two fixed training pairs (x,y)=(1,1),(2,3), scalar predictor ŷ=wx with no intercept, and half the mean squared residual as the objective. Start from w₀=0 and take exactly one full-gradient update. The slider changes the step size; data and objective stay fixed. No stochastic sampling, regularization or held-out evaluation is included. Arithmetic is a small deterministic calculation, not model training on a real dataset."
+    }
+  ],
   "example": {
-    "title": "Mathematical Foundations example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A correct gradient with an excessive step",
+    "setup": "Compare η=0.2, 0.4 and 1.",
+    "steps": [
+      "At η=0.2, w₁=0.7 and predictions are (0.7,1.4). The loss is (0.09+2.56)/4=0.6625, below the initial 2.5.",
+      "At η=0.4, w₁=1.4 is the exact minimizer. Residuals are (0.4,−0.2), giving loss 0.05.",
+      "At η=1, w₁=3.5 overshoots; loss becomes (6.25+16)/4=5.5625. The derivative formula was still correct."
+    ],
+    "result": "An accurate derivative does not choose a safe step size for you."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "The minimum is a property of this objective; training dynamics are a property of an algorithm and its settings.",
+    "A two-example fit is not evidence of out-of-sample performance or a causal relationship.",
+    "Graphical intuition helps expose mistakes but does not replace checking dimensions, assumptions and proof obligations."
+  ],
+  "implementation": [
+    "The learning paths link to authored section overviews and representative starting topics. The complete index remains available below them.",
+    "All plots in this example are calculated from the explicit two-row dataset. No backend, accounts or external data collection are required."
+  ],
   "takeaways": [
-    "A field guide to the mechanisms, assumptions, and operating limits of Mathematical Foundations.",
-    "The math layer behind vectors, graphs, proofs, optimization, and many AI model operations."
+    "Carry the contract from representation through loss and derivative to the update. A mathematically correct training step can still overshoot, and a better training objective does not certify generalization.",
+    "Choose an appropriate mathematical route while keeping empirical claims separate."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A field guide to the mechanisms, assumptions, and operating limits of Mathematical Foundations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Mathematical Foundations illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Mathematics makes a learning system's assumptions inspectable. Linear algebra defines representations, calculus describes sensitivity, probability models uncertainty, statistics connects observations to claims, optimization searches for decisions, information theory studies representation limits, and discrete mathematics supports proofs and computational analysis. Use the branch that answers your current question, then connect it to its prerequisites.","Connect representation, loss, derivatives and optimization in one inspectable example.","Choose an appropriate mathematical route while keeping empirical claims separate.","Correct shapes, correct loss, correct derivative—and still a step can be too large.","L(w)=¼[(w−1)²+(2w−3)²]; L′(w)=(5w−7)/2; w₁=0−η(−3.5)","Two fixed training pairs (x,y)=(1,1),(2,3), scalar predictor ŷ=wx with no intercept, and half the mean squared residual as the objective. Start from w₀=0 and take exactly one full-gradient update. The slider changes the step size; data and objective stay fixed. No stochastic sampling, regularization or held-out evaluation is included. Arithmetic is a small deterministic calculation, not model training on a real dataset.","Carry the contract from representation through loss and derivative to the update. A mathematically correct training step can still overshoot, and a better training objective does not certify generalization."]} />

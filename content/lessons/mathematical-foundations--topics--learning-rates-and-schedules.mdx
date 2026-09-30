@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Control step size over time, strongly affecting speed and stability.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The schedule is a timetable; it does not measure whether the model has arrived.",
+  "overview": "A learning-rate schedule specifies how the optimizer's global step size changes with training progress. Its meaning depends on the clock—optimizer updates, examples, tokens, or epochs—and on the optimizer itself. Warmup and decay define a policy, not a general guarantee of better training.",
+  "concepts": [
+    {
+      "title": "Warmup changes the beginning",
+      "explanation": "Here W=5 applies rates 0.06, 0.12, 0.18, 0.24 and 0.3 before decay. Warmup can make early updates more conservative, but this lab does not model evolving neural-network activations or optimizer moment estimates."
+    },
+    {
+      "title": "Decay spends a finite update budget",
+      "explanation": "Cosine decay approaches a chosen floor over a chosen horizon. Our floor is zero and there are no restarts. A restart policy would explicitly reset the phase; a plateau policy would instead respond to a measured metric."
+    },
+    {
+      "title": "The optimizer mediates the rate",
+      "explanation": "A global η multiplies a raw gradient in plain descent, a velocity in momentum, or a rescaled direction in Adam. The same schedule values do not imply equal parameter displacements across those optimizers."
+    }
+  ],
+  "process": [
+    "Choose a clock aligned with the actual optimizer updates, especially when accumulating gradients.",
+    "Specify the starting value, peak, warmup boundary, decay horizon and final value.",
+    "Log the rate used by each update and restore the schedule counter with a checkpoint."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "ηₜ=0.3(t+1)/W for t<W; otherwise ηₜ=0.15[1+cos(π(t−W)/(40−W))]",
+      "meaning": "The clock is the zero-based optimizer-update index. With W=0, warmup is skipped. Rates t=0…39 are applied; t=40 is the plotted zero endpoint, not another update. The last warmup update and first decay update both use the peak. Curves compare policies, not empirical training losses or warm restarts."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Read the timetable exactly",
+    "setup": "Use peak 0.3, W=5 and horizon 40.",
+    "steps": [
+      "At t=0, the first rate is 0.3/5=0.06.",
+      "At t=4 and t=5, the rate is 0.3 under the stated boundary convention.",
+      "At t=40, cosine reaches zero; only the preceding 40 rates were applied."
+    ],
+    "result": "Changing when the scheduler advances can shift this timetable by one update even if the plotted formula looks correct."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Calling a scheduler once per minibatch while intending once per epoch can exhaust the schedule prematurely.",
+    "A finite-horizon decay plot is not a proof of asymptotic stochastic-approximation convergence, and a small final rate cannot undo an unstable initial update."
+  ],
+  "implementation": [
+    "Log actual rates with optimizer-step indices, not only configuration values.",
+    "When changing batch size or accumulation, revisit both the total update count and the schedule; do not silently reuse an epoch-based configuration."
+  ],
+  "takeaways": [
+    "State the schedule's clock, endpoint convention, and warmup boundary. A visually smooth schedule can still be applied at the wrong frequency.",
+    "Distinguish a schedule policy from evidence that a model trained better."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Control step size over time, strongly affecting speed and stability.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Learning rates and schedules illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A learning-rate schedule specifies how the optimizer's global step size changes with training progress. Its meaning depends on the clock—optimizer updates, examples, tokens, or epochs—and on the optimizer itself. Warmup and decay define a policy, not a general guarantee of better training.","Translate warmup and cosine decay into explicit update values.","Distinguish a schedule policy from evidence that a model trained better.","The schedule is a timetable; it does not measure whether the model has arrived.","ηₜ=0.3(t+1)/W for t<W; otherwise ηₜ=0.15[1+cos(π(t−W)/(40−W))]","The clock is the zero-based optimizer-update index. With W=0, warmup is skipped. Rates t=0…39 are applied; t=40 is the plotted zero endpoint, not another update. The last warmup update and first decay update both use the peak. Curves compare policies, not empirical training losses or warm restarts.","State the schedule's clock, endpoint convention, and warmup boundary. A visually smooth schedule can still be applied at the wrong frequency."]} />

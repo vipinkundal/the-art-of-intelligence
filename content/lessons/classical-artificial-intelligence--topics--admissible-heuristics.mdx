@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "An admissible heuristic never overestimates the true cheapest remaining cost.",
+  "hook": "An overestimate removes a guarantee before it necessarily changes an answer.",
+  "overview": "An admissible heuristic h is a lower bound on the least remaining cost h* from each state to a goal. Under the usual nonnegative convention, 0≤h≤h* and h(goal)=0. The inequality is a property over all relevant states, not merely over the path a search happened to return. It supports A* optimality when repeated states are handled correctly.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "A bound points in a particular direction",
+      "explanation": "For minimum-cost search, h must underestimate or equal the cheapest achievable remainder. An average prediction error near zero is not enough: an occasional overestimate can hide the optimal branch. The heuristic is not a confidence interval or a probability of success."
     },
     {
-      "title": "Core rule",
-      "explanation": "For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater."
+      "title": "Admissibility is weaker than consistency",
+      "explanation": "In this lab, h(A)=3 equals the true remaining cost, so it is admissible. But h(C)=0 and c(A,C)=1, giving 3>1+0: the edge consistency condition fails. With appropriate reopening, A* can still be correct under admissibility alone."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+      "title": "Find the actual failure threshold",
+      "explanation": "B is initially attractive because h(B)=0. It generates G with g=10. A has priority 1+h(A). For h(A)≤9, A is processed before that goal, with the equality resolved alphabetically. For h(A)>9, the expensive goal is selected first. The admissibility boundary at three and this instance's failure boundary at nine are different."
+    },
+    {
+      "title": "Relax the problem without adding new obstacles",
+      "explanation": "If a relaxed problem preserves every original solution and never increases its cost, its optimal value is a lower bound on the original optimum. For a grid with unit orthogonal moves, removing obstacles yields Manhattan distance. Changing moves or costs requires rechecking the argument."
+    },
+    {
+      "title": "Combine lower bounds carefully",
+      "explanation": "The maximum of several admissible heuristics remains admissible because every candidate is at most h*. Adding them may count the same future cost twice. Summation needs a disjoint-cost or cost-partition argument; two individually valid estimates do not automatically form a valid sum."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+    "Specify the goal set and cost units, then establish a lower-bound argument for every state represented by the heuristic.",
+    "Inspect exact h* only on small verification instances; use them to find counterexamples, not to prove arbitrary-input correctness.",
+    "Pair the heuristic with a graph-search duplicate policy that preserves improved paths."
   ],
   "formulas": [
     {
-      "label": "Admissible heuristics rule",
-      "expression": "0 <= h(n) <= h*(n)",
-      "meaning": "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes."
+      "label": "Definition and assumptions",
+      "expression": "0 ≤ h(n) ≤ h*(n); here h*(A)=3",
+      "meaning": "S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. Only h(A) changes; all other heuristic values are zero. A* uses g+h and permits strict g improvements, including reopening. Equal priorities use alphabetical state labels. The exact-distance table is an oracle for this tiny authored example, not a free ingredient in general search."
     }
   ],
   "example": {
-    "title": "Admissible heuristics in a small case",
-    "setup": "Use straight-line distance as a lower bound on road distance when travel cannot be shorter than the direct line.",
+    "title": "Three boundaries, three meanings",
+    "setup": "Compare h(A)=3, 9 and 10.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
-      "Check the outcome against the goal and stated assumptions."
+      "At three, h is admissible though inconsistent. A's priority is four and the returned solution costs four.",
+      "At nine, h overestimates by six. A and the cost-ten goal tie; alphabetical A wins and the result still costs four.",
+      "At ten, A's priority is eleven. G at ten wins, so A* returns S→B→G even though a cost-four path exists."
     ],
-    "result": "The estimate guides A* without ruling out the optimal route."
+    "result": "One counterexample refutes admissibility-based safety; many optimal runs cannot establish the bound."
   },
   "pitfalls": [
-    "Validate the lower-bound argument for every allowed action, not just typical cases.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "A learned cost predictor is not admissible merely because its mean error is small.",
+    "A lower bound for one goal or one movement model may not remain valid after those definitions change.",
+    "Do not equate an inadmissible heuristic with guaranteed failure on every problem."
   ],
-  "implementation": [],
+  "implementation": [
+    "Document units and relaxation assumptions beside the heuristic implementation. For a generated state, a failed inequality against an exact small-instance distance is actionable evidence.",
+    "If a bound is assembled from subproblems, retain a proof of what costs each component is allowed to count. Cache entries must be invalidated when the goal or cost model changes."
+  ],
   "takeaways": [
-    "An admissible heuristic never overestimates the true cheapest remaining cost.",
-    "For every state n, compare h(n) with optimal goal distance h*(n) and require h(n) no greater.",
-    "Admissibility preserves A* tree-search optimality and supports graph-search optimality with appropriate handling; lower estimates may expand more nodes.",
-    "The estimate guides A* without ruling out the optimal route."
+    "Admissibility is a sufficient global condition, not a test inferred from one successful run. A heuristic can be inadmissible yet happen to return the optimum on a particular instance.",
+    "Derive valid heuristic combinations and recognize unsupported overestimates."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["An admissible heuristic never overestimates the true cheapest remaining cost.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Admissible heuristics illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An admissible heuristic h is a lower bound on the least remaining cost h* from each state to a goal. Under the usual nonnegative convention, 0≤h≤h* and h(goal)=0. The inequality is a property over all relevant states, not merely over the path a search happened to return. It supports A* optimality when repeated states are handled correctly.","Distinguish admissibility from consistency and empirical success.","Derive valid heuristic combinations and recognize unsupported overestimates.","An overestimate removes a guarantee before it necessarily changes an answer.","0 ≤ h(n) ≤ h*(n); here h*(A)=3","S→A→C→D→G has four unit-cost edges. S→B costs 1; B→G costs 9. Start S, goal G. The exact optimum is 4 credits. Numeric edge labels define costs; drawing lengths do not. Only h(A) changes; all other heuristic values are zero. A* uses g+h and permits strict g improvements, including reopening. Equal priorities use alphabetical state labels. The exact-distance table is an oracle for this tiny authored example, not a free ingredient in general search.","Admissibility is a sufficient global condition, not a test inferred from one successful run. A heuristic can be inadmissible yet happen to return the optimum on a particular instance."]} />

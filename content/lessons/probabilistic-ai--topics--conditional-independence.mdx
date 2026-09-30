@@ -1,57 +1,57 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
+  "hook": "A shared background can correlate two independent errors.",
+  "overview": "X and Y are conditionally independent given Z when their conditional joint distribution factorizes for each relevant value of Z. They may still be dependent after Z is hidden: averaging over a shared regime can couple otherwise independent observations.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "A statement about whole distributions",
+      "explanation": "For discrete variables, require P(x,y|z)=P(x|z)P(y|z) for every x and y and every z with positive probability. Checking just one cell or one conditioning value does not generally establish the claim."
     },
     {
-      "title": "Core computation",
-      "explanation": "Test whether the conditional joint factorizes into the product of conditional marginals."
+      "title": "Mixing independent populations",
+      "explanation": "Imagine two monitors sharing an operating regime Z, with independent sensor errors conditional on that regime. If the regime is hidden, seeing X helps infer Z, which helps predict Y. Knowing Z already removes this route for additional information under the specified model."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+      "title": "Why covariance changes",
+      "explanation": "Here E[X|Z]=E[Y|Z]=(1−r)+(2r−1)Z. The average conditional covariance is zero. Covariance of those conditional means is (2r−1)² Var(Z)=(r−0.5)², exactly the marginal covariance. At r=0.5 the regime has no predictive effect and both kinds of covariance vanish."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Test whether the conditional joint factorizes into the product of conditional marginals.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+    "State which variables are queried and which values are conditioned on.",
+    "Normalize the relevant conditional joint and compute its row and column marginals.",
+    "Compare every cell with the product of those marginals. Repeat across conditioning values, not only the easiest stratum."
   ],
   "formulas": [
     {
-      "label": "Conditional independence rule",
-      "expression": "X independent of Y given Z iff P(X,Y|Z)=P(X|Z)P(Y|Z)",
-      "meaning": "It enables compact models and efficient inference, but the statement always depends on the conditioning set."
+      "label": "Definition and assumptions",
+      "expression": "X ⟂ Y | Z: P(x,y|z)=P(x|z)P(y|z); Cov(X,Y)=(r−½)²; Cov(X,Y|Z)=0",
+      "meaning": "Z is Bernoulli(0.5). Given Z, binary indicators X and Y independently equal Z with probability r. Both conditional errors have rate 1−r. The graph highlights conditioning on Z; the curve compares the marginal model with the conditional one. The table shows Z=1, and Z=0 reverses the two indicator probabilities."
     }
   ],
   "example": {
-    "title": "Conditional independence in a small case",
-    "setup": "Suppose two diagnostic tests share only an underlying disease cause.",
+    "title": "Two 90%-reliable regime monitors",
+    "setup": "Use r=0.9 and a regime that is equally often 0 or 1.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Test whether the conditional joint factorizes into the product of conditional marginals.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Given Z=1, P(X=1,Y=1)=0.9×0.9=0.81 and P(X=1)=P(Y=1)=0.9. Given Z=0, the corresponding joint is 0.1×0.1=0.01.",
+      "Hide Z: P(X=1,Y=1)=0.5×0.81+0.5×0.01=0.41, while both marginal success probabilities are 0.5.",
+      "The marginal product is 0.25, so covariance is 0.41−0.25=0.16. Given either regime it is zero."
     ],
-    "result": "Once disease status is known, one test result may add no information about the other under the model."
+    "result": "In the pooled data P(Y=1|X=1)=0.82, even though at fixed Z learning X does not change the distribution of Y."
   },
   "pitfalls": [
-    "Never omit the conditioning variables when stating an independence claim.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "Zero covariance does not imply independence for general random variables. Binary pairs are a special case, but the full factorization criterion remains the definition.",
+    "Conditional independence need not survive adding or removing conditioning variables. Conditioning on a common effect can instead create dependence.",
+    "Conditional independence is a modelling assumption here, not a guarantee that two real sensors have independent errors once their operating regime is measured."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep the conditioning set explicit in model documentation and data queries. Pooling strata silently changes the question.",
+    "Check conditional residual associations with enough data per stratum; failure to detect dependence is not proof of exact independence. Do not normalize an empty conditioning group."
+  ],
   "takeaways": [
-    "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
-    "Test whether the conditional joint factorizes into the product of conditional marginals.",
-    "It enables compact models and efficient inference, but the statement always depends on the conditioning set.",
-    "Once disease status is known, one test result may add no information about the other under the model."
+    "Independence must name the conditioning set. Removing a shared variable by marginalization can introduce dependence between its children.",
+    "Explain why hidden shared regimes can produce dependence in pooled observations."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Conditional independence states that two variables provide no additional information about one another once a third set is known.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Conditional independence illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["X and Y are conditionally independent given Z when their conditional joint distribution factorizes for each relevant value of Z. They may still be dependent after Z is hidden: averaging over a shared regime can couple otherwise independent observations.","Verify conditional independence by factorizing a conditional joint table.","Explain why hidden shared regimes can produce dependence in pooled observations.","A shared background can correlate two independent errors.","X ⟂ Y | Z: P(x,y|z)=P(x|z)P(y|z); Cov(X,Y)=(r−½)²; Cov(X,Y|Z)=0","Z is Bernoulli(0.5). Given Z, binary indicators X and Y independently equal Z with probability r. Both conditional errors have rate 1−r. The graph highlights conditioning on Z; the curve compares the marginal model with the conditional one. The table shows Z=1, and Z=0 reverses the two indicator probabilities.","Independence must name the conditioning set. Removing a shared variable by marginalization can introduce dependence between its children."]} />

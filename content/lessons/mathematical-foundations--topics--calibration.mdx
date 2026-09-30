@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Checks whether predicted probabilities match real-world frequencies.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Saying 90% is a promise about a group of comparable forecasts, not certainty about one case.",
+  "overview": "Binary probability calibration asks whether cases receiving forecast q have positive-label frequency q in the relevant population: E[Y|Q]=Q. Accuracy asks whether thresholded labels are correct. Ranking asks which cases receive larger scores. These are separate properties, and a model can improve one while worsening another.",
+  "concepts": [
+    {
+      "title": "Read a reliability point in both directions",
+      "explanation": "The horizontal coordinate is the group's forecast of Y=1; the vertical coordinate is its observed positive fraction. A point above the diagonal underpredicts positives. Below it, the forecast overpredicts positives. This is positive-class calibration, not a plot of top-label accuracy versus confidence."
+    },
+    {
+      "title": "Confidence can move without changing decisions",
+      "explanation": "A positive logit multiplier preserves score order and which side of 0.5 each score occupies. In this example all k settings therefore keep the same 320 correct classifications. For k>1 forecasts move toward 0 and 1; for k<1 they move toward 0.5. The empirical reliability gap changes even though threshold accuracy does not."
+    },
+    {
+      "title": "Group counts matter",
+      "explanation": "Each of the four points contains 100 cases, so the displayed absolute-gap average gives them equal weight. Real reliability diagrams should show sample counts and uncertainty. Narrow bins expose local variation but have fewer cases; wide bins can average away opposite errors. Empty bins provide no calibration evidence."
+    },
+    {
+      "title": "A good score is not a complete diagnosis",
+      "explanation": "Binary Brier loss mixes calibration, resolution and outcome uncertainty. A constant forecast equal to overall prevalence can be calibrated yet uninformative. Also inspect discrimination, subgroup behavior and the consequences at the thresholds actually used. Overall calibration does not imply calibration within every subgroup."
+    }
+  ],
+  "process": [
+    "Freeze the predictor, collect representative held-out labels and decide whether the target is positive-class, classwise or top-label calibration.",
+    "Group comparable forecasts; plot mean forecast against observed event rate and report group counts, uncertainty and the binning rule.",
+    "If fitting a recalibration map, use separate calibration data or a leakage-safe cross-validation procedure, then assess it on untouched evaluation data."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "E[Y|Q]=Q; qg=σ(k logit(rg)); ECEgroups=Σg(ng/N)|rg−qg|; Brier=N⁻¹Σi(qi−yi)²",
+      "meaning": "A fixed illustrative evaluation set has four groups of 100 cases, with 10,30,70,90 positive labels. Their observed rates r=(0.1,0.3,0.7,0.9) are held fixed. Every member of a group receives q=σ(k logit(r)); the slider deliberately changes the forecasts, not the labels. Each point is one distinct score group, with no interval-bin merging. The diagonal is a reference, not an additional fitted model. This constructed example does not fit or validate a calibration method on unseen data."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Make identical decisions with inflated probabilities",
+    "setup": "Use k=2. The first group's observed rate is 0.1.",
+    "steps": [
+      "Its forecast becomes 0.1²/(0.1²+0.9²)=1/82≈0.012195, even though 10 of its 100 cases are positive.",
+      "The four forecasts are approximately (0.012195,0.155172,0.844828,0.987805). Their equally weighted absolute gaps average to about 0.116316.",
+      "Moving to k=1 puts each point on the diagonal and yields binary Brier loss (0.09+0.21+0.21+0.09)/4=0.15. Accuracy remains 320/400=0.8 in both settings."
+    ],
+    "result": "Zero empirical gap here is built into the toy data at k=1. It is not evidence that a calibrator trained on these same four rates generalizes."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A pooled mean forecast matching the overall positive rate does not establish calibration. In this symmetric example those means are both 0.5 at every k, including badly mismatched individual groups.",
+    "ECE is not a unique universal quantity: class convention, bin count, bin edges and weighting all matter. A low estimate on a small sample can hide uncertainty or subgroup failure.",
+    "A calibrator learned on one distribution can fail after distribution shift. Temperature scaling changes probabilities but does not by itself fix representation errors, label issues or every form of miscalibration."
+  ],
+  "implementation": [
+    "Store out-of-sample probabilities with labels, timestamps and relevant group identifiers. Document whether a binary Brier score uses (q−y)² or a two-class sum, which is twice as large.",
+    "Fit any temperature or monotone map without touching the final evaluation labels. Report reliability plots and counts alongside proper scoring rules and decision metrics. The lab's k is a controlled distortion, not a temperature estimated from data."
+  ],
+  "takeaways": [
+    "Check the forecast–frequency relationship separately from accuracy and ranking. Finite-sample calibration metrics depend on the grouping, population and evaluation data.",
+    "Explain why unchanged accuracy and ranking do not imply unchanged probability calibration."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Checks whether predicted probabilities match real-world frequencies.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Calibration illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Binary probability calibration asks whether cases receiving forecast q have positive-label frequency q in the relevant population: E[Y|Q]=Q. Accuracy asks whether thresholded labels are correct. Ranking asks which cases receive larger scores. These are separate properties, and a model can improve one while worsening another.","Interpret a positive-class reliability diagram and its group-weighted error.","Explain why unchanged accuracy and ranking do not imply unchanged probability calibration.","Saying 90% is a promise about a group of comparable forecasts, not certainty about one case.","E[Y|Q]=Q; qg=σ(k logit(rg)); ECEgroups=Σg(ng/N)|rg−qg|; Brier=N⁻¹Σi(qi−yi)²","A fixed illustrative evaluation set has four groups of 100 cases, with 10,30,70,90 positive labels. Their observed rates r=(0.1,0.3,0.7,0.9) are held fixed. Every member of a group receives q=σ(k logit(r)); the slider deliberately changes the forecasts, not the labels. Each point is one distinct score group, with no interval-bin merging. The diagonal is a reference, not an additional fitted model. This constructed example does not fit or validate a calibration method on unseen data.","Check the forecast–frequency relationship separately from accuracy and ranking. Finite-sample calibration metrics depend on the grouping, population and evaluation data."]} />

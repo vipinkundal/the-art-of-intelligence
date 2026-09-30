@@ -306,7 +306,7 @@ for (const legacyPath of [...routes].sort()) {
   const document = documents.at(-1);
   const reviewed = reviewedLessons[document.canonicalSlug];
   if (reviewed) {
-    Object.assign(document, reviewed, { reviewStatus: "reviewed", updatedAt: "2026-09-28" });
+    Object.assign(document, reviewed, { reviewStatus: "reviewed", updatedAt: reviewed.updatedAt || "2026-09-28" });
   }
   document.headings = ["Field lab", "Operational model", ...(document.narrative.process.length ? ["Mechanism"] : []), ...(document.narrative.formulas.length ? ["Formulas"] : []), ...(document.narrative.example.setup ? ["Worked example"] : []), ...(document.narrative.pitfalls.length ? ["Failure modes"] : []), ...(document.narrative.implementation.length ? ["Implementation notes"] : []), "Sources"];
 }

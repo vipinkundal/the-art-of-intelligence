@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The population is what you want to understand; the sample is the data you actually observe.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "More samples from the wrong frame still describe the wrong frame.",
+  "overview": "A population is the set of units or generating distribution about which a claim is intended. A sample is the subset actually observed. A statistic summarizes the sample; a parameter describes the target. Inference requires a link between them, supplied by a sampling design or explicit modeling assumptions—not just by having many rows.",
+  "concepts": [
+    {
+      "title": "Define the unit before counting rows",
+      "explanation": "A unit might be a person, device, document or session. Repeated events from one unit do not automatically provide independent population members. Define the time window and eligibility rule too: the population is the subject of the claim, not whichever records are easiest to retrieve."
+    },
+    {
+      "title": "The frame determines who can appear",
+      "explanation": "A sampling frame is the list or access mechanism used to select units. Here leaving out the unit with value 10 makes that unit impossible to sample. Random selection within the remaining three units is still random, but it is no longer simple random sampling from the four-unit target."
+    },
+    {
+      "title": "A statistic has a sampling distribution",
+      "explanation": "The six complete-frame sample means are 3,5,6,6,7,9. Mean 6 has probability 2/6 because two different pairs produce it. The control highlights one possible realization; the bars describe all realizations under the specified design. Those are different views of the same estimator."
+    },
+    {
+      "title": "Unbiasedness is a repeated-design statement",
+      "explanation": "Averaging the six means yields the population mean 6, yet four of the six samples give a different answer. The standard deviation of this sampling distribution is √(10/3), not the spread of the four population values. Bias, variability and one realized error must not be interchanged."
+    }
+  ],
+  "process": [
+    "Write the target population, observational unit and quantity to estimate, then compare the available frame with that target.",
+    "Specify the selection design and inclusion opportunities; account for clustering, unequal probabilities and nonresponse where relevant.",
+    "Compute the sample statistic and uncertainty under that design or a defensible model, while reporting coverage and measurement limitations separately."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "μ=N⁻¹Σi yi; ȳ=n⁻¹Σi∈s yi; ESRS[ȳ]=μ; VarSRS(ȳ)=(1−n/N)S²/n",
+      "meaning": "The finite target population has four distinct units with values (2,4,8,10) score units. Simple random sampling without replacement selects two units: all six unordered pairs are equally likely. The control selects a pair for inspection, not a random draw or an ordered collection process. A comparison design samples two units uniformly from an incomplete frame containing only (2,4,8). Both plotted distributions are exhaustive calculations. S² uses denominator N−1 for the finite population."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Enumerate instead of imagining repeated samples",
+    "setup": "Choose two units from (2,4,8,10) without replacement.",
+    "steps": [
+      "The population mean is 24/4=6. The six pair means (3,5,6,6,7,9) average to 6.",
+      "The sampling variance is ((3−6)²+(5−6)²+0+0+(7−6)²+(9−6)²)/6=10/3. Equivalently, (1−2/4)×(40/3)/2=10/3.",
+      "If the frame omits 10, only pair means 3,5,6 are possible. Their average is 14/3, biased downward by 4/3 relative to the intended population."
+    ],
+    "result": "A census of the incomplete frame still gives 14/3. Eliminating sampling variability inside that frame does not eliminate its coverage error."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A convenience sample is not converted into a probability sample by increasing its size or randomly splitting it into training and test partitions.",
+    "Random sampling and random treatment assignment answer different questions: population representation versus causal comparability. One does not automatically supply the other.",
+    "A tiny finite example supports exact enumeration, not a claim that six samples are enough for a real study. Finite-population corrections also require the appropriate without-replacement design."
+  ],
+  "implementation": [
+    "Keep unit identifiers, inclusion rules, sampling probabilities where known, and the frame's coverage period. Prevent duplicated units from becoming unintended extra sampling weight.",
+    "Separate uncertainty due to the design from systematic exclusions, nonresponse and measurement errors. Weighting requires information and assumptions; it cannot recover an entirely unobserved group from nothing."
+  ],
+  "takeaways": [
+    "Sampling variation and coverage error are different. An unbiased procedure can miss in one sample; a systematically incomplete frame can miss even when measured perfectly.",
+    "Read an exact sampling distribution and separate sampling variation from coverage bias."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The population is what you want to understand; the sample is the data you actually observe.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Populations and samples illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A population is the set of units or generating distribution about which a claim is intended. A sample is the subset actually observed. A statistic summarizes the sample; a parameter describes the target. Inference requires a link between them, supplied by a sampling design or explicit modeling assumptions—not just by having many rows.","Distinguish population, sampling frame, sample, parameter and statistic.","Read an exact sampling distribution and separate sampling variation from coverage bias.","More samples from the wrong frame still describe the wrong frame.","μ=N⁻¹Σi yi; ȳ=n⁻¹Σi∈s yi; ESRS[ȳ]=μ; VarSRS(ȳ)=(1−n/N)S²/n","The finite target population has four distinct units with values (2,4,8,10) score units. Simple random sampling without replacement selects two units: all six unordered pairs are equally likely. The control selects a pair for inspection, not a random draw or an ordered collection process. A comparison design samples two units uniformly from an incomplete frame containing only (2,4,8). Both plotted distributions are exhaustive calculations. S² uses denominator N−1 for the finite population.","Sampling variation and coverage error are different. An unbiased procedure can miss in one sample; a systematically incomplete frame can miss even when measured perfectly."]} />

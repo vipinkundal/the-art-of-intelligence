@@ -1,20 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Counts arrangements, choices, and possibilities, which matters in search spaces and probability.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Before counting outcomes, decide which differences you intend to forget.",
+  "overview": "Combinatorics counts and studies discrete configurations. The first step is deciding when two configurations count as the same: whether order matters, whether labels may repeat, and which constraints apply. A formula is meaningful only after that sample space is specified.",
+  "concepts": [
+    {
+      "title": "A sequence preserves positions",
+      "explanation": "With repetition allowed, each of k positions has four choices, giving 4ᵏ strings. Without repetition, choices decrease: 4×3×⋯×(4−k+1). At k=3 those counts are 64 and 24. ABC and BAC differ because positions are part of the outcome."
+    },
+    {
+      "title": "A subset forgets order and disallows duplicates",
+      "explanation": "Each three-element subset of four labels has 3!=6 distinct orderings. Dividing the 24 ordered, no-repeat strings by six gives four subsets: ABC, ABD, ACD and BCD. The division works because every equivalence class has the same size under these assumptions."
+    },
+    {
+      "title": "A multiset forgets order but retains multiplicity",
+      "explanation": "With repetition allowed, AAB, ABA and BAA represent one multiset, while AAA represents a different one. For k=3, nonnegative counts of A,B,C,D sum to three. Stars and bars counts these solutions as C(6,3)=20. It does not make each multiset equally probable under uniform ordered sampling."
+    },
+    {
+      "title": "Unequal class sizes explain unequal probabilities",
+      "explanation": "At k=3, multiset AAA comes from one of the 64 equiprobable strings; ABC comes from six. Their probabilities are 1/64 and 6/64, not both 1/20. The complete table exposes these class sizes. Dividing 64 by 3! would be invalid because repeated labels change the number of distinct orderings."
+    },
+    {
+      "title": "Counts compose only when their rules justify it",
+      "explanation": "The sum rule combines disjoint alternatives; overlapping alternatives need overlap correction. The product rule counts compatible sequential choices. A bijection transfers a count by pairing outcomes exactly once. For a large configuration space, an exact formula can be useful even when enumerating all outcomes is impractical."
+    }
+  ],
+  "process": [
+    "Specify the labels, number of positions or selections, repetition rule and equivalence relation between outcomes.",
+    "Choose a sum, product, bijection, division or other counting argument that respects those definitions.",
+    "Check boundary cases and distinguish counting from sampling: equal counts do not automatically imply equal probabilities."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "ordered + repeats: nᵏ; ordered − repeats: n!/(n−k)!; subsets: C(n,k); multisets: C(n+k−1,k)",
+      "meaning": "There are n=4 distinct labels A,B,C,D and 0≤k≤4 selections. Bars compare four different outcome spaces, not probabilities of four events. The calculation exhaustively generates ordered length-k strings, filters distinct-label strings and groups by sorted labels. The multiset table's probabilities assume independent uniform draws with replacement before order is forgotten. That sampling assumption is separate from the counts. Empty selections count as one empty outcome."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Why 64, 24, 4 and 20 can all be correct",
+    "setup": "Make three selections from A,B,C,D.",
+    "steps": [
+      "Ordered with repeats: 4³=64. Ordered without repeats: 4×3×2=24.",
+      "Unordered without repeats: 24/3!=4. Unordered with repeats: C(4+3−1,3)=C(6,3)=20.",
+      "For uniform ordered draws, AAA has probability 1/64 and ABC as an unordered multiset has probability 6/64. The count of twenty multisets does not imply probability 1/20 each."
+    ],
+    "result": "The four answers describe four different spaces. Choosing a formula before defining the outcome can give a plausible but irrelevant number."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Do not divide by k! unless every unordered outcome corresponds to exactly k! distinct ordered outcomes. Repeated labels often break that premise.",
+    "A set discards duplicate membership; a multiset records multiplicities. Deduplicating records can therefore change the object being counted.",
+    "The k=0 boundary has one empty tuple, subset or multiset. Confusing no selections with no possible outcome breaks product identities."
+  ],
+  "implementation": [
+    "Use products, permutations, combinations or combinations-with-replacement according to the intended semantics. Iterator libraries may treat equal-valued input entries as distinct positions; start from the intended label set.",
+    "For large counts, use exact integer arithmetic or stable log-counts as appropriate, and avoid materializing every outcome. Exhaustive enumeration here is intentionally bounded to at most 256 strings so every table is inspectable."
+  ],
+  "takeaways": [
+    "Order and repetition determine the count. Forgetting order can also change the probability model because equivalence classes need not have equal sizes.",
+    "Explain why uniform ordered draws can induce nonuniform unordered outcomes."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Counts arrangements, choices, and possibilities, which matters in search spaces and probability.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Combinatorics illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Combinatorics counts and studies discrete configurations. The first step is deciding when two configurations count as the same: whether order matters, whether labels may repeat, and which constraints apply. A formula is meaningful only after that sample space is specified.","Choose the correct finite counting model for order and repetition.","Explain why uniform ordered draws can induce nonuniform unordered outcomes.","Before counting outcomes, decide which differences you intend to forget.","ordered + repeats: nᵏ; ordered − repeats: n!/(n−k)!; subsets: C(n,k); multisets: C(n+k−1,k)","There are n=4 distinct labels A,B,C,D and 0≤k≤4 selections. Bars compare four different outcome spaces, not probabilities of four events. The calculation exhaustively generates ordered length-k strings, filters distinct-label strings and groups by sorted labels. The multiset table's probabilities assume independent uniform draws with replacement before order is forgotten. That sampling assumption is separate from the counts. Empty selections count as one empty outcome.","Order and repetition determine the count. Forgetting order can also change the probability model because equivalence classes need not have equal sizes."]} />

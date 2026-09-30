@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.",
+  "hook": "Count the same walks as arrows, a recurrence and a matrix power.",
+  "overview": "Discrete mathematics provides the language of sets, logic, counting, graphs and proof. Theoretical computer science adds models of computation and resource limits. Moving between a structure, an invariant and an executable recurrence helps distinguish what a program computes, why it is correct and how much work it requires.",
   "concepts": [
     {
-      "title": "Study",
-      "explanation": "Sets, relations, and functions : Basic objects for describing collections, mappings, and relationships between entities."
+      "title": "Specify the combinatorial object",
+      "explanation": "A walk is an ordered sequence following directed edges. A simple path additionally forbids repeated vertices. The graph contains cycles, so it has walks longer than three edges even though a simple path on four vertices cannot have more than three. Counting one object while naming another gives the wrong interpretation."
     },
     {
-      "title": "Study",
-      "explanation": "Boolean algebra : The math of true/false logic, used in conditions, circuits, constraints, and symbolic reasoning."
+      "title": "The last edge partitions the possibilities",
+      "explanation": "Every length-(k+1) walk ending at v has a unique final incoming edge u→v and a length-k prefix ending at u. Summing over those predecessors counts each walk once. The empty walk gives the base count one at A and zero elsewhere."
     },
     {
-      "title": "Study",
-      "explanation": "Combinatorics : Counts arrangements, choices, and possibilities, which matters in search spaces and probability."
+      "title": "Induction turns the recurrence into a proof",
+      "explanation": "Assume each entry of cₖ counts the intended prefixes. Appending each possible final edge produces all and only valid longer walks, without duplication because the final edge and prefix recover the original walk. This establishes the invariant at k+1; the base initializes it."
     },
     {
-      "title": "Study",
-      "explanation": "Graph theory : Represents entities as nodes and relationships as edges, useful for networks, dependencies, and knowledge graphs."
+      "title": "A matrix is another implementation of the relation",
+      "explanation": "With source rows, cₖ₊₁=cₖM. Repeated multiplication gives c₀Mᵏ. A column-vector convention would instead use Mᵀ. Ordinary addition/multiplication count walks; Boolean operations answer reachability and a different algebra can encode shortest-path costs."
     },
     {
-      "title": "Study",
-      "explanation": "Trees and directed acyclic graphs : Structured graphs that model hierarchies, computation graphs, parse trees, and pipelines."
-    },
-    {
-      "title": "The simple idea",
-      "explanation": "Continuous math helps describe quantities that vary smoothly. Discrete math helps describe objects that are separate: nodes in a graph, states in an automaton, rules in logic, symbols in a language, and steps in an algorithm."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "This material becomes important in search, planning, symbolic reasoning, knowledge graphs, program synthesis, and AI systems design."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Graphs can represent relationships between facts, recurrence relations describe repeated computation, and complexity theory helps explain why some tasks need approximations or heuristics instead of exact solutions."
+      "title": "Analyze the evaluator separately",
+      "explanation": "An edge-scan recurrence costs O(k(|V|+|E|)) arithmetic operations including clearing each count row, and O(|V|) rolling storage if earlier rows are discarded. This UI deliberately retains rows for explanation. Counts can need growing numbers of bits, so fixed-cost integer arithmetic is an explicit simplifying model. Start with logic and proof, then recurrences, complexity, reductions and computability."
     }
   ],
   "process": [
-    "Continuous math helps describe quantities that vary smoothly. Discrete math helps describe objects that are separate: nodes in a graph, states in an automaton, rules in logic, symbols in a language, and steps in an algorithm."
+    "Define the objects and admissible transitions precisely.",
+    "State a counting invariant, derive its recurrence and prove the base and extension steps.",
+    "Choose an evaluator and analyze operations, storage and integer representation separately from the mathematical identity."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "c₀=(1,0,0,0); cₖ₊₁(v)=Σᵤ cₖ(u)Mᵤᵥ; cₖ=c₀Mᵏ",
+      "meaning": "The directed graph has vertices A,B,C,D and edges A→B, A→C, B→C, C→D, D→A. A walk starts at A and may revisit vertices or edges. Length is the exact number of edges traversed. M uses row=source and column=destination, so counts are row vectors. Every edge contributes one unweighted continuation. Counts are not probabilities and the graph is cyclic, not a DAG."
+    }
+  ],
   "example": {
-    "title": "Discrete Mathematics And Theoretical Computer Science example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A cycle creates a longer walk",
+    "setup": "Compare k=3 and k=4.",
+    "steps": [
+      "At k=3, the walks are A→B→C→D and A→C→D→A, yielding counts (1,0,0,1).",
+      "Extend the first walk to A. Extend the second to either B or C.",
+      "At k=4 the counts are (1,1,1,0), totaling three walks. All three have revisited A, so these are not simple paths."
+    ],
+    "result": "The recurrence reuses endpoint counts without storing or enumerating every full walk."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Do not normalize adjacency rows and still interpret the result as unweighted counts. A stochastic transition matrix computes a different quantity.",
+    "A cycle does not prevent finite-length dynamic programming; the length index provides an acyclic dependency between successive count rows.",
+    "One fast recurrence does not resolve a general complexity class or an undecidability result. Every guarantee has a specific problem and computational model."
+  ],
+  "implementation": [
+    "The graph labels, recurrence table and adjacency matrix use one shared edge list. The slider chooses a completed length, not a probabilistic traversal.",
+    "Use the neighboring graph, induction, recurrence and complexity lessons to examine these layers individually. Automata and computability then ask different questions about representations and possible algorithms."
+  ],
   "takeaways": [
-    "Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.",
-    "Study MIT OpenCourseWare's Mathematics for Computer Science for proofs, graph theory, counting, recurrences, and discrete probability."
+    "Representation, proof and algorithm are separate layers. An adjacency power counts walks with revisits; changing the admissible objects changes the problem.",
+    "Distinguish the counted objects, their representation and the evaluator's resource cost."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Discrete Mathematics And Theoretical Computer Science illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Discrete mathematics provides the language of sets, logic, counting, graphs and proof. Theoretical computer science adds models of computation and resource limits. Moving between a structure, an invariant and an executable recurrence helps distinguish what a program computes, why it is correct and how much work it requires.","Derive and prove a walk-counting recurrence.","Distinguish the counted objects, their representation and the evaluator's resource cost.","Count the same walks as arrows, a recurrence and a matrix power.","c₀=(1,0,0,0); cₖ₊₁(v)=Σᵤ cₖ(u)Mᵤᵥ; cₖ=c₀Mᵏ","The directed graph has vertices A,B,C,D and edges A→B, A→C, B→C, C→D, D→A. A walk starts at A and may revisit vertices or edges. Length is the exact number of edges traversed. M uses row=source and column=destination, so counts are row vectors. Every edge contributes one unweighted continuation. Counts are not probabilities and the graph is cyclic, not a DAG.","Representation, proof and algorithm are separate layers. An adjacency power counts walks with revisits; changing the admissible objects changes the problem."]} />

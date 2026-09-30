@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A Jacobian stores first-order derivatives for vector-valued functions, tracking how each output changes with each input.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A tangent map is accurate nearby, not a promise about a long journey.",
+  "overview": "The Jacobian is the matrix of a differentiable vector-valued function's local linear map. It maps small input displacements to first-order output displacements; it is not generally an exact transformation of finite changes. The remainder, measured relative to the input step, must vanish as the step tends to zero.",
+  "concepts": [
+    {
+      "title": "Rows are outputs; columns are inputs",
+      "explanation": "For F:Rⁿ→Rᵐ, J has shape m×n, with entry ∂Fᵢ/∂xⱼ. Here J(x,y)=[[2x,−2y],[2y,2x]]. Its action on δ predicts a two-component output change, not the output value itself."
+    },
+    {
+      "title": "Differentiability controls the remainder",
+      "explanation": "Writing F(p+δ)=F(p)+J(p)δ+r(δ), differentiability requires ‖r(δ)‖/‖δ‖→0. A quadratic error bound needs stronger local regularity than differentiability alone. In this polynomial example, direct expansion gives r=h²(−0.28,0.96), whose norm is exactly h²."
+    },
+    {
+      "title": "Local area scaling has a separate role",
+      "explanation": "This square Jacobian has determinant 5 at p, measuring infinitesimal area scaling. At (0,0), the Jacobian is zero and singular. The full map also identifies (x,y) and (−x,−y), so a nonzero determinant at one point does not establish global injectivity."
+    }
+  ],
+  "process": [
+    "Declare input/output coordinates and the point where derivatives are evaluated.",
+    "Multiply the Jacobian by the intended input displacement.",
+    "Compare with the actual output difference and judge error relative to the step size and application tolerance."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "F(x,y)=(x²−y²,2xy); J(1,½)=[[2,−1],[1,2]]; δ=h(0.6,0.8); ‖ΔF−Jδ‖₂=h²",
+      "meaning": "The smooth map is evaluated at p=(1,0.5). The input direction (0.6,0.8) has Euclidean length 1. Graph axes show changes in output coordinates, with equal coordinate scales. Two segments share the origin; their endpoint gap is the exact nonlinear remainder. No numerical differentiation is used."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Halve the step; quarter the absolute error",
+    "setup": "Start with h=0.5 at p=(1,0.5).",
+    "steps": [
+      "δ=(0.3,0.4), so Jδ=(0.2,1.1).",
+      "The actual change is (0.13,1.34), giving remainder (−0.07,0.24) and norm 0.25.",
+      "At h=0.25 the error norm is 0.0625: four times smaller, while the input step is only twice as small."
+    ],
+    "result": "The graph's gap shrinks quadratically for this map, not for every differentiable function."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Multiplying by the wrong transpose can silently swap the meanings of input and output dimensions.",
+    "A local inverse criterion is not a guarantee of a global inverse, and a finite-step linearization can be poor even with perfectly computed derivatives."
+  ],
+  "implementation": [
+    "Use JVPs for individual perturbation directions when forming the whole Jacobian would be expensive.",
+    "For a coordinate change in an integral or density, separately track support, inverse branches and the absolute determinant; Jδ by itself is not a density formula."
+  ],
+  "takeaways": [
+    "The Jacobian is a linear map at a particular point. Its finite-step error can be quantified instead of assumed negligible.",
+    "Quantify a linearization remainder and distinguish local from global claims."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A Jacobian stores first-order derivatives for vector-valued functions, tracking how each output changes with each input.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Jacobians illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["The Jacobian is the matrix of a differentiable vector-valued function's local linear map. It maps small input displacements to first-order output displacements; it is not generally an exact transformation of finite changes. The remainder, measured relative to the input step, must vanish as the step tends to zero.","Interpret a Jacobian as a local input-to-output map.","Quantify a linearization remainder and distinguish local from global claims.","A tangent map is accurate nearby, not a promise about a long journey.","F(x,y)=(x²−y²,2xy); J(1,½)=[[2,−1],[1,2]]; δ=h(0.6,0.8); ‖ΔF−Jδ‖₂=h²","The smooth map is evaluated at p=(1,0.5). The input direction (0.6,0.8) has Euclidean length 1. Graph axes show changes in output coordinates, with equal coordinate scales. Two segments share the origin; their endpoint gap is the exact nonlinear remainder. No numerical differentiation is used.","The Jacobian is a linear map at a particular point. Its finite-step error can be quantified instead of assumed negligible."]} />

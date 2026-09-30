@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
+  "hook": "A stopped needle can still point to the wrong number.",
+  "overview": "Loopy belief propagation iterates local BP updates on a graph with cycles. It can be useful, but convergence is not guaranteed and a stable fixed point need not give exact marginals. Update residuals measure numerical stabilization, not the error relative to the true distribution.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "The tree argument breaks",
+      "explanation": "In a tree, removing an edge separates disjoint sets of factors. On a cycle, information can return by another route. Excluding the recipient's message prevents immediate backtracking but does not restore the disjoint-subtree argument."
     },
     {
-      "title": "Core computation",
-      "explanation": "Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold."
+      "title": "Specify the update protocol",
+      "explanation": "This lab updates all six messages simultaneously from the previous round, with uniform initialization and no damping. Asynchronous schedules or damping can alter transients and sometimes convergence behavior; they are part of the algorithm specification, not incidental details."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee."
+      "title": "A reference separates two errors",
+      "explanation": "The exact line comes from enumeration, so the gap is visible. Early rounds have a transient error. Later the message change becomes tiny while the marginal error remains about 0.084. A small residual alone cannot detect that remaining discrepancy."
+    },
+    {
+      "title": "A fixed point is not a correctness certificate",
+      "explanation": "BP fixed points are related to stationary points of the Bethe free-energy approximation under its usual formulation. This variational connection does not promise global optimality, convergence from arbitrary starts, or exact agreement with the model's marginals."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee."
+    "Record initialization, message normalization, update schedule, damping convention and stopping rule.",
+    "Iterate recipient-excluding message updates and monitor normalized-message residuals and iteration limits.",
+    "Compare important queries with exact small instances or another trusted reference; report non-convergence and approximation limitations separately."
   ],
   "formulas": [
     {
-      "label": "Loopy belief propagation rule",
-      "expression": "m^{t+1} = BP_update(m^t)",
-      "meaning": "It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee."
+      "label": "Definition and assumptions",
+      "expression": "p(s)∝exp[0.8(sXsY+sYsZ+sZsX)+0.3(sX+sY+sZ)]; bᵢ(sᵢ)∝e⁰·³ˢⁱ∏k∈N(i)mₖ→ᵢ(sᵢ)",
+      "meaning": "Three spins sᵢ∈{−1,+1} form a triangle with coupling J=0.8 and field h=0.3. All six directed messages start at (0.5,0.5), are normalized after each synchronous update and use no damping. Symmetry keeps those messages equal, allowing one shared two-entry vector to represent them. Each outgoing update uses the one incoming message other than the recipient's; each node belief uses both incoming messages. Exact marginals enumerate all eight states."
     }
   ],
   "example": {
-    "title": "Loopy belief propagation in a small case",
-    "setup": "Estimate pixel labels on a grid-shaped image model with many four-neighbor cycles.",
+    "title": "A converged-looking triangle",
+    "setup": "Use the fixed J=0.8, h=0.3 model in the lab.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Before any update, uniform incoming messages leave the unary belief P(+1)=e⁰·³/(e⁻⁰·³+e⁰·³)≈0.645656.",
+      "Exact enumeration yields partition function 34.412533 and P(+1)≈0.832795. After 10 rounds, BP gives 0.916595 with message change about 1.943×10⁻⁴.",
+      "After 40 rounds, BP gives 0.916729 and the largest message change is about 6×10⁻¹⁴, but the absolute marginal error remains about 0.083935."
     ],
-    "result": "Damped message updates produce smooth approximate marginals when the iteration stabilizes."
+    "result": "Stabilization is real in this example; equality to the exact marginal is not. No update residual is reported at round zero because no update has occurred."
   },
   "pitfalls": [
-    "Always report the update schedule, damping, stopping rule, and whether convergence occurred.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "Do not report a small residual as an accuracy bound. The two quantities measure different things.",
+    "Damping may help stabilize some runs but does not generally make the result exact or guarantee convergence.",
+    "A cycle does not force every marginal to be wrong in every model. Symmetry and special cases can yield exact quantities, so assess the actual query rather than claiming universal failure."
   ],
-  "implementation": [],
+  "implementation": [
+    "Normalize messages consistently before comparing residuals; arbitrary scale changes can otherwise dominate the diagnostic. Use a maximum iteration limit in addition to a residual threshold.",
+    "For realistic graphs, check multiple initializations or schedules when appropriate and compare with tractable reference subproblems. Label the returned beliefs as approximations unless stronger guarantees apply."
+  ],
   "takeaways": [
-    "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
-    "Initialize messages, repeatedly update them around cycles, and stop by a convergence, iteration, or residual threshold.",
-    "It can be remarkably accurate but may oscillate, fail to converge, or converge to approximate beliefs without a universal guarantee.",
-    "Damped message updates produce smooth approximate marginals when the iteration stabilizes."
+    "Report both convergence diagnostics and evidence about accuracy. More iterations can remove update transients without removing the loop approximation error.",
+    "Specify and diagnose a loopy message-passing run without borrowing the tree exactness guarantee."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Loopy belief propagation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Loopy belief propagation iterates local BP updates on a graph with cycles. It can be useful, but convergence is not guaranteed and a stable fixed point need not give exact marginals. Update residuals measure numerical stabilization, not the error relative to the true distribution.","Distinguish update convergence from agreement with exact marginals.","Specify and diagnose a loopy message-passing run without borrowing the tree exactness guarantee.","A stopped needle can still point to the wrong number.","p(s)∝exp[0.8(sXsY+sYsZ+sZsX)+0.3(sX+sY+sZ)]; bᵢ(sᵢ)∝e⁰·³ˢⁱ∏k∈N(i)mₖ→ᵢ(sᵢ)","Three spins sᵢ∈{−1,+1} form a triangle with coupling J=0.8 and field h=0.3. All six directed messages start at (0.5,0.5), are normalized after each synchronous update and use no damping. Symmetry keeps those messages equal, allowing one shared two-entry vector to represent them. Each outgoing update uses the one incoming message other than the recipient's; each node belief uses both incoming messages. Exact marginals enumerate all eight states.","Report both convergence diagnostics and evidence about accuracy. More iterations can remove update transients without removing the loop approximation error."]} />

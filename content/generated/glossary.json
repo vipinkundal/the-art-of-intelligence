@@ -1,10 +1,12 @@
 [
   {
     "term": "A*",
-    "definition": "A* balances cost already paid with an estimate of cost remaining.",
+    "definition": "A* orders frontier paths by f=g+h: cost already paid plus a lower estimate of remaining cost. An admissible h never exceeds the true cheapest remaining cost. With appropriate repeated-state handling, this lower bound prevents a more expensive goal from beating every frontier path that could lead to an optimal one. Consistency is the stronger edge-local condition that permits finalizing a state on its first minimum-f removal.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/a-star/",
-    "tags": []
+    "tags": [
+      "Uniform-cost search"
+    ]
   },
   {
     "term": "Abduction",
@@ -29,17 +31,22 @@
   },
   {
     "term": "Adam and RMSProp",
-    "definition": "Popular adaptive optimizers that track gradient statistics to scale updates.",
+    "definition": "RMSProp rescales gradients using a moving average of their squares. Adam also maintains a first-moment estimate and normally corrects both moment estimates for zero initialization. Their state can make updates differ sharply even when they receive the same current gradient and global learning rate.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/adam-and-rmsprop/",
-    "tags": []
+    "tags": [
+      "Momentum and adaptive methods",
+      "Stochastic gradient descent"
+    ]
   },
   {
     "term": "Admissible heuristics",
-    "definition": "An admissible heuristic never overestimates the true cheapest remaining cost.",
+    "definition": "An admissible heuristic h is a lower bound on the least remaining cost h* from each state to a goal. Under the usual nonnegative convention, 0≤h≤h* and h(goal)=0. The inequality is a property over all relevant states, not merely over the path a search happened to return. It supports A* optimality when repeated states are handled correctly.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/admissible-heuristics/",
-    "tags": []
+    "tags": [
+      "A*"
+    ]
   },
   {
     "term": "Agents And Tool-Using Systems",
@@ -99,17 +106,23 @@
   },
   {
     "term": "Approximate inference",
-    "definition": "Approximate inference estimates a hard posterior or expectation when exact computation is too expensive.",
+    "definition": "Approximate inference estimates a distribution or a quantity derived from it when exact computation is impractical. Sampling error and error from a restricted approximation family are distinct, and must be evaluated for the actual question being asked.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/approximate-inference/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Monte Carlo estimation"
+    ]
   },
   {
     "term": "Approximation algorithms",
-    "definition": "Find near-good solutions when exact optimization is too expensive.",
+    "definition": "An approximation algorithm returns a feasible solution with a proved bound relative to the optimum. For a minimization problem, a factor ρ≥1 means the returned cost is at most ρ times optimal on every valid instance. A useful proof pairs the constructed solution with a lower bound that is cheaper to obtain than the optimum itself.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/approximation-algorithms/",
-    "tags": []
+    "tags": [
+      "Graph theory",
+      "Reductions"
+    ]
   },
   {
     "term": "Arc consistency",
@@ -127,10 +140,13 @@
   },
   {
     "term": "Automata and formal languages",
-    "definition": "Model machines and grammars that recognize structured symbol sequences.",
+    "definition": "A formal language is a set of finite strings over an alphabet. An automaton recognizes a language by consuming a string according to transition rules. A deterministic finite automaton has a finite state set and exactly one next state for each state-symbol pair; its final state decides membership.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/automata-and-formal-languages/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions",
+      "Mathematical induction"
+    ]
   },
   {
     "term": "Automated theorem proving",
@@ -141,10 +157,12 @@
   },
   {
     "term": "Automatic differentiation",
-    "definition": "Computes exact derivatives of programs by applying calculus rules to the computation graph.",
+    "definition": "Automatic differentiation augments a numerical computation with local derivative rules and composes them along the executed operations. It avoids the truncation error introduced by finite-difference step sizes, but still inherits floating-point error, program semantics and the limits of differentiability.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/automatic-differentiation/",
-    "tags": []
+    "tags": [
+      "Product, quotient, and chain rules"
+    ]
   },
   {
     "term": "Autoregressive flows",
@@ -199,31 +217,44 @@
   },
   {
     "term": "Bayesian inference",
-    "definition": "Updates prior beliefs into posterior beliefs using observed evidence.",
+    "definition": "Bayesian inference conditions a joint model on observed data to obtain a distribution over unknown quantities. Prediction then averages over that posterior rather than silently replacing every unknown with one fitted value. The result is conditional on the prior, likelihood and data-collection assumptions—not a guarantee that the model is true.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/bayesian-inference/",
-    "tags": []
+    "tags": [
+      "Bayes' theorem",
+      "Binomial",
+      "Expectation"
+    ]
   },
   {
     "term": "Bayesian networks",
-    "definition": "A Bayesian network is a directed acyclic graph whose arrows encode conditional dependence and whose local tables define a joint distribution.",
+    "definition": "A Bayesian network combines a directed acyclic graph with one conditional probability distribution per node. Their product defines a normalized joint distribution. The graph expresses factorization assumptions; its arrows alone do not establish causal effects.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/bayesian-networks/",
-    "tags": []
+    "tags": [
+      "Bayes' theorem",
+      "Conditional independence"
+    ]
   },
   {
     "term": "Beam search",
-    "definition": "Beam search retains only a fixed number of best candidates at each layer.",
+    "definition": "Beam search keeps only a limited number of promising candidates. This lesson uses a level-synchronous variant: generate the next layer, merge duplicate states, rank candidates and retain at most k. The width controls retained alternatives, but permanently discarded paths can contain the only solution or the optimum. A valid heuristic alone cannot recover an erased branch.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/beam-search/",
-    "tags": []
+    "tags": [
+      "Greedy best-first search",
+      "Duplicate-state detection"
+    ]
   },
   {
     "term": "Belief propagation",
-    "definition": "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
+    "definition": "Belief propagation organizes inference as local messages summarizing information on either side of an edge. This lesson follows the schedule and information coverage of sum-product BP on a tree; the sum-product and max-product lessons develop the corresponding marginal and optimization calculations.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/belief-propagation/",
-    "tags": []
+    "tags": [
+      "Factor graphs",
+      "Variable elimination"
+    ]
   },
   {
     "term": "Bernoulli",
@@ -261,10 +292,13 @@
   },
   {
     "term": "Bidirectional search",
-    "definition": "Bidirectional search grows one frontier from the start and another from the goal.",
+    "definition": "Bidirectional search grows one search from the start and another from the goal. A meeting joins a forward prefix to a valid suffix, potentially reducing the depth explored on either side. Correctness depends on the reverse transition relation, each side's search order and a justified stopping rule—not merely on drawing two arrows toward one another.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/bidirectional-search/",
-    "tags": []
+    "tags": [
+      "Breadth-first search",
+      "State-space representation"
+    ]
   },
   {
     "term": "Binomial",
@@ -277,7 +311,7 @@
   },
   {
     "term": "Boolean algebra",
-    "definition": "The math of true/false logic, used in conditions, circuits, constraints, and symbolic reasoning.",
+    "definition": "Boolean algebra describes how truth-valued expressions combine through AND, OR and NOT. Equivalent expressions agree for every assignment of their inputs, not merely the examples seen during execution. This makes truth tables a small, exact tool for checking a rewrite before relying on it.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/boolean-algebra/",
     "tags": []
@@ -301,17 +335,22 @@
   },
   {
     "term": "Branch and bound",
-    "definition": "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
+    "definition": "Branch and bound searches partial decisions while comparing each region's optimistic bound with the best complete feasible answer already known. For maximization, an upper bound that cannot exceed the incumbent makes a branch unnecessary when only one optimum is required. The method is exact when branching covers all possibilities and every prune is justified, but its worst-case search can remain exponential.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/branch-and-bound/",
-    "tags": []
+    "tags": [
+      "Depth-first search",
+      "Admissible heuristics"
+    ]
   },
   {
     "term": "Breadth-first search",
-    "definition": "Breadth-first search expands the shallowest states before any deeper states.",
+    "definition": "Breadth-first search explores paths in nondecreasing edge count using a FIFO frontier. In a graph implementation, recording a state when it is first enqueued prevents duplicate work and preserves a shortest unweighted path to it. This is a guarantee about depth; minimum monetary, energy or travel cost requires equal positive edge costs or a different search policy.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/breadth-first-search/",
-    "tags": []
+    "tags": [
+      "Graph theory"
+    ]
   },
   {
     "term": "Brier score",
@@ -323,18 +362,24 @@
     ]
   },
   {
-    "term": "Calculus And Matrix Calculus",
-    "definition": "Calculus explains how quantities change. Matrix calculus extends that idea to vectors, matrices, losses, gradients, Jacobians, and Hessians, which are central to training AI models.",
+    "term": "Calculus and matrix calculus",
+    "definition": "Calculus describes local change, accumulated quantities and evolution. Matrix calculus organizes derivatives of vector-valued computations by their input and output spaces. A Jacobian maps input perturbations to first-order output changes; a gradient represents a scalar derivative under an inner product; a Hessian captures local curvature.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/calculus-and-matrix-calculus/",
-    "tags": []
+    "tags": [
+      "Matrix multiplication and tensor contraction",
+      "Derivatives and partial derivatives"
+    ]
   },
   {
     "term": "Calibration",
-    "definition": "Checks whether predicted probabilities match real-world frequencies.",
+    "definition": "Binary probability calibration asks whether cases receiving forecast q have positive-label frequency q in the relevant population: E[Y|Q]=Q. Accuracy asks whether thresholded labels are correct. Ranking asks which cases receive larger scores. These are separate properties, and a model can improve one while worsening another.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/calibration/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Brier score"
+    ]
   },
   {
     "term": "Categorical",
@@ -389,10 +434,13 @@
   },
   {
     "term": "Classical Artificial Intelligence",
-    "definition": "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+    "definition": "Classical AI represents a problem with explicit states, rules, constraints and objectives, then reasons or searches for a result. Its useful question is not just whether an answer looks plausible, but whether it satisfies the model and what guarantees the procedure provides. Search, logic, constraint solving, planning and game reasoning offer different tools for different structures.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/",
-    "tags": []
+    "tags": [
+      "Graph theory",
+      "Boolean algebra"
+    ]
   },
   {
     "term": "Classical Machine Learning",
@@ -417,31 +465,44 @@
   },
   {
     "term": "Coding theory",
-    "definition": "Connects probability to efficient representation, compression, and error correction.",
+    "definition": "Coding theory studies how messages are represented for efficient storage or reliable transmission. Source coding removes predictable redundancy; channel coding deliberately adds structured redundancy so a receiver can detect or correct corruption. Their rates, guarantees and assumptions answer different questions.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/coding-theory/",
-    "tags": []
+    "tags": [
+      "Binomial",
+      "Entropy"
+    ]
   },
   {
     "term": "Combinatorics",
-    "definition": "Counts arrangements, choices, and possibilities, which matters in search spaces and probability.",
+    "definition": "Combinatorics counts and studies discrete configurations. The first step is deciding when two configurations count as the same: whether order matters, whether labels may repeat, and which constraints apply. A formula is meaningful only after that sample space is specified.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/combinatorics/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions"
+    ]
   },
   {
     "term": "Completeness",
-    "definition": "Completeness asks whether an algorithm is guaranteed to find a solution whenever one exists.",
+    "definition": "A search procedure is complete for a stated problem class if it eventually finds a solution whenever one exists, assuming the required operations terminate and sufficient resources are available. This is not a deadline guarantee. Nor does it automatically require termination on every unsolvable infinite instance. A single solvable instance on which a procedure runs forever refutes completeness for a class containing that instance.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/completeness/",
-    "tags": []
+    "tags": [
+      "Breadth-first search",
+      "Depth-first search",
+      "Computability"
+    ]
   },
   {
     "term": "Computability",
-    "definition": "Studies what can or cannot be solved by algorithms at all.",
+    "definition": "Computability asks whether an algorithm can solve every instance of a specified problem at all, not whether it can do so quickly. A decider must halt with a correct yes/no answer on every input. A recognizer must accept every yes-instance but may run forever on a no-instance. The distinction matters whenever a simulation has not yet returned.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/computability/",
-    "tags": []
+    "tags": [
+      "Proof by contradiction",
+      "Reductions",
+      "Automata and formal languages"
+    ]
   },
   {
     "term": "Computational graphs",
@@ -459,10 +520,13 @@
   },
   {
     "term": "Conditional entropy",
-    "definition": "Measures remaining uncertainty in one variable after another variable is known.",
+    "definition": "For discrete variables, conditional entropy averages the entropy of the conditional distribution over the observed variable. Knowing a variable cannot increase this average uncertainty, but a particular observed value can leave more uncertainty than the original marginal distribution had.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/conditional-entropy/",
-    "tags": []
+    "tags": [
+      "Entropy",
+      "Conditional probability"
+    ]
   },
   {
     "term": "Conditional expectation",
@@ -490,10 +554,13 @@
   },
   {
     "term": "Conditional independence",
-    "definition": "Conditional independence states that two variables provide no additional information about one another once a third set is known.",
+    "definition": "X and Y are conditionally independent given Z when their conditional joint distribution factorizes for each relevant value of Z. They may still be dependent after Z is hidden: averaging over a shared regime can couple otherwise independent observations.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/conditional-independence/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Conditional probability",
@@ -504,10 +571,14 @@
   },
   {
     "term": "Conditional random fields",
-    "definition": "A conditional random field models a structured output directly conditional on observed input features.",
+    "definition": "A conditional random field defines a distribution over structured labels y for a fixed observed input x. It combines input-dependent potentials and output compatibility, then normalizes over complete label structures. A linear chain supports efficient exact inference; a general output graph need not.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/conditional-random-fields/",
-    "tags": []
+    "tags": [
+      "Markov random fields",
+      "Sum-product algorithm",
+      "Viterbi decoding"
+    ]
   },
   {
     "term": "Confidence intervals",
@@ -542,10 +613,13 @@
   },
   {
     "term": "Consistent heuristics",
-    "definition": "A consistent heuristic obeys a triangle-inequality rule across every transition.",
+    "definition": "A consistent heuristic satisfies h(u)≤c(u,v)+h(v) on every directed edge and has zero value at goals. The estimate cannot drop by more than the actual edge cost. This makes A*'s f values nondecreasing along each path and supports finalizing a state at its first minimum-f removal. Admissibility alone does not supply that stronger guarantee.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/consistent-heuristics/",
-    "tags": []
+    "tags": [
+      "Admissible heuristics",
+      "Uniform-cost search"
+    ]
   },
   {
     "term": "Constraint propagation",
@@ -584,10 +658,13 @@
   },
   {
     "term": "Convex and non-convex optimization",
-    "definition": "Convex problems have simpler global structure; non-convex problems can contain many local traps.",
+    "definition": "Convex optimization minimizes a convex objective over a convex feasible set. Every local minimum is then global, although a minimum may not exist or be unique. Nonconvexity removes that guarantee; it does not mean every problem is impossible or every stationary point is a useful minimum.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/convex-and-non-convex-optimization/",
-    "tags": []
+    "tags": [
+      "Jacobians and Hessians",
+      "Gradient descent"
+    ]
   },
   {
     "term": "Correlation",
@@ -653,10 +730,13 @@
   },
   {
     "term": "D-separation",
-    "definition": "D-separation is a graphical criterion for deciding conditional independence in a Bayesian network.",
+    "definition": "D-separation checks whether a conditioning set blocks every path between variable sets in a DAG. If a distribution factorizes over that DAG, d-separation guarantees conditional independence. This implication does not require faithfulness; extra parameter-specific independencies may exist.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/d-separation/",
-    "tags": []
+    "tags": [
+      "Bayesian networks",
+      "Conditional independence"
+    ]
   },
   {
     "term": "Data augmentation",
@@ -730,17 +810,22 @@
   },
   {
     "term": "Depth-first search",
-    "definition": "Depth-first search follows one branch as far as possible before backtracking.",
+    "definition": "Depth-first search prioritizes continuing the current branch before returning to alternatives. A stack or recursive call chain encodes this policy. It is useful for reachability and structural graph algorithms, but the first goal found does not in general minimize either depth or cost. Termination and memory claims depend on how repeated states are handled.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/depth-first-search/",
-    "tags": []
+    "tags": [
+      "Breadth-first search",
+      "Trees and directed acyclic graphs"
+    ]
   },
   {
     "term": "Depth-limited search",
-    "definition": "Depth-limited search is DFS with a maximum permitted depth.",
+    "definition": "Depth-limited search runs depth-first traversal while refusing to expand beyond a chosen edge depth. It must distinguish success, cutoff and exhausted failure. A cutoff says the budget blocked further exploration, not that no goal exists. Test for a goal before applying the depth cutoff so a goal exactly on the boundary remains valid.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/depth-limited-search/",
-    "tags": []
+    "tags": [
+      "Depth-first search"
+    ]
   },
   {
     "term": "Depthwise and separable convolutions",
@@ -751,10 +836,12 @@
   },
   {
     "term": "Derivatives and partial derivatives",
-    "definition": "Derivatives measure change; partial derivatives isolate one variable while holding others fixed.",
+    "definition": "A derivative describes a first-order change in a function as its input changes. A partial derivative varies one coordinate while fixing the others. For a multivariable function, this coordinate-wise slope differs from the derivative along a path where several inputs change together.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/derivatives-and-partial-derivatives/",
-    "tags": []
+    "tags": [
+      "Limits and continuity"
+    ]
   },
   {
     "term": "Description logic",
@@ -779,10 +866,13 @@
   },
   {
     "term": "Dijkstra's algorithm",
-    "definition": "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
+    "definition": "Dijkstra's algorithm computes shortest distances from one source in a graph with nonnegative edge weights. It repeatedly finalizes the unsettled vertex with minimum tentative distance and relaxes its outgoing edges. The nonnegative assumption makes that finalization safe. The distance table is a result for every reachable vertex, not just one selected goal.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/dijkstras-algorithm/",
-    "tags": []
+    "tags": [
+      "Uniform-cost search",
+      "Graph theory"
+    ]
   },
   {
     "term": "Dilation",
@@ -793,10 +883,13 @@
   },
   {
     "term": "Directional derivatives",
-    "definition": "These measure how a function changes along one chosen direction instead of all directions.",
+    "definition": "A directional derivative is the first-order rate of change along a specified direction at a specified point. For differentiable functions it is the gradient's dot product with that direction. It does not describe all finite changes along the line, especially where the first-order term vanishes.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/directional-derivatives/",
-    "tags": []
+    "tags": [
+      "Gradients",
+      "Jacobians and Hessians"
+    ]
   },
   {
     "term": "Dirichlet",
@@ -816,11 +909,14 @@
     "tags": []
   },
   {
-    "term": "Discrete Mathematics And Theoretical Computer Science",
-    "definition": "Discrete mathematics gives AI the language of sets, graphs, logic, proofs, algorithms, and complexity. It becomes important when systems need to search, plan, reason symbolically, represent knowledge, or choose efficient procedures.",
+    "term": "Discrete mathematics and theoretical computer science",
+    "definition": "Discrete mathematics provides the language of sets, logic, counting, graphs and proof. Theoretical computer science adds models of computation and resource limits. Moving between a structure, an invariant and an executable recurrence helps distinguish what a program computes, why it is correct and how much work it requires.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/discrete-mathematics-theoretical-computer-science/",
-    "tags": []
+    "tags": [
+      "Graph theory",
+      "Mathematical induction"
+    ]
   },
   {
     "term": "Distance and similarity metrics",
@@ -847,10 +943,14 @@
   },
   {
     "term": "Distribution shift",
-    "definition": "Occurs when deployment data differs from training or validation data.",
+    "definition": "Distribution shift means the deployment joint distribution differs from the reference distribution. Covariate shift assumes the input mix changes while P(Y|X) stays fixed; label shift assumes class proportions change while P(X|Y) stays fixed. Conditional drift changes P(Y|X). These assumptions justify different corrections and cannot generally be inferred from unlabeled inputs alone.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/distribution-shift/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Expectation",
+      "Importance sampling"
+    ]
   },
   {
     "term": "Dot products and inner-product spaces",
@@ -877,17 +977,24 @@
   },
   {
     "term": "Duplicate-state detection",
-    "definition": "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
+    "definition": "Duplicate-state detection recognizes when different search paths reach an equivalent state. Current-path cycle checking removes loops within one branch; a global reached table can also merge converging branches. The correct record is algorithm-dependent: a Boolean set can be enough for unweighted reachability, while cost or depth-limited search may need best-cost or remaining-budget information.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/duplicate-state-detection/",
-    "tags": []
+    "tags": [
+      "State-space representation",
+      "Breadth-first search"
+    ]
   },
   {
     "term": "Dynamic Bayesian networks",
-    "definition": "A dynamic Bayesian network repeats a directed graphical-model template across time slices.",
+    "definition": "A dynamic Bayesian network represents a stochastic process through an initial distribution and directed dependencies within and between time slices. Factoring a state into variables can compactly describe transitions, but the filtering posterior over those variables can still be dependent.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/dynamic-bayesian-networks/",
-    "tags": []
+    "tags": [
+      "Bayesian networks",
+      "Hidden Markov models",
+      "Conditional independence"
+    ]
   },
   {
     "term": "Early stopping",
@@ -898,10 +1005,13 @@
   },
   {
     "term": "Effect size",
-    "definition": "Measures how large a difference is, not just whether it is statistically detectable.",
+    "definition": "An effect size quantifies a difference or association on a chosen scale. A raw mean difference retains outcome units; a standardized mean difference divides by a stated measure of variation. Neither is a p-value, a sample-size calculation, or a causal conclusion by itself. Interpretation depends on the estimand, design, standardizer and practical context.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/effect-size/",
-    "tags": []
+    "tags": [
+      "Gaussian",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "EfficientNet",
@@ -953,10 +1063,13 @@
   },
   {
     "term": "Exact inference",
-    "definition": "Exact inference computes a posterior, marginal, likelihood, or most-probable assignment without approximation error.",
+    "definition": "Exact inference evaluates a specified probabilistic query without algorithmic approximation, subject to numerical precision and the model itself. Marginal probabilities, conditional probabilities and the most probable joint assignment are different queries; exact answers to one do not automatically solve another.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/exact-inference/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Factor graphs"
+    ]
   },
   {
     "term": "Expectation",
@@ -969,11 +1082,15 @@
     ]
   },
   {
-    "term": "Expectation-maximization",
-    "definition": "Expectation-maximization estimates parameters when data contain latent or missing variables.",
+    "term": "Expectation–maximization",
+    "definition": "Expectation–maximization fits parameters in a latent-variable model by alternating posterior latent assignments under the current parameters with maximization of the expected complete-data log likelihood. Exact E and M steps do not decrease observed-data likelihood, but need not find a global maximum.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/expectation-maximization/",
-    "tags": []
+    "tags": [
+      "Bayes' theorem",
+      "Binomial",
+      "Approximate inference"
+    ]
   },
   {
     "term": "Expectimax",
@@ -984,10 +1101,14 @@
   },
   {
     "term": "Experimental design",
-    "definition": "Plans data collection so comparisons are fair, powered, and interpretable.",
+    "definition": "Experimental design specifies the units, interventions, allocation rule, measurements and analysis needed to answer a question. Random treatment assignment supports causal comparisons under explicit assumptions; random sampling concerns generalization to a population. Replication, blocking and measurement safeguards address different sources of uncertainty and bias.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/experimental-design/",
-    "tags": []
+    "tags": [
+      "Populations and samples",
+      "Expectation",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Exponential",
@@ -1008,17 +1129,24 @@
   },
   {
     "term": "Extended Kalman filter",
-    "definition": "The extended Kalman filter adapts Kalman updates to nonlinear models by linearizing them near the current estimate.",
+    "definition": "The extended Kalman filter uses local Jacobians to propagate covariance and form approximate corrections in nonlinear state-space models. It evaluates nonlinear functions at the current estimate but replaces their uncertainty propagation with a first-order approximation. The resulting Gaussian summary is generally not the exact nonlinear posterior.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/extended-kalman-filter/",
-    "tags": []
+    "tags": [
+      "Kalman filter",
+      "Jacobians",
+      "Taylor approximation"
+    ]
   },
   {
     "term": "Factor graphs",
-    "definition": "A factor graph is a bipartite graph with variable nodes and factor nodes that makes a distribution's factorization explicit.",
+    "definition": "A factor graph is a bipartite representation of a product of functions: variable nodes connect to factor nodes exactly when the variable appears in the factor's scope. In a probabilistic model, nonnegative factors define a joint distribution after global normalization when the normalizer is finite and positive.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/factor-graphs/",
-    "tags": []
+    "tags": [
+      "Conditional independence",
+      "Conditional probability"
+    ]
   },
   {
     "term": "First-order predicate logic",
@@ -1050,17 +1178,23 @@
   },
   {
     "term": "Forward-backward algorithm",
-    "definition": "The forward-backward algorithm computes every HMM state's smoothed probability using evidence before and after that time.",
+    "definition": "Forward–backward computes posterior state marginals in a finite-state HMM. Forward messages summarize evidence up to a time; backward messages summarize the remaining evidence conditional on that time's state. Their normalized product gives a smoothed marginal. This is different from filtering, which cannot use observations that have not yet arrived.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/forward-backward-algorithm/",
-    "tags": []
+    "tags": [
+      "Hidden Markov models",
+      "Bayes' theorem"
+    ]
   },
   {
     "term": "Forward-mode and reverse-mode autodiff",
-    "definition": "Forward mode is efficient for few inputs; reverse mode is efficient for many parameters and one loss.",
+    "definition": "Forward mode propagates an input direction to compute a Jacobian-vector product. Reverse mode propagates output weights backward to compute a vector-Jacobian product. Choosing a mode depends on the derivative product required, not simply whether the program runs forward in time.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/forward-mode-and-reverse-mode-autodiff/",
-    "tags": []
+    "tags": [
+      "Automatic differentiation",
+      "Jacobians and Hessians"
+    ]
   },
   {
     "term": "Foundations",
@@ -1119,10 +1253,14 @@
   },
   {
     "term": "Gibbs sampling",
-    "definition": "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
+    "definition": "Gibbs sampling repeatedly redraws a coordinate or block from its full conditional distribution while holding the other coordinates fixed. Each such update preserves the joint target. Strong dependence or disconnected conditional support can still prevent useful exploration; an update needing no rejection step is not a guarantee of fast mixing.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/gibbs-sampling/",
-    "tags": []
+    "tags": [
+      "Markov chains",
+      "Conditional probability",
+      "Joint, marginal, and conditional distributions"
+    ]
   },
   {
     "term": "Glow",
@@ -1140,10 +1278,13 @@
   },
   {
     "term": "Gradient descent",
-    "definition": "Moves parameters opposite the gradient to reduce the objective locally.",
+    "definition": "Gradient descent takes a step opposite the gradient, then evaluates the gradient again at the new point. Its behavior depends on both the step size and objective curvature. Even a smooth convex bowl can produce divergent iterates if the step is too large.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/gradient-descent/",
-    "tags": []
+    "tags": [
+      "Gradients",
+      "Eigenvalues and eigenvectors"
+    ]
   },
   {
     "term": "Gradient penalty",
@@ -1154,10 +1295,13 @@
   },
   {
     "term": "Gradients",
-    "definition": "A gradient collects partial derivatives and points in the direction of steepest local increase.",
+    "definition": "For a differentiable scalar function, the gradient collects first-order sensitivities into a vector. Its dot product with a direction gives the directional derivative. Under the Euclidean unit-length constraint, a nonzero gradient points toward the largest local increase; the choice of metric matters.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/gradients/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives",
+      "Orthogonality and orthonormal bases"
+    ]
   },
   {
     "term": "Graph Machine Learning",
@@ -1168,10 +1312,12 @@
   },
   {
     "term": "Graph theory",
-    "definition": "Represents entities as nodes and relationships as edges, useful for networks, dependencies, and knowledge graphs.",
+    "definition": "A graph represents a chosen relationship through vertices and edges. The graph type determines what an edge means: an unordered pair for a simple undirected graph, an ordered pair for a directed graph, and possibly a weight or multiplicity in richer models. A drawing is one representation of that structure, not the structure itself.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/graph-theory/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions"
+    ]
   },
   {
     "term": "Graphplan",
@@ -1182,10 +1328,13 @@
   },
   {
     "term": "Greedy best-first search",
-    "definition": "Greedy best-first search expands the state estimated closest to the goal.",
+    "definition": "Greedy best-first search prioritizes the smallest heuristic estimate h and ignores the cost g already paid. It can reach a plausible goal quickly, but even an admissible, consistent heuristic does not make its first solution cost-optimal. Its correctness and termination claims must be separated from the quality of the estimate.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/greedy-best-first-search/",
-    "tags": []
+    "tags": [
+      "A*",
+      "Consistent heuristics"
+    ]
   },
   {
     "term": "Gumbel",
@@ -1198,24 +1347,35 @@
   },
   {
     "term": "Hamiltonian Monte Carlo",
-    "definition": "Hamiltonian Monte Carlo uses gradients and simulated dynamics to propose distant moves through continuous probability distributions.",
+    "definition": "Hamiltonian Monte Carlo augments continuous parameters with momentum and uses gradients to propose moves through phase space. Numerical integration approximately preserves a Hamiltonian; a Metropolis correction accounts for integration error. Useful movement depends on geometry, step size and trajectory length, not acceptance probability alone.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/hamiltonian-monte-carlo/",
-    "tags": []
+    "tags": [
+      "Metropolis-Hastings",
+      "Gradients",
+      "Ordinary differential equations"
+    ]
   },
   {
     "term": "Hessians",
-    "definition": "A Hessian stores second-order derivatives and describes curvature, sharpness, and local optimization geometry.",
+    "definition": "A Hessian collects second partial derivatives of a scalar function and describes the quadratic part of its local expansion. Its off-diagonal terms couple coordinates. Curvature in an arbitrary direction depends on the whole matrix, not just its diagonal entries.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/hessians/",
-    "tags": []
+    "tags": [
+      "Gradients",
+      "Eigenvalues and eigenvectors"
+    ]
   },
   {
     "term": "Hidden Markov models",
-    "definition": "A hidden Markov model has a Markov sequence of latent states that probabilistically emits observable data.",
+    "definition": "A hidden Markov model separates a latent state sequence from the observations it emits. In a first-order HMM, the next hidden state depends on the current hidden state, and each observation depends on its own state. Marginalizing the hidden sequence can produce temporal dependence in the observations; the observed process need not itself be first-order Markov.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/hidden-markov-models/",
-    "tags": []
+    "tags": [
+      "Markov chains",
+      "Conditional probability",
+      "Joint, marginal, and conditional distributions"
+    ]
   },
   {
     "term": "Hierarchical task networks",
@@ -1250,10 +1410,13 @@
   },
   {
     "term": "Importance sampling",
-    "definition": "Samples from a more convenient distribution and reweights samples to estimate the target distribution.",
+    "definition": "Importance sampling estimates a target expectation using draws from another distribution and likelihood-ratio weights. The proposal must cover the contributing target support. A well-chosen proposal can reduce variance for a specific integrand; a poorly chosen one can create extreme weights or infinite variance.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/importance-sampling/",
-    "tags": []
+    "tags": [
+      "Monte Carlo estimation",
+      "Binomial"
+    ]
   },
   {
     "term": "Inception",
@@ -1280,17 +1443,22 @@
   },
   {
     "term": "Information bottleneck",
-    "definition": "Learns compressed representations that preserve information relevant to a target.",
+    "definition": "The information bottleneck formalizes a representation tradeoff: retain information relevant to a target while limiting information retained about the input. A common objective minimizes I(X;T)−βI(T;Y) over encoders p(t|x), with T generated from X. It is an information objective, not automatically a count of network parameters or physical storage bits.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/information-bottleneck/",
-    "tags": []
+    "tags": [
+      "Mutual information"
+    ]
   },
   {
-    "term": "Information Theory",
-    "definition": "Information theory measures uncertainty, surprise, compression, and information flow. It is central to classification, language modelling, generative modelling, compression, and representation learning.",
+    "term": "Information theory",
+    "definition": "Information theory quantifies uncertainty, dependence and limits on representation or communication under a probability model. Entropy concerns a variable's uncertainty; conditional entropy concerns what remains after observing another variable; mutual information measures their dependence. These quantities do not directly measure truth, semantic meaning or usefulness for a task.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/information-theory/",
-    "tags": []
+    "tags": [
+      "Entropy",
+      "Conditional probability"
+    ]
   },
   {
     "term": "Integer programming",
@@ -1308,24 +1476,33 @@
   },
   {
     "term": "Iterative deepening",
-    "definition": "Iterative deepening repeats depth-limited DFS with successively larger limits.",
+    "definition": "Iterative deepening runs fresh depth-limited searches at limits zero, one, two and onward. Each run discards its search frontier; the outer loop continues only after a cutoff. With finite branching and a reachable finite-depth goal, the first successful limit equals the shallowest solution depth. This buys small depth-first working memory by repeating earlier work.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/iterative-deepening/",
-    "tags": []
+    "tags": [
+      "Depth-limited search",
+      "Breadth-first search"
+    ]
   },
   {
-    "term": "Iterative Deepening A*",
-    "definition": "Iterative Deepening A* repeats depth-first searches under increasing f-cost thresholds.",
+    "term": "Iterative deepening A*",
+    "definition": "Iterative deepening A* (IDA*) runs depth-first passes bounded by f=g+h. It starts at h(start) and, after an unsuccessful pass, raises the threshold to the smallest f that exceeded the old bound. It preserves an admissible heuristic's cost guarantee under suitable termination conditions while trading A*'s stored frontier for repeated depth-first work.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/iterative-deepening-a-star/",
-    "tags": []
+    "tags": [
+      "Iterative deepening",
+      "A*"
+    ]
   },
   {
     "term": "Jacobians",
-    "definition": "A Jacobian stores first-order derivatives for vector-valued functions, tracking how each output changes with each input.",
+    "definition": "The Jacobian is the matrix of a differentiable vector-valued function's local linear map. It maps small input displacements to first-order output displacements; it is not generally an exact transformation of finite changes. The remainder, measured relative to the input step, must vanish as the step tends to zero.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/jacobians/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives",
+      "Matrix multiplication and tensor contraction"
+    ]
   },
   {
     "term": "Jacobians and Hessians",
@@ -1337,11 +1514,14 @@
     ]
   },
   {
-    "term": "Jensen-Shannon divergence",
-    "definition": "A symmetric, smoothed way to compare probability distributions.",
+    "term": "Jensen–Shannon divergence",
+    "definition": "Equal-weight Jensen–Shannon divergence averages two KL divergences to the common mixture M=(P+Q)/2. It is symmetric and finite even when the two inputs have disjoint supports. Its square root is a distance metric; the divergence itself should not be substituted for that distance without checking the intended definition.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/jensen-shannon-divergence/",
-    "tags": []
+    "tags": [
+      "KL divergence",
+      "Entropy"
+    ]
   },
   {
     "term": "Joint, marginal, and conditional distributions",
@@ -1355,24 +1535,34 @@
   },
   {
     "term": "Junction-tree algorithm",
-    "definition": "The junction-tree algorithm transforms a graph into a tree of overlapping variable clusters for exact inference.",
+    "definition": "A junction tree reorganizes a graphical model into overlapping variable clusters arranged as a tree. Exact sum-product messages calibrate the clusters so their marginals agree on shared variables. This permits exact inference in cyclic models when the cluster tables remain computationally manageable.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/junction-tree-algorithm/",
-    "tags": []
+    "tags": [
+      "Variable elimination",
+      "Belief propagation"
+    ]
   },
   {
     "term": "Kalman filter",
-    "definition": "The Kalman filter maintains the exact Gaussian belief for a linear dynamical system with Gaussian noise.",
+    "definition": "The Kalman filter recursively predicts a state distribution and conditions it on a new measurement. With a Gaussian initial state, linear dynamics and observations, and the specified independent Gaussian noises, the filtering distribution remains Gaussian and its mean and covariance are exact. Incorrect noise or dynamics assumptions can still make the estimate unreliable.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/kalman-filter/",
-    "tags": []
+    "tags": [
+      "Gaussian",
+      "Bayes' theorem",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "KKT conditions",
-    "definition": "Generalize optimality conditions for constrained optimization problems.",
+    "definition": "The Karush–Kuhn–Tucker conditions combine stationarity, primal feasibility, dual feasibility and complementary slackness. They are necessary at many regular constrained optima and sufficient for global optimality in differentiable convex problems with affine equalities. A constraint can be active even when its multiplier is zero.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/kkt-conditions/",
-    "tags": []
+    "tags": [
+      "Lagrange multipliers",
+      "Convex and non-convex optimization"
+    ]
   },
   {
     "term": "KL divergence",
@@ -1415,10 +1605,13 @@
   },
   {
     "term": "Lagrange multipliers",
-    "definition": "Convert constrained problems into equations that balance objective and constraint forces.",
+    "definition": "For a smooth equality-constrained problem, a regular constrained optimum balances the objective gradient with a combination of constraint gradients. Lagrange multipliers express that balance and can describe how the optimal value responds to changing a constraint. They are not automatically positive, and stationarity alone is not an optimality certificate.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/lagrange-multipliers/",
-    "tags": []
+    "tags": [
+      "Gradients",
+      "Unconstrained and constrained optimization"
+    ]
   },
   {
     "term": "Latent diffusion",
@@ -1474,10 +1667,12 @@
   },
   {
     "term": "Learning rates and schedules",
-    "definition": "Control step size over time, strongly affecting speed and stability.",
+    "definition": "A learning-rate schedule specifies how the optimizer's global step size changes with training progress. Its meaning depends on the clock—optimizer updates, examples, tokens, or epochs—and on the optimizer itself. Warmup and decay define a policy, not a general guarantee of better training.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/learning-rates-and-schedules/",
-    "tags": []
+    "tags": [
+      "Gradient descent"
+    ]
   },
   {
     "term": "Least-constraining value",
@@ -1495,24 +1690,31 @@
   },
   {
     "term": "Limits and continuity",
-    "definition": "Limits describe behavior near a point, and continuity means small input changes do not cause jumps.",
+    "definition": "A limit describes a function's behavior arbitrarily near an input, excluding the input itself. Continuity at that input additionally requires the assigned function value to agree with the limit. A function can have a perfectly well-defined limit while its value is missing or different.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/limits-and-continuity/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions"
+    ]
   },
   {
     "term": "Line search",
-    "definition": "Chooses a step size by testing how the objective changes along a direction.",
+    "definition": "A line search chooses how far to move along an already chosen direction. It evaluates the one-dimensional restriction φ(α)=f(x+αp), looking for a useful step rather than necessarily solving that subproblem exactly. Direction selection, step acceptance and the outer optimizer's stopping rule are different decisions.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/line-search/",
-    "tags": []
+    "tags": [
+      "Gradient descent",
+      "Directional derivatives"
+    ]
   },
   {
-    "term": "Linear Algebra",
-    "definition": "Linear algebra is the language of vectors, matrices, tensors, transformations, and high-dimensional geometry. It appears everywhere in AI, from embeddings and neural network weights to PCA and attention.",
+    "term": "Linear algebra",
+    "definition": "Linear algebra studies vector spaces and maps that preserve linear combinations. Matrices represent those maps after bases are chosen. Shapes, subspaces, inner products and factorizations answer different questions: a linear map need not preserve distance, angle, rank or even information about its input.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/linear-algebra/",
-    "tags": []
+    "tags": [
+      "Scalars, vectors, matrices, and tensors"
+    ]
   },
   {
     "term": "Linear independence",
@@ -1532,10 +1734,14 @@
   },
   {
     "term": "Local minima, global minima, and saddle points",
-    "definition": "These describe places where progress can stop or become ambiguous.",
+    "definition": "A local minimizer has no worse objective value than nearby feasible points; a global minimizer has no worse value than any feasible point. A saddle has both higher and lower values arbitrarily nearby. For a smooth unconstrained problem, zero gradient identifies a stationary candidate—not which of these roles it plays.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/local-minima-global-minima-and-saddle-points/",
-    "tags": []
+    "tags": [
+      "Gradients",
+      "Hessians",
+      "Convex and non-convex optimization"
+    ]
   },
   {
     "term": "Log-normal",
@@ -1563,10 +1769,14 @@
   },
   {
     "term": "Loopy belief propagation",
-    "definition": "Loopy belief propagation applies ordinary belief-propagation updates to graphs that contain cycles.",
+    "definition": "Loopy belief propagation iterates local BP updates on a graph with cycles. It can be useful, but convergence is not guaranteed and a stable fixed point need not give exact marginals. Update residuals measure numerical stabilization, not the error relative to the true distribution.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/loopy-belief-propagation/",
-    "tags": []
+    "tags": [
+      "Belief propagation",
+      "Markov random fields",
+      "Approximate inference"
+    ]
   },
   {
     "term": "Low-rank approximation",
@@ -1589,31 +1799,39 @@
   },
   {
     "term": "Markov processes",
-    "definition": "Generalize memoryless state transitions over time.",
+    "definition": "A Markov process makes its future conditionally independent of its past given the present state. Time and state can be discrete or continuous. This lesson studies a two-state continuous-time chain, where transition rates and exponential holding times replace the fixed-step transition probabilities used in the discrete-time Markov-chain lesson.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/markov-processes/",
-    "tags": []
+    "tags": [
+      "Markov chains",
+      "Exponential"
+    ]
   },
   {
     "term": "Markov random fields",
-    "definition": "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
+    "definition": "A Markov random field describes an undirected dependency structure. A distribution factorized into nonnegative clique potentials, with a finite positive partition function, obeys the graph's separation-based conditional independencies. Its potentials score joint configurations rather than specify causal directions.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/markov-random-fields/",
-    "tags": []
+    "tags": [
+      "Factor graphs",
+      "Conditional independence"
+    ]
   },
   {
-    "term": "Mathematical Foundations",
-    "definition": "A field guide to the mechanisms, assumptions, and operating limits of Mathematical Foundations.",
+    "term": "Mathematical foundations",
+    "definition": "Mathematics makes a learning system's assumptions inspectable. Linear algebra defines representations, calculus describes sensitivity, probability models uncertainty, statistics connects observations to claims, optimization searches for decisions, information theory studies representation limits, and discrete mathematics supports proofs and computational analysis. Use the branch that answers your current question, then connect it to its prerequisites.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/",
     "tags": []
   },
   {
     "term": "Mathematical induction",
-    "definition": "Proves a claim for all cases by proving a base case and a step from one case to the next.",
+    "definition": "Mathematical induction proves a statement across a well-founded sequence by establishing a base case and a step that carries truth to the next case. It is a deductive argument, not extrapolation from many successful examples. The statement being carried forward must be precise enough to support that step.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/mathematical-induction/",
-    "tags": []
+    "tags": [
+      "Boolean algebra"
+    ]
   },
   {
     "term": "Matrix calculus",
@@ -1636,10 +1854,13 @@
   },
   {
     "term": "Max-product algorithm",
-    "definition": "The max-product algorithm replaces summation in message passing with maximization to seek a maximum a posteriori configuration.",
+    "definition": "Max-product replaces summation with maximization in nonnegative-factor message passing to find a highest-weight joint assignment. On a tree, exact scores plus stored backpointers recover a joint MAP configuration. The resulting max scores are not marginal probabilities.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/max-product-algorithm/",
-    "tags": []
+    "tags": [
+      "Belief propagation",
+      "Exact inference"
+    ]
   },
   {
     "term": "Maximum a posteriori estimation",
@@ -1663,10 +1884,13 @@
   },
   {
     "term": "Metropolis-Hastings",
-    "definition": "Metropolis-Hastings samples from a target distribution by proposing moves and probabilistically accepting or rejecting them.",
+    "definition": "Metropolis–Hastings constructs a transition kernel that preserves a target distribution by correcting proposed moves with an acceptance probability. The correction depends on both target density and forward/reverse proposal probabilities. Preserving the target is not the same as having reached it from an arbitrary initial state.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/metropolis-hastings/",
-    "tags": []
+    "tags": [
+      "Markov chains",
+      "Conditional probability"
+    ]
   },
   {
     "term": "Min-conflicts",
@@ -1677,10 +1901,13 @@
   },
   {
     "term": "Mini-batch optimization",
-    "definition": "Uses batches large enough for stable estimates but small enough for efficient training.",
+    "definition": "A minibatch gradient averages several per-example gradients evaluated at the same parameter state. It changes estimator variance, hardware utilization and the number of updates per data pass. Its statistical behavior depends on how examples are sampled, not just on the numerical batch size.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/mini-batch-optimization/",
-    "tags": []
+    "tags": [
+      "Stochastic gradient descent",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Minimax",
@@ -1691,10 +1918,13 @@
   },
   {
     "term": "Minimum description length",
-    "definition": "Prefers models that explain data well without requiring overly complex descriptions.",
+    "definition": "Minimum description length selects explanations by how concisely they encode data under a declared coding scheme. In a two-part code, the description includes both the model and the data conditional on it. Improving fit is useful only if the data savings compensate for the extra model description.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/minimum-description-length/",
-    "tags": []
+    "tags": [
+      "Coding theory",
+      "Cross-entropy"
+    ]
   },
   {
     "term": "Minimum remaining values",
@@ -1705,10 +1935,14 @@
   },
   {
     "term": "Missing-data mechanisms",
-    "definition": "Describe why values are absent, which determines whether simple fixes are safe.",
+    "definition": "A missing-data mechanism describes how observation indicators depend on observed and unobserved values. MCAR removes dependence on data values; MAR allows dependence on observed information but not on the missing values after conditioning on that information. MNAR retains dependence on unobserved values. These are assumptions about the observation process, not labels determined by the percentage missing.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/missing-data-mechanisms/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Conditional independence",
+      "Expectation"
+    ]
   },
   {
     "term": "Mixed-integer programming",
@@ -1747,17 +1981,23 @@
   },
   {
     "term": "Momentum and adaptive methods",
-    "definition": "Smooth or rescale updates so optimization handles noisy or uneven gradients better.",
+    "definition": "Momentum carries information from earlier gradients into the next update. Adaptive methods instead also change coordinate-wise step scales using gradient statistics. These mechanisms can be combined, but they are not interchangeable and neither guarantees faster convergence on every objective.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/momentum-and-adaptive-methods/",
-    "tags": []
+    "tags": [
+      "Gradient descent"
+    ]
   },
   {
     "term": "Monte Carlo estimation",
-    "definition": "Uses random samples to approximate expectations or probabilities that are hard to compute exactly.",
+    "definition": "Monte Carlo estimation approximates an expectation by an average of random evaluations. Under IID sampling and finite variance, the sample mean is unbiased and its variance falls in proportion to 1/n. This describes repeated-sampling behavior, not a guarantee that one running estimate moves monotonically toward the answer.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/monte-carlo-estimation/",
-    "tags": []
+    "tags": [
+      "Expectation",
+      "Variance and covariance",
+      "Standard error"
+    ]
   },
   {
     "term": "Monte Carlo Tree Search",
@@ -1809,10 +2049,12 @@
   },
   {
     "term": "Multivariable integration",
-    "definition": "Integrates quantities over areas, volumes, or higher-dimensional spaces.",
+    "definition": "A multiple integral accumulates a quantity over a region using an area or volume element. The integration bounds encode the geometry, while the integrand specifies what is accumulated. Area, mass and probability are different integrals unless their density and normalization make them coincide.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/multivariable-integration/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives"
+    ]
   },
   {
     "term": "Multivariate Gaussian",
@@ -1826,10 +2068,14 @@
   },
   {
     "term": "Mutual information",
-    "definition": "Measures how much knowing one variable reduces uncertainty about another.",
+    "definition": "Mutual information measures how far a joint distribution is from the product of its marginals. For discrete variables it equals the average reduction in uncertainty from observing the other variable. It is symmetric and detects dependence that a linear correlation coefficient can miss; it does not establish causation.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/mutual-information/",
-    "tags": []
+    "tags": [
+      "Conditional entropy",
+      "KL divergence",
+      "Correlation"
+    ]
   },
   {
     "term": "Negamax",
@@ -1854,10 +2100,14 @@
   },
   {
     "term": "Newton and quasi-Newton methods",
-    "definition": "Use curvature information to choose more informed update steps.",
+    "definition": "Newton's method uses a local Hessian to turn a gradient into a curvature-aware direction. Quasi-Newton methods such as BFGS learn a curvature approximation from successive parameter and gradient differences. Their extra information can reduce iterations, but each iteration has costs and may require safeguards.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/newton-and-quasi-newton-methods/",
-    "tags": []
+    "tags": [
+      "Jacobians and Hessians",
+      "Gradient descent",
+      "Positive-semidefinite matrices"
+    ]
   },
   {
     "term": "NICE",
@@ -1908,17 +2158,23 @@
   },
   {
     "term": "Numerical stability",
-    "definition": "Keeps calculations reliable despite finite precision, overflow, underflow, or bad scaling.",
+    "definition": "Numerical stability concerns how an algorithm handles rounding and other small computational errors. Conditioning concerns how the mathematical answer changes when its input changes. Equivalent exact formulas can behave very differently in finite precision, even for a well-conditioned problem.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/numerical-stability/",
-    "tags": []
+    "tags": [
+      "Numerical conditioning",
+      "Limits and continuity"
+    ]
   },
   {
     "term": "Objectives, losses, and cost functions",
-    "definition": "These define what the system is trying to minimize, maximize, or balance.",
+    "definition": "A loss scores a prediction against an outcome. A training objective aggregates those losses and may add penalties or constraints. Terminology varies, so an implementation should state the complete expression, its reduction, and the variables being optimized rather than rely on the word cost.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/objectives-losses-and-cost-functions/",
-    "tags": []
+    "tags": [
+      "Expectation",
+      "Parameters and decision variables"
+    ]
   },
   {
     "term": "ODE solvers",
@@ -1929,10 +2185,12 @@
   },
   {
     "term": "Online algorithms",
-    "definition": "Make decisions as data arrives without knowing the future.",
+    "definition": "An online algorithm commits to actions as requests arrive, without knowing future requests. Competitive analysis compares its total cost with an offline optimum that knows the entire sequence. The comparison is over all allowed sequences, not merely the typical future in a training dataset.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/online-algorithms/",
-    "tags": []
+    "tags": [
+      "Time and space complexity"
+    ]
   },
   {
     "term": "Ontologies",
@@ -1950,24 +2208,33 @@
   },
   {
     "term": "Optimality",
-    "definition": "Optimality asks whether an algorithm is guaranteed to return the best feasible solution under its objective.",
+    "definition": "A feasible result is optimal when its objective value is no worse than every other feasible result. An algorithmic optimality guarantee must hold over its stated problem class, not merely for one successful example. In path search, minimum edge count and minimum accumulated cost coincide only under suitable cost assumptions. A bound can quantify the gap when exact optimality has not been established.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/optimality/",
-    "tags": []
+    "tags": [
+      "Breadth-first search",
+      "Uniform-cost search"
+    ]
   },
   {
     "term": "Optimization",
-    "definition": "Optimization is the process of choosing parameters, decisions, or actions that make an objective as good as possible. In AI, it is how models reduce loss and improve behavior during training.",
+    "definition": "Optimization selects decision variables to minimize or maximize a specified objective over a feasible set. The model defines what counts as a good answer; the algorithm attempts to find it. Smoothness, convexity, constraints and numerical conditioning determine which guarantees and computational methods apply.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/optimization/",
-    "tags": []
+    "tags": [
+      "Objectives, losses, and cost functions",
+      "Derivatives and partial derivatives"
+    ]
   },
   {
     "term": "Ordinary differential equations",
-    "definition": "Describe systems whose state changes over continuous time according to deterministic rules.",
+    "definition": "An ordinary differential equation specifies how a state changes with one independent variable, often time. An initial condition selects a trajectory when appropriate existence and uniqueness conditions hold. A numerical solver approximates that trajectory; its discrete dynamics can behave differently from the continuous equation.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/ordinary-differential-equations/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives",
+      "Taylor approximation"
+    ]
   },
   {
     "term": "Orthogonality and orthonormal bases",
@@ -1990,10 +2257,14 @@
   },
   {
     "term": "P, NP, NP-hard, and NP-complete",
-    "definition": "Complexity classes that describe which problems are efficiently solvable or likely hard.",
+    "definition": "P and NP classify decision problems by polynomial-time solving and verification. NP-hardness describes reduction-based difficulty, while NP-completeness combines hardness with membership in NP. These are properties of problem families and encodings, not labels inferred from one slow instance or a small interactive example.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/p-np-np-hard-and-np-complete/",
-    "tags": []
+    "tags": [
+      "Boolean algebra",
+      "Time and space complexity",
+      "Reductions"
+    ]
   },
   {
     "term": "Padding",
@@ -2004,10 +2275,12 @@
   },
   {
     "term": "Parameters and decision variables",
-    "definition": "Parameters are the adjustable values the optimizer changes.",
+    "definition": "Decision variables are the quantities an optimization problem is allowed to choose. In model fitting these often include weights and intercepts, while inputs and observed labels are held fixed. A model parameter can also be frozen; being stored in a model does not automatically make it trainable.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/parameters-and-decision-variables/",
-    "tags": []
+    "tags": [
+      "Scalars, vectors, matrices, and tensors"
+    ]
   },
   {
     "term": "Partial-order planning",
@@ -2018,10 +2291,14 @@
   },
   {
     "term": "Particle filter",
-    "definition": "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
+    "definition": "A particle filter approximates the distribution of a hidden current state given observations so far. The bootstrap version proposes states from the transition model, weights them by the new observation likelihood and may resample. It is an online filtering application of Sequential Monte Carlo, not an exact inference guarantee.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/particle-filter/",
-    "tags": []
+    "tags": [
+      "Hidden Markov models",
+      "Sequential Monte Carlo",
+      "Importance sampling"
+    ]
   },
   {
     "term": "PDDL",
@@ -2088,10 +2365,13 @@
   },
   {
     "term": "Populations and samples",
-    "definition": "The population is what you want to understand; the sample is the data you actually observe.",
+    "definition": "A population is the set of units or generating distribution about which a claim is intended. A sample is the subset actually observed. A statistic summarizes the sample; a parameter describes the target. Inference requires a link between them, supplied by a sampling design or explicit modeling assumptions—not just by having many rows.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/populations-and-samples/",
-    "tags": []
+    "tags": [
+      "Expectation",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Portfolio",
@@ -2122,17 +2402,24 @@
   },
   {
     "term": "Probabilistic AI",
-    "definition": "Probabilistic AI gives models a language for uncertainty, hidden state, noisy evidence, and inference over structured variables.",
+    "definition": "Probabilistic AI separates a model of uncertain quantities, a query about those quantities, an inference method and a decision rule. This section moves from graphical-model assumptions to exact and approximate inference, latent-variable learning and temporal state estimation. A numerical answer is meaningful only under its model and evidence assumptions.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Bayes' theorem",
+      "Expectation"
+    ]
   },
   {
     "term": "Probability",
-    "definition": "Probability is the language of uncertainty. It helps AI systems reason from incomplete data, model noise, estimate confidence, sample possibilities, and compare competing explanations.",
+    "definition": "Probability starts with a sample space, events and a consistent assignment of mass. Random variables map outcomes to quantities. A joint model specifies how several quantities vary together; marginals describe them separately. Conditioning, expectations and distributions are operations on that model—not permission to assume independence.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/probability/",
-    "tags": []
+    "tags": [
+      "Sample spaces and events",
+      "Random variables"
+    ]
   },
   {
     "term": "Probability mass and density functions",
@@ -2150,10 +2437,12 @@
   },
   {
     "term": "Product, quotient, and chain rules",
-    "definition": "These rules break complex derivatives into manageable pieces, especially through nested functions.",
+    "definition": "Differentiation rules combine local derivatives while preserving how expressions depend on an input. Products have two first-order contributions, quotients must account for denominator change, and compositions multiply sensitivities along their dependency path.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/product-quotient-and-chain-rules/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives"
+    ]
   },
   {
     "term": "Programming And Systems Foundations",
@@ -2173,10 +2462,13 @@
   },
   {
     "term": "Proof by contradiction",
-    "definition": "Proves a claim by showing the opposite assumption leads to an impossibility.",
+    "definition": "In classical logic, proof by contradiction establishes a proposition by assuming its negation and deriving an impossibility from that assumption plus the premises. The contradiction must be a logical conflict, not merely an unexpected result. Tracking exactly which assumption is rejected is part of the proof.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/proof-by-contradiction/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions",
+      "Boolean algebra"
+    ]
   },
   {
     "term": "Propositional logic",
@@ -2210,10 +2502,13 @@
   },
   {
     "term": "Randomized algorithms",
-    "definition": "Use randomness to simplify logic, improve average performance, or estimate hard quantities.",
+    "definition": "A randomized algorithm uses internal random choices, so its output or resource use can vary even for a fixed input. Monte Carlo algorithms allow a controlled error probability; Las Vegas algorithms return correct answers but have random resource use. The distribution of those internal choices belongs in the algorithm's specification.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/randomized-algorithms/",
-    "tags": []
+    "tags": [
+      "Conditional probability",
+      "Matrix multiplication and tensor contraction"
+    ]
   },
   {
     "term": "Rank and null space",
@@ -2227,10 +2522,13 @@
   },
   {
     "term": "Rate-distortion theory",
-    "definition": "Studies the trade-off between compression rate and acceptable reconstruction error.",
+    "definition": "Rate-distortion theory asks for the minimum asymptotic communication rate needed to reconstruct a source within a specified distortion budget. Its answer depends on the source distribution, the distortion function and the coding setting—not just on a desired file size or an informal notion of perceptual quality.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/rate-distortion-theory/",
-    "tags": []
+    "tags": [
+      "Mutual information",
+      "Entropy"
+    ]
   },
   {
     "term": "RealNVP",
@@ -2276,17 +2574,23 @@
   },
   {
     "term": "Recurrence relations",
-    "definition": "Define values in terms of previous values, common in algorithms and dynamic programming.",
+    "definition": "A recurrence specifies a quantity through smaller instances and boundary values. It can define a sequence or model an algorithm's work; those are different quantities. The model must say what n measures, which calls occur, and what work remains outside those calls.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/recurrence-relations/",
-    "tags": []
+    "tags": [
+      "Mathematical induction",
+      "Trees and directed acyclic graphs"
+    ]
   },
   {
     "term": "Reductions",
-    "definition": "Transform one problem into another to compare difficulty or reuse solvers.",
+    "definition": "A polynomial-time many-one reduction maps each instance of problem A to one instance of problem B, preserving yes and no answers. It lets an algorithm for B solve A after the translation. The mapping, its running time and both directions of the answer equivalence are separate proof obligations.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/reductions/",
-    "tags": []
+    "tags": [
+      "Graph theory",
+      "Sets, relations, and functions"
+    ]
   },
   {
     "term": "Regularization",
@@ -2297,10 +2601,13 @@
   },
   {
     "term": "Regularization and penalties",
-    "definition": "Add terms that discourage overly complex, unstable, or undesirable solutions.",
+    "definition": "A penalty adds a stated preference to an optimization objective, such as smaller coefficients or sparse solutions. It changes the optimum rather than merely helping a solver reach the unpenalized answer. Whether that tradeoff improves prediction must be assessed separately from training fit.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/regularization-and-penalties/",
-    "tags": []
+    "tags": [
+      "Objectives, losses, and cost functions",
+      "Convex and non-convex optimization"
+    ]
   },
   {
     "term": "Reinforcement Learning",
@@ -2311,10 +2618,13 @@
   },
   {
     "term": "Rejection sampling",
-    "definition": "Samples from a proposal distribution and accepts only samples that fit the target shape.",
+    "definition": "Rejection sampling generates target draws by accepting or rejecting proposal draws with a probability derived from a valid envelope. If f(x)≤M g(x) everywhere on the target support, accepting x∼g with probability f(x)/(M g(x)) produces accepted draws with density f. A violated envelope invalidates that guarantee.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/rejection-sampling/",
-    "tags": []
+    "tags": [
+      "Probability mass and density functions",
+      "Conditional probability"
+    ]
   },
   {
     "term": "Representation learning",
@@ -2430,14 +2740,17 @@
   },
   {
     "term": "Sequential Monte Carlo",
-    "definition": "Sequential Monte Carlo represents an evolving distribution with weighted particles that are propagated, reweighted, and resampled.",
+    "definition": "Sequential Monte Carlo maintains weighted particles across a sequence of target distributions using importance weighting, resampling and suitable propagation or mutation. The sequence may follow real observations, as in particle filtering, or artificial intermediate targets for a static problem. This lab isolates one tempered weighting and resampling stage.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/sequential-monte-carlo/",
-    "tags": []
+    "tags": [
+      "Importance sampling",
+      "Monte Carlo estimation"
+    ]
   },
   {
     "term": "Sets, relations, and functions",
-    "definition": "Basic objects for describing collections, mappings, and relationships between entities.",
+    "definition": "Sets identify distinct elements; relations specify which ordered pairs belong together; functions impose an output rule on those pairs. Here a function A→B means a total function: every element of A has exactly one output in B. This contract is separate from whether outputs are shared or every codomain element is reached.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/sets-relations-and-functions/",
     "tags": []
@@ -2517,31 +2830,44 @@
   },
   {
     "term": "State-space representation",
-    "definition": "A state-space representation defines what a solver treats as a state and which transitions are possible.",
+    "definition": "A search state summarizes the past well enough to determine legal future actions, their outcomes and costs, and whether the goal is satisfied. It need not store the entire world or action history. But dropping a variable that changes the future can merge genuinely different situations and make an otherwise correct search algorithm return an invalid answer or miss a solution.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/state-space-representation/",
-    "tags": []
+    "tags": [
+      "Graph theory"
+    ]
   },
   {
     "term": "Statistics",
-    "definition": "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+    "definition": "Statistics uses observed data and a sampling model to estimate, compare or predict. The target matters: uncertainty about a population mean differs from uncertainty about one future observation. Valid uncertainty statements also depend on how observations were selected, whether they are independent and which assumptions justify the procedure.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/statistics/",
-    "tags": []
+    "tags": [
+      "Gaussian",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Stochastic differential equations",
-    "definition": "Add random noise to continuous-time dynamics, useful for diffusion and uncertainty models.",
+    "definition": "An SDE describes state evolution with both drift and stochastic forcing. In an Itô diffusion, Brownian increments scale with the square root of elapsed time. A solution is a random process: its mean, marginal spread and individual realizations answer different questions.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/stochastic-differential-equations/",
-    "tags": []
+    "tags": [
+      "Ordinary differential equations",
+      "Gaussian",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Stochastic gradient descent",
-    "definition": "Estimates the gradient from small random batches, trading exactness for speed.",
+    "definition": "SGD updates parameters using a sampled estimate of the objective gradient. Under uniform sampling of a finite mean loss, one example's gradient is unbiased conditional on the current parameters. Individual updates can still increase the full-data loss, and a fixed learning rate can leave persistent sampling noise.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/stochastic-gradient-descent/",
-    "tags": []
+    "tags": [
+      "Gradient descent",
+      "Expectation",
+      "Variance and covariance"
+    ]
   },
   {
     "term": "Stride",
@@ -2575,10 +2901,13 @@
   },
   {
     "term": "Sum-product algorithm",
-    "definition": "The sum-product algorithm passes local messages on a factor graph to compute marginal distributions.",
+    "definition": "Sum-product computes marginal information by multiplying compatible factors and summing over unwanted states. On a factor tree, completed messages give exact marginals. On a cyclic factor graph, ordinary loopy updates lose that guarantee; exact inference may still be possible through elimination or junction-tree methods.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/sum-product-algorithm/",
-    "tags": []
+    "tags": [
+      "Belief propagation",
+      "Factor graphs"
+    ]
   },
   {
     "term": "Tabu search",
@@ -2589,10 +2918,13 @@
   },
   {
     "term": "Taylor approximation",
-    "definition": "Taylor formulas approximate a function near a point using value, slope, and sometimes curvature.",
+    "definition": "A Taylor polynomial matches a function's value and successive derivatives at an expansion point. Taylor's theorem adds a remainder under suitable smoothness assumptions. A finite polynomial is a local approximation; an infinite Taylor series represents its function only where the remainder tends to zero.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/taylor-approximation/",
-    "tags": []
+    "tags": [
+      "Derivatives and partial derivatives",
+      "Limits and continuity"
+    ]
   },
   {
     "term": "Teacher forcing",
@@ -2617,17 +2949,24 @@
   },
   {
     "term": "Time and memory complexity",
-    "definition": "Search complexity describes how expansions and stored states grow with branching, depth, and algorithm behavior.",
+    "definition": "Search resource analysis must name what is counted: generated nodes, removed entries, expanded states, frontier records, parent histories or duplicate tables. Branching and depth describe an implicit search tree; V and E describe an explicit finite graph. Different representations, cutoff rules and storage policies can change both the formula and what it means in practice.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/time-and-memory-complexity/",
-    "tags": []
+    "tags": [
+      "Time and space complexity",
+      "Recurrence relations",
+      "Breadth-first search",
+      "Depth-first search"
+    ]
   },
   {
     "term": "Time and space complexity",
-    "definition": "Measures how computation and memory grow as input size increases.",
+    "definition": "Complexity describes how an algorithm's resource requirements grow with a specified input size under a specified cost model. Time counts work; auxiliary space counts peak extra live storage. A mathematical recurrence defines an answer, but the evaluator chosen for it determines how much work is repeated.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/time-and-space-complexity/",
-    "tags": []
+    "tags": [
+      "Recurrence relations"
+    ]
   },
   {
     "term": "Trace and determinant",
@@ -2682,10 +3021,12 @@
   },
   {
     "term": "Trees and directed acyclic graphs",
-    "definition": "Structured graphs that model hierarchies, computation graphs, parse trees, and pipelines.",
+    "definition": "A finite undirected tree is connected and has no cycle; it has one simple path between each pair of vertices. A directed acyclic graph has no directed cycle, but may have shared descendants and cycles after arrow directions are forgotten. A rooted outward tree is a special DAG, not a synonym for every DAG.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/trees-and-directed-acyclic-graphs/",
-    "tags": []
+    "tags": [
+      "Graph theory"
+    ]
   },
   {
     "term": "U-Net",
@@ -2710,10 +3051,13 @@
   },
   {
     "term": "Unconstrained and constrained optimization",
-    "definition": "Unconstrained problems move freely; constrained problems must satisfy rules or limits.",
+    "definition": "An unconstrained optimizer may move anywhere in its domain; a constrained optimizer must also satisfy a feasible set. At a boundary solution the objective gradient need not vanish: the constraint can block every improving direction that remains feasible.",
     "phase": "Mathematical Foundations",
     "href": "/lessons/mathematical-foundations/topics/unconstrained-and-constrained-optimization/",
-    "tags": []
+    "tags": [
+      "Convex and non-convex optimization",
+      "Gradients"
+    ]
   },
   {
     "term": "Unification",
@@ -2733,10 +3077,13 @@
   },
   {
     "term": "Uniform-cost search",
-    "definition": "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
+    "definition": "Uniform-cost search removes the frontier path with minimum accumulated cost g. When a cheaper path to a state appears, it updates that state's best-known cost and parent. With nonnegative edges on a finite graph, a minimum-cost removal finalizes a state's distance. Stop when a goal is removed with its current best cost, not when it is first generated.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/uniform-cost-search/",
-    "tags": []
+    "tags": [
+      "Breadth-first search",
+      "Graph theory"
+    ]
   },
   {
     "term": "Universal approximation",
@@ -2747,17 +3094,24 @@
   },
   {
     "term": "Unscented Kalman filter",
-    "definition": "The unscented Kalman filter propagates carefully selected sigma points through nonlinear functions instead of linearizing with derivatives.",
+    "definition": "The unscented Kalman filter approximates nonlinear moment propagation using deterministically selected sigma points and weights, then applies a mean/covariance correction. It does not require a Jacobian for this propagation. Sigma points are a numerical integration rule, not random posterior samples, and improved moment accuracy does not make a nonlinear posterior exactly Gaussian.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/unscented-kalman-filter/",
-    "tags": []
+    "tags": [
+      "Kalman filter",
+      "Extended Kalman filter",
+      "Gaussian"
+    ]
   },
   {
     "term": "Variable elimination",
-    "definition": "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
+    "definition": "Variable elimination computes a marginal by repeatedly multiplying the factors containing a hidden variable and summing that variable out. Distributivity preserves the answer, but elimination order controls the scope and size of intermediate factors.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/variable-elimination/",
-    "tags": []
+    "tags": [
+      "Factor graphs",
+      "Exact inference"
+    ]
   },
   {
     "term": "Variance and covariance",
@@ -2785,10 +3139,14 @@
   },
   {
     "term": "Variational inference",
-    "definition": "Variational inference approximates an intractable posterior with a distribution from a tractable family.",
+    "definition": "Variational inference turns distribution approximation into optimization over a chosen family. In the common KL(q||p) formulation, maximizing an evidence lower bound avoids evaluating an intractable normalizing constant, but cannot remove limitations of the family.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/variational-inference/",
-    "tags": []
+    "tags": [
+      "Approximate inference",
+      "KL divergence",
+      "Entropy"
+    ]
   },
   {
     "term": "Vector spaces, subspaces, span, basis, and dimension",
@@ -2815,10 +3173,13 @@
   },
   {
     "term": "Viterbi decoding",
-    "definition": "Viterbi decoding finds the single most probable hidden-state sequence in an HMM.",
+    "definition": "Viterbi decoding uses dynamic programming to find a most probable complete hidden-state path for fixed HMM parameters and observations. It keeps the best prefix ending in each state, then traces predecessor choices backward. Maximizing a whole-path probability is a different decision problem from maximizing each posterior state marginal separately.",
     "phase": "Probabilistic AI",
     "href": "/lessons/probabilistic-ai/topics/viterbi-decoding/",
-    "tags": []
+    "tags": [
+      "Hidden Markov models",
+      "Forward-backward algorithm"
+    ]
   },
   {
     "term": "WalkSAT",
@@ -2857,10 +3218,13 @@
   },
   {
     "term": "Weighted A*",
-    "definition": "Weighted A* gives the heuristic more influence to find good solutions faster.",
+    "definition": "Weighted A* prioritizes g+w·h for w≥1, deliberately emphasizing estimated remaining cost. With a nonnegative admissible base heuristic, zero goal estimate and suitable repeated-state handling, its returned goal cost is at most w times optimal. The weight is a worst-case quality allowance, not a prediction of the actual error or a guaranteed speedup.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/weighted-a-star/",
-    "tags": []
+    "tags": [
+      "A*",
+      "Admissible heuristics"
+    ]
   },
   {
     "term": "What Is AI?",

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Add terms that discourage overly complex, unstable, or undesirable solutions.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "L2 turns the volume down; L1 can set this scalar coefficient exactly to zero.",
+  "overview": "A penalty adds a stated preference to an optimization objective, such as smaller coefficients or sparse solutions. It changes the optimum rather than merely helping a solver reach the unpenalized answer. Whether that tradeoff improves prediction must be assessed separately from training fit.",
+  "concepts": [
+    {
+      "title": "Solve the smooth penalty",
+      "explanation": "For L2, the derivative of the full objective is w−3+λw. Setting it to zero gives 3/(1+λ). The coefficient approaches zero as λ grows but never equals zero at a finite λ in this example."
+    },
+    {
+      "title": "Use a subgradient at the L1 corner",
+      "explanation": "For w>0 the derivative is w−3+λ, yielding w=3−λ when λ<3. At w=0, the L1 subgradient interval is [−1,1]; stationarity can hold when λ≥3. This is why the solution path sticks at zero rather than passing through it."
+    },
+    {
+      "title": "Distinguish penalties from update rules",
+      "explanation": "Under plain gradient descent, adding λw to the gradient gives a multiplicative shrink term (1−ηλ)w. An adaptive method rescales gradient coordinates, so adding L2 to its gradient is generally different from applying decoupled weight decay directly to the parameters. The lab concerns objective minimizers, not either implementation's finite-step path."
+    }
+  ],
+  "process": [
+    "Choose a penalty that expresses a defensible preference and state which parameters it applies to.",
+    "Keep data-fit and penalty scaling explicit when changing sample count or feature normalization.",
+    "Select the strength using an appropriate validation procedure and report the unpenalized evaluation metric separately."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "minw ½(w−3)²+λw²/2 ⇒ w*=3/(1+λ); minw ½(w−3)²+λ|w| ⇒ w*=max(0,3−λ)",
+      "meaning": "One dimensionless coefficient, fixed quadratic data-fit term and λ≥0. Curves show exact solution paths under two explicitly normalized penalties. The L1 soft-threshold formula uses the positive target 3; for general target z it is sign(z)max(|z|−λ,0). No validation dataset or optimizer trajectory is simulated."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "At the sparsity threshold",
+    "setup": "Set λ=3.",
+    "steps": [
+      "L2 gives w=3/4=0.75, with data loss ½(0.75−3)²=2.53125.",
+      "L1 gives w=0, with data loss 4.5.",
+      "The zero coefficient satisfies 0∈−3+3[−1,1]."
+    ],
+    "result": "L1's worse unpenalized fit is part of the chosen tradeoff, not a failure to minimize its penalized objective."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A zero coefficient is not proof that its feature has no scientific relevance, especially with correlated or rescaled features.",
+    "Matching the numerical λ across libraries is unsafe when their loss averaging, factor-of-two conventions, or penalized parameter sets differ."
+  ],
+  "implementation": [
+    "Fit feature scaling on training data only and record whether intercepts or normalization parameters are penalized.",
+    "Log the data loss and penalty term independently; tuning on the held-out test set leaks information into model selection."
+  ],
+  "takeaways": [
+    "Penalty geometry changes the solution: L2 shrinks continuously, whereas L1 has a threshold that can create exact zeros. The λ scale only makes sense alongside the loss and penalty normalization.",
+    "Separate regularized objectives, generalization evidence and decoupled weight decay."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Add terms that discourage overly complex, unstable, or undesirable solutions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Regularization and penalties illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A penalty adds a stated preference to an optimization objective, such as smaller coefficients or sparse solutions. It changes the optimum rather than merely helping a solver reach the unpenalized answer. Whether that tradeoff improves prediction must be assessed separately from training fit.","Derive the scalar L2 and L1 solution paths.","Separate regularized objectives, generalization evidence and decoupled weight decay.","L2 turns the volume down; L1 can set this scalar coefficient exactly to zero.","minw ½(w−3)²+λw²/2 ⇒ w*=3/(1+λ); minw ½(w−3)²+λ|w| ⇒ w*=max(0,3−λ)","One dimensionless coefficient, fixed quadratic data-fit term and λ≥0. Curves show exact solution paths under two explicitly normalized penalties. The L1 soft-threshold formula uses the positive target 3; for general target z it is sign(z)max(|z|−λ,0). No validation dataset or optimizer trajectory is simulated.","Penalty geometry changes the solution: L2 shrinks continuously, whereas L1 has a threshold that can create exact zeros. The λ scale only makes sense alongside the loss and penalty normalization."]} />

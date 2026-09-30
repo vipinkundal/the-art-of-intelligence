@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Depth-limited search is DFS with a maximum permitted depth.",
+  "hook": "Reaching the edge of your map does not prove the road ends.",
+  "overview": "Depth-limited search runs depth-first traversal while refusing to expand beyond a chosen edge depth. It must distinguish success, cutoff and exhausted failure. A cutoff says the budget blocked further exploration, not that no goal exists. Test for a goal before applying the depth cutoff so a goal exactly on the boundary remains valid.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "The boundary is measured in edges",
+      "explanation": "S has depth zero; A and B have depth one. At L=0 the start is visited but not expanded. At L=1 both children are checked, then blocked from expansion. A depth budget is not a limit on total visits: multiple branches may each reach the same boundary."
     },
     {
-      "title": "Core rule",
-      "explanation": "Track the current depth and treat nodes at limit L as cutoffs rather than expanding them."
+      "title": "Return three different outcomes",
+      "explanation": "A found goal supplies a path. Exhausted failure means all permitted continuations were explored with no goal and no unresolved cutoff. Cutoff means at least one branch was truncated and no solution was returned. A caller needs this distinction to decide whether raising the limit could help."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It avoids infinite descent and bounds memory, but a goal below the limit is deliberately missed."
+      "title": "A goal on the boundary must survive",
+      "explanation": "At L=2, the left branch reaches C and is cut off. Backtracking then reaches B and G, whose depth is exactly two. Checking the limit before the goal would incorrectly discard this valid solution."
+    },
+    {
+      "title": "A larger limit need not yield a better first path",
+      "explanation": "At L=4, DFS follows the entire left branch to G before ever exploring B. It returns depth four and cost four. At L=2 it returned depth two and cost ten. The limit changes permitted traversal, not an optimization objective."
+    },
+    {
+      "title": "A global visited set can prune the wrong visit",
+      "explanation": "A state first encountered deep in a branch may have little remaining budget. Encountering it again via a shorter path can enable new continuations. A global Boolean visited flag would suppress those. Current-path cycle checking avoids loops without merging all depth-dependent search contexts."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Track the current depth and treat nodes at limit L as cutoffs rather than expanding them.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It avoids infinite descent and bounds memory, but a goal below the limit is deliberately missed."
+    "Represent depth and check the goal before testing the limit.",
+    "Explore each successor recursively, returning immediately on success and remembering whether any branch returned cutoff.",
+    "If no solution was found, return cutoff when a branch was truncated; otherwise return exhausted failure."
   ],
   "formulas": [
     {
-      "label": "Depth-limited search rule",
-      "expression": "expand(n) only if depth(n) < L",
-      "meaning": "It avoids infinite descent and bounds memory, but a goal below the limit is deliberately missed."
+      "label": "Definition and assumptions",
+      "expression": "goal(n) → success; else depth(n)=L → cutoff; else recurse",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Recursive DFS visits alphabetically and counts S at depth zero. It checks the goal before the limit. Only states already on the current path are excluded; there is no global visited set. Dashed coral shows the returned path, or the last visited path if cut off."
     }
   ],
   "example": {
-    "title": "Depth-limited search in a small case",
-    "setup": "Search a game puzzle only up to six moves from the start.",
+    "title": "The boundary goal",
+    "setup": "Set L=2.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Track the current depth and treat nodes at limit L as cutoffs rather than expanding them.",
-      "Check the outcome against the goal and stated assumptions."
+      "Visit S at zero, A at one, and C at two. C is not a goal, so that branch returns cutoff.",
+      "Backtrack to S, then visit B at one and G at two. G passes the goal test before cutoff.",
+      "Return S→B→G with two edges and cost ten; the earlier C cutoff does not override a later success."
     ],
-    "result": "The procedure distinguishes failure from cutoff so a larger limit can be tried later."
+    "result": "Limits zero and one cannot settle reachability. Limit two already finds a goal."
   },
   "pitfalls": [
-    "Choosing an unknown limit can make the method incomplete.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Reporting every cutoff as failure breaks iterative deepening's stopping logic.",
+    "Counting recursive visits as depth confuses total work with the longest permitted path.",
+    "Finite branching and terminating successor generation are still needed for a finite-depth traversal to finish."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use a tagged result rather than overloading null for both cutoff and failure. Carry parent/path information only for the active recursion and returned solution.",
+    "With branching bound b>1 and depth L, tree-search work is O(b^L); storing pending successors can use O(bL) space. A single chain instead takes O(L) work. Global memoization changes both correctness conditions and storage."
+  ],
   "takeaways": [
-    "Depth-limited search is DFS with a maximum permitted depth.",
-    "Track the current depth and treat nodes at limit L as cutoffs rather than expanding them.",
-    "It avoids infinite descent and bounds memory, but a goal below the limit is deliberately missed.",
-    "The procedure distinguishes failure from cutoff so a larger limit can be tried later."
+    "Preserve cutoff as a separate result. Increasing a depth budget can change which goal path DFS reaches first, without guaranteeing a cheaper or shallower answer.",
+    "Explain why cutoff, failure and success have different meanings."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Depth-limited search is DFS with a maximum permitted depth.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Depth-limited search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Depth-limited search runs depth-first traversal while refusing to expand beyond a chosen edge depth. It must distinguish success, cutoff and exhausted failure. A cutoff says the budget blocked further exploration, not that no goal exists. Test for a goal before applying the depth cutoff so a goal exactly on the boundary remains valid.","Implement the goal-before-cutoff ordering correctly.","Explain why cutoff, failure and success have different meanings.","Reaching the edge of your map does not prove the road ends.","goal(n) → success; else depth(n)=L → cutoff; else recurse","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Recursive DFS visits alphabetically and counts S at depth zero. It checks the goal before the limit. Only states already on the current path are excluded; there is no global visited set. Dashed coral shows the returned path, or the last visited path if cut off.","Preserve cutoff as a separate result. Increasing a depth budget can change which goal path DFS reaches first, without guaranteeing a cheaper or shallower answer."]} />

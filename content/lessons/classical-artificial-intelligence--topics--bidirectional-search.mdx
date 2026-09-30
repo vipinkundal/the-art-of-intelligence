@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Bidirectional search grows one frontier from the start and another from the goal.",
+  "hook": "Backward search asks who could reach this state, not where this state can go.",
+  "overview": "Bidirectional search grows one search from the start and another from the goal. A meeting joins a forward prefix to a valid suffix, potentially reducing the depth explored on either side. Correctness depends on the reverse transition relation, each side's search order and a justified stopping rule—not merely on drawing two arrows toward one another.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Build a genuine reverse problem",
+      "explanation": "G has no outgoing edge here, yet C and F are its predecessors. Backward expansion must discover those two states. Following G's outgoing edges would immediately exhaust the backward frontier and miss both solutions. Reversing an action relation is not the same as executing an inverse physical action."
     },
     {
-      "title": "Core rule",
-      "explanation": "Alternate or balance forward and backward expansion until the explored regions meet, then join their paths."
+      "title": "A distance label has a direction",
+      "explanation": "Forward d(v) is the length from S to v. Backward d(v) is the length from v to G in the original graph. A backward parent points toward G, so path reconstruction uses forward parents up to the meeting state and backward parents from that state onward."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+      "title": "Finish the breadth layer before comparing meetings",
+      "explanation": "Each side's discovered set is a complete distance ball after its layer finishes. If the balls were disjoint before the latest expansion, a shorter connecting path would already have forced an earlier intersection. The new minimum distance sum therefore gives a shortest route in this alternating unit-cost procedure. An arbitrary first collision in a different scheduling or weighted-search policy needs its own proof."
+    },
+    {
+      "title": "The square-root intuition has conditions",
+      "explanation": "Balanced, tree-like searches with branching b and solution depth d can explore roughly two depth-d/2 regions instead of one depth-d region. Real graphs may have asymmetric reverse branching, many duplicate states, expensive predecessor generation or a large goal set. Those costs can erase the advantage."
+    },
+    {
+      "title": "Two maps are not one visited set",
+      "explanation": "At completion, the forward map holds seven states and the backward map three. C and F appear in both maps, so there are ten stored distance entries but only eight distinct graph states. Keep separate accounting for memory records, unique states and expansions."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+    "Define an explicit goal or enumerable goal set, and implement predecessors that exactly reverse legal transitions.",
+    "Maintain separate distance and parent maps, expanding whole breadth layers according to the selected policy.",
+    "Evaluate intersections with the proved stopping rule and reconstruct the route in original action order."
   ],
   "formulas": [
     {
-      "label": "Bidirectional search rule",
-      "expression": "work approximately O(b^(d/2)) instead of O(b^d)",
-      "meaning": "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition."
+      "label": "Definition and assumptions",
+      "expression": "candidate length through v = d_forward(v) + d_backward(v)",
+      "meaning": "Finite directed unit-cost graph: S→A,B; A→C,D; B→E,F; C→G; F→G. Alternate complete BFS layers, forward first. The backward side enumerates predecessors in the original graph. Mark on discovery within each side. After completing a layer, choose the shortest intersection; alphabetical ties choose C over F. This is unit-cost bidirectional BFS, not bidirectional Dijkstra or A*."
     }
   ],
   "example": {
-    "title": "Bidirectional search in a small case",
-    "setup": "Find a word-ladder path by expanding transformations from both the source and target words.",
+    "title": "Meet at C after three layer expansions",
+    "setup": "Advance from zero through three.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
-      "Check the outcome against the goal and stated assumptions."
+      "Forward expands S and discovers A,B at distance one.",
+      "Backward expands G and discovers C,F at distance one to G.",
+      "Forward expands A,B and discovers C,D,E,F at distance two. C and F both have total length 2+1=3; the tie selects S→A→C→G."
     ],
-    "result": "A shared intermediate word connects the two partial paths."
+    "result": "Four node expansions establish a three-edge answer. The slider counts layers, not individual vertices."
   },
   "pitfalls": [
-    "The first intersection is not always optimal in weighted search; compare frontier costs carefully.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A backward successor generator must enumerate predecessors, especially for directed or irreversible actions.",
+    "Do not transfer the first-intersection rule to weighted edges without a bound-based termination condition.",
+    "A compact goal predicate may describe too many goal states to initialize a useful backward frontier."
   ],
-  "implementation": [],
+  "implementation": [
+    "Store incoming adjacency explicitly when graph storage permits it. In implicit domains, measure predecessor generation rather than assuming it costs the same as forward actions.",
+    "Use one canonical state key shared by both sides, but separate their distance and parent records. This example alternates layers; expanding the smaller frontier is a separate policy to specify and justify."
+  ],
   "takeaways": [
-    "Bidirectional search grows one frontier from the start and another from the goal.",
-    "Alternate or balance forward and backward expansion until the explored regions meet, then join their paths.",
-    "It can reduce exponential depth from d to roughly d/2 per side, but requires reversible predecessor generation and a reliable meeting condition.",
-    "A shared intermediate word connects the two partial paths."
+    "The two maps measure different directions. Meeting is useful only when the reverse transitions and stopping argument preserve a valid shortest route.",
+    "Identify when reverse branching or a stopping rule defeats the expected saving."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Bidirectional search grows one frontier from the start and another from the goal.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Bidirectional search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Bidirectional search grows one search from the start and another from the goal. A meeting joins a forward prefix to a valid suffix, potentially reducing the depth explored on either side. Correctness depends on the reverse transition relation, each side's search order and a justified stopping rule—not merely on drawing two arrows toward one another.","Reconstruct a valid route from forward and backward distance maps.","Identify when reverse branching or a stopping rule defeats the expected saving.","Backward search asks who could reach this state, not where this state can go.","candidate length through v = d_forward(v) + d_backward(v)","Finite directed unit-cost graph: S→A,B; A→C,D; B→E,F; C→G; F→G. Alternate complete BFS layers, forward first. The backward side enumerates predecessors in the original graph. Mark on discovery within each side. After completing a layer, choose the shortest intersection; alphabetical ties choose C over F. This is unit-cost bidirectional BFS, not bidirectional Dijkstra or A*.","The two maps measure different directions. Meeting is useful only when the reverse transitions and stopping argument preserve a valid shortest route."]} />

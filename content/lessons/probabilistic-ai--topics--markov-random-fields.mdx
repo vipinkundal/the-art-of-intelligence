@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
+  "hook": "Local preferences can be impossible to satisfy simultaneously.",
+  "overview": "A Markov random field describes an undirected dependency structure. A distribution factorized into nonnegative clique potentials, with a finite positive partition function, obeys the graph's separation-based conditional independencies. Its potentials score joint configurations rather than specify causal directions.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from random variables, their domains, graph structure, and local probability factors."
+      "title": "Potentials combine before normalization",
+      "explanation": "Each edge rewards agreement when J>0 and disagreement when J<0. Multiply all three edge weights, then sum over the eight assignments to normalize. A pair potential is not itself the marginal probability of that pair."
     },
     {
-      "title": "Core computation",
-      "explanation": "Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities."
+      "title": "Frustration on an odd cycle",
+      "explanation": "If X differs from Y and Y differs from Z, then X must equal Z. Consequently an assignment can have zero or two disagreeing edges, never three. Negative J therefore creates competing preferences that no assignment can satisfy completely."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+      "title": "Symmetry conceals interaction in single-node views",
+      "explanation": "Flipping all three signs leaves every pair product unchanged. Assignments come in equally weighted opposite pairs, so each single-spin marginal is 0.5. The joint statistic P(all equal) and pair product E[sᵢsⱼ] expose dependence that marginal means miss."
+    },
+    {
+      "title": "Separation and positivity",
+      "explanation": "For a factorizing distribution, separating variable sets by observed nodes yields conditional independence where conditioning is defined. Conversely, the standard Hammersley–Clifford factorization theorem assumes a strictly positive distribution. In this fully connected three-node graph there is no missing-edge independence to infer."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using random variables, their domains, graph structure, and local probability factors.",
-    "Apply the central computation: Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+    "Specify variable domains, graph edges and the clique potentials being used.",
+    "Compute or approximate the partition function and the particular marginal or joint query.",
+    "Check the result against symmetry and support constraints; inspect interactions rather than only individual node marginals."
   ],
   "formulas": [
     {
-      "label": "Markov random fields rule",
-      "expression": "P(x) = (1/Z) product_c psi_c(x_c)",
-      "meaning": "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable."
+      "label": "Definition and assumptions",
+      "expression": "p(s)=exp[J(sXsY+sYsZ+sZsX)]/𝒵; 𝒵=2e³ᴶ+6e⁻ᴶ; sᵢ∈{−1,+1}",
+      "meaning": "Three spins form a triangle, with one equal-strength pair potential exp(Jsᵢsⱼ) per edge and no external field. J is dimensionless. Two assignments have all spins equal; six have one spin different. The plotted probability is their exact normalized total, not a Monte Carlo estimate."
     }
   ],
   "example": {
-    "title": "Markov random fields in a small case",
-    "setup": "Represent neighboring pixels whose labels prefer to agree while each pixel also follows its observed intensity.",
+    "title": "Count the two configuration classes",
+    "setup": "At J=0.5, all-equal assignments have pair-product sum 3; the other six have sum −1.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Each all-equal assignment has weight e¹·⁵; each one-different assignment has weight e⁻⁰·⁵.",
+      "The normalizer is 2e¹·⁵+6e⁻⁰·⁵≈12.602562. Thus P(all equal)≈0.711235.",
+      "The expected number of disagreeing edges is 2×(1−0.711235)≈0.577531. By symmetry E[sᵢsⱼ]=(4P(all equal)−1)/3≈0.614979."
     ],
-    "result": "The posterior balances local image evidence against smoothness between neighboring labels."
+    "result": "At J=0 all eight assignments are equally likely and P(all equal)=1/4. At J=−1 it falls to about 0.006068, but each individual spin still has probability 0.5 of being positive."
   },
   "pitfalls": [
-    "Potentials are compatibility scores, not probabilities unless the complete model is normalized.",
-    "A graph encodes particular independence assumptions; it is not merely a visualization.",
-    "Check normalization, support, and conditioning events before interpreting a probability."
+    "A Markov random field is not the same object as a temporal Markov chain; graph adjacency need not represent time.",
+    "An edge permits interaction but does not force nonzero statistical dependence for every parameter choice. At J=0 this example is fully independent despite the drawn triangle.",
+    "Pairwise potentials are a useful subclass; general clique factorizations may include higher-order interactions. Converting a directed model to an undirected one can lose independence information."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log potentials and stable normalization for larger systems. Track whether a computed normalizer is exact or estimated.",
+    "Exploit symmetries and small enumerable submodels to verify state encoding and signs. A sign mistake in J reverses the intended agreement preference."
+  ],
   "takeaways": [
-    "A Markov random field is an undirected graph that represents local compatibility relationships between random variables.",
-    "Multiply nonnegative clique potentials and divide by the partition function to obtain probabilities.",
-    "Undirected factors express symmetric relationships naturally, but computing the partition function can be intractable.",
-    "The posterior balances local image evidence against smoothness between neighboring labels."
+    "Marginals can stay unchanged while interactions change radically. On this symmetric triangle every spin remains equally likely to be ±1, but joint agreement varies with J.",
+    "Explain frustration and why unchanged one-variable marginals do not imply unchanged dependence."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A Markov random field is an undirected graph that represents local compatibility relationships between random variables.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Markov random fields illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Markov random field describes an undirected dependency structure. A distribution factorized into nonnegative clique potentials, with a finite positive partition function, obeys the graph's separation-based conditional independencies. Its potentials score joint configurations rather than specify causal directions.","Compute a partition function from nonnegative configuration weights.","Explain frustration and why unchanged one-variable marginals do not imply unchanged dependence.","Local preferences can be impossible to satisfy simultaneously.","p(s)=exp[J(sXsY+sYsZ+sZsX)]/𝒵; 𝒵=2e³ᴶ+6e⁻ᴶ; sᵢ∈{−1,+1}","Three spins form a triangle, with one equal-strength pair potential exp(Jsᵢsⱼ) per edge and no external field. J is dimensionless. Two assignments have all spins equal; six have one spin different. The plotted probability is their exact normalized total, not a Monte Carlo estimate.","Marginals can stay unchanged while interactions change radically. On this symmetric triangle every spin remains equally likely to be ±1, but joint agreement varies with J."]} />

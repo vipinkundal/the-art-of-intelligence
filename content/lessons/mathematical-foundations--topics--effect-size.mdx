@@ -1,20 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Measures how large a difference is, not just whether it is statistically detectable.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The numerator says how far apart; the denominator says what counts as a unit of separation.",
+  "overview": "An effect size quantifies a difference or association on a chosen scale. A raw mean difference retains outcome units; a standardized mean difference divides by a stated measure of variation. Neither is a p-value, a sample-size calculation, or a causal conclusion by itself. Interpretation depends on the estimand, design, standardizer and practical context.",
+  "concepts": [
+    {
+      "title": "Start with the contrast in useful units",
+      "explanation": "A five-point difference can be compared with a domain-specific threshold for practical relevance. Dividing by a standard deviation is useful for expressing relative separation, but removes the original units and makes the answer depend on the population's variability. A smaller δ need not mean the raw difference became less useful."
+    },
+    {
+      "title": "Population δ and sample d are not the same object",
+      "explanation": "For independent groups with an appropriate common-variance interpretation, a common estimator is d=(ȳB−ȳA)/sp, where sp²=((nA−1)sA²+(nB−1)sB²)/(nA+nB−2). The random denominator gives small-sample bias; the usual bias-corrected Hedges' g applies a degrees-of-freedom correction. Paired designs and unequal-variance targets require an explicitly chosen alternative standardizer."
+    },
+    {
+      "title": "Separation is not absence of overlap",
+      "explanation": "At δ=0.5 the normal densities still have about 80% common area. A randomly selected B value exceeds an independent A value with probability about 0.638. Neither statement says that 63.8% of individuals would benefit from changing their condition: that would require a causal, usually paired counterfactual question."
+    },
+    {
+      "title": "Precision can change without changing the target effect",
+      "explanation": "Collecting more independent observations can reduce uncertainty about a fixed mean difference without changing the population δ. A very small effect can be estimated precisely. Conversely, a large point estimate may have wide uncertainty. Avoid replacing a confidence interval and substantive judgment with universal small/medium/large labels."
+    }
+  ],
+  "process": [
+    "Specify the contrast, direction, population and units, distinguishing a descriptive association from a causal estimand.",
+    "Choose a raw or standardized measure suited to the design and state its denominator; use the appropriate estimator and any bias correction.",
+    "Report uncertainty and a practical relevance threshold alongside the effect, rather than inferring importance from a p-value or a conventional magnitude label."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Δ=μB−μA=5; δ=Δ/σ; overlap=2Φ(−|δ|/2); P(B>A)=Φ(δ/√2)",
+      "meaning": "Two populations are normal with means 50 and 55 score units and the same standard deviation σ. The slider changes their population spread while holding the raw difference fixed. δ is a known population parameter in this toy, not an estimated Cohen's d. The overlap formula assumes equal-variance normal densities; P(B>A) compares independent draws, not paired outcomes for one unit. Shading is the pointwise minimum of the two densities. The axes rescale with σ, and normal probabilities are computed numerically."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Keep the five points, double the variation",
+    "setup": "Compare means 50 and 55 with shared σ=10.",
+    "steps": [
+      "The raw contrast is 5 score units and standardized contrast is δ=5/10=0.5.",
+      "For these normal populations, overlap is 2Φ(−0.25)≈0.802587 and P(B>A)=Φ(0.5/√2)≈0.638163.",
+      "Increase σ to 20: the raw difference remains 5, but δ becomes 0.25. No sample size, hypothesis test or intervention was changed by this operation."
+    ],
+    "result": "Standardization expresses a difference relative to variation. It does not replace the original scale or establish practical or causal importance."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Risk differences, risk ratios, odds ratios, correlations and standardized mean differences are different effect measures; do not compare their numeric magnitudes as though they shared one scale.",
+    "The normal overlap and independent-draw formulas in this lab do not apply unchanged to skewed distributions, unequal variances or paired observations.",
+    "A nonsignificant difference does not establish equivalence. A significant difference does not establish a practically important or causal effect."
+  ],
+  "implementation": [
+    "Store group definitions, sample sizes, spread estimates, sign convention and the exact standardizer with reported effects. State whether a correction such as Hedges' g was applied; software terminology is not always uniform.",
+    "Use design-appropriate uncertainty intervals and inspect the outcome distributions. For paired or clustered data, preserve their dependence structure. The plotted populations are a teaching model, not evidence from a real comparative study."
+  ],
+  "takeaways": [
+    "Report the raw contrast and define the standardizer. Practical importance, uncertainty, statistical significance and causality require separate arguments.",
+    "Interpret overlap and independent-draw comparisons under their explicit distributional assumptions."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Measures how large a difference is, not just whether it is statistically detectable.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Effect size illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["An effect size quantifies a difference or association on a chosen scale. A raw mean difference retains outcome units; a standardized mean difference divides by a stated measure of variation. Neither is a p-value, a sample-size calculation, or a causal conclusion by itself. Interpretation depends on the estimand, design, standardizer and practical context.","Distinguish raw and standardized effect sizes from uncertainty and significance.","Interpret overlap and independent-draw comparisons under their explicit distributional assumptions.","The numerator says how far apart; the denominator says what counts as a unit of separation.","Δ=μB−μA=5; δ=Δ/σ; overlap=2Φ(−|δ|/2); P(B>A)=Φ(δ/√2)","Two populations are normal with means 50 and 55 score units and the same standard deviation σ. The slider changes their population spread while holding the raw difference fixed. δ is a known population parameter in this toy, not an estimated Cohen's d. The overlap formula assumes equal-variance normal densities; P(B>A) compares independent draws, not paired outcomes for one unit. Shading is the pointwise minimum of the two densities. The axes rescale with σ, and normal probabilities are computed numerically.","Report the raw contrast and define the standardizer. Practical importance, uncertainty, statistical significance and causality require separate arguments."]} />

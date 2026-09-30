@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
+  "hook": "One bit can change easily only when the other bit lets it.",
+  "overview": "Gibbs sampling repeatedly redraws a coordinate or block from its full conditional distribution while holding the other coordinates fixed. Each such update preserves the joint target. Strong dependence or disconnected conditional support can still prevent useful exploration; an update needing no rejection step is not a guarantee of fast mixing.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Read a conditional from the joint table",
+      "explanation": "Each bit has marginal probability 1/2. Given Y=0, P(X=0|Y=0)=((1+c)/4)/(1/2)=(1+c)/2. The same match probability applies to either selected bit. The graph's transition matrix includes the half-probability of selecting that coordinate."
     },
     {
-      "title": "Core computation",
-      "explanation": "Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws."
+      "title": "A local bridge becomes rare",
+      "explanation": "From 00, either one-bit flip has probability (1−c)/4 per update, while staying has probability (1+c)/2. Getting to 11 requires visiting 01 or 10. At c=0.98 those bridge states together hold only 1% of target mass. This is a simple version of a narrow passage between likely regions."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+      "title": "Measure a distributional gap exactly here",
+      "explanation": "Total variation is half the sum of absolute state-mass differences. This tiny example can compute it because the full target and transition matrix are known. The random-scan kernel has eigenvalues 1, (1+c)/2, (1−c)/2 and 0, giving spectral gap (1−c)/2. That shrinking gap explains slow relaxation; it is not something generally known for a large posterior."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+    "Derive each full conditional from a single consistent joint distribution.",
+    "Select a coordinate or block according to the stated scan rule and redraw it conditionally.",
+    "Retain the resulting state, including unchanged states; assess exploration rather than treating every redraw as independent information."
   ],
   "formulas": [
     {
-      "label": "Gibbs sampling rule",
-      "expression": "x_i^(t+1) ~ p(x_i | x_{-i})",
-      "meaning": "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples."
+      "label": "Definition and assumptions",
+      "expression": "π(00)=π(11)=(1+c)/4; π(01)=π(10)=(1−c)/4; P(match | other bit)=(1+c)/2",
+      "meaning": "Two binary variables; 0≤c<1. Every update selects X or Y with probability 1/2 and redraws that bit from its exact full conditional. Both curves start at 00. The graph propagates exact probability vectors for 40 single-coordinate updates and measures total variation to each curve's own target. It is not a random trajectory, an empirical convergence diagnostic or a count of complete sweeps."
     }
   ],
   "example": {
-    "title": "Gibbs sampling in a small case",
-    "setup": "Sample means and variances from a Bayesian normal model using their conjugate full conditionals.",
+    "title": "A conditional redraw is not necessarily a move",
+    "setup": "Use c=0.8 and start at 00.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "The target masses are (0.45,0.05,0.05,0.45). The conditional match probability is 0.9.",
+      "One random-scan update stays at 00 with probability 0.9, goes to 01 with probability 0.05 or to 10 with probability 0.05, and cannot reach 11 directly.",
+      "Its spectral gap is 0.1, compared with 0.5 for c=0. A much slower relaxation is possible even though every conditional draw is valid."
     ],
-    "result": "After convergence, retained draws approximate the joint posterior despite changing one block at a time."
+    "result": "No rejection step does not mean no repeated states or no autocorrelation."
   },
   "pitfalls": [
-    "Inspect trace plots and effective sample size; sample count alone can exaggerate information.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "At c=1, the only supported states are 00 and 11. Single-bit Gibbs cannot move between them; the control excludes this reducible boundary.",
+    "Redrawing all coordinates simultaneously from conditionals based on the old state is not the same as ordinary sequential or random-scan Gibbs and need not preserve the target."
   ],
-  "implementation": [],
+  "implementation": [
+    "Specify whether one iteration means a coordinate update or a complete sweep when reporting speed and diagnostics.",
+    "Blocking strongly dependent coordinates can help, but requires a correct joint conditional sampler for the block."
+  ],
   "takeaways": [
-    "Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.",
-    "Cycle or scan through variables, draw from each full conditional, discard warm-up, and estimate expectations from later draws.",
-    "It avoids a rejection step, but strong posterior correlations can cause slow mixing and highly dependent samples.",
-    "After convergence, retained draws approximate the joint posterior despite changing one block at a time."
+    "Full conditional updates preserve the target without rejection, yet strong coupling can make transitions between high-probability regions rare.",
+    "Explain why target invariance and rejection-free updates do not certify fast mixing."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Gibbs sampling constructs a Markov chain by repeatedly sampling each variable from its conditional distribution given all others.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Gibbs sampling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Gibbs sampling repeatedly redraws a coordinate or block from its full conditional distribution while holding the other coordinates fixed. Each such update preserves the joint target. Strong dependence or disconnected conditional support can still prevent useful exploration; an update needing no rejection step is not a guarantee of fast mixing.","Derive a Gibbs transition matrix from a small joint distribution.","Explain why target invariance and rejection-free updates do not certify fast mixing.","One bit can change easily only when the other bit lets it.","π(00)=π(11)=(1+c)/4; π(01)=π(10)=(1−c)/4; P(match | other bit)=(1+c)/2","Two binary variables; 0≤c<1. Every update selects X or Y with probability 1/2 and redraws that bit from its exact full conditional. Both curves start at 00. The graph propagates exact probability vectors for 40 single-coordinate updates and measures total variation to each curve's own target. It is not a random trajectory, an empirical convergence diagnostic or a count of complete sweeps.","Full conditional updates preserve the target without rejection, yet strong coupling can make transitions between high-probability regions rare."]} />

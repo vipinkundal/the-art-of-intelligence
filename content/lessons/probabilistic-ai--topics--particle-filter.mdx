@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
+  "hook": "Move the hypotheses, score the sensor reading, then decide whether to copy survivors.",
+  "overview": "A particle filter approximates the distribution of a hidden current state given observations so far. The bootstrap version proposes states from the transition model, weights them by the new observation likelihood and may resample. It is an online filtering application of Sequential Monte Carlo, not an exact inference guarantee.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a transition model, observation model, prior state belief, and a sequence of observations."
+      "title": "The transition is a proposal",
+      "explanation": "In this bootstrap filter the proposal equals the transition, so its transition-to-proposal ratio cancels and only the observation likelihood remains in the incremental weight. Other proposals require that correction. With adaptive resampling, retain the previous weight on steps where resampling was skipped."
     },
     {
-      "title": "Core computation",
-      "explanation": "Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed."
+      "title": "An exact small reference makes error visible",
+      "explanation": "For this ring, the exact filter needs just five numbers. It first sums incoming transition mass at each site, multiplies by the latest sensor likelihood and normalizes. The paired bars compare that calculation with the finite weighted population on the same observation prefix."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+      "title": "Resampling copies, it does not move",
+      "explanation": "Systematic resampling chooses parent indices from the cumulative weights using equally spaced thresholds and one random offset. Copies inherit their parent's state and initial ancestor identity. Only the subsequent transition can move a copy to another site in this lab."
+    },
+    {
+      "title": "Current support and historical ancestry differ",
+      "explanation": "A population can recover a site through its transition model after it was temporarily empty, while an extinct initial-particle identity never returns. This matters when reusing filtering particle paths for long-horizon smoothing. The ancestry table tracks identities, not the number of occupied sites."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a transition model, observation model, prior state belief, and a sequence of observations.",
-    "Apply the central computation: Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+    "Initialize states from the prior or a supported proposal, recording weights and any ancestry needed for the query.",
+    "Propagate through the transition, multiply old weights by the new likelihood, normalize and compute the desired weighted estimate.",
+    "Check the declared resampling criterion. If it fires, draw ancestors and reset child weights; otherwise carry the nonuniform weights into the next update."
   ],
   "formulas": [
     {
-      "label": "Particle filter rule",
-      "expression": "p(x_t|y_1:t) approximately sum_i w_t^i delta(x_t-x_t^i)",
-      "meaning": "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions."
+      "label": "Definition and assumptions",
+      "expression": "Xₜⁱ∼f(·|Xₜ₋₁ⁱ); w̃ₜⁱ=wₜ₋₁ⁱg(Oₜ|Xₜⁱ); ŵₜⁱ=w̃ₜⁱ/Σj w̃ₜʲ; ESSw=1/Σi(ŵₜⁱ)²",
+      "meaning": "Five sites form a ring (4 neighbors 0). Transition probabilities are 0.6 to stay and 0.2 to either neighbor. A sensor reports the true site with probability 0.6, either adjacent site with 0.15 each and either remaining site with 0.05 each. The prior is uniform. Twenty prior-CDF-stratified particles start with four per site at t=1: assimilate the first reading directly, then propagate before each later reading. Observations are (0,1,1,3,4,4). Fixed pseudorandom seed 20260930 makes the run repeatable. Systematic resampling runs only when weight ESS is strictly below 10, resetting weights to 1/20. Plots show estimates before that resampling step, alongside an exact five-state filter."
     }
   ],
   "example": {
-    "title": "Particle filter in a small case",
-    "setup": "Localize a robot that might be in either of two similar corridors.",
+    "title": "The first reading is exact by construction, later ones are not",
+    "setup": "Read O₁=0 with four equal-weight particles at each of five sites.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "The exact posterior is (0.6,0.15,0.05,0.05,0.15), and the initial particle allocation produces the same weighted site masses.",
+      "Each site's mass is split across four particles. Thus ESSw=4/(0.6²+2×0.15²+2×0.05²)=400/41≈9.756098, below 10.",
+      "Systematic resampling gives site counts (12,3,1,1,3) and leaves 12 initial identities. At the default third reading, this seeded run instead has total variation error about 0.073836 and ESSw≈13.498403, so resampling is skipped."
     ],
-    "result": "The particle cloud retains both location hypotheses until later observations shift weight toward one corridor."
+    "result": "The exact first-step match comes from the balanced toy initialization, not a general guarantee for particle filters. The default run already shows nonzero error despite skipping resampling."
   },
   "pitfalls": [
-    "Injecting noise is not a substitute for a principled proposal and resampling strategy.",
-    "Filtering, smoothing, prediction, and most-likely-path decoding answer different questions.",
-    "State estimates become overconfident when process or observation noise is underestimated."
+    "Zero total likelihood weight is an algorithm failure to handle, not permission to silently replace the posterior with a uniform distribution.",
+    "A sharp likelihood can reject most proposed states. More particles, better proposals or analytic marginalization may help, but no universal particle count guarantees accuracy.",
+    "Resampling does not itself create new states or prove that all important modes were found. In a continuous state space, useful mutation must respect the intended target or proposal correction."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log weights and log-sum-exp for long or sharp likelihood products. Keep the pre-resampling query estimate separate from the population copied for the next step.",
+    "For a real assessment, compare independent seeds and increasing particle counts against tractable references. This single reproducible run illustrates mechanics; it is not an uncertainty interval or a performance benchmark."
+  ],
   "takeaways": [
-    "A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.",
-    "Propagate each particle through the state transition, weight it by the newest observation likelihood, normalize, and resample when needed.",
-    "It represents multimodal and non-Gaussian beliefs, but finite particles can lose important modes or collapse in high dimensions.",
-    "The particle cloud retains both location hypotheses until later observations shift weight toward one corridor."
+    "Separate sampling error, weight concentration and loss of ancestry. A particle count or ESS alone does not bound the error of a filtering query.",
+    "Distinguish weighted filtering error, ESS and surviving particle ancestry."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A particle filter is a Sequential Monte Carlo method specialized to online hidden-state filtering.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Particle filter illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A particle filter approximates the distribution of a hidden current state given observations so far. The bootstrap version proposes states from the transition model, weights them by the new observation likelihood and may resample. It is an online filtering application of Sequential Monte Carlo, not an exact inference guarantee.","Trace a bootstrap particle filter with adaptive systematic resampling.","Distinguish weighted filtering error, ESS and surviving particle ancestry.","Move the hypotheses, score the sensor reading, then decide whether to copy survivors.","Xₜⁱ∼f(·|Xₜ₋₁ⁱ); w̃ₜⁱ=wₜ₋₁ⁱg(Oₜ|Xₜⁱ); ŵₜⁱ=w̃ₜⁱ/Σj w̃ₜʲ; ESSw=1/Σi(ŵₜⁱ)²","Five sites form a ring (4 neighbors 0). Transition probabilities are 0.6 to stay and 0.2 to either neighbor. A sensor reports the true site with probability 0.6, either adjacent site with 0.15 each and either remaining site with 0.05 each. The prior is uniform. Twenty prior-CDF-stratified particles start with four per site at t=1: assimilate the first reading directly, then propagate before each later reading. Observations are (0,1,1,3,4,4). Fixed pseudorandom seed 20260930 makes the run repeatable. Systematic resampling runs only when weight ESS is strictly below 10, resetting weights to 1/20. Plots show estimates before that resampling step, alongside an exact five-state filter.","Separate sampling error, weight concentration and loss of ancestry. A particle count or ESS alone does not bound the error of a filtering query."]} />

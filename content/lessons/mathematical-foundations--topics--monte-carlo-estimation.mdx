@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Uses random samples to approximate expectations or probabilities that are hard to compute exactly.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The error scale shrinks smoothly; one estimate can still zigzag.",
+  "overview": "Monte Carlo estimation approximates an expectation by an average of random evaluations. Under IID sampling and finite variance, the sample mean is unbiased and its variance falls in proportion to 1/n. This describes repeated-sampling behavior, not a guarantee that one running estimate moves monotonically toward the answer.",
+  "concepts": [
+    {
+      "title": "An integral becomes a mean",
+      "explanation": "On [0,1], integrating x² equals E[U²] for uniform U. Direct integration gives 1/3, while E[U⁴]=1/5. Therefore Var(U²)=1/5−1/9=4/45, providing an exact reference for this deliberately solvable Monte Carlo example."
+    },
+    {
+      "title": "Four times the work halves the standard error",
+      "explanation": "Averaging n independent copies divides variance by n and standard deviation by √n. Reducing the standard error by a factor of ten therefore requires a hundred times as many samples if everything else stays fixed. Variance-reduction methods change the per-draw variance instead."
+    },
+    {
+      "title": "Unknown variance adds another estimate",
+      "explanation": "In a real problem the true variance is usually unknown. The sample variance s² gives a standard-error estimate s/√n under the IID model. A central-limit approximation may then support an approximate interval when its assumptions are suitable; a small estimated error from a sample that missed rare important events can be misleading."
+    }
+  ],
+  "process": [
+    "Express the desired quantity as an expectation under a distribution you can sample correctly.",
+    "Generate draws, evaluate the integrand and accumulate a mean and variance estimate.",
+    "Report sampling assumptions, uncertainty and computational cost; distinguish model bias from Monte Carlo error."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "U∼Uniform(0,1); μ=E[U²]=1/3; μ̂ₙ=ΣUᵢ²/n; Var(μ̂ₙ)=4/(45n)",
+      "meaning": "The theoretical calculation assumes independent uniform draws. The displayed running mean uses one fixed 32-bit pseudorandom stream, seed 1729; moving n reveals a longer prefix, not a new independent experiment. The reference curves are the true expectation plus/minus one exact standard error. They are not confidence intervals or simultaneous bounds."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "One hundred versus four hundred evaluations",
+    "setup": "Use the exact variance 4/45.",
+    "steps": [
+      "At n=100 the theoretical standard error is √(4/4500)≈0.029814.",
+      "At n=400 it is √(4/18000)≈0.014907.",
+      "A particular seeded running mean can move away from 1/3 between these sample sizes without contradicting the variance formula."
+    ],
+    "result": "The square-root rate describes uncertainty over repeated samples, not a deterministic error guarantee."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Correlated MCMC output does not have the IID variance σ²/n; autocorrelation affects the standard error.",
+    "Infinite-variance integrands or rare unobserved contributions can invalidate familiar standard-error reasoning."
+  ],
+  "implementation": [
+    "Use stable running-mean/variance algorithms for large or ill-scaled data; the tiny bounded example is not a production summation benchmark.",
+    "Track random streams and seeds for reproducibility, while using independent streams when comparing repeated-sampling variability."
+  ],
+  "takeaways": [
+    "More IID samples reduce estimator variance. They do not guarantee a smaller realized error at every increment.",
+    "Separate realized error, estimated standard error and exact reference uncertainty."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Uses random samples to approximate expectations or probabilities that are hard to compute exactly.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Monte Carlo estimation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Monte Carlo estimation approximates an expectation by an average of random evaluations. Under IID sampling and finite variance, the sample mean is unbiased and its variance falls in proportion to 1/n. This describes repeated-sampling behavior, not a guarantee that one running estimate moves monotonically toward the answer.","Derive Monte Carlo variance for a known integrand.","Separate realized error, estimated standard error and exact reference uncertainty.","The error scale shrinks smoothly; one estimate can still zigzag.","U∼Uniform(0,1); μ=E[U²]=1/3; μ̂ₙ=ΣUᵢ²/n; Var(μ̂ₙ)=4/(45n)","The theoretical calculation assumes independent uniform draws. The displayed running mean uses one fixed 32-bit pseudorandom stream, seed 1729; moving n reveals a longer prefix, not a new independent experiment. The reference curves are the true expectation plus/minus one exact standard error. They are not confidence intervals or simultaneous bounds.","More IID samples reduce estimator variance. They do not guarantee a smaller realized error at every increment."]} />

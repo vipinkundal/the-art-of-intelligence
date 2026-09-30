@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
+  "hook": "A normalized local belief is not necessarily a completed marginal.",
+  "overview": "Belief propagation organizes inference as local messages summarizing information on either side of an edge. This lesson follows the schedule and information coverage of sum-product BP on a tree; the sum-product and max-product lessons develop the corresponding marginal and optimization calculations.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "An edge cuts the tree into two pieces",
+      "explanation": "A message i→j sums the source-side variables while leaving j's state as its argument. The absence of a second route between those pieces is what makes the subtree summaries reusable without counting the same evidence twice."
     },
     {
-      "title": "Core computation",
-      "explanation": "Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached."
+      "title": "Exclude the recipient",
+      "explanation": "When Y sends to X, it uses the message from Z but not the message from X. Including X's incoming message would send X's own information immediately back to it."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+      "title": "Local completion happens at different times",
+      "explanation": "After the first two messages, Y has both subtrees and its marginal is exact. X and Z still display local-only beliefs. The two outward messages complete their marginals. A valid two-pass schedule computes one message per edge direction, four in this chain."
+    },
+    {
+      "title": "Which variant is being run?",
+      "explanation": "The word BP often refers to sum-product inference for marginals. Replacing sums with maxima gives a related optimization algorithm whose messages have different semantics. This scheduling lesson uses sums throughout; it does not interpret max scores as probabilities."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+    "Choose a root and send inward messages only when all required source-side messages are available.",
+    "At the root, combine incoming messages and the local factor, then normalize its belief.",
+    "Send outward messages excluding each recipient's contribution, and normalize every completed node belief."
   ],
   "formulas": [
     {
-      "label": "Belief propagation rule",
-      "expression": "b_i(x_i) proportional product_{f in N(i)} m_{f->i}(x_i)",
-      "meaning": "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior."
+      "label": "Definition and assumptions",
+      "expression": "mᵢ→ⱼ(xⱼ)=Σxᵢ φᵢ(xᵢ)ψᵢⱼ(xᵢ,xⱼ)∏k∈N(i)∖j mₖ→ᵢ(xᵢ); bᵢ∝φᵢ∏k∈N(i)mₖ→ᵢ",
+      "meaning": "Binary chain X—Y—Z. Unary weights are X=(1,3), Y=(1,1), Z=(2,1), and both pair tables are [[3,1],[1,3]]. The valid schedule is X→Y, Z→Y, Y→X, Y→Z. Unsent messages are neutral factors (1,1) for the partial display. Exact reference marginals are enumerated from all eight assignments; messages themselves are left unnormalized."
     }
   ],
   "example": {
-    "title": "Belief propagation in a small case",
-    "setup": "Estimate component-failure probabilities in a tree-structured diagnostic network.",
+    "title": "Y finishes before the leaves",
+    "setup": "Use the default two completed messages.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "X→Y=(3×1+1×3,1×1+3×3)=(6,10). Z→Y=(3×2+1×1,1×2+3×1)=(7,5).",
+      "Y's belief is proportional to (6×7,10×5)=(42,50). Thus P(Y=1)=50/92≈0.543478.",
+      "Send Y→X=(3×7+5,7+3×5)=(26,22) and Y→Z=(3×6+10,6+3×10)=(28,36). X then has weights (26,66) and Z has (56,36)."
     ],
-    "result": "Each component belief combines all evidence arriving through its incident factors without double-counting on the tree."
+    "result": "All three beliefs now match enumeration: P(X=1)=66/92, P(Y=1)=50/92 and P(Z=1)=36/92."
   },
   "pitfalls": [
-    "A message should exclude information arriving from the recipient edge to avoid immediate double-counting.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "A belief that sums to one can still omit distant factors. Completion is about which information has arrived, not normalization alone.",
+    "A loop removes the unique-subtree interpretation. Reusing the same update on a cycle does not retain the tree exactness guarantee.",
+    "Positive scaling of an entire message preserves normalized node beliefs, but those scales matter when recovering the partition function."
   ],
-  "implementation": [],
+  "implementation": [
+    "Store messages by directed edge and index each vector by the recipient's state. An undirected edge needs two separate message slots.",
+    "Use an explicit dependency-aware schedule on trees. Track whether a node's incoming messages are complete before presenting its belief as a full-model marginal."
+  ],
   "takeaways": [
-    "Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.",
-    "Alternate variable-to-factor and factor-to-variable updates until tree messages are complete or a stopping rule is reached.",
-    "On trees it gives exact marginals; performance on general graphs depends on topology and update behavior.",
-    "Each component belief combines all evidence arriving through its incident factors without double-counting on the tree."
+    "On a tree, a message summarizes one side of an edge. A node has its exact marginal once every neighboring subtree's completed message has arrived.",
+    "Distinguish a partial normalized belief from an exact tree marginal."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Belief propagation is the message-passing framework that combines neighboring evidence into local beliefs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Belief propagation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Belief propagation organizes inference as local messages summarizing information on either side of an edge. This lesson follows the schedule and information coverage of sum-product BP on a tree; the sum-product and max-product lessons develop the corresponding marginal and optimization calculations.","Trace information coverage through an inward and outward tree schedule.","Distinguish a partial normalized belief from an exact tree marginal.","A normalized local belief is not necessarily a completed marginal.","mᵢ→ⱼ(xⱼ)=Σxᵢ φᵢ(xᵢ)ψᵢⱼ(xᵢ,xⱼ)∏k∈N(i)∖j mₖ→ᵢ(xᵢ); bᵢ∝φᵢ∏k∈N(i)mₖ→ᵢ","Binary chain X—Y—Z. Unary weights are X=(1,3), Y=(1,1), Z=(2,1), and both pair tables are [[3,1],[1,3]]. The valid schedule is X→Y, Z→Y, Y→X, Y→Z. Unsent messages are neutral factors (1,1) for the partial display. Exact reference marginals are enumerated from all eight assignments; messages themselves are left unnormalized.","On a tree, a message summarizes one side of an edge. A node has its exact marginal once every neighboring subtree's completed message has arrived."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A gradient collects partial derivatives and points in the direction of steepest local increase.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The gradient is a vector of possibilities; your direction selects one signed slope.",
+  "overview": "For a differentiable scalar function, the gradient collects first-order sensitivities into a vector. Its dot product with a direction gives the directional derivative. Under the Euclidean unit-length constraint, a nonzero gradient points toward the largest local increase; the choice of metric matters.",
+  "concepts": [
+    {
+      "title": "Read a gradient through the differential",
+      "explanation": "At the fixed point, a small displacement h gives f((1,1)+h)≈3+2h₁+4h₂. The two coordinates of the gradient are sensitivities, not new parameter values. A direction u selects the coefficient of movement along that direction."
+    },
+    {
+      "title": "A unit vector makes direction comparisons fair",
+      "explanation": "Cauchy–Schwarz gives g·u≤‖g‖ when ‖u‖=1. Equality occurs at u=g/‖g‖ for nonzero g. Allowing arbitrary direction lengths would let the directional derivative grow simply by scaling u, so it would no longer compare equally sized movements."
+    },
+    {
+      "title": "Zero first-order change is not zero finite change",
+      "explanation": "A direction perpendicular to (2,4) has directional derivative zero at this point. Yet the objective can increase at second order along it. More generally, a zero gradient does not distinguish a minimum, maximum or saddle without additional information."
+    }
+  ],
+  "process": [
+    "Evaluate all partial derivatives at the same point and assemble the gradient in the declared coordinate order.",
+    "Normalize a direction under the intended metric and compute its dot product with the gradient.",
+    "Interpret the sign as a local prediction, then choose a finite step using suitable optimization logic."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x,y)=x²+2y²; ∇f(1,1)=(2,4); u=(cos θ,sin θ); Dᵤf=∇f·u",
+      "meaning": "The evaluation point (1,1) is fixed; the slider rotates a Euclidean unit direction. Vectors are drawn from a shared origin in component space, not as locations on the objective surface. Equal axis scales preserve angles. The projected vector (g·u)u has length |g·u|; the readout retains its sign."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two directions, two slopes",
+    "setup": "At (1,1), the gradient is (2,4).",
+    "steps": [
+      "Along u=(1,0), the derivative is 2; along u=(0,1), it is 4.",
+      "The maximum unit-direction derivative is √20≈4.472136, at angle arctan(2)≈63.435°.",
+      "Along (2,−1)/√5, the first-order derivative is zero even though the exact change over distance h is (6/5)h²."
+    ],
+    "result": "The gradient predicts local change through a projection; perpendicular motion can still have curvature."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Feature rescaling changes gradient coordinates and the meaning of a unit step. Euclidean steepest descent is not invariant to arbitrary reparameterization.",
+    "Using a vector-valued output requires a Jacobian or a chosen scalar contraction, not a single unqualified gradient vector."
+  ],
+  "implementation": [
+    "Track whether differentiation returns a Jacobian-vector product, vector-Jacobian product, or scalar gradient.",
+    "Keep gradient magnitude diagnostics separate from gradient clipping and optimizer preconditioning, which alter the actual update direction or scale."
+  ],
+  "takeaways": [
+    "The dot product predicts first-order change along the chosen direction. Steepest increase is relative to a unit-length constraint; it is not a promise about a large finite step or a differently scaled parameterization.",
+    "Explain the metric and locality assumptions behind steepest increase."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A gradient collects partial derivatives and points in the direction of steepest local increase.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Gradients illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["For a differentiable scalar function, the gradient collects first-order sensitivities into a vector. Its dot product with a direction gives the directional derivative. Under the Euclidean unit-length constraint, a nonzero gradient points toward the largest local increase; the choice of metric matters.","Calculate a directional derivative by projecting a gradient.","Explain the metric and locality assumptions behind steepest increase.","The gradient is a vector of possibilities; your direction selects one signed slope.","f(x,y)=x²+2y²; ∇f(1,1)=(2,4); u=(cos θ,sin θ); Dᵤf=∇f·u","The evaluation point (1,1) is fixed; the slider rotates a Euclidean unit direction. Vectors are drawn from a shared origin in component space, not as locations on the objective surface. Equal axis scales preserve angles. The projected vector (g·u)u has length |g·u|; the readout retains its sign.","The dot product predicts first-order change along the chosen direction. Steepest increase is relative to a unit-length constraint; it is not a promise about a large finite step or a differently scaled parameterization."]} />

@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
+  "hook": "A promise may beat your answer; an answer must obey every constraint.",
+  "overview": "Branch and bound searches partial decisions while comparing each region's optimistic bound with the best complete feasible answer already known. For maximization, an upper bound that cannot exceed the incumbent makes a branch unnecessary when only one optimum is required. The method is exact when branching covers all possibilities and every prune is justified, but its worst-case search can remain exponential.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "An incumbent is a legal witness",
+      "explanation": "The seed slider chooses an actual feasible packing, from empty profit zero through B+C profit eight. A claimed lower bound without a feasible witness is not enough to return a solution. At any feasible prefix in this nonnegative knapsack, excluding all undecided items gives another valid complete packing that may improve the incumbent."
     },
     {
-      "title": "Core rule",
-      "explanation": "Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far."
+      "title": "Relaxation enlarges the feasible set",
+      "explanation": "Allowing fractional items can only increase the maximum achievable profit. With items ordered by profit per weight, the fractional fill gives an upper bound for each prefix. At the root it takes all A and one-third of B: profit 7+5/3=8⅔. That number is a bound, not a legal answer to the whole-item problem."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+      "title": "Pruning preserves a better answer elsewhere",
+      "explanation": "If a region's upper bound is at most the incumbent, no completion inside that region can improve the saved answer. Equality is safe when only one optimum is requested. To enumerate every optimal packing, equality branches may contain additional witnesses and cannot be discarded under the same objective."
+    },
+    {
+      "title": "A strong seed can reduce work without changing the optimum",
+      "explanation": "Starting empty, the traversal first obtains A with profit seven before discovering B+C with profit eight. Starting with B+C already available lets the entire A-excluded region be pruned at its upper bound eight. The A-containing region still needs work: its fractional bounds exceed eight. Even an optimal seed does not immediately certify itself when the relaxation is loose."
+    },
+    {
+      "title": "Infeasibility and weak bounds are different reasons to stop",
+      "explanation": "An overweight prefix violates capacity and cannot be repaired by later exclusions of undecided items. A bound-pruned prefix is feasible so far but cannot beat the incumbent. Keep these reasons separate in the trace. The eight-packing grid is an explanatory oracle, not an assertion that the search enumerated all eight leaves."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+    "Obtain a feasible incumbent, or explicitly represent its absence.",
+    "Partition each surviving partial decision into exhaustive branches and compute a valid optimistic bound.",
+    "Update with better feasible completions; prune infeasible or non-improving regions; finish when no unresolved region can improve the result."
   ],
   "formulas": [
     {
-      "label": "Branch and bound rule",
-      "expression": "prune node if lower_bound(node) >= incumbent_cost",
-      "meaning": "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search."
+      "label": "Definition and assumptions",
+      "expression": "maximize 7a+5b+3c; 4a+3b+2c≤5; a,b,c∈{0,1}; prune if U≤incumbent",
+      "meaning": "Three whole items A,B,C with weights (4,3,2), profits (7,5,3), capacity 5. Branch include-first in A,B,C order, already sorted by profit/weight. At each feasible prefix, excluding all remaining items supplies a feasible completion. Compute an upper bound by filling remaining capacity fractionally with undecided items. Prune U≤incumbent; reject overweight prefixes separately. Seed choices are 000,001,010,100,011. Find one optimum, not all ties."
     }
   ],
   "example": {
-    "title": "Branch and bound in a small case",
-    "setup": "Solve a traveling-salesperson instance with a lower bound for each partial tour.",
+    "title": "Why B+C beats the tempting A",
+    "setup": "Use the empty seed, then the profit-eight seed.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
-      "Check the outcome against the goal and stated assumptions."
+      "A has the highest profit per unit weight, but whole A leaves only one unit of capacity and earns seven.",
+      "B+C weighs 3+2=5 and earns 5+3=8. It is feasible and better.",
+      "The root fractional value 8⅔ is unattainable with whole items. The final answer is packing 011 with profit eight, independent of the selected seed."
     ],
-    "result": "When no active branch can beat the incumbent, the incumbent tour is certified optimal."
+    "result": "A greedy fractional bound guides exact search without becoming a greedy whole-item solution."
   },
   "pitfalls": [
-    "Confusing a heuristic estimate with a valid bound can silently destroy the optimality proof.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "For maximization use an upper bound against a feasible lower bound; minimization uses a lower bound against a feasible upper bound.",
+    "An invalidly optimistic incumbent or an underestimated upper bound can prune the true optimum.",
+    "A loose bound can leave nearly every branch alive. Exactness does not imply polynomial running time."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use exact rational arithmetic or conservative rounding when bound comparisons can decide correctness. This tiny example retains fractional bounds without rounding them down, even though integer-profit strengthening is possible.",
+    "Separate branching order, node-selection policy, relaxation and incumbent heuristic. Include-first DFS is the lab's policy; best-bound search is another policy with different memory behavior."
+  ],
   "takeaways": [
-    "Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.",
-    "Branch into smaller candidate regions, compute optimistic bounds, and retain the best complete solution found so far.",
-    "Valid bounds preserve optimality while tighter bounds improve pruning; weak bounds approach exhaustive search.",
-    "When no active branch can beat the incumbent, the incumbent tour is certified optimal."
+    "The incumbent is attainable; the relaxation is optimistic. Pruning is a comparison between those two different certificates, with the inequality reversed for minimization.",
+    "Choose the correct pruning inequality and explain its assumptions."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Branch and bound prunes a subproblem when its best possible bound cannot beat the incumbent solution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Branch and bound illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Branch and bound searches partial decisions while comparing each region's optimistic bound with the best complete feasible answer already known. For maximization, an upper bound that cannot exceed the incumbent makes a branch unnecessary when only one optimum is required. The method is exact when branching covers all possibilities and every prune is justified, but its worst-case search can remain exponential.","Distinguish a feasible incumbent from an optimistic relaxation.","Choose the correct pruning inequality and explain its assumptions.","A promise may beat your answer; an answer must obey every constraint.","maximize 7a+5b+3c; 4a+3b+2c≤5; a,b,c∈{0,1}; prune if U≤incumbent","Three whole items A,B,C with weights (4,3,2), profits (7,5,3), capacity 5. Branch include-first in A,B,C order, already sorted by profit/weight. At each feasible prefix, excluding all remaining items supplies a feasible completion. Compute an upper bound by filling remaining capacity fractionally with undecided items. Prune U≤incumbent; reject overweight prefixes separately. Seed choices are 000,001,010,100,011. Find one optimum, not all ties.","The incumbent is attainable; the relaxation is optimistic. Pruning is a comparison between those two different certificates, with the inequality reversed for minimization."]} />

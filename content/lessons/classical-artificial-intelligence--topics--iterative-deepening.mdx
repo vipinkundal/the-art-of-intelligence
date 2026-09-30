@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Iterative deepening repeats depth-limited DFS with successively larger limits.",
+  "hook": "Explore one floor deeper, then start again with a smaller backpack.",
+  "overview": "Iterative deepening runs fresh depth-limited searches at limits zero, one, two and onward. Each run discards its search frontier; the outer loop continues only after a cutoff. With finite branching and a reachable finite-depth goal, the first successful limit equals the shallowest solution depth. This buys small depth-first working memory by repeating earlier work.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Each failed budget is evidence about a layer",
+      "explanation": "A cutoff at limit zero leaves depth-one possibilities unresolved. A cutoff at one leaves deeper paths unresolved. If the first success occurs at two, all smaller depth budgets have already been searched. Thus no solution at depth zero or one was missed under the traversal assumptions."
     },
     {
-      "title": "Core rule",
-      "explanation": "Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier."
+      "title": "Restart search state, not the problem definition",
+      "explanation": "The graph and goal remain fixed, but visited/path/frontier state for one run must not accidentally suppress the next run. A state blocked by yesterday's limit may be precisely the state that needs expanding today."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+      "title": "Count repeated work honestly",
+      "explanation": "This lab checks S once at limit zero; S,A,B at limit one; and S,A,C,B,G at limit two. That is 1+3+5=9 visits, not five unique states. Peak working memory is a separate measurement and does not equal the cumulative visit count."
+    },
+    {
+      "title": "Wide trees amortize repetition; chains do not",
+      "explanation": "On a full b-ary tree to depth d, counting the root, cumulative visits through all limits are Σ(i=0..d)(d−i+1)b^i. For fixed b>1 this is O(b^d), dominated by deep levels. For a single chain b=1, the sum is (d+1)(d+2)/2, quadratic rather than linear in d. The often-small overhead is conditional, not universal."
+    },
+    {
+      "title": "A shallow certificate is not a cost certificate",
+      "explanation": "The first successful run returns S→B→G at depth two and cost ten. The four-edge route costs four, but iterative deepening stops before limit four. Equal positive step costs would make shallowest and cheapest coincide; this graph deliberately separates them."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+    "Run depth-limited search with a fresh working state for each successive nonnegative limit.",
+    "Return immediately on success or exhausted failure. Increase the limit only on cutoff.",
+    "If an external cap is reached after cutoff, report the cap and unresolved status rather than claiming no solution."
   ],
   "formulas": [
     {
-      "label": "Iterative deepening rule",
-      "expression": "for L = 0,1,2,...: DLS(start,L)",
-      "meaning": "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels."
+      "label": "Definition and assumptions",
+      "expression": "for L=0,1,…: run DLS(L); continue only on cutoff",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Every run starts fresh, uses alphabetical DFS and current-path cycle checking, and tests goals before cutoffs. The control caps the outer loop. The process stops at its first success even if the selected cap is larger. Visit counts include boundary checks and repeated states across runs."
     }
   ],
   "example": {
-    "title": "Iterative deepening in a small case",
-    "setup": "Search a tree whose shallowest goal is at depth four by running four bounded passes.",
+    "title": "Nine checks, three depth limits",
+    "setup": "Select a cap of four.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
-      "Check the outcome against the goal and stated assumptions."
+      "Run L=0 visits only S and returns cutoff; L=1 visits S,A,B and returns cutoff.",
+      "Run L=2 visits S,A,C,B,G and returns success on G.",
+      "Total work is nine visits. Limits three and four are never run, even though the selected cap permits them."
     ],
-    "result": "The depth-four pass returns a minimum-depth goal while retaining only one DFS path at a time."
+    "result": "The outer loop is governed by the returned status, not by a promise to use every available budget."
   },
   "pitfalls": [
-    "The shallowest solution guarantee assumes equal action costs.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Do not carry a plain global visited set across iterations.",
+    "Iterative deepening over depth is different from IDA*, which raises an f-cost threshold.",
+    "A finite unreachable graph can still need careful cycle handling and an exhausted-failure result to terminate; cutoff alone does not establish impossibility."
   ],
-  "implementation": [],
+  "implementation": [
+    "Report per-iteration visits and total visits alongside the last completed limit. For cancellation, retain the fact that the last result was unresolved.",
+    "Use lazy successor iterators if minimizing working memory is the purpose. Storing every trace for visualization, as this tiny lab does, is extra instrumentation and not part of the algorithm's low-memory bound."
+  ],
   "takeaways": [
-    "Iterative deepening repeats depth-limited DFS with successively larger limits.",
-    "Run limits 0, 1, 2, and onward until a goal is found, discarding each previous frontier.",
-    "For unit step costs it combines BFS-like completeness and shallow optimality with DFS-like memory, at the cost of re-expanding upper levels.",
-    "The depth-four pass returns a minimum-depth goal while retaining only one DFS path at a time."
+    "Iterative deepening finds a shallowest goal with depth-first working memory, but not a cheapest goal when costs differ. Repeated visits are a deliberate memory tradeoff.",
+    "Assess repeated-work overhead separately from working-memory savings."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Iterative deepening repeats depth-limited DFS with successively larger limits.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Iterative deepening illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Iterative deepening runs fresh depth-limited searches at limits zero, one, two and onward. Each run discards its search frontier; the outer loop continues only after a cutoff. With finite branching and a reachable finite-depth goal, the first successful limit equals the shallowest solution depth. This buys small depth-first working memory by repeating earlier work.","Derive shallowest-goal correctness from the sequence of depth limits.","Assess repeated-work overhead separately from working-memory savings.","Explore one floor deeper, then start again with a smaller backpack.","for L=0,1,…: run DLS(L); continue only on cutoff","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. Every run starts fresh, uses alphabetical DFS and current-path cycle checking, and tests goals before cutoffs. The control caps the outer loop. The process stops at its first success even if the selected cap is larger. Visit counts include boundary checks and repeated states across runs.","Iterative deepening finds a shallowest goal with depth-first working memory, but not a cheapest goal when costs differ. Repeated visits are a deliberate memory tradeoff."]} />

@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
+  "hook": "An early quote is not the final bill.",
+  "overview": "Uniform-cost search removes the frontier path with minimum accumulated cost g. When a cheaper path to a state appears, it updates that state's best-known cost and parent. With nonnegative edges on a finite graph, a minimum-cost removal finalizes a state's distance. Stop when a goal is removed with its current best cost, not when it is first generated.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Order by the bill already paid",
+      "explanation": "After S is removed, A and B both cost one; the declared tie-break chooses A. After A, B still costs one while C costs two, so B is next. Unlike DFS, the algorithm cannot keep following a more expensive continuation merely because it was generated recently."
     },
     {
-      "title": "Core rule",
-      "explanation": "Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found."
+      "title": "Relaxation revises a claim",
+      "explanation": "Expanding B generates G with g=10. C and D remain cheaper work. Expanding D discovers G with g=4, replacing the earlier candidate. This is a decrease-key operation conceptually; heaps can implement it directly or append a new entry and discard stale ones later."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours."
+      "title": "Why minimum removal is safe",
+      "explanation": "Suppose a cheaper route to the removed node still existed. Along that route, the first unsettled node would have a frontier cost no greater than the route's full cost, since remaining edges are nonnegative. It would therefore have priority below the supposedly minimum entry: a contradiction. Negative edges break this argument."
+    },
+    {
+      "title": "Finite graphs and infinite spaces need different conditions",
+      "explanation": "A finite graph with nonnegative edges and correct duplicate handling terminates, even with zero-cost cycles. For a finitely branching implicit space, a positive lower bound ε on every step cost ensures only finitely many path levels can cost at most a finite optimal C*. Without such a bound, infinitely many cheap states can delay a goal."
+    },
+    {
+      "title": "Dijkstra is the same distance-order principle",
+      "explanation": "Single-goal uniform-cost search can stop at the first finalized goal. A full single-source Dijkstra traversal continues to compute all reachable distances. With adjacency lists and a binary heap, a standard finite-graph bound is O((V+E) log V); representation and priority-queue policy determine constants and storage."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours."
+    "Initialize best[S]=0 and all other distances as unknown; insert the start into a min-priority queue.",
+    "Remove the minimum valid entry. Ignore stale entries before the goal test; otherwise relax every outgoing edge and update the parent on strict improvement.",
+    "Return on goal removal and reconstruct the current best parent chain."
   ],
   "formulas": [
     {
-      "label": "Uniform-cost search rule",
-      "expression": "n = argmin_frontier g(n)",
-      "meaning": "With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours."
+      "label": "Definition and assumptions",
+      "expression": "g(v) ← min(g(v), g(u)+c(u,v)); priority(v)=g(v)",
+      "meaning": "The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. The frontier has one active entry per state. A strict cost improvement replaces its entry and parent path. Equal priorities use alphabetical state labels. All costs are positive here; the goal test happens only after removal."
     }
   ],
   "example": {
-    "title": "Uniform-cost search in a small case",
-    "setup": "A map has a short expensive road and a longer cheap road to the goal.",
+    "title": "Watch ten become four",
+    "setup": "Use removals three, five and six.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
-      "Check the outcome against the goal and stated assumptions."
+      "At three removals, S,A,B are processed. The frontier is C(g=2), G(g=10).",
+      "Removing C then D improves G from ten to four. The old B-based parent is replaced by D.",
+      "The sixth removal returns G on S→A→C→D→G, total cost four. Five non-goal nodes were expanded."
     ],
-    "result": "Uniform-cost search returns the route with minimum total cost rather than minimum edge count."
+    "result": "Stopping at G's first discovery would have returned a solution 2.5 times as expensive."
   },
   "pitfalls": [
-    "Stopping when the goal is generated is unsafe; stop when the goal is removed as the cheapest frontier path.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Never finalize a distance merely when its state is first enqueued.",
+    "Negative edges need an algorithm whose proof supports them; a heap alone does not repair UCS.",
+    "Do not count stale heap entries as newly expanded states in performance reports."
   ],
-  "implementation": [],
+  "implementation": [
+    "Validate that application costs are nonnegative and use consistent units. If costs are floating point, specify comparison/tolerance policy rather than silently treating nearly equal paths as interchangeable.",
+    "A map of best costs plus lazy heap entries is often simpler than a mutable decrease-key heap. This small lab uses replacement in a sorted array to keep every displayed entry current."
+  ],
   "takeaways": [
-    "Uniform-cost search expands the frontier path with the lowest accumulated cost.",
-    "Maintain a priority queue keyed by g(n), updating a state when a cheaper path is found.",
-    "With nonnegative costs it is complete under standard lower-bound conditions and returns an optimal path, but can explore many low-cost detours.",
-    "Uniform-cost search returns the route with minimum total cost rather than minimum edge count."
+    "The minimum-cost frontier certifies a goal on removal. Finding G at cost ten is only a candidate; a later relaxation can improve it to four.",
+    "Choose the right termination and duplicate rules for a cost-optimal search."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Uniform-cost search expands the frontier path with the lowest accumulated cost.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Uniform-cost search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Uniform-cost search removes the frontier path with minimum accumulated cost g. When a cheaper path to a state appears, it updates that state's best-known cost and parent. With nonnegative edges on a finite graph, a minimum-cost removal finalizes a state's distance. Stop when a goal is removed with its current best cost, not when it is first generated.","Explain the difference between discovery, relaxation and finalization.","Choose the right termination and duplicate rules for a cost-optimal search.","An early quote is not the final bill.","g(v) ← min(g(v), g(u)+c(u,v)); priority(v)=g(v)","The directed graph has S→A→C→D→G with unit edge costs, S→B with cost 1, and B→G with cost 9. Start S; goal G. Costs are credits; drawn distances carry no meaning. The frontier has one active entry per state. A strict cost improvement replaces its entry and parent path. Equal priorities use alphabetical state labels. All costs are positive here; the goal test happens only after removal.","The minimum-cost frontier certifies a goal on removal. Finding G at cost ten is only a candidate; a later relaxation can improve it to four."]} />

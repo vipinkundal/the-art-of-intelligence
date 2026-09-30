@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The junction-tree algorithm transforms a graph into a tree of overlapping variable clusters for exact inference.",
+  "hook": "Make the computation a tree without pretending the original model was one.",
+  "overview": "A junction tree reorganizes a graphical model into overlapping variable clusters arranged as a tree. Exact sum-product messages calibrate the clusters so their marginals agree on shared variables. This permits exact inference in cyclic models when the cluster tables remain computationally manageable.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Overlap is necessary, duplication is not",
+      "explanation": "Clusters ABC and ACD both contain A and C. Each original factor is nevertheless assigned exactly once. Multiplying an extra AC compatibility factor would change this example's distribution, rather than merely triangulate its computation."
     },
     {
-      "title": "Core computation",
-      "explanation": "Moralize when needed, triangulate, form maximal cliques, arrange them with the running-intersection property, then pass clique messages."
+      "title": "Running intersection keeps a variable connected",
+      "explanation": "Every cluster containing a given variable must form a connected subtree. Here A and C occur in both adjacent clusters, while B and D each occur in just one. This condition lets a cluster safely sum out variables absent from its neighbor."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is exact, but the largest clique makes cost exponential in graph treewidth."
+      "title": "Messages live on separators",
+      "explanation": "ABC sends a four-entry function of A and C after summing over B. The reverse message sums over D. Each cluster multiplies its own assigned factors by the incoming message, then normalizes. Summing the resulting clique beliefs onto AC gives the same table."
+    },
+    {
+      "title": "A tree of large tables can still be expensive",
+      "explanation": "For uniform cardinality K and maximum clique size w+1, a dense clique has K^(w+1) entries. Total work also depends on the number of cliques, degrees and the query. A poor elimination order can produce width larger than the graph's minimum treewidth. Calibration does not make arbitrary joint queries free."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Moralize when needed, triangulate, form maximal cliques, arrange them with the running-intersection property, then pass clique messages.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is exact, but the largest clique makes cost exponential in graph treewidth."
+    "Cover every factor with a cluster, using moralization for a Bayesian network and an elimination-based triangulation when needed.",
+    "Connect clusters into a tree satisfying running intersection; assign each factor and each evidence factor once.",
+    "Pass separator messages inward and outward. Answer a clique-contained query by marginalizing a calibrated clique; recompute affected messages when evidence changes."
   ],
   "formulas": [
     {
-      "label": "Junction-tree algorithm rule",
-      "expression": "cost approximately O(K^(treewidth+1))",
-      "meaning": "It is exact, but the largest clique makes cost exponential in graph treewidth."
+      "label": "Definition and assumptions",
+      "expression": "mL→R(A,C)=ΣB φL(A,B,C); mR→L(A,C)=ΣD φR(A,C,D); bL∝φL mR→L",
+      "meaning": "Binary cycle A—B—C—D—A. Each original edge has weight 3 for equal states and 1 for unequal states. A has unary weight (1,a); all other unaries are 1. Assign φL=uA·ψAB·ψBC to cluster ABC and φR=ψCD·ψDA to cluster ACD, once each. Their separator is {A,C}. The fill edge AC adds no new factor. Both messages and calibrated cluster tables are computed by finite sums."
     }
   ],
   "example": {
-    "title": "Junction-tree algorithm in a small case",
-    "setup": "Convert a small cyclic medical network into a clique tree and condition on a test result.",
+    "title": "Calibrating a four-cycle",
+    "setup": "Use a=3 and rows A=0,1 with columns C=0,1.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Moralize when needed, triangulate, form maximal cliques, arrange them with the running-intersection property, then pass clique messages.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Summing the left cluster over B gives [[10,6],[18,30]]. Summing the right cluster over D gives [[10,6],[6,10]].",
+      "The unnormalized separator table is their entrywise product: [[100,36],[108,300]], whose entries sum to 544.",
+      "Divide by 544. Either calibrated clique gives P(A=1)=408/544=0.75 and P(C=1)=336/544≈0.617647."
     ],
-    "result": "Calibrated clique potentials agree on separators and yield exact queried marginals."
+    "result": "Two eight-entry clique tables agree on a four-entry separator. No independence between A and C was introduced."
   },
   "pitfalls": [
-    "Triangulation choices change clique sizes and can determine whether the method is feasible.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "A tree of arbitrary clusters is not enough: factor coverage and running intersection must both hold.",
+    "Fill edges encode the computation's scope; inventing extra nonconstant factors on them changes the model.",
+    "Calibration guarantees exact probabilities for the specified tractable model, not that the model accurately represents reality. New evidence generally requires new messages."
   ],
-  "implementation": [],
+  "implementation": [
+    "Track named factor scopes and factor ownership. Preserve message scales if you need the partition function, and handle zero-probability evidence explicitly.",
+    "Inspect clique cardinalities before allocating dense tables. To answer a query spanning several cliques, combine the required subtree information rather than multiplying overlapping marginals as if independent."
+  ],
   "takeaways": [
-    "The junction-tree algorithm transforms a graph into a tree of overlapping variable clusters for exact inference.",
-    "Moralize when needed, triangulate, form maximal cliques, arrange them with the running-intersection property, then pass clique messages.",
-    "It is exact, but the largest clique makes cost exponential in graph treewidth.",
-    "Calibrated clique potentials agree on separators and yield exact queried marginals."
+    "Exactness needs factor coverage and running intersection. Efficiency depends on cluster sizes, not just whether the original graph has a cycle.",
+    "Separate exactness conditions from the exponential cost of large clusters."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The junction-tree algorithm transforms a graph into a tree of overlapping variable clusters for exact inference.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Junction-tree algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A junction tree reorganizes a graphical model into overlapping variable clusters arranged as a tree. Exact sum-product messages calibrate the clusters so their marginals agree on shared variables. This permits exact inference in cyclic models when the cluster tables remain computationally manageable.","Compute separator messages and verify agreement between calibrated clusters.","Separate exactness conditions from the exponential cost of large clusters.","Make the computation a tree without pretending the original model was one.","mL→R(A,C)=ΣB φL(A,B,C); mR→L(A,C)=ΣD φR(A,C,D); bL∝φL mR→L","Binary cycle A—B—C—D—A. Each original edge has weight 3 for equal states and 1 for unequal states. A has unary weight (1,a); all other unaries are 1. Assign φL=uA·ψAB·ψBC to cluster ABC and φR=ψCD·ψDA to cluster ACD, once each. Their separator is {A,C}. The fill edge AC adds no new factor. Both messages and calibrated cluster tables are computed by finite sums.","Exactness needs factor coverage and running intersection. Efficiency depends on cluster sizes, not just whether the original graph has a cycle."]} />

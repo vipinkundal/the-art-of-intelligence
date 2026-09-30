@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
+  "hook": "A distance becomes a certificate when nothing cheaper can reach it later.",
+  "overview": "Dijkstra's algorithm computes shortest distances from one source in a graph with nonnegative edge weights. It repeatedly finalizes the unsettled vertex with minimum tentative distance and relaxes its outgoing edges. The nonnegative assumption makes that finalization safe. The distance table is a result for every reachable vertex, not just one selected goal.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Every finite label has a witnessed path",
+      "explanation": "Initially only S has a finite label. Relaxing u→v proposes d(u)+w(u,v), the cost of a discovered route. Taking the minimum preserves the fact that d(v) is an upper bound on the true shortest distance. A finite tentative label need not yet be exact."
     },
     {
-      "title": "Core rule",
-      "explanation": "Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge."
+      "title": "The minimum unsettled label is final",
+      "explanation": "Any hypothetical cheaper route to u must cross from settled to unsettled vertices somewhere. At that first crossing, relaxation would have produced a frontier label no larger than the cheaper route's final cost, since remaining weights are nonnegative. That contradicts u having the minimum unsettled label."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee."
+      "title": "Zero is legal; negative is different",
+      "explanation": "The lab's S→B edge costs zero, so S and B have equal final distance. Zero-cost edges and cycles are compatible with finite-graph Dijkstra and strict-improvement relaxation. A negative edge can let a later path reduce a finalized distance, breaking the proof even without a negative cycle."
+    },
+    {
+      "title": "Infinity starts as ignorance",
+      "explanation": "Before B is processed, C has infinity because no route to C has been discovered. Later C becomes five, then three. U stays infinite even after every reachable vertex is processed, at which point its unreachability is certified by exhaustion, not by its initial label."
+    },
+    {
+      "title": "The data structure changes the performance bound",
+      "explanation": "A binary heap with adjacency lists gives O((V+E) log V) for a standard implementation. A dense-graph array implementation can take O(V²). A Fibonacci heap gives the theoretical O(E+V log V) bound under its operation assumptions. The algorithm name alone does not identify the queue's costs."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee."
+    "Reject unsupported negative weights and initialize source, distance and parent records.",
+    "Finalize the minimum current finite entry, skipping stale heap records when using lazy updates.",
+    "Relax outgoing edges, update parents on strict improvements, and continue until all reachable vertices are finalized."
   ],
   "formulas": [
     {
-      "label": "Dijkstra's algorithm rule",
-      "expression": "dist[v] = min(dist[v], dist[u] + w(u,v))",
-      "meaning": "Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee."
+      "label": "Definition and assumptions",
+      "expression": "d(v) ← min(d(v), d(u)+w(u,v)); finalize min unsettled d",
+      "meaning": "Directed edges are S→A=4, S→B=0, B→A=2, A→C=1 and B→C=5. U is isolated. Initialize d(S)=0 and other labels to infinity. The implementation only considers finite unsettled labels and stops when none remain. Alphabetical ties are used. The slider follows a full single-source traversal, with no goal-based early stop."
     }
   ],
   "example": {
-    "title": "Dijkstra's algorithm in a small case",
-    "setup": "Find delivery costs from one depot to every location in a nonnegative weighted road graph.",
+    "title": "Watch two labels improve",
+    "setup": "Advance through the four finalizations.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
-      "Check the outcome against the goal and stated assumptions."
+      "S finalizes at zero, giving A=4 and B=0.",
+      "B finalizes next, improving A to 0+2=2 and discovering C=0+5=5.",
+      "A finalizes at two and improves C to 2+1=3. C then finalizes at three; U remains unreachable."
     ],
-    "result": "The final distance table gives a shortest-path tree rooted at the depot."
+    "result": "The shortest-path tree uses S→B→A→C, despite the graph also containing more direct edges."
   },
   "pitfalls": [
-    "A plain priority queue may contain stale entries; ignore them or use decrease-key correctly.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A graph having no negative cycle is not enough for Dijkstra; negative edges themselves invalidate its usual finalization argument.",
+    "An infinity sentinel must not be mistaken for a large finite valid route cost or used in overflowing integer addition.",
+    "To retrieve a path, record a parent on each strict improvement; distances alone do not encode the route."
   ],
-  "implementation": [],
+  "implementation": [
+    "For lazy binary heaps, compare the removed entry with the current best label before processing. Track settled vertices and ignore obsolete entries.",
+    "Only stop early for a target after its valid minimum-distance removal. If all distances are the requested output, continue until the reachable queue is empty. The teaching code scans five vertices rather than claiming heap performance."
+  ],
   "takeaways": [
-    "Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.",
-    "Repeatedly settle the unsettled node with smallest tentative distance and relax each outgoing edge.",
-    "Settled distances are final when weights are nonnegative; negative edges invalidate that guarantee.",
-    "The final distance table gives a shortest-path tree rooted at the depot."
+    "Tentative labels are upper bounds from discovered paths; minimum-distance removal certifies them under nonnegative weights. Infinity means unreachable only after the reachable frontier has been exhausted.",
+    "Read a partially computed distance table without confusing tentative and unreachable states."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Dijkstra's algorithm computes shortest distances from one source to all reachable nodes with nonnegative edge weights.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Dijkstra's algorithm illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Dijkstra's algorithm computes shortest distances from one source in a graph with nonnegative edge weights. It repeatedly finalizes the unsettled vertex with minimum tentative distance and relaxes its outgoing edges. The nonnegative assumption makes that finalization safe. The distance table is a result for every reachable vertex, not just one selected goal.","Explain why nonnegative edges permit permanent distance finalization.","Read a partially computed distance table without confusing tentative and unreachable states.","A distance becomes a certificate when nothing cheaper can reach it later.","d(v) ← min(d(v), d(u)+w(u,v)); finalize min unsettled d","Directed edges are S→A=4, S→B=0, B→A=2, A→C=1 and B→C=5. U is isolated. Initialize d(S)=0 and other labels to infinity. The implementation only considers finite unsettled labels and stops when none remain. Alphabetical ties are used. The slider follows a full single-source traversal, with no goal-based early stop.","Tentative labels are upper bounds from discovered paths; minimum-distance removal certifies them under nonnegative weights. Infinity means unreachable only after the reachable frontier has been exhausted."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Convert constrained problems into equations that balance objective and constraint forces.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The closest contour touches the line where no feasible tangent direction improves it.",
+  "overview": "For a smooth equality-constrained problem, a regular constrained optimum balances the objective gradient with a combination of constraint gradients. Lagrange multipliers express that balance and can describe how the optimal value responds to changing a constraint. They are not automatically positive, and stationarity alone is not an optimality certificate.",
+  "concepts": [
+    {
+      "title": "Feasible tangents are perpendicular to the normal",
+      "explanation": "A displacement (dx,dy) along the line satisfies dx+2dy=0. At the minimizer, the objective gradient (x,y) is parallel to (1,2), so its dot product with every feasible tangent is zero. The circle and line touch at that point when b≠0."
+    },
+    {
+      "title": "Solve feasibility and stationarity together",
+      "explanation": "The stationarity equations are x+λ=0 and y+2λ=0. Substituting x=−λ, y=−2λ into x+2y=b gives −5λ=b. The affine feasible set and strictly convex objective make this stationary feasible point the unique global minimum."
+    },
+    {
+      "title": "A multiplier measures signed sensitivity",
+      "explanation": "The optimal value is V(b)=b²/10, so V′(b)=b/5=−λ. Increasing positive b moves the line farther from the origin and raises the objective, while increasing negative b toward zero lowers it. Reversing the sign of the written equality flips λ but not the optimizer or sensitivity."
+    }
+  ],
+  "process": [
+    "Write a consistent equality residual and Lagrangian.",
+    "Solve the constraint equations together with stationarity in the decision variables.",
+    "Check regularity and distinguish necessary conditions from an actual minimum; interpret sensitivity using the same sign convention."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "min ½(x²+y²), x+2y=b; L=½(x²+y²)+λ(x+2y−b); (x*,y*)=(b/5,2b/5); λ*=−b/5",
+      "meaning": "An unconstrained-sign pair (x,y) in R² and one affine equality with nonzero normal (1,2). The contour is a circle centered at the origin; equal axis scales preserve its geometry. Only a finite segment of the infinite feasible line is displayed. All solutions and sensitivities are analytic."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A target of two",
+    "setup": "Set b=2.",
+    "steps": [
+      "Stationarity gives x=−λ and y=−2λ, so λ=−0.4.",
+      "The optimum is (0.4,0.8), satisfying 0.4+2(0.8)=2.",
+      "The objective is 0.4 and V′(2)=0.4. Changing b by a small Δb changes V by approximately 0.4Δb."
+    ],
+    "result": "The negative multiplier is valid: this is an equality constraint, not a nonnegative inequality multiplier."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Without constraint regularity, a constrained optimum may not admit the usual multiplier equations. For example, minimize x subject to x²=0: the only feasible point is optimal, but stationarity 1+2λx=0 cannot hold there.",
+    "Multiplier equations can also locate maxima or saddles in nonconvex problems. A feasible stationary point still requires classification."
+  ],
+  "implementation": [
+    "Check constraint and stationarity residuals separately and scale them relative to the quantities involved.",
+    "Sensitivity interpretations require conditions ensuring an appropriate local value-function derivative; they are not universal promises about large changes in the constraint."
+  ],
+  "takeaways": [
+    "Specify the Lagrangian's sign convention before interpreting its multiplier. Here dV/db=−λ, not λ.",
+    "Relate a multiplier's sign to a correctly defined sensitivity."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Convert constrained problems into equations that balance objective and constraint forces.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Lagrange multipliers illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["For a smooth equality-constrained problem, a regular constrained optimum balances the objective gradient with a combination of constraint gradients. Lagrange multipliers express that balance and can describe how the optimal value responds to changing a constraint. They are not automatically positive, and stationarity alone is not an optimality certificate.","Solve a regular equality-constrained problem by multiplier equations.","Relate a multiplier's sign to a correctly defined sensitivity.","The closest contour touches the line where no feasible tangent direction improves it.","min ½(x²+y²), x+2y=b; L=½(x²+y²)+λ(x+2y−b); (x*,y*)=(b/5,2b/5); λ*=−b/5","An unconstrained-sign pair (x,y) in R² and one affine equality with nonzero normal (1,2). The contour is a circle centered at the origin; equal axis scales preserve its geometry. Only a finite segment of the infinite feasible line is displayed. All solutions and sensitivities are analytic.","Specify the Lagrangian's sign convention before interpreting its multiplier. Here dV/db=−λ, not λ."]} />

@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Connects probability to efficient representation, compression, and error correction.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Compression removes spare structure; error correction adds structure with a purpose.",
+  "overview": "Coding theory studies how messages are represented for efficient storage or reliable transmission. Source coding removes predictable redundancy; channel coding deliberately adds structured redundancy so a receiver can detect or correct corruption. Their rates, guarantees and assumptions answer different questions.",
+  "concepts": [
+    {
+      "title": "Distance creates correction capability",
+      "explanation": "The codewords 000 and 111 differ in all three positions, so minimum Hamming distance is 3. Every received word within one flip of a codeword is closer to it than to the other. Two flips cross the majority boundary and can decode to the wrong source bit."
+    },
+    {
+      "title": "Average error uses the channel's probabilities",
+      "explanation": "For independent flips, exactly two errors have probability 3p²(1−p), and three have probability p³. At p=0.1 their sum is 0.028 rather than the uncoded 0.1. The guarantee of correcting any one flip and the average failure probability are different statements."
+    },
+    {
+      "title": "Source coding optimizes another resource",
+      "explanation": "For source probabilities (1/2,1/4,1/8,1/8), the prefix code 0,10,110,111 has expected length 1.75 bits, equal to the entropy of that dyadic distribution. It compresses likely symbols but does not supply the repetition code's corruption protection. A system may apply source and channel codes in separate stages."
+    }
+  ],
+  "process": [
+    "Identify whether the problem is compression, corruption protection or both.",
+    "Specify codewords, decoder, rate and the assumed source/channel model.",
+    "Calculate both a distance-based guarantee and an average error or length appropriate to the application."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "0↦000, 1↦111; majority error=P(2 or 3 flips)=3p²(1−p)+p³=3p²−2p³; rate=1/3",
+      "meaning": "A binary symmetric channel flips each transmitted bit independently with probability p. Three copies encode one source bit and majority decoding recovers it. The comparison is decoded error per source bit, not equal channel usage, bandwidth or energy. The table enumerates probabilities by number of flips."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "One in ten flips becomes 2.8 percent decoded error",
+    "setup": "Set p=0.1.",
+    "steps": [
+      "Exactly two flipped copies occur with probability 3·0.1²·0.9=0.027.",
+      "Three flipped copies occur with probability 0.1³=0.001.",
+      "Majority failure is 0.028, using three channel bits per original bit."
+    ],
+    "result": "The error decreases, but throughput per channel use also falls to one third."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Correlated burst errors invalidate the independent-binomial failure calculation.",
+    "A repetition code is a simple illustration, not a claim of capacity-achieving efficiency or a recommended production code."
+  ],
+  "implementation": [
+    "Choose real codes and interleaving based on channel behavior, block length, latency and decoder complexity.",
+    "Measure post-decoding error per useful payload bit, and account for all redundancy when reporting effective rate."
+  ],
+  "takeaways": [
+    "Reliability gains have a resource cost. State the channel model and rate alongside error probability.",
+    "Distinguish lossless compression from channel error correction."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Connects probability to efficient representation, compression, and error correction.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Coding theory illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Coding theory studies how messages are represented for efficient storage or reliable transmission. Source coding removes predictable redundancy; channel coding deliberately adds structured redundancy so a receiver can detect or correct corruption. Their rates, guarantees and assumptions answer different questions.","Derive a repetition code's majority-decoding error probability.","Distinguish lossless compression from channel error correction.","Compression removes spare structure; error correction adds structure with a purpose.","0↦000, 1↦111; majority error=P(2 or 3 flips)=3p²(1−p)+p³=3p²−2p³; rate=1/3","A binary symmetric channel flips each transmitted bit independently with probability p. Three copies encode one source bit and majority decoding recovers it. The comparison is decoded error per source bit, not equal channel usage, bandwidth or energy. The table enumerates probabilities by number of flips.","Reliability gains have a resource cost. State the channel model and rate alongside error probability."]} />

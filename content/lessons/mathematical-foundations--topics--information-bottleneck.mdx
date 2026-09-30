@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Learns compressed representations that preserve information relevant to a target.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A smaller representation is useful only if it keeps the distinction the task needs.",
+  "overview": "The information bottleneck formalizes a representation tradeoff: retain information relevant to a target while limiting information retained about the input. A common objective minimizes I(X;T)−βI(T;Y) over encoders p(t|x), with T generated from X. It is an information objective, not automatically a count of network parameters or physical storage bits.",
+  "concepts": [
+    {
+      "title": "Count retained input and target information separately",
+      "explanation": "A constant T retains neither. T=Y retains one bit about X and one about Y. T=N retains one about X but none about Y. T=X retains two about X and only one about Y. Equal representation sizes can therefore have entirely different relevance."
+    },
+    {
+      "title": "The weight changes which sacrifice is worthwhile",
+      "explanation": "The four objective values are 0, 1−β, 1 and 2−β. A constant wins for β<1; retaining Y wins for β>1. At β=1 the two tie. The full input never beats Y alone because its extra nuisance bit adds cost but no target information."
+    },
+    {
+      "title": "This toy bound can be checked beyond four candidates",
+      "explanation": "Data processing gives I(X;T)≥I(T;Y), and I(T;Y)≤H(Y)=1. For 0≤β≤1 the objective is nonnegative, reached by a constant. For β>1 it is at least 1−β, reached by T=Y. Thus the shown optimum is globally valid for this special source, although general bottleneck problems need not reduce to these four encoders."
+    }
+  ],
+  "process": [
+    "Define the input-target joint law and ensure the encoder uses only the allowed input.",
+    "Measure or bound compression and relevance separately before combining them.",
+    "Compare objective values across β and inspect what information each representation actually preserves."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "minₚ(t|x) I(X;T)−βI(T;Y); X=(Y,N), Y⊥N, H(Y)=H(N)=1 bit",
+      "meaning": "Y and N are independent fair bits. The input X contains both; Y is the target and N is nuisance. Four deterministic encoders are compared exactly: a constant, Y only, N only and both bits. No representation is learned by the slider; it changes the objective's weighting. All mutual informations are discrete and in bits."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two one-bit representations, different usefulness",
+    "setup": "Set β=2.",
+    "steps": [
+      "T=Y has objective 1−2·1=−1.",
+      "T=N has objective 1−2·0=1.",
+      "T=X scores 2−2·1=0, while a constant also scores 0."
+    ],
+    "result": "Retaining only the target bit is best even though it has the same one-bit size as the useless nuisance representation."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "A small I(X;T) does not mean a neural network has few parameters or uses little memory.",
+    "For deterministic encoders of continuous inputs, MI can be infinite or estimation-dependent; finite-bin intuition does not transfer automatically."
+  ],
+  "implementation": [
+    "Report the encoder/noise model, estimators or bounds, and β convention explicitly.",
+    "A variational information-bottleneck training objective is a surrogate or bound under its assumptions; do not present its numerical value as exact MI without justification."
+  ],
+  "takeaways": [
+    "Compression and relevance are separate axes. Keeping independent nuisance information raises this objective without helping the target.",
+    "Explain the β-dependent choice using an exactly solvable representation problem."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Learns compressed representations that preserve information relevant to a target.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Information bottleneck illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["The information bottleneck formalizes a representation tradeoff: retain information relevant to a target while limiting information retained about the input. A common objective minimizes I(X;T)−βI(T;Y) over encoders p(t|x), with T generated from X. It is an information objective, not automatically a count of network parameters or physical storage bits.","Separate compression cost from target relevance.","Explain the β-dependent choice using an exactly solvable representation problem.","A smaller representation is useful only if it keeps the distinction the task needs.","minₚ(t|x) I(X;T)−βI(T;Y); X=(Y,N), Y⊥N, H(Y)=H(N)=1 bit","Y and N are independent fair bits. The input X contains both; Y is the target and N is nuisance. Four deterministic encoders are compared exactly: a constant, Y only, N only and both bits. No representation is learned by the slider; it changes the objective's weighting. All mutual informations are discrete and in bits.","Compression and relevance are separate axes. Keeping independent nuisance information raises this objective without helping the target."]} />

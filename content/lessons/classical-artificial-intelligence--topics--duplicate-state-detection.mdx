@@ -1,57 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
+  "hook": "Two roads to C are two paths, not two different places.",
+  "overview": "Duplicate-state detection recognizes when different search paths reach an equivalent state. Current-path cycle checking removes loops within one branch; a global reached table can also merge converging branches. The correct record is algorithm-dependent: a Boolean set can be enough for unweighted reachability, while cost or depth-limited search may need best-cost or remaining-budget information.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an algorithm, a problem class, and stated assumptions."
+      "title": "A graph can be small while its unfolding is large",
+      "explanation": "The same four states can appear in infinitely many paths because C returns to S. Without pruning, the number of entries at successive depths begins 1,2,2,2,4,4,4,8,8. Returning around a cycle reproduces the choice between A and B."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use canonical state keys in a reached or closed map and retain the best known path information when costs matter."
+      "title": "A current-path set removes loops only",
+      "explanation": "It rejects C→S because S is already in that branch. It still accepts both S→A→C and S→B→C: neither contains a repeated state internally. Once the depth cap reaches two, this policy has accepted five entries and cannot add more on this graph."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+      "title": "A global set merges convergent paths",
+      "explanation": "BFS discovers C from A first, so B's later proposal for C is suppressed. After seeing S,A,B,C, all outgoing transitions lead to already discovered states. The accepted-entry total is four for every cap of at least two. This is valid for the unweighted reachability task being measured."
+    },
+    {
+      "title": "A duplicate can contain a better prefix",
+      "explanation": "In UCS, two paths to a state can have different g values. Keeping the first discovered one forever can discard the optimum; retain the smaller g and update its descendants when required. In depth-limited DFS, reaching a state at a smaller depth leaves more budget and can enable a previously blocked continuation."
+    },
+    {
+      "title": "Equality must be semantic and collision-safe",
+      "explanation": "A canonical representation defines equality; a hash is an indexing aid. Distinct states can share a hash, so correctness-sensitive tables must resolve collisions or use a justified representation. A too-coarse key can make false duplicates, while unstable serialization can hide real ones."
     }
   ],
   "process": [
-    "Represent the task using an algorithm, a problem class, and stated assumptions.",
-    "Apply the central rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+    "Define semantic state equality before selecting a table structure.",
+    "Choose the dominance rule required by the algorithm: first discovery, lowest g, greatest remaining depth budget, or another proved criterion.",
+    "Track accepted entries, rejected proposals, expanded states and retained memory separately."
   ],
   "formulas": [
     {
-      "label": "Duplicate-state detection rule",
-      "expression": "if new_g < reached[state].g then update/reopen",
-      "meaning": "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct."
+      "label": "Definition and assumptions",
+      "expression": "same state ≠ same path; prune only when the retained record dominates the new one",
+      "meaning": "The four-state directed graph is S→A, S→B, A→C, B→C, C→S. There is no goal stop; enumerate breadth-first through the selected depth, with alphabetically ordered successors. Compare no pruning, current-path cycle checking and a global set marked on discovery. Counts include the root and accepted boundary entries. All edges are unit cost; this lab measures repeated work, not weighted-path relaxation."
     }
   ],
   "example": {
-    "title": "Duplicate-state detection in a small case",
-    "setup": "In a grid, reaching the same cell by north-then-east or east-then-north should not create two independent subtrees.",
+    "title": "Count through depth eight",
+    "setup": "Keep the default depth cap eight.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
-      "Check the outcome against the goal and stated assumptions."
+      "No pruning accepts 1+2+2+2+4+4+4+8+8=35 entries.",
+      "Current-path checking retains the root, A, B and two C entries: five in total.",
+      "A global discovered set retains one entry per reachable state: four in total."
     ],
-    "result": "The solver expands one canonical cell state and records the better path."
+    "result": "The saving comes from explicit graph structure, not from a generic claim that hashing makes search linear in solution depth."
   },
   "pitfalls": [
-    "Canonicalization errors can merge genuinely different states or fail to merge equivalent ones.",
-    "A guarantee is only valid under its stated cost, branching, and heuristic assumptions.",
-    "Worst-case analysis and typical observed behavior answer different questions."
+    "A path set must remove a state when backtracking; otherwise it accidentally becomes a global set.",
+    "Evicting entries to cap memory changes pruning behavior. It can increase repeated work and needs a termination/correctness argument appropriate to the algorithm.",
+    "A Boolean visited set is not a universal replacement for best-g bookkeeping."
   ],
-  "implementation": [],
+  "implementation": [
+    "For depth-first path checking, push into a set on entry and remove on exit. For global reachability, mark on enqueue so repeated proposals do not inflate the frontier.",
+    "Canonicalize unordered state components before hashing. Keep diagnostic counters separate from a complete retained trace; instrumentation itself can dominate the low-memory algorithm you are studying."
+  ],
   "takeaways": [
-    "Duplicate-state detection recognizes when different search paths reach the same underlying state.",
-    "Use canonical state keys in a reached or closed map and retain the best known path information when costs matter.",
-    "It can turn exponential tree repetition into manageable graph search, but hashing, equality, and reopening rules must be correct.",
-    "The solver expands one canonical cell state and records the better path."
+    "Cycle checking and global duplicate detection remove different redundancies. A duplicate policy must preserve the information needed by the search objective, not merely reduce the count.",
+    "Choose a duplicate record that preserves the search objective."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Duplicate-state detection recognizes when different search paths reach the same underlying state.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Duplicate-state detection illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Duplicate-state detection recognizes when different search paths reach an equivalent state. Current-path cycle checking removes loops within one branch; a global reached table can also merge converging branches. The correct record is algorithm-dependent: a Boolean set can be enough for unweighted reachability, while cost or depth-limited search may need best-cost or remaining-budget information.","Distinguish cycle pruning from merging multiple paths.","Choose a duplicate record that preserves the search objective.","Two roads to C are two paths, not two different places.","same state ≠ same path; prune only when the retained record dominates the new one","The four-state directed graph is S→A, S→B, A→C, B→C, C→S. There is no goal stop; enumerate breadth-first through the selected depth, with alphabetically ordered successors. Compare no pruning, current-path cycle checking and a global set marked on discovery. Counts include the root and accepted boundary entries. All edges are unit cost; this lab measures repeated work, not weighted-path relaxation.","Cycle checking and global duplicate detection remove different redundancies. A duplicate policy must preserve the information needed by the search objective, not merely reduce the count."]} />

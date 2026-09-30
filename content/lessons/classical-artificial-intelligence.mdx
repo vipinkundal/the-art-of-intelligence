@@ -1,62 +1,69 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
+  "hook": "Adding a worker helps until the dependency—not the workforce—becomes the bottleneck.",
+  "overview": "Classical AI represents a problem with explicit states, rules, constraints and objectives, then reasons or searches for a result. Its useful question is not just whether an answer looks plausible, but whether it satisfies the model and what guarantees the procedure provides. Search, logic, constraint solving, planning and game reasoning offer different tools for different structures.",
   "concepts": [
     {
-      "title": "3.1 Search algorithms",
-      "explanation": "Learn and implement:"
+      "title": "Represent the question before choosing a solver",
+      "explanation": "The variables are three start times; their domains contain three values each. Constraints state what a legal schedule means. The objective selects the earliest finishing legal schedule. Changing a constraint changes the problem, whereas changing the enumeration order changes only how the same problem is solved."
     },
     {
-      "title": "3.1 Search algorithms",
-      "explanation": "Breadth-first search : Expands the shallowest states first, so it finds the shortest path when every step has the same cost."
+      "title": "Feasibility is not optimality",
+      "explanation": "With two workers, A at zero, B at one and C at two is feasible but finishes at three. A and B at zero followed by C at one finishes at two. Both obey the same rules; only the second minimizes the stated objective. A solver reporting a feasible plan has not necessarily certified that no better plan exists."
     },
     {
-      "title": "3.1 Search algorithms",
-      "explanation": "Depth-first search : Follows one branch deeply before backtracking, which saves memory but can miss shorter answers without safeguards."
+      "title": "A certificate can be smaller than the search",
+      "explanation": "Three units of work require at least ceil(3/workers) time units. The A→C chain independently requires at least two. The maximum of those lower bounds is three for one worker and two for two or three workers. A feasible schedule attaining that bound proves optimality without asking the reader to trust a search trace."
     },
     {
-      "title": "3.1 Search algorithms",
-      "explanation": "Depth-limited search : Caps how far DFS can go, making it useful when infinite branches or cycles are possible."
+      "title": "Different representations expose different structure",
+      "explanation": "As a CSP, assign start-time variables and propagate constraints. As a search problem, branch on partial assignments. As a planning problem, reason about which task can start or finish under explicit preconditions. These are modeling perspectives; the small lab uses exhaustive enumeration and does not pretend to run a general planner or industrial constraint solver."
     },
     {
-      "title": "3.1 Search algorithms",
-      "explanation": "Iterative deepening : Repeats depth-limited search with larger limits, combining BFS-like completeness with DFS-like memory use."
+      "title": "Choose a learning path by the guarantee you need",
+      "explanation": "Start with state representation and uninformed search, then study heuristics and pruning. Constraint and logic paths focus on legal assignments and entailment; planning paths focus on actions over time; game paths introduce another decision maker. A probabilistic transition model or learned heuristic can extend these tools, but changes the assumptions behind a guarantee."
     },
     {
-      "title": "A* evaluation",
-      "explanation": "where g(n) is the path cost so far and h(n) estimates the remaining cost."
-    },
-    {
-      "title": "Understand",
-      "explanation": "Admissible heuristics : Estimates that never overstate the remaining cost, preserving optimality for A*."
-    },
-    {
-      "title": "Understand",
-      "explanation": "Consistent heuristics : Estimates that obey a triangle-inequality style rule, preventing A* from needing repeated repairs."
+      "title": "A perfect model solution can still fail in deployment",
+      "explanation": "A schedule is valid relative to its duration, capacity and compatibility assumptions. Delays, unavailable workers or omitted setup costs can invalidate the real execution without contradicting the solver's result. Validate both the returned plan and the adequacy of the model for the intended setting."
     }
   ],
   "process": [
-    "Admissible heuristics : Estimates that never overstate the remaining cost, preserving optimality for A*.",
-    "Consistent heuristics : Estimates that obey a triangle-inequality style rule, preventing A* from needing repeated repairs.",
-    "Completeness : Whether an algorithm is guaranteed to find a solution when one exists.",
-    "Optimality : Whether the solution found is guaranteed to be the best according to the objective.",
-    "Time and memory complexity : How search effort grows with branching factor, depth, and stored frontier size."
+    "Specify variables or states, legal transitions or constraints, and the target to optimize or prove.",
+    "Choose a procedure whose completeness, optimality and resource assumptions match the requirement.",
+    "Check the returned witness against the original model, then state any bound, gap or limitation alongside it."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "minimize max(s_A,s_B,s_C)+1; s_A+1≤s_C; s_B≠s_C; concurrent tasks≤workers",
+      "meaning": "Three deterministic nonpreemptive unit-duration tasks A,B,C, each using one identical worker. Start times belong to {0,1,2}, measured from time zero. A must finish before C starts; B and C cannot overlap. Capacity is one to three workers. Enumerate all 27 assignments, retain feasible ones, minimize finish time, and break ties lexicographically by (s_A,s_B,s_C). No setup times, uncertain durations or worker-specific qualifications."
+    }
+  ],
   "example": {
-    "title": "Classical Artificial Intelligence example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Why the third worker changes nothing",
+    "setup": "Move from one worker to two, then three.",
+    "steps": [
+      "One worker permits three feasible start-time assignments. Every task must occupy a different slot; the best finish is three.",
+      "Two workers permit six feasible assignments. Running A and B during 0–1, then C during 1–2, attains the lower bound two.",
+      "Three workers still permit six feasible assignments and cannot beat time two: C must follow A, and B cannot overlap C."
+    ],
+    "result": "Capacity improves the answer once. The mandatory chain sets the remaining limit."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Do not confuse a timeout or pruned-search failure with a proof of infeasibility.",
+    "Do not treat a heuristic estimate, feasible objective value and proved bound as interchangeable numbers.",
+    "A constraint graph, state-transition graph and causal graph have different semantics even when all are drawn with nodes and edges."
+  ],
+  "implementation": [
+    "Keep the model separate from the search policy so changing an algorithm does not silently change the task. Independently check a returned schedule's precedence, compatibility and resource use.",
+    "For larger schedules, use propagation, bounds and appropriate solvers rather than scaling this 27-assignment enumeration. Record solver status and model assumptions with the result."
+  ],
   "takeaways": [
-    "Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.",
-    "You should be able to model a problem as states and transitions, choose an appropriate search strategy, explain its complexity, reason about whether it is complete or optimal, implement basic game-playing search with evaluation functions, recognize when a task should be framed as a constraint or satisfiability problem, distinguish the main symbolic reasoning patterns, and connect classical planning ideas to modern agent workflows."
+    "Separate the representation, feasibility rules, objective, solving procedure and certificate. More resources cannot remove a dependency that the model makes mandatory.",
+    "Choose a classical-AI learning path from the structure and guarantees of the task."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Classical AI should not be skipped. It supplies many of the reasoning and planning mechanisms now being combined with language models and agents.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Classical Artificial Intelligence illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Classical AI represents a problem with explicit states, rules, constraints and objectives, then reasons or searches for a result. Its useful question is not just whether an answer looks plausible, but whether it satisfies the model and what guarantees the procedure provides. Search, logic, constraint solving, planning and game reasoning offer different tools for different structures.","Separate model, solver, feasible answer and optimality certificate.","Choose a classical-AI learning path from the structure and guarantees of the task.","Adding a worker helps until the dependency—not the workforce—becomes the bottleneck.","minimize max(s_A,s_B,s_C)+1; s_A+1≤s_C; s_B≠s_C; concurrent tasks≤workers","Three deterministic nonpreemptive unit-duration tasks A,B,C, each using one identical worker. Start times belong to {0,1,2}, measured from time zero. A must finish before C starts; B and C cannot overlap. Capacity is one to three workers. Enumerate all 27 assignments, retain feasible ones, minimize finish time, and break ties lexicographically by (s_A,s_B,s_C). No setup times, uncertain durations or worker-specific qualifications.","Separate the representation, feasibility rules, objective, solving procedure and certificate. More resources cannot remove a dependency that the model makes mandatory."]} />

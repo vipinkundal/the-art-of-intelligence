@@ -1,58 +1,65 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
+  "hook": "More measurements sharpen the average, not the next measurement.",
+  "overview": "Statistics uses observed data and a sampling model to estimate, compare or predict. The target matters: uncertainty about a population mean differs from uncertainty about one future observation. Valid uncertainty statements also depend on how observations were selected, whether they are independent and which assumptions justify the procedure.",
   "concepts": [
     {
-      "title": "The simple idea",
-      "explanation": "Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model."
+      "title": "Define the estimand or prediction target",
+      "explanation": "Here the sample mean estimates the fixed population mean μ. Predicting X_new asks about a new random quantity. Both intervals happen to be centered on x̄, but sharing a center does not make them interchangeable."
     },
     {
-      "title": "Learn",
-      "explanation": "Populations and samples : The population is what you want to understand; the sample is the data you actually observe."
+      "title": "Account for two sources of variation",
+      "explanation": "Var(x̄)=σ²/n. Because the future observation is independent, Var(X_new−x̄)=σ²+σ²/n. Under the normal model, both standardized errors are normal, giving the two interval formulas. The additional σ² is why the prediction interval stays wider."
     },
     {
-      "title": "Learn",
-      "explanation": "Bias and variance : Bias is systematic error; variance is sensitivity to the particular sample or training data."
+      "title": "Interpret the procedure, not a posterior",
+      "explanation": "The mean-interval procedure covers fixed μ about 95% of the time across repeated samples. The prediction procedure covers a newly drawn observation at that rate across repetitions of both stages. These statements do not assign a posterior probability to μ or guarantee coverage conditional on each observed sample."
     },
     {
-      "title": "Learn",
-      "explanation": "Point estimation : Produces a single best estimate of an unknown quantity from data."
+      "title": "Separate sampling error from model error",
+      "explanation": "The formulas assume representative independent observations, a normal population and a known spread. Dependence, selection bias or distribution shift can invalidate their interpretation. Increasing the row count reduces the displayed standard error only when it increases genuinely independent information under the stated model."
     },
     {
-      "title": "Learn",
-      "explanation": "Maximum likelihood estimation : Chooses parameters that make the observed data most probable under the model."
-    },
-    {
-      "title": "Learn",
-      "explanation": "Maximum a posteriori estimation : Combines likelihood with a prior preference over parameters."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Statistics helps you decide whether a model improvement is real, whether a dataset represents the target population, and whether predictions remain calibrated after deployment."
-    },
-    {
-      "title": "Why it matters for AI",
-      "explanation": "Estimation methods such as MLE and MAP connect data, likelihoods, priors, and model parameters. Bias-variance reasoning explains why models can underfit, overfit, or fail under distribution shift."
+      "title": "Choose a statistical workflow",
+      "explanation": "Start with populations, samples, point estimation and uncertainty. Study likelihood, Bayesian inference and resampling as distinct frameworks. Then add study design, hypothesis tests, effect sizes and multiple comparisons. Calibration, missingness and shift connect the mathematical assumptions to data collected in practice."
     }
   ],
   "process": [
-    "Statistics asks what we can learn from limited data and how confident we should be. In AI, that matters whenever we train, compare, evaluate, deploy, or monitor a model."
+    "State the population, observation unit, sampling design and target of the analysis.",
+    "Choose an estimator or prediction procedure with assumptions appropriate to that target.",
+    "Report uncertainty, model limitations and the practical effect separately from a binary significance decision."
   ],
-  "formulas": [],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "Mean CI: x̄±1.96σ/√n; future-observation PI: x̄±1.96σ√(1+1/n)",
+      "meaning": "Independent observations from N(μ,σ²), unknown fixed μ and known σ=2. The future observation is independent and comes from the same population. The displayed sample mean is held at 3 while n varies to isolate interval widths. 1.96 rounds the standard-normal 97.5th percentile. Coverage is over repeated training samples, and also future observations for the prediction procedure; it is not a conditional coverage claim for every realized sample. No data are simulated."
+    }
+  ],
   "example": {
-    "title": "Statistics example",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Two 95-percent procedures at n=16",
+    "setup": "Keep x̄=3 and known σ=2.",
+    "steps": [
+      "The mean standard error is 2/√16=0.5, so its interval half-width is 0.98 and its bounds are [2.02,3.98].",
+      "For one future observation, the error standard deviation is 2√(1+1/16)≈2.061553, giving half-width ≈4.040644.",
+      "As n grows, the mean half-width tends to zero but the prediction half-width tends to 1.96×2=3.92."
+    ],
+    "result": "The uncertainty about μ shrinks; the population itself does not become less variable."
   },
-  "pitfalls": [],
-  "implementation": [],
+  "pitfalls": [
+    "Do not use a confidence interval for the mean as if it covered 95% of individual observations.",
+    "When σ is estimated rather than known, the relevant normal-theory procedures use sample spread and a Student-t factor; n=1 then cannot estimate that spread.",
+    "The lab holds x̄ fixed for comparison. Actual sample means fluctuate as new observations arrive."
+  ],
+  "implementation": [
+    "Both curves use the same half-width units. The numeric table shows complete lower and upper bounds for the selected n.",
+    "Label intervals by their target in reports and interfaces. A bare '95% interval' hides an important modeling decision."
+  ],
   "takeaways": [
-    "Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.",
-    "Use OpenIntro Statistics for a free textbook, examples, exercises, and teaching resources on statistical reasoning."
+    "Name the target before choosing an interval. Learning a mean more accurately does not remove individual variation, and more data cannot repair an invalid sampling model by itself.",
+    "Explain why sample size affects confidence and prediction widths differently."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Statistics helps turn data into evidence. It gives AI builders tools for estimating parameters, measuring uncertainty, testing claims, designing experiments, and detecting when data changes.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Statistics illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Statistics uses observed data and a sampling model to estimate, compare or predict. The target matters: uncertainty about a population mean differs from uncertainty about one future observation. Valid uncertainty statements also depend on how observations were selected, whether they are independent and which assumptions justify the procedure.","Distinguish estimation of a fixed mean from prediction of a future observation.","Explain why sample size affects confidence and prediction widths differently.","More measurements sharpen the average, not the next measurement.","Mean CI: x̄±1.96σ/√n; future-observation PI: x̄±1.96σ√(1+1/n)","Independent observations from N(μ,σ²), unknown fixed μ and known σ=2. The future observation is independent and comes from the same population. The displayed sample mean is held at 3 while n varies to isolate interval widths. 1.96 rounds the standard-normal 97.5th percentile. Coverage is over repeated training samples, and also future observations for the prediction procedure; it is not a conditional coverage claim for every realized sample. No data are simulated.","Name the target before choosing an interval. Learning a mean more accurately does not remove individual variation, and more data cannot repair an invalid sampling model by itself."]} />

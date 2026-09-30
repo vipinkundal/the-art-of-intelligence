@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A Hessian stores second-order derivatives and describes curvature, sharpness, and local optimization geometry.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "Checking each coordinate separately can miss the downhill diagonal.",
+  "overview": "A Hessian collects second partial derivatives of a scalar function and describes the quadratic part of its local expansion. Its off-diagonal terms couple coordinates. Curvature in an arbitrary direction depends on the whole matrix, not just its diagonal entries.",
+  "concepts": [
+    {
+      "title": "Mixed partials connect coordinates",
+      "explanation": "The cross term axy produces the off-diagonal entries. Along either coordinate axis the curvature is always 1, yet along the 45° and 135° directions it is 1+a and 1−a. An axis-only probe misses the negative direction when |a|>1."
+    },
+    {
+      "title": "The Rayleigh quotient finds the range",
+      "explanation": "For unit u and symmetric H, uᵀHu lies between the smallest and largest eigenvalues. Here the ordered endpoints are 1−|a| and 1+|a|. Eigenvectors attain the extrema; the plot traverses the entire range."
+    },
+    {
+      "title": "Zero eigenvalues require care",
+      "explanation": "For |a|<1, the origin is the unique global minimum. At a=1, f=(x+y)²/2 and the entire line x+y=0 minimizes it; a=−1 gives the line x−y=0. For a general nonquadratic function, a positive-semidefinite Hessian at a stationary point is inconclusive: x⁴+y⁴ and x⁴−y⁴ both have a zero Hessian at the origin but different local behavior."
+    }
+  ],
+  "process": [
+    "Verify the point is stationary before applying a stationary-point curvature test.",
+    "Compute the symmetric Hessian under suitable second-derivative regularity.",
+    "Inspect eigenvalue signs and, when zero eigenvalues occur, analyze the actual function along flat directions."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "fₐ(x,y)=½(x²+2axy+y²); H=[[1,a],[a,1]]; uᵀHu=1+a sin(2θ); λ=1±a",
+      "meaning": "A smooth quadratic on all of R², evaluated at its stationary origin. The plot sweeps Euclidean unit directions u=(cosθ,sinθ). Horizontal lines show the smallest and largest eigenvalues. Because the function is exactly quadratic, no higher-order remainder is omitted in this particular classification."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A hidden downhill direction",
+    "setup": "Set a=1.5.",
+    "steps": [
+      "H has positive diagonal entries 1 and 1, but eigenvalues −0.5 and 2.5.",
+      "For u=(1,−1)/√2, uᵀHu=−0.5.",
+      "The exact value f(hu)=−0.25h² decreases away from the origin along that direction."
+    ],
+    "result": "The origin is a saddle even though both coordinate-axis slices curve upward."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Positive definiteness at a nonstationary point does not say that point minimizes the function.",
+    "Symmetry of mixed partials needs regularity; nonsmooth objectives may lack a classical Hessian."
+  ],
+  "implementation": [
+    "Use Hessian-vector products when investigating curvature in a large parameter space.",
+    "If an optimization step needs a positive-definite model, damping or a trust region changes the model deliberately; it does not change the true Hessian's signs."
+  ],
+  "takeaways": [
+    "Eigenvalues bound directional curvature. Positive coordinate-wise curvature does not imply a positive-semidefinite Hessian.",
+    "Separate definite, semidefinite and indefinite stationary-point behavior."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A Hessian stores second-order derivatives and describes curvature, sharpness, and local optimization geometry.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hessians illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Hessian collects second partial derivatives of a scalar function and describes the quadratic part of its local expansion. Its off-diagonal terms couple coordinates. Curvature in an arbitrary direction depends on the whole matrix, not just its diagonal entries.","Use eigenvalues to bound curvature across all directions.","Separate definite, semidefinite and indefinite stationary-point behavior.","Checking each coordinate separately can miss the downhill diagonal.","fₐ(x,y)=½(x²+2axy+y²); H=[[1,a],[a,1]]; uᵀHu=1+a sin(2θ); λ=1±a","A smooth quadratic on all of R², evaluated at its stationary origin. The plot sweeps Euclidean unit directions u=(cosθ,sinθ). Horizontal lines show the smallest and largest eigenvalues. Because the function is exactly quadratic, no higher-order remainder is omitted in this particular classification.","Eigenvalues bound directional curvature. Positive coordinate-wise curvature does not imply a positive-semidefinite Hessian."]} />

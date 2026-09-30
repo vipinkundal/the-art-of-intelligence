@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "These measure how a function changes along one chosen direction instead of all directions.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "At a saddle, every first-order compass can read zero while one road rises and another falls.",
+  "overview": "A directional derivative is the first-order rate of change along a specified direction at a specified point. For differentiable functions it is the gradient's dot product with that direction. It does not describe all finite changes along the line, especially where the first-order term vanishes.",
+  "concepts": [
+    {
+      "title": "The limiting quotient can hide a finite change",
+      "explanation": "Along u the difference quotient is h cos(2θ), which tends to zero for every fixed direction. The exact change is quadratic in h, so it can still be positive or negative at every nonzero distance along the line."
+    },
+    {
+      "title": "The Hessian provides the next term",
+      "explanation": "This function has Hessian diag(2,−2). Its directional curvature uᵀHu is 2cos(2θ), yielding the quadratic term ½h²uᵀHu. Positive and negative curvature directions coexist at the same point."
+    },
+    {
+      "title": "Differentiability is the key assumption",
+      "explanation": "When a function is differentiable, directional derivatives form the linear map u↦∇f·u. For a more general function, existence of directional derivatives alone need not produce that linear map or imply differentiability. This lab uses a polynomial, so that pathology is absent."
+    }
+  ],
+  "process": [
+    "Specify the evaluation point, direction normalization and directional-derivative convention.",
+    "Differentiate the one-dimensional path h↦f(x+hu) at h=0.",
+    "If the first-order term is zero, inspect curvature or higher-order terms rather than declaring the point optimal."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x,y)=x²−y²; u=(cosθ,sinθ); Dᵤf(0)=0; f(hu)−f(0)=h²cos(2θ)",
+      "meaning": "A smooth saddle evaluated at the origin, with a Euclidean unit direction. The plot varies signed distance h along one line and shows exact function change against its zero first-order approximation. Angles are displayed in degrees and converted to radians internally. Tiny trigonometric roundoff at the exact diagonals is displayed as zero."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "Turn the line by ninety degrees",
+    "setup": "Evaluate at the origin.",
+    "steps": [
+      "At θ=0°, f(hu)=h², so the line has a local minimum at h=0.",
+      "At θ=90°, f(hu)=−h², so the line has a local maximum there.",
+      "At θ=45°, f(hu)=0 for the entire diagonal line."
+    ],
+    "result": "All three directional derivatives are zero at the origin, yet their finite behavior is different."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Without normalizing u, the derivative also scales with its length, confounding direction and movement size.",
+    "A finite set of sampled directions cannot establish a global claim about every direction or a whole nonconvex domain."
+  ],
+  "implementation": [
+    "Interpret directional derivative checks at a fixed parameter point; changing the point changes the question.",
+    "Use Hessian-vector products when curvature along a direction is needed without constructing a full Hessian."
+  ],
+  "takeaways": [
+    "A zero directional derivative means no first-order change, not a flat function or a minimum. Inspect higher-order behavior and other directions before classifying a stationary point.",
+    "Distinguish first-order stationarity from directional curvature at a saddle."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["These measure how a function changes along one chosen direction instead of all directions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Directional derivatives illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A directional derivative is the first-order rate of change along a specified direction at a specified point. For differentiable functions it is the gradient's dot product with that direction. It does not describe all finite changes along the line, especially where the first-order term vanishes.","Compute a directional derivative from a one-dimensional restriction.","Distinguish first-order stationarity from directional curvature at a saddle.","At a saddle, every first-order compass can read zero while one road rises and another falls.","f(x,y)=x²−y²; u=(cosθ,sinθ); Dᵤf(0)=0; f(hu)−f(0)=h²cos(2θ)","A smooth saddle evaluated at the origin, with a Euclidean unit direction. The plot varies signed distance h along one line and shows exact function change against its zero first-order approximation. Angles are displayed in degrees and converted to radians internally. Tiny trigonometric roundoff at the exact diagonals is displayed as zero.","A zero directional derivative means no first-order change, not a flat function or a minimum. Inspect higher-order behavior and other directions before classifying a stationary point."]} />

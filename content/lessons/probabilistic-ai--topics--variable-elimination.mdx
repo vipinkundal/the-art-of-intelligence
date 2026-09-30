@@ -1,57 +1,61 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
+  "hook": "Remove the leaves first, or pay to connect them through a giant table.",
+  "overview": "Variable elimination computes a marginal by repeatedly multiplying the factors containing a hidden variable and summing that variable out. Distributivity preserves the answer, but elimination order controls the scope and size of intermediate factors.",
   "concepts": [
     {
-      "title": "Model and assumptions",
-      "explanation": "It starts from a probabilistic model, observed evidence, hidden variables, and a target query or objective."
+      "title": "Only multiply the bucket",
+      "explanation": "To eliminate A, use its unary factor and the H–A pair factor. Factors involving only B,C or Q do not belong in that product. Summing A creates a new factor on H, which summarizes A's contribution to all future calculations."
     },
     {
-      "title": "Core computation",
-      "explanation": "Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor."
+      "title": "Eliminating the center couples its neighbors",
+      "explanation": "If H is removed first, all four pair factors enter the same bucket. Their product has scope H,A,B,C,Q: 2⁵=32 cells. Summing H leaves a four-variable factor with 16 cells. The original graph was a tree, but this order creates a large intermediate."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is exact, but a poor elimination order can create very large intermediate factors."
+      "title": "Eliminating leaves avoids that coupling",
+      "explanation": "With A,B,C removed first, each leaf bucket has two binary variables and four cells. Their output messages contain only H. The final H bucket also has only H and Q. Peak dense product size stays at four cells."
+    },
+    {
+      "title": "Normalization belongs to the query",
+      "explanation": "The final vector (980,1260) contains unnormalized weights, not probabilities. Their sum 2240 is the partition function for this model. Intermediate factors need not sum to one. Rescaling messages can preserve normalized marginals, but lost scales must be tracked if the normalizer itself is needed."
     }
   ],
   "process": [
-    "Write the relevant quantities explicitly using a probabilistic model, observed evidence, hidden variables, and a target query or objective.",
-    "Apply the central computation: Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
-    "Track normalization, numerical stability, convergence, or approximation quality during the computation.",
-    "Interpret the result under this limitation: It is exact, but a poor elimination order can create very large intermediate factors."
+    "Restrict any evidence factors to their observed values and retain the query variables.",
+    "Choose a hidden-variable order. At each step, multiply its current bucket, sum the chosen variable out, and replace that bucket with the output factor.",
+    "Multiply remaining query factors and normalize. Inspect peak intermediate size when comparing orders."
   ],
   "formulas": [
     {
-      "label": "Variable elimination rule",
-      "expression": "tau_new(S) = sum_X product_{f containing X} f(X,S)",
-      "meaning": "It is exact, but a poor elimination order can create very large intermediate factors."
+      "label": "Definition and assumptions",
+      "expression": "τ(S)=Σv ∏{f:v∈scope(f)} f(v,S); p(Q)=w(Q)/ΣQ w(Q)",
+      "meaning": "Binary variables form a star centered at H with leaves A,B,C,Q. Every H–leaf factor is [[3,1],[1,3]]. Unary weights are H=(1,1), A=(1,2), B=(2,1), C=(1,3); Q has no unary preference. Retain Q and eliminate the other four variables. Table counts refer to dense bucket products before summing and dense output factors after summing, not timing measurements."
     }
   ],
   "example": {
-    "title": "Variable elimination in a small case",
-    "setup": "Find P(Burglary|Alarm=true) without enumerating every full assignment separately.",
+    "title": "Four small buckets versus one large bucket",
+    "setup": "Choose leaf-first order A,B,C,H.",
     "steps": [
-      "List the observed variables, hidden quantities, and probability assumptions.",
-      "Apply the rule: Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
-      "Normalize or validate the result, then compare it with the stated query."
+      "Summing A gives mA(H)=(3×1+1×2,1×1+3×2)=(5,7). Likewise mB=(7,5) and mC=(6,10).",
+      "The combined H weights are (5×7×6,7×5×10)=(210,350). Summing H with the H–Q factor gives w(Q=0)=3×210+350=980 and w(Q=1)=210+3×350=1260.",
+      "Normalize by 2240 to obtain P(Q=1)=0.5625. Center-first order returns the same vector, but its largest bucket has 32 cells instead of 4."
     ],
-    "result": "Eliminating unrelated hidden variables produces a small final factor over Burglary that is normalized into the posterior."
+    "result": "The eight-fold ratio describes peak dense table entries in these two orders, not an asserted eight-fold runtime speedup."
   },
   "pitfalls": [
-    "Do not sum out the query variables or observed evidence.",
-    "Convergence of an algorithm does not automatically imply an exact or well-calibrated posterior.",
-    "Report approximation error, effective sample size, or another diagnostic appropriate to the method."
+    "The output scope is the union of bucket scopes minus the eliminated variable. Multiplying factors by array position can silently misalign shared variables.",
+    "Do not eliminate query variables or forget to restrict observed variables before performing the marginal query.",
+    "Treewidth describes the best achievable induced width for a graph; an arbitrary order can do much worse. Sparse or structured representations can also behave differently from dense tables."
   ],
-  "implementation": [],
+  "implementation": [
+    "Track scopes, domain sizes and peak table allocations before materializing large factors. Heuristics such as min-fill can help but do not guarantee an optimal ordering.",
+    "Use stable scaling or log-domain calculations for long products. Preserve scale factors when returning evidence probabilities or partition functions."
+  ],
   "takeaways": [
-    "Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.",
-    "Choose an elimination order, multiply factors containing the next variable, sum that variable out, and insert the resulting factor.",
-    "It is exact, but a poor elimination order can create very large intermediate factors.",
-    "Eliminating unrelated hidden variables produces a small final factor over Burglary that is normalized into the posterior."
+    "A good order changes computational cost, not the mathematical marginal. Factor scope and cardinality determine the expensive intermediates.",
+    "Compare elimination orders without confusing computational cost with changes to the query result."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Variable elimination answers a query by summing out hidden variables while multiplying only the factors that currently mention them.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Variable elimination illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Variable elimination computes a marginal by repeatedly multiplying the factors containing a hidden variable and summing that variable out. Distributivity preserves the answer, but elimination order controls the scope and size of intermediate factors.","Carry out bucket multiplication and summation with explicit scopes.","Compare elimination orders without confusing computational cost with changes to the query result.","Remove the leaves first, or pay to connect them through a giant table.","τ(S)=Σv ∏{f:v∈scope(f)} f(v,S); p(Q)=w(Q)/ΣQ w(Q)","Binary variables form a star centered at H with leaves A,B,C,Q. Every H–leaf factor is [[3,1],[1,3]]. Unary weights are H=(1,1), A=(1,2), B=(2,1), C=(1,3); Q has no unary preference. Retain Q and eliminate the other four variables. Table counts refer to dense bucket products before summing and dense output factors after summing, not timing measurements.","A good order changes computational cost, not the mathematical marginal. Factor scope and cardinality determine the expensive intermediates."]} />

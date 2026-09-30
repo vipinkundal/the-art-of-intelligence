@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Samples from a proposal distribution and accepts only samples that fit the target shape.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "A valid roof preserves the target; an unnecessarily high roof wastes proposals.",
+  "overview": "Rejection sampling generates target draws by accepting or rejecting proposal draws with a probability derived from a valid envelope. If f(x)≤M g(x) everywhere on the target support, accepting x∼g with probability f(x)/(M g(x)) produces accepted draws with density f. A violated envelope invalidates that guarantee.",
+  "concepts": [
+    {
+      "title": "Acceptance reshapes the proposal",
+      "explanation": "The joint probability density of proposing x and accepting it is g(x)·f(x)/(Mg(x))=f(x)/M. Integrating gives acceptance probability 1/M for normalized f; conditioning on acceptance divides by 1/M and leaves f(x)."
+    },
+    {
+      "title": "The bound must hold everywhere",
+      "explanation": "Here f rises to 2 while g is 1, so M=2 is the smallest valid constant. A smaller M would make the purported acceptance probability exceed one near x=1. Clipping it to one does not repair the target distribution."
+    },
+    {
+      "title": "Efficiency is a distribution, not an exact count",
+      "explanation": "With independent proposal pairs, the number of proposals needed for one acceptance is geometric with success probability 1/M and mean M. A fixed set of 80 proposals will not usually accept exactly 80/M. Increasing M makes fewer of the displayed fixed pairs pass."
+    }
+  ],
+  "process": [
+    "Find a proposal and prove a finite envelope bound on the whole contributing support.",
+    "Draw a proposal and an independent uniform acceptance variable.",
+    "Keep accepted proposals and repeat; measure efficiency without altering the acceptance rule."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "f(x)=2x on [0,1], g(x)=1; M≥2; accept if U≤2x/M; P(accept)=1/M",
+      "meaning": "The target is normalized, proposal x is uniform on [0,1], and U is an independent uniform draw. The chart places 80 fixed-seed proposal pairs at (x,MU), using seed 2718. Moving M reuses those pairs rather than drawing new ones. Dots under the target line are accepted; density and envelope lines are exact."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "At the tight envelope",
+    "setup": "Set M=2.",
+    "steps": [
+      "A proposed x=0.75 is accepted when U≤0.75.",
+      "The overall acceptance probability is 1/2, with two proposals per accepted draw on average.",
+      "Accepted values have mean ∫₀¹x·2x dx=2/3, not the proposal mean 1/2."
+    ],
+    "result": "The retained sample is tilted toward large x even though the proposal itself is uniform."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "An empirical maximum from a finite grid is not a proof that an envelope dominates the target everywhere.",
+    "In high dimensions, a loose bound can make acceptance so rare that the method is impractical despite mathematical correctness."
+  ],
+  "implementation": [
+    "For an unnormalized target, derive the acceptance rule with its actual envelope and account for the unknown normalizing constant in efficiency claims.",
+    "Keep proposal randomness and acceptance randomness independent; do not select a favorable-looking subset by another criterion."
+  ],
+  "takeaways": [
+    "Acceptance probability follows from the envelope ratio, not from visual similarity alone. A tighter valid envelope improves efficiency without changing the target law.",
+    "Separate envelope validity, theoretical efficiency and realized acceptance counts."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Samples from a proposal distribution and accepts only samples that fit the target shape.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Rejection sampling illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Rejection sampling generates target draws by accepting or rejecting proposal draws with a probability derived from a valid envelope. If f(x)≤M g(x) everywhere on the target support, accepting x∼g with probability f(x)/(M g(x)) produces accepted draws with density f. A violated envelope invalidates that guarantee.","Explain why accepted proposals follow the target density.","Separate envelope validity, theoretical efficiency and realized acceptance counts.","A valid roof preserves the target; an unnecessarily high roof wastes proposals.","f(x)=2x on [0,1], g(x)=1; M≥2; accept if U≤2x/M; P(accept)=1/M","The target is normalized, proposal x is uniform on [0,1], and U is an independent uniform draw. The chart places 80 fixed-seed proposal pairs at (x,MU), using seed 2718. Moving M reuses those pairs rather than drawing new ones. Dots under the target line are accepted; density and envelope lines are exact.","Acceptance probability follows from the envelope ratio, not from visual similarity alone. A tighter valid envelope improves efficiency without changing the target law."]} />

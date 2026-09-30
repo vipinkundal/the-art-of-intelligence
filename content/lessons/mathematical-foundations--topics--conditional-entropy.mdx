@@ -1,20 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Measures remaining uncertainty in one variable after another variable is known.",
-  "concepts": [],
-  "process": [],
-  "formulas": [],
+  "hook": "The average benefit of knowing a group is not a promise about every group.",
+  "overview": "For discrete variables, conditional entropy averages the entropy of the conditional distribution over the observed variable. Knowing a variable cannot increase this average uncertainty, but a particular observed value can leave more uncertainty than the original marginal distribution had.",
+  "concepts": [
+    {
+      "title": "Average distributions are not average entropies",
+      "explanation": "The marginal success probability is 0.05(1−r)+0.5r. Its entropy is h₂(0.05+0.45r), whereas conditional entropy is (1−r)h₂(0.05)+r h₂(0.5). These are distinct operations: mix first and measure uncertainty, or measure each group's uncertainty and average."
+    },
+    {
+      "title": "A particular observation can be surprising",
+      "explanation": "At r=0.2 the marginal success probability is 0.14, with entropy about 0.584239 bits. Observing Y=1 leads to a fair conditional bit with entropy 1. Observing Y=0 leads to entropy about 0.286397. The weighted average is about 0.429118, below the marginal entropy."
+    },
+    {
+      "title": "The direction after the bar matters",
+      "explanation": "H(X|Y) and H(Y|X) need not agree. The chain rule combines either direction with the corresponding marginal entropy to recover the same joint entropy. These discrete nonnegativity statements should not be transferred unchanged to differential entropy."
+    }
+  ],
+  "process": [
+    "Specify the joint distribution or a marginal and conditional kernel.",
+    "Compute entropy within each positive-probability conditioning case.",
+    "Weight by the probabilities of those cases; compare the result with the marginal entropy."
+  ],
+  "formulas": [
+    {
+      "label": "Definition and assumptions",
+      "expression": "H(X|Y)=Σᵧp(y)H(X|Y=y); H(X,Y)=H(Y)+H(X|Y); h₂(p)=−p log₂p−(1−p)log₂(1−p)",
+      "meaning": "Binary X and Y; P(Y=1)=r, P(X=1|Y=0)=0.05 and P(X=1|Y=1)=0.5. Both groups have positive probability throughout the control range. Logs use base 2, so entropies are in bits. The curves vary group frequency while retaining the two within-group distributions."
+    }
+  ],
   "example": {
-    "title": "",
-    "setup": "",
-    "steps": [],
-    "result": ""
+    "title": "A rare ambiguous group",
+    "setup": "Use r=0.2.",
+    "steps": [
+      "Joint probabilities for Y=0 are P(X=0,Y=0)=0.76 and P(X=1,Y=0)=0.04.",
+      "For Y=1 they are 0.1 and 0.1.",
+      "The conditional average is 0.8·0.286397+0.2·1≈0.429118 bits, while H(X)≈0.584239 bits."
+    ],
+    "result": "The specific ambiguous group has higher uncertainty, yet knowing the group helps on average."
   },
-  "pitfalls": [],
-  "implementation": [],
-  "takeaways": []
+  "pitfalls": [
+    "Averaging conditional entropies equally is wrong unless the conditioning values are equally likely.",
+    "An event of probability zero does not define an ordinary conditional-probability ratio; its contribution to a finite-discrete conditional entropy is omitted."
+  ],
+  "implementation": [
+    "Use weighted group counts and explicit zero-mass handling in discrete calculations.",
+    "For a learned predictor, measured cross-entropy can exceed the true conditional entropy because of model mismatch; they are not interchangeable."
+  ],
+  "takeaways": [
+    "H(X|Y)≤H(X) is an average statement. It does not imply H(X|Y=y)≤H(X) for every y.",
+    "Distinguish an average reduction from the uncertainty after one observation."
+  ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Measures remaining uncertainty in one variable after another variable is known.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Conditional entropy illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["For discrete variables, conditional entropy averages the entropy of the conditional distribution over the observed variable. Knowing a variable cannot increase this average uncertainty, but a particular observed value can leave more uncertainty than the original marginal distribution had.","Calculate discrete conditional entropy from a joint table.","Distinguish an average reduction from the uncertainty after one observation.","The average benefit of knowing a group is not a promise about every group.","H(X|Y)=Σᵧp(y)H(X|Y=y); H(X,Y)=H(Y)+H(X|Y); h₂(p)=−p log₂p−(1−p)log₂(1−p)","Binary X and Y; P(Y=1)=r, P(X=1|Y=0)=0.05 and P(X=1|Y=1)=0.5. Both groups have positive probability throughout the control range. Logs use base 2, so entropies are in bits. The curves vary group frequency while retaining the two within-group distributions.","H(X|Y)≤H(X) is an average statement. It does not imply H(X|Y=y)≤H(X) for every y."]} />

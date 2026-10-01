@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
+  "hook": "A check that passed yesterday can lose its witness today.",
+  "overview": "AC-3 enforces binary arc consistency with a work queue. A revision deletes tail values that lack head-domain support. When that domain shrinks, neighboring arcs that depended on its values are scheduled again. On finite domains, deletions eventually stop; failure is detected if a domain becomes empty.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Revise the tail, not the head",
+      "explanation": "A→B removes A=4 because no B exceeds it. B→A tests B against the reversed relation: it needs an A smaller than B, and therefore removes B=1."
     },
     {
-      "title": "Core rule",
-      "explanation": "Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors."
+      "title": "Schedule changed dependencies",
+      "explanation": "B→C removes B=4. A=3 previously relied on B=4, so A→B goes back into the queue. Deduplicating queued arcs avoids redundant pending copies without skipping necessary later work."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+      "title": "A fixed point leaves a residual search problem",
+      "explanation": "The final domains are A={1,2}, B={2,3}, C={3,4}. Four legal increasing triples survive, but the reduced cartesian product has eight triples. Arbitrary independent selection is still unsafe."
+    },
+    {
+      "title": "Count the work unit explicitly",
+      "explanation": "For naive binary support scanning, a revision can cost quadratic time in domain size. Revisions and support comparisons are different counters. Queue order changes the trace, while fair repeated sound revision reaches the same nonfailure closure."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+    "Queue both directions of each binary constraint.",
+    "Remove an arc and revise its tail against its head domain.",
+    "Reject a domain wipeout; otherwise requeue affected neighboring arcs after a deletion and continue until the queue is empty."
   ],
   "formulas": [
     {
-      "label": "AC-3 rule",
-      "expression": "while queue: if REVISE(X,Y) then enqueue(Z,X)",
-      "meaning": "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search."
+      "label": "Definition and assumptions",
+      "expression": "REVISE(X,Y): remove x with no compatible y; if D(X) shrinks, enqueue Z→X for neighbors Z≠Y",
+      "meaning": "A<B<C, each initial domain {1,2,3,4}. FIFO starts [A→B,B→A,B→C,C→B]. Queue entries are deduplicated; after revising X→Y, requeue other neighbors into X. One slider step is one completed revision, regardless of the number of support comparisons inside it."
     }
   ],
   "example": {
-    "title": "AC-3 in a small case",
-    "setup": "Run AC-3 on a small map-coloring network after one region becomes red.",
+    "title": "Five FIFO revisions",
+    "setup": "Start all domains at {1,2,3,4}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
-      "Check the outcome against the goal and stated assumptions."
+      "A→B removes A=4; B→A removes B=1.",
+      "B→C removes B=4 and requeues A→B.",
+      "C→B removes C=1,2; the final A→B removes A=3."
     ],
-    "result": "Domain reductions travel through neighboring arcs until the queue is empty."
+    "result": "Five revisions produce domains {1,2}, {2,3}, {3,4} while preserving all four original solutions."
   },
   "pitfalls": [
-    "Queue membership and domain restoration must be efficient inside backtracking search.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Requeueing the wrong orientation can leave unsupported values behind.",
+    "Keeping a queue empty after a branch assignment without scheduling affected arcs does not maintain arc consistency."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use explicit directed arc records, a queue membership set and reversible domains during search.",
+    "For larger domains, cached supports or stronger algorithms can reduce repeated scans; preserve their invalidation rules."
+  ],
   "takeaways": [
-    "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
-    "Pop X->Y, remove unsupported X values, and if X changes requeue arcs Z->X from its other neighbors.",
-    "Its worst-case cost is polynomial in variables and domain size and it is effective as preprocessing or during search.",
-    "Domain reductions travel through neighboring arcs until the queue is empty."
+    "The queue tracks dependencies between domain reductions. Rechecking an affected arc is necessary to reach a fixed point, even if that arc passed earlier.",
+    "Distinguish its fixed point from a solved CSP."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["AC-3 enforces arc consistency by revising a queue of directed binary arcs.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This AC-3 illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["AC-3 enforces binary arc consistency with a work queue. A revision deletes tail values that lack head-domain support. When that domain shrinks, neighboring arcs that depended on its values are scheduled again. On finite domains, deletions eventually stop; failure is detected if a domain becomes empty.","Follow domain changes and requeued dependencies in AC-3.","Distinguish its fixed point from a solved CSP.","A check that passed yesterday can lose its witness today.","REVISE(X,Y): remove x with no compatible y; if D(X) shrinks, enqueue Z→X for neighbors Z≠Y","A<B<C, each initial domain {1,2,3,4}. FIFO starts [A→B,B→A,B→C,C→B]. Queue entries are deduplicated; after revising X→Y, requeue other neighbors into X. One slider step is one completed revision, regardless of the number of support comparisons inside it.","The queue tracks dependencies between domain reductions. Rechecking an affected arc is necessary to reach a fixed point, even if that arc passed earlier."]} />

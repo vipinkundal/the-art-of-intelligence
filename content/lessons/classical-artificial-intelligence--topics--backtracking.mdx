@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Backtracking builds a partial assignment and retreats when no legal extension remains.",
+  "hook": "A failed prefix poisons every completion below it.",
+  "overview": "Backtracking explores partial assignments depth first. It tries a value, checks constraints whose inputs are available, and either extends the prefix or undoes the choice. Finite domains and exhaustive alternatives make the basic procedure complete. Variable order, filtering and value order determine how much of the tree it visits.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Search nodes are prefixes",
+      "explanation": "The root is empty. A child adds one variable value. Fixing which variable comes next avoids exploring different assignment orders that produce the same mapping."
     },
     {
-      "title": "Core rule",
-      "explanation": "Choose an unassigned variable, try a value, recurse, and undo the choice after failure."
+      "title": "Undo is part of correctness",
+      "explanation": "Once a variable's alternatives are exhausted, return to its parent. Restore deeper assignments and any branch-local domain changes before trying the parent's next value."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial."
+      "title": "Finding one answer is different from exhausting the tree",
+      "explanation": "This lab finds its first answer after six attempts, then keeps going. The final 21-attempt trace certifies that there are no additional answers for this tiny finite model. A first-solution run would have stopped much earlier."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial."
+    "Choose an unassigned variable and try an available value.",
+    "Check all fully instantiated hard constraints involving that choice.",
+    "Recurse on a legal prefix; otherwise reject it. Restore state when returning and try the next alternative."
   ],
   "formulas": [
     {
-      "label": "Backtracking rule",
-      "expression": "Backtrack(A): if complete return A; else try v in D(X)",
-      "meaning": "It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial."
+      "label": "Definition and assumptions",
+      "expression": "if a partial assignment violates a hard constraint, prune all of its extensions",
+      "meaning": "Domains are {1,2,3}, constraints A<B and B<C, variable order A then B then C, and ascending values. Check the new adjacent inequality immediately. The run enumerates all solutions rather than stopping at the first. One attempt means trying a single variable value; it is not a complete-assignment test or a processor instruction."
     }
   ],
   "example": {
-    "title": "Backtracking in a small case",
-    "setup": "Solve a Sudoku by assigning one empty cell at a time.",
+    "title": "The first six attempts",
+    "setup": "Use ascending A,B,C values for the increasing-label CSP.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
-      "Check the outcome against the goal and stated assumptions."
+      "Keep A=1, then reject B=1 because 1<1 is false.",
+      "Keep B=2. Reject C=1 and C=2.",
+      "Try C=3: (1,2,3) is the first solution at attempt six."
     ],
-    "result": "When a row, column, or box becomes impossible, the solver reverses the most recent choice."
+    "result": "Full enumeration tries 21 individual values, rejecting 14 prefixes. It never fills C below an invalid A,B pair."
   },
   "pitfalls": [
-    "Mutable domains must be copied or trailed correctly to avoid leaking pruned values across branches.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A search cutoff reports incomplete exploration, not unsatisfiability.",
+    "Reusing mutated domains without a trail or copy can accidentally delete values from sibling branches."
   ],
-  "implementation": [],
+  "implementation": [
+    "Maintain a reversible assignment stack and, if filtering is added, a deletion trail.",
+    "State the stopping rule and count attempts consistently when comparing heuristics."
+  ],
   "takeaways": [
-    "Backtracking builds a partial assignment and retreats when no legal extension remains.",
-    "Choose an unassigned variable, try a value, recurse, and undo the choice after failure.",
-    "It is complete for finite CSPs but can be exponential; propagation and ordering heuristics are crucial.",
-    "When a row, column, or box becomes impossible, the solver reverses the most recent choice."
+    "Checking constraints early saves work, but undoing branch state is equally essential: a sibling must not inherit a failed branch's assignments or deletions.",
+    "Explain why a finite exhaustive backtracking run is complete."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Backtracking builds a partial assignment and retreats when no legal extension remains.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Backtracking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Backtracking explores partial assignments depth first. It tries a value, checks constraints whose inputs are available, and either extends the prefix or undoes the choice. Finite domains and exhaustive alternatives make the basic procedure complete. Variable order, filtering and value order determine how much of the tree it visits.","Trace extension, rejection and restoration of partial assignments.","Explain why a finite exhaustive backtracking run is complete.","A failed prefix poisons every completion below it.","if a partial assignment violates a hard constraint, prune all of its extensions","Domains are {1,2,3}, constraints A<B and B<C, variable order A then B then C, and ascending values. Check the new adjacent inequality immediately. The run enumerates all solutions rather than stopping at the first. One attempt means trying a single variable value; it is not a complete-assignment test or a processor instruction.","Checking constraints early saves work, but undoing branch state is equally essential: a sibling must not inherit a failed branch's assignments or deletions."]} />

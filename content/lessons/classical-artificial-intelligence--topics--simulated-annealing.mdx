@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
+  "hook": "A controlled willingness to go uphill can open a route downhill.",
+  "overview": "Simulated annealing proposes local moves and sometimes accepts a worse objective to escape a local trap. For minimization with the usual symmetric proposal rule, a cost increase ΔE is accepted with exp(−ΔE/T) at positive temperature. A cooling schedule changes these decisions over time. Convergence results require specific state-space, proposal and cooling assumptions; a finite practical run need not find a global optimum.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Proposal and acceptance are different probabilities",
+      "explanation": "The displayed acceptance applies after a particular neighbor is proposed. A neighbor that is rarely proposed remains rarely visited even if its conditional acceptance is high."
     },
     {
-      "title": "Core rule",
-      "explanation": "Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases."
+      "title": "Scale the temperature with the objective",
+      "explanation": "Multiplying all costs by ten while keeping T fixed makes uphill moves far less likely. To preserve these one-step probabilities, scale T by the same factor."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+      "title": "Cooling trades movement against concentration",
+      "explanation": "Large T softens penalties for worse moves. Small T suppresses them. Cooling too fast can leave a run trapped; asymptotic conditions about sufficiently slow schedules are not evidence of a fast finite-time solver."
+    },
+    {
+      "title": "Keep the best candidate",
+      "explanation": "The current state may become worse than an earlier state after an accepted uphill move. An optimization interface should preserve and return its best feasible candidate according to the declared policy."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+    "Propose a permitted neighbor and calculate the objective difference with its sign.",
+    "Accept improvements; for positive gaps, compare a uniform random draw with the stated acceptance probability.",
+    "Update temperature by the declared schedule and track both the current and best feasible states."
   ],
   "formulas": [
     {
-      "label": "Simulated annealing rule",
-      "expression": "P(accept worse) = exp(-Delta/T)",
-      "meaning": "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin."
+      "label": "Definition and assumptions",
+      "expression": "acceptance=min(1,exp(−ΔE/T)), ΔE=Eproposal−Ecurrent, T>0",
+      "meaning": "Minimize E, use symmetric proposals and compare strictly worsening gaps 1,3,5 cost units. T has the same units as E, making ΔE/T dimensionless. T=0 is displayed as the limiting zero acceptance for positive gaps. This is a one-step probability lab, not a stochastic trajectory or an implemented cooling schedule."
     }
   ],
   "example": {
-    "title": "Simulated annealing in a small case",
-    "setup": "Optimize a route by proposing random edge swaps and gradually lowering temperature.",
+    "title": "A three-unit barrier",
+    "setup": "Suppose a proposed move raises cost from zero to three.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
-      "Check the outcome against the goal and stated assumptions."
+      "At T=1, acceptance is e⁻³≈0.049787.",
+      "At T=3, acceptance is e⁻¹≈0.367879.",
+      "In the T→0 limit, this strictly worse proposal is rejected."
     ],
-    "result": "Early uphill moves cross barriers; later steps concentrate around a strong route."
+    "result": "These values quantify one conditional decision; they do not calculate the probability of eventually crossing a multi-step barrier."
   },
   "pitfalls": [
-    "Objective scale and cooling schedule must be matched; a temperature meaningful for one problem may be useless for another.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Using the wrong sign for a minimization objective rewards worse moves as if they were improvements.",
+    "For asymmetric proposals, a sampling interpretation needs the appropriate proposal correction; the simple expression assumes the stated symmetry."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use log acceptance comparisons for large ΔE/T and handle the greedy limit explicitly.",
+    "Record the temperature schedule, proposal rule, random seed and evaluation budget."
+  ],
   "takeaways": [
-    "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
-    "Always accept improvements and accept a worsening change Delta with probability exp(-Delta/T), while temperature T decreases.",
-    "Slow cooling explores more thoroughly; fast cooling behaves like greedy hill climbing and can freeze in a poor basin.",
-    "Early uphill moves cross barriers; later steps concentrate around a strong route."
+    "At T=1, a three-unit worsening proposal is accepted about 4.98% of the time. At T=3, it is accepted about 36.79%; proposal frequency and future cooling still matter.",
+    "Separate a one-step decision from cooling-dependent convergence."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Simulated annealing sometimes accepts worse moves so local search can escape early traps.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Simulated annealing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Simulated annealing proposes local moves and sometimes accepts a worse objective to escape a local trap. For minimization with the usual symmetric proposal rule, a cost increase ΔE is accepted with exp(−ΔE/T) at positive temperature. A cooling schedule changes these decisions over time. Convergence results require specific state-space, proposal and cooling assumptions; a finite practical run need not find a global optimum.","Compute acceptance from a cost difference and temperature.","Separate a one-step decision from cooling-dependent convergence.","A controlled willingness to go uphill can open a route downhill.","acceptance=min(1,exp(−ΔE/T)), ΔE=Eproposal−Ecurrent, T>0","Minimize E, use symmetric proposals and compare strictly worsening gaps 1,3,5 cost units. T has the same units as E, making ΔE/T dimensionless. T=0 is displayed as the limiting zero acceptance for positive gaps. This is a one-step probability lab, not a stochastic trajectory or an implemented cooling schedule.","At T=1, a three-unit worsening proposal is accepted about 4.98% of the time. At T=3, it is accepted about 36.79%; proposal frequency and future cooling still matter."]} />

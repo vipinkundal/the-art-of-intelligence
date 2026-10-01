@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
+  "hook": "Handle the slot closest to running out of options.",
+  "overview": "Minimum remaining values selects an unassigned variable with the fewest currently legal choices. The score must reflect the current branch and its filtering, rather than the original declared domain. Ties need a policy, such as alphabetical order or residual degree. This ordering guides search; it is not a proof that the selected branch succeeds.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Use live choices",
+      "explanation": "Declared domains may be identical even when preceding assignments leave one variable nearly forced. Cached sizes must be updated when filtering removes or restores values."
     },
     {
-      "title": "Core rule",
-      "explanation": "At each branch, compute legal domain sizes and select the most constrained variable."
+      "title": "Forced does not mean solved",
+      "explanation": "A singleton offers one immediate choice, but that choice can still conflict downstream. An empty domain is a failure signal, not an appealing zero-branch variable to assign."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+      "title": "The score does not predict total runtime",
+      "explanation": "Picking a narrow domain often exposes failure earlier. Computing and maintaining the score costs work; the lab makes no universal claim about speed or number of solutions."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: At each branch, compute legal domain sizes and select the most constrained variable.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+    "Apply the branch's current filtering and detect any empty domains.",
+    "Compare sizes only for unassigned variables.",
+    "Choose a minimum and apply a documented tie-break before ordering its values."
   ],
   "formulas": [
     {
-      "label": "Minimum remaining values rule",
-      "expression": "X = argmin_unassigned |D(X)|",
-      "meaning": "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost."
+      "label": "Definition and assumptions",
+      "expression": "choose X ∈ unassigned minimizing |Dcurrent(X)|; an empty domain signals failure",
+      "meaning": "Four unassigned variables have supplied current domains A={1,…,k}, B={1,2}, C={1,2,3}, D={1,2}. The slider varies k from one to three. Ties are alphabetical. This is an ordering snapshot: it does not assign a value, run filtering or measure full search work."
     }
   ],
   "example": {
-    "title": "Minimum remaining values in a small case",
-    "setup": "In Sudoku, choose a cell with two candidates before a cell with six.",
+    "title": "A moving minimum",
+    "setup": "Start sizes (A,B,C,D)=(3,2,3,2).",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: At each branch, compute legal domain sizes and select the most constrained variable.",
-      "Check the outcome against the goal and stated assumptions."
+      "B and D have the minimum size two; alphabetical order selects B.",
+      "Reduce A's size to two: A,B,D now tie, so select A.",
+      "Reduce A to one: A becomes the unique minimum."
     ],
-    "result": "A wrong branch fails quickly instead of after many irrelevant assignments."
+    "result": "The ranking changes because the current domains change, not because variable names changed."
   },
   "pitfalls": [
-    "Use current propagated domains, not original domain sizes.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Ranking original domain sizes after propagation ignores the information MRV is meant to use.",
+    "A value-ordering heuristic such as LCV chooses a value, not the next variable."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep domain-size updates and restoration synchronized with the search trail.",
+    "Use a deterministic tie-break when producing reproducible traces."
+  ],
   "takeaways": [
-    "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
-    "At each branch, compute legal domain sizes and select the most constrained variable.",
-    "The fail-first rule exposes contradictions early, though ties need another heuristic and domain computation has a cost.",
-    "A wrong branch fails quickly instead of after many irrelevant assignments."
+    "MRV ranks current legal domain sizes. When A grows from two choices to three, the selected variable changes from A to B under the explicit tie-break.",
+    "Distinguish variable selection from value selection."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Minimum remaining values chooses the unassigned variable with the smallest current domain.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Minimum remaining values illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Minimum remaining values selects an unassigned variable with the fewest currently legal choices. The score must reflect the current branch and its filtering, rather than the original declared domain. Ties need a policy, such as alphabetical order or residual degree. This ordering guides search; it is not a proof that the selected branch succeeds.","Compute MRV from a current domain snapshot.","Distinguish variable selection from value selection.","Handle the slot closest to running out of options.","choose X ∈ unassigned minimizing |Dcurrent(X)|; an empty domain signals failure","Four unassigned variables have supplied current domains A={1,…,k}, B={1,2}, C={1,2,3}, D={1,2}. The slider varies k from one to three. Ties are alphabetical. This is an ordering snapshot: it does not assign a value, run filtering or measure full search work.","MRV ranks current legal domain sizes. When A grows from two choices to three, the selected variable changes from A to B under the explicit tie-break."]} />

@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Local beam search evolves several candidate states together and keeps the strongest combined successors.",
+  "hook": "One member's useful neighbor can become everyone's next direction.",
+  "overview": "Local beam search maintains a bounded population of complete configurations. It generates neighbors of every current member, pools the candidates, and chooses the next population using an objective. Selection is shared across members, so it differs from independent local searches. Deduplication, ties and whether parents are retained affect both diversity and behavior.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Pooling makes the searches interact",
+      "explanation": "The next population is selected from the combined pool, not one successor reserved for each parent. A strong region can displace other members and reduce diversity."
     },
     {
-      "title": "Core rule",
-      "explanation": "Expand neighbors from all k current states, score the pool, and retain the best k for the next iteration."
+      "title": "Configurations are not a frontier of path prefixes",
+      "explanation": "The objects here are complete bit strings being modified. The beam-search lesson instead prunes partial search paths at a depth. Similar bounded selection does not make their state or stopping semantics identical."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Candidates share information through competition, but they can collapse into one region and lose diversity."
+      "title": "Parents and duplicates need a policy",
+      "explanation": "This demonstration omits automatic parent retention and deduplicates identical offspring. Its width-one trace can worsen utility between generations. An elitist policy would produce different results."
+    },
+    {
+      "title": "Width comparisons need controlled conditions",
+      "explanation": "Increasing width here also adds specified starting states. The result therefore illustrates pooling but cannot isolate the causal effect of width or promise improvement as width grows."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Expand neighbors from all k current states, score the pool, and retain the best k for the next iteration.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Candidates share information through competition, but they can collapse into one region and lose diversity."
+    "Initialize a population of complete configurations.",
+    "Generate and deduplicate all permitted successors across the population.",
+    "Rank the pooled candidates, retain the declared width, and apply the stopping rule."
   ],
   "formulas": [
     {
-      "label": "Local beam search rule",
-      "expression": "beam_(t+1) = top_k(union_(x in beam_t) N(x))",
-      "meaning": "Candidates share information through competition, but they can collapse into one region and lose diversity."
+      "label": "Definition and assumptions",
+      "expression": "Bnext = top-k unique configurations in ⋃x∈B N(x), ranked by utility",
+      "meaning": "Three-bit configurations 000,…,111 have utilities [0,5,4,1,3,2,9,6] by numeric ID. A move flips one bit. Width k initializes with the first k members of [000,111,010]. Pool and deduplicate successors, then rank by decreasing utility and increasing ID. Parents are not automatically retained. Run at most three generations, stopping if known target 110 appears."
     }
   ],
   "example": {
-    "title": "Local beam search in a small case",
-    "setup": "Search for a good circuit layout with ten concurrent candidate layouts.",
+    "title": "A shared first generation",
+    "setup": "Width two starts at 000 and 111.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Expand neighbors from all k current states, score the pool, and retain the best k for the next iteration.",
-      "Check the outcome against the goal and stated assumptions."
+      "000 contributes 001,010,100; 111 contributes 110,101,011.",
+      "Utilities rank 110 first at nine and 001 second at five.",
+      "The selected population contains known target 110, so this toy run stops."
     ],
-    "result": "Promising mutations from any candidate can enter the next beam."
+    "result": "Width one starts only at 000 and follows 000→001→101→111, reaching utility six after three generations."
   },
   "pitfalls": [
-    "Add stochastic selection or diversity pressure when all beam states become near-duplicates.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A wide population can collapse into one region or repeatedly regenerate the same states.",
+    "Keeping only k successors permanently discards alternatives and does not make the procedure complete."
   ],
-  "implementation": [],
+  "implementation": [
+    "Specify duplicate handling, parent retention and selection tie-breaks.",
+    "Track population diversity and objective evaluations alongside width and generation count."
+  ],
   "takeaways": [
-    "Local beam search evolves several candidate states together and keeps the strongest combined successors.",
-    "Expand neighbors from all k current states, score the pool, and retain the best k for the next iteration.",
-    "Candidates share information through competition, but they can collapse into one region and lose diversity.",
-    "Promising mutations from any candidate can enter the next beam."
+    "Width two pools the neighbors of 000 and 111 and discovers 110 immediately. Width one follows a different supplied initialization and misses it within three generations; this is a worked trace, not a monotonic width guarantee.",
+    "Distinguish local populations, independent restarts and path-frontier beams."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Local beam search evolves several candidate states together and keeps the strongest combined successors.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Local beam search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Local beam search maintains a bounded population of complete configurations. It generates neighbors of every current member, pools the candidates, and chooses the next population using an objective. Selection is shared across members, so it differs from independent local searches. Deduplication, ties and whether parents are retained affect both diversity and behavior.","Construct a next population from a shared successor pool.","Distinguish local populations, independent restarts and path-frontier beams.","One member's useful neighbor can become everyone's next direction.","Bnext = top-k unique configurations in ⋃x∈B N(x), ranked by utility","Three-bit configurations 000,…,111 have utilities [0,5,4,1,3,2,9,6] by numeric ID. A move flips one bit. Width k initializes with the first k members of [000,111,010]. Pool and deduplicate successors, then rank by decreasing utility and increasing ID. Parents are not automatically retained. Run at most three generations, stopping if known target 110 appears.","Width two pools the neighbors of 000 and 111 and discovers 110 immediately. Width one follows a different supplied initialization and misses it within three generations; this is a worked trace, not a monotonic width guarantee."]} />

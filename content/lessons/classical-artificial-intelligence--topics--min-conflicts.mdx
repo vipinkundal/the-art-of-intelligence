@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.",
+  "hook": "Keep every slot filled, then repair the clashes.",
+  "overview": "Min-conflicts searches over complete assignments that may violate constraints. It selects a conflicted variable and replaces its value with one minimizing the conflicts involving that variable, holding all other values fixed. Repeated repair can quickly find feasible assignments on suitable problems, but local traps, cycles and budgets prevent a general completeness guarantee.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "The search space includes illegal complete candidates",
+      "explanation": "Unlike a legal-prefix backtracking search, min-conflicts starts with every variable assigned and permits violations during the repair process. That lets the objective count how many modeled relations still fail."
     },
     {
-      "title": "Core rule",
-      "explanation": "Start with values for every variable, repeatedly select a violated variable, and choose the value minimizing current conflicts."
+      "title": "Only incident constraints change",
+      "explanation": "When A changes, the B≠C edge stays fixed. Minimizing A's incident count therefore gives the same ranking as minimizing the total count while all other values are held constant."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is extremely effective on many large loosely constrained CSPs but can plateau or cycle without randomness and restarts."
+      "title": "Ties can determine whether a run moves",
+      "explanation": "A minimum score may include the current value. Deterministic ties can repeatedly select it or revisit an earlier assignment. Random variable choices, tie choices or restarts are additional policies, not guarantees implied by the basic rule."
+    },
+    {
+      "title": "An exhausted budget is not an infeasibility proof",
+      "explanation": "Failure to reach zero conflicts does not establish that a CSP has no solution. An exact proof procedure or exhaustive finite search must support that conclusion."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Start with values for every variable, repeatedly select a violated variable, and choose the value minimizing current conflicts.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is extremely effective on many large loosely constrained CSPs but can plateau or cycle without randomness and restarts."
+    "Initialize a complete assignment and count violated modeled constraints.",
+    "Choose a variable participating in a violation and score its replacement values.",
+    "Apply a minimum-conflict value using the stated tie-break; repeat to success or a declared budget."
   ],
   "formulas": [
     {
-      "label": "Min-conflicts rule",
-      "expression": "v = argmin_(v in D(X)) conflicts(X=v)",
-      "meaning": "It is extremely effective on many large loosely constrained CSPs but can plateau or cycle without randomness and restarts."
+      "label": "Definition and assumptions",
+      "expression": "choose conflicted X; xnext = argminv∈D(X) number of violated constraints involving X",
+      "meaning": "Triangle A,B,C uses colors {1,2,3} with pairwise inequality edges. Start (1,1,1). Select the alphabetically first conflicted variable and the smallest color among equal minima, including its current value as a candidate. The deterministic trace performs up to two repairs and stops at zero conflicts. It is one explicit policy, rather than a random performance experiment."
     }
   ],
   "example": {
-    "title": "Min-conflicts in a small case",
-    "setup": "Place all N queens, then repeatedly move a queen from a conflicted column.",
+    "title": "Repairing the triangle",
+    "setup": "Begin with all three colors set to one.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Start with values for every variable, repeatedly select a violated variable, and choose the value minimizing current conflicts.",
-      "Check the outcome against the goal and stated assumptions."
+      "All three inequality edges fail.",
+      "Set A=2: only B≠C remains violated.",
+      "Set B=3: (2,3,1) satisfies all three edges."
     ],
-    "result": "The search often reaches a zero-conflict board without constructing partial assignments."
+    "result": "The deterministic run reaches a feasible coloring in two repairs; its success does not establish performance on larger graphs."
   },
   "pitfalls": [
-    "Random tie-breaking and restarts help escape plateaus.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A count of modeled violations cannot reveal an omitted real-world constraint.",
+    "Zero conflicts proves feasibility for this model, while nonzero conflicts at a cutoff do not prove infeasibility."
   ],
-  "implementation": [],
+  "implementation": [
+    "Maintain incident conflict counts incrementally and validate the final assignment against every original relation.",
+    "Record initialization, conflict-variable selection, tie policy, random seed and repair budget."
+  ],
   "takeaways": [
-    "Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.",
-    "Start with values for every variable, repeatedly select a violated variable, and choose the value minimizing current conflicts.",
-    "It is extremely effective on many large loosely constrained CSPs but can plateau or cycle without randomness and restarts.",
-    "The search often reaches a zero-conflict board without constructing partial assignments."
+    "Repair A to 2, then B to 3, reducing edge conflicts 3→1→0. Zero means every modeled hard inequality is satisfied, not that an unrelated quality objective is optimized.",
+    "Separate feasibility discovery from infeasibility or optimality certification."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Min-conflicts illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Min-conflicts searches over complete assignments that may violate constraints. It selects a conflicted variable and replaces its value with one minimizing the conflicts involving that variable, holding all other values fixed. Repeated repair can quickly find feasible assignments on suitable problems, but local traps, cycles and budgets prevent a general completeness guarantee.","Trace repair of a complete but inconsistent assignment.","Separate feasibility discovery from infeasibility or optimality certification.","Keep every slot filled, then repair the clashes.","choose conflicted X; xnext = argminv∈D(X) number of violated constraints involving X","Triangle A,B,C uses colors {1,2,3} with pairwise inequality edges. Start (1,1,1). Select the alphabetically first conflicted variable and the smallest color among equal minima, including its current value as a candidate. The deterministic trace performs up to two repairs and stops at zero conflicts. It is one explicit policy, rather than a random performance experiment.","Repair A to 2, then B to 3, reducing edge conflicts 3→1→0. Zero means every modeled hard inequality is satisfied, not that an unrelated quality objective is optimized."]} />

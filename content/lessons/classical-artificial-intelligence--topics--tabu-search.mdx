@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
+  "hook": "A cheap return can be exactly the move that keeps you trapped.",
+  "overview": "Tabu search guides local moves with short-term memory that temporarily forbids specified moves, attributes or revisits. It can accept a worsening move when that move is the best admissible option. Aspiration criteria can override a restriction, often for an improvement over the best result seen. Memory definitions and tenure are part of the algorithm, and ordinary short-term tabu rules do not provide a universal optimality or no-cycle certificate.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Memory changes admissibility",
+      "explanation": "This lab forbids recently departed states. Other implementations can forbid reversing a variable change or reintroducing a recent edge. State and attribute restrictions are related strategies, not interchangeable data structures."
     },
     {
-      "title": "Core rule",
-      "explanation": "Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule."
+      "title": "Current cost need not improve",
+      "explanation": "A best-admissible move can worsen the objective. The trace reaches cost four before finding minus two, so tracking only the current state would lose the earlier best during exploration."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration."
+      "title": "Tenure has a tradeoff",
+      "explanation": "Short tenure can allow recurring cycles after memory expires. Long tenure can remove useful alternatives or leave no admissible move. A solver needs an explicit policy for that situation."
+    },
+    {
+      "title": "Aspiration is a separate rule",
+      "explanation": "A tabu move that strictly beats the best objective can be allowed under this policy. The displayed chain does not exercise that override, and its successful escape cannot certify all policies on all graphs."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration."
+    "Evaluate candidate moves and their tabu status under the chosen memory rule.",
+    "Apply the aspiration criterion and choose the best remaining admissible move.",
+    "Update the current state, best result and memory expiry; stop or diversify according to explicit conditions."
   ],
   "formulas": [
     {
-      "label": "Tabu search rule",
-      "expression": "choose argmax value(x') subject to move(x,x') not in tabu, unless aspiration",
-      "meaning": "Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration."
+      "label": "Definition and assumptions",
+      "expression": "choose the minimum-cost admissible neighbor; tabu override if E(new)<E(best seen)",
+      "meaning": "Four states P,Q,R,G form an undirected chain with objective costs [0,1,4,−2]. Start P; choose the lowest-cost admissible neighbor. Memory stores the last t departed states and forbids reentry unless it beats the best cost seen. Stop at known target G or twelve moves. This state-memory variant differs from a move-attribute implementation. Aspiration is present but not triggered in this example."
     }
   ],
   "example": {
-    "title": "Tabu search in a small case",
-    "setup": "Schedule jobs by swapping positions while forbidding recently reversed swaps.",
+    "title": "P→Q→R→G",
+    "setup": "Start at P with cost zero; set tenure one.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
-      "Check the outcome against the goal and stated assumptions."
+      "Move to Q at cost one and mark departed P tabu.",
+      "Q cannot return to P, so take R at cost four.",
+      "From R, G at cost minus two is admissible and improves the best result."
     ],
-    "result": "The search is forced into new regions while still recording the best schedule seen."
+    "result": "Without memory, best-neighbor selection repeatedly returns from Q to P and cycles within the twelve-move budget."
   },
   "pitfalls": [
-    "An overly long tabu tenure blocks useful moves; an overly short one fails to prevent cycling.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A global visited set permanently excluding all earlier states describes a different policy from finite tabu tenure.",
+    "Short memory may prevent an immediate reversal while still allowing longer cycles."
   ],
-  "implementation": [],
+  "implementation": [
+    "Represent expiry precisely, including whether the current or departed state starts the tenure clock.",
+    "Keep aspiration, feasibility, best-so-far retention and the all-moves-tabu fallback observable."
+  ],
   "takeaways": [
-    "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
-    "Choose the best allowed neighbor, mark attributes tabu for a tenure, and optionally override tabu status with an aspiration rule.",
-    "Memory helps escape cycles and local optima, but tenure and neighborhood design strongly influence exploration.",
-    "The search is forced into new regions while still recording the best schedule seen."
+    "At Q, excluding the immediate return P forces a visit to R at cost four, opening G at minus two. The best-so-far value must survive the temporary worsening.",
+    "Explain aspiration and the limits of finite tabu tenure."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Tabu search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Tabu search guides local moves with short-term memory that temporarily forbids specified moves, attributes or revisits. It can accept a worsening move when that move is the best admissible option. Aspiration criteria can override a restriction, often for an improvement over the best result seen. Memory definitions and tenure are part of the algorithm, and ordinary short-term tabu rules do not provide a universal optimality or no-cycle certificate.","Trace state memory and temporary objective worsening.","Explain aspiration and the limits of finite tabu tenure.","A cheap return can be exactly the move that keeps you trapped.","choose the minimum-cost admissible neighbor; tabu override if E(new)<E(best seen)","Four states P,Q,R,G form an undirected chain with objective costs [0,1,4,−2]. Start P; choose the lowest-cost admissible neighbor. Memory stores the last t departed states and forbids reentry unless it beats the best cost seen. Stop at known target G or twelve moves. This state-memory variant differs from a move-attribute implementation. Aspiration is present but not triggered in this example.","At Q, excluding the immediate return P forces a visit to R at cost four, opening G at minus two. The best-so-far value must survive the temporary worsening."]} />

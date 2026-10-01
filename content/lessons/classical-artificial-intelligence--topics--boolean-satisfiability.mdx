@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
+  "hook": "OR gives a clause alternatives; AND makes every clause compulsory.",
+  "overview": "Boolean satisfiability asks whether at least one complete truth assignment makes a formula true. In conjunctive normal form, every clause must hold, while each clause needs only one true literal. A SAT witness can be checked by evaluating the original formula. A failed trial proves only that trial invalid; UNSAT requires excluding all assignments through a complete procedure or a checkable refutation.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Separate the decision from the witness",
+      "explanation": "The yes/no question is whether any assignment exists. Here the table additionally exposes both witnesses, 010 and 101. SAT does not choose which is preferable unless a separate optimization problem or objective is supplied."
     },
     {
-      "title": "Core rule",
-      "explanation": "Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously."
+      "title": "Evaluate literals before aggregating clauses",
+      "explanation": "For 101, X makes C1 true, Z makes C2 true, and ¬Y makes C3 true. A clause with some false literals can still hold. Counting true variables or true literals is not the formula's semantics."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence."
+      "title": "The encoding is the contract",
+      "explanation": "The chosen requirements happen to force X and Y to differ and Z to equal X. That conclusion belongs to this exact conjunction. Omitting the third clause admits unsafe cache combinations; a solver cannot repair a missing requirement."
+    },
+    {
+      "title": "Small exhaustive examples are not a scaling argument",
+      "explanation": "Three variables yield eight assignments. Naive enumeration over n variables has 2ⁿ rows. General SAT admits efficiently checkable witnesses, but these two-literal clauses form a tractable special case; this toy is not a demonstration of general NP-hardness."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence."
+    "Name variables and encode each requirement as a formula or CNF clauses.",
+    "Search for a complete assignment making every original clause true.",
+    "Validate a SAT witness; distinguish a complete UNSAT conclusion from a resource-limited unknown."
   ],
   "formulas": [
     {
-      "label": "Boolean satisfiability rule",
-      "expression": "find x in {0,1}^n such that F(x)=true",
-      "meaning": "SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence."
+      "label": "Definition and assumptions",
+      "expression": "F=(X∨Y)∧(¬X∨Z)∧(¬Y∨¬Z); SAT(F) iff ∃assignment a: F(a)=true",
+      "meaning": "X enables a fast mode, Y enables a safe mode and Z enables a cache. Require at least one mode, fast implies cache, and safe excludes cache. The eight assignments are exhaustive for exactly these three Boolean variables; no optimization score or omitted operational requirement is part of this model."
     }
   ],
   "example": {
-    "title": "Boolean satisfiability in a small case",
-    "setup": "Solve (A or B) and (not A or C).",
+    "title": "Selecting a deployment configuration",
+    "setup": "Try (X,Y,Z)=(1,1,1).",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
-      "Check the outcome against the goal and stated assumptions."
+      "X∨Y is true, and ¬X∨Z is true.",
+      "¬Y∨¬Z is false because Y and Z are both true.",
+      "Change Y to zero: 101 satisfies every requirement; 010 is the other witness."
     ],
-    "result": "A=true and C=true satisfies both clauses regardless of B."
+    "result": "The original trial fails, while the formula remains satisfiable."
   },
   "pitfalls": [
-    "Equisatisfiable CNF conversion preserves existence of a solution, not necessarily identical models.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A timeout or an unsuccessful local-search run is not an UNSAT certificate.",
+    "A witness for an auxiliary-variable encoding should be mapped back and checked against the original requirements."
   ],
-  "implementation": [],
+  "implementation": [
+    "Preserve clause-to-requirement labels for useful failure diagnostics.",
+    "Report SAT, UNSAT and UNKNOWN distinctly; keep solver budgets and witness validation separate."
+  ],
   "takeaways": [
-    "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
-    "Convert the formula to clauses, assign variables, and determine whether all clauses can be satisfied simultaneously.",
-    "SAT is NP-complete yet modern solvers handle many huge structured instances and can produce models or unsatisfiability evidence.",
-    "A=true and C=true satisfies both clauses regardless of B."
+    "010 and 101 satisfy all clauses. Selecting 111 violates the safe/cache exclusion even though the other two clauses hold. A failed selection does not negate the existing witnesses.",
+    "Explain why an invalid candidate is not an infeasibility proof."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Boolean satisfiability asks whether some truth assignment makes a propositional formula true.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Boolean satisfiability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Boolean satisfiability asks whether at least one complete truth assignment makes a formula true. In conjunctive normal form, every clause must hold, while each clause needs only one true literal. A SAT witness can be checked by evaluating the original formula. A failed trial proves only that trial invalid; UNSAT requires excluding all assignments through a complete procedure or a checkable refutation.","Check every clause of a Boolean witness.","Explain why an invalid candidate is not an infeasibility proof.","OR gives a clause alternatives; AND makes every clause compulsory.","F=(X∨Y)∧(¬X∨Z)∧(¬Y∨¬Z); SAT(F) iff ∃assignment a: F(a)=true","X enables a fast mode, Y enables a safe mode and Z enables a cache. Require at least one mode, fast implies cache, and safe excludes cache. The eight assignments are exhaustive for exactly these three Boolean variables; no optimization score or omitted operational requirement is part of this model.","010 and 101 satisfy all clauses. Selecting 111 violates the safe/cache exclusion even though the other two clauses hold. A failed selection does not negate the existing witnesses."]} />

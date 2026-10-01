@@ -17,6 +17,11 @@ for (const name of files) {
     const pathname = href.split(/[?#]/)[0];
     const target = path.join(root, pathname.endsWith("/") ? `${pathname}index.html` : pathname);
     if (!fs.existsSync(target)) errors.push(`Unresolved local link in ${name}: ${href}`);
+    else if (href.includes("#") && target.endsWith(".html")) {
+      const fragment = decodeURIComponent(href.slice(href.indexOf("#") + 1));
+      const targetIds = new Set([...fs.readFileSync(target, "utf8").matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+      if (fragment && !targetIds.has(fragment)) errors.push(`Unresolved destination anchor in ${name}: ${href}`);
+    }
   }
 }
 for (const route of routes) if (!fs.existsSync(path.join(root, route))) errors.push(`Legacy output missing: ${route}`);

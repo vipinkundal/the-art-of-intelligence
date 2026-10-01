@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Resolution derives a new clause by eliminating complementary literals from two clauses.",
+  "hook": "Make the denied conclusion impossible.",
+  "overview": "Propositional resolution combines two clauses containing complementary literals on one pivot and keeps their other literals. The resulting clause follows from its parents. To prove that a knowledge base entails a query, add the negated query and seek the empty clause. A completed refutation establishes contradiction; an unfinished or arbitrarily truncated derivation cannot establish that no proof exists.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "A resolvent retains what remains",
+      "explanation": "Resolve C2=¬A∨C with C4=¬C on C to get C5=¬A. The pivot is canceled once; no other literal is discarded. The same step on C3 gives C6=¬B."
     },
     {
-      "title": "Core rule",
-      "explanation": "Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause."
+      "title": "The empty clause is false, not an empty requirement set",
+      "explanation": "C8=□ contains no literals, so none can make it true. By contrast, an empty conjunction of clauses is true. Confusing these two empty structures reverses the result of a SAT check."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode."
+      "title": "The contradiction includes the denied query",
+      "explanation": "The original KB permits 011,101,111 in ABC order and entails C. Adding ¬C removes every model. The refutation does not mean that the original three requirements are themselves inconsistent."
+    },
+    {
+      "title": "Search completeness needs a procedure",
+      "explanation": "Resolution is refutation-complete for propositional CNF under a complete search. A selected four-step walkthrough succeeds here, but a cutoff without □ is inconclusive. Keep both parent IDs and the pivot so each local derivation can be checked."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode."
+    "Convert the premises plus the negated query to clauses while preserving the intended satisfiability relationship.",
+    "Select a complementary pivot pair and form the union of the other literals.",
+    "Continue a declared proof search; report entailment when a valid empty-clause derivation is obtained."
   ],
   "formulas": [
     {
-      "label": "Resolution rule",
-      "expression": "(A or C), (not A or D) => (C or D)",
-      "meaning": "Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode."
+      "label": "Definition and assumptions",
+      "expression": "(A∨L),(B∨¬L) ⊢ A∨B; KB⊨q iff KB∧¬q is unsatisfiable",
+      "meaning": "Use propositional clauses C1=A∨B, C2=¬A∨C, C3=¬B∨C. To prove C, add C4=¬C. The slider applies the four specified valid resolvents in order. Each step cancels exactly one complementary pair. A separate eight-assignment enumeration is labeled as an oracle, not counted as part of the resolution trace."
     }
   ],
   "example": {
-    "title": "Resolution in a small case",
-    "setup": "Prove Q from P and P=>Q by adding not Q.",
+    "title": "Refuting the denial of C",
+    "setup": "Begin with C1 through C4 as defined in the lab.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
-      "Check the outcome against the goal and stated assumptions."
+      "Resolve C2,C4 on C to derive C5=¬A; resolve C3,C4 to derive C6=¬B.",
+      "Resolve C1,C5 on A to derive C7=B.",
+      "Resolve C7,C6 on B to derive C8=□."
     ],
-    "result": "Resolution derives a contradiction, so Q follows from the original facts."
+    "result": "Every step is sound, so KB∧¬C is inconsistent and KB entails C."
   },
   "pitfalls": [
-    "Clause conversion must preserve satisfiability and variable standardization.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Canceling two complementary pairs in one step is unsound; each resolvent uses one pivot.",
+    "Failure to find a refutation within a chosen step budget is not evidence of non-entailment."
   ],
-  "implementation": [],
+  "implementation": [
+    "Represent clauses as normalized literal sets, retain provenance and explicitly distinguish □ from an empty clause collection.",
+    "Check any generated proof independently at the interface boundary when proof assurance becomes a project priority."
+  ],
   "takeaways": [
-    "Resolution derives a new clause by eliminating complementary literals from two clauses.",
-    "Convert knowledge and the negated query to clause form, resolve complementary pairs, and seek the empty clause.",
-    "Resolution is refutation-complete for propositional logic and forms a basis for theorem proving, but search can explode.",
-    "Resolution derives a contradiction, so Q follows from the original facts."
+    "Negating C forces ¬A and ¬B, contradicting A∨B. The empty clause follows after four resolutions; KB alone remains consistent with three models.",
+    "Interpret an empty-clause refutation with the negated query included."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Resolution derives a new clause by eliminating complementary literals from two clauses.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Resolution illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Propositional resolution combines two clauses containing complementary literals on one pivot and keeps their other literals. The resulting clause follows from its parents. To prove that a knowledge base entails a query, add the negated query and seek the empty clause. A completed refutation establishes contradiction; an unfinished or arbitrarily truncated derivation cannot establish that no proof exists.","Construct a resolvent from one complementary pivot pair.","Interpret an empty-clause refutation with the negated query included.","Make the denied conclusion impossible.","(A∨L),(B∨¬L) ⊢ A∨B; KB⊨q iff KB∧¬q is unsatisfiable","Use propositional clauses C1=A∨B, C2=¬A∨C, C3=¬B∨C. To prove C, add C4=¬C. The slider applies the four specified valid resolvents in order. Each step cancels exactly one complementary pair. A separate eight-assignment enumeration is labeled as an oracle, not counted as part of the resolution trace.","Negating C forces ¬A and ¬B, contradicting A∨B. The empty clause follows after four resolutions; KB alone remains consistent with three models."]} />

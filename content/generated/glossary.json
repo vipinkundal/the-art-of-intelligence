@@ -17,10 +17,12 @@
   },
   {
     "term": "AC-3",
-    "definition": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
+    "definition": "AC-3 enforces binary arc consistency with a work queue. A revision deletes tail values that lack head-domain support. When that domain shrinks, neighboring arcs that depended on its values are scheduled again. On finite domains, deletions eventually stop; failure is detected if a domain becomes empty.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/ac-3/",
-    "tags": []
+    "tags": [
+      "Arc consistency"
+    ]
   },
   {
     "term": "Activation functions",
@@ -126,10 +128,13 @@
   },
   {
     "term": "Arc consistency",
-    "definition": "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
+    "definition": "A directed binary arc X→Y is consistent when every value in the current domain of X has at least one compatible value in the current domain of Y. A network is arc consistent when every such arc passes. Supports can differ from edge to edge; they need not assemble into a complete solution.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/arc-consistency/",
-    "tags": []
+    "tags": [
+      "Constraint-satisfaction problems",
+      "Forward checking"
+    ]
   },
   {
     "term": "Autoencoders",
@@ -187,10 +192,13 @@
   },
   {
     "term": "Backtracking",
-    "definition": "Backtracking builds a partial assignment and retreats when no legal extension remains.",
+    "definition": "Backtracking explores partial assignments depth first. It tries a value, checks constraints whose inputs are available, and either extends the prefix or undoes the choice. Finite domains and exhaustive alternatives make the basic procedure complete. Variable order, filtering and value order determine how much of the tree it visits.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/backtracking/",
-    "tags": []
+    "tags": [
+      "Constraint-satisfaction problems",
+      "Depth-first search"
+    ]
   },
   {
     "term": "Backward chaining",
@@ -318,10 +326,13 @@
   },
   {
     "term": "Boolean satisfiability",
-    "definition": "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
+    "definition": "Boolean satisfiability asks whether at least one complete truth assignment makes a formula true. In conjunctive normal form, every clause must hold, while each clause needs only one true literal. A SAT witness can be checked by evaluating the original formula. A failed trial proves only that trial invalid; UNSAT requires excluding all assignments through a complete procedure or a checkable refutation.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/boolean-satisfiability/",
-    "tags": []
+    "tags": [
+      "Propositional logic",
+      "Constraint-satisfaction problems"
+    ]
   },
   {
     "term": "Bootstrap",
@@ -623,17 +634,23 @@
   },
   {
     "term": "Constraint propagation",
-    "definition": "Constraint propagation repeatedly narrows domains using implications of the constraints.",
+    "definition": "Constraint propagation repeatedly narrows domains using deductions justified by relations and current domains. A sound propagator preserves every solution compatible with the current branch. Different representations of the same complete solution set can support different amounts of pruning, particularly when a global constraint is decomposed into binary relations.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/constraint-propagation/",
-    "tags": []
+    "tags": [
+      "Arc consistency",
+      "AC-3"
+    ]
   },
   {
     "term": "Constraint-satisfaction problems",
-    "definition": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
+    "definition": "A constraint-satisfaction problem specifies variables, a domain for each variable, and relations that permitted assignments must satisfy. A solution assigns every variable a domain value and satisfies all hard constraints. The basic feasibility question has no objective function; choosing the cheapest legal solution adds an optimization problem.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/constraint-satisfaction-problems/",
-    "tags": []
+    "tags": [
+      "Sets, relations, and functions",
+      "State-space representation"
+    ]
   },
   {
     "term": "Contingent planning",
@@ -775,10 +792,13 @@
   },
   {
     "term": "Degree heuristic",
-    "definition": "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
+    "definition": "For binary CSP variable ordering, the degree heuristic prefers an unassigned variable involved in the most constraints with other unassigned variables. It often breaks an MRV tie: selecting a variable that touches many undecided neighbors may constrain more of the remaining problem. Residual degree can differ substantially from the original graph degree.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/degree-heuristic/",
-    "tags": []
+    "tags": [
+      "Minimum remaining values",
+      "Graph theory"
+    ]
   },
   {
     "term": "Denoising autoencoders",
@@ -963,10 +983,13 @@
   },
   {
     "term": "DPLL",
-    "definition": "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
+    "definition": "DPLL is a complete backtracking procedure for finite propositional CNF. It simplifies clauses under a partial assignment, propagates forced unit literals, and branches on an unassigned variable when needed. A false clause closes that branch; all satisfied clauses permit a witness completion. Chronological backtracking restores the previous decision context before trying the opposite value. Completeness does not imply a practical worst-case time bound.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/dpll/",
-    "tags": []
+    "tags": [
+      "Boolean satisfiability",
+      "Backtracking"
+    ]
   },
   {
     "term": "Dropout",
@@ -1150,10 +1173,12 @@
   },
   {
     "term": "First-order predicate logic",
-    "definition": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
+    "definition": "First-order predicate logic describes objects, their properties and relations, and quantified statements about a domain. Constants name objects, variables range over them, predicates evaluate tuples, and function symbols denote domain-valued functions. Truth requires an interpretation; open formulas also require values for their free variables. Evaluating a sentence in one specified interpretation is different from showing it follows in every model of a knowledge base.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/first-order-predicate-logic/",
-    "tags": []
+    "tags": [
+      "Propositional logic"
+    ]
   },
   {
     "term": "Forward and backward planning",
@@ -1171,10 +1196,12 @@
   },
   {
     "term": "Forward checking",
-    "definition": "Forward checking removes neighbor values made impossible by a new assignment.",
+    "definition": "After assigning a variable, forward checking removes incompatible values from the domains of its unassigned neighbors. An empty neighbor domain rejects the branch immediately. The basic binary procedure does not recursively propagate those deletions through constraints between unassigned variables, so it can miss a contradiction one edge farther away.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/forward-checking/",
-    "tags": []
+    "tags": [
+      "Backtracking"
+    ]
   },
   {
     "term": "Forward-backward algorithm",
@@ -1386,10 +1413,12 @@
   },
   {
     "term": "Hill climbing",
-    "definition": "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
+    "definition": "Hill climbing improves a complete configuration by moving to a better neighbor according to an objective. Strict steepest ascent selects the highest-valued neighbor and stops if none improves the current value. Its stopping condition establishes a local maximum under the chosen neighborhood, rather than a global optimum over the full configuration space.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/hill-climbing/",
-    "tags": []
+    "tags": [
+      "State-space representation"
+    ]
   },
   {
     "term": "Horn clauses",
@@ -1676,10 +1705,13 @@
   },
   {
     "term": "Least-constraining value",
-    "definition": "The least-constraining value orders choices by how many options they leave for neighboring variables.",
+    "definition": "Least-constraining value orders candidate values for a selected variable by their effect on the remaining variables. A common local score counts neighbor-domain values deleted by a trial assignment and filtering. Lower scores preserve more immediate alternatives. The score is a heuristic proxy, with ties and filtering strength defined by the implementation.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/least-constraining-value/",
-    "tags": []
+    "tags": [
+      "Forward checking",
+      "Minimum remaining values"
+    ]
   },
   {
     "term": "LeNet",
@@ -1727,10 +1759,13 @@
   },
   {
     "term": "Local beam search",
-    "definition": "Local beam search evolves several candidate states together and keeps the strongest combined successors.",
+    "definition": "Local beam search maintains a bounded population of complete configurations. It generates neighbors of every current member, pools the candidates, and chooses the next population using an objective. Selection is shared across members, so it differs from independent local searches. Deduplication, ties and whether parents are retained affect both diversity and behavior.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/local-beam-search/",
-    "tags": []
+    "tags": [
+      "Hill climbing",
+      "Beam search"
+    ]
   },
   {
     "term": "Local minima, global minima, and saddle points",
@@ -1894,10 +1929,13 @@
   },
   {
     "term": "Min-conflicts",
-    "definition": "Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.",
+    "definition": "Min-conflicts searches over complete assignments that may violate constraints. It selects a conflicted variable and replaces its value with one minimizing the conflicts involving that variable, holding all other values fixed. Repeated repair can quickly find feasible assignments on suitable problems, but local traps, cycles and budgets prevent a general completeness guarantee.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/min-conflicts/",
-    "tags": []
+    "tags": [
+      "Constraint-satisfaction problems",
+      "Hill climbing"
+    ]
   },
   {
     "term": "Mini-batch optimization",
@@ -1928,10 +1966,13 @@
   },
   {
     "term": "Minimum remaining values",
-    "definition": "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
+    "definition": "Minimum remaining values selects an unassigned variable with the fewest currently legal choices. The score must reflect the current branch and its filtering, rather than the original declared domain. Ties need a policy, such as alphabetical order or residual degree. This ordering guides search; it is not a proof that the selected branch succeeds.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/minimum-remaining-values/",
-    "tags": []
+    "tags": [
+      "Backtracking",
+      "Forward checking"
+    ]
   },
   {
     "term": "Missing-data mechanisms",
@@ -2472,17 +2513,19 @@
   },
   {
     "term": "Propositional logic",
-    "definition": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+    "definition": "Propositional logic treats each atomic statement as Boolean and evaluates compound statements with truth-functional connectives. A truth assignment is a model of a formula when that formula evaluates to true. Syntax describes a formula; semantics tells which assignments satisfy it. Material implication is especially easy to misread: P⇒Q rules out P=true,Q=false, without asserting causation or the converse.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/propositional-logic/",
     "tags": []
   },
   {
     "term": "Quantifiers",
-    "definition": "Quantifiers state whether a predicate holds for every object or for at least one object.",
+    "definition": "Universal quantification requires a formula for every domain element; existential quantification requires at least one witness. Nested quantifier order controls which witnesses may depend on earlier choices. ∀x∃y R(x,y) permits a different y for each x, whereas ∃y∀x R(x,y) requires one y that works for all x. Reversing these mixed quantifiers generally changes the claim.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/quantifiers/",
-    "tags": []
+    "tags": [
+      "First-order predicate logic"
+    ]
   },
   {
     "term": "Random variables",
@@ -2495,10 +2538,13 @@
   },
   {
     "term": "Random-restart hill climbing",
-    "definition": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
+    "definition": "Random-restart hill climbing repeats local improvement from independently sampled initial configurations and keeps the best result. Its chance of success depends on the initialization distribution and the basins induced by the local policy. A finite number of runs still permits failure. Almost-sure eventual success requires a positive success probability and indefinitely many suitable trials.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/random-restart-hill-climbing/",
-    "tags": []
+    "tags": [
+      "Hill climbing",
+      "Independence and conditional independence"
+    ]
   },
   {
     "term": "Randomized algorithms",
@@ -2677,10 +2723,13 @@
   },
   {
     "term": "Resolution",
-    "definition": "Resolution derives a new clause by eliminating complementary literals from two clauses.",
+    "definition": "Propositional resolution combines two clauses containing complementary literals on one pivot and keeps their other literals. The resulting clause follows from its parents. To prove that a knowledge base entails a query, add the negated query and seek the empty clause. A completed refutation establishes contradiction; an unfinished or arbitrarily truncated derivation cannot establish that no proof exists.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/resolution/",
-    "tags": []
+    "tags": [
+      "Propositional logic",
+      "Boolean satisfiability"
+    ]
   },
   {
     "term": "Retrieval, Search And RAG",
@@ -2757,10 +2806,13 @@
   },
   {
     "term": "Simulated annealing",
-    "definition": "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
+    "definition": "Simulated annealing proposes local moves and sometimes accepts a worse objective to escape a local trap. For minimization with the usual symmetric proposal rule, a cost increase ΔE is accepted with exp(−ΔE/T) at positive temperature. A cooling schedule changes these decisions over time. Convergence results require specific state-space, proposal and cooling assumptions; a finite practical run need not find a global optimum.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/simulated-annealing/",
-    "tags": []
+    "tags": [
+      "Hill climbing",
+      "Conditional probability"
+    ]
   },
   {
     "term": "Singular value decomposition",
@@ -2911,10 +2963,13 @@
   },
   {
     "term": "Tabu search",
-    "definition": "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
+    "definition": "Tabu search guides local moves with short-term memory that temporarily forbids specified moves, attributes or revisits. It can accept a worsening move when that move is the best admissible option. Aspiration criteria can override a restriction, often for an improvement over the best result seen. Memory definitions and tenure are part of the algorithm, and ordinary short-term tabu rules do not provide a universal optimality or no-cycle certificate.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/tabu-search/",
-    "tags": []
+    "tags": [
+      "Hill climbing",
+      "Duplicate-state detection"
+    ]
   },
   {
     "term": "Taylor approximation",

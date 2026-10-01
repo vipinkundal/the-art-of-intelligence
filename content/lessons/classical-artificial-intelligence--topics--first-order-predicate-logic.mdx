@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
+  "hook": "A predicate gains meaning only after its domain and extension are fixed.",
+  "overview": "First-order predicate logic describes objects, their properties and relations, and quantified statements about a domain. Constants name objects, variables range over them, predicates evaluate tuples, and function symbols denote domain-valued functions. Truth requires an interpretation; open formulas also require values for their free variables. Evaluating a sentence in one specified interpretation is different from showing it follows in every model of a knowledge base.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "Distinguish a symbol from its interpretation",
+      "explanation": "In this model the constant a denotes one service and Healthy(a) is true precisely when a is in the supplied healthy subset. The spelling of a constant does not establish its properties. Distinct constants are assigned distinct objects here by assumption, not by a universal rule of first-order semantics."
     },
     {
-      "title": "Core rule",
-      "explanation": "Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes."
+      "title": "A free variable requires an assignment",
+      "explanation": "Healthy(x) can change truth when x denotes a rather than b. ∀x Healthy(x) and ∃x Healthy(x) bind x and ask different domain-wide questions. Writing the bound scope with parentheses prevents accidental changes of meaning."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is far more expressive than propositional logic, but general validity is only semi-decidable."
+      "title": "Use the appropriate guard",
+      "explanation": "Every active service is healthy uses Active(x)⇒Healthy(x). An inactive object makes that implication true. Some active service is healthy uses Active(x)∧Healthy(x), because an inactive object must not count as its witness."
+    },
+    {
+      "title": "One complete interpretation is not an open knowledge base",
+      "explanation": "The lab supplies both true and false predicate instances for all three objects. In a knowledge base that asserts only Healthy(a), absence of Healthy(b) need not entail ¬Healthy(b). Treating omitted facts as false requires an explicit additional convention."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is far more expressive than propositional logic, but general validity is only semi-decidable."
+    "Declare the domain, symbol meanings and any identity assumptions.",
+    "Evaluate terms and ground predicates, then connectives under a variable assignment.",
+    "For a quantifier, evaluate its scope over the declared domain; distinguish model evaluation from entailment."
   ],
   "formulas": [
     {
-      "label": "First-order predicate logic rule",
-      "expression": "forall x Human(x) => Mortal(x)",
-      "meaning": "It is far more expressive than propositional logic, but general validity is only semi-decidable."
+      "label": "Definition and assumptions",
+      "expression": "∀x(Active(x)⇒Healthy(x)); ∃x(Active(x)∧Healthy(x))",
+      "meaning": "Domain D={a,b,c} contains three distinct objects and no others. Active={a,b} is fixed. The mask fully specifies Healthy: bit 1 selects a, bit 2 selects b, bit 4 selects c. Use classical two-valued truth, with no unknown entries. The grid checks both closed sentences in this finite interpretation, rather than running an inference procedure over unspecified models."
     }
   ],
   "example": {
-    "title": "First-order predicate logic in a small case",
-    "setup": "Add Human(Socrates) to a rule that every human is mortal.",
+    "title": "An active-service requirement",
+    "setup": "Active={a,b}, Healthy={a} in D={a,b,c}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
-      "Check the outcome against the goal and stated assumptions."
+      "At a, Active and Healthy are both true, so a witnesses the existential statement.",
+      "At b, Active is true and Healthy false, falsifying the universal implication.",
+      "At c, Active is false, so the implication holds even though Healthy is false."
     ],
-    "result": "Instantiate the universal rule and derive Mortal(Socrates)."
+    "result": "The universal requirement fails with counterexample b; the existential requirement succeeds with witness a."
   },
   "pitfalls": [
-    "Variable scope and accidental capture must be handled correctly during substitution.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "A finite model's successful check is not validity across every possible interpretation.",
+    "Defaulting every unrecorded predicate instance to false silently adds a closed-world assumption."
   ],
-  "implementation": [],
+  "implementation": [
+    "Document domain restrictions, predicate arity and identity assumptions beside the encoding.",
+    "Keep true, false and unknown information distinct when the data source is incomplete, and report what a finite-domain check actually establishes."
+  ],
   "takeaways": [
-    "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
-    "Interpret symbols in a domain and use substitution plus inference rules to derive statements about individuals and classes.",
-    "It is far more expressive than propositional logic, but general validity is only semi-decidable.",
-    "Instantiate the universal rule and derive Mortal(Socrates)."
+    "With only a healthy, the existential sentence is true but the universal rule is false because b is a counterexample. Inactive c does not falsify the implication merely by being unhealthy.",
+    "Distinguish a counterexample, a witness and logical entailment."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["First-order logic represents objects, predicates, functions, variables, and quantified relations.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This First-order predicate logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["First-order predicate logic describes objects, their properties and relations, and quantified statements about a domain. Constants name objects, variables range over them, predicates evaluate tuples, and function symbols denote domain-valued functions. Truth requires an interpretation; open formulas also require values for their free variables. Evaluating a sentence in one specified interpretation is different from showing it follows in every model of a knowledge base.","Evaluate predicates and guarded quantifiers in a supplied interpretation.","Distinguish a counterexample, a witness and logical entailment.","A predicate gains meaning only after its domain and extension are fixed.","∀x(Active(x)⇒Healthy(x)); ∃x(Active(x)∧Healthy(x))","Domain D={a,b,c} contains three distinct objects and no others. Active={a,b} is fixed. The mask fully specifies Healthy: bit 1 selects a, bit 2 selects b, bit 4 selects c. Use classical two-valued truth, with no unknown entries. The grid checks both closed sentences in this finite interpretation, rather than running an inference procedure over unspecified models.","With only a healthy, the existential sentence is true but the universal rule is false because b is a counterexample. Inactive c does not falsify the implication merely by being unhealthy."]} />

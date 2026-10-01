@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
+  "hook": "Do not branch on a choice that a unit clause already forces.",
+  "overview": "DPLL is a complete backtracking procedure for finite propositional CNF. It simplifies clauses under a partial assignment, propagates forced unit literals, and branches on an unassigned variable when needed. A false clause closes that branch; all satisfied clauses permit a witness completion. Chronological backtracking restores the previous decision context before trying the opposite value. Completeness does not imply a practical worst-case time bound.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Unassigned is not false",
+      "explanation": "Before the search assigns Q, the literal Q has no truth value on the partial trail. An unresolved clause may later become satisfied or false. The lab explicitly uses different codes for assignment trails and clause status; each table states its convention."
     },
     {
-      "title": "Core rule",
-      "explanation": "Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false."
+      "title": "A unit is forced by the current branch",
+      "explanation": "With P=1, C1 reduces to Q and C2 reduces to ¬Q. Selecting the first unit assigns Q=1, after which C2 is false. Neither forced value is a new independent search decision."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is complete but exponential in the worst case; propagation and branching choices determine practical performance."
+      "title": "Restoration includes implications",
+      "explanation": "When the P=1 branch fails, Q=1 must be removed with that branch. Keeping it would silently restrict the P=0 branch. The next event displays P=0 with Q unassigned, not a permanent Q fact."
+    },
+    {
+      "title": "A satisfying partial trail admits completions",
+      "explanation": "At P=0,R=1,S=1, all five clauses already contain a true literal. Q can be zero or one without changing satisfaction. The solver can stop and fill Q arbitrarily; it need not make one more decision just to return a total witness."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is complete but exponential in the worst case; propagation and branching choices determine practical performance."
+    "Simplify or evaluate clauses against the current assignment; stop on a false clause or all satisfied clauses.",
+    "Propagate a unit literal and repeat until no unit remains or a stopping condition occurs.",
+    "Otherwise branch on an unassigned variable; on failure restore the context and try its opposite value."
   ],
   "formulas": [
     {
-      "label": "DPLL rule",
-      "expression": "DPLL(F)=propagate(F); branch x=true or false",
-      "meaning": "It is complete but exponential in the worst case; propagation and branching choices determine practical performance."
+      "label": "Definition and assumptions",
+      "expression": "unit {L} ⇒ assign L=true; empty residual clause ⇒ branch conflict; all clauses true ⇒ SAT completion",
+      "meaning": "CNF is C1=¬P∨Q, C2=¬P∨¬Q, C3=P∨R, C4=¬R∨S, C5=R∨¬S. Use alphabetic decisions, true first, first-clause unit propagation and chronological backtracking. This complete DPLL variant omits optional pure-literal elimination and clause learning. It stops when every original clause is satisfied, allowing remaining variables to be assigned either value."
     }
   ],
   "example": {
-    "title": "DPLL in a small case",
-    "setup": "Solve clauses (A) and (not A or B) and (not B or C).",
+    "title": "Closing the P=true branch",
+    "setup": "Begin with an empty trail and no initial unit clauses.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
-      "Check the outcome against the goal and stated assumptions."
+      "Decide P=1; C1 forces Q=1 and C2 becomes false.",
+      "Restore the branch and try P=0, leaving Q unassigned.",
+      "C3 forces R=1 and C4 forces S=1; all clauses hold."
     ],
-    "result": "Unit propagation forces A, then B, then C without branching."
+    "result": "Complete the returned trail with Q=0 to obtain witness (0,0,1,1), then evaluate every original clause."
   },
   "pitfalls": [
-    "Every propagated implication needs a reason if the solver will later analyze conflicts.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Treating unassigned literals as false can prematurely reject viable branches.",
+    "Losing propagated assignments during undo, or failing to undo them, changes the search problem."
   ],
-  "implementation": [],
+  "implementation": [
+    "Track decision levels and reasons separately from the variable assignment map.",
+    "Use efficient clause monitoring for larger instances, but keep SAT witness and resource-limit reporting faithful to the original formula."
+  ],
   "takeaways": [
-    "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
-    "Propagate unit clauses, optionally assign pure literals, choose a variable, and recursively try true and false.",
-    "It is complete but exponential in the worst case; propagation and branching choices determine practical performance.",
-    "Unit propagation forces A, then B, then C without branching."
+    "P=1 forces Q=1 and immediately falsifies C2. Backtracking restores Q to unassigned before P=0 forces R=1,S=1. All clauses then hold with Q free.",
+    "Restore a failed branch and complete a satisfying partial trail."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This DPLL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["DPLL is a complete backtracking procedure for finite propositional CNF. It simplifies clauses under a partial assignment, propagates forced unit literals, and branches on an unassigned variable when needed. A false clause closes that branch; all satisfied clauses permit a witness completion. Chronological backtracking restores the previous decision context before trying the opposite value. Completeness does not imply a practical worst-case time bound.","Distinguish a decision, a forced propagation and a branch conflict.","Restore a failed branch and complete a satisfying partial trail.","Do not branch on a choice that a unit clause already forces.","unit {L} ⇒ assign L=true; empty residual clause ⇒ branch conflict; all clauses true ⇒ SAT completion","CNF is C1=¬P∨Q, C2=¬P∨¬Q, C3=P∨R, C4=¬R∨S, C5=R∨¬S. Use alphabetic decisions, true first, first-clause unit propagation and chronological backtracking. This complete DPLL variant omits optional pure-literal elimination and clause learning. It stops when every original clause is satisfied, allowing remaining variables to be assigned either value.","P=1 forces Q=1 and immediately falsifies C2. Backtracking restores Q to unassigned before P=0 forces R=1,S=1. All clauses then hold with Q free."]} />

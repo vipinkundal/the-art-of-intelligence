@@ -7,8 +7,12 @@ import { VisualLab } from "@/components/labs/VisualLab";
 import { phaseLearningPaths } from "@/lib/content/phase-paths";
 
 export function LessonShell({ lesson, children }: { lesson: LessonDocument; children: ReactNode }) {
-  const previous = lesson.previous ? lessonBySlug.get(lesson.previous) : null;
-  const next = lesson.next ? lessonBySlug.get(lesson.next) : null;
+  const learningPath = phaseLearningPaths[lesson.phaseKey]?.find(path=>path.slugs.includes(lesson.slug));
+  const pathIndex = learningPath?.slugs.indexOf(lesson.slug) ?? -1;
+  const previousSlug = learningPath ? learningPath.slugs[pathIndex-1] : lesson.previous;
+  const nextSlug = learningPath ? learningPath.slugs[pathIndex+1] : lesson.next;
+  const previous = previousSlug ? lessonBySlug.get(previousSlug) : null;
+  const next = nextSlug ? lessonBySlug.get(nextSlug) : null;
   const entryPath = phaseLearningPaths[lesson.phaseKey]?.find(path=>path.slugs[0]===lesson.slug);
   return (
     <div className="lesson-layout">
@@ -42,9 +46,9 @@ export function LessonShell({ lesson, children }: { lesson: LessonDocument; chil
           <span className="section-kicker">Curated sources</span><h2>Go deeper with primary and canonical material.</h2>
           <div>{lesson.sources.map((source, index) => <a href={source.url} target="_blank" rel="noreferrer" key={source.url}><span>{String(index + 1).padStart(2, "0")}</span><strong>{source.label}</strong><ArrowRight size={15} /></a>)}</div>
         </section>
-        <nav className="lesson-pagination" aria-label="Lesson sequence">
-          {previous ? <Link href={`/lessons/${previous.slug}/`}><ArrowLeft size={17} /><span><small>Previous lab</small>{previous.title}</span></Link> : <span />}
-          {next ? <Link href={`/lessons/${next.slug}/`}><span><small>Next lab</small>{next.title}</span><ArrowRight size={17} /></Link> : <Link href="/lessons/"><span><small>Complete</small>Return to library</span><ArrowRight size={17} /></Link>}
+        <nav className="lesson-pagination" aria-label={learningPath ? `Learning path: ${learningPath.title}` : "Lesson sequence"}>
+          {previous ? <Link href={`/lessons/${previous.slug}/`}><ArrowLeft size={17} /><span><small>Previous lab</small>{previous.title}</span></Link> : learningPath ? <Link href={`/lessons/${lesson.phaseKey}/#phase-map`}><ArrowLeft size={17}/><span><small>Learning paths</small>{lesson.phase}</span></Link> : <span />}
+          {next ? <Link href={`/lessons/${next.slug}/`}><span><small>Next lab</small>{next.title}</span><ArrowRight size={17} /></Link> : <Link href={learningPath ? `/lessons/${lesson.phaseKey}/#phase-map` : "/lessons/"}><span><small>{learningPath ? "Explore another path" : "Browse lessons"}</small>{learningPath ? lesson.phase : "Return to library"}</span><ArrowRight size={17} /></Link>}
         </nav>
       </main>
     </div>

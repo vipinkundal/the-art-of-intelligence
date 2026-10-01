@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
+  "hook": "The neighborhood determines what uphill means.",
+  "overview": "Hill climbing improves a complete configuration by moving to a better neighbor according to an objective. Strict steepest ascent selects the highest-valued neighbor and stops if none improves the current value. Its stopping condition establishes a local maximum under the chosen neighborhood, rather than a global optimum over the full configuration space.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "A configuration is the current candidate",
+      "explanation": "The algorithm stores a candidate and compares its nearby alternatives. The objective here belongs to the configuration, not to the cost of a path used to reach it."
     },
     {
-      "title": "Core rule",
-      "explanation": "Evaluate local neighbors and choose an improving move until none is available."
+      "title": "Neighborhood and objective define the trap",
+      "explanation": "At x=2, both adjacent utilities are below seven. The better configuration x=7 is farther away, and the given moves require accepting a decrease before reaching its basin."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+      "title": "Plateau policies change the procedure",
+      "explanation": "Strict improvement stops on a tie. Allowing sideways steps, random choices or larger moves creates a different policy with different cycle and stopping behavior. This lab uses no sideways steps."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Evaluate local neighbors and choose an improving move until none is available.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+    "Evaluate the current configuration and its permitted neighbors.",
+    "Choose the highest-valued neighbor using an explicit tie-break.",
+    "Move only on strict improvement; otherwise report a local stop and the neighborhood used."
   ],
   "formulas": [
     {
-      "label": "Hill climbing rule",
-      "expression": "x_(t+1) = argmax_(x' in N(x_t)) value(x')",
-      "meaning": "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress."
+      "label": "Definition and assumptions",
+      "expression": "xnext = argmaxy∈N(x) U(y); move only if U(xnext)>U(x)",
+      "meaning": "Nine discrete configurations x=0,…,8 have utilities [1,4,7,6,3,5,8,10,9]. Neighbors are valid x±1. Use strict improvement and smaller-index ties. The graph joins discrete values for readability; intermediate positions are not available configurations. The full enumeration supplies the global benchmark."
     }
   ],
   "example": {
-    "title": "Hill climbing in a small case",
-    "setup": "Place queens on a chessboard and move one queen to reduce conflicts.",
+    "title": "Two basins on one landscape",
+    "setup": "Start at x=1 with utility four.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Evaluate local neighbors and choose an improving move until none is available.",
-      "Check the outcome against the goal and stated assumptions."
+      "Choose x=2 at utility seven.",
+      "At x=2, adjacent utilities are four and six, so stop.",
+      "Starting instead at x=5 follows 5→6→7 and reaches utility ten."
     ],
-    "result": "The method stops at a locally best board, which may or may not be a valid zero-conflict solution."
+    "result": "The first run returns a valid local maximum with a three-point gap to the global value."
   },
   "pitfalls": [
-    "Tie-breaking and sideways moves can cause cycles unless limited.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "A local maximum depends on the permitted moves; changing the neighborhood changes the guarantee.",
+    "An objective can reward infeasible configurations unless hard constraints or an appropriate feasibility policy are included."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep the candidate's objective, move cost and constraint violations as separate quantities.",
+    "Report the stopping reason and best observed value, and validate any returned feasible configuration."
+  ],
   "takeaways": [
-    "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
-    "Evaluate local neighbors and choose an improving move until none is available.",
-    "It uses little memory and can improve quickly, but local optima, ridges, and plateaus can stop progress.",
-    "The method stops at a locally best board, which may or may not be a valid zero-conflict solution."
+    "Five starting configurations end at utility seven; four end at utility ten. A strict local stop cannot certify which peak is globally best without additional information.",
+    "Distinguish a local stopping condition from a global certificate."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Hill climbing repeatedly moves to a neighboring state with a better objective value.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Hill climbing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Hill climbing improves a complete configuration by moving to a better neighbor according to an objective. Strict steepest ascent selects the highest-valued neighbor and stops if none improves the current value. Its stopping condition establishes a local maximum under the chosen neighborhood, rather than a global optimum over the full configuration space.","Trace strict steepest ascent under a finite neighborhood.","Distinguish a local stopping condition from a global certificate.","The neighborhood determines what uphill means.","xnext = argmaxy∈N(x) U(y); move only if U(xnext)>U(x)","Nine discrete configurations x=0,…,8 have utilities [1,4,7,6,3,5,8,10,9]. Neighbors are valid x±1. Use strict improvement and smaller-index ties. The graph joins discrete values for readability; intermediate positions are not available configurations. The full enumeration supplies the global benchmark.","Five starting configurations end at utility seven; four end at utility ten. A strict local stop cannot certify which peak is globally best without additional information."]} />

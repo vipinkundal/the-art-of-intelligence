@@ -33,7 +33,7 @@ type Point = [number, number];
 export type CalculationResult = {
   automaton?: {word:string;consumed:number;state:"E"|"O"};
   execution?: {budget:number;maximum:number;traces:{label:string;steps:number;halted:boolean;status:string}[]};
-  grid?: {title:string;summary:string;rows:number;columns:number;columnLabels?:string[];legend:string[];cells:{row:number;column:number;label:string;accent:boolean;selected?:boolean}[]};
+  grid?: {title:string;summary:string;rows:number;columns:number;columnLabels?:string[];rowLabels?:string[];legend:string[];cells:{row:number;column:number;label:string;accent:boolean;selected?:boolean}[]};
   graph?: { title: string; summary: string; height?:number; maxWidth?:number; nodes: {id:string;label:string;x:number;y:number;observed:boolean;kind?:"factor";state?:string;stateAbove?:boolean}[]; edges:{from:string;to:string;directed?:boolean;accent?:boolean;label?:string}[] };
   controlValue?: string;
   kind: "bars" | "lines" | "matrix" | "scatter";

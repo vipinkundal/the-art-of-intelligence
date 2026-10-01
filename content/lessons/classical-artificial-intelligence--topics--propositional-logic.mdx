@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+  "hook": "Read an implication as one forbidden row, not an arrow of cause.",
+  "overview": "Propositional logic treats each atomic statement as Boolean and evaluates compound statements with truth-functional connectives. A truth assignment is a model of a formula when that formula evaluates to true. Syntax describes a formula; semantics tells which assignments satisfy it. Material implication is especially easy to misread: P⇒Q rules out P=true,Q=false, without asserting causation or the converse.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "The symbols need a declared meaning",
+      "explanation": "Let P mean a deployment was approved and Q mean it was released. A true P⇒Q says that approved-but-unreleased is disallowed in the modeled world. It does not claim approval causes release, or that every release was approved."
     },
     {
-      "title": "Core rule",
-      "explanation": "Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules."
+      "title": "One assignment differs from all assignments",
+      "explanation": "At 01 the implication holds. Across the entire table it holds in three rows and fails at 10. Evaluating one observed world cannot establish that the formula is valid in every world."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+      "title": "Negation exposes a concrete counterexample",
+      "explanation": "The negation of P⇒Q is P∧¬Q: exactly the approved-but-unreleased row. That row is a falsifying witness for the implication, not evidence that either proposition is intrinsically false."
+    },
+    {
+      "title": "Parentheses are part of the specification",
+      "explanation": "P∧(Q∨R) and (P∧Q)∨R do not express the same rule. Store an explicit parse tree or use documented precedence, rather than trusting ambiguous prose or a typographic arrow."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+    "Define every atomic proposition and parse the connectives.",
+    "Evaluate the formula bottom-up for a complete truth assignment.",
+    "For satisfiability or validity, quantify over assignments rather than generalizing from one row."
   ],
   "formulas": [
     {
-      "label": "Propositional logic rule",
-      "expression": "P and (P => Q) entails Q",
-      "meaning": "It is precise and decidable but cannot directly quantify over objects or express internal relational structure."
+      "label": "Definition and assumptions",
+      "expression": "P⇒Q ≡ ¬P∨Q; P⇔Q ≡ (P⇒Q)∧(Q⇒P)",
+      "meaning": "Use classical two-valued semantics with two independent proposition symbols P,Q. Assignment indices enumerate (P,Q)=00,01,10,11. The table compares the implication with its converse. No probability, causal direction, time ordering or real-world rule reliability is encoded."
     }
   ],
   "example": {
-    "title": "Propositional logic in a small case",
-    "setup": "Encode 'alarm implies evacuation' and the fact that the alarm is active.",
+    "title": "Approved versus released",
+    "setup": "Use P⇒Q as the declared rule and inspect all four assignments.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
-      "Check the outcome against the goal and stated assumptions."
+      "00 satisfies the implication because P is false.",
+      "01 satisfies P⇒Q but falsifies its converse.",
+      "10 falsifies P⇒Q; 11 satisfies both directions."
     ],
-    "result": "Modus ponens derives that evacuation is required."
+    "result": "Only adding Q⇒P would exclude releases without approval; the original implication alone does not do that."
   },
   "pitfalls": [
-    "Do not confuse implication P=>Q with causation or the converse Q=>P.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Confusing implication with equivalence incorrectly adds the converse to the model.",
+    "Truth-functional implication supplies neither a probability of Q given P nor an intervention effect."
   ],
-  "implementation": [],
+  "implementation": [
+    "Give symbols stable IDs and human-readable definitions, and retain the original formula for diagnostics.",
+    "For small rule sets, inspect counterexample assignments before connecting the encoding to a solver."
+  ],
   "takeaways": [
-    "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
-    "Evaluate formulas under truth assignments or transform them with sound equivalence and inference rules.",
-    "It is precise and decidable but cannot directly quantify over objects or express internal relational structure.",
-    "Modus ponens derives that evacuation is required."
+    "At P=0,Q=1, P⇒Q is true but Q⇒P is false. Three satisfying rows make P⇒Q satisfiable; its remaining false row prevents validity.",
+    "Separate satisfaction of one model from validity across all models."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Propositional logic represents atomic statements as true or false and combines them with logical connectives.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Propositional logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Propositional logic treats each atomic statement as Boolean and evaluates compound statements with truth-functional connectives. A truth assignment is a model of a formula when that formula evaluates to true. Syntax describes a formula; semantics tells which assignments satisfy it. Material implication is especially easy to misread: P⇒Q rules out P=true,Q=false, without asserting causation or the converse.","Evaluate material implication and distinguish its converse.","Separate satisfaction of one model from validity across all models.","Read an implication as one forbidden row, not an arrow of cause.","P⇒Q ≡ ¬P∨Q; P⇔Q ≡ (P⇒Q)∧(Q⇒P)","Use classical two-valued semantics with two independent proposition symbols P,Q. Assignment indices enumerate (P,Q)=00,01,10,11. The table compares the implication with its converse. No probability, causal direction, time ordering or real-world rule reliability is encoded.","At P=0,Q=1, P⇒Q is true but Q⇒P is false. Three satisfying rows make P⇒Q satisfiable; its remaining false row prevents validity."]} />

@@ -3,8 +3,12 @@ import { heuristicModels, isHeuristicModel, calculateHeuristic } from "./search-
 import { searchStateModels, isSearchStateModel, calculateSearchState } from "./search-state-memory.ts";
 import { searchRefinementModels, isSearchRefinementModel, calculateSearchRefinement } from "./search-refinements.ts";
 import { searchGuaranteeModels, isSearchGuaranteeModel, calculateSearchGuarantee } from "./search-guarantees.ts";
+import { constraintModels, isConstraintModel, calculateConstraint } from "./constraint-satisfaction.ts";
+import { localSearchModels, isLocalSearchModel, calculateLocalSearch } from "./local-search.ts";
+import { propositionalModels, isPropositionalModel, calculatePropositional } from "./propositional-inference.ts";
+import { predicateModels, isPredicateModel, calculatePredicate } from "./predicate-logic.ts";
 
-export const searchModels=["search-bfs","search-dfs","search-ucs","search-dls","search-ids","search-astar",...heuristicModels,...searchStateModels,...searchRefinementModels,...searchGuaranteeModels] as const;
+export const searchModels=["search-bfs","search-dfs","search-ucs","search-dls","search-ids","search-astar",...heuristicModels,...searchStateModels,...searchRefinementModels,...searchGuaranteeModels,...constraintModels,...localSearchModels,...propositionalModels,...predicateModels] as const;
 export type SearchModel=typeof searchModels[number];
 export const isSearchModel=(model:string):model is SearchModel=>(searchModels as readonly string[]).includes(model);
 type Node={id:string;g:number;path:string[]};
@@ -37,6 +41,10 @@ function limited(limit:number){
   return {visits,cutoffs,solution,status};
 }
 export function calculateSearch(model:SearchModel,input:number):CalculationResult{
+  if(isPredicateModel(model))return calculatePredicate(model,input);
+  if(isPropositionalModel(model))return calculatePropositional(model,input);
+  if(isLocalSearchModel(model))return calculateLocalSearch(model,input);
+  if(isConstraintModel(model))return calculateConstraint(model,input);
   if(isSearchGuaranteeModel(model))return calculateSearchGuarantee(model,input);
   if(isHeuristicModel(model))return calculateHeuristic(model,input);
   if(isSearchStateModel(model))return calculateSearchState(model,input);

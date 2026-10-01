@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "The least-constraining value orders choices by how many options they leave for neighboring variables.",
+  "hook": "Choose your value without taking away someone else's last option.",
+  "overview": "Least-constraining value orders candidate values for a selected variable by their effect on the remaining variables. A common local score counts neighbor-domain values deleted by a trial assignment and filtering. Lower scores preserve more immediate alternatives. The score is a heuristic proxy, with ties and filtering strength defined by the implementation.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Select a variable before ordering its values",
+      "explanation": "MRV decides which slot to work on. LCV decides which available value to try in that slot. Applying LCV does not change the set of alternatives explored by an exhaustive solver."
     },
     {
-      "title": "Core rule",
-      "explanation": "Estimate the domain eliminations caused by each candidate value and try the smallest impact first."
+      "title": "Score trials reversibly",
+      "explanation": "Trying X=1 removes 1 from all three neighbors, including W's only value. Those deletions belong to the trial and must be undone before scoring X=2."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution."
+      "title": "Local alternatives are not global solutions",
+      "explanation": "Here the neighbors are independent once X is fixed, so extension counts multiply. In a general network, interactions among them can invalidate many combinations even when the deletion score is small."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution."
+    "For each candidate value, create or trail a reversible trial state.",
+    "Run the declared filter and count deletions or detect wipeout.",
+    "Restore the state, rank candidates by score and tie-break, then commit the first trial in the real search."
   ],
   "formulas": [
     {
-      "label": "Least-constraining value rule",
-      "expression": "v = argmin_(v in D(X)) eliminated_neighbor_values(v)",
-      "meaning": "It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution."
+      "label": "Definition and assumptions",
+      "expression": "score(x)=ΣY |D(Y) ∖ D(Y after trial X=x)|; prefer smaller score",
+      "meaning": "X has {1,2,3}; neighbors Y={1,2}, Z={1,3}, W={1}. Relations are X≠Y,X≠Z,X≠W, with no relation among the neighbors. Score a trial using forward checking on a temporary copy. Ties use ascending numeric values. Full-extension counts are enumerated only to explain this independent-neighbor toy model."
     }
   ],
   "example": {
-    "title": "Least-constraining value in a small case",
-    "setup": "For a map region, red would remove four neighbor options while blue removes one.",
+    "title": "One value closes the last door",
+    "setup": "Use Y={1,2}, Z={1,3}, W={1} around X.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
-      "Check the outcome against the goal and stated assumptions."
+      "X=1 deletes three entries and leaves W empty: zero extensions.",
+      "X=2 leaves Y={1}, Z={1,3}, W={1}: one deletion and two extensions.",
+      "X=3 leaves Y={1,2}, Z={1}, W={1}: one deletion and two extensions."
     ],
-    "result": "Try blue first because it preserves more flexibility."
+    "result": "The least-constraining candidates are 2 and 3; numeric tie-breaking tries 2 first."
   },
   "pitfalls": [
-    "Computing exact future impact can cost more than the savings on small problems.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "Scoring with already-mutated trial domains biases later candidates and can corrupt search.",
+    "A lower deletion count need not imply a larger global solution count or lower runtime."
   ],
-  "implementation": [],
+  "implementation": [
+    "Budget the extra filtering cost of scoring all candidates.",
+    "Keep value-order scores separate from branch-feasibility results and restore trial state exactly."
+  ],
   "takeaways": [
-    "The least-constraining value orders choices by how many options they leave for neighboring variables.",
-    "Estimate the domain eliminations caused by each candidate value and try the smallest impact first.",
-    "It seeks a flexible branch and often finds a solution quickly, but does not prove that choice leads to a solution.",
-    "Try blue first because it preserves more flexibility."
+    "X=1 empties W. X=2 and X=3 each remove only one neighbor value, so they tie; the declared rule chooses 2 first.",
+    "Distinguish a pruning proxy from a complete solution count."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["The least-constraining value orders choices by how many options they leave for neighboring variables.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Least-constraining value illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Least-constraining value orders candidate values for a selected variable by their effect on the remaining variables. A common local score counts neighbor-domain values deleted by a trial assignment and filtering. Lower scores preserve more immediate alternatives. The score is a heuristic proxy, with ties and filtering strength defined by the implementation.","Compute a local LCV score and expose a wipeout.","Distinguish a pruning proxy from a complete solution count.","Choose your value without taking away someone else's last option.","score(x)=ΣY |D(Y) ∖ D(Y after trial X=x)|; prefer smaller score","X has {1,2,3}; neighbors Y={1,2}, Z={1,3}, W={1}. Relations are X≠Y,X≠Z,X≠W, with no relation among the neighbors. Score a trial using forward checking on a temporary copy. Ties use ascending numeric values. Full-extension counts are enumerated only to explain this independent-neighbor toy model.","X=1 empties W. X=2 and X=3 each remove only one neighbor value, so they tie; the declared rule chooses 2 first."]} />

@@ -1,8 +1,8 @@
 {
   "scope": "All canonical lesson documents; checks describe editorial gaps, not independent factual certification.",
   "total": 386,
-  "reviewed": 197,
-  "pending": 189,
+  "reviewed": 218,
+  "pending": 168,
   "aliases": [
     {
       "slug": "mathematical-foundations/topics/early-stopping",
@@ -42,44 +42,29 @@
       "text": "track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
       "routes": [
         "classical-artificial-intelligence/topics/abduction",
-        "classical-artificial-intelligence/topics/ac-3",
         "classical-artificial-intelligence/topics/alpha-beta-pruning",
         "classical-artificial-intelligence/topics/analogy",
-        "classical-artificial-intelligence/topics/arc-consistency",
         "classical-artificial-intelligence/topics/automated-theorem-proving",
-        "classical-artificial-intelligence/topics/backtracking",
         "classical-artificial-intelligence/topics/backward-chaining",
-        "classical-artificial-intelligence/topics/boolean-satisfiability",
         "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
-        "classical-artificial-intelligence/topics/constraint-propagation",
-        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
         "classical-artificial-intelligence/topics/contingent-planning",
         "classical-artificial-intelligence/topics/counterfactual-reasoning",
         "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
         "classical-artificial-intelligence/topics/deduction",
         "classical-artificial-intelligence/topics/default-logic",
-        "classical-artificial-intelligence/topics/degree-heuristic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/dpll",
         "classical-artificial-intelligence/topics/expectimax",
-        "classical-artificial-intelligence/topics/first-order-predicate-logic",
         "classical-artificial-intelligence/topics/forward-and-backward-planning",
         "classical-artificial-intelligence/topics/forward-chaining",
-        "classical-artificial-intelligence/topics/forward-checking",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
-        "classical-artificial-intelligence/topics/hill-climbing",
         "classical-artificial-intelligence/topics/horn-clauses",
         "classical-artificial-intelligence/topics/induction",
         "classical-artificial-intelligence/topics/integer-programming",
         "classical-artificial-intelligence/topics/knowledge-bases",
-        "classical-artificial-intelligence/topics/least-constraining-value",
-        "classical-artificial-intelligence/topics/local-beam-search",
         "classical-artificial-intelligence/topics/logic-programming",
-        "classical-artificial-intelligence/topics/min-conflicts",
         "classical-artificial-intelligence/topics/minimax",
-        "classical-artificial-intelligence/topics/minimum-remaining-values",
         "classical-artificial-intelligence/topics/mixed-integer-programming",
         "classical-artificial-intelligence/topics/modal-logic",
         "classical-artificial-intelligence/topics/monte-carlo-tree-search",
@@ -90,16 +75,10 @@
         "classical-artificial-intelligence/topics/partial-order-planning",
         "classical-artificial-intelligence/topics/pddl",
         "classical-artificial-intelligence/topics/planning-under-uncertainty",
-        "classical-artificial-intelligence/topics/propositional-logic",
-        "classical-artificial-intelligence/topics/quantifiers",
-        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
         "classical-artificial-intelligence/topics/receding-horizon-planning",
-        "classical-artificial-intelligence/topics/resolution",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/simulated-annealing",
         "classical-artificial-intelligence/topics/state-space-planning",
         "classical-artificial-intelligence/topics/strips",
-        "classical-artificial-intelligence/topics/tabu-search",
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/temporal-planning",
         "classical-artificial-intelligence/topics/transposition-tables",
@@ -126,69 +105,6 @@
         "classical-artificial-intelligence/topics/counterfactual-reasoning",
         "classical-artificial-intelligence/topics/deduction",
         "classical-artificial-intelligence/topics/induction"
-      ]
-    },
-    {
-      "text": "it operates on variables, domains, constraints, and sometimes an objective.",
-      "routes": [
-        "classical-artificial-intelligence/topics/ac-3",
-        "classical-artificial-intelligence/topics/arc-consistency",
-        "classical-artificial-intelligence/topics/backtracking",
-        "classical-artificial-intelligence/topics/boolean-satisfiability",
-        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
-        "classical-artificial-intelligence/topics/constraint-propagation",
-        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
-        "classical-artificial-intelligence/topics/degree-heuristic",
-        "classical-artificial-intelligence/topics/dpll",
-        "classical-artificial-intelligence/topics/forward-checking",
-        "classical-artificial-intelligence/topics/integer-programming",
-        "classical-artificial-intelligence/topics/least-constraining-value",
-        "classical-artificial-intelligence/topics/min-conflicts",
-        "classical-artificial-intelligence/topics/minimum-remaining-values",
-        "classical-artificial-intelligence/topics/mixed-integer-programming",
-        "classical-artificial-intelligence/topics/walksat"
-      ]
-    },
-    {
-      "text": "represent the task using variables, domains, constraints, and sometimes an objective.",
-      "routes": [
-        "classical-artificial-intelligence/topics/ac-3",
-        "classical-artificial-intelligence/topics/arc-consistency",
-        "classical-artificial-intelligence/topics/backtracking",
-        "classical-artificial-intelligence/topics/boolean-satisfiability",
-        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
-        "classical-artificial-intelligence/topics/constraint-propagation",
-        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
-        "classical-artificial-intelligence/topics/degree-heuristic",
-        "classical-artificial-intelligence/topics/dpll",
-        "classical-artificial-intelligence/topics/forward-checking",
-        "classical-artificial-intelligence/topics/integer-programming",
-        "classical-artificial-intelligence/topics/least-constraining-value",
-        "classical-artificial-intelligence/topics/min-conflicts",
-        "classical-artificial-intelligence/topics/minimum-remaining-values",
-        "classical-artificial-intelligence/topics/mixed-integer-programming",
-        "classical-artificial-intelligence/topics/walksat"
-      ]
-    },
-    {
-      "text": "feasibility, optimality, and proof of infeasibility are distinct outcomes.",
-      "routes": [
-        "classical-artificial-intelligence/topics/ac-3",
-        "classical-artificial-intelligence/topics/arc-consistency",
-        "classical-artificial-intelligence/topics/backtracking",
-        "classical-artificial-intelligence/topics/boolean-satisfiability",
-        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
-        "classical-artificial-intelligence/topics/constraint-propagation",
-        "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
-        "classical-artificial-intelligence/topics/degree-heuristic",
-        "classical-artificial-intelligence/topics/dpll",
-        "classical-artificial-intelligence/topics/forward-checking",
-        "classical-artificial-intelligence/topics/integer-programming",
-        "classical-artificial-intelligence/topics/least-constraining-value",
-        "classical-artificial-intelligence/topics/min-conflicts",
-        "classical-artificial-intelligence/topics/minimum-remaining-values",
-        "classical-artificial-intelligence/topics/mixed-integer-programming",
-        "classical-artificial-intelligence/topics/walksat"
       ]
     },
     {
@@ -254,7 +170,6 @@
         "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/first-order-predicate-logic",
         "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/horn-clauses",
@@ -263,9 +178,6 @@
         "classical-artificial-intelligence/topics/modal-logic",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
-        "classical-artificial-intelligence/topics/propositional-logic",
-        "classical-artificial-intelligence/topics/quantifiers",
-        "classical-artificial-intelligence/topics/resolution",
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/unification"
       ]
@@ -277,7 +189,6 @@
         "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/first-order-predicate-logic",
         "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/horn-clauses",
@@ -286,9 +197,6 @@
         "classical-artificial-intelligence/topics/modal-logic",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
-        "classical-artificial-intelligence/topics/propositional-logic",
-        "classical-artificial-intelligence/topics/quantifiers",
-        "classical-artificial-intelligence/topics/resolution",
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/unification"
       ]
@@ -300,7 +208,6 @@
         "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/first-order-predicate-logic",
         "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/horn-clauses",
@@ -309,11 +216,35 @@
         "classical-artificial-intelligence/topics/modal-logic",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
-        "classical-artificial-intelligence/topics/propositional-logic",
-        "classical-artificial-intelligence/topics/quantifiers",
-        "classical-artificial-intelligence/topics/resolution",
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/unification"
+      ]
+    },
+    {
+      "text": "it operates on variables, domains, constraints, and sometimes an objective.",
+      "routes": [
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
+      ]
+    },
+    {
+      "text": "represent the task using variables, domains, constraints, and sometimes an objective.",
+      "routes": [
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
+      ]
+    },
+    {
+      "text": "feasibility, optimality, and proof of infeasibility are distinct outcomes.",
+      "routes": [
+        "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
+        "classical-artificial-intelligence/topics/integer-programming",
+        "classical-artificial-intelligence/topics/mixed-integer-programming",
+        "classical-artificial-intelligence/topics/walksat"
       ]
     },
     {
@@ -365,36 +296,6 @@
         "classical-artificial-intelligence/topics/state-space-planning",
         "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-planning"
-      ]
-    },
-    {
-      "text": "represent the task using states, actions, a start condition, and a goal test.",
-      "routes": [
-        "classical-artificial-intelligence/topics/hill-climbing",
-        "classical-artificial-intelligence/topics/local-beam-search",
-        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
-        "classical-artificial-intelligence/topics/simulated-annealing",
-        "classical-artificial-intelligence/topics/tabu-search"
-      ]
-    },
-    {
-      "text": "state representation and duplicate handling can matter more than the headline algorithm.",
-      "routes": [
-        "classical-artificial-intelligence/topics/hill-climbing",
-        "classical-artificial-intelligence/topics/local-beam-search",
-        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
-        "classical-artificial-intelligence/topics/simulated-annealing",
-        "classical-artificial-intelligence/topics/tabu-search"
-      ]
-    },
-    {
-      "text": "compare completeness, optimality, time, and memory under the actual problem assumptions.",
-      "routes": [
-        "classical-artificial-intelligence/topics/hill-climbing",
-        "classical-artificial-intelligence/topics/local-beam-search",
-        "classical-artificial-intelligence/topics/random-restart-hill-climbing",
-        "classical-artificial-intelligence/topics/simulated-annealing",
-        "classical-artificial-intelligence/topics/tabu-search"
       ]
     },
     {
@@ -547,12 +448,8 @@
       "slug": "classical-artificial-intelligence/topics/ac-3",
       "title": "AC-3",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/admissible-heuristics",
@@ -587,12 +484,8 @@
       "slug": "classical-artificial-intelligence/topics/arc-consistency",
       "title": "Arc consistency",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/automated-theorem-proving",
@@ -609,12 +502,8 @@
       "slug": "classical-artificial-intelligence/topics/backtracking",
       "title": "Backtracking",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/backward-chaining",
@@ -645,12 +534,8 @@
       "slug": "classical-artificial-intelligence/topics/boolean-satisfiability",
       "title": "Boolean satisfiability",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/branch-and-bound",
@@ -702,23 +587,15 @@
       "slug": "classical-artificial-intelligence/topics/constraint-propagation",
       "title": "Constraint propagation",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
       "title": "Constraint-satisfaction problems",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/contingent-planning",
@@ -779,12 +656,8 @@
       "slug": "classical-artificial-intelligence/topics/degree-heuristic",
       "title": "Degree heuristic",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/depth-first-search",
@@ -822,12 +695,8 @@
       "slug": "classical-artificial-intelligence/topics/dpll",
       "title": "DPLL",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/duplicate-state-detection",
@@ -851,12 +720,8 @@
       "slug": "classical-artificial-intelligence/topics/first-order-predicate-logic",
       "title": "First-order predicate logic",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/forward-and-backward-planning",
@@ -884,12 +749,8 @@
       "slug": "classical-artificial-intelligence/topics/forward-checking",
       "title": "Forward checking",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/fuzzy-logic",
@@ -935,12 +796,8 @@
       "slug": "classical-artificial-intelligence/topics/hill-climbing",
       "title": "Hill climbing",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/horn-clauses",
@@ -1004,23 +861,15 @@
       "slug": "classical-artificial-intelligence/topics/least-constraining-value",
       "title": "Least-constraining value",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/local-beam-search",
       "title": "Local beam search",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/logic-programming",
@@ -1037,12 +886,8 @@
       "slug": "classical-artificial-intelligence/topics/min-conflicts",
       "title": "Min-conflicts",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/minimax",
@@ -1059,12 +904,8 @@
       "slug": "classical-artificial-intelligence/topics/minimum-remaining-values",
       "title": "Minimum remaining values",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/mixed-integer-programming",
@@ -1187,34 +1028,22 @@
       "slug": "classical-artificial-intelligence/topics/propositional-logic",
       "title": "Propositional logic",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/quantifiers",
       "title": "Quantifiers",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/random-restart-hill-climbing",
       "title": "Random-restart hill climbing",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/receding-horizon-planning",
@@ -1231,12 +1060,8 @@
       "slug": "classical-artificial-intelligence/topics/resolution",
       "title": "Resolution",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/self-play",
@@ -1253,12 +1078,8 @@
       "slug": "classical-artificial-intelligence/topics/simulated-annealing",
       "title": "Simulated annealing",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/state-space-planning",
@@ -1293,12 +1114,8 @@
       "slug": "classical-artificial-intelligence/topics/tabu-search",
       "title": "Tabu search",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/temporal-logic",

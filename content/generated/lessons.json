@@ -463,30 +463,33 @@
     "id": "classical-artificial-intelligence--topics--ac-3",
     "slug": "classical-artificial-intelligence/topics/ac-3",
     "canonicalSlug": "classical-artificial-intelligence/topics/ac-3",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/ac-3/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "AC-3",
-    "summary": "AC-3 enforces arc consistency by revising a queue of directed binary arcs.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "AC-3 enforces binary arc consistency with a work queue. A revision deletes tail values that lack head-domain support. When that domain shrinks, neighboring arcs that depended on its values are scheduled again. On finite domains, deletions eventually stop; failure is detected if a domain becomes empty.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--arc-consistency"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Follow domain changes and requeued dependencies in AC-3.",
+      "Distinguish its fixed point from a solved CSP."
+    ],
+    "tags": [
+      "ac-3",
+      "csp-ac3",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: AC-3",
-        "url": "https://en.wikipedia.org/wiki/AC-3_algorithm"
+        "label": "Berkeley CS188: forward checking and arc filtering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/filtering.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: consistency algorithms and their limits",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S3.html"
       }
     ],
     "headings": [
@@ -496,28 +499,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "AC-3 field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive AC-3 diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This AC-3 illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-ac3",
+        "title": "A deleted support sends an earlier arc back to the queue",
+        "summary": "A check that passed yesterday can lose its witness today.",
+        "equation": "REVISE(X,Y): remove x with no compatible y; if D(X) shrinks, enqueue Z→X for neighbors Z≠Y",
+        "assumptions": "A<B<C, each initial domain {1,2,3,4}. FIFO starts [A→B,B→A,B→C,C→B]. Queue entries are deduplicated; after revising X→Y, requeue other neighbors into X. One slider step is one completed revision, regardless of the number of support comparisons inside it.",
+        "accessibilitySummary": "AC-3. A<B<C, each initial domain {1,2,3,4}. FIFO starts [A→B,B→A,B→C,C→B]. Queue entries are deduplicated; after revising X→Y, requeue other neighbors into X. One slider step is one completed revision, regardless of the number of support comparisons inside it. A data table and numeric summary accompany the graph.",
+        "takeaway": "The queue tracks dependencies between domain reductions. Rechecking an affected arc is necessary to reach a fixed point, even if that arc passed earlier.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "csp-ac3",
+          "label": "Completed arc revisions",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.56,
+          "max": 5,
+          "step": 1,
+          "initial": 3,
           "unit": ""
-        },
-        "seed": 2572844699,
-        "nodeCount": 10,
-        "density": 0.44
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/abduction",
@@ -723,30 +727,34 @@
     "id": "classical-artificial-intelligence--topics--arc-consistency",
     "slug": "classical-artificial-intelligence/topics/arc-consistency",
     "canonicalSlug": "classical-artificial-intelligence/topics/arc-consistency",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/arc-consistency/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Arc consistency",
-    "summary": "An arc X to Y is consistent when every value of X has at least one compatible supporting value in Y.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "A directed binary arc X→Y is consistent when every value in the current domain of X has at least one compatible value in the current domain of Y. A network is arc consistent when every such arc passes. Supports can differ from edge to edge; they need not assemble into a complete solution.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--constraint-satisfaction-problems",
+      "classical-artificial-intelligence--topics--forward-checking"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Check directed support and distinguish it from a global assignment.",
+      "Construct an arc-consistent unsatisfiable network."
+    ],
+    "tags": [
+      "arc consistency",
+      "csp-arc",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Arc consistency",
-        "url": "https://en.wikipedia.org/wiki/Local_consistency"
+        "label": "Poole and Mackworth: consistency algorithms and their limits",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S3.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: forward checking and arc filtering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/filtering.html"
       }
     ],
     "headings": [
@@ -756,28 +764,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Arc consistency field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Arc consistency diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Arc consistency illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-arc",
+        "title": "Every edge has support; the triangle still cannot close",
+        "summary": "Separate witnesses are not a shared witness.",
+        "equation": "∀x ∈ D(X), ∃y ∈ D(Y): cXY(x,y); check both directions for each binary relation",
+        "assumptions": "Triangle A,B,C has A≠B, B≠C, A≠C and equal input domains {1,…,q}. The slider chooses q=1,2,3. The lab checks support in these input domains; it does not run a pruning queue. Complete solution counts are exhaustive enumeration.",
+        "accessibilitySummary": "Arc consistency. Triangle A,B,C has A≠B, B≠C, A≠C and equal input domains {1,…,q}. The slider chooses q=1,2,3. The lab checks support in these input domains; it does not run a pruning queue. Complete solution counts are exhaustive enumeration. A data table and numeric summary accompany the graph.",
+        "takeaway": "The two-color triangle is arc consistent and unsatisfiable. Arc consistency can exclude unsupported values without deciding arbitrary cyclic CSPs.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.37,
+          "id": "csp-arc",
+          "label": "Number of available colors",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 2629050438,
-        "nodeCount": 9,
-        "density": 0.63
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/analogy",
@@ -851,30 +860,34 @@
     "id": "classical-artificial-intelligence--topics--backtracking",
     "slug": "classical-artificial-intelligence/topics/backtracking",
     "canonicalSlug": "classical-artificial-intelligence/topics/backtracking",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/backtracking/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Backtracking",
-    "summary": "Backtracking builds a partial assignment and retreats when no legal extension remains.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Backtracking explores partial assignments depth first. It tries a value, checks constraints whose inputs are available, and either extends the prefix or undoes the choice. Finite domains and exhaustive alternatives make the basic procedure complete. Variable order, filtering and value order determine how much of the tree it visits.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--constraint-satisfaction-problems",
+      "classical-artificial-intelligence--topics--depth-first-search"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Trace extension, rejection and restoration of partial assignments.",
+      "Explain why a finite exhaustive backtracking run is complete."
+    ],
+    "tags": [
+      "backtracking",
+      "csp-backtracking",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Backtracking",
-        "url": "https://en.wikipedia.org/wiki/Backtracking"
+        "label": "Poole and Mackworth: search over partial assignments",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S2.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: backtracking search",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/solving.html"
       }
     ],
     "headings": [
@@ -884,28 +897,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Backtracking field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Backtracking diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Backtracking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-backtracking",
+        "title": "Reject a bad prefix before filling the remaining slots",
+        "summary": "A failed prefix poisons every completion below it.",
+        "equation": "if a partial assignment violates a hard constraint, prune all of its extensions",
+        "assumptions": "Domains are {1,2,3}, constraints A<B and B<C, variable order A then B then C, and ascending values. Check the new adjacent inequality immediately. The run enumerates all solutions rather than stopping at the first. One attempt means trying a single variable value; it is not a complete-assignment test or a processor instruction.",
+        "accessibilitySummary": "Backtracking. Domains are {1,2,3}, constraints A<B and B<C, variable order A then B then C, and ascending values. Check the new adjacent inequality immediately. The run enumerates all solutions rather than stopping at the first. One attempt means trying a single variable value; it is not a complete-assignment test or a processor instruction. A data table and numeric summary accompany the graph.",
+        "takeaway": "Checking constraints early saves work, but undoing branch state is equally essential: a sibling must not inherit a failed branch's assignments or deletions.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "csp-backtracking",
+          "label": "Attempted variable assignments",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.28,
+          "max": 21,
+          "step": 1,
+          "initial": 6,
           "unit": ""
-        },
-        "seed": 1193404449,
-        "nodeCount": 10,
-        "density": 0.34
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/automated-theorem-proving",
@@ -1117,31 +1131,34 @@
     "id": "classical-artificial-intelligence--topics--boolean-satisfiability",
     "slug": "classical-artificial-intelligence/topics/boolean-satisfiability",
     "canonicalSlug": "classical-artificial-intelligence/topics/boolean-satisfiability",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/boolean-satisfiability/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Boolean satisfiability",
-    "summary": "Boolean satisfiability asks whether some truth assignment makes a propositional formula true.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence",
-      "satisfiability"
+    "summary": "Boolean satisfiability asks whether at least one complete truth assignment makes a formula true. In conjunctive normal form, every clause must hold, while each clause needs only one true literal. A SAT witness can be checked by evaluating the original formula. A failed trial proves only that trial invalid; UNSAT requires excluding all assignments through a complete procedure or a checkable refutation.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--propositional-logic",
+      "classical-artificial-intelligence--topics--constraint-satisfaction-problems"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Check every clause of a Boolean witness.",
+      "Explain why an invalid candidate is not an infeasibility proof."
+    ],
+    "tags": [
+      "boolean satisfiability",
+      "logic-sat",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Boolean satisfiability",
-        "url": "https://en.wikipedia.org/wiki/Boolean_satisfiability_problem"
+        "label": "Berkeley CS188: entailment, enumeration and DPLL",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/inference.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Stanford Logic Programming: constraint search and unit propagation",
+        "url": "https://logical.stanford.edu/logicprogramming/chapters/chapter_15.html"
       }
     ],
     "headings": [
@@ -1151,28 +1168,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Boolean satisfiability field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Boolean satisfiability diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Boolean satisfiability illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-sat",
+        "title": "Two configurations survive three Boolean requirements",
+        "summary": "OR gives a clause alternatives; AND makes every clause compulsory.",
+        "equation": "F=(X∨Y)∧(¬X∨Z)∧(¬Y∨¬Z); SAT(F) iff ∃assignment a: F(a)=true",
+        "assumptions": "X enables a fast mode, Y enables a safe mode and Z enables a cache. Require at least one mode, fast implies cache, and safe excludes cache. The eight assignments are exhaustive for exactly these three Boolean variables; no optimization score or omitted operational requirement is part of this model.",
+        "accessibilitySummary": "Boolean satisfiability. X enables a fast mode, Y enables a safe mode and Z enables a cache. Require at least one mode, fast implies cache, and safe excludes cache. The eight assignments are exhaustive for exactly these three Boolean variables; no optimization score or omitted operational requirement is part of this model. A data table and numeric summary accompany the graph.",
+        "takeaway": "010 and 101 satisfy all clauses. Selecting 111 violates the safe/cache exclusion even though the other two clauses hold. A failed selection does not negate the existing witnesses.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-sat",
+          "label": "Assignment index in XYZ binary order",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.31,
+          "max": 7,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 251502497,
-        "nodeCount": 8,
-        "density": 0.42
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/bidirectional-search",
@@ -1595,30 +1613,34 @@
     "id": "classical-artificial-intelligence--topics--constraint-propagation",
     "slug": "classical-artificial-intelligence/topics/constraint-propagation",
     "canonicalSlug": "classical-artificial-intelligence/topics/constraint-propagation",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/constraint-propagation/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Constraint propagation",
-    "summary": "Constraint propagation repeatedly narrows domains using implications of the constraints.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Constraint propagation repeatedly narrows domains using deductions justified by relations and current domains. A sound propagator preserves every solution compatible with the current branch. Different representations of the same complete solution set can support different amounts of pruning, particularly when a global constraint is decomposed into binary relations.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--arc-consistency",
+      "classical-artificial-intelligence--topics--ac-3"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Explain sound pruning and a propagator-relative fixed point.",
+      "Compare binary and global support on a concrete domain snapshot."
+    ],
+    "tags": [
+      "constraint propagation",
+      "csp-propagation",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Constraint propagation",
-        "url": "https://en.wikipedia.org/wiki/Local_consistency"
+        "label": "Poole and Mackworth: consistency algorithms and their limits",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S3.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: variables, domains and constraint graphs",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/csps.html"
       }
     ],
     "headings": [
@@ -1628,28 +1650,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Constraint propagation field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Constraint propagation diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Constraint propagation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-propagation",
+        "title": "Two variables reserve two values before either is assigned",
+        "summary": "X and Y have already reserved {1,2}, even before choosing who gets which.",
+        "equation": "Dᵢ' ⊆ Dᵢ and every current solution retains its value in Dᵢ'; allDifferent(X,Y,Z)",
+        "assumptions": "X,Y each have {1,2}; Z has {1,2,3}. Compare no filtering, binary arc consistency on the three pairwise inequalities, and complete support filtering on one allDifferent relation. The global stage enumerates the twelve input tuples as a small teaching implementation, not an efficient general allDifferent solver.",
+        "accessibilitySummary": "Constraint propagation. X,Y each have {1,2}; Z has {1,2,3}. Compare no filtering, binary arc consistency on the three pairwise inequalities, and complete support filtering on one allDifferent relation. The global stage enumerates the twelve input tuples as a small teaching implementation, not an efficient general allDifferent solver. A data table and numeric summary accompany the graph.",
+        "takeaway": "Equivalent solution sets do not imply equally strong propagators. The global relation forces Z=3 while binary arc consistency removes nothing here.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "csp-propagation",
+          "label": "Filtering stage: input, binary, global",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.34,
+          "max": 2,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 738880695,
-        "nodeCount": 6,
-        "density": 0.4
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/consistent-heuristics",
@@ -1659,30 +1682,34 @@
     "id": "classical-artificial-intelligence--topics--constraint-satisfaction-problems",
     "slug": "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
     "canonicalSlug": "classical-artificial-intelligence/topics/constraint-satisfaction-problems",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/constraint-satisfaction-problems/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Constraint-satisfaction problems",
-    "summary": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "A constraint-satisfaction problem specifies variables, a domain for each variable, and relations that permitted assignments must satisfy. A solution assigns every variable a domain value and satisfies all hard constraints. The basic feasibility question has no objective function; choosing the cheapest legal solution adds an optimization problem.",
+    "prerequisites": [
+      "mathematical-foundations--topics--sets-relations-and-functions",
+      "classical-artificial-intelligence--topics--state-space-representation"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Build and check a finite constraint model.",
+      "Separate domain membership, joint feasibility and optimization."
+    ],
+    "tags": [
+      "constraint-satisfaction problems",
+      "csp-assignment",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Constraint-satisfaction problems",
-        "url": "https://en.wikipedia.org/wiki/Constraint_satisfaction_problem"
+        "label": "Berkeley CS188: variables, domains and constraint graphs",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/csps.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: search over partial assignments",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S2.html"
       }
     ],
     "headings": [
@@ -1692,28 +1719,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Constraint-satisfaction problems field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Constraint-satisfaction problems diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Constraint-satisfaction problems illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-assignment",
+        "title": "Twenty-seven candidates, one legal assignment",
+        "summary": "A value can fit its domain and still break the joint assignment.",
+        "equation": "xᵢ ∈ Dᵢ for all i; cⱼ(x restricted to scope(cⱼ)) = true for all j",
+        "assumptions": "Three integer variables A,B,C each have domain {1,2,3}. The only constraints are A<B and B<C. The slider enumerates all complete triples lexicographically, from (1,1,1) to (3,3,3). These are candidate assignments, not time steps of a solver.",
+        "accessibilitySummary": "Constraint-satisfaction problems. Three integer variables A,B,C each have domain {1,2,3}. The only constraints are A<B and B<C. The slider enumerates all complete triples lexicographically, from (1,1,1) to (3,3,3). These are candidate assignments, not time steps of a solver. A data table and numeric summary accompany the graph.",
+        "takeaway": "Domains constrain individual choices; relations constrain combinations. The only strictly increasing triple from three available values is (1,2,3).",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "csp-assignment",
+          "label": "Candidate index, starting at zero",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.59,
+          "max": 26,
+          "step": 1,
+          "initial": 5,
           "unit": ""
-        },
-        "seed": 343609900,
-        "nodeCount": 6,
-        "density": 0.45
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/constraint-propagation",
@@ -2045,30 +2073,34 @@
     "id": "classical-artificial-intelligence--topics--degree-heuristic",
     "slug": "classical-artificial-intelligence/topics/degree-heuristic",
     "canonicalSlug": "classical-artificial-intelligence/topics/degree-heuristic",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/degree-heuristic/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Degree heuristic",
-    "summary": "The degree heuristic selects a variable constraining the largest number of unassigned neighbors.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "For binary CSP variable ordering, the degree heuristic prefers an unassigned variable involved in the most constraints with other unassigned variables. It often breaks an MRV tie: selecting a variable that touches many undecided neighbors may constrain more of the remaining problem. Residual degree can differ substantially from the original graph degree.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--minimum-remaining-values",
+      "mathematical-foundations--topics--graph-theory"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Rank a residual constraint graph by degree.",
+      "Explain how MRV ties and assignment state affect selection."
+    ],
+    "tags": [
+      "degree heuristic",
+      "csp-degree",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Degree heuristic",
-        "url": "https://en.wikipedia.org/wiki/Constraint_satisfaction_problem#Heuristics"
+        "label": "Berkeley CS188: variables, domains and constraint graphs",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/csps.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: variable and value ordering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/ordering.html"
       }
     ],
     "headings": [
@@ -2078,28 +2110,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Degree heuristic field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Degree heuristic diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Degree heuristic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-degree",
+        "title": "Count the neighbors that still need a decision",
+        "summary": "A busy junction becomes quiet when its neighbors are already fixed.",
+        "equation": "degreecurrent(X)=|{Y unassigned : a binary constraint links X and Y}|",
+        "assumptions": "Constraint scopes form edges AB,AC,BC,CD,DE. Every unassigned variable is supplied with the same current domain size, so degree is the tie-break. The slider excludes an assigned prefix A,B,C,D. Predicates and assignment values are not simulated; the diagram isolates residual-graph ranking. Degree ties are alphabetical.",
+        "accessibilitySummary": "Degree heuristic. Constraint scopes form edges AB,AC,BC,CD,DE. Every unassigned variable is supplied with the same current domain size, so degree is the tie-break. The slider excludes an assigned prefix A,B,C,D. Predicates and assignment values are not simulated; the diagram isolates residual-graph ranking. Degree ties are alphabetical. A data table and numeric summary accompany the graph.",
+        "takeaway": "Count edges inside the unassigned subgraph. After A and B are assigned, D has two unassigned neighbors while C has only one, so D wins.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "csp-degree",
+          "label": "Assigned prefix length: A, B, C, D",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.47,
+          "max": 4,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 1054884728,
-        "nodeCount": 9,
-        "density": 0.33
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/default-logic",
@@ -2379,30 +2412,34 @@
     "id": "classical-artificial-intelligence--topics--dpll",
     "slug": "classical-artificial-intelligence/topics/dpll",
     "canonicalSlug": "classical-artificial-intelligence/topics/dpll",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/dpll/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "DPLL",
-    "summary": "DPLL solves CNF SAT with recursive branching plus unit and pure-literal simplification.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "DPLL is a complete backtracking procedure for finite propositional CNF. It simplifies clauses under a partial assignment, propagates forced unit literals, and branches on an unassigned variable when needed. A false clause closes that branch; all satisfied clauses permit a witness completion. Chronological backtracking restores the previous decision context before trying the opposite value. Completeness does not imply a practical worst-case time bound.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--boolean-satisfiability",
+      "classical-artificial-intelligence--topics--backtracking"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Distinguish a decision, a forced propagation and a branch conflict.",
+      "Restore a failed branch and complete a satisfying partial trail."
+    ],
+    "tags": [
+      "dpll",
+      "logic-dpll",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: DPLL",
-        "url": "https://en.wikipedia.org/wiki/DPLL_algorithm"
+        "label": "Berkeley CS188: entailment, enumeration and DPLL",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/inference.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Stanford Logic Programming: constraint search and unit propagation",
+        "url": "https://logical.stanford.edu/logicprogramming/chapters/chapter_15.html"
       }
     ],
     "headings": [
@@ -2412,33 +2449,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "timeline",
-        "title": "DPLL field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive DPLL diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This DPLL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-dpll",
+        "title": "A forced conflict closes one branch before it grows",
+        "summary": "Do not branch on a choice that a unit clause already forces.",
+        "equation": "unit {L} ⇒ assign L=true; empty residual clause ⇒ branch conflict; all clauses true ⇒ SAT completion",
+        "assumptions": "CNF is C1=¬P∨Q, C2=¬P∨¬Q, C3=P∨R, C4=¬R∨S, C5=R∨¬S. Use alphabetic decisions, true first, first-clause unit propagation and chronological backtracking. This complete DPLL variant omits optional pure-literal elimination and clause learning. It stops when every original clause is satisfied, allowing remaining variables to be assigned either value.",
+        "accessibilitySummary": "DPLL. CNF is C1=¬P∨Q, C2=¬P∨¬Q, C3=P∨R, C4=¬R∨S, C5=R∨¬S. Use alphabetic decisions, true first, first-clause unit propagation and chronological backtracking. This complete DPLL variant omits optional pure-literal elimination and clause learning. It stops when every original clause is satisfied, allowing remaining variables to be assigned either value. A data table and numeric summary accompany the graph.",
+        "takeaway": "P=1 forces Q=1 and immediately falsifies C2. Backtracking restores Q to unassigned before P=0 forces R=1,S=1. All clauses then hold with Q free.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-dpll",
+          "label": "Trace event",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.28,
+          "max": 5,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 2929726955,
-        "events": [
-          1956,
-          1986,
-          2012,
-          2017,
-          2024
-        ]
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/dijkstras-algorithm",
@@ -2581,30 +2614,33 @@
     "id": "classical-artificial-intelligence--topics--first-order-predicate-logic",
     "slug": "classical-artificial-intelligence/topics/first-order-predicate-logic",
     "canonicalSlug": "classical-artificial-intelligence/topics/first-order-predicate-logic",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/first-order-predicate-logic/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "First-order predicate logic",
-    "summary": "First-order logic represents objects, predicates, functions, variables, and quantified relations.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "First-order predicate logic describes objects, their properties and relations, and quantified statements about a domain. Constants name objects, variables range over them, predicates evaluate tuples, and function symbols denote domain-valued functions. Truth requires an interpretation; open formulas also require values for their free variables. Evaluating a sentence in one specified interpretation is different from showing it follows in every model of a knowledge base.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--propositional-logic"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Evaluate predicates and guarded quantifiers in a supplied interpretation.",
+      "Distinguish a counterexample, a witness and logical entailment."
+    ],
+    "tags": [
+      "first-order predicate logic",
+      "logic-predicate-model",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: First-order predicate logic",
-        "url": "https://en.wikipedia.org/wiki/First-order_logic"
+        "label": "Poole and Mackworth: predicate interpretations and variables",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch15.S3.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: terms, predicates and quantifiers",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/first-order-logic.html"
       }
     ],
     "headings": [
@@ -2614,28 +2650,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "First-order predicate logic field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive First-order predicate logic diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This First-order predicate logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-predicate-model",
+        "title": "Check the rule against objects, not unnamed truth bits",
+        "summary": "A predicate gains meaning only after its domain and extension are fixed.",
+        "equation": "∀x(Active(x)⇒Healthy(x)); ∃x(Active(x)∧Healthy(x))",
+        "assumptions": "Domain D={a,b,c} contains three distinct objects and no others. Active={a,b} is fixed. The mask fully specifies Healthy: bit 1 selects a, bit 2 selects b, bit 4 selects c. Use classical two-valued truth, with no unknown entries. The grid checks both closed sentences in this finite interpretation, rather than running an inference procedure over unspecified models.",
+        "accessibilitySummary": "First-order predicate logic. Domain D={a,b,c} contains three distinct objects and no others. Active={a,b} is fixed. The mask fully specifies Healthy: bit 1 selects a, bit 2 selects b, bit 4 selects c. Use classical two-valued truth, with no unknown entries. The grid checks both closed sentences in this finite interpretation, rather than running an inference procedure over unspecified models. A data table and numeric summary accompany the graph.",
+        "takeaway": "With only a healthy, the existential sentence is true but the universal rule is false because b is a counterexample. Inactive c does not falsify the implication merely by being unhealthy.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-predicate-model",
+          "label": "Healthy subset mask: a=1, b=2, c=4",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.33,
+          "max": 7,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 937087709,
-        "nodeCount": 10,
-        "density": 0.54
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/expectimax",
@@ -2773,30 +2810,33 @@
     "id": "classical-artificial-intelligence--topics--forward-checking",
     "slug": "classical-artificial-intelligence/topics/forward-checking",
     "canonicalSlug": "classical-artificial-intelligence/topics/forward-checking",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/forward-checking/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Forward checking",
-    "summary": "Forward checking removes neighbor values made impossible by a new assignment.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "After assigning a variable, forward checking removes incompatible values from the domains of its unassigned neighbors. An empty neighbor domain rejects the branch immediately. The basic binary procedure does not recursively propagate those deletions through constraints between unassigned variables, so it can miss a contradiction one edge farther away.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--backtracking"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Calculate neighbor-domain pruning after one assignment.",
+      "Identify a contradiction missed by basic forward checking."
+    ],
+    "tags": [
+      "forward checking",
+      "csp-forward",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Forward checking",
-        "url": "https://en.wikipedia.org/wiki/Look-ahead_(backtracking)"
+        "label": "Berkeley CS188: forward checking and arc filtering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/filtering.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: consistency algorithms and their limits",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S3.html"
       }
     ],
     "headings": [
@@ -2806,28 +2846,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Forward checking field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Forward checking diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Forward checking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-forward",
+        "title": "A surviving neighbor can still have nowhere to go",
+        "summary": "Checking the next door does not inspect the whole corridor.",
+        "equation": "D(Y) ← {y ∈ D(Y) : cXY(x,y)} for each unassigned neighbor Y of assigned X=x",
+        "assumptions": "A<B<C with all input domains {1,2,3}. Assign only A, then filter B against A<B. C is not adjacent to A and remains unchanged. Complete-extension counts come from a separate exhaustive teaching oracle; forward checking does not calculate them.",
+        "accessibilitySummary": "Forward checking. A<B<C with all input domains {1,2,3}. Assign only A, then filter B against A<B. C is not adjacent to A and remains unchanged. Complete-extension counts come from a separate exhaustive teaching oracle; forward checking does not calculate them. A data table and numeric summary accompany the graph.",
+        "takeaway": "Forward checking catches direct domain wipeouts. A surviving domain is weaker evidence than a complete solution, and propagation farther through the graph requires an additional algorithm.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.65,
+          "id": "csp-forward",
+          "label": "Assigned value of A",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 1626741867,
-        "nodeCount": 8,
-        "density": 0.52
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/forward-chaining",
@@ -3103,30 +3144,33 @@
     "id": "classical-artificial-intelligence--topics--hill-climbing",
     "slug": "classical-artificial-intelligence/topics/hill-climbing",
     "canonicalSlug": "classical-artificial-intelligence/topics/hill-climbing",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/hill-climbing/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Hill climbing",
-    "summary": "Hill climbing repeatedly moves to a neighboring state with a better objective value.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Hill climbing improves a complete configuration by moving to a better neighbor according to an objective. Strict steepest ascent selects the highest-valued neighbor and stops if none improves the current value. Its stopping condition establishes a local maximum under the chosen neighborhood, rather than a global optimum over the full configuration space.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--state-space-representation"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Trace strict steepest ascent under a finite neighborhood.",
+      "Distinguish a local stopping condition from a global certificate."
+    ],
+    "tags": [
+      "hill climbing",
+      "local-hill",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Hill climbing",
-        "url": "https://en.wikipedia.org/wiki/Hill_climbing"
+        "label": "Berkeley CS188: local neighborhoods, hill climbing and beams",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/search/local.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: local search, restarts and memory",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S6.html"
       }
     ],
     "headings": [
@@ -3136,28 +3180,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Hill climbing field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Hill climbing diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Hill climbing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-hill",
+        "title": "A locally highest point can still leave three points behind",
+        "summary": "The neighborhood determines what uphill means.",
+        "equation": "xnext = argmaxy∈N(x) U(y); move only if U(xnext)>U(x)",
+        "assumptions": "Nine discrete configurations x=0,…,8 have utilities [1,4,7,6,3,5,8,10,9]. Neighbors are valid x±1. Use strict improvement and smaller-index ties. The graph joins discrete values for readability; intermediate positions are not available configurations. The full enumeration supplies the global benchmark.",
+        "accessibilitySummary": "Hill climbing. Nine discrete configurations x=0,…,8 have utilities [1,4,7,6,3,5,8,10,9]. Neighbors are valid x±1. Use strict improvement and smaller-index ties. The graph joins discrete values for readability; intermediate positions are not available configurations. The full enumeration supplies the global benchmark. A data table and numeric summary accompany the graph.",
+        "takeaway": "Five starting configurations end at utility seven; four end at utility ten. A strict local stop cannot certify which peak is globally best without additional information.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "local-hill",
+          "label": "Starting configuration index",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.28,
+          "max": 8,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 1001703714,
-        "nodeCount": 10,
-        "density": 0.59
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/hierarchical-task-networks",
@@ -3574,30 +3619,34 @@
     "id": "classical-artificial-intelligence--topics--least-constraining-value",
     "slug": "classical-artificial-intelligence/topics/least-constraining-value",
     "canonicalSlug": "classical-artificial-intelligence/topics/least-constraining-value",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/least-constraining-value/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Least-constraining value",
-    "summary": "The least-constraining value orders choices by how many options they leave for neighboring variables.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Least-constraining value orders candidate values for a selected variable by their effect on the remaining variables. A common local score counts neighbor-domain values deleted by a trial assignment and filtering. Lower scores preserve more immediate alternatives. The score is a heuristic proxy, with ties and filtering strength defined by the implementation.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--forward-checking",
+      "classical-artificial-intelligence--topics--minimum-remaining-values"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute a local LCV score and expose a wipeout.",
+      "Distinguish a pruning proxy from a complete solution count."
+    ],
+    "tags": [
+      "least-constraining value",
+      "csp-lcv",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Least-constraining value",
-        "url": "https://en.wikipedia.org/wiki/Constraint_satisfaction_problem#Heuristics"
+        "label": "Berkeley CS188: variable and value ordering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/ordering.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: forward checking and arc filtering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/filtering.html"
       }
     ],
     "headings": [
@@ -3607,28 +3656,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Least-constraining value field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Least-constraining value diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Least-constraining value illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-lcv",
+        "title": "Try the value that leaves neighbors more choices",
+        "summary": "Choose your value without taking away someone else's last option.",
+        "equation": "score(x)=ΣY |D(Y) ∖ D(Y after trial X=x)|; prefer smaller score",
+        "assumptions": "X has {1,2,3}; neighbors Y={1,2}, Z={1,3}, W={1}. Relations are X≠Y,X≠Z,X≠W, with no relation among the neighbors. Score a trial using forward checking on a temporary copy. Ties use ascending numeric values. Full-extension counts are enumerated only to explain this independent-neighbor toy model.",
+        "accessibilitySummary": "Least-constraining value. X has {1,2,3}; neighbors Y={1,2}, Z={1,3}, W={1}. Relations are X≠Y,X≠Z,X≠W, with no relation among the neighbors. Score a trial using forward checking on a temporary copy. Ties use ascending numeric values. Full-extension counts are enumerated only to explain this independent-neighbor toy model. A data table and numeric summary accompany the graph.",
+        "takeaway": "X=1 empties W. X=2 and X=3 each remove only one neighbor value, so they tie; the declared rule chooses 2 first.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.29,
+          "id": "csp-lcv",
+          "label": "Trial value for X",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 3836395306,
-        "nodeCount": 7,
-        "density": 0.51
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/knowledge-bases",
@@ -3638,30 +3688,34 @@
     "id": "classical-artificial-intelligence--topics--local-beam-search",
     "slug": "classical-artificial-intelligence/topics/local-beam-search",
     "canonicalSlug": "classical-artificial-intelligence/topics/local-beam-search",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/local-beam-search/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Local beam search",
-    "summary": "Local beam search evolves several candidate states together and keeps the strongest combined successors.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Local beam search maintains a bounded population of complete configurations. It generates neighbors of every current member, pools the candidates, and chooses the next population using an objective. Selection is shared across members, so it differs from independent local searches. Deduplication, ties and whether parents are retained affect both diversity and behavior.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--hill-climbing",
+      "classical-artificial-intelligence--topics--beam-search"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Construct a next population from a shared successor pool.",
+      "Distinguish local populations, independent restarts and path-frontier beams."
+    ],
+    "tags": [
+      "local beam search",
+      "local-beam",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Local beam search",
-        "url": "https://en.wikipedia.org/wiki/Beam_search"
+        "label": "Poole and Mackworth: population-based search",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S7.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: local neighborhoods, hill climbing and beams",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/search/local.html"
       }
     ],
     "headings": [
@@ -3671,33 +3725,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "timeline",
-        "title": "Local beam search field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Local beam search diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Local beam search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-beam",
+        "title": "Pool all neighbors before choosing the next population",
+        "summary": "One member's useful neighbor can become everyone's next direction.",
+        "equation": "Bnext = top-k unique configurations in ⋃x∈B N(x), ranked by utility",
+        "assumptions": "Three-bit configurations 000,…,111 have utilities [0,5,4,1,3,2,9,6] by numeric ID. A move flips one bit. Width k initializes with the first k members of [000,111,010]. Pool and deduplicate successors, then rank by decreasing utility and increasing ID. Parents are not automatically retained. Run at most three generations, stopping if known target 110 appears.",
+        "accessibilitySummary": "Local beam search. Three-bit configurations 000,…,111 have utilities [0,5,4,1,3,2,9,6] by numeric ID. A move flips one bit. Width k initializes with the first k members of [000,111,010]. Pool and deduplicate successors, then rank by decreasing utility and increasing ID. Parents are not automatically retained. Run at most three generations, stopping if known target 110 appears. A data table and numeric summary accompany the graph.",
+        "takeaway": "Width two pools the neighbors of 000 and 111 and discovers 110 immediately. Width one follows a different supplied initialization and misses it within three generations; this is a worked trace, not a monotonic width guarantee.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.47,
+          "id": "local-beam",
+          "label": "Population width",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 652738165,
-        "events": [
-          1956,
-          1986,
-          2012,
-          2017,
-          2024
-        ]
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/least-constraining-value",
@@ -3771,30 +3821,34 @@
     "id": "classical-artificial-intelligence--topics--min-conflicts",
     "slug": "classical-artificial-intelligence/topics/min-conflicts",
     "canonicalSlug": "classical-artificial-intelligence/topics/min-conflicts",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/min-conflicts/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Min-conflicts",
-    "summary": "Min-conflicts repairs a complete assignment by changing a conflicted variable to a low-conflict value.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Min-conflicts searches over complete assignments that may violate constraints. It selects a conflicted variable and replaces its value with one minimizing the conflicts involving that variable, holding all other values fixed. Repeated repair can quickly find feasible assignments on suitable problems, but local traps, cycles and budgets prevent a general completeness guarantee.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--constraint-satisfaction-problems",
+      "classical-artificial-intelligence--topics--hill-climbing"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Trace repair of a complete but inconsistent assignment.",
+      "Separate feasibility discovery from infeasibility or optimality certification."
+    ],
+    "tags": [
+      "min-conflicts",
+      "local-min-conflicts",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Min-conflicts",
-        "url": "https://en.wikipedia.org/wiki/Min-conflicts_algorithm"
+        "label": "Berkeley CS188: repair of complete assignments",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/local-search.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: local search, restarts and memory",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S6.html"
       }
     ],
     "headings": [
@@ -3804,28 +3858,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Min-conflicts field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Min-conflicts diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Min-conflicts illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-min-conflicts",
+        "title": "Three clashes disappear after two color repairs",
+        "summary": "Keep every slot filled, then repair the clashes.",
+        "equation": "choose conflicted X; xnext = argminv∈D(X) number of violated constraints involving X",
+        "assumptions": "Triangle A,B,C uses colors {1,2,3} with pairwise inequality edges. Start (1,1,1). Select the alphabetically first conflicted variable and the smallest color among equal minima, including its current value as a candidate. The deterministic trace performs up to two repairs and stops at zero conflicts. It is one explicit policy, rather than a random performance experiment.",
+        "accessibilitySummary": "Min-conflicts. Triangle A,B,C uses colors {1,2,3} with pairwise inequality edges. Start (1,1,1). Select the alphabetically first conflicted variable and the smallest color among equal minima, including its current value as a candidate. The deterministic trace performs up to two repairs and stops at zero conflicts. It is one explicit policy, rather than a random performance experiment. A data table and numeric summary accompany the graph.",
+        "takeaway": "Repair A to 2, then B to 3, reducing edge conflicts 3→1→0. Zero means every modeled hard inequality is satisfied, not that an unrelated quality objective is optimized.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "local-min-conflicts",
+          "label": "Completed repair moves",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.6,
+          "max": 2,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 3926820863,
-        "nodeCount": 9,
-        "density": 0.48
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/logic-programming",
@@ -3902,30 +3957,34 @@
     "id": "classical-artificial-intelligence--topics--minimum-remaining-values",
     "slug": "classical-artificial-intelligence/topics/minimum-remaining-values",
     "canonicalSlug": "classical-artificial-intelligence/topics/minimum-remaining-values",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/minimum-remaining-values/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Minimum remaining values",
-    "summary": "Minimum remaining values chooses the unassigned variable with the smallest current domain.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Minimum remaining values selects an unassigned variable with the fewest currently legal choices. The score must reflect the current branch and its filtering, rather than the original declared domain. Ties need a policy, such as alphabetical order or residual degree. This ordering guides search; it is not a proof that the selected branch succeeds.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--backtracking",
+      "classical-artificial-intelligence--topics--forward-checking"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute MRV from a current domain snapshot.",
+      "Distinguish variable selection from value selection."
+    ],
+    "tags": [
+      "minimum remaining values",
+      "csp-mrv",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Minimum remaining values",
-        "url": "https://en.wikipedia.org/wiki/Constraint_satisfaction_problem#Heuristics"
+        "label": "Berkeley CS188: variable and value ordering",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/csp/ordering.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: search over partial assignments",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S2.html"
       }
     ],
     "headings": [
@@ -3935,31 +3994,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "optimization",
-        "title": "Minimum remaining values field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Minimum remaining values diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Minimum remaining values illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "csp-mrv",
+        "title": "Pick the variable with the shortest live domain",
+        "summary": "Handle the slot closest to running out of options.",
+        "equation": "choose X ∈ unassigned minimizing |Dcurrent(X)|; an empty domain signals failure",
+        "assumptions": "Four unassigned variables have supplied current domains A={1,…,k}, B={1,2}, C={1,2,3}, D={1,2}. The slider varies k from one to three. Ties are alphabetical. This is an ordering snapshot: it does not assign a value, run filtering or measure full search work.",
+        "accessibilitySummary": "Minimum remaining values. Four unassigned variables have supplied current domains A={1,…,k}, B={1,2}, C={1,2,3}, D={1,2}. The slider varies k from one to three. Ties are alphabetical. This is an ordering snapshot: it does not assign a value, run filtering or measure full search work. A data table and numeric summary accompany the graph.",
+        "takeaway": "MRV ranks current legal domain sizes. When A grows from two choices to three, the selected variable changes from A to B under the explicit tie-break.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.49,
+          "id": "csp-mrv",
+          "label": "Current domain size of A",
+          "min": 1,
+          "max": 3,
+          "step": 1,
+          "initial": 3,
           "unit": ""
-        },
-        "seed": 2121921381,
-        "minima": [
-          0.24,
-          0.73
-        ],
-        "curvature": 0.74
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/minimax",
@@ -4684,31 +4741,31 @@
     "id": "classical-artificial-intelligence--topics--propositional-logic",
     "slug": "classical-artificial-intelligence/topics/propositional-logic",
     "canonicalSlug": "classical-artificial-intelligence/topics/propositional-logic",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/propositional-logic/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Propositional logic",
-    "summary": "Propositional logic represents atomic statements as true or false and combines them with logical connectives.",
+    "summary": "Propositional logic treats each atomic statement as Boolean and evaluates compound statements with truth-functional connectives. A truth assignment is a model of a formula when that formula evaluates to true. Syntax describes a formula; semantics tells which assignments satisfy it. Material implication is especially easy to misread: P⇒Q rules out P=true,Q=false, without asserting causation or the converse.",
     "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence",
-      "propositional"
+    "outcomes": [
+      "Evaluate material implication and distinguish its converse.",
+      "Separate satisfaction of one model from validity across all models."
     ],
-    "updatedAt": "2026-08-24",
+    "tags": [
+      "propositional logic",
+      "logic-implication",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Propositional logic",
-        "url": "https://en.wikipedia.org/wiki/Propositional_logic"
+        "label": "Berkeley CS188: propositional models and CNF",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/propositional.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: entailment, enumeration and DPLL",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/inference.html"
       }
     ],
     "headings": [
@@ -4718,28 +4775,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Propositional logic field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Propositional logic diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Propositional logic illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-implication",
+        "title": "An implication fails in just one of four worlds",
+        "summary": "Read an implication as one forbidden row, not an arrow of cause.",
+        "equation": "P⇒Q ≡ ¬P∨Q; P⇔Q ≡ (P⇒Q)∧(Q⇒P)",
+        "assumptions": "Use classical two-valued semantics with two independent proposition symbols P,Q. Assignment indices enumerate (P,Q)=00,01,10,11. The table compares the implication with its converse. No probability, causal direction, time ordering or real-world rule reliability is encoded.",
+        "accessibilitySummary": "Propositional logic. Use classical two-valued semantics with two independent proposition symbols P,Q. Assignment indices enumerate (P,Q)=00,01,10,11. The table compares the implication with its converse. No probability, causal direction, time ordering or real-world rule reliability is encoded. A data table and numeric summary accompany the graph.",
+        "takeaway": "At P=0,Q=1, P⇒Q is true but Q⇒P is false. Three satisfying rows make P⇒Q satisfiable; its remaining false row prevents validity.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-implication",
+          "label": "Assignment index: 00, 01, 10, 11",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.69,
+          "max": 3,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 2668996623,
-        "nodeCount": 9,
-        "density": 0.48
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/planning-under-uncertainty",
@@ -4749,30 +4807,33 @@
     "id": "classical-artificial-intelligence--topics--quantifiers",
     "slug": "classical-artificial-intelligence/topics/quantifiers",
     "canonicalSlug": "classical-artificial-intelligence/topics/quantifiers",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/quantifiers/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Quantifiers",
-    "summary": "Quantifiers state whether a predicate holds for every object or for at least one object.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Universal quantification requires a formula for every domain element; existential quantification requires at least one witness. Nested quantifier order controls which witnesses may depend on earlier choices. ∀x∃y R(x,y) permits a different y for each x, whereas ∃y∀x R(x,y) requires one y that works for all x. Reversing these mixed quantifiers generally changes the claim.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--first-order-predicate-logic"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compare dependent witnesses with one shared witness.",
+      "Negate a quantified statement and identify the correct counterexample."
+    ],
+    "tags": [
+      "quantifiers",
+      "logic-quantifier-order",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Quantifiers",
-        "url": "https://en.wikipedia.org/wiki/Quantifier_(logic)"
+        "label": "forall x: Calgary — multiple generality and quantifier order",
+        "url": "https://forallx.openlogicproject.org/html/Ch25.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Stanford Introduction to Logic: quantifier relationships and negation",
+        "url": "https://logical.stanford.edu/intrologic/sections/section_08.html?section=2"
       }
     ],
     "headings": [
@@ -4782,28 +4843,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Quantifiers field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Quantifiers diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Quantifiers illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-quantifier-order",
+        "title": "Every job can have a worker without sharing one worker",
+        "summary": "A one in every row is weaker than one column full of ones.",
+        "equation": "∃w∈Workers ∀j∈Jobs R(j,w) ⇒ ∀j∈Jobs ∃w∈Workers R(j,w); converse is not valid",
+        "assumptions": "Jobs={j1,j2} and Workers={w1,w2,w3} are fixed nonempty finite sets. R(j,w) means that worker can handle that job. Four completely specified compatibility tables are supplied; the control changes the table, not the quantifier definition. Bounded quantifiers are shorthand for the stated typed restrictions. No worker capacity, distinctness or simultaneous assignment condition is encoded.",
+        "accessibilitySummary": "Quantifiers. Jobs={j1,j2} and Workers={w1,w2,w3} are fixed nonempty finite sets. R(j,w) means that worker can handle that job. Four completely specified compatibility tables are supplied; the control changes the table, not the quantifier definition. Bounded quantifiers are shorthand for the stated typed restrictions. No worker capacity, distinctness or simultaneous assignment condition is encoded. A data table and numeric summary accompany the graph.",
+        "takeaway": "Pattern 0 supports j1 only with w1 and j2 only with w2. Every job has a witness, but there is no common witness. Pattern 1 adds a shared w1 column, making both sentences true.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-quantifier-order",
+          "label": "Compatibility pattern",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.39,
+          "max": 3,
+          "step": 1,
+          "initial": 0,
           "unit": ""
-        },
-        "seed": 499815402,
-        "nodeCount": 8,
-        "density": 0.27
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/propositional-logic",
@@ -4813,30 +4875,34 @@
     "id": "classical-artificial-intelligence--topics--random-restart-hill-climbing",
     "slug": "classical-artificial-intelligence/topics/random-restart-hill-climbing",
     "canonicalSlug": "classical-artificial-intelligence/topics/random-restart-hill-climbing",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/random-restart-hill-climbing/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Random-restart hill climbing",
-    "summary": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Random-restart hill climbing repeats local improvement from independently sampled initial configurations and keeps the best result. Its chance of success depends on the initialization distribution and the basins induced by the local policy. A finite number of runs still permits failure. Almost-sure eventual success requires a positive success probability and indefinitely many suitable trials.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--hill-climbing",
+      "mathematical-foundations--topics--independence-and-conditional-independence"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Calculate repeated-run success under explicit independence.",
+      "Explain the difference between finite-budget risk and eventual success."
+    ],
+    "tags": [
+      "random-restart hill climbing",
+      "local-restarts",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Random-restart hill climbing",
-        "url": "https://en.wikipedia.org/wiki/Hill_climbing"
+        "label": "Poole and Mackworth: local search, restarts and memory",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S6.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: local neighborhoods, hill climbing and beams",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/search/local.html"
       }
     ],
     "headings": [
@@ -4846,28 +4912,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Random-restart hill climbing field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Random-restart hill climbing diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Random-restart hill climbing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-restarts",
+        "title": "More starts shrink the chance of missing the good basin",
+        "summary": "Count basin probability, not the number of peaks.",
+        "equation": "P(at least one success in r independent runs)=1−(1−p)ʳ; E[runs until success]=1/p",
+        "assumptions": "Use the nine-state hill-climbing landscape and strict adjacent moves. Each run starts uniformly on 0,…,8, independently with replacement, and is allowed to finish. Four starts reach the global peak, so p=4/9. The plot is an exact probability calculation, not an empirical trial or runtime measurement.",
+        "accessibilitySummary": "Random-restart hill climbing. Use the nine-state hill-climbing landscape and strict adjacent moves. Each run starts uniformly on 0,…,8, independently with replacement, and is allowed to finish. Four starts reach the global peak, so p=4/9. The plot is an exact probability calculation, not an empirical trial or runtime measurement. A data table and numeric summary accompany the graph.",
+        "takeaway": "With p=4/9, three runs succeed with probability 1−(5/9)³≈0.8285. The remaining failure probability is real at a finite budget.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.48,
+          "id": "local-restarts",
+          "label": "Independent runs, including the first",
+          "min": 1,
+          "max": 12,
+          "step": 1,
+          "initial": 3,
           "unit": ""
-        },
-        "seed": 3588675392,
-        "nodeCount": 8,
-        "density": 0.57
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/quantifiers",
@@ -4944,30 +5011,34 @@
     "id": "classical-artificial-intelligence--topics--resolution",
     "slug": "classical-artificial-intelligence/topics/resolution",
     "canonicalSlug": "classical-artificial-intelligence/topics/resolution",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/resolution/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Resolution",
-    "summary": "Resolution derives a new clause by eliminating complementary literals from two clauses.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Propositional resolution combines two clauses containing complementary literals on one pivot and keeps their other literals. The resulting clause follows from its parents. To prove that a knowledge base entails a query, add the negated query and seek the empty clause. A completed refutation establishes contradiction; an unfinished or arbitrarily truncated derivation cannot establish that no proof exists.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--propositional-logic",
+      "classical-artificial-intelligence--topics--boolean-satisfiability"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Construct a resolvent from one complementary pivot pair.",
+      "Interpret an empty-clause refutation with the negated query included."
+    ],
+    "tags": [
+      "resolution",
+      "logic-resolution",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Resolution",
-        "url": "https://en.wikipedia.org/wiki/Resolution_(logic)"
+        "label": "Stanford Introduction to Logic: resolution proofs",
+        "url": "https://logical.stanford.edu/intrologic/sections/section_06.html?section=2"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "AIMA code: propositional resolution procedure",
+        "url": "https://aimacode.github.io/aima-java/aima3e/javadoc/aima-core/aima/core/logic/propositional/inference/PLResolution.html"
       }
     ],
     "headings": [
@@ -4977,33 +5048,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "timeline",
-        "title": "Resolution field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Resolution diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Resolution illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-resolution",
+        "title": "A four-step refutation proves that C must hold",
+        "summary": "Make the denied conclusion impossible.",
+        "equation": "(A∨L),(B∨¬L) ⊢ A∨B; KB⊨q iff KB∧¬q is unsatisfiable",
+        "assumptions": "Use propositional clauses C1=A∨B, C2=¬A∨C, C3=¬B∨C. To prove C, add C4=¬C. The slider applies the four specified valid resolvents in order. Each step cancels exactly one complementary pair. A separate eight-assignment enumeration is labeled as an oracle, not counted as part of the resolution trace.",
+        "accessibilitySummary": "Resolution. Use propositional clauses C1=A∨B, C2=¬A∨C, C3=¬B∨C. To prove C, add C4=¬C. The slider applies the four specified valid resolvents in order. Each step cancels exactly one complementary pair. A separate eight-assignment enumeration is labeled as an oracle, not counted as part of the resolution trace. A data table and numeric summary accompany the graph.",
+        "takeaway": "Negating C forces ¬A and ¬B, contradicting A∨B. The empty clause follows after four resolutions; KB alone remains consistent with three models.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-resolution",
+          "label": "Completed resolution steps",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.63,
+          "max": 4,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 1882170701,
-        "events": [
-          1956,
-          1986,
-          2012,
-          2017,
-          2024
-        ]
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/receding-horizon-planning",
@@ -5077,30 +5144,34 @@
     "id": "classical-artificial-intelligence--topics--simulated-annealing",
     "slug": "classical-artificial-intelligence/topics/simulated-annealing",
     "canonicalSlug": "classical-artificial-intelligence/topics/simulated-annealing",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/simulated-annealing/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Simulated annealing",
-    "summary": "Simulated annealing sometimes accepts worse moves so local search can escape early traps.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Simulated annealing proposes local moves and sometimes accepts a worse objective to escape a local trap. For minimization with the usual symmetric proposal rule, a cost increase ΔE is accepted with exp(−ΔE/T) at positive temperature. A cooling schedule changes these decisions over time. Convergence results require specific state-space, proposal and cooling assumptions; a finite practical run need not find a global optimum.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--hill-climbing",
+      "mathematical-foundations--topics--conditional-probability"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute acceptance from a cost difference and temperature.",
+      "Separate a one-step decision from cooling-dependent convergence."
+    ],
+    "tags": [
+      "simulated annealing",
+      "local-annealing",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Simulated annealing",
-        "url": "https://en.wikipedia.org/wiki/Simulated_annealing"
+        "label": "Hajek: cooling schedules and asymptotic convergence",
+        "url": "https://web.mit.edu/6.435/www/Hajek88.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: local search, restarts and memory",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S6.html"
       }
     ],
     "headings": [
@@ -5110,31 +5181,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "optimization",
-        "title": "Simulated annealing field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Simulated annealing diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Simulated annealing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-annealing",
+        "title": "Temperature sets the price of accepting a worse move",
+        "summary": "A controlled willingness to go uphill can open a route downhill.",
+        "equation": "acceptance=min(1,exp(−ΔE/T)), ΔE=Eproposal−Ecurrent, T>0",
+        "assumptions": "Minimize E, use symmetric proposals and compare strictly worsening gaps 1,3,5 cost units. T has the same units as E, making ΔE/T dimensionless. T=0 is displayed as the limiting zero acceptance for positive gaps. This is a one-step probability lab, not a stochastic trajectory or an implemented cooling schedule.",
+        "accessibilitySummary": "Simulated annealing. Minimize E, use symmetric proposals and compare strictly worsening gaps 1,3,5 cost units. T has the same units as E, making ΔE/T dimensionless. T=0 is displayed as the limiting zero acceptance for positive gaps. This is a one-step probability lab, not a stochastic trajectory or an implemented cooling schedule. A data table and numeric summary accompany the graph.",
+        "takeaway": "At T=1, a three-unit worsening proposal is accepted about 4.98% of the time. At T=3, it is accepted about 36.79%; proposal frequency and future cooling still matter.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "local-annealing",
+          "label": "Temperature T",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.68,
-          "unit": ""
-        },
-        "seed": 3566928399,
-        "minima": [
-          0.24,
-          0.73
-        ],
-        "curvature": 0.74
+          "max": 5,
+          "step": 0.1,
+          "initial": 1,
+          "unit": " cost units"
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/self-play",
@@ -5340,30 +5409,34 @@
     "id": "classical-artificial-intelligence--topics--tabu-search",
     "slug": "classical-artificial-intelligence/topics/tabu-search",
     "canonicalSlug": "classical-artificial-intelligence/topics/tabu-search",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/tabu-search/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Tabu search",
-    "summary": "Tabu search uses short-term memory to prevent immediate return to recently visited moves or states.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Tabu search guides local moves with short-term memory that temporarily forbids specified moves, attributes or revisits. It can accept a worsening move when that move is the best admissible option. Aspiration criteria can override a restriction, often for an improvement over the best result seen. Memory definitions and tenure are part of the algorithm, and ordinary short-term tabu rules do not provide a universal optimality or no-cycle certificate.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--hill-climbing",
+      "classical-artificial-intelligence--topics--duplicate-state-detection"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Trace state memory and temporary objective worsening.",
+      "Explain aspiration and the limits of finite tabu tenure."
+    ],
+    "tags": [
+      "tabu search",
+      "local-tabu",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Tabu search",
-        "url": "https://en.wikipedia.org/wiki/Tabu_search"
+        "label": "Glover: tabu restrictions, aspiration and memory",
+        "url": "https://leeds-faculty.colorado.edu/glover/TS%20-%20AI%20Heuristic%20Frameworks%201990.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: local search, restarts and memory",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch4.S6.html"
       }
     ],
     "headings": [
@@ -5373,34 +5446,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "systems",
-        "title": "Tabu search field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Tabu search diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Tabu search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "local-tabu",
+        "title": "Remember the cheap return long enough to try the escape",
+        "summary": "A cheap return can be exactly the move that keeps you trapped.",
+        "equation": "choose the minimum-cost admissible neighbor; tabu override if E(new)<E(best seen)",
+        "assumptions": "Four states P,Q,R,G form an undirected chain with objective costs [0,1,4,−2]. Start P; choose the lowest-cost admissible neighbor. Memory stores the last t departed states and forbids reentry unless it beats the best cost seen. Stop at known target G or twelve moves. This state-memory variant differs from a move-attribute implementation. Aspiration is present but not triggered in this example.",
+        "accessibilitySummary": "Tabu search. Four states P,Q,R,G form an undirected chain with objective costs [0,1,4,−2]. Start P; choose the lowest-cost admissible neighbor. Memory stores the last t departed states and forbids reentry unless it beats the best cost seen. Stop at known target G or twelve moves. This state-memory variant differs from a move-attribute implementation. Aspiration is present but not triggered in this example. A data table and numeric summary accompany the graph.",
+        "takeaway": "At Q, excluding the immediate return P forces a visit to R at cost four, opening G at minus two. The best-so-far value must survive the temporary worsening.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "local-tabu",
+          "label": "Tabu tenure in departed states",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.66,
+          "max": 2,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 2954425470,
-        "stages": [
-          "input",
-          "prepare",
-          "compute",
-          "verify",
-          "serve"
-        ],
-        "bottleneck": 0
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/strips",

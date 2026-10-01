@@ -36,6 +36,10 @@ import { searchStateLessons } from "./search-state-memory.mjs";
 import { searchRefinementLessons } from "./search-refinements.mjs";
 import { classicalOverviewLessons } from "./classical-overview.mjs";
 import { searchGuaranteeLessons } from "./search-guarantees.mjs";
+import { constraintLessons } from "./constraint-satisfaction.mjs";
+import { localSearchLessons } from "./local-search.mjs";
+import { propositionalLessons } from "./propositional-inference.mjs";
+import { predicateLessons } from "./predicate-logic.mjs";
 const probabilityBook = source("Pishro-Nik: Introduction to Probability", "https://www.probabilitycourse.com/");
 const informationBook = source("MacKay: Information Theory, Inference, and Learning Algorithms", "https://www.inference.org.uk/itila/book.html");
 const scipy = (name) => source(`SciPy: ${name}`, `https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.${name}.html`);
@@ -47,6 +51,10 @@ export const lessonAliases = {
 };
 
 export const reviewedLessons = {
+  ...predicateLessons,
+  ...propositionalLessons,
+  ...localSearchLessons,
+  ...constraintLessons,
   ...searchStrategyLessons,
   ...searchHeuristicLessons,
   ...searchStateLessons,

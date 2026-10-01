@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Forward checking removes neighbor values made impossible by a new assignment.",
+  "hook": "Checking the next door does not inspect the whole corridor.",
+  "overview": "After assigning a variable, forward checking removes incompatible values from the domains of its unassigned neighbors. An empty neighbor domain rejects the branch immediately. The basic binary procedure does not recursively propagate those deletions through constraints between unassigned variables, so it can miss a contradiction one edge farther away.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Use the assignment as a fixed input",
+      "explanation": "For A=2, B must be larger, so keep only B=3. This deduction is valid for this branch, not globally: restoring the branch requires restoring B's previous domain."
     },
     {
-      "title": "Core rule",
-      "explanation": "After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v."
+      "title": "Two unassigned neighbors may already conflict",
+      "explanation": "B={3} and C={1,2,3} cannot satisfy B<C. Forward checking from A does not revise B against C; the failure emerges only with another assignment or stronger filtering."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+      "title": "Filtering preserves every possible completion",
+      "explanation": "Delete a value only when it conflicts with the assigned variable under the relation. The procedure may retain values that will fail later, but it must not delete a value used by a legal completion."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+    "Temporarily assign X=x.",
+    "Filter each unassigned binary neighbor using the relation to X.",
+    "Reject a wipeout; otherwise continue search, recording deletions for later restoration."
   ],
   "formulas": [
     {
-      "label": "Forward checking rule",
-      "expression": "D(Y) <- {y in D(Y): C_XY(v,y)}",
-      "meaning": "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables."
+      "label": "Definition and assumptions",
+      "expression": "D(Y) ← {y ∈ D(Y) : cXY(x,y)} for each unassigned neighbor Y of assigned X=x",
+      "meaning": "A<B<C with all input domains {1,2,3}. Assign only A, then filter B against A<B. C is not adjacent to A and remains unchanged. Complete-extension counts come from a separate exhaustive teaching oracle; forward checking does not calculate them."
     }
   ],
   "example": {
-    "title": "Forward checking in a small case",
-    "setup": "Assign one region red in a map-coloring CSP.",
+    "title": "The hidden dead end",
+    "setup": "Assign A=2 in the increasing-label model.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
-      "Check the outcome against the goal and stated assumptions."
+      "A<B removes B=1 and B=2, leaving B={3}.",
+      "C stays {1,2,3}; neither displayed unassigned domain is empty.",
+      "Nevertheless, no C is greater than 3, so this branch has zero complete extensions."
     ],
-    "result": "Red is removed from every unassigned adjacent region's domain."
+    "result": "The filter has behaved correctly; its inference scope is simply too limited to detect this dead end."
   },
   "pitfalls": [
-    "All removed values must be restored when the assignment is undone.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A singleton domain need not be treated as an explicit assignment by every implementation; state the policy.",
+    "For higher-arity constraints, filtering against one assignment needs a clearly specified support rule rather than a blind binary extension."
   ],
-  "implementation": [],
+  "implementation": [
+    "Trail every branch-local deletion and restore it on backtrack.",
+    "Measure pruning cost as well as saved search: stronger propagation can do more work per node."
+  ],
   "takeaways": [
-    "Forward checking removes neighbor values made impossible by a new assignment.",
-    "After assigning X=v, inspect each unassigned constrained neighbor and delete values incompatible with v.",
-    "It detects one-step dead ends earlier than plain backtracking but does not propagate consequences among unassigned variables.",
-    "Red is removed from every unassigned adjacent region's domain."
+    "Forward checking catches direct domain wipeouts. A surviving domain is weaker evidence than a complete solution, and propagation farther through the graph requires an additional algorithm.",
+    "Identify a contradiction missed by basic forward checking."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Forward checking removes neighbor values made impossible by a new assignment.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward checking illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["After assigning a variable, forward checking removes incompatible values from the domains of its unassigned neighbors. An empty neighbor domain rejects the branch immediately. The basic binary procedure does not recursively propagate those deletions through constraints between unassigned variables, so it can miss a contradiction one edge farther away.","Calculate neighbor-domain pruning after one assignment.","Identify a contradiction missed by basic forward checking.","Checking the next door does not inspect the whole corridor.","D(Y) ← {y ∈ D(Y) : cXY(x,y)} for each unassigned neighbor Y of assigned X=x","A<B<C with all input domains {1,2,3}. Assign only A, then filter B against A<B. C is not adjacent to A and remains unchanged. Complete-extension counts come from a separate exhaustive teaching oracle; forward checking does not calculate them.","Forward checking catches direct domain wipeouts. A surviving domain is weaker evidence than a complete solution, and propagation farther through the graph requires an additional algorithm."]} />

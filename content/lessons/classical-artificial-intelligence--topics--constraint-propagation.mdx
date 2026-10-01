@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Constraint propagation repeatedly narrows domains using implications of the constraints.",
+  "hook": "X and Y have already reserved {1,2}, even before choosing who gets which.",
+  "overview": "Constraint propagation repeatedly narrows domains using deductions justified by relations and current domains. A sound propagator preserves every solution compatible with the current branch. Different representations of the same complete solution set can support different amounts of pruning, particularly when a global constraint is decomposed into binary relations.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Deletion needs a reason",
+      "explanation": "A propagator may safely keep too many possibilities, but it must not remove a value used by a current solution. Soundness concerns which solutions survive, not how aggressively domains shrink."
     },
     {
-      "title": "Core rule",
-      "explanation": "Apply local inference rules until no domain changes or a contradiction empties a domain."
+      "title": "A set can be reserved collectively",
+      "explanation": "X and Y both draw from {1,2} and must differ. Together they occupy both values in every legal tuple. Z therefore cannot use either, although each separate inequality can give Z=1 or Z=2 a local witness."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+      "title": "A fixed point is relative to the available propagators",
+      "explanation": "Binary filtering reaches a fixed point with seven domain entries. Global support filtering reaches one with five. Neither word fixed nor the absence of further deletions specifies the strength of the inference by itself."
+    },
+    {
+      "title": "Global enumeration is explanatory, not scalable",
+      "explanation": "Enumerating twelve tuples is transparent here. Production global constraints use specialized reasoning rather than listing every possible combination as arity and domain size grow."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Apply local inference rules until no domain changes or a contradiction empties a domain.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+    "Select sound propagators for the represented relations.",
+    "Schedule a propagator when a domain it depends on changes.",
+    "Repeat deletions to quiescence or a wipeout, then branch if alternatives remain."
   ],
   "formulas": [
     {
-      "label": "Constraint propagation rule",
-      "expression": "domains <- fixed_point(propagate(domains,constraints))",
-      "meaning": "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step."
+      "label": "Definition and assumptions",
+      "expression": "Dᵢ' ⊆ Dᵢ and every current solution retains its value in Dᵢ'; allDifferent(X,Y,Z)",
+      "meaning": "X,Y each have {1,2}; Z has {1,2,3}. Compare no filtering, binary arc consistency on the three pairwise inequalities, and complete support filtering on one allDifferent relation. The global stage enumerates the twelve input tuples as a small teaching implementation, not an efficient general allDifferent solver."
     }
   ],
   "example": {
-    "title": "Constraint propagation in a small case",
-    "setup": "In Sudoku, a cell reduced to one value removes that value from its peers.",
+    "title": "Pairwise versus global support",
+    "setup": "Require X,Y,Z all different with domains {1,2}, {1,2}, {1,2,3}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Apply local inference rules until no domain changes or a contradiction empties a domain.",
-      "Check the outcome against the goal and stated assumptions."
+      "Each binary inequality supports every current value, so binary arc consistency deletes nothing.",
+      "The only global solutions are (1,2,3) and (2,1,3).",
+      "Z=1 and Z=2 have no global support and are deleted."
     ],
-    "result": "Repeated consequences can fill several cells before any guess is made."
+    "result": "The global stage preserves both solutions and removes two domain entries."
   },
   "pitfalls": [
-    "A fixed point under weak rules does not imply that the CSP is globally satisfiable.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A weak decomposition can preserve the intended feasible set but substantially weaken filtering.",
+    "Propagation to a nonempty fixed point usually still needs branching or a stronger proof procedure."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep global relations explicit when the solver provides a suitable propagator.",
+    "Separate domain changes, propagation events and branching decisions in traces; restore all branch-local changes."
+  ],
   "takeaways": [
-    "Constraint propagation repeatedly narrows domains using implications of the constraints.",
-    "Apply local inference rules until no domain changes or a contradiction empties a domain.",
-    "Propagation can solve easy regions without branching, but stronger consistency costs more per inference step.",
-    "Repeated consequences can fill several cells before any guess is made."
+    "Equivalent solution sets do not imply equally strong propagators. The global relation forces Z=3 while binary arc consistency removes nothing here.",
+    "Compare binary and global support on a concrete domain snapshot."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Constraint propagation repeatedly narrows domains using implications of the constraints.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Constraint propagation illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Constraint propagation repeatedly narrows domains using deductions justified by relations and current domains. A sound propagator preserves every solution compatible with the current branch. Different representations of the same complete solution set can support different amounts of pruning, particularly when a global constraint is decomposed into binary relations.","Explain sound pruning and a propagator-relative fixed point.","Compare binary and global support on a concrete domain snapshot.","X and Y have already reserved {1,2}, even before choosing who gets which.","Dᵢ' ⊆ Dᵢ and every current solution retains its value in Dᵢ'; allDifferent(X,Y,Z)","X,Y each have {1,2}; Z has {1,2,3}. Compare no filtering, binary arc consistency on the three pairwise inequalities, and complete support filtering on one allDifferent relation. The global stage enumerates the twelve input tuples as a small teaching implementation, not an efficient general allDifferent solver.","Equivalent solution sets do not imply equally strong propagators. The global relation forces Z=3 while binary arc consistency removes nothing here."]} />

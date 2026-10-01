@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
+  "hook": "Count basin probability, not the number of peaks.",
+  "overview": "Random-restart hill climbing repeats local improvement from independently sampled initial configurations and keeps the best result. Its chance of success depends on the initialization distribution and the basins induced by the local policy. A finite number of runs still permits failure. Almost-sure eventual success requires a positive success probability and indefinitely many suitable trials.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on states, actions, a start condition, and a goal test."
+      "title": "Initialization weights the basins",
+      "explanation": "A uniform draw over configurations is not a uniform draw over terminal peaks. Here five starts feed one peak and four feed the other. A biased initializer changes p even though the landscape is unchanged."
     },
     {
-      "title": "Core rule",
-      "explanation": "Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs."
+      "title": "Independence justifies multiplying failures",
+      "explanation": "Repeatedly sampling the same correlated starting point would not produce independent failure events. The expression (1−p)^r belongs to the stated independent-run model."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+      "title": "An asymptotic limit is not a deadline",
+      "explanation": "When p>0, independent endless retries miss forever with probability zero. A fixed budget cannot inherit a deterministic completeness or runtime promise from that limit. Run lengths also contribute to wall-clock cost."
     }
   ],
   "process": [
-    "Represent the task using states, actions, a start condition, and a goal test.",
-    "Apply the central rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+    "Specify a starting distribution and a local stopping policy.",
+    "Run independent restarts to a budget while keeping the best result.",
+    "Report observed outcomes separately from any success-probability model and its assumptions."
   ],
   "formulas": [
     {
-      "label": "Random-restart hill climbing rule",
-      "expression": "best = max_(r=1..R) HillClimb(random_start_r)",
-      "meaning": "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof."
+      "label": "Definition and assumptions",
+      "expression": "P(at least one success in r independent runs)=1−(1−p)ʳ; E[runs until success]=1/p",
+      "meaning": "Use the nine-state hill-climbing landscape and strict adjacent moves. Each run starts uniformly on 0,…,8, independently with replacement, and is allowed to finish. Four starts reach the global peak, so p=4/9. The plot is an exact probability calculation, not an empirical trial or runtime measurement."
     }
   ],
   "example": {
-    "title": "Random-restart hill climbing in a small case",
-    "setup": "Solve an N-queens instance from twenty random initial boards.",
+    "title": "Three chances to reach x=7",
+    "setup": "Uniformly sample from the nine configurations for each completed run.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
-      "Check the outcome against the goal and stated assumptions."
+      "Starts 5,6,7,8 reach x=7, giving p=4/9.",
+      "Three independent failures have probability (5/9)³=125/729.",
+      "At least one success has probability 604/729≈0.828532."
     ],
-    "result": "A restart that enters the basin of a zero-conflict board supplies a valid solution."
+    "result": "Expected runs to first success are 9/4=2.25; an individual run count can be much larger."
   },
   "pitfalls": [
-    "Restarts should be genuinely diverse; nearly identical starts waste the additional runs.",
-    "State representation and duplicate handling can matter more than the headline algorithm.",
-    "Compare completeness, optimality, time, and memory under the actual problem assumptions."
+    "Reusing correlated initializations invalidates the independent-trial formula.",
+    "The success basin can be tiny or have zero probability under the chosen initializer."
   ],
-  "implementation": [],
+  "implementation": [
+    "Record random seeds and budgets so a search can be reproduced.",
+    "Preserve the best candidate across restarts and distinguish restart count from objective-evaluation count."
+  ],
   "takeaways": [
-    "Random-restart hill climbing runs local search from multiple independently chosen starting states.",
-    "Perform hill climbing to a local optimum, sample a new start, and keep the best outcome across runs.",
-    "More restarts raise the chance of reaching a good basin but multiply runtime and still provide no general optimality proof.",
-    "A restart that enters the basin of a zero-conflict board supplies a valid solution."
+    "With p=4/9, three runs succeed with probability 1−(5/9)³≈0.8285. The remaining failure probability is real at a finite budget.",
+    "Explain the difference between finite-budget risk and eventual success."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Random-restart hill climbing runs local search from multiple independently chosen starting states.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Random-restart hill climbing illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Random-restart hill climbing repeats local improvement from independently sampled initial configurations and keeps the best result. Its chance of success depends on the initialization distribution and the basins induced by the local policy. A finite number of runs still permits failure. Almost-sure eventual success requires a positive success probability and indefinitely many suitable trials.","Calculate repeated-run success under explicit independence.","Explain the difference between finite-budget risk and eventual success.","Count basin probability, not the number of peaks.","P(at least one success in r independent runs)=1−(1−p)ʳ; E[runs until success]=1/p","Use the nine-state hill-climbing landscape and strict adjacent moves. Each run starts uniformly on 0,…,8, independently with replacement, and is allowed to finish. Four starts reach the global peak, so p=4/9. The plot is an exact probability calculation, not an empirical trial or runtime measurement.","With p=4/9, three runs succeed with probability 1−(5/9)³≈0.8285. The remaining failure probability is real at a finite budget."]} />

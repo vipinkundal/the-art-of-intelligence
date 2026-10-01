@@ -1,57 +1,56 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
+  "hook": "A value can fit its domain and still break the joint assignment.",
+  "overview": "A constraint-satisfaction problem specifies variables, a domain for each variable, and relations that permitted assignments must satisfy. A solution assigns every variable a domain value and satisfies all hard constraints. The basic feasibility question has no objective function; choosing the cheapest legal solution adds an optimization problem.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on variables, domains, constraints, and sometimes an objective."
+      "title": "Scope determines what a constraint can inspect",
+      "explanation": "A<B involves only A and B; changing C cannot repair a violated A<B relation. A ternary relation, such as A+B=C, needs all three values before a direct complete evaluation, although a propagator can sometimes reason earlier."
     },
     {
-      "title": "Core rule",
-      "explanation": "Represent variables X, domains D, and constraints C, then combine propagation with search or local repair."
+      "title": "The graph is a representation of interaction",
+      "explanation": "A binary constraint graph connects variables that share a relation. An edge does not describe a state transition or prove causal influence. Higher-arity constraints need a richer representation, such as factors connected to all variables in their scope."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+      "title": "Feasibility and quality answer different questions",
+      "explanation": "In the lab, every legal assignment is equally acceptable. A scheduling model could instead minimize completion time subject to legality. An objective value does not override a hard capacity constraint."
     }
   ],
   "process": [
-    "Represent the task using variables, domains, constraints, and sometimes an objective.",
-    "Apply the central rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+    "Define each variable's meaning and finite domain.",
+    "Write each hard relation with its exact scope.",
+    "Evaluate a complete candidate against every relation, or combine sound filtering with exhaustive branching to find one."
   ],
   "formulas": [
     {
-      "label": "Constraint-satisfaction problems rule",
-      "expression": "CSP=(X,D,C); find x such that all C_i(x)=true",
-      "meaning": "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure."
+      "label": "Definition and assumptions",
+      "expression": "xᵢ ∈ Dᵢ for all i; cⱼ(x restricted to scope(cⱼ)) = true for all j",
+      "meaning": "Three integer variables A,B,C each have domain {1,2,3}. The only constraints are A<B and B<C. The slider enumerates all complete triples lexicographically, from (1,1,1) to (3,3,3). These are candidate assignments, not time steps of a solver."
     }
   ],
   "example": {
-    "title": "Constraint-satisfaction problems in a small case",
-    "setup": "Color a map so adjacent regions receive different colors.",
+    "title": "Increasing appointment labels",
+    "setup": "Assign A,B,C distinct ordered labels drawn from {1,2,3} using A<B<C.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
-      "Check the outcome against the goal and stated assumptions."
+      "There are 3³=27 complete triples before checking constraints.",
+      "Candidate index five is (1,2,3): 1<2 and 2<3 both hold.",
+      "Candidate (1,3,2) passes A<B but fails B<C; it is not a solution."
     ],
-    "result": "A complete assignment with no equal-colored neighbors is a solution."
+    "result": "The unique legal assignment is (1,2,3), regardless of how a search visits the candidates."
   },
   "pitfalls": [
-    "Distinguish hard constraints from preferences or optimization objectives.",
-    "A weak model can make an easy real problem hard for the solver.",
-    "Feasibility, optimality, and proof of infeasibility are distinct outcomes."
+    "A nonempty domain for every variable is not a certificate that their values can be combined.",
+    "Omitting a real constraint can yield a solver-certified answer to the wrong model; making a preference hard can remove all useful answers."
   ],
-  "implementation": [],
+  "implementation": [
+    "Validate returned assignments with the original constraints and units.",
+    "Keep infeasible, feasible, optimal and interrupted outcomes separate in the interface."
+  ],
   "takeaways": [
-    "A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.",
-    "Represent variables X, domains D, and constraints C, then combine propagation with search or local repair.",
-    "CSP structure enables strong pruning; modelling choices determine whether constraints expose useful structure.",
-    "A complete assignment with no equal-colored neighbors is a solution."
+    "Domains constrain individual choices; relations constrain combinations. The only strictly increasing triple from three available values is (1,2,3).",
+    "Separate domain membership, joint feasibility and optimization."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A constraint-satisfaction problem assigns domain values to variables while satisfying every constraint.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Constraint-satisfaction problems illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A constraint-satisfaction problem specifies variables, a domain for each variable, and relations that permitted assignments must satisfy. A solution assigns every variable a domain value and satisfies all hard constraints. The basic feasibility question has no objective function; choosing the cheapest legal solution adds an optimization problem.","Build and check a finite constraint model.","Separate domain membership, joint feasibility and optimization.","A value can fit its domain and still break the joint assignment.","xᵢ ∈ Dᵢ for all i; cⱼ(x restricted to scope(cⱼ)) = true for all j","Three integer variables A,B,C each have domain {1,2,3}. The only constraints are A<B and B<C. The slider enumerates all complete triples lexicographically, from (1,1,1) to (3,3,3). These are candidate assignments, not time steps of a solver.","Domains constrain individual choices; relations constrain combinations. The only strictly increasing triple from three available values is (1,2,3)."]} />

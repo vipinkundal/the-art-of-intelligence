@@ -929,30 +929,34 @@
     "id": "classical-artificial-intelligence--topics--backward-chaining",
     "slug": "classical-artificial-intelligence/topics/backward-chaining",
     "canonicalSlug": "classical-artificial-intelligence/topics/backward-chaining",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/backward-chaining/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Backward chaining",
-    "summary": "Backward chaining starts from a query and recursively seeks facts that would prove it.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Backward chaining starts with a query and replaces a selected goal with the body of a rule having that goal as its head. A fact discharges a goal; a conjunctive body requires every subgoal, while alternative defining rules provide different proof routes. Search order, cycles and repeated subgoals affect execution. A complete failed search can establish non-entailment in its stated finite setting, but that does not automatically prove a classical negation.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--horn-clauses",
+      "classical-artificial-intelligence--topics--forward-chaining"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Expand a query into its conjunctive evidence requirements.",
+      "Interpret a complete failed proof without inventing a negative conclusion."
+    ],
+    "tags": [
+      "backward chaining",
+      "logic-backward-query",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Backward chaining",
-        "url": "https://en.wikipedia.org/wiki/Backward_chaining"
+        "label": "Poole and Mackworth: definite clauses, bottom-up and top-down proofs",
+        "url": "https://www.artint.info/3e/html/ArtInt3e.Ch5.S3.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "CMU Automated Theorem Proving: Horn logic and chaining",
+        "url": "https://www.cs.cmu.edu/~fp/courses/atp/lectures/14-horn.html"
       }
     ],
     "headings": [
@@ -962,28 +966,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Backward chaining field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Backward chaining diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Backward chaining illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-backward-query",
+        "title": "Ask only for the evidence needed to prove D",
+        "summary": "Follow the requested conclusion back to its evidence.",
+        "equation": "To prove head(r), prove every atom in body(r); alternative rules are alternative proof routes",
+        "assumptions": "Query D. Rules are A∧B⇒D, P⇒A, Q⇒B, plus irrelevant C⇒C. The mask supplies facts P and/or Q. Use left-to-right depth-first subgoals, stop a conjunction at its first failure, and check ancestor cycles. The query's actual dependency graph is acyclic with one defining rule per non-fact; the lab neither assumes missing facts false nor executes negation-as-failure.",
+        "accessibilitySummary": "Backward chaining. Query D. Rules are A∧B⇒D, P⇒A, Q⇒B, plus irrelevant C⇒C. The mask supplies facts P and/or Q. Use left-to-right depth-first subgoals, stop a conjunction at its first failure, and check ancestor cycles. The query's actual dependency graph is acyclic with one defining rule per non-fact; the lab neither assumes missing facts false nor executes negation-as-failure. A data table and numeric summary accompany the graph.",
+        "takeaway": "With only P, A is proved but Q cannot discharge B, so D is not entailed. Supplying P and Q proves both branches and D. The unrelated C cycle is never entered.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-backward-query",
+          "label": "Fact mask: P=1, Q=2",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.5,
+          "max": 3,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 2902982064,
-        "nodeCount": 10,
-        "density": 0.49
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/backtracking",
@@ -2746,30 +2751,33 @@
     "id": "classical-artificial-intelligence--topics--forward-chaining",
     "slug": "classical-artificial-intelligence/topics/forward-chaining",
     "canonicalSlug": "classical-artificial-intelligence/topics/forward-chaining",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/forward-chaining/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Forward chaining",
-    "summary": "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Forward chaining starts with asserted facts and derives a rule's head when every body atom is known. For finite propositional definite clauses, repeated sound application reaches the least consequence closure. No additional applicable rule can enlarge that fixed point. Atoms absent from the closure are not entailed positive consequences; their absence does not by itself entail their negations.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--horn-clauses"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute a least consequence closure from explicit facts and rules.",
+      "Distinguish unsupported atoms from entailed negations."
+    ],
+    "tags": [
+      "forward chaining",
+      "logic-forward-closure",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Forward chaining",
-        "url": "https://en.wikipedia.org/wiki/Forward_chaining"
+        "label": "Berkeley CS188: agenda-based forward chaining",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/logic/forward.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: definite clauses, bottom-up and top-down proofs",
+        "url": "https://www.artint.info/3e/html/ArtInt3e.Ch5.S3.html"
       }
     ],
     "headings": [
@@ -2779,28 +2787,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Forward chaining field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Forward chaining diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Forward chaining illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-forward-closure",
+        "title": "A consequence wave stops without seeding the bare cycle",
+        "summary": "Facts start the wave; a circle of unsupported rules does not.",
+        "equation": "Kt+1 = Kt ∪ {head(r): body(r)⊆Kt}; K0={A,B}",
+        "assumptions": "Facts are A,B. Rules are A∧B⇒C, C⇒D, B⇒E, D∧E⇒F, G⇒H and H⇒G. Each synchronous round reads only the preceding set. There are eight propositional atoms, no functions, no negative heads and no headless constraints. The displayed rounds illustrate dependencies, rather than an optimized work queue or measured time.",
+        "accessibilitySummary": "Forward chaining. Facts are A,B. Rules are A∧B⇒C, C⇒D, B⇒E, D∧E⇒F, G⇒H and H⇒G. Each synchronous round reads only the preceding set. There are eight propositional atoms, no functions, no negative heads and no headless constraints. The displayed rounds illustrate dependencies, rather than an optimized work queue or measured time. A data table and numeric summary accompany the graph.",
+        "takeaway": "Rounds add {C,E}, then {D}, then {F}; the next round is unchanged. Neither G nor H is entailed without a seed, although a model with both true is allowed.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-forward-closure",
+          "label": "Synchronous propagation rounds",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.68,
+          "max": 4,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 2407026950,
-        "nodeCount": 6,
-        "density": 0.55
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/forward-and-backward-planning",
@@ -3212,30 +3221,34 @@
     "id": "classical-artificial-intelligence--topics--horn-clauses",
     "slug": "classical-artificial-intelligence/topics/horn-clauses",
     "canonicalSlug": "classical-artificial-intelligence/topics/horn-clauses",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/horn-clauses/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Horn clauses",
-    "summary": "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "A Horn clause is a disjunction with at most one positive literal. A definite clause has exactly one: ¬A∨¬B∨C can be read as A∧B⇒C. A clause with no positive literal forbids its corresponding positive conjunction, while a positive unit clause is a fact. This syntactic restriction enables specialized propositional inference; it does not make arbitrary first-order programs terminate or make a rule into a causal assertion.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--propositional-logic",
+      "classical-artificial-intelligence--topics--boolean-satisfiability"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Classify a clause by its positive-literal count.",
+      "Translate a definite clause without losing its joint antecedents."
+    ],
+    "tags": [
+      "horn clauses",
+      "logic-horn-shape",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Horn clauses",
-        "url": "https://en.wikipedia.org/wiki/Horn_clause"
+        "label": "CMU 15-281: Horn versus definite clauses",
+        "url": "https://www.cs.cmu.edu/~15281-s24/coursenotes/proplogic/index.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: definite clauses, bottom-up and top-down proofs",
+        "url": "https://www.artint.info/3e/html/ArtInt3e.Ch5.S3.html"
       }
     ],
     "headings": [
@@ -3245,33 +3258,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "timeline",
-        "title": "Horn clauses field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Horn clauses diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Horn clauses illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "logic-horn-shape",
+        "title": "One positive head gives a conjunction a direction",
+        "summary": "Count the positive literals before treating a clause as a rule.",
+        "equation": "Horn: #positive literals≤1; definite: #positive literals=1; ¬A∨¬B∨C ≡ (A∧B⇒C)",
+        "assumptions": "Classify five independent propositional clause examples: ¬A∨¬B∨C, ¬A∨B, ¬A∨¬B, A∨B and C. They are not asserted together as one KB. The diagram shows equivalent syntax, not a truth assignment. Positive means unnegated, not currently true. ⊥ denotes false.",
+        "accessibilitySummary": "Horn clauses. Classify five independent propositional clause examples: ¬A∨¬B∨C, ¬A∨B, ¬A∨¬B, A∨B and C. They are not asserted together as one KB. The diagram shows equivalent syntax, not a truth assignment. Positive means unnegated, not currently true. ⊥ denotes false. A data table and numeric summary accompany the graph.",
+        "takeaway": "¬A∨¬B∨C has one positive head C, but A∨B has two and is not Horn. ¬A∨¬B is Horn with no head and forbids A and B from both being true.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "logic-horn-shape",
+          "label": "Clause example",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.51,
+          "max": 4,
+          "step": 1,
+          "initial": 0,
           "unit": ""
-        },
-        "seed": 3660011805,
-        "events": [
-          1956,
-          1986,
-          2012,
-          2017,
-          2024
-        ]
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/hill-climbing",

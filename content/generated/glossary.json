@@ -202,10 +202,13 @@
   },
   {
     "term": "Backward chaining",
-    "definition": "Backward chaining starts from a query and recursively seeks facts that would prove it.",
+    "definition": "Backward chaining starts with a query and replaces a selected goal with the body of a rule having that goal as its head. A fact discharges a goal; a conjunctive body requires every subgoal, while alternative defining rules provide different proof routes. Search order, cycles and repeated subgoals affect execution. A complete failed search can establish non-entailment in its stated finite setting, but that does not automatically prove a classical negation.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/backward-chaining/",
-    "tags": []
+    "tags": [
+      "Horn clauses",
+      "Forward chaining"
+    ]
   },
   {
     "term": "Batch normalization",
@@ -1189,10 +1192,12 @@
   },
   {
     "term": "Forward chaining",
-    "definition": "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
+    "definition": "Forward chaining starts with asserted facts and derives a rule's head when every body atom is known. For finite propositional definite clauses, repeated sound application reaches the least consequence closure. No additional applicable rule can enlarge that fixed point. Atoms absent from the closure are not entailed positive consequences; their absence does not by itself entail their negations.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/forward-chaining/",
-    "tags": []
+    "tags": [
+      "Horn clauses"
+    ]
   },
   {
     "term": "Forward checking",
@@ -1422,10 +1427,13 @@
   },
   {
     "term": "Horn clauses",
-    "definition": "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
+    "definition": "A Horn clause is a disjunction with at most one positive literal. A definite clause has exactly one: ¬A∨¬B∨C can be read as A∧B⇒C. A clause with no positive literal forbids its corresponding positive conjunction, while a positive unit clause is a fact. This syntactic restriction enables specialized propositional inference; it does not make arbitrary first-order programs terminate or make a rule into a causal assertion.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/horn-clauses/",
-    "tags": []
+    "tags": [
+      "Propositional logic",
+      "Boolean satisfiability"
+    ]
   },
   {
     "term": "Hypothesis testing",

@@ -227,7 +227,7 @@ h3 { font-size: 1.12rem; }
 .dependency-diagram figcaption{font-weight:600;color:var(--text)}
 .dependency-diagram svg{display:block;width:100%;max-width:540px;margin:8px auto}
 .visual-lab .dependency-diagram .dependency-node-label{font-size:16px;font-weight:600;fill:var(--text)}
-.visual-lab .dependency-diagram .dependency-node-state{font-size:11px;fill:var(--muted-strong)}
+.visual-lab .dependency-diagram .dependency-node-state{font-size:11px;fill:var(--muted-strong);paint-order:stroke;stroke:var(--panel);stroke-width:5px;stroke-linejoin:round}
 .graph-controls{border-bottom:1px solid var(--line)}
 .graph-controls .control-label{margin-bottom:12px;gap:8px}
 .calculated-lab .graph-readout{grid-template-columns:1fr}

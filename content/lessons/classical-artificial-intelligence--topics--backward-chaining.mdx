@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Backward chaining starts from a query and recursively seeks facts that would prove it.",
+  "hook": "Follow the requested conclusion back to its evidence.",
+  "overview": "Backward chaining starts with a query and replaces a selected goal with the body of a rule having that goal as its head. A fact discharges a goal; a conjunctive body requires every subgoal, while alternative defining rules provide different proof routes. Search order, cycles and repeated subgoals affect execution. A complete failed search can establish non-entailment in its stated finite setting, but that does not automatically prove a classical negation.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "A proof expands requirements, not the whole closure",
+      "explanation": "To prove D, require A and B. A requires P; B requires Q. The search never asks for C because C is unrelated to the query. This saves irrelevant work but is not a guarantee that backward chaining always costs less than forward chaining."
     },
     {
-      "title": "Core rule",
-      "explanation": "Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached."
+      "title": "A conjunction can fail early",
+      "explanation": "If P is unavailable, the A branch has no proof and the procedure stops before asking B. If P is supplied, it continues to B and Q. The table lists calls in entry order with the result determined after each call returns."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+      "title": "Rules for one head are alternatives",
+      "explanation": "This example has one defining rule for each internal goal. In a larger KB, failing one rule's body must lead to another available defining rule rather than rejecting the goal immediately. Recursion and unfair depth-first choices can otherwise hide a finite proof."
+    },
+    {
+      "title": "Failed positive proof is not a negative fact",
+      "explanation": "With P alone, there is a model of the KB in which D is false and another in which D is true. A complete failed search here therefore supports KB⊭D, not KB⊨¬D. A logic-programming negation policy would be an additional semantics."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+    "Select a query subgoal and check whether an asserted fact discharges it.",
+    "Try defining rules and recursively prove each body under the stated subgoal order.",
+    "Explore alternatives on failure and handle recursion explicitly; report proof success or a precisely scoped failure."
   ],
   "formulas": [
     {
-      "label": "Backward chaining rule",
-      "expression": "prove(G): choose rule A1...Ak=>G; prove each Ai",
-      "meaning": "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search."
+      "label": "Definition and assumptions",
+      "expression": "To prove head(r), prove every atom in body(r); alternative rules are alternative proof routes",
+      "meaning": "Query D. Rules are A∧B⇒D, P⇒A, Q⇒B, plus irrelevant C⇒C. The mask supplies facts P and/or Q. Use left-to-right depth-first subgoals, stop a conjunction at its first failure, and check ancestor cycles. The query's actual dependency graph is acyclic with one defining rule per non-fact; the lab neither assumes missing facts false nor executes negation-as-failure."
     }
   ],
   "example": {
-    "title": "Backward chaining in a small case",
-    "setup": "To prove access_allowed(Ada), look for a rule requiring employee(Ada) and badge_valid(Ada).",
+    "title": "One missing evidence branch",
+    "setup": "Provide P but not Q and query D.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
-      "Check the outcome against the goal and stated assumptions."
+      "D expands to the joint requirements A and B.",
+      "A expands to P, which succeeds as a given fact.",
+      "B expands to Q, which has neither a fact nor a defining rule; this finite search fails."
     ],
-    "result": "If both subgoals are facts, the original access query succeeds."
+    "result": "Add Q as a fact and the same dependency tree proves D; C⇒C remains irrelevant in both runs."
   },
   "pitfalls": [
-    "Memoize repeated subgoals and prevent recursive rule loops.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "An unpruned relevant recursive cycle can keep depth-first search from reaching a successful alternative.",
+    "Treating every failed or cut-off proof attempt as a proven negation silently changes the semantics."
   ],
-  "implementation": [],
+  "implementation": [
+    "Index clauses by head and record proof reasons, query dependencies and termination status.",
+    "Use an appropriate tabling or cycle policy for recursive programs, and separate logical non-entailment from budget-exhausted unknown."
+  ],
   "takeaways": [
-    "Backward chaining starts from a query and recursively seeks facts that would prove it.",
-    "Match the goal with rule conclusions, replace it by their premises, and continue until facts or failure are reached.",
-    "It is goal-directed and avoids unrelated rules, but repeated subgoals and poor rule order can cause large or infinite search.",
-    "If both subgoals are facts, the original access query succeeds."
+    "With only P, A is proved but Q cannot discharge B, so D is not entailed. Supplying P and Q proves both branches and D. The unrelated C cycle is never entered.",
+    "Interpret a complete failed proof without inventing a negative conclusion."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Backward chaining starts from a query and recursively seeks facts that would prove it.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Backward chaining illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Backward chaining starts with a query and replaces a selected goal with the body of a rule having that goal as its head. A fact discharges a goal; a conjunctive body requires every subgoal, while alternative defining rules provide different proof routes. Search order, cycles and repeated subgoals affect execution. A complete failed search can establish non-entailment in its stated finite setting, but that does not automatically prove a classical negation.","Expand a query into its conjunctive evidence requirements.","Interpret a complete failed proof without inventing a negative conclusion.","Follow the requested conclusion back to its evidence.","To prove head(r), prove every atom in body(r); alternative rules are alternative proof routes","Query D. Rules are A∧B⇒D, P⇒A, Q⇒B, plus irrelevant C⇒C. The mask supplies facts P and/or Q. Use left-to-right depth-first subgoals, stop a conjunction at its first failure, and check ancestor cycles. The query's actual dependency graph is acyclic with one defining rule per non-fact; the lab neither assumes missing facts false nor executes negation-as-failure.","With only P, A is proved but Q cannot discharge B, so D is not entailed. Supplying P and Q proves both branches and D. The unrelated C cycle is never entered."]} />

@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
+  "hook": "Count the positive literals before treating a clause as a rule.",
+  "overview": "A Horn clause is a disjunction with at most one positive literal. A definite clause has exactly one: ¬A∨¬B∨C can be read as A∧B⇒C. A clause with no positive literal forbids its corresponding positive conjunction, while a positive unit clause is a fact. This syntactic restriction enables specialized propositional inference; it does not make arbitrary first-order programs terminate or make a rule into a causal assertion.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "A conjunction is one joint trigger",
+      "explanation": "The negative literals ¬A and ¬B move into the positive body A∧B. Both must hold before the implication requires C. Replacing the body with two rules A⇒C and B⇒C would impose C in more interpretations."
     },
     {
-      "title": "Core rule",
-      "explanation": "Interpret a definite Horn clause as a conjunction of premises implying one conclusion."
+      "title": "Headless clauses are constraints",
+      "explanation": "¬A∨¬B is equivalent to A∧B⇒⊥. It rejects the joint condition, rather than deriving an ordinary positive atom. It is Horn but not definite. A positive-only forward closure routine needs additional treatment to detect violations of such constraints."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+      "title": "Facts have an empty body",
+      "explanation": "The clause C has one positive literal and no negative ones. Its equivalent true⇒C is immediately usable without waiting for any antecedent. The fact is asserted knowledge, not a value guessed by a search procedure."
+    },
+    {
+      "title": "The classification is syntactic",
+      "explanation": "A∨B is not Horn even in a truth assignment where B is false. Classifying literals by their current truth values would confuse semantic evaluation with the expression's shape. A collection is Horn CNF only when every member clause meets the restriction."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+    "Normalize a clause as a disjunction of literals.",
+    "Count its unnegated literals: zero or one is Horn, exactly one is definite.",
+    "For a definite clause, identify the head and form the joint body from the negated literals; handle headless constraints separately."
   ],
   "formulas": [
     {
-      "label": "Horn clauses rule",
-      "expression": "not A1 or ... or not Ak or B equiv A1 and ... and Ak => B",
-      "meaning": "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted."
+      "label": "Definition and assumptions",
+      "expression": "Horn: #positive literals≤1; definite: #positive literals=1; ¬A∨¬B∨C ≡ (A∧B⇒C)",
+      "meaning": "Classify five independent propositional clause examples: ¬A∨¬B∨C, ¬A∨B, ¬A∨¬B, A∨B and C. They are not asserted together as one KB. The diagram shows equivalent syntax, not a truth assignment. Positive means unnegated, not currently true. ⊥ denotes false."
     }
   ],
   "example": {
-    "title": "Horn clauses in a small case",
-    "setup": "Represent parent(x,y) and parent(y,z) => grandparent(x,z).",
+    "title": "Two preconditions, one conclusion",
+    "setup": "Classify ¬A∨¬B∨C.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
-      "Check the outcome against the goal and stated assumptions."
+      "C is the only positive literal; A and B occur negated.",
+      "The clause is Horn and definite, equivalent to A∧B⇒C.",
+      "If only A holds, C is not forced by this rule; if both A and B hold, C must hold."
     ],
-    "result": "Forward or backward chaining can use the rule efficiently."
+    "result": "The AND gate in the diagram makes the joint antecedent explicit."
   },
   "pitfalls": [
-    "Not every disjunctive knowledge statement can be represented as a definite Horn rule.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Positive literal means syntactically unnegated, not known true.",
+    "The finite propositional efficiency result does not transfer unconditionally to function-bearing first-order rule programs."
   ],
-  "implementation": [],
+  "implementation": [
+    "Distinguish facts, definite rules and headless constraints in the representation.",
+    "Preserve full antecedent sets and track which members remain unproved before firing a head."
+  ],
   "takeaways": [
-    "A Horn clause contains at most one positive literal and naturally represents facts or implication rules.",
-    "Interpret a definite Horn clause as a conjunction of premises implying one conclusion.",
-    "Horn satisfiability and inference are efficient compared with unrestricted propositional clauses, but expressiveness is restricted.",
-    "Forward or backward chaining can use the rule efficiently."
+    "¬A∨¬B∨C has one positive head C, but A∨B has two and is not Horn. ¬A∨¬B is Horn with no head and forbids A and B from both being true.",
+    "Translate a definite clause without losing its joint antecedents."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["A Horn clause contains at most one positive literal and naturally represents facts or implication rules.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Horn clauses illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A Horn clause is a disjunction with at most one positive literal. A definite clause has exactly one: ¬A∨¬B∨C can be read as A∧B⇒C. A clause with no positive literal forbids its corresponding positive conjunction, while a positive unit clause is a fact. This syntactic restriction enables specialized propositional inference; it does not make arbitrary first-order programs terminate or make a rule into a causal assertion.","Classify a clause by its positive-literal count.","Translate a definite clause without losing its joint antecedents.","Count the positive literals before treating a clause as a rule.","Horn: #positive literals≤1; definite: #positive literals=1; ¬A∨¬B∨C ≡ (A∧B⇒C)","Classify five independent propositional clause examples: ¬A∨¬B∨C, ¬A∨B, ¬A∨¬B, A∨B and C. They are not asserted together as one KB. The diagram shows equivalent syntax, not a truth assignment. Positive means unnegated, not currently true. ⊥ denotes false.","¬A∨¬B∨C has one positive head C, but A∨B has two and is not Horn. ¬A∨¬B is Horn with no head and forbids A and B from both being true."]} />

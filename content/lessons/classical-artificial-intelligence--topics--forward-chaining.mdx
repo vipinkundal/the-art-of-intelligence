@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
+  "hook": "Facts start the wave; a circle of unsupported rules does not.",
+  "overview": "Forward chaining starts with asserted facts and derives a rule's head when every body atom is known. For finite propositional definite clauses, repeated sound application reaches the least consequence closure. No additional applicable rule can enlarge that fixed point. Atoms absent from the closure are not entailed positive consequences; their absence does not by itself entail their negations.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on symbols, facts, rules, a vocabulary, and a query."
+      "title": "Every antecedent must already be established",
+      "explanation": "A and B jointly enable C in round one. F waits for both D and E; seeing E alone in round one is insufficient. The fixed prior-round snapshot prevents accidental within-round cascading from changing the displayed schedule."
     },
     {
-      "title": "Core rule",
-      "explanation": "Maintain an agenda of new facts and add each rule conclusion when all antecedents become true."
+      "title": "The closure contains more than the input facts",
+      "explanation": "The final set {A,B,C,D,E,F} contains two asserted atoms and four derived atoms. Their provenance differs, even though both kinds are available as future antecedents. A derived atom should retain the rule and antecedents supporting it."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+      "title": "A cycle can be allowed without being supported",
+      "explanation": "G⇒H and H⇒G admit both-false and both-true valuations. The least model chooses both false, showing neither positive atom is entailed; the both-true model shows neither negation is entailed either. The rules alone do not provide a seed."
+    },
+    {
+      "title": "Efficient work scheduling differs from teaching rounds",
+      "explanation": "An agenda can process each newly known atom, update counters of missing antecedents, and avoid scanning every rule repeatedly. Deduplicating known atoms is essential so the cycle does not create endless repeated insertions after a seed."
     }
   ],
   "process": [
-    "Represent the task using symbols, facts, rules, a vocabulary, and a query.",
-    "Apply the central rule: Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+    "Initialize a set and agenda with asserted facts.",
+    "When all antecedents of a rule are known, add its previously unknown head with provenance.",
+    "Continue until no new atom can be inserted, or stop early for a declared positive query."
   ],
   "formulas": [
     {
-      "label": "Forward chaining rule",
-      "expression": "facts and (A1 and ... and Ak => B) entails add B",
-      "meaning": "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts."
+      "label": "Definition and assumptions",
+      "expression": "Kt+1 = Kt ∪ {head(r): body(r)⊆Kt}; K0={A,B}",
+      "meaning": "Facts are A,B. Rules are A∧B⇒C, C⇒D, B⇒E, D∧E⇒F, G⇒H and H⇒G. Each synchronous round reads only the preceding set. There are eight propositional atoms, no functions, no negative heads and no headless constraints. The displayed rounds illustrate dependencies, rather than an optimized work queue or measured time."
     }
   ],
   "example": {
-    "title": "Forward chaining in a small case",
-    "setup": "From fever and rash plus a rule, derive a candidate diagnosis fact.",
+    "title": "Deriving F without touching G or H",
+    "setup": "Start K0={A,B}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
-      "Check the outcome against the goal and stated assumptions."
+      "K1={A,B,C,E} from the A∧B and B rules.",
+      "K2 adds D; K3 adds F once D and E are both known.",
+      "K4=K3, confirming the fixed point."
     ],
-    "result": "New facts can trigger later rules until no further conclusion appears."
+    "result": "F is a consequence, while G and H remain unsupported positive atoms rather than proven false statements."
   },
   "pitfalls": [
-    "Rule cycles require duplicate fact detection.",
-    "Syntax alone does not guarantee that the representation matches the intended world semantics.",
-    "Open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded."
+    "Firing on just one member of a conjunctive body changes the rule.",
+    "Deleting an input fact requires a dependency-aware retraction strategy; merely removing that fact from the closed set leaves stale consequences."
   ],
-  "implementation": [],
+  "implementation": [
+    "Index rules by antecedent and maintain unresolved-body counters plus a deduplicated agenda.",
+    "Store justification links and define update/retraction behavior before treating the closure as a live knowledge service."
+  ],
   "takeaways": [
-    "Forward chaining repeatedly fires rules whose premises are satisfied by known facts.",
-    "Maintain an agenda of new facts and add each rule conclusion when all antecedents become true.",
-    "It is data-driven and complete for common Horn-rule systems, but may derive many irrelevant facts.",
-    "New facts can trigger later rules until no further conclusion appears."
+    "Rounds add {C,E}, then {D}, then {F}; the next round is unchanged. Neither G nor H is entailed without a seed, although a model with both true is allowed.",
+    "Distinguish unsupported atoms from entailed negations."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Forward chaining repeatedly fires rules whose premises are satisfied by known facts.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward chaining illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Forward chaining starts with asserted facts and derives a rule's head when every body atom is known. For finite propositional definite clauses, repeated sound application reaches the least consequence closure. No additional applicable rule can enlarge that fixed point. Atoms absent from the closure are not entailed positive consequences; their absence does not by itself entail their negations.","Compute a least consequence closure from explicit facts and rules.","Distinguish unsupported atoms from entailed negations.","Facts start the wave; a circle of unsupported rules does not.","Kt+1 = Kt ∪ {head(r): body(r)⊆Kt}; K0={A,B}","Facts are A,B. Rules are A∧B⇒C, C⇒D, B⇒E, D∧E⇒F, G⇒H and H⇒G. Each synchronous round reads only the preceding set. There are eight propositional atoms, no functions, no negative heads and no headless constraints. The displayed rounds illustrate dependencies, rather than an optimized work queue or measured time.","Rounds add {C,E}, then {D}, then {F}; the next round is unchanged. Neither G nor H is entailed without a seed, although a model with both true is allowed."]} />

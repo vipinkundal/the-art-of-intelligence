@@ -5,14 +5,24 @@ The review covers every topic reachable from `/lessons/`, duplicate concepts, cu
 ## Current evidence (2026-10-01)
 
 - 389 addressable lesson documents; 386 canonical lessons after consolidating three duplicate pairs.
-- 218 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
-- 168 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
+- 221 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
+- 165 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
 - The source-derived corpus still contains 22 repeated passages appearing on more than two pages. These are editorial candidates, not automatically proven duplicate concepts.
 - Six new concepts: Brier score, split conformal prediction, geometric distribution, conditional expectation, law of total variance, and standard error. Early stopping and Markov chains each have one canonical lesson. The new Multiple testing treatment also consolidates the overlapping Multiple-testing correction entry, preserving its old address as an alias rather than claiming another new concept.
 
 Earlier build and screenshot reports did not establish content accuracy. In particular, the old generator assigned labs and equations from keywords, invented alphabetical prerequisites, and generated repeated generic prose. This pass removes generated pseudo-equations, filler hooks and implementation advice; marks remaining generic illustrations as schematics; and reserves reviewed status for authored content. Missing sections are reported as missing rather than filled with invented instruction.
 
 ## Reviewed topics
+
+### Definite rules and query-directed proofs (2026-10-01)
+
+Three existing lessons are authored in `definite-rules.mjs`, with calculated examples in `definite-rules.ts`. Horn clauses classifies five independent expressions by positive-literal count, including a headless constraint and a non-Horn disjunction. Forward chaining computes synchronous consequence sets, reaching {A,B,C,D,E,F} in round three and confirming an unchanged fourth round; the unsupported G/H cycle does not start. Backward chaining executes a query-directed proof search for D across all four P/Q fact masks, recording actual calls and early conjunction failure. Missing positive consequences are never labeled as entailed negations.
+
+- All fourteen control states were traversed in the browser. Each page was measured at 1440, 1024, 768, 390 and 320px without horizontal document overflow or offscreen SVG text. Three representative light-theme mobile screenshots were inspected. All three exported legacy pages passed keyboard endpoint and reset checks, with the reset summary subsequently confirmed after rendering settled. The export tab recorded no warnings/errors.
+- Graph-state labels now mask crossing edges beneath their text. Earlier resolution and constraint-propagation pages received additional 320/1440px layout checks; the light constraint grid remained readable. This is scoped regression evidence, not a full-site accessibility or reduced-motion certification.
+- TypeScript, lint, structural validation, MDX compilation and production build passed at 221 reviewed / 165 pending. Export validation passed 392 content pages, all 340 legacy addresses and rendered local link fragments. The editorial audit still reports 22 repeated-passage candidates. No unit tests were added, maintained or run. The preceding full HTTP sweep remains the latest all-route network check.
+- Sources were inspected in Poole/Mackworth's definite-clause semantics and proof procedures, Berkeley's agenda-based forward chaining, and CMU's Horn-clause material. The Classical AI hub now offers eleven suggested learning paths, including Horn → forward → backward chaining. Forty-one classical-AI topics remain pending.
+- Evidence: `design-qa/horn-clauses-light-320.png`, `forward-chaining-light-320.png`, and `backward-chaining-light-320.png`. The preceding twenty-one-page checkpoint was committed and pushed to main as `8a81048`; these three additional pages are local at this verification checkpoint.
 
 ### Boolean inference and quantified interpretations (2026-10-01)
 

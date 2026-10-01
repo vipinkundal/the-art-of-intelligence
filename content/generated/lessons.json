@@ -4180,30 +4180,34 @@
     "id": "classical-artificial-intelligence--topics--monte-carlo-tree-search",
     "slug": "classical-artificial-intelligence/topics/monte-carlo-tree-search",
     "canonicalSlug": "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/monte-carlo-tree-search/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
-    "title": "Monte Carlo Tree Search",
-    "summary": "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "title": "Monte Carlo tree search",
+    "summary": "Monte Carlo tree search allocates a finite lookahead budget using statistics collected from completed simulations. This lab separates selection through an existing tree, expansion of one new child, a rollout through the domain and backup to the selected tree nodes. Inspect the exact trace and its changing estimates rather than treating a larger visit count as a proof. The example is single-agent optimization; it does not model an adversary or a learned neural evaluator.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--state-space-representation",
+      "mathematical-foundations--topics--expectation"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Trace selection, expansion, rollout and backup without conflating them.",
+      "Distinguish recorded estimates, simulation allocation and a final action recommendation."
+    ],
+    "tags": [
+      "monte carlo tree search",
+      "tree-mcts",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Monte Carlo Tree Search",
-        "url": "https://en.wikipedia.org/wiki/Monte_Carlo_tree_search"
+        "label": "Browne et al.: A Survey of Monte Carlo Tree Search Methods, §3",
+        "url": "https://cs.gettysburg.edu/~tneller/cs371/mcts-survey.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Kocsis and Szepesvári: Bandit based Monte-Carlo Planning, §2",
+        "url": "https://sites.ualberta.ca/~szepesva/papers/ecml06.pdf"
       }
     ],
     "headings": [
@@ -4213,28 +4217,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "reinforcement",
-        "title": "Monte Carlo Tree Search field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Monte Carlo Tree Search diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Monte Carlo Tree Search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "tree-mcts",
+        "title": "A rollout can see a leaf before the tree contains it",
+        "summary": "Search evidence grows one node at a time; a simulated state is not automatically a tree node.",
+        "equation": "N←N+1; W←W+r; Q=W/N; select Q+c√(ln Nparent/Nchild)",
+        "assumptions": "R chooses terminal A (reward 0.6) or decision B, which chooses L (0) or H (1). One agent controls both decisions; all rewards use the same [0,1] scale. Expand untried children left to right. Fully expanded nodes use UCT with c=√2 and first-child ties. Rollouts choose uniformly using a seed-7 32-bit generator. Backup touches selected/expanded tree nodes only. Recommend the most visited root child, A first on ties. The slider recomputes from the same seed, with no animation or background search.",
+        "accessibilitySummary": "Monte Carlo tree search. R chooses terminal A (reward 0.6) or decision B, which chooses L (0) or H (1). One agent controls both decisions; all rewards use the same [0,1] scale. Expand untried children left to right. Fully expanded nodes use UCT with c=√2 and first-child ties. Rollouts choose uniformly using a seed-7 32-bit generator. Backup touches selected/expanded tree nodes only. Recommend the most visited root child, A first on ties. The slider recomputes from the same seed, with no animation or background search. A data table and numeric summary accompany the graph.",
+        "takeaway": "Simulation 2 expands B and rolls out to L with reward 0, but L remains outside the search tree. Seeing a terminal in a rollout and maintaining its own visit statistics are different operations.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "tree-mcts",
+          "label": "Completed simulations",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.68,
+          "max": 32,
+          "step": 1,
+          "initial": 8,
           "unit": ""
-        },
-        "seed": 48143230,
-        "states": 7,
-        "rewardAt": 5
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/modal-logic",
@@ -5801,30 +5806,34 @@
     "id": "classical-artificial-intelligence--topics--uct",
     "slug": "classical-artificial-intelligence/topics/uct",
     "canonicalSlug": "classical-artificial-intelligence/topics/uct",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/uct/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "UCT",
-    "summary": "UCT selects MCTS actions by balancing high estimated value with low visit count.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "UCT applies a bandit-style selection score within a Monte Carlo search tree. An empirical reward term favors promising actions; a count-dependent bonus allocates more evidence to less visited alternatives. Its coefficient must be interpreted alongside the reward scale and formula convention. This lab isolates one fixed parent snapshot, making the allocation threshold visible without pretending that a single score comparison establishes an optimal policy or a confidence level.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--monte-carlo-tree-search",
+      "mathematical-foundations--topics--expectation"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute the next sampling action from explicit local statistics.",
+      "Explain why allocation scores and stopped-search recommendations can disagree."
+    ],
+    "tags": [
+      "uct",
+      "tree-uct",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: UCT",
-        "url": "https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Exploration_and_exploitation"
+        "label": "Kocsis and Szepesvári: Bandit based Monte-Carlo Planning, §2",
+        "url": "https://sites.ualberta.ca/~szepesva/papers/ecml06.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Browne et al.: A Survey of Monte Carlo Tree Search Methods, §3",
+        "url": "https://cs.gettysburg.edu/~tneller/cs371/mcts-survey.pdf"
       }
     ],
     "headings": [
@@ -5834,28 +5843,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "UCT field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive UCT diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This UCT illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "tree-uct",
+        "title": "A lower mean can earn the next simulation",
+        "summary": "Choose where to learn next, not merely which current average is largest.",
+        "equation": "scorei=Wi/Ni+c√(ln Nparent/Ni); choose argmaxi scorei",
+        "assumptions": "Fixed parent visit count 100. A has 80 visits, reward total 56 and mean 0.70. B has 20 visits, total 12 and mean 0.60. Rewards are on [0,1], but selection scores need not be. Natural logarithm; this convention absorbs other authors' constants into c. The snapshot never changes with the slider, and both counts are positive. Exact ties choose A. For a hypothetical budget stop, the declared most-visited rule recommends A regardless of c. No additional simulation is performed.",
+        "accessibilitySummary": "UCT. Fixed parent visit count 100. A has 80 visits, reward total 56 and mean 0.70. B has 20 visits, total 12 and mean 0.60. Rewards are on [0,1], but selection scores need not be. Natural logarithm; this convention absorbs other authors' constants into c. The snapshot never changes with the slider, and both counts are positive. Exact ties choose A. For a hypothetical budget stop, the declared most-visited rule recommends A regardless of c. No additional simulation is performed. A data table and numeric summary accompany the graph.",
+        "takeaway": "B has one quarter of A's visits and twice its exploration bonus. Above c≈0.4168 it receives the next sample despite its lower observed mean; the most-visited final recommendation remains A.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "tree-uct",
+          "label": "Exploration coefficient c",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.47,
+          "max": 2,
+          "step": 0.05,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 1904537745,
-        "nodeCount": 6,
-        "density": 0.5
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/transposition-tables",

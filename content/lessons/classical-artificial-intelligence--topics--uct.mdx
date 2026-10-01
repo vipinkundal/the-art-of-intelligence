@@ -1,57 +1,64 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "UCT selects MCTS actions by balancing high estimated value with low visit count.",
+  "hook": "Choose where to learn next, not merely which current average is largest.",
+  "overview": "UCT applies a bandit-style selection score within a Monte Carlo search tree. An empirical reward term favors promising actions; a count-dependent bonus allocates more evidence to less visited alternatives. Its coefficient must be interpreted alongside the reward scale and formula convention. This lab isolates one fixed parent snapshot, making the allocation threshold visible without pretending that a single score comparison establishes an optimal policy or a confidence level.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "Compute the two scores in the same units",
+      "explanation": "The means are 56/80=0.70 and 12/20=0.60. Their bonus factors are √(ln100/80)≈0.2399 and √(ln100/20)≈0.4799. At c=1, B's score≈1.0799 exceeds A's≈0.9399. This is a sampling preference, not an estimated probability above one."
     },
     {
-      "title": "Core rule",
-      "explanation": "Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits)."
+      "title": "A threshold makes the allocation policy inspectable",
+      "explanation": "Equating 0.70+c×0.2399 with 0.60+c×0.4799 gives c≈0.4168. Below it, A gets the next sample; above it, B does. At c=0 the bonus vanishes and A wins by observed mean. The 0.05-step slider brackets, rather than exactly hits, the crossover."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+      "title": "Parent visits are local",
+      "explanation": "Use the count of the current parent, not an unrelated global search count. The snapshot's child counts sum to 100 because every parent visit here selected one of these two children. In an expanding tree, count relationships depend on initialization and which nodes receive backup."
+    },
+    {
+      "title": "An unvisited action needs an explicit rule",
+      "explanation": "The expression is undefined at Ni=0. The companion simulation expands each untried action before comparing finite UCT scores. Other implementations can give unvisited actions an effectively infinite priority; neither approach should perform a literal division by zero."
+    },
+    {
+      "title": "Reward scale and final choice are separate decisions",
+      "explanation": "Multiplying rewards without adjusting c changes the mean-to-bonus balance. A recommendation based on most visits differs from next-simulation allocation. Both are explicit policies here; the displayed coefficient is not a user-selected 95% interval or a universal default for every task."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+    "Specify payoff perspective, reward scale, parent visits and each candidate's count and total.",
+    "Handle unvisited actions separately, then calculate means and exploration bonuses for visited candidates.",
+    "Allocate the next simulation by score; after the budget ends, apply the declared final recommendation rule."
   ],
   "formulas": [
     {
-      "label": "UCT rule",
-      "expression": "UCT=Q(s,a)+c*sqrt(ln N(s)/N(s,a))",
-      "meaning": "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations."
+      "label": "Definition and assumptions",
+      "expression": "scorei=Wi/Ni+c√(ln Nparent/Ni); choose argmaxi scorei",
+      "meaning": "Fixed parent visit count 100. A has 80 visits, reward total 56 and mean 0.70. B has 20 visits, total 12 and mean 0.60. Rewards are on [0,1], but selection scores need not be. Natural logarithm; this convention absorbs other authors' constants into c. The snapshot never changes with the slider, and both counts are positive. Exact ties choose A. For a hypothetical budget stop, the declared most-visited rule recommends A regardless of c. No additional simulation is performed."
     }
   ],
   "example": {
-    "title": "UCT in a small case",
-    "setup": "A root has one well-tested good move and one rarely tried move.",
+    "title": "Allocation changes; recorded evidence does not",
+    "setup": "Use c=1 with the fixed snapshot.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
-      "Check the outcome against the goal and stated assumptions."
+      "A score=0.70+√(ln100/80)≈0.9399.",
+      "B score=0.60+√(ln100/20)≈1.0799, so allocate the next sample to B.",
+      "If stopping now under the most-visited rule, recommend A because 80>20; the displayed counts have not changed."
     ],
-    "result": "The exploration bonus eventually gives the underexplored move a fair test."
+    "result": "Learning where evidence is thin is a different operation from committing the final action."
   },
   "pitfalls": [
-    "Reward scale changes the appropriate exploration constant c.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Reading a score above one as a probability misinterprets an exploration-adjusted index.",
+    "Claiming finite-budget optimality from an asymptotic result ignores the specific assumptions and constants needed by that result."
   ],
-  "implementation": [],
+  "implementation": [
+    "Document natural logarithm, coefficient convention and payoff perspective; do not mix reward totals with empirical means.",
+    "Expose mean, bonus, count and final recommendation separately; record actual returns when a subsequent simulation changes the snapshot."
+  ],
   "takeaways": [
-    "UCT selects MCTS actions by balancing high estimated value with low visit count.",
-    "Choose the child maximizing average reward plus an exploration bonus proportional to sqrt(log parent visits / child visits).",
-    "The exploration constant controls the tradeoff; too small commits early and too large wastes simulations.",
-    "The exploration bonus eventually gives the underexplored move a fair test."
+    "B has one quarter of A's visits and twice its exploration bonus. Above c≈0.4168 it receives the next sample despite its lower observed mean; the most-visited final recommendation remains A.",
+    "Explain why allocation scores and stopped-search recommendations can disagree."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["UCT selects MCTS actions by balancing high estimated value with low visit count.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This UCT illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["UCT applies a bandit-style selection score within a Monte Carlo search tree. An empirical reward term favors promising actions; a count-dependent bonus allocates more evidence to less visited alternatives. Its coefficient must be interpreted alongside the reward scale and formula convention. This lab isolates one fixed parent snapshot, making the allocation threshold visible without pretending that a single score comparison establishes an optimal policy or a confidence level.","Compute the next sampling action from explicit local statistics.","Explain why allocation scores and stopped-search recommendations can disagree.","Choose where to learn next, not merely which current average is largest.","scorei=Wi/Ni+c√(ln Nparent/Ni); choose argmaxi scorei","Fixed parent visit count 100. A has 80 visits, reward total 56 and mean 0.70. B has 20 visits, total 12 and mean 0.60. Rewards are on [0,1], but selection scores need not be. Natural logarithm; this convention absorbs other authors' constants into c. The snapshot never changes with the slider, and both counts are positive. Exact ties choose A. For a hypothetical budget stop, the declared most-visited rule recommends A regardless of c. No additional simulation is performed.","B has one quarter of A's visits and twice its exploration bonus. Above c≈0.4168 it receives the next sample despite its lower observed mean; the most-visited final recommendation remains A."]} />

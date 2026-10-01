@@ -11,8 +11,9 @@ import { definiteRuleModels, isDefiniteRuleModel, calculateDefiniteRules } from 
 import { gameTreeModels, isGameTreeModel, calculateGameTree } from "./game-trees.ts";
 import { planningFoundationModels, isPlanningFoundationModel, calculatePlanningFoundation } from "./planning-foundations.ts";
 import { planningStructureModels, isPlanningStructureModel, calculatePlanningStructure } from "./planning-structure.ts";
+import { sampledTreeModels, isSampledTreeModel, calculateSampledTree } from "./sampled-trees.ts";
 
-export const searchModels=["search-bfs","search-dfs","search-ucs","search-dls","search-ids","search-astar",...heuristicModels,...searchStateModels,...searchRefinementModels,...searchGuaranteeModels,...constraintModels,...localSearchModels,...propositionalModels,...predicateModels,...definiteRuleModels,...gameTreeModels,...planningFoundationModels,...planningStructureModels] as const;
+export const searchModels=["search-bfs","search-dfs","search-ucs","search-dls","search-ids","search-astar",...heuristicModels,...searchStateModels,...searchRefinementModels,...searchGuaranteeModels,...constraintModels,...localSearchModels,...propositionalModels,...predicateModels,...definiteRuleModels,...gameTreeModels,...planningFoundationModels,...planningStructureModels,...sampledTreeModels] as const;
 export type SearchModel=typeof searchModels[number];
 export const isSearchModel=(model:string):model is SearchModel=>(searchModels as readonly string[]).includes(model);
 type Node={id:string;g:number;path:string[]};
@@ -45,6 +46,7 @@ function limited(limit:number){
   return {visits,cutoffs,solution,status};
 }
 export function calculateSearch(model:SearchModel,input:number):CalculationResult{
+  if(isSampledTreeModel(model))return calculateSampledTree(model,input);
   if(isPlanningStructureModel(model))return calculatePlanningStructure(model,input);
   if(isPlanningFoundationModel(model))return calculatePlanningFoundation(model,input);
   if(isGameTreeModel(model))return calculateGameTree(model,input);

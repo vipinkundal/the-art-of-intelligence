@@ -5,14 +5,25 @@ The review covers every topic reachable from `/lessons/`, duplicate concepts, cu
 ## Current evidence (2026-10-01)
 
 - 389 addressable lesson documents; 386 canonical lessons after consolidating three duplicate pairs.
-- 230 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
-- 156 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
+- 232 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
+- 154 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
 - The source-derived corpus still contains 22 repeated passages appearing on more than two pages. These are editorial candidates, not automatically proven duplicate concepts.
 - Six new concepts: Brier score, split conformal prediction, geometric distribution, conditional expectation, law of total variance, and standard error. Early stopping and Markov chains each have one canonical lesson. The new Multiple testing treatment also consolidates the overlapping Multiple-testing correction entry, preserving its old address as an alias rather than claiming another new concept.
 
 Earlier build and screenshot reports did not establish content accuracy. In particular, the old generator assigned labs and equations from keywords, invented alphabetical prerequisites, and generated repeated generic prose. This pass removes generated pseudo-equations, filler hooks and implementation advice; marks remaining generic illustrations as schematics; and reserves reviewed status for authored content. Missing sections are reported as missing rather than filled with invented instruction.
 
 ## Reviewed topics
+
+### Sampled lookahead and exploration allocation (2026-10-01)
+
+Two existing lessons now have authored explanations and calculated models in `sampled-trees.mjs` / `sampled-trees.ts`. This is a verified incremental checkpoint, not completion of the all-page goal. The preceding five-page planning batch was pushed to main as `51cfd82`.
+
+- Monte Carlo tree search performs reproducible selection, single-child expansion, uniform rollout and backup on a five-node single-agent domain. Seed 7 makes simulation 2 expand B and roll out to L without adding L's statistics. Zero budget returns no recommendation or fabricated mean; budget 32 recommends B with A/B visit counts 12/20. The graph distinguishes the supplied domain from the maintained tree and the last tree path from the stopped-search recommendation. A compact four-phase trace and actual visit/reward table accompany it. The visible graph explanation was shortened after mobile inspection to give the diagram and trace more room.
+- UCT isolates a fixed 100-visit snapshot: A has mean 0.70 from 80 visits; B has mean 0.60 from 20. The bonus ratio is exactly two. The score crossover is c≈0.4168; available slider settings switch between 0.40 and 0.45. Allocation favors B at c=1 while the declared most-visited final recommendation remains A. Scores above one are explicitly not probabilities or calibrated confidence intervals. No simulation, opponent model or universal finite-budget guarantee is invented for this snapshot.
+- Both lessons have a dedicated suggested path with working MCTS→UCT navigation. All 74 available control states were traversed by keyboard in the exported site; resets and zero/one-budget wording were checked. Both pages were measured at 1440, 1024, 768, 390 and 320px without document overflow or horizontally clipped SVG text. The trace panel had no internal horizontal overflow. Representative mobile light and desktop dark screenshots were visually inspected; explicit dark selection persisted through reload. Browser warning/error logs were empty.
+- Strict TypeScript, lint, schema validation, MDX compilation and production export passed at 232 reviewed / 154 pending (394 generated pages). Export checking passed 392 content outputs, all 340 legacy addresses and local destination fragments. A fresh localhost sweep returned 343 valid responses, including homepage, library and `terms/index.html?term=uct`; an initial diagnostic accidentally constructed double-slash paths and was corrected before this successful sweep. The editorial audit still reports 22 repeated-passage candidates. No unit tests were added, maintained or run. Print and reduced-motion emulation are not included in these focused checks; the new labs themselves do not animate.
+- Primary material was inspected in Kocsis/Szepesvári's original planning paper and Browne et al.'s original MCTS survey. Thirty Classical AI topics remain pending; the next queue includes transposition tables, remaining planning methods and reasoning systems.
+- Evidence: `design-qa/mcts-light-320.png`, `mcts-dark-desktop.png`, `uct-light-320.png` and `uct-dark-desktop.png`. Each screenshot is scoped to its displayed viewport.
 
 ### Planning states, representations and protected support (2026-10-01)
 

@@ -2061,11 +2061,14 @@
     ]
   },
   {
-    "term": "Monte Carlo Tree Search",
-    "definition": "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
+    "term": "Monte Carlo tree search",
+    "definition": "Monte Carlo tree search allocates a finite lookahead budget using statistics collected from completed simulations. This lab separates selection through an existing tree, expansion of one new child, a rollout through the domain and backup to the selected tree nodes. Inspect the exact trace and its changing estimates rather than treating a larger visit count as a proof. The example is single-agent optimization; it does not model an adversary or a learned neural evaluator.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/monte-carlo-tree-search/",
-    "tags": []
+    "tags": [
+      "State-space representation",
+      "Expectation"
+    ]
   },
   {
     "term": "Multi-agent planning",
@@ -3134,10 +3137,13 @@
   },
   {
     "term": "UCT",
-    "definition": "UCT selects MCTS actions by balancing high estimated value with low visit count.",
+    "definition": "UCT applies a bandit-style selection score within a Monte Carlo search tree. An empirical reward term favors promising actions; a count-dependent bonus allocates more evidence to less visited alternatives. Its coefficient must be interpreted alongside the reward scale and formula convention. This lab isolates one fixed parent snapshot, making the allocation threshold visible without pretending that a single score comparison establishes an optimal policy or a confidence level.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/uct/",
-    "tags": []
+    "tags": [
+      "Monte Carlo tree search",
+      "Expectation"
+    ]
   },
   {
     "term": "Unconstrained and constrained optimization",

@@ -1,57 +1,64 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
+  "hook": "Search evidence grows one node at a time; a simulated state is not automatically a tree node.",
+  "overview": "Monte Carlo tree search allocates a finite lookahead budget using statistics collected from completed simulations. This lab separates selection through an existing tree, expansion of one new child, a rollout through the domain and backup to the selected tree nodes. Inspect the exact trace and its changing estimates rather than treating a larger visit count as a proof. The example is single-agent optimization; it does not model an adversary or a learned neural evaluator.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "Domain graph versus maintained evidence",
+      "explanation": "All five domain nodes are drawn for orientation. Initially the maintained tree contains only R. The outside annotation means a state has not been expanded, not that it is unreachable. The numeric table includes only visited nodes, so an unobserved mean is never displayed as zero."
     },
     {
-      "title": "Core rule",
-      "explanation": "Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits."
+      "title": "Replay the first two simulations",
+      "explanation": "The first expansion chooses A and returns 0.6 immediately. The second expansion chooses B, then the seed-7 rollout chooses L and returns 0. B receives one backed-up sample, but L receives no stored statistics until a later expansion. At budget two the robust-child tie chooses A."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget."
+      "title": "The continuation policy changes the observed average",
+      "explanation": "B is a decision owned by the same agent, not a chance node. Its early uniform rollout sees one of {0,1}; later tree selection favors H as evidence grows. Averaging these returns does not estimate a fixed fair coin's mean of 0.5. Neither the current sampled mean nor its exploration score is the exact max value 1."
+    },
+    {
+      "title": "A budget boundary is not a correctness certificate",
+      "explanation": "A terminal reward can be exact while the root recommendation remains sample-dependent. The reference best achievable reward 1 is supplied by inspecting this tiny domain, not certified by a large visit count. At zero budget the page deliberately returns no recommendation."
+    },
+    {
+      "title": "Player semantics would require a different contract",
+      "explanation": "Because every decision belongs to one agent, the same reward is backed up without sign changes. A two-player zero-sum implementation must compare values for the correct acting player; maximizing this root reward at an opponent node would make that opponent cooperative."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget."
+    "Follow the tree policy until a terminal or a node with an untried action is reached.",
+    "Expand one untried child; simulate from it to a genuine terminal under the declared rollout policy.",
+    "Update visit counts and reward totals along the tree path, then choose a root recommendation with a separately declared rule."
   ],
   "formulas": [
     {
-      "label": "Monte Carlo Tree Search rule",
-      "expression": "repeat: select -> expand -> evaluate -> backup",
-      "meaning": "It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget."
+      "label": "Definition and assumptions",
+      "expression": "N←N+1; W←W+r; Q=W/N; select Q+c√(ln Nparent/Nchild)",
+      "meaning": "R chooses terminal A (reward 0.6) or decision B, which chooses L (0) or H (1). One agent controls both decisions; all rewards use the same [0,1] scale. Expand untried children left to right. Fully expanded nodes use UCT with c=√2 and first-child ties. Rollouts choose uniformly using a seed-7 32-bit generator. Backup touches selected/expanded tree nodes only. Recommend the most visited root child, A first on ties. The slider recomputes from the same seed, with no animation or background search."
     }
   ],
   "example": {
-    "title": "Monte Carlo Tree Search in a small case",
-    "setup": "Run thousands of simulations from a Go position.",
+    "title": "A leaf observed but not expanded",
+    "setup": "Set the budget to two simulations.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
-      "Check the outcome against the goal and stated assumptions."
+      "Simulation 1 expands A: reward 0.6 backs up to A and R.",
+      "Simulation 2 expands B: the uniform rollout B→L gives reward 0, backing up to B and R only.",
+      "Root N=2,W=0.6; A and B each have one visit. The declared recommendation is A; L still has no tree estimate."
     ],
-    "result": "Visit counts and backed-up rewards identify the most promising root move."
+    "result": "The diagram distinguishes the simulation's terminal from the nodes that own recorded evidence."
   },
   "pitfalls": [
-    "Raw random rollouts can be biased or extremely noisy in long-horizon games.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Treating a sampled rollout average as an exact minimax value hides policy and budget dependence.",
+    "Updating an outside state's statistics without actually adding it to the maintained structure silently changes the algorithm."
   ],
-  "implementation": [],
+  "implementation": [
+    "Store visit count, reward total, expansion state and payoff perspective separately; return no mean when the count is zero.",
+    "Record the seed, action ordering, selection coefficient, rollout policy and final recommendation rule so a trace can be reproduced."
+  ],
   "takeaways": [
-    "Monte Carlo Tree Search grows a partial game tree from repeated simulated play.",
-    "Repeat selection, expansion, simulation or evaluation, and backpropagation so promising actions receive more visits.",
-    "It is anytime and focuses computation adaptively, but quality depends on the policy, value estimates, and simulation budget.",
-    "Visit counts and backed-up rewards identify the most promising root move."
+    "Simulation 2 expands B and rolls out to L with reward 0, but L remains outside the search tree. Seeing a terminal in a rollout and maintaining its own visit statistics are different operations.",
+    "Distinguish recorded estimates, simulation allocation and a final action recommendation."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Monte Carlo Tree Search grows a partial game tree from repeated simulated play.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Monte Carlo Tree Search illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Monte Carlo tree search allocates a finite lookahead budget using statistics collected from completed simulations. This lab separates selection through an existing tree, expansion of one new child, a rollout through the domain and backup to the selected tree nodes. Inspect the exact trace and its changing estimates rather than treating a larger visit count as a proof. The example is single-agent optimization; it does not model an adversary or a learned neural evaluator.","Trace selection, expansion, rollout and backup without conflating them.","Distinguish recorded estimates, simulation allocation and a final action recommendation.","Search evidence grows one node at a time; a simulated state is not automatically a tree node.","N←N+1; W←W+r; Q=W/N; select Q+c√(ln Nparent/Nchild)","R chooses terminal A (reward 0.6) or decision B, which chooses L (0) or H (1). One agent controls both decisions; all rewards use the same [0,1] scale. Expand untried children left to right. Fully expanded nodes use UCT with c=√2 and first-child ties. Rollouts choose uniformly using a seed-7 32-bit generator. Backup touches selected/expanded tree nodes only. Recommend the most visited root child, A first on ties. The slider recomputes from the same seed, with no animation or background search.","Simulation 2 expands B and rolls out to L with reward 0, but L remains outside the search tree. Seeing a terminal in a rollout and maintaining its own visit statistics are different operations."]} />

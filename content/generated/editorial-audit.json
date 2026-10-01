@@ -1,8 +1,8 @@
 {
   "scope": "All canonical lesson documents; checks describe editorial gaps, not independent factual certification.",
   "total": 386,
-  "reviewed": 230,
-  "pending": 156,
+  "reviewed": 232,
+  "pending": 154,
   "aliases": [
     {
       "slug": "mathematical-foundations/topics/early-stopping",
@@ -60,7 +60,6 @@
         "classical-artificial-intelligence/topics/logic-programming",
         "classical-artificial-intelligence/topics/mixed-integer-programming",
         "classical-artificial-intelligence/topics/modal-logic",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/multi-agent-planning",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
@@ -70,7 +69,6 @@
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/temporal-planning",
         "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct",
         "classical-artificial-intelligence/topics/unification",
         "classical-artificial-intelligence/topics/walksat"
       ]
@@ -210,40 +208,32 @@
       "text": "it operates on a position, legal actions, players or chance events, and a payoff model.",
       "routes": [
         "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
+        "classical-artificial-intelligence/topics/transposition-tables"
       ]
     },
     {
       "text": "represent the task using a position, legal actions, players or chance events, and a payoff model.",
       "routes": [
         "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
+        "classical-artificial-intelligence/topics/transposition-tables"
       ]
     },
     {
       "text": "evaluation quality and move ordering can dominate nominal search depth.",
       "routes": [
         "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
+        "classical-artificial-intelligence/topics/transposition-tables"
       ]
     },
     {
       "text": "do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games.",
       "routes": [
         "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
+        "classical-artificial-intelligence/topics/transposition-tables"
       ]
     },
     {
@@ -851,14 +841,10 @@
     },
     {
       "slug": "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-      "title": "Monte Carlo Tree Search",
+      "title": "Monte Carlo tree search",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/multi-agent-planning",
@@ -1061,12 +1047,8 @@
       "slug": "classical-artificial-intelligence/topics/uct",
       "title": "UCT",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/unification",

@@ -94,10 +94,13 @@
   },
   {
     "term": "Alpha-beta pruning",
-    "definition": "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
+    "definition": "Alpha-beta search computes the same root minimax value while skipping descendants that cannot improve the relevant decision. Alpha carries a maximizing alternative and beta a minimizing restriction along the search path. Once alpha is at least beta, continuing that branch cannot improve the ancestor's choice under the stated tie policy. A cutoff can return a bound rather than an exact interior value; those meanings must survive caching and display.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/alpha-beta-pruning/",
-    "tags": []
+    "tags": [
+      "Minimax",
+      "Branch and bound"
+    ]
   },
   {
     "term": "Analogy",
@@ -1120,10 +1123,13 @@
   },
   {
     "term": "Expectimax",
-    "definition": "Expectimax backs up expected values through random events or stochastic behavior.",
+    "definition": "Expectimax maximizes at controllable decisions and takes a probability-weighted expectation at chance nodes. It optimizes expected utility under the supplied transition or opponent model, rather than treating every uncontrolled choice as a worst-case adversarial reply. Probabilities must represent the actual conditional process, and leaf values must be utilities whose magnitudes support averaging. The best expectation is neither a guaranteed realized outcome nor robust to an incorrect probability model.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/expectimax/",
-    "tags": []
+    "tags": [
+      "Minimax",
+      "Expectation"
+    ]
   },
   {
     "term": "Experimental design",
@@ -1957,10 +1963,13 @@
   },
   {
     "term": "Minimax",
-    "definition": "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
+    "definition": "Minimax backs up terminal utilities through a finite game tree: maximize at your decisions and minimize at the opponent's decisions, keeping one fixed payoff perspective. In a two-player zero-sum perfect-information game, exhaustive search computes the value against optimal opposition. It also gives a worst-case guarantee against legal replies in that model. A shallow tree with heuristic leaf evaluations instead solves an approximation, not necessarily the original game.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/minimax/",
-    "tags": []
+    "tags": [
+      "State-space representation",
+      "Depth-first search"
+    ]
   },
   {
     "term": "Minimum description length",
@@ -2128,10 +2137,12 @@
   },
   {
     "term": "Negamax",
-    "definition": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
+    "definition": "Negamax expresses zero-sum minimax with one maximization recurrence by measuring each position from its own side-to-move perspective. A child's score belongs to the opponent, so negate it before comparison at the parent. Under strictly alternating turns and opposite payoffs, this computes the same decision as fixed-perspective minimax. The simpler recurrence does not itself prune, sample or improve the evaluation function.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/negamax/",
-    "tags": []
+    "tags": [
+      "Minimax"
+    ]
   },
   {
     "term": "Neural Networks",

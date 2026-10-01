@@ -5,14 +5,23 @@ The review covers every topic reachable from `/lessons/`, duplicate concepts, cu
 ## Current evidence (2026-10-01)
 
 - 389 addressable lesson documents; 386 canonical lessons after consolidating three duplicate pairs.
-- 221 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
-- 165 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
+- 225 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
+- 161 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
 - The source-derived corpus still contains 22 repeated passages appearing on more than two pages. These are editorial candidates, not automatically proven duplicate concepts.
 - Six new concepts: Brier score, split conformal prediction, geometric distribution, conditional expectation, law of total variance, and standard error. Early stopping and Markov chains each have one canonical lesson. The new Multiple testing treatment also consolidates the overlapping Multiple-testing correction entry, preserving its old address as an alias rather than claiming another new concept.
 
 Earlier build and screenshot reports did not establish content accuracy. In particular, the old generator assigned labs and equations from keywords, invented alphabetical prerequisites, and generated repeated generic prose. This pass removes generated pseudo-equations, filler hooks and implementation advice; marks remaining generic illustrations as schematics; and reserves reviewed status for authored content. Missing sections are reported as missing rather than filled with invented instruction.
 
 ## Reviewed topics
+
+### Exact game decisions, bounds and chance (2026-10-01)
+
+Four existing game lessons now use authored content and actual recursive calculations in `game-trees.mjs` / `game-trees.ts`. Minimax backs up fixed-perspective payoffs and switches its action above b1=3. Alpha-beta cuts B's unread leaf when b1≤3, reports an upper bound rather than an exact incomplete branch score, and separates reference enumeration from the three/four-visit trace. Negamax changes the actual first player, converts child-side scores by negation and yields fixed-X payoffs 3 or 5. Expectimax computes 10p versus a certain 4, switching at p=0.40; its zero-probability endpoints are explicitly distinguished from a different adversarial model that allows both replies.
+
+- All 41 control states were traversed by keyboard, including equality cutoffs and the expected-utility tie. Each page was measured at 1440, 1024, 768, 390 and 320px with no document overflow or offscreen SVG text. The chance branch was widened and lengthened after its mobile probability labels touched; edge-label backgrounds now accommodate label length. Representative mobile chance/player-perspective and desktop dark pruning screenshots were visually inspected. Explicit dark-theme selection persisted after reload.
+- All four legacy exported pages passed keyboard endpoint/reset checks; browser warning/error logs were empty. TypeScript, lint, schema validation, MDX compilation and production build passed at 225 reviewed / 161 pending. Export verification passed 392 content pages and all 340 legacy addresses/local fragments. The editorial audit still reports 22 repeated-passage candidates. No unit tests were added, maintained or run; the full HTTP sweep from the preceding checkpoint was not repeated.
+- Sources were inspected in Berkeley's minimax, expectimax and expected-utility materials, and Rasmussen's original chess-search implementation report (§3.2). Claims are scoped to the finite supplied trees, exact terminal utilities, zero-sum/turn contracts and specified probability model, not to optimal play from heuristic cutoffs. Sampled tree search remains pending. Thirty-seven Classical AI topics remain pending.
+- Evidence: `design-qa/alpha-beta-dark-desktop.png`, `negamax-light-320.png`, and `expectimax-light-320.png`. The rule checkpoint was pushed to main as `84a29c3`; the four game pages are local at this verification checkpoint.
 
 ### Definite rules and query-directed proofs (2026-10-01)
 

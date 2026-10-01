@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
+  "hook": "Judge a move by the reply your opponent would choose.",
+  "overview": "Minimax backs up terminal utilities through a finite game tree: maximize at your decisions and minimize at the opponent's decisions, keeping one fixed payoff perspective. In a two-player zero-sum perfect-information game, exhaustive search computes the value against optimal opposition. It also gives a worst-case guarantee against legal replies in that model. A shallow tree with heuristic leaf evaluations instead solves an approximation, not necessarily the original game.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "Payoff perspective stays fixed",
+      "explanation": "Every number in this minimax diagram is MAX's utility. MIN minimizes those same numbers because the game is zero-sum. Switching a node's displayed perspective without also changing the recurrence reverses decisions incorrectly."
     },
     {
-      "title": "Core rule",
-      "explanation": "Recursively maximize values on the current player's turns and minimize them on the opponent's turns."
+      "title": "A move exposes a set of opponent replies",
+      "explanation": "A's terminal set {3,5} has worst reply 3. B's set {b1,9} has worst reply b1 throughout this slider's range. The largest accessible leaf is not the value of a controllable root action."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially."
+      "title": "Backward induction makes decisions contingent",
+      "explanation": "Compute each MIN child after evaluating its terminals, then choose between its backed-up values at R. The highlighted line includes both MAX's action and MIN's minimizing reply. A larger policy can specify a reply at every reachable decision, not just one root-to-leaf sequence."
+    },
+    {
+      "title": "Exactness depends on the leaf meaning",
+      "explanation": "The lab's leaves are actual completed outcomes. Replacing them with estimated nonterminal scores gives the minimax value of that truncated evaluation tree. More search depth does not turn an arbitrary inaccurate evaluator into a proof of optimal play."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially."
+    "Identify the acting player and legal successors at each position.",
+    "Return exact terminal utility, then back up minima or maxima in one fixed perspective.",
+    "Choose a maximizing root action and retain the reply/policy evidence under an explicit tie rule."
   ],
   "formulas": [
     {
-      "label": "Minimax rule",
-      "expression": "V(s)=max_a V(T(s,a)) or min_a V(T(s,a))",
-      "meaning": "It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially."
+      "label": "Definition and assumptions",
+      "expression": "V(terminal)=uMAX; V(MAX)=maxchild V; V(MIN)=minchild V",
+      "meaning": "R belongs to MAX; its children A and B belong to MIN. A ends at payoffs 3 or 5; B ends at b1 or 9. The slider supplies b1 in utility points for MAX. MIN's payoff is the negative of MAX's. Two plies, four genuine terminals, no chance, hidden information, repeated states or cutoff estimates; left-to-right ties choose the first child."
     }
   ],
   "example": {
-    "title": "Minimax in a small case",
-    "setup": "Evaluate a three-ply tic-tac-toe tree from terminal win, draw, and loss scores.",
+    "title": "Two actions, four outcomes",
+    "setup": "Use b1=2.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
-      "Check the outcome against the goal and stated assumptions."
+      "A backs up min(3,5)=3; B backs up min(2,9)=2.",
+      "R backs up max(3,2)=3 and chooses A.",
+      "MIN replies with a1, attaining utility 3 for MAX and −3 for MIN."
     ],
-    "result": "The root move selected has the highest value after the opponent's best reply is backed up."
+    "result": "The best leaf 9 is available but cannot be forced against the modeled opponent."
   },
   "pitfalls": [
-    "A cutoff evaluation function is an estimate, not a terminal game-theoretic value.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Maximizing at every level silently treats the adversary as cooperative.",
+    "A worst-case value does not predict which reply a noisy or strategically different opponent will actually take."
   ],
-  "implementation": [],
+  "implementation": [
+    "Separate game rules, terminal detection and evaluation; include side to move and rule-relevant history in the state key.",
+    "Record depth and leaf semantics with a result, and avoid caching a shallow heuristic score as an exact full-game value."
+  ],
   "takeaways": [
-    "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
-    "Recursively maximize values on the current player's turns and minimize them on the opponent's turns.",
-    "It is exact for a finite deterministic two-player zero-sum tree, but full trees grow exponentially.",
-    "The root move selected has the highest value after the opponent's best reply is backed up."
+    "At b1=2, A guarantees 3 while B permits MIN to hold MAX to 2. Choose A despite B's attractive terminal 9. At b1=4, B guarantees 4 and becomes preferable.",
+    "Distinguish a forceable value from the largest reachable payoff."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Minimax chooses the move with the best worst-case outcome against an optimal opponent.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Minimax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Minimax backs up terminal utilities through a finite game tree: maximize at your decisions and minimize at the opponent's decisions, keeping one fixed payoff perspective. In a two-player zero-sum perfect-information game, exhaustive search computes the value against optimal opposition. It also gives a worst-case guarantee against legal replies in that model. A shallow tree with heuristic leaf evaluations instead solves an approximation, not necessarily the original game.","Back up a game tree in one fixed payoff perspective.","Distinguish a forceable value from the largest reachable payoff.","Judge a move by the reply your opponent would choose.","V(terminal)=uMAX; V(MAX)=maxchild V; V(MIN)=minchild V","R belongs to MAX; its children A and B belong to MIN. A ends at payoffs 3 or 5; B ends at b1 or 9. The slider supplies b1 in utility points for MAX. MIN's payoff is the negative of MAX's. Two plies, four genuine terminals, no chance, hidden information, repeated states or cutoff estimates; left-to-right ties choose the first child.","At b1=2, A guarantees 3 while B permits MIN to hold MAX to 2. Choose A despite B's attractive terminal 9. At b1=4, B guarantees 4 and becomes preferable."]} />

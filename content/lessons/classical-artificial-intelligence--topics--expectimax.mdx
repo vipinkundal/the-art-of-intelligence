@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Expectimax backs up expected values through random events or stochastic behavior.",
+  "hook": "Average what chance controls; choose what you control.",
+  "overview": "Expectimax maximizes at controllable decisions and takes a probability-weighted expectation at chance nodes. It optimizes expected utility under the supplied transition or opponent model, rather than treating every uncontrolled choice as a worst-case adversarial reply. Probabilities must represent the actual conditional process, and leaf values must be utilities whose magnitudes support averaging. The best expectation is neither a guaranteed realized outcome nor robust to an incorrect probability model.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "A chance node averages, it does not choose",
+      "explanation": "A's value is (1−p)×0+p×10. The chance node has no preference for its high or low outcome. MAX then compares this expected value with B's certain 4. The diagram's probability labels belong only to the chance outcomes, not root actions."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use maximization at decision nodes and probability-weighted averages at chance nodes."
+      "title": "Expected utility depends on cardinal magnitudes",
+      "explanation": "Minimax choices survive strictly increasing transformations of fixed leaf utilities. Expectimax generally does not: nonlinear transformations change weighted averages. If displayed payoffs are money and the agent is risk-averse, apply its utility function before averaging rather than quietly averaging currency."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+      "title": "An opponent model is a substantive assumption",
+      "explanation": "A known random rule and an estimated human-action model can both define chance probabilities, but their evidential basis differs. Replacing an adversarial reply with a convenient random distribution changes the objective and can make an apparently strong policy exploitable."
+    },
+    {
+      "title": "One observed child does not settle an expectation",
+      "explanation": "A minimum can be bounded by a single observed low child. A chance expectation still depends on the unobserved probability mass and utilities. Minimax's ordinary cutoff rule cannot simply be copied; specialized expectation bounds require known ranges and remaining mass."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Use maximization at decision nodes and probability-weighted averages at chance nodes.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+    "Specify conditional outcome probabilities and utility meaning at each chance node.",
+    "Back up weighted expectations at chance nodes and maxima at controllable decisions.",
+    "Report expected utility alongside outcome spread, model assumptions and decision thresholds."
   ],
   "formulas": [
     {
-      "label": "Expectimax rule",
-      "expression": "V(chance)=sum_o P(o|s,a)V(T(s,a,o))",
-      "meaning": "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error."
+      "label": "Definition and assumptions",
+      "expression": "V(chance)=Σi piVi; V(decision)=maxchild V; EA=10p, EB=4",
+      "meaning": "R chooses A or B. A has utility 0 with probability 1−p and utility 10 with probability p; B terminates at utility 4 for certain. The probabilities are supplied and sum to one; utilities are already on an expected-utility scale. This one-decision tree has no hidden observations, learning, capacity constraints or Monte Carlo sampling. First action A wins an exact tie."
     }
   ],
   "example": {
-    "title": "Expectimax in a small case",
-    "setup": "Choose a dice-game action with several possible rolls and payoffs.",
+    "title": "When the risky branch becomes preferable",
+    "setup": "Set p=0.60.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use maximization at decision nodes and probability-weighted averages at chance nodes.",
-      "Check the outcome against the goal and stated assumptions."
+      "The low outcome contributes 0.40×0=0; the high outcome contributes 0.60×10=6.",
+      "A therefore has expected utility 6 while B has certain utility 4.",
+      "Choose A, but a realized utility of zero remains possible with probability 0.40."
     ],
-    "result": "The selected move has the highest probability-weighted return rather than the best worst case."
+    "result": "Solving 10p=4 gives the exact switch at p=0.40; the expectation is not a sampled payoff."
   },
   "pitfalls": [
-    "Probabilities must sum to one and should reflect the real environment.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Averaging arbitrary ordinal rankings does not preserve preference under equivalent relabelings.",
+    "Treating the favorable expected value as a guaranteed return hides the low-outcome probability."
   ],
-  "implementation": [],
+  "implementation": [
+    "Validate normalization, finite utility values and conditional probability context before backing up a chance node.",
+    "Expose model uncertainty and utility units; use bounded remaining-mass calculations if adding sound chance-node pruning."
+  ],
   "takeaways": [
-    "Expectimax backs up expected values through random events or stochastic behavior.",
-    "Use maximization at decision nodes and probability-weighted averages at chance nodes.",
-    "It optimizes expected utility when probabilities are correct, but can be sensitive to rare outcomes and model error.",
-    "The selected move has the highest probability-weighted return rather than the best worst case."
+    "At p=0.60, A has expected utility 6 and beats certain B=4. The threshold is p=0.40. A different adversarial model allowing both listed replies would choose B; zero-probability chance outcomes are excluded from the supplied distribution's possible realizations.",
+    "Separate expected-utility choice from worst-case guarantees and realized outcomes."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Expectimax backs up expected values through random events or stochastic behavior.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Expectimax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Expectimax maximizes at controllable decisions and takes a probability-weighted expectation at chance nodes. It optimizes expected utility under the supplied transition or opponent model, rather than treating every uncontrolled choice as a worst-case adversarial reply. Probabilities must represent the actual conditional process, and leaf values must be utilities whose magnitudes support averaging. The best expectation is neither a guaranteed realized outcome nor robust to an incorrect probability model.","Compute and compare a probability-weighted action value.","Separate expected-utility choice from worst-case guarantees and realized outcomes.","Average what chance controls; choose what you control.","V(chance)=Σi piVi; V(decision)=maxchild V; EA=10p, EB=4","R chooses A or B. A has utility 0 with probability 1−p and utility 10 with probability p; B terminates at utility 4 for certain. The probabilities are supplied and sum to one; utilities are already on an expected-utility scale. This one-decision tree has no hidden observations, learning, capacity constraints or Monte Carlo sampling. First action A wins an exact tie.","At p=0.60, A has expected utility 6 and beats certain B=4. The threshold is p=0.40. A different adversarial model allowing both listed replies would choose B; zero-probability chance outcomes are excluded from the supplied distribution's possible realizations."]} />

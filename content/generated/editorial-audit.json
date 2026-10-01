@@ -1,8 +1,8 @@
 {
   "scope": "All canonical lesson documents; checks describe editorial gaps, not independent factual certification.",
   "total": 386,
-  "reviewed": 218,
-  "pending": 168,
+  "reviewed": 225,
+  "pending": 161,
   "aliases": [
     {
       "slug": "mathematical-foundations/topics/early-stopping",
@@ -42,10 +42,8 @@
       "text": "track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
       "routes": [
         "classical-artificial-intelligence/topics/abduction",
-        "classical-artificial-intelligence/topics/alpha-beta-pruning",
         "classical-artificial-intelligence/topics/analogy",
         "classical-artificial-intelligence/topics/automated-theorem-proving",
-        "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/conflict-driven-clause-learning",
         "classical-artificial-intelligence/topics/contingent-planning",
         "classical-artificial-intelligence/topics/counterfactual-reasoning",
@@ -53,23 +51,18 @@
         "classical-artificial-intelligence/topics/deduction",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/expectimax",
         "classical-artificial-intelligence/topics/forward-and-backward-planning",
-        "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
-        "classical-artificial-intelligence/topics/horn-clauses",
         "classical-artificial-intelligence/topics/induction",
         "classical-artificial-intelligence/topics/integer-programming",
         "classical-artificial-intelligence/topics/knowledge-bases",
         "classical-artificial-intelligence/topics/logic-programming",
-        "classical-artificial-intelligence/topics/minimax",
         "classical-artificial-intelligence/topics/mixed-integer-programming",
         "classical-artificial-intelligence/topics/modal-logic",
         "classical-artificial-intelligence/topics/monte-carlo-tree-search",
         "classical-artificial-intelligence/topics/multi-agent-planning",
-        "classical-artificial-intelligence/topics/negamax",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
         "classical-artificial-intelligence/topics/partial-order-planning",
@@ -108,71 +101,12 @@
       ]
     },
     {
-      "text": "it operates on a position, legal actions, players or chance events, and a payoff model.",
-      "routes": [
-        "classical-artificial-intelligence/topics/alpha-beta-pruning",
-        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/expectimax",
-        "classical-artificial-intelligence/topics/minimax",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-        "classical-artificial-intelligence/topics/negamax",
-        "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
-      ]
-    },
-    {
-      "text": "represent the task using a position, legal actions, players or chance events, and a payoff model.",
-      "routes": [
-        "classical-artificial-intelligence/topics/alpha-beta-pruning",
-        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/expectimax",
-        "classical-artificial-intelligence/topics/minimax",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-        "classical-artificial-intelligence/topics/negamax",
-        "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
-      ]
-    },
-    {
-      "text": "evaluation quality and move ordering can dominate nominal search depth.",
-      "routes": [
-        "classical-artificial-intelligence/topics/alpha-beta-pruning",
-        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/expectimax",
-        "classical-artificial-intelligence/topics/minimax",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-        "classical-artificial-intelligence/topics/negamax",
-        "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
-      ]
-    },
-    {
-      "text": "do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games.",
-      "routes": [
-        "classical-artificial-intelligence/topics/alpha-beta-pruning",
-        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
-        "classical-artificial-intelligence/topics/expectimax",
-        "classical-artificial-intelligence/topics/minimax",
-        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
-        "classical-artificial-intelligence/topics/negamax",
-        "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/transposition-tables",
-        "classical-artificial-intelligence/topics/uct"
-      ]
-    },
-    {
       "text": "represent the task using symbols, facts, rules, a vocabulary, and a query.",
       "routes": [
         "classical-artificial-intelligence/topics/automated-theorem-proving",
-        "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
-        "classical-artificial-intelligence/topics/horn-clauses",
         "classical-artificial-intelligence/topics/knowledge-bases",
         "classical-artificial-intelligence/topics/logic-programming",
         "classical-artificial-intelligence/topics/modal-logic",
@@ -186,12 +120,9 @@
       "text": "syntax alone does not guarantee that the representation matches the intended world semantics.",
       "routes": [
         "classical-artificial-intelligence/topics/automated-theorem-proving",
-        "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
-        "classical-artificial-intelligence/topics/horn-clauses",
         "classical-artificial-intelligence/topics/knowledge-bases",
         "classical-artificial-intelligence/topics/logic-programming",
         "classical-artificial-intelligence/topics/modal-logic",
@@ -205,12 +136,9 @@
       "text": "open-world, closed-world, monotonic, and non-monotonic assumptions change what can be concluded.",
       "routes": [
         "classical-artificial-intelligence/topics/automated-theorem-proving",
-        "classical-artificial-intelligence/topics/backward-chaining",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/forward-chaining",
         "classical-artificial-intelligence/topics/fuzzy-logic",
-        "classical-artificial-intelligence/topics/horn-clauses",
         "classical-artificial-intelligence/topics/knowledge-bases",
         "classical-artificial-intelligence/topics/logic-programming",
         "classical-artificial-intelligence/topics/modal-logic",
@@ -296,6 +224,46 @@
         "classical-artificial-intelligence/topics/state-space-planning",
         "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-planning"
+      ]
+    },
+    {
+      "text": "it operates on a position, legal actions, players or chance events, and a payoff model.",
+      "routes": [
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "represent the task using a position, legal actions, players or chance events, and a payoff model.",
+      "routes": [
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "evaluation quality and move ordering can dominate nominal search depth.",
+      "routes": [
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
+      ]
+    },
+    {
+      "text": "do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games.",
+      "routes": [
+        "classical-artificial-intelligence/topics/counterfactual-regret-minimization",
+        "classical-artificial-intelligence/topics/monte-carlo-tree-search",
+        "classical-artificial-intelligence/topics/self-play",
+        "classical-artificial-intelligence/topics/transposition-tables",
+        "classical-artificial-intelligence/topics/uct"
       ]
     },
     {
@@ -462,12 +430,8 @@
       "slug": "classical-artificial-intelligence/topics/alpha-beta-pruning",
       "title": "Alpha-beta pruning",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/analogy",
@@ -509,12 +473,8 @@
       "slug": "classical-artificial-intelligence/topics/backward-chaining",
       "title": "Backward chaining",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/beam-search",
@@ -709,12 +669,8 @@
       "slug": "classical-artificial-intelligence/topics/expectimax",
       "title": "Expectimax",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/first-order-predicate-logic",
@@ -738,12 +694,8 @@
       "slug": "classical-artificial-intelligence/topics/forward-chaining",
       "title": "Forward chaining",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/forward-checking",
@@ -803,12 +755,8 @@
       "slug": "classical-artificial-intelligence/topics/horn-clauses",
       "title": "Horn clauses",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/induction",
@@ -893,12 +841,8 @@
       "slug": "classical-artificial-intelligence/topics/minimax",
       "title": "Minimax",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/minimum-remaining-values",
@@ -955,12 +899,8 @@
       "slug": "classical-artificial-intelligence/topics/negamax",
       "title": "Negamax",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/non-monotonic-reasoning",

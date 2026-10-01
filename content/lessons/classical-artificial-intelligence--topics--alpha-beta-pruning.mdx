@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
+  "hook": "You do not need an exact losing branch to keep a better alternative.",
+  "overview": "Alpha-beta search computes the same root minimax value while skipping descendants that cannot improve the relevant decision. Alpha carries a maximizing alternative and beta a minimizing restriction along the search path. Once alpha is at least beta, continuing that branch cannot improve the ancestor's choice under the stated tie policy. A cutoff can return a bound rather than an exact interior value; those meanings must survive caching and display.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "The first completed alternative creates leverage",
+      "explanation": "Evaluating both leaves of A gives its exact value 3. MAX can already secure that outcome, so a later MIN branch need only be shown unable to exceed 3. Without an available alternative, this particular cutoff would not be justified."
     },
     {
-      "title": "Core rule",
-      "explanation": "Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta."
+      "title": "A partial minimum is an upper bound",
+      "explanation": "After reading B's first leaf b1=2, the final minimum across all its leaves can only be at most 2. The unread leaf could reduce it further. The search therefore labels B as ≤2 rather than claiming its exact value from an incomplete traversal."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It returns the same move as minimax while good move ordering can roughly double practical search depth."
+      "title": "Pruning follows relevance, not physical impossibility",
+      "explanation": "The hidden b2 terminal remains a legal outcome in the supplied game. It is not read because its branch cannot improve MAX's root value. Dashed coral identifies the skipped edge, not a chosen optimal line."
+    },
+    {
+      "title": "Ordering changes work, not the exact root value",
+      "explanation": "A useful alternative followed by an early refutation saves a visit. Poor ordering can leave no savings; in a general full tree alpha-beta retains minimax's exponential worst case. Its favorable asymptotic case depends on move order, not a universal promise of twice the practical depth."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It returns the same move as minimax while good move ordering can roughly double practical search depth."
+    "Search a child with the inherited alpha/beta window and update the current bound.",
+    "Stop remaining children when alpha≥beta, marking skipped descendants and returned bound meaning.",
+    "Use the root result only with its declared window, leaf semantics and tie policy."
   ],
   "formulas": [
     {
-      "label": "Alpha-beta pruning rule",
-      "expression": "prune when alpha >= beta",
-      "meaning": "It returns the same move as minimax while good move ordering can roughly double practical search depth."
+      "label": "Definition and assumptions",
+      "expression": "At MAX: α←max(α,v); at MIN: β←min(β,v); cutoff when α≥β",
+      "meaning": "Use the same two-ply zero-sum tree as Minimax: A leaves 3,5; B leaves b1,9. Search A before B and each branch's left leaf before its right. Start the root with (−∞,+∞). Fail-soft returns the best value seen, retaining bound status on an incomplete branch. Equality cuts off; first-child ties are retained. The four-leaf reference calculation is separate from the algorithmic visit count."
     }
   ],
   "example": {
-    "title": "Alpha-beta pruning in a small case",
-    "setup": "Search a chess position after first examining a strong forcing move.",
+    "title": "Three evaluations instead of four",
+    "setup": "Search the default b1=2 tree from left to right.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
-      "Check the outcome against the goal and stated assumptions."
+      "Read a1=3 and a2=5; A returns 3 and raises root alpha to 3.",
+      "Read b1=2; B's beta becomes 2, satisfying beta≤alpha.",
+      "Skip b2; retain A and return exact root value 3."
     ],
-    "result": "Branches proven worse than an already available alternative are not evaluated further."
+    "result": "The B result is sufficient as an upper bound; its exact value need not be established by the search."
   },
   "pitfalls": [
-    "Incorrect value perspective or bound updates can silently prune valid moves.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Caching an upper or lower bound as an exact score can cause unsound later cutoffs.",
+    "Pruning on equality preserves the value and first retained optimal move here, but does not enumerate all tied optimal moves."
   ],
-  "implementation": [],
+  "implementation": [
+    "Track exact/lower/upper flags, search depth and rule-complete state identity in transposition entries.",
+    "Keep full-tree reference work separate from visited-node metrics; if using negamax, negate and swap the child window correctly."
+  ],
   "takeaways": [
-    "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
-    "Track alpha, the best guaranteed MAX value, and beta, the best guaranteed MIN value; prune when alpha is at least beta.",
-    "It returns the same move as minimax while good move ordering can roughly double practical search depth.",
-    "Branches proven worse than an already available alternative are not evaluated further."
+    "A establishes α=3. At b1=2, B supplies an upper bound of 2, so b2 is pruned. At b1=4, that refutation is unavailable and all four terminals must be evaluated.",
+    "Interpret an incomplete interior result without inventing an exact score."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Alpha-beta pruning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Alpha-beta search computes the same root minimax value while skipping descendants that cannot improve the relevant decision. Alpha carries a maximizing alternative and beta a minimizing restriction along the search path. Once alpha is at least beta, continuing that branch cannot improve the ancestor's choice under the stated tie policy. A cutoff can return a bound rather than an exact interior value; those meanings must survive caching and display.","Justify a cutoff from an available alternative and opposing bound.","Interpret an incomplete interior result without inventing an exact score.","You do not need an exact losing branch to keep a better alternative.","At MAX: α←max(α,v); at MIN: β←min(β,v); cutoff when α≥β","Use the same two-ply zero-sum tree as Minimax: A leaves 3,5; B leaves b1,9. Search A before B and each branch's left leaf before its right. Start the root with (−∞,+∞). Fail-soft returns the best value seen, retaining bound status on an incomplete branch. Equality cuts off; first-child ties are retained. The four-leaf reference calculation is separate from the algorithmic visit count.","A establishes α=3. At b1=2, B supplies an upper bound of 2, so b2 is pruned. At b1=4, that refutation is unavailable and all four terminals must be evaluated."]} />

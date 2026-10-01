@@ -41,6 +41,7 @@ import { localSearchLessons } from "./local-search.mjs";
 import { propositionalLessons } from "./propositional-inference.mjs";
 import { predicateLessons } from "./predicate-logic.mjs";
 import { definiteRuleLessons } from "./definite-rules.mjs";
+import { gameTreeLessons } from "./game-trees.mjs";
 const probabilityBook = source("Pishro-Nik: Introduction to Probability", "https://www.probabilitycourse.com/");
 const informationBook = source("MacKay: Information Theory, Inference, and Learning Algorithms", "https://www.inference.org.uk/itila/book.html");
 const scipy = (name) => source(`SciPy: ${name}`, `https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.${name}.html`);
@@ -52,6 +53,7 @@ export const lessonAliases = {
 };
 
 export const reviewedLessons = {
+  ...gameTreeLessons,
   ...definiteRuleLessons,
   ...predicateLessons,
   ...propositionalLessons,

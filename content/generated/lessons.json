@@ -599,30 +599,34 @@
     "id": "classical-artificial-intelligence--topics--alpha-beta-pruning",
     "slug": "classical-artificial-intelligence/topics/alpha-beta-pruning",
     "canonicalSlug": "classical-artificial-intelligence/topics/alpha-beta-pruning",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/alpha-beta-pruning/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Alpha-beta pruning",
-    "summary": "Alpha-beta pruning skips game-tree branches that cannot change the minimax decision.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Alpha-beta search computes the same root minimax value while skipping descendants that cannot improve the relevant decision. Alpha carries a maximizing alternative and beta a minimizing restriction along the search path. Once alpha is at least beta, continuing that branch cannot improve the ancestor's choice under the stated tie policy. A cutoff can return a bound rather than an exact interior value; those meanings must survive caching and display.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--minimax",
+      "classical-artificial-intelligence--topics--branch-and-bound"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Justify a cutoff from an available alternative and opposing bound.",
+      "Interpret an incomplete interior result without inventing an exact score."
+    ],
+    "tags": [
+      "alpha-beta pruning",
+      "game-alpha-beta",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Alpha-beta pruning",
-        "url": "https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning"
+        "label": "Berkeley CS188: minimax, alpha-beta and evaluation functions",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/games/minimax.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Rasmussen: Parallel Chess Searching and Bitboards, §3.2",
+        "url": "https://www.cs.cmu.edu/afs/cs/academic/class/15418-s12/www/competition/www.contrib.andrew.cmu.edu/~jvirdo/rasmussen-2004.pdf"
       }
     ],
     "headings": [
@@ -632,28 +636,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "reinforcement",
-        "title": "Alpha-beta pruning field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Alpha-beta pruning diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Alpha-beta pruning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "game-alpha-beta",
+        "title": "A reply can refute a branch before its other leaf is read",
+        "summary": "You do not need an exact losing branch to keep a better alternative.",
+        "equation": "At MAX: α←max(α,v); at MIN: β←min(β,v); cutoff when α≥β",
+        "assumptions": "Use the same two-ply zero-sum tree as Minimax: A leaves 3,5; B leaves b1,9. Search A before B and each branch's left leaf before its right. Start the root with (−∞,+∞). Fail-soft returns the best value seen, retaining bound status on an incomplete branch. Equality cuts off; first-child ties are retained. The four-leaf reference calculation is separate from the algorithmic visit count.",
+        "accessibilitySummary": "Alpha-beta pruning. Use the same two-ply zero-sum tree as Minimax: A leaves 3,5; B leaves b1,9. Search A before B and each branch's left leaf before its right. Start the root with (−∞,+∞). Fail-soft returns the best value seen, retaining bound status on an incomplete branch. Equality cuts off; first-child ties are retained. The four-leaf reference calculation is separate from the algorithmic visit count. A data table and numeric summary accompany the graph.",
+        "takeaway": "A establishes α=3. At b1=2, B supplies an upper bound of 2, so b2 is pruned. At b1=4, that refutation is unavailable and all four terminals must be evaluated.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "game-alpha-beta",
+          "label": "First reply in B: utility b1",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.7,
+          "max": 8,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 349082426,
-        "states": 7,
-        "rewardAt": 5
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/admissible-heuristics",
@@ -2555,30 +2560,34 @@
     "id": "classical-artificial-intelligence--topics--expectimax",
     "slug": "classical-artificial-intelligence/topics/expectimax",
     "canonicalSlug": "classical-artificial-intelligence/topics/expectimax",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/expectimax/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Expectimax",
-    "summary": "Expectimax backs up expected values through random events or stochastic behavior.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Expectimax maximizes at controllable decisions and takes a probability-weighted expectation at chance nodes. It optimizes expected utility under the supplied transition or opponent model, rather than treating every uncontrolled choice as a worst-case adversarial reply. Probabilities must represent the actual conditional process, and leaf values must be utilities whose magnitudes support averaging. The best expectation is neither a guaranteed realized outcome nor robust to an incorrect probability model.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--minimax",
+      "mathematical-foundations--topics--expectation"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute and compare a probability-weighted action value.",
+      "Separate expected-utility choice from worst-case guarantees and realized outcomes."
+    ],
+    "tags": [
+      "expectimax",
+      "game-expectimax",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Expectimax",
-        "url": "https://en.wikipedia.org/wiki/Expectiminimax"
+        "label": "Berkeley CS188: expectimax and mixed node types",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/games/expectimax.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: utilities and expected-utility preference",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/vpis/utilities.html"
       }
     ],
     "headings": [
@@ -2588,28 +2597,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Expectimax field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Expectimax diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Expectimax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "game-expectimax",
+        "title": "A risky branch beats a sure four only above a probability threshold",
+        "summary": "Average what chance controls; choose what you control.",
+        "equation": "V(chance)=Σi piVi; V(decision)=maxchild V; EA=10p, EB=4",
+        "assumptions": "R chooses A or B. A has utility 0 with probability 1−p and utility 10 with probability p; B terminates at utility 4 for certain. The probabilities are supplied and sum to one; utilities are already on an expected-utility scale. This one-decision tree has no hidden observations, learning, capacity constraints or Monte Carlo sampling. First action A wins an exact tie.",
+        "accessibilitySummary": "Expectimax. R chooses A or B. A has utility 0 with probability 1−p and utility 10 with probability p; B terminates at utility 4 for certain. The probabilities are supplied and sum to one; utilities are already on an expected-utility scale. This one-decision tree has no hidden observations, learning, capacity constraints or Monte Carlo sampling. First action A wins an exact tie. A data table and numeric summary accompany the graph.",
+        "takeaway": "At p=0.60, A has expected utility 6 and beats certain B=4. The threshold is p=0.40. A different adversarial model allowing both listed replies would choose B; zero-probability chance outcomes are excluded from the supplied distribution's possible realizations.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "game-expectimax",
+          "label": "Probability of utility 10",
           "min": 0,
           "max": 1,
-          "step": 0.01,
-          "initial": 0.62,
+          "step": 0.05,
+          "initial": 0.6,
           "unit": ""
-        },
-        "seed": 3355789961,
-        "nodeCount": 7,
-        "density": 0.26
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/duplicate-state-detection",
@@ -3899,30 +3909,34 @@
     "id": "classical-artificial-intelligence--topics--minimax",
     "slug": "classical-artificial-intelligence/topics/minimax",
     "canonicalSlug": "classical-artificial-intelligence/topics/minimax",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/minimax/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Minimax",
-    "summary": "Minimax chooses the move with the best worst-case outcome against an optimal opponent.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Minimax backs up terminal utilities through a finite game tree: maximize at your decisions and minimize at the opponent's decisions, keeping one fixed payoff perspective. In a two-player zero-sum perfect-information game, exhaustive search computes the value against optimal opposition. It also gives a worst-case guarantee against legal replies in that model. A shallow tree with heuristic leaf evaluations instead solves an approximation, not necessarily the original game.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--state-space-representation",
+      "classical-artificial-intelligence--topics--depth-first-search"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Back up a game tree in one fixed payoff perspective.",
+      "Distinguish a forceable value from the largest reachable payoff."
+    ],
+    "tags": [
+      "minimax",
+      "game-minimax",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Minimax",
-        "url": "https://en.wikipedia.org/wiki/Minimax"
+        "label": "Berkeley CS188: minimax, alpha-beta and evaluation functions",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/games/minimax.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Rasmussen: Parallel Chess Searching and Bitboards, §3.2",
+        "url": "https://www.cs.cmu.edu/afs/cs/academic/class/15418-s12/www/competition/www.contrib.andrew.cmu.edu/~jvirdo/rasmussen-2004.pdf"
       }
     ],
     "headings": [
@@ -3932,31 +3946,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "optimization",
-        "title": "Minimax field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Minimax diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Minimax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "game-minimax",
+        "title": "A tempting nine is not a payoff you can force",
+        "summary": "Judge a move by the reply your opponent would choose.",
+        "equation": "V(terminal)=uMAX; V(MAX)=maxchild V; V(MIN)=minchild V",
+        "assumptions": "R belongs to MAX; its children A and B belong to MIN. A ends at payoffs 3 or 5; B ends at b1 or 9. The slider supplies b1 in utility points for MAX. MIN's payoff is the negative of MAX's. Two plies, four genuine terminals, no chance, hidden information, repeated states or cutoff estimates; left-to-right ties choose the first child.",
+        "accessibilitySummary": "Minimax. R belongs to MAX; its children A and B belong to MIN. A ends at payoffs 3 or 5; B ends at b1 or 9. The slider supplies b1 in utility points for MAX. MIN's payoff is the negative of MAX's. Two plies, four genuine terminals, no chance, hidden information, repeated states or cutoff estimates; left-to-right ties choose the first child. A data table and numeric summary accompany the graph.",
+        "takeaway": "At b1=2, A guarantees 3 while B permits MIN to hold MAX to 2. Choose A despite B's attractive terminal 9. At b1=4, B guarantees 4 and becomes preferable.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "game-minimax",
+          "label": "MAX utility at terminal b1",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.34,
+          "max": 8,
+          "step": 1,
+          "initial": 2,
           "unit": ""
-        },
-        "seed": 924230652,
-        "minima": [
-          0.24,
-          0.73
-        ],
-        "curvature": 0.74
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/min-conflicts",
@@ -4291,30 +4303,33 @@
     "id": "classical-artificial-intelligence--topics--negamax",
     "slug": "classical-artificial-intelligence/topics/negamax",
     "canonicalSlug": "classical-artificial-intelligence/topics/negamax",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/negamax/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Negamax",
-    "summary": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Negamax expresses zero-sum minimax with one maximization recurrence by measuring each position from its own side-to-move perspective. A child's score belongs to the opponent, so negate it before comparison at the parent. Under strictly alternating turns and opposite payoffs, this computes the same decision as fixed-perspective minimax. The simpler recurrence does not itself prune, sample or improve the evaluation function.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--minimax"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Convert child scores into the parent's payoff perspective.",
+      "Explain why a symmetric recurrence is equivalent to minimax rather than a search-speed guarantee."
+    ],
+    "tags": [
+      "negamax",
+      "game-negamax",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Negamax",
-        "url": "https://en.wikipedia.org/wiki/Negamax"
+        "label": "Rasmussen: Parallel Chess Searching and Bitboards, §3.2",
+        "url": "https://www.cs.cmu.edu/afs/cs/academic/class/15418-s12/www/competition/www.contrib.andrew.cmu.edu/~jvirdo/rasmussen-2004.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Berkeley CS188: minimax, alpha-beta and evaluation functions",
+        "url": "https://inst.eecs.berkeley.edu/~cs188/textbook/games/minimax.html"
       }
     ],
     "headings": [
@@ -4324,28 +4339,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "evaluation",
-        "title": "Negamax field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Negamax diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Negamax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "game-negamax",
+        "title": "The same number changes meaning when the acting player changes",
+        "summary": "Their good score is your bad score: negate before comparing.",
+        "equation": "N(s)=maxchild[−N(child)]; N(terminal,c)=c·uX, c∈{+1,−1}",
+        "assumptions": "Fixed terminal X utilities are a1=3,a2=5,b1=2,b2=9; Y's utilities are their negatives. Two players alternate at every edge, with two plies to a terminal. Terminal labels use the player who would move next. The slider changes which player owns R, so it changes the game, not merely a display perspective. Ties choose the first child; all terminals are evaluated.",
+        "accessibilitySummary": "Negamax. Fixed terminal X utilities are a1=3,a2=5,b1=2,b2=9; Y's utilities are their negatives. Two players alternate at every edge, with two plies to a terminal. Terminal labels use the player who would move next. The slider changes which player owns R, so it changes the game, not merely a display perspective. Ties choose the first child; all terminals are evaluated. A data table and numeric summary accompany the graph.",
+        "takeaway": "With X first, the Y-side child scores −3 and −2 become X comparisons 3 and 2. With Y first, X-side child scores 5 and 9 become Y comparisons −5 and −9; Y chooses −5.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "game-negamax",
+          "label": "First player: 0=X, 1=Y",
           "min": 0,
           "max": 1,
-          "step": 0.01,
-          "initial": 0.54,
+          "step": 1,
+          "initial": 0,
           "unit": ""
-        },
-        "seed": 118647314,
-        "positiveRate": 0.56,
-        "baseRate": 0.34
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/multi-agent-planning",

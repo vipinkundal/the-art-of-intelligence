@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
+  "hook": "Their good score is your bad score: negate before comparing.",
+  "overview": "Negamax expresses zero-sum minimax with one maximization recurrence by measuring each position from its own side-to-move perspective. A child's score belongs to the opponent, so negate it before comparison at the parent. Under strictly alternating turns and opposite payoffs, this computes the same decision as fixed-perspective minimax. The simpler recurrence does not itself prune, sample or improve the evaluation function.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on a position, legal actions, players or chance events, and a payoff model."
+      "title": "Node labels deliberately mix perspectives",
+      "explanation": "R and the leaves have the first player's perspective; A and B have the other player's. A parent cannot directly maximize the displayed child numbers. The comparison table shows the negation needed to make their units refer to the same player's preference."
     },
     {
-      "title": "Core rule",
-      "explanation": "Use the identity that one player's value is the negative of the opponent's value and negate recursive returns."
+      "title": "Zero-sum symmetry permits one operator",
+      "explanation": "Because uY=−uX, maximizing the current player's payoff is equivalent to minimizing the opponent's. This identity supplies the sign flip. General-sum preferences do not admit the same scalar recurrence without additional assumptions."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+      "title": "Changing the owner changes the reply policy",
+      "explanation": "If X owns R, Y acts at A and prefers X payoff 3 over 5. If Y owns R, X acts at A and prefers 5 over 3. The switch therefore changes the terminal reply, not just the sign printed beside an unchanged line."
+    },
+    {
+      "title": "Sign correctness matters at leaves and windows",
+      "explanation": "A fixed-X evaluator needs a color factor at terminal or cutoff positions. In negamax alpha-beta, the child window is (−beta,−alpha). Forgetting either evaluation perspective or the swapped window is a semantic error, even if the code structure looks symmetric."
     }
   ],
   "process": [
-    "Represent the task using a position, legal actions, players or chance events, and a payoff model.",
-    "Apply the central rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+    "Define a fixed payoff and the side-to-move sign at every position.",
+    "At each nonterminal, recursively evaluate children from their own side, negate and maximize.",
+    "Translate the returned root-side value back to a fixed player only when a report needs that perspective."
   ],
   "formulas": [
     {
-      "label": "Negamax rule",
-      "expression": "V(s)=max_a[-V(T(s,a))]",
-      "meaning": "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs."
+      "label": "Definition and assumptions",
+      "expression": "N(s)=maxchild[−N(child)]; N(terminal,c)=c·uX, c∈{+1,−1}",
+      "meaning": "Fixed terminal X utilities are a1=3,a2=5,b1=2,b2=9; Y's utilities are their negatives. Two players alternate at every edge, with two plies to a terminal. Terminal labels use the player who would move next. The slider changes which player owns R, so it changes the game, not merely a display perspective. Ties choose the first child; all terminals are evaluated."
     }
   ],
   "example": {
-    "title": "Negamax in a small case",
-    "setup": "Evaluate a board by the score from the side-to-move perspective.",
+    "title": "X first versus Y first",
+    "setup": "Keep the four X-payoff leaves fixed.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
-      "Check the outcome against the goal and stated assumptions."
+      "X first: Y obtains A=−3,B=−2; X compares 3,2 and takes A→a1.",
+      "Y first: X obtains A=5,B=9; Y compares −5,−9 and takes A→a2.",
+      "The resulting fixed-X payoffs are 3 and 5 respectively, because the acting players changed."
     ],
-    "result": "One recursive function handles both players by changing sign at every ply."
+    "result": "Both runs are internally consistent zero-sum optimizations, not contradictory answers for one unchanged game."
   },
   "pitfalls": [
-    "Keep evaluation perspective consistent; mixing fixed-player and side-to-move scores reverses decisions.",
-    "Evaluation quality and move ordering can dominate nominal search depth.",
-    "Do not assume a two-player zero-sum rule applies to stochastic, hidden-information, or multiplayer games."
+    "Negating on every edge assumes alternating ownership; extra turns require handling the actual side change.",
+    "Returning a fixed-player evaluation without the appropriate sign corrupts the side-relative recurrence."
   ],
-  "implementation": [],
+  "implementation": [
+    "Give the evaluator a documented perspective and keep player identity explicit in state transitions.",
+    "Use N=max(−child) only where the zero-sum and alternating-turn contract holds; do not present it as a general multi-player solver."
+  ],
   "takeaways": [
-    "Negamax expresses zero-sum minimax with one symmetric maximization procedure.",
-    "Use the identity that one player's value is the negative of the opponent's value and negate recursive returns.",
-    "It simplifies implementation for two-player zero-sum games but does not apply unchanged to general-sum payoffs.",
-    "One recursive function handles both players by changing sign at every ply."
+    "With X first, the Y-side child scores −3 and −2 become X comparisons 3 and 2. With Y first, X-side child scores 5 and 9 become Y comparisons −5 and −9; Y chooses −5.",
+    "Explain why a symmetric recurrence is equivalent to minimax rather than a search-speed guarantee."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Negamax expresses zero-sum minimax with one symmetric maximization procedure.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Negamax illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Negamax expresses zero-sum minimax with one maximization recurrence by measuring each position from its own side-to-move perspective. A child's score belongs to the opponent, so negate it before comparison at the parent. Under strictly alternating turns and opposite payoffs, this computes the same decision as fixed-perspective minimax. The simpler recurrence does not itself prune, sample or improve the evaluation function.","Convert child scores into the parent's payoff perspective.","Explain why a symmetric recurrence is equivalent to minimax rather than a search-speed guarantee.","Their good score is your bad score: negate before comparing.","N(s)=maxchild[−N(child)]; N(terminal,c)=c·uX, c∈{+1,−1}","Fixed terminal X utilities are a1=3,a2=5,b1=2,b2=9; Y's utilities are their negatives. Two players alternate at every edge, with two plies to a terminal. Terminal labels use the player who would move next. The slider changes which player owns R, so it changes the game, not merely a display perspective. Ties choose the first child; all terminals are evaluated.","With X first, the Y-side child scores −3 and −2 become X comparisons 3 and 2. With Y first, X-side child scores 5 and 9 become Y comparisons −5 and −9; Y chooses −5."]} />

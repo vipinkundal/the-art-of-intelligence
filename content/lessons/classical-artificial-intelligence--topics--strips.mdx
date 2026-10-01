@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "STRIPS represents actions with preconditions, add effects, and delete effects.",
+  "hook": "Delete, add, and leave the rest alone—but only after the gate opens.",
+  "overview": "In a propositional STRIPS model, an action has positive preconditions plus add and delete sets. If its preconditions are satisfied, remove the delete facts and insert the add facts; every other fact keeps its truth value. This compact persistence convention avoids listing an entire successor world for each action. It is a modeling assumption: omitted external changes, resources or conditional effects do not happen automatically just because the real system has them.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+      "title": "Preconditions are a joint applicability gate",
+      "explanation": "Deliver requires both office O and carrying C. A state with only one cannot execute it. Preconditions are checked before changing the state; applying effects first and then checking whether they make the requirements true would admit the wrong transitions."
     },
     {
-      "title": "Core rule",
-      "explanation": "An applicable action removes facts in its delete list and inserts facts in its add list."
+      "title": "Effects specify changes, not the whole world",
+      "explanation": "Go deletes H and adds O. It mentions neither C nor D, so their prior values persist. Before/After columns contain truth values, whereas Pre/Delete/Add columns contain action-set membership. An unlisted effect is not an instruction to make that atom false."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+      "title": "Deletes preserve important invariants",
+      "explanation": "Removing H when adding O prevents the robot from occupying both locations in reachable states. Removing P when adding C prevents the parcel from remaining available for another pickup. Such invariants come from the complete initial state and action model; predicate names do not enforce them by themselves."
+    },
+    {
+      "title": "Closed-world state encoding is not open-world inference",
+      "explanation": "In this supplied state, an atom omitted from its positive set is false. That differs from a logical knowledge base where an unproved atom can remain unknown. STRIPS transitions change a world description; forward chaining derives consequences without treating every absent atom as false."
     }
   ],
   "process": [
-    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Apply the central rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+    "Check every positive precondition against the predecessor state.",
+    "For an applicable action, remove its delete set and union its add set without mutating the predecessor.",
+    "Preserve all other atom values and check domain invariants in the resulting state."
   ],
   "formulas": [
     {
-      "label": "STRIPS rule",
-      "expression": "Result(s,a)=(s - Delete(a)) union Add(a)",
-      "meaning": "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change."
+      "label": "Definition and assumptions",
+      "expression": "pre(a)⊆s ⇒ result(s,a)=(s∖del(a))∪add(a); otherwise inapplicable",
+      "meaning": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. The six cases inspect Pickup/Go/Deliver at explicit states, including rejected attempts. Preconditions, add and delete lists have positive-atom set representations with disjoint effects. No conditional effects, negative preconditions, derived predicates or continuous time are used. A rejected action has no after-state; it is not modeled as a legal no-op."
     }
   ],
   "example": {
-    "title": "STRIPS in a small case",
-    "setup": "Move a robot from A to B with precondition At(A), add At(B), and delete At(A).",
+    "title": "A carrying fact survives travel",
+    "setup": "Select Go in {H,C}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: An applicable action removes facts in its delete list and inserts facts in its add list.",
-      "Check the outcome against the goal and stated assumptions."
+      "Pre={H} is satisfied; delete={H}, add={O}.",
+      "Remove H, leaving {C}; add O to obtain {O,C}.",
+      "C persists because neither effect set mentions it; P and D remain false."
     ],
-    "result": "Applying the action produces a state where the robot is at B and no longer at A."
+    "result": "The action changes two atom values, not the whole state. The parcel is not dropped by omission."
   },
   "pitfalls": [
-    "Frame assumptions and interacting effects must be encoded explicitly.",
-    "A plan is only as reliable as its action model and observations.",
-    "Execution monitoring and replanning are essential when the world can change."
+    "Omitting a necessary delete effect creates impossible worlds instead of a harmless simplification.",
+    "Conditional effects, durations and numeric resources need a declared richer model or a justified compilation, not silent STRIPS assumptions."
   ],
-  "implementation": [],
+  "implementation": [
+    "Keep precondition, add and delete sets distinct and reject contradictory or ill-formed declarations.",
+    "Treat inapplicability as a separate result; do not convert it into a successor that search can freely traverse."
+  ],
   "takeaways": [
-    "STRIPS represents actions with preconditions, add effects, and delete effects.",
-    "An applicable action removes facts in its delete list and inserts facts in its add list.",
-    "The compact model supports classical planning but assumes deterministic actions, full observability, and simple fact-based state change.",
-    "Applying the action produces a state where the robot is at B and no longer at A."
+    "Go from {H,C} yields {O,C}: location changes but carrying persists. Deliver from {O,C} yields {O,D}. Deliver from {H,P} is rejected because O and C are both absent.",
+    "Distinguish action-list membership, state truth and rejected execution."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["STRIPS represents actions with preconditions, add effects, and delete effects.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This STRIPS illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["In a propositional STRIPS model, an action has positive preconditions plus add and delete sets. If its preconditions are satisfied, remove the delete facts and insert the add facts; every other fact keeps its truth value. This compact persistence convention avoids listing an entire successor world for each action. It is a modeling assumption: omitted external changes, resources or conditional effects do not happen automatically just because the real system has them.","Compute an add/delete successor while preserving untouched facts.","Distinguish action-list membership, state truth and rejected execution.","Delete, add, and leave the rest alone—but only after the gate opens.","pre(a)⊆s ⇒ result(s,a)=(s∖del(a))∪add(a); otherwise inapplicable","H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. The six cases inspect Pickup/Go/Deliver at explicit states, including rejected attempts. Preconditions, add and delete lists have positive-atom set representations with disjoint effects. No conditional effects, negative preconditions, derived predicates or continuous time are used. A rejected action has no after-state; it is not modeled as a legal no-op.","Go from {H,C} yields {O,C}: location changes but carrying persists. Deliver from {O,C} yields {O,D}. Deliver from {H,P} is rejected because O and C are both absent."]} />

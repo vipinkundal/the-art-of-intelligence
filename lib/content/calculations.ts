@@ -31,6 +31,7 @@ export { binomialMass } from "./probability-math.ts";
 export type CalculationModel = SearchModel | SectionOverviewModel | ComplexityFoundationModel | ProofTechniqueModel | GraphStructureModel | DiscreteFoundationModel | OptimizationDiagnosticModel | DataQualityModel | PredictiveReliabilityModel | ParticleModel | StructuredModel | MessagePassingModel | FactorInferenceModel | GraphicalFoundationModel | LatentInferenceModel | KalmanModel | HiddenSequenceModel | McmcModel | SamplingModel | InformationModel | CalculusApplicationModel | CalculusModel | TrainingModel | OptimizationModel | InferenceModel | ProbabilityModel | DistributionModel | LinearModel | "bernoulli" | "binomial" | "bayes" | "entropy" | "cross-entropy" | "kl" | "perplexity" | "brier" | "markov" | "early-stopping" | "eigen" | "conformal" | "conditional" | "confidence";
 type Point = [number, number];
 export type CalculationResult = {
+  listings?: { title: string; language: string; code: string }[];
   automaton?: {word:string;consumed:number;state:"E"|"O"};
   execution?: {budget:number;maximum:number;traces:{label:string;steps:number;halted:boolean;status:string}[]};
   grid?: {title:string;summary:string;rows:number;columns:number;columnLabels?:string[];rowLabels?:string[];legend:string[];cells:{row:number;column:number;label:string;accent:boolean;selected?:boolean}[]};

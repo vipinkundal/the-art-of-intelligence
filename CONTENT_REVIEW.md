@@ -5,14 +5,27 @@ The review covers every topic reachable from `/lessons/`, duplicate concepts, cu
 ## Current evidence (2026-10-01)
 
 - 389 addressable lesson documents; 386 canonical lessons after consolidating three duplicate pairs.
-- 225 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
-- 161 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
+- 230 canonical lessons now have authored explanations, assumptions, worked arithmetic, failure modes, implementation notes, primary/canonical sources, and calculated interactive diagrams.
+- 156 canonical lessons still require factual and source review. They are marked pending in the library and lesson view.
 - The source-derived corpus still contains 22 repeated passages appearing on more than two pages. These are editorial candidates, not automatically proven duplicate concepts.
 - Six new concepts: Brier score, split conformal prediction, geometric distribution, conditional expectation, law of total variance, and standard error. Early stopping and Markov chains each have one canonical lesson. The new Multiple testing treatment also consolidates the overlapping Multiple-testing correction entry, preserving its old address as an alias rather than claiming another new concept.
 
 Earlier build and screenshot reports did not establish content accuracy. In particular, the old generator assigned labs and equations from keywords, invented alphabetical prerequisites, and generated repeated generic prose. This pass removes generated pseudo-equations, filler hooks and implementation advice; marks remaining generic illustrations as schematics; and reserves reviewed status for authored content. Missing sections are reported as missing rather than filled with invented instruction.
 
 ## Reviewed topics
+
+### Planning states, representations and protected support (2026-10-01)
+
+Five existing pages are authored in `planning-foundations.mjs` and `planning-structure.mjs`, with corresponding calculation modules. The full review remains incomplete.
+
+- State-space planning performs unit-action BFS over complete delivery states. The four starts return plans of lengths 3, 4, 2 and 0. A separately computed full reachability set has six states and two satisfying the achievement goal; its work is not counted as the early-stopping search trace. STRIPS computes actual precondition gates and add/delete successors across six cases, shows rejected attempts with no invented after-state, and demonstrates that carrying persists through movement.
+- Forward/backward planning progresses full states and regresses partial requirements along one declared three-action solution. Forward zeroes mean false, while regression zeroes mean unconstrained. Retained carrying requirements and action delete conflicts are explicit; regression is not described as inverse physical execution or a general search-efficiency demonstration.
+- PDDL displays the authored reusable domain beside generated task instances. One to four locations give 1/4/9/16 typed bindings and 0/2/4/6 static road supports. Initial applicability differs from static support. A mirrored JavaScript search produces shortest unit-action traces, including the already-true one-location goal. The page explicitly does not claim external parsing, planner or validator execution. Code panels wrap at narrow widths and their controls stay above the longer source examples.
+- Partial-order planning enumerates and replays every compatible total order of three supplied action instances. P<C permits two valid orders and one failing threat insertion P→T→C. T<P or C<T repairs the readiness link, yielding one valid order each. The audit flag records an occurrence rather than asserting readiness remains false; the example does not claim concurrent execution semantics.
+- All 21 control states were traversed by keyboard. All five pages were measured at 1440, 1024, 768, 390 and 320px without document overflow or offscreen SVG text; PDDL source panels had no internal horizontal overflow. Representative light/dark mobile screenshots were inspected. The STRIPS column labels were shortened to Old/Pre/Del/Add/New after narrow labels touched. Graph annotations now have full background masks so arrows do not appear through spaces in fact labels. Four earlier logic/game exports received focused 320px regression measurements after that shared change.
+- All five legacy exported pages passed keyboard endpoint/reset checks; the export browser recorded no warnings/errors. Strict TypeScript, lint, schema validation, MDX compilation and production build passed at 230 reviewed / 156 pending. Export verification passed 392 content pages, all 340 legacy paths and rendered local fragments. A fresh read-only localhost sweep returned 343 valid responses: every legacy lesson, homepage, library and a PDDL glossary query, all with main content and headings. The editorial audit still reports 22 repeated-passage candidates. No unit tests were added, maintained or run. Print and reduced-motion emulation are not included in these scoped checks.
+- Sources were inspected in Poole/Mackworth's representation, forward/regression and partial-order chapters, the original PDDL manual, Haslum's domain-writing guide and the University of Washington UCPOP project. Thirty-two Classical AI topics remain pending. The preceding four game pages were pushed to main as `9c67d09`; this five-page planning batch is local at the verification checkpoint.
+- Evidence: `design-qa/planning-state-map-light-320.png`, `strips-rejected-light-320.png`, `planning-directions-dark-320.png`, `pddl-source-light-320.png`, and `partial-order-unresolved-light-320.png`. Each screenshot is scoped to the shown viewport, not full-page acceptance.
 
 ### Exact game decisions, bounds and chance (2026-10-01)
 

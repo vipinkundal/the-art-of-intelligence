@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "PDDL is a standard language for declaring planning domains and problem instances.",
+  "hook": "A parameter pair is only a candidate; the road and current location must both agree.",
+  "overview": "PDDL separates a reusable action domain from a task instance containing objects, an initial state and a goal. Typed parameters define possible grounded bindings; preconditions determine which grounded actions are executable in a particular state. Declaring a language requirement expresses a needed feature, not a guarantee that a chosen planner supports it. A well-formed model can still describe the wrong world, and a valid plan need not optimize an undeclared objective.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+      "title": "Domain rules differ from instance facts",
+      "explanation": "The action schema and predicate declarations remain the same as the slider changes the object set and road facts. The problem names its domain explicitly. This separation permits reusing a domain without treating one task's initial configuration as a universal rule."
     },
     {
-      "title": "Core rule",
-      "explanation": "Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file."
+      "title": "Typing constrains substitutions, not applicability",
+      "explanation": "Both parameters accept location objects, giving n² ordered pairs before static filtering. Self-pairs are type-correct but have no road in this instance. A road-supported action from l1 still cannot execute when the traveler is at l0. Real planners may compile or prune bindings differently from this teaching enumeration."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Standardized syntax enables planner comparison and reuse, but supported language features vary by planner."
+      "title": "Names do not supply missing physical semantics",
+      "explanation": "The predicate at has no automatic exactly-one-location rule. The supplied initial state and move action's deletion preserve that invariant here. Forgetting the delete effect would let locations accumulate even though the text still looks like a travel domain."
+    },
+    {
+      "title": "Language, solver and validator have separate roles",
+      "explanation": "A parser checks syntax; a supported planner searches the model; a validator checks an action sequence against that model. None establishes that the model faithfully describes deployment. This lab shows explanatory source text and mirrored calculations, and does not claim external parser or plan-validator certification."
     }
   ],
   "process": [
-    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Apply the central rule: Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Standardized syntax enables planner comparison and reuse, but supported language features vary by planner."
+    "Declare domain predicates, typed action parameters, requirements, preconditions and effects.",
+    "Specify task objects, true initial facts and an achievement goal in a matching problem.",
+    "Ground and check applicable actions, then validate a returned plan and any separately declared objective."
   ],
   "formulas": [
     {
-      "label": "PDDL rule",
-      "expression": "problem=(objects, init, goal); domain=(predicates, actions)",
-      "meaning": "Standardized syntax enables planner comparison and reuse, but supported language features vary by planner."
+      "label": "Definition and assumptions",
+      "expression": "n locations ⇒ n² typed (?from,?to) bindings; applicable iff at(from)∧road(from,to)",
+      "meaning": "Display an authored :strips :typing domain with one implicit traveler, predicates at(location) and road(location,location), and a move action deleting the old location and adding the new one. The generated instance has l0…l(n−1), bidirectional neighboring roads, initial (at l0), and final goal (at l(n−1)). No numeric metric or durations are declared. JavaScript enumerates the same semantics and uses unit-action BFS; it neither parses this PDDL nor calls an external planner."
     }
   ],
   "example": {
-    "title": "PDDL in a small case",
-    "setup": "Write a blocks-world domain once and create several initial tower and goal configurations.",
+    "title": "Changing a task without rewriting the move schema",
+    "setup": "Select three locations.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
-      "Check the outcome against the goal and stated assumptions."
+      "The ordered typed pairs total 3²=9; the road facts support l0↔l1 and l1↔l2, four bindings.",
+      "Only move(l0,l1) is applicable initially because the traveler starts at l0.",
+      "After that action, move(l1,l2) becomes applicable and reaches the displayed goal."
     ],
-    "result": "Any compatible PDDL planner can search the shared domain model for each problem."
+    "result": "The shortest unit-action trace has length two. No PDDL optimization metric is declared, so the language alone does not promise that another solver returns this shortest plan."
   },
   "pitfalls": [
-    "Validate the planner's supported PDDL requirement flags.",
-    "A plan is only as reliable as its action model and observations.",
-    "Execution monitoring and replanning are essential when the world can change."
+    "A requirement flag does not prove solver compatibility or validate an unsupported language feature.",
+    "Syntactically valid predicates and effects can encode impossible states or the wrong objective."
   ],
-  "implementation": [],
+  "implementation": [
+    "Version domain/problem artifacts together and use a solver/validator compatible with the specific PDDL fragment.",
+    "Record grounding, validation and optimization claims separately; retain counterexample traces for incorrect preconditions or effects."
+  ],
   "takeaways": [
-    "PDDL is a standard language for declaring planning domains and problem instances.",
-    "Define predicates and parameterized actions in a domain, then objects, initial facts, and goals in a problem file.",
-    "Standardized syntax enables planner comparison and reuse, but supported language features vary by planner.",
-    "Any compatible PDDL planner can search the shared domain model for each problem."
+    "With three locations there are nine candidate parameter pairs, four road-supported bindings and one initially applicable action. The shortest illustrated plan is move l0 l1, then move l1 l2; the same domain text supports a changed instance.",
+    "Read generated domain/problem text without confusing modeling with solver verification."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["PDDL is a standard language for declaring planning domains and problem instances.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This PDDL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["PDDL separates a reusable action domain from a task instance containing objects, an initial state and a goal. Typed parameters define possible grounded bindings; preconditions determine which grounded actions are executable in a particular state. Declaring a language requirement expresses a needed feature, not a guarantee that a chosen planner supports it. A well-formed model can still describe the wrong world, and a valid plan need not optimize an undeclared objective.","Separate action schemas, typed bindings and state-dependent applicability.","Read generated domain/problem text without confusing modeling with solver verification.","A parameter pair is only a candidate; the road and current location must both agree.","n locations ⇒ n² typed (?from,?to) bindings; applicable iff at(from)∧road(from,to)","Display an authored :strips :typing domain with one implicit traveler, predicates at(location) and road(location,location), and a move action deleting the old location and adding the new one. The generated instance has l0…l(n−1), bidirectional neighboring roads, initial (at l0), and final goal (at l(n−1)). No numeric metric or durations are declared. JavaScript enumerates the same semantics and uses unit-action BFS; it neither parses this PDDL nor calls an external planner.","With three locations there are nine candidate parameter pairs, four road-supported bindings and one initially applicable action. The shortest illustrated plan is move l0 l1, then move l1 l2; the same domain text supports a changed instance."]} />

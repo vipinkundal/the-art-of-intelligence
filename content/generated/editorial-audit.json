@@ -1,8 +1,8 @@
 {
   "scope": "All canonical lesson documents; checks describe editorial gaps, not independent factual certification.",
   "total": 386,
-  "reviewed": 225,
-  "pending": 161,
+  "reviewed": 230,
+  "pending": 156,
   "aliases": [
     {
       "slug": "mathematical-foundations/topics/early-stopping",
@@ -51,7 +51,6 @@
         "classical-artificial-intelligence/topics/deduction",
         "classical-artificial-intelligence/topics/default-logic",
         "classical-artificial-intelligence/topics/description-logic",
-        "classical-artificial-intelligence/topics/forward-and-backward-planning",
         "classical-artificial-intelligence/topics/fuzzy-logic",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
@@ -65,13 +64,9 @@
         "classical-artificial-intelligence/topics/multi-agent-planning",
         "classical-artificial-intelligence/topics/non-monotonic-reasoning",
         "classical-artificial-intelligence/topics/ontologies",
-        "classical-artificial-intelligence/topics/partial-order-planning",
-        "classical-artificial-intelligence/topics/pddl",
         "classical-artificial-intelligence/topics/planning-under-uncertainty",
         "classical-artificial-intelligence/topics/receding-horizon-planning",
         "classical-artificial-intelligence/topics/self-play",
-        "classical-artificial-intelligence/topics/state-space-planning",
-        "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-logic",
         "classical-artificial-intelligence/topics/temporal-planning",
         "classical-artificial-intelligence/topics/transposition-tables",
@@ -179,16 +174,11 @@
       "text": "it operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
       "routes": [
         "classical-artificial-intelligence/topics/contingent-planning",
-        "classical-artificial-intelligence/topics/forward-and-backward-planning",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
         "classical-artificial-intelligence/topics/multi-agent-planning",
-        "classical-artificial-intelligence/topics/partial-order-planning",
-        "classical-artificial-intelligence/topics/pddl",
         "classical-artificial-intelligence/topics/planning-under-uncertainty",
         "classical-artificial-intelligence/topics/receding-horizon-planning",
-        "classical-artificial-intelligence/topics/state-space-planning",
-        "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-planning"
       ]
     },
@@ -196,16 +186,11 @@
       "text": "represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
       "routes": [
         "classical-artificial-intelligence/topics/contingent-planning",
-        "classical-artificial-intelligence/topics/forward-and-backward-planning",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
         "classical-artificial-intelligence/topics/multi-agent-planning",
-        "classical-artificial-intelligence/topics/partial-order-planning",
-        "classical-artificial-intelligence/topics/pddl",
         "classical-artificial-intelligence/topics/planning-under-uncertainty",
         "classical-artificial-intelligence/topics/receding-horizon-planning",
-        "classical-artificial-intelligence/topics/state-space-planning",
-        "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-planning"
       ]
     },
@@ -213,16 +198,11 @@
       "text": "execution monitoring and replanning are essential when the world can change.",
       "routes": [
         "classical-artificial-intelligence/topics/contingent-planning",
-        "classical-artificial-intelligence/topics/forward-and-backward-planning",
         "classical-artificial-intelligence/topics/graphplan",
         "classical-artificial-intelligence/topics/hierarchical-task-networks",
         "classical-artificial-intelligence/topics/multi-agent-planning",
-        "classical-artificial-intelligence/topics/partial-order-planning",
-        "classical-artificial-intelligence/topics/pddl",
         "classical-artificial-intelligence/topics/planning-under-uncertainty",
         "classical-artificial-intelligence/topics/receding-horizon-planning",
-        "classical-artificial-intelligence/topics/state-space-planning",
-        "classical-artificial-intelligence/topics/strips",
         "classical-artificial-intelligence/topics/temporal-planning"
       ]
     },
@@ -683,12 +663,8 @@
       "slug": "classical-artificial-intelligence/topics/forward-and-backward-planning",
       "title": "Forward and backward planning",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/forward-chaining",
@@ -935,23 +911,15 @@
       "slug": "classical-artificial-intelligence/topics/partial-order-planning",
       "title": "Partial-order planning",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/pddl",
       "title": "PDDL",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/planning-under-uncertainty",
@@ -1025,12 +993,8 @@
       "slug": "classical-artificial-intelligence/topics/state-space-planning",
       "title": "State-space planning",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/state-space-representation",
@@ -1043,12 +1007,8 @@
       "slug": "classical-artificial-intelligence/topics/strips",
       "title": "STRIPS",
       "phase": "classical-artificial-intelligence",
-      "reviewStatus": "pending",
-      "issues": [
-        "Factual and source review pending",
-        "Topic-specific calculated or explanatory visual needed",
-        "Implementation context needed"
-      ]
+      "reviewStatus": "reviewed",
+      "issues": []
     },
     {
       "slug": "classical-artificial-intelligence/topics/tabu-search",

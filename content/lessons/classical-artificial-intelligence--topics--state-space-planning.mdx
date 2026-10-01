@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "State-space planning searches through world states produced by applicable actions.",
+  "hook": "The same office can contain an available, carried or delivered parcel state.",
+  "overview": "Classical state-space planning searches for an executable action sequence from a known initial world to any state satisfying a goal. Each action contributes a successor only where its preconditions hold. The state must retain all facts relevant to future legality and effects, not merely physical location. Goal satisfaction and plan quality are separate: a shortest-action plan is cheapest only when the declared action costs justify that objective.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+      "title": "A node is a complete world description",
+      "explanation": "{O,P} says the robot is at the office while the parcel remains available at home. {O,C} says the robot is at the same office carrying it. Merging those states by location would permit an illegal delivery or discard the useful carrying state."
     },
     {
-      "title": "Core rule",
-      "explanation": "From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied."
+      "title": "The goal is a predicate, not necessarily one state",
+      "explanation": "The goal is D, with no final-location restriction. Both {O,D} and {H,D} satisfy it. Achieving D at the office does not require returning home, and a supplied initial state with D already true has a valid empty plan."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "It reuses general search methods, but plan quality and feasibility depend on a correct transition model."
+      "title": "Generate only applicable successors",
+      "explanation": "Pickup needs H and P; Deliver needs O and C. An attempted action missing a requirement does not create a self-loop merely because the implementation can leave its data unchanged. Genuine reversible Go/Back transitions do create cycles that duplicate-state detection handles."
+    },
+    {
+      "title": "The representation and the search policy are independent",
+      "explanation": "The graph can be generated lazily from action rules rather than stored as an enormous explicit table. This lab uses BFS for unit costs. Nonuniform costs require a suitable cost-aware policy if least total cost is the objective."
     }
   ],
   "process": [
-    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Apply the central rule: From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: It reuses general search methods, but plan quality and feasibility depend on a correct transition model."
+    "Define a complete initial state, achievement-goal test and deterministic action model.",
+    "Generate legal successors, preserving unchanged facts and rejecting duplicate complete states under the declared policy.",
+    "Return and replay an action sequence, reporting its objective and stopping condition."
   ],
   "formulas": [
     {
-      "label": "State-space planning rule",
-      "expression": "s_(t+1)=T(s_t,a_t); seek s_k satisfying Goal",
-      "meaning": "It reuses general search methods, but plan quality and feasibility depend on a correct transition model."
+      "label": "Definition and assumptions",
+      "expression": "Applicable(a,s) iff pre(a)⊆s; successor=(s∖del(a))∪add(a); goal iff D∈s",
+      "meaning": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Every action costs one. BFS uses action order Pickup, Go, Back, Deliver, marks complete states discovered on insertion and tests D on removal. The control chooses one of four reachable starts. Exhaustive reference reachability is computed separately from the original {H,P} start; it is not added to the early-stopping search count."
     }
   ],
   "example": {
-    "title": "State-space planning in a small case",
-    "setup": "Plan robot moves and pickup actions from a start room to a delivered package state.",
+    "title": "One parcel, three actions",
+    "setup": "Start with {H,P} and require D.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
-      "Check the outcome against the goal and stated assumptions."
+      "Pickup removes P and adds C, yielding {H,C}.",
+      "Go replaces H with O and preserves C, yielding {O,C}.",
+      "Deliver removes C and adds D, yielding {O,D}; the goal holds."
     ],
-    "result": "The returned action sequence reaches a state satisfying the delivery goal."
+    "result": "BFS returns a three-action plan. Six states are reachable in the separately enumerated full domain, but only a subset is needed before this goal is found."
   },
   "pitfalls": [
-    "Represent only facts needed for action applicability and goals, while retaining every causally relevant condition.",
-    "A plan is only as reliable as its action model and observations.",
-    "Execution monitoring and replanning are essential when the world can change."
+    "A state key that omits a relevant fact can merge worlds with different legal futures.",
+    "Finding any valid plan is not the same contract as minimizing actions, cost, duration or risk."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use immutable or canonical complete-state keys and preserve action provenance for replay.",
+    "Validate every returned action against its predecessor state; distinguish exhaustive failure, budget exhaustion and model invalidity."
+  ],
   "takeaways": [
-    "State-space planning searches through world states produced by applicable actions.",
-    "From the initial state, apply actions whose preconditions hold and search until the goal condition is satisfied.",
-    "It reuses general search methods, but plan quality and feasibility depend on a correct transition model.",
-    "The returned action sequence reaches a state satisfying the delivery goal."
+    "From {H,P}, Pickup→Go→Deliver needs three actions. Starting at {O,P} requires returning home first and takes four. Starting at {H,D} needs no action because the achievement goal is already true.",
+    "Interpret an achievement goal and shortest-action result without inventing extra objectives."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["State-space planning searches through world states produced by applicable actions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This State-space planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Classical state-space planning searches for an executable action sequence from a known initial world to any state satisfying a goal. Each action contributes a successor only where its preconditions hold. The state must retain all facts relevant to future legality and effects, not merely physical location. Goal satisfaction and plan quality are separate: a shortest-action plan is cheapest only when the declared action costs justify that objective.","Construct legal planning successors from complete states.","Interpret an achievement goal and shortest-action result without inventing extra objectives.","The same office can contain an available, carried or delivered parcel state.","Applicable(a,s) iff pre(a)⊆s; successor=(s∖del(a))∪add(a); goal iff D∈s","H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Every action costs one. BFS uses action order Pickup, Go, Back, Deliver, marks complete states discovered on insertion and tests D on removal. The control chooses one of four reachable starts. Exhaustive reference reachability is computed separately from the original {H,P} start; it is not added to the early-stopping search count.","From {H,P}, Pickup→Go→Deliver needs three actions. Starting at {O,P} requires returning home first and takes four. Starting at {H,D} needs no action because the achievement goal is already true."]} />

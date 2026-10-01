@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
+  "hook": "Ask either what happens next or what must have been true just before.",
+  "overview": "Forward planning progresses complete states through applicable actions. Regression planning instead searches over partial goal requirements: choose a relevant final action, ensure it does not delete a required fact, and replace the facts it achieves with its preconditions while retaining the other requirements. The resulting predecessor description is a condition on possible worlds, not one fully specified world or an inverse physical action. Both directions need search control and a correct action model.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+      "title": "Forward nodes say what is true now",
+      "explanation": "After Pickup, {H,C} is a complete state: H and C are true and every other listed atom is false. Legal actions are generated from that state. Progression restricts its search to states reachable from the chosen initial world, although many may not help achieve the goal."
     },
     {
-      "title": "Core rule",
-      "explanation": "Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it."
+      "title": "Regression nodes say what a predecessor must supply",
+      "explanation": "To achieve D last through Deliver, require O and C beforehand. Atoms not in {O,C} are unconstrained by this requirement, not declared false. Regression can consider an unreachable or invariant-inconsistent requirement unless the planner rules it out or fails to connect it to the initial state."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent."
+      "title": "Keep requirements the chosen action does not achieve",
+      "explanation": "Regressing {O,C} through Go removes its achieved O, adds precondition H and retains C, giving {H,C}. Forgetting C would permit travel without the parcel. An action deleting a still-required goal fact must be rejected under this positive STRIPS regression rule."
+    },
+    {
+      "title": "Backward reasoning is not backward execution",
+      "explanation": "Deliver consumes carrying and establishes delivery; it need not have a physical inverse. The regression edge computes an enabling condition. Once the initial state satisfies the regressed requirement, reverse the selected action order and validate actual forward execution."
     }
   ],
   "process": [
-    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Apply the central rule: Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent."
+    "For progression, check applicable actions and compute full successor states.",
+    "For regression, choose a goal-relevant nonconflicting action, retain unachieved goals and add its preconditions.",
+    "Stop regression when the initial state satisfies the current requirement; reverse its action choices and replay forward."
   ],
   "formulas": [
     {
-      "label": "Forward and backward planning rule",
-      "expression": "Regression(G,a)=(G-Add(a)) union Pre(a)",
-      "meaning": "Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent."
+      "label": "Definition and assumptions",
+      "expression": "Forward: s′=(s∖del(a))∪add(a); regression: R(G,a)=(G∖add(a))∪pre(a), if add(a)∩G≠∅ and del(a)∩G=∅",
+      "meaning": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Initial state {H,P}; goal {D}. Progress the solution Pickup→Go→Deliver and regress its reverse choices Deliver, Go, Pickup. This lab follows one declared chain and does not run a branching regression planner or compare search efficiency. Goals have only positive literals; the displayed relevance/conflict rule is scoped to that setting."
     }
   ],
   "example": {
-    "title": "Forward and backward planning in a small case",
-    "setup": "To achieve Delivered(package), select an Unload action backward and derive its location and carrying preconditions.",
+    "title": "Proving a delivery plan from its final action",
+    "setup": "Start the backward requirement at {D}.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
-      "Check the outcome against the goal and stated assumptions."
+      "Choose Deliver last: replace D with {O,C}.",
+      "Choose Go before it: replace O with H and retain C, yielding {H,C}.",
+      "Choose Pickup before Go: replace C with its preconditions H,P, yielding {H,P}, supported initially."
     ],
-    "result": "The regressed subgoals guide search toward actions relevant to delivery."
+    "result": "The executable order is Pickup→Go→Deliver. Right-side zeroes in the table mean unconstrained, unlike left-side zeroes that mean false."
   },
   "pitfalls": [
-    "An action that deletes a required goal is not a valid regressor unless the conflict is resolved.",
-    "A plan is only as reliable as its action model and observations.",
-    "Execution monitoring and replanning are essential when the world can change."
+    "Regressing by simply undoing an effect mistakes a requirement set for a physical predecessor state.",
+    "Ignoring deletes or dropping untouched goal facts produces a chain that cannot validate forward."
   ],
-  "implementation": [],
+  "implementation": [
+    "Use different types for complete states and partial requirements; attach the selected grounded action to every regression edge.",
+    "Prune proved invariant conflicts and repeated requirements under sound rules; never claim one illustrated chain establishes a general efficiency advantage."
+  ],
   "takeaways": [
-    "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
-    "Progress applies actions to states; regression replaces a goal with the preconditions of an action that could achieve it.",
-    "Forward search knows exact reachability; backward search focuses on relevance, but regressed goal sets must remain consistent.",
-    "The regressed subgoals guide search toward actions relevant to delivery."
+    "Regression produces {D}→{O,C}→{H,C}→{H,P}. The initial state supports the last requirement, and reversing the chosen action sequence gives the valid three-action forward plan.",
+    "Translate a completed regression chain into a validated forward plan."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Forward and backward planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["Forward planning progresses complete states through applicable actions. Regression planning instead searches over partial goal requirements: choose a relevant final action, ensure it does not delete a required fact, and replace the facts it achieves with its preconditions while retaining the other requirements. The resulting predecessor description is a condition on possible worlds, not one fully specified world or an inverse physical action. Both directions need search control and a correct action model.","Regress a positive goal through a relevant nonconflicting action.","Translate a completed regression chain into a validated forward plan.","Ask either what happens next or what must have been true just before.","Forward: s′=(s∖del(a))∪add(a); regression: R(G,a)=(G∖add(a))∪pre(a), if add(a)∩G≠∅ and del(a)∩G=∅","H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Initial state {H,P}; goal {D}. Progress the solution Pickup→Go→Deliver and regress its reverse choices Deliver, Go, Pickup. This lab follows one declared chain and does not run a branching regression planner or compare search efficiency. Goals have only positive literals; the displayed relevance/conflict rule is scoped to that setting.","Regression produces {D}→{O,C}→{H,C}→{H,P}. The initial state supports the last requirement, and reversing the chosen action sequence gives the valid three-action forward plan."]} />

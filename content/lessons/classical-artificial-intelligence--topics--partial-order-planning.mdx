@@ -1,57 +1,60 @@
 import { LessonBody } from "@/components/lesson/LessonBody";
 
 export const narrative = {
-  "hook": "",
-  "overview": "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
+  "hook": "Protect the fact between the producer and its consumer.",
+  "overview": "A partial-order plan contains action instances, ordering constraints and causal links that support requirements. A causal link says an earlier producer supplies a fact needed by a later consumer; a threatening action could delete that fact between them. Repairing the threat places it outside the protected interval or otherwise removes the conflict. A completed sound partial plan should permit only executable, goal-reaching linearizations under its action semantics, not merely include one successful total order.",
   "concepts": [
     {
-      "title": "Problem model",
-      "explanation": "It operates on an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time."
+      "title": "An ordering is weaker than a total schedule",
+      "explanation": "P<C does not decide where T belongs. Its three compatible total orders preserve that pairwise requirement, yet one inserts T between the producer and consumer. Partial order deliberately leaves choices open; it does not mean unresolved choices are automatically safe."
     },
     {
-      "title": "Core rule",
-      "explanation": "Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan."
+      "title": "A causal link protects a fact, not just a before edge",
+      "explanation": "P produces r for C's precondition. T's delete effect threatens that support if T lies between them. The link's label identifies the supported literal so threat detection can inspect relevant effects, rather than treating every unordered action as conflicting."
     },
     {
-      "title": "Guarantee or tradeoff",
-      "explanation": "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+      "title": "Two outside positions can repair one threat",
+      "explanation": "Place T<P so P restores r afterward, or C<T so C uses r before it is deleted. Both repairs achieve d and a here because neither action deletes those goal facts. In a larger plan, a repair can contradict other orderings or threaten another link and must be checked globally."
+    },
+    {
+      "title": "Sound linearizations are not concurrency permissions",
+      "explanation": "The lab validates sequential executions. An absence of ordering alone is not permission to overlap real actions with shared resources, durations or interacting effects. Temporal and resource semantics require additional conditions beyond these instantaneous causal links."
     }
   ],
   "process": [
-    "Represent the task using an initial state, goals, actions, preconditions, effects, and possibly uncertainty or time.",
-    "Apply the central rule: Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
-    "Track intermediate choices so repeated work, conflicts, or invalid inferences are visible.",
-    "Stop and interpret the result using this criterion: Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+    "Choose action instances and support open preconditions with initial facts or causal links.",
+    "Identify deleting actions that can fall inside a supported link's producer–consumer interval.",
+    "Resolve threats consistently, reject ordering cycles and validate all allowed execution orders in the scoped example."
   ],
   "formulas": [
     {
-      "label": "Partial-order planning rule",
-      "expression": "A --p--> B means A establishes p for B",
-      "meaning": "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex."
+      "label": "Definition and assumptions",
+      "expression": "Causal link P —r→ C requires P<C and no deleting T with P<T<C; repair by T<P or C<T",
+      "meaning": "Empty initial state. P has no preconditions and adds readiness r. C requires r and adds done d, preserving r. T has no preconditions, deletes r and adds audit flag a. Goal is d∧a. The audit flag records T's occurrence; it does not assert readiness remains false, so P may reestablish r later. All three instances are supplied, actions are sequential and instantaneous, and the control adds one threat-repair ordering. Enumerate and replay every compatible total order; this is a partial-plan checker, not a full planner."
     }
   ],
   "example": {
-    "title": "Partial-order planning in a small case",
-    "setup": "Prepare tea by boiling water and fetching a cup in either order before pouring.",
+    "title": "An audit that invalidates readiness",
+    "setup": "Begin with the supplied partial plan P<C and unordered T.",
     "steps": [
-      "Write the relevant states, variables, facts, or actions explicitly.",
-      "Apply the rule: Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
-      "Check the outcome against the goal and stated assumptions."
+      "P→C→T succeeds: C uses r before T removes it.",
+      "T→P→C succeeds: T records a, then P restores r and C establishes d.",
+      "P→T→C fails: T removes r before C's precondition is checked."
     ],
-    "result": "The plan orders both prerequisites before pouring without unnecessarily ordering them against each other."
+    "result": "One bad allowed order is enough to show the threat is unresolved; the presence of two successful orders does not repair it."
   },
   "pitfalls": [
-    "Every open precondition and causal threat must be resolved before the plan is complete.",
-    "A plan is only as reliable as its action model and observations.",
-    "Execution monitoring and replanning are essential when the world can change."
+    "Finding one successful linearization does not certify every execution allowed by an unresolved partial plan.",
+    "Adding an ordering to repair one threat can introduce a cycle or invalidate support elsewhere."
   ],
-  "implementation": [],
+  "implementation": [
+    "Distinguish action instances from reusable schemas and track supported literals, open conditions and threat records explicitly.",
+    "Maintain acyclic ordering constraints and inspect delete effects against protected intervals; keep concurrency and duration policies separate."
+  ],
   "takeaways": [
-    "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
-    "Maintain actions, open preconditions, causal links, and ordering constraints while refining a least-commitment plan.",
-    "Independent actions remain unordered and can later run in either order or concurrently, but threat management is complex.",
-    "The plan orders both prerequisites before pouring without unnecessarily ordering them against each other."
+    "P<C alone permits P→C→T and T→P→C, but also failing P→T→C. Constraining T before P or after C protects readiness and leaves one valid order in this three-action example.",
+    "Explain two ordering repairs and why an unresolved plan is not safe merely because it has a valid execution."
   ]
 };
 
-<LessonBody narrative={narrative} presentedText={["Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.","Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.","This Partial-order planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions."]} />
+<LessonBody narrative={narrative} presentedText={["A partial-order plan contains action instances, ordering constraints and causal links that support requirements. A causal link says an earlier producer supplies a fact needed by a later consumer; a threatening action could delete that fact between them. Repairing the threat places it outside the protected interval or otherwise removes the conflict. A completed sound partial plan should permit only executable, goal-reaching linearizations under its action semantics, not merely include one successful total order.","Identify a deleting threat to a causal link.","Explain two ordering repairs and why an unresolved plan is not safe merely because it has a valid execution.","Protect the fact between the producer and its consumer.","Causal link P —r→ C requires P<C and no deleting T with P<T<C; repair by T<P or C<T","Empty initial state. P has no preconditions and adds readiness r. C requires r and adds done d, preserving r. T has no preconditions, deletes r and adds audit flag a. Goal is d∧a. The audit flag records T's occurrence; it does not assert readiness remains false, so P may reestablish r later. All three instances are supplied, actions are sequential and instantaneous, and the control adds one threat-repair ordering. Enumerate and replay every compatible total order; this is a partial-plan checker, not a full planner.","P<C alone permits P→C→T and T→P→C, but also failing P→T→C. Constraining T before P or after C protects readiness and leaves one valid order in this three-action example."]} />

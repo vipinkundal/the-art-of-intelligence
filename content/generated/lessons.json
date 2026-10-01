@@ -2697,30 +2697,34 @@
     "id": "classical-artificial-intelligence--topics--forward-and-backward-planning",
     "slug": "classical-artificial-intelligence/topics/forward-and-backward-planning",
     "canonicalSlug": "classical-artificial-intelligence/topics/forward-and-backward-planning",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/forward-and-backward-planning/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Forward and backward planning",
-    "summary": "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Forward planning progresses complete states through applicable actions. Regression planning instead searches over partial goal requirements: choose a relevant final action, ensure it does not delete a required fact, and replace the facts it achieves with its preconditions while retaining the other requirements. The resulting predecessor description is a condition on possible worlds, not one fully specified world or an inverse physical action. Both directions need search control and a correct action model.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--strips",
+      "classical-artificial-intelligence--topics--backward-chaining"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Regress a positive goal through a relevant nonconflicting action.",
+      "Translate a completed regression chain into a validated forward plan."
+    ],
+    "tags": [
+      "forward and backward planning",
+      "plan-progression-regression",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Forward and backward planning",
-        "url": "https://en.wikipedia.org/wiki/State-space_planning"
+        "label": "Poole and Mackworth: forward planning",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S2.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: regression planning",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S3.html"
       }
     ],
     "headings": [
@@ -2730,28 +2734,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Forward and backward planning field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Forward and backward planning diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Forward and backward planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "plan-progression-regression",
+        "title": "A world moves forward while its requirements move backward",
+        "summary": "Ask either what happens next or what must have been true just before.",
+        "equation": "Forward: s′=(s∖del(a))∪add(a); regression: R(G,a)=(G∖add(a))∪pre(a), if add(a)∩G≠∅ and del(a)∩G=∅",
+        "assumptions": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Initial state {H,P}; goal {D}. Progress the solution Pickup→Go→Deliver and regress its reverse choices Deliver, Go, Pickup. This lab follows one declared chain and does not run a branching regression planner or compare search efficiency. Goals have only positive literals; the displayed relevance/conflict rule is scoped to that setting.",
+        "accessibilitySummary": "Forward and backward planning. H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Initial state {H,P}; goal {D}. Progress the solution Pickup→Go→Deliver and regress its reverse choices Deliver, Go, Pickup. This lab follows one declared chain and does not run a branching regression planner or compare search efficiency. Goals have only positive literals; the displayed relevance/conflict rule is scoped to that setting. A data table and numeric summary accompany the graph.",
+        "takeaway": "Regression produces {D}→{O,C}→{H,C}→{H,P}. The initial state supports the last requirement, and reversing the chosen action sequence gives the valid three-action forward plan.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "plan-progression-regression",
+          "label": "Steps along the declared solution chain",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.68,
+          "max": 3,
+          "step": 1,
+          "initial": 1,
           "unit": ""
-        },
-        "seed": 171478046,
-        "nodeCount": 7,
-        "density": 0.31
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/first-order-predicate-logic",
@@ -4568,30 +4573,35 @@
     "id": "classical-artificial-intelligence--topics--partial-order-planning",
     "slug": "classical-artificial-intelligence/topics/partial-order-planning",
     "canonicalSlug": "classical-artificial-intelligence/topics/partial-order-planning",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/partial-order-planning/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "Partial-order planning",
-    "summary": "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "A partial-order plan contains action instances, ordering constraints and causal links that support requirements. A causal link says an earlier producer supplies a fact needed by a later consumer; a threatening action could delete that fact between them. Repairing the threat places it outside the protected interval or otherwise removes the conflict. A completed sound partial plan should permit only executable, goal-reaching linearizations under its action semantics, not merely include one successful total order.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--strips",
+      "classical-artificial-intelligence--topics--forward-and-backward-planning",
+      "mathematical-foundations--topics--trees-and-directed-acyclic-graphs"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Identify a deleting threat to a causal link.",
+      "Explain two ordering repairs and why an unresolved plan is not safe merely because it has a valid execution."
+    ],
+    "tags": [
+      "partial-order planning",
+      "plan-partial-order",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: Partial-order planning",
-        "url": "https://en.wikipedia.org/wiki/Partial-order_planning"
+        "label": "Poole and Mackworth: partial-order actions, causal support and threats",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S5.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "University of Washington: UCPOP partial-order planner",
+        "url": "https://aiweb.cs.washington.edu/ai/ucpop.html"
       }
     ],
     "headings": [
@@ -4601,28 +4611,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "Partial-order planning field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive Partial-order planning diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This Partial-order planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "plan-partial-order",
+        "title": "Two valid orders do not make an unresolved partial plan safe",
+        "summary": "Protect the fact between the producer and its consumer.",
+        "equation": "Causal link P —r→ C requires P<C and no deleting T with P<T<C; repair by T<P or C<T",
+        "assumptions": "Empty initial state. P has no preconditions and adds readiness r. C requires r and adds done d, preserving r. T has no preconditions, deletes r and adds audit flag a. Goal is d∧a. The audit flag records T's occurrence; it does not assert readiness remains false, so P may reestablish r later. All three instances are supplied, actions are sequential and instantaneous, and the control adds one threat-repair ordering. Enumerate and replay every compatible total order; this is a partial-plan checker, not a full planner.",
+        "accessibilitySummary": "Partial-order planning. Empty initial state. P has no preconditions and adds readiness r. C requires r and adds done d, preserving r. T has no preconditions, deletes r and adds audit flag a. Goal is d∧a. The audit flag records T's occurrence; it does not assert readiness remains false, so P may reestablish r later. All three instances are supplied, actions are sequential and instantaneous, and the control adds one threat-repair ordering. Enumerate and replay every compatible total order; this is a partial-plan checker, not a full planner. A data table and numeric summary accompany the graph.",
+        "takeaway": "P<C alone permits P→C→T and T→P→C, but also failing P→T→C. Constraining T before P or after C protects readiness and leaves one valid order in this three-action example.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "plan-partial-order",
+          "label": "Threat repair: 0=none, 1=T before P, 2=T after C",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.49,
+          "max": 2,
+          "step": 1,
+          "initial": 0,
           "unit": ""
-        },
-        "seed": 295259633,
-        "nodeCount": 9,
-        "density": 0.58
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/optimality",
@@ -4632,30 +4643,34 @@
     "id": "classical-artificial-intelligence--topics--pddl",
     "slug": "classical-artificial-intelligence/topics/pddl",
     "canonicalSlug": "classical-artificial-intelligence/topics/pddl",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/pddl/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "PDDL",
-    "summary": "PDDL is a standard language for declaring planning domains and problem instances.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "PDDL separates a reusable action domain from a task instance containing objects, an initial state and a goal. Typed parameters define possible grounded bindings; preconditions determine which grounded actions are executable in a particular state. Declaring a language requirement expresses a needed feature, not a guarantee that a chosen planner supports it. A well-formed model can still describe the wrong world, and a valid plan need not optimize an undeclared objective.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--strips",
+      "classical-artificial-intelligence--topics--state-space-planning"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Separate action schemas, typed bindings and state-dependent applicability.",
+      "Read generated domain/problem text without confusing modeling with solver verification."
+    ],
+    "tags": [
+      "pddl",
+      "plan-pddl-grounding",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: PDDL",
-        "url": "https://en.wikipedia.org/wiki/Planning_Domain_Definition_Language"
+        "label": "Ghallab et al.: original PDDL manual, domains/actions/problems",
+        "url": "https://planning.wiki/_citedpapers/pddl1998.pdf"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Haslum: writing PDDL domains and problems",
+        "url": "https://users.cecs.anu.edu.au/~patrik/pddlman/writing.html"
       }
     ],
     "headings": [
@@ -4665,31 +4680,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "sequence",
-        "title": "PDDL field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive PDDL diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This PDDL illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "plan-pddl-grounding",
+        "title": "One action schema becomes many bindings, but few legal moves",
+        "summary": "A parameter pair is only a candidate; the road and current location must both agree.",
+        "equation": "n locations ⇒ n² typed (?from,?to) bindings; applicable iff at(from)∧road(from,to)",
+        "assumptions": "Display an authored :strips :typing domain with one implicit traveler, predicates at(location) and road(location,location), and a move action deleting the old location and adding the new one. The generated instance has l0…l(n−1), bidirectional neighboring roads, initial (at l0), and final goal (at l(n−1)). No numeric metric or durations are declared. JavaScript enumerates the same semantics and uses unit-action BFS; it neither parses this PDDL nor calls an external planner.",
+        "accessibilitySummary": "PDDL. Display an authored :strips :typing domain with one implicit traveler, predicates at(location) and road(location,location), and a move action deleting the old location and adding the new one. The generated instance has l0…l(n−1), bidirectional neighboring roads, initial (at l0), and final goal (at l(n−1)). No numeric metric or durations are declared. JavaScript enumerates the same semantics and uses unit-action BFS; it neither parses this PDDL nor calls an external planner. A data table and numeric summary accompany the graph.",
+        "takeaway": "With three locations there are nine candidate parameter pairs, four road-supported bindings and one initially applicable action. The shortest illustrated plan is move l0 l1, then move l1 l2; the same domain text supports a changed instance.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
-          "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.59,
+          "id": "plan-pddl-grounding",
+          "label": "Locations in the task instance",
+          "min": 1,
+          "max": 4,
+          "step": 1,
+          "initial": 3,
           "unit": ""
-        },
-        "seed": 449583771,
-        "tokens": [
-          "PDDL",
-          "context",
-          "state"
-        ]
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/partial-order-planning",
@@ -5238,30 +5251,34 @@
     "id": "classical-artificial-intelligence--topics--state-space-planning",
     "slug": "classical-artificial-intelligence/topics/state-space-planning",
     "canonicalSlug": "classical-artificial-intelligence/topics/state-space-planning",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/state-space-planning/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "State-space planning",
-    "summary": "State-space planning searches through world states produced by applicable actions.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "Classical state-space planning searches for an executable action sequence from a known initial world to any state satisfying a goal. Each action contributes a successor only where its preconditions hold. The state must retain all facts relevant to future legality and effects, not merely physical location. Goal satisfaction and plan quality are separate: a shortest-action plan is cheapest only when the declared action costs justify that objective.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--state-space-representation",
+      "classical-artificial-intelligence--topics--breadth-first-search"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Construct legal planning successors from complete states.",
+      "Interpret an achievement goal and shortest-action result without inventing extra objectives."
+    ],
+    "tags": [
+      "state-space planning",
+      "plan-state-search",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: State-space planning",
-        "url": "https://en.wikipedia.org/wiki/State-space_planning"
+        "label": "Poole and Mackworth: states, action representations and goals",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S1.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Poole and Mackworth: forward planning",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S2.html"
       }
     ],
     "headings": [
@@ -5271,28 +5288,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "State-space planning field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive State-space planning diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This State-space planning illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "plan-state-search",
+        "title": "A location alone cannot tell you whether delivery is possible",
+        "summary": "The same office can contain an available, carried or delivered parcel state.",
+        "equation": "Applicable(a,s) iff pre(a)⊆s; successor=(s∖del(a))∪add(a); goal iff D∈s",
+        "assumptions": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Every action costs one. BFS uses action order Pickup, Go, Back, Deliver, marks complete states discovered on insertion and tests D on removal. The control chooses one of four reachable starts. Exhaustive reference reachability is computed separately from the original {H,P} start; it is not added to the early-stopping search count.",
+        "accessibilitySummary": "State-space planning. H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. Every action costs one. BFS uses action order Pickup, Go, Back, Deliver, marks complete states discovered on insertion and tests D on removal. The control chooses one of four reachable starts. Exhaustive reference reachability is computed separately from the original {H,P} start; it is not added to the early-stopping search count. A data table and numeric summary accompany the graph.",
+        "takeaway": "From {H,P}, Pickup→Go→Deliver needs three actions. Starting at {O,P} requires returning home first and takes four. Starting at {H,D} needs no action because the achievement goal is already true.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "plan-state-search",
+          "label": "Starting scenario: 0=HP, 1=OP, 2=HC, 3=HD",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.34,
+          "max": 3,
+          "step": 1,
+          "initial": 0,
           "unit": ""
-        },
-        "seed": 3545688827,
-        "nodeCount": 8,
-        "density": 0.52
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/simulated-annealing",
@@ -5370,30 +5388,34 @@
     "id": "classical-artificial-intelligence--topics--strips",
     "slug": "classical-artificial-intelligence/topics/strips",
     "canonicalSlug": "classical-artificial-intelligence/topics/strips",
-    "reviewStatus": "pending",
+    "reviewStatus": "reviewed",
     "legacyPath": "/lessons/classical-artificial-intelligence/topics/strips/index.html",
     "phase": "Classical AI",
     "phaseKey": "classical-artificial-intelligence",
     "title": "STRIPS",
-    "summary": "STRIPS represents actions with preconditions, add effects, and delete effects.",
-    "prerequisites": [],
-    "outcomes": [],
-    "tags": [
-      "classical artificial intelligence"
+    "summary": "In a propositional STRIPS model, an action has positive preconditions plus add and delete sets. If its preconditions are satisfied, remove the delete facts and insert the add facts; every other fact keeps its truth value. This compact persistence convention avoids listing an entire successor world for each action. It is a modeling assumption: omitted external changes, resources or conditional effects do not happen automatically just because the real system has them.",
+    "prerequisites": [
+      "classical-artificial-intelligence--topics--state-space-planning",
+      "mathematical-foundations--topics--sets-relations-and-functions"
     ],
-    "updatedAt": "2026-08-24",
+    "outcomes": [
+      "Compute an add/delete successor while preserving untouched facts.",
+      "Distinguish action-list membership, state truth and rejected execution."
+    ],
+    "tags": [
+      "strips",
+      "plan-strips-effects",
+      "reviewed"
+    ],
+    "updatedAt": "2026-10-01",
     "sources": [
       {
-        "label": "External reference: STRIPS",
-        "url": "https://en.wikipedia.org/wiki/Stanford_Research_Institute_Problem_Solver"
+        "label": "Poole and Mackworth: states, action representations and goals",
+        "url": "https://artint.info/3e/html/ArtInt3e.Ch6.S1.html"
       },
       {
-        "label": "Artificial Intelligence: A Modern Approach",
-        "url": "https://aima.cs.berkeley.edu/"
-      },
-      {
-        "label": "Berkeley CS 188",
-        "url": "https://inst.eecs.berkeley.edu/~cs188/"
+        "label": "Haslum: PDDL preconditions, effects and problem descriptions",
+        "url": "https://users.cecs.anu.edu.au/~patrik/pddlman/writing.html"
       }
     ],
     "headings": [
@@ -5403,28 +5425,29 @@
       "Formulas",
       "Worked example",
       "Failure modes",
+      "Implementation notes",
       "Sources"
     ],
     "labs": [
       {
-        "engine": "graph",
-        "title": "STRIPS field lab",
-        "summary": "Illustrative diagram. Its control changes the drawing, not a calculated result for this topic.",
-        "equation": "",
-        "accessibilitySummary": "An interactive STRIPS diagram. Adjust the main control to compare structure, behavior, and failure boundaries.",
-        "takeaway": "This STRIPS illustration is awaiting a topic-specific mathematical review; use the written sources for its assumptions.",
+        "engine": "calculation",
+        "model": "plan-strips-effects",
+        "title": "Moving changes location, not the parcel in your hand",
+        "summary": "Delete, add, and leave the rest alone—but only after the gate opens.",
+        "equation": "pre(a)⊆s ⇒ result(s,a)=(s∖del(a))∪add(a); otherwise inapplicable",
+        "assumptions": "H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. The six cases inspect Pickup/Go/Deliver at explicit states, including rejected attempts. Preconditions, add and delete lists have positive-atom set representations with disjoint effects. No conditional effects, negative preconditions, derived predicates or continuous time are used. A rejected action has no after-state; it is not modeled as a legal no-op.",
+        "accessibilitySummary": "STRIPS. H=robot at home, O=robot at office, P=parcel available at home, C=robot carrying it, D=parcel delivered. Positive state sets are complete closed-world descriptions. Pickup: pre H,P; delete P; add C. Go: pre H; delete H; add O. Back: pre O; delete O; add H. Deliver: pre O,C; delete C; add D. All other atom values persist. Sequential deterministic actions; no exogenous change or replenishment. The six cases inspect Pickup/Go/Deliver at explicit states, including rejected attempts. Preconditions, add and delete lists have positive-atom set representations with disjoint effects. No conditional effects, negative preconditions, derived predicates or continuous time are used. A rejected action has no after-state; it is not modeled as a legal no-op. A data table and numeric summary accompany the graph.",
+        "takeaway": "Go from {H,C} yields {O,C}: location changes but carrying persists. Deliver from {O,C} yields {O,D}. Deliver from {H,P} is rejected because O and C are both absent.",
+        "seed": 0,
         "parameter": {
-          "id": "intensity",
-          "label": "Intervention",
+          "id": "plan-strips-effects",
+          "label": "State/action case",
           "min": 0,
-          "max": 1,
-          "step": 0.01,
-          "initial": 0.44,
+          "max": 5,
+          "step": 1,
+          "initial": 3,
           "unit": ""
-        },
-        "seed": 1569904434,
-        "nodeCount": 10,
-        "density": 0.59
+        }
       }
     ],
     "previous": "classical-artificial-intelligence/topics/state-space-representation",

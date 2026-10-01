@@ -52,11 +52,13 @@ export function CalculatedLab({ spec }: { spec: Extract<LabSpec, { engine: "calc
   return <section className="visual-lab calculated-lab" aria-labelledby={`${id}-title`}>
     <div className="lab-header"><div><span className="section-kicker">Calculated example</span><h2 id={`${id}-title`}>{spec.title}</h2><p>{spec.summary}</p></div><code>{spec.equation}</code></div>
     <details className="lab-assumptions model-assumptions"><summary>Model and assumptions</summary><p>{spec.assumptions}</p></details>
+    {graphControls && result.listings && <div className="graph-controls">{controls}</div>}
     {result.graph && <DependencyDiagram graph={result.graph} id={id} />}
     {result.grid && <CountGrid grid={result.grid} id={id} />}
     {result.automaton && <ParityAutomaton data={result.automaton} id={id} />}
     {result.execution && <ExecutionTimeline data={result.execution} id={id} />}
-    {graphControls && <div className="graph-controls">{controls}</div>}
+    {result.listings && <div className="lab-listings">{result.listings.map(listing => <figure key={listing.title}><figcaption>{listing.title}<span>{listing.language}</span></figcaption><pre><code>{listing.code}</code></pre></figure>)}</div>}
+    {graphControls && !result.listings && <div className="graph-controls">{controls}</div>}
     {result.kind !== "matrix" && <div className="calculated-plot" ref={plot}>
       <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby={`${id}-svg-title ${id}-description`}>
         <title id={`${id}-svg-title`}>{spec.title}</title><desc id={`${id}-description`}>{`${result.summary} ${spec.accessibilitySummary}`}</desc>

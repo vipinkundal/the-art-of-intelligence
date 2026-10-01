@@ -1191,10 +1191,13 @@
   },
   {
     "term": "Forward and backward planning",
-    "definition": "Forward planning progresses from known initial facts, while backward planning regresses desired goals through actions.",
+    "definition": "Forward planning progresses complete states through applicable actions. Regression planning instead searches over partial goal requirements: choose a relevant final action, ensure it does not delete a required fact, and replace the facts it achieves with its preconditions while retaining the other requirements. The resulting predecessor description is a condition on possible worlds, not one fully specified world or an inverse physical action. Both directions need search control and a correct action model.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/forward-and-backward-planning/",
-    "tags": []
+    "tags": [
+      "STRIPS",
+      "Backward chaining"
+    ]
   },
   {
     "term": "Forward chaining",
@@ -2344,10 +2347,14 @@
   },
   {
     "term": "Partial-order planning",
-    "definition": "Partial-order planning commits only to action orderings required by causal dependencies or threat resolution.",
+    "definition": "A partial-order plan contains action instances, ordering constraints and causal links that support requirements. A causal link says an earlier producer supplies a fact needed by a later consumer; a threatening action could delete that fact between them. Repairing the threat places it outside the protected interval or otherwise removes the conflict. A completed sound partial plan should permit only executable, goal-reaching linearizations under its action semantics, not merely include one successful total order.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/partial-order-planning/",
-    "tags": []
+    "tags": [
+      "STRIPS",
+      "Forward and backward planning",
+      "Trees and directed acyclic graphs"
+    ]
   },
   {
     "term": "Particle filter",
@@ -2362,10 +2369,13 @@
   },
   {
     "term": "PDDL",
-    "definition": "PDDL is a standard language for declaring planning domains and problem instances.",
+    "definition": "PDDL separates a reusable action domain from a task instance containing objects, an initial state and a goal. Typed parameters define possible grounded bindings; preconditions determine which grounded actions are executable in a particular state. Declaring a language requirement expresses a needed feature, not a guarantee that a chosen planner supports it. A well-formed model can still describe the wrong world, and a valid plan need not optimize an undeclared objective.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/pddl/",
-    "tags": []
+    "tags": [
+      "STRIPS",
+      "State-space planning"
+    ]
   },
   {
     "term": "Perceptrons",
@@ -2894,10 +2904,13 @@
   },
   {
     "term": "State-space planning",
-    "definition": "State-space planning searches through world states produced by applicable actions.",
+    "definition": "Classical state-space planning searches for an executable action sequence from a known initial world to any state satisfying a goal. Each action contributes a successor only where its preconditions hold. The state must retain all facts relevant to future legality and effects, not merely physical location. Goal satisfaction and plan quality are separate: a shortest-action plan is cheapest only when the declared action costs justify that objective.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/state-space-planning/",
-    "tags": []
+    "tags": [
+      "State-space representation",
+      "Breadth-first search"
+    ]
   },
   {
     "term": "State-space representation",
@@ -2949,10 +2962,13 @@
   },
   {
     "term": "STRIPS",
-    "definition": "STRIPS represents actions with preconditions, add effects, and delete effects.",
+    "definition": "In a propositional STRIPS model, an action has positive preconditions plus add and delete sets. If its preconditions are satisfied, remove the delete facts and insert the add facts; every other fact keeps its truth value. This compact persistence convention avoids listing an entire successor world for each action. It is a modeling assumption: omitted external changes, resources or conditional effects do not happen automatically just because the real system has them.",
     "phase": "Classical AI",
     "href": "/lessons/classical-artificial-intelligence/topics/strips/",
-    "tags": []
+    "tags": [
+      "State-space planning",
+      "Sets, relations, and functions"
+    ]
   },
   {
     "term": "Student's t",
